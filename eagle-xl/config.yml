@@ -41,3 +41,13 @@ scripts:
     output_file: density_pressure.png
     section: Density-Temperature
     title: Density-Pressure
+  - filename: scripts/star_formation_history.py
+    caption: Star formation history plotted directly from the SFR.txt produced by SWIFT.
+    output_file: star_formation_history.png
+    section: Star Formation History
+    title: Star Formation History
+  - filename: scripts/metallicity_distribution.py
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
+    output_file: metallicity_distribution.png
+    section: Metal Mass Fractions
+    title: Metal Mass Fraction Distribution

@@ -1,0 +1,18 @@
+halo_mass_function:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e9
+    end: 1e15
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e1
+  metadata:
+    title: "Halo Mass Function ($M_{200, crit}$)"
+  observational_data:
+    - filename: ./velociraptor-comparison-data/data/HaloMassFunction/Tinker2008.hdf5
+    - filename: ./velociraptor-comparison-data/data/HaloMassFunction/Bocquet2016.hdf5

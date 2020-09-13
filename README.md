@@ -9,9 +9,10 @@ The only required setup to use the configs is to format the
 observational data, which is performed using the submodule:
 
 ```bash
-git submodule init
+git submodule update --init --recursive
 cd observational_data
-bash format.sh
+bash convert.sh
+cd ..
 ```
 
 That should be everything you need to get going, as well as

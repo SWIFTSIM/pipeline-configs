@@ -1,0 +1,157 @@
+stellar_mass_black_hole_mass_30:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e7
+    end: 1e12
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    start:
+      value: 1e7
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass)
+    caption: SMBHM relation for the 30 kpc stellar mass aperture. 
+    section: Black Holes
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+
+
+stellar_mass_black_hole_mass_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e7
+    end: 1e12
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    start:
+      value: 1e7
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (100 kpc Stellar Mass)
+    caption: SMBHM relation. Note that the stellar velocity dispersion is measured in observations in a fixed 1 kpc aperture
+    section: Black Holes
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+
+
+halo_mass_black_hole_mass:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e9
+    end: 1e14
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    start:
+      value: 1e9
+      units: Solar_Mass
+    end:
+      value: 1e14
+      units: Solar_Mass
+  metadata:
+    title: Halo Mass-Black Hole Mass relation
+    caption: Presented for comparison between schemes as halo mass varies significantly less between models and runs.
+    section: Black Holes
+
+
+stellar_veldisp_black_hole_mass_10:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.veldisp_star_10_kpc"
+    units: km/s
+    start: 50
+    end: 1e3
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    start:
+      value: 1e0
+      units: km/s
+    end:
+      value: 1e3
+      units: km/s
+  metadata:
+    title: Stellar Velocity Dispersion-Black Hole Mass relation (10 kpc)
+    caption: Note that the stellar velocity dispersion is measured in observations in a fixed 1 kpc aperture
+    section: Black Holes
+  observational_data:
+    - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
+
+
+stellar_veldisp_black_hole_mass_30:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.veldisp_star_30_kpc"
+    units: km/s
+    start: 50
+    end: 1e3
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    start:
+      value: 1e0
+      units: km/s
+    end:
+      value: 1e3
+      units: km/s
+  metadata:
+    title: Stellar Velocity Dispersion-Black Hole Mass relation (30 kpc)
+    caption: Note that the stellar velocity dispersion is measured in observations in a fixed 1 kpc aperture
+    section: Black Holes
+    show_on_webpage: false
+  observational_data:
+    - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5

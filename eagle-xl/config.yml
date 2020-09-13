@@ -1,4 +1,4 @@
-# Example configuration file for a COLIBRE-like simulation
+# Example configuration file for a EAGLE-XL-like simulation
 
 # Location of your other .yml files that are passed to the
 # velociraptor auto plotter (these describe your scaling)

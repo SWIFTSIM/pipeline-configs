@@ -13,6 +13,8 @@ halo_mass_function:
     end: 1e1
   metadata:
     title: "Halo Mass Function ($M_{200, crit}$)"
+    caption: Halo masses are masses within the over-density radius enclosing 200x the critical density.
+    section: Halo Mass Function
   observational_data:
-    - filename: ./velociraptor-comparison-data/data/HaloMassFunction/Tinker2008.hdf5
-    - filename: ./velociraptor-comparison-data/data/HaloMassFunction/Bocquet2016.hdf5
+    - filename: HaloMassFunction/Tinker2008.hdf5
+    - filename: HaloMassFunction/Bocquet2016.hdf5

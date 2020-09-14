@@ -346,12 +346,14 @@ star_formation_rate_function_100:
     end: 1e3
   y:
     units: 1/Mpc**3
-    start: 1e-4
-    end: 3.16 # (1e0.5)
+    start: 1e-5
+    end: 0.316 # (1e-0.5)
   metadata:
     title: Star Formation Rate Function (100 kpc aperture)
     caption: 100 kpc aperture galaxy star formation rate function, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Star Formation Rates
+  observational_data:
+    - filename: StarFormationRateFunction/Bell2007.hdf5
 
 star_formation_rate_function_30:
   type: "massfunction"
@@ -364,10 +366,13 @@ star_formation_rate_function_30:
     end: 1e3
   y:
     units: 1/Mpc**3
-    start: 1e-4
-    end: 3.16 # (1e0.5)
+    start: 1e-5
+    end: 0.316 # (1e-0.5)
   metadata:
     title: Star Formation Rate Function (30 kpc aperture)
     caption: 30 kpc aperture galaxy star formation rate function, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Star Formation Rates
     show_on_webpage: false
+  observational_data:
+    - filename: StarFormationRateFunction/Bell2007.hdf5
+

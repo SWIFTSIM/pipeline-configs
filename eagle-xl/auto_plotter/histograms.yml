@@ -125,6 +125,38 @@ halo_mass_m200crit_histogram:
     caption: All halo masses (200 crit).
     section: Histograms
 
+star_formation_rate_histogram_30:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.sfr_gas_30_kpc"
+    units: "Solar_Mass / year"
+    start: 1e-3
+    end: 1e3
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Star Formation Rate Histogram (30 kpc aperture)
+    caption: Histogram of star formation rates using the same bins as the star formation rates function.
+    section: Histograms
+    show_on_webpage: false
+
+star_formation_rate_histogram_100:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.sfr_gas_100_kpc"
+    units: "Solar_Mass / year"
+    start: 1e-3
+    end: 1e3
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Star Formation Rate Histogram (100 kpc aperture)
+    caption: Histogram of star formation rates using the same bins as the star formation rates function.
+    section: Histograms
 
 black_hole_mass_histogram:
   type: "histogram"

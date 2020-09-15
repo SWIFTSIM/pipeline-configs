@@ -4,7 +4,7 @@ stellar_mass_black_hole_mass_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "black_hole_masses.max"
@@ -14,9 +14,9 @@ stellar_mass_black_hole_mass_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -38,7 +38,7 @@ stellar_mass_black_hole_mass_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "black_hole_masses.max"
@@ -48,9 +48,9 @@ stellar_mass_black_hole_mass_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -71,7 +71,7 @@ halo_mass_black_hole_mass:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     quantity: "black_hole_masses.max"
@@ -83,7 +83,7 @@ halo_mass_black_hole_mass:
     log: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -100,7 +100,7 @@ stellar_veldisp_black_hole_mass_10:
   x:
     quantity: "apertures.veldisp_star_10_kpc"
     units: km/s
-    start: 1
+    start: 1e1
     end: 1e3
   y:
     quantity: "black_hole_masses.max"
@@ -110,9 +110,9 @@ stellar_veldisp_black_hole_mass_10:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 10
     start:
-      value: 1
+      value: 1e1
       units: km/s
     end:
       value: 1e3
@@ -131,7 +131,7 @@ stellar_veldisp_black_hole_mass_30:
   x:
     quantity: "apertures.veldisp_star_30_kpc"
     units: km/s
-    start: 1
+    start: 10
     end: 1e3
   y:
     quantity: "black_hole_masses.max"
@@ -141,9 +141,9 @@ stellar_veldisp_black_hole_mass_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 10
     start:
-      value: 1
+      value: 10
       units: km/s
     end:
       value: 1e3

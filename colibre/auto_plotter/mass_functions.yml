@@ -1,11 +1,11 @@
 stellar_mass_function_30:
   type: "massfunction"
   legend_loc: "lower left"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3
@@ -24,11 +24,11 @@ stellar_mass_function_30:
 adaptive_stellar_mass_function_30:
   type: "adaptivemassfunction"
   legend_loc: "lower left"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3
@@ -50,11 +50,11 @@ stellar_mass_function_active_only_30:
   comment: "Active only"
   comment_loc: "lower right"
   selection_mask: "derived_quantities.is_active_30_kpc"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3
@@ -76,11 +76,11 @@ stellar_mass_function_passive_only_30:
   comment: "Passive only"
   comment_loc: "lower right"
   selection_mask: "derived_quantities.is_passive_30_kpc"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3
@@ -100,11 +100,11 @@ stellar_mass_function_passive_only_30:
 stellar_mass_function_100:
   type: "massfunction"
   legend_loc: "lower left"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3
@@ -122,11 +122,11 @@ stellar_mass_function_100:
 adaptive_stellar_mass_function_100:
   type: "adaptivemassfunction"
   legend_loc: "lower left"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3
@@ -143,7 +143,7 @@ adaptive_stellar_mass_function_100:
 
 stellar_mass_function_passive_only_100:
   type: "massfunction"
-  number_of_bins: 25
+  number_of_bins: 30
   legend_loc: "lower left"
   comment: "Passive only"
   comment_loc: "lower right"
@@ -151,7 +151,7 @@ stellar_mass_function_passive_only_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3
@@ -168,7 +168,7 @@ stellar_mass_function_passive_only_100:
 
 stellar_mass_function_active_only_100:
   type: "massfunction"
-  number_of_bins: 25
+  number_of_bins: 30
   legend_loc: "lower left"
   comment: "Active only"
   comment_loc: "lower right"
@@ -176,7 +176,7 @@ stellar_mass_function_active_only_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     units: 1/Mpc**3

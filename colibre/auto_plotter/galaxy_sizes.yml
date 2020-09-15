@@ -4,19 +4,19 @@ stellar_mass_galaxy_size_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "apertures.rhalfmass_star_100_kpc"
     units: kpc
-    start: 1e-1
-    end: 1e1
+    start: 3e-1
+    end: 3e1
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -35,7 +35,7 @@ stellar_mass_galaxy_size_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "apertures.rhalfmass_star_30_kpc"
@@ -45,9 +45,9 @@ stellar_mass_galaxy_size_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -67,7 +67,7 @@ stellar_mass_projected_galaxy_size_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
@@ -77,9 +77,9 @@ stellar_mass_projected_galaxy_size_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -99,7 +99,7 @@ stellar_mass_projected_galaxy_size_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
@@ -109,9 +109,9 @@ stellar_mass_projected_galaxy_size_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -129,13 +129,13 @@ stellar_mass_projected_galaxy_size_30:
 stellar_mass_projected_galaxy_size_active_only_100:
   type: "scatter"
   comment: "Active only"
-  comment_loc: "upper right"
+  comment_loc: "lower left"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
@@ -145,9 +145,9 @@ stellar_mass_projected_galaxy_size_active_only_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -164,13 +164,13 @@ stellar_mass_projected_galaxy_size_active_only_100:
 stellar_mass_projected_galaxy_size_active_only_30:
   type: "scatter"
   comment: "Active only"
-  comment_loc: "upper right"
+  comment_loc: "lower left"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_active_30_kpc"
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
@@ -180,9 +180,9 @@ stellar_mass_projected_galaxy_size_active_only_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -200,13 +200,13 @@ stellar_mass_projected_galaxy_size_active_only_30:
 stellar_mass_projected_galaxy_size_passive_only_100:
   type: "scatter"
   comment: "Passive only"
-  comment_loc: "upper right"
+  comment_loc: "lower left"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_passive_100_kpc"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
@@ -216,9 +216,9 @@ stellar_mass_projected_galaxy_size_passive_only_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -235,13 +235,13 @@ stellar_mass_projected_galaxy_size_passive_only_100:
 stellar_mass_projected_galaxy_size_passive_only_30:
   type: "scatter"
   comment: "Passive only"
-  comment_loc: "upper right"
+  comment_loc: "lower left"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_passive_30_kpc"
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e6
     end: 1e12
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
@@ -251,9 +251,9 @@ stellar_mass_projected_galaxy_size_passive_only_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12

@@ -1,11 +1,11 @@
 stellar_mass_histogram_30:
   type: "histogram"
   legend_loc: "upper right"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
@@ -21,11 +21,11 @@ stellar_mass_histogram_active_only_30:
   comment: "Active only"
   comment_loc: "upper center"
   selection_mask: "derived_quantities.is_active_30_kpc"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
@@ -41,11 +41,11 @@ stellar_mass_histogram_passive_only_30:
   comment: "Passive only"
   comment_loc: "upper center"
   selection_mask: "derived_quantities.is_passive_30_kpc"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
@@ -58,11 +58,11 @@ stellar_mass_histogram_passive_only_30:
 stellar_mass_histogram_100:
   type: "histogram"
   legend_loc: "upper right"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
@@ -77,11 +77,11 @@ stellar_mass_histogram_active_only_100:
   comment: "Active only"
   comment_loc: "upper center"
   selection_mask: "derived_quantities.is_active_100_kpc"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
@@ -96,11 +96,11 @@ stellar_mass_histogram_passive_only_100:
   comment: "Passive only"
   comment_loc: "upper center"
   selection_mask: "derived_quantities.is_passive_100_kpc"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
@@ -116,7 +116,7 @@ halo_mass_m200crit_histogram:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   histogram:
     scatter: "none"
@@ -161,7 +161,7 @@ star_formation_rate_histogram_100:
 black_hole_mass_histogram:
   type: "histogram"
   legend_loc: "upper right"
-  number_of_bins: 25
+  number_of_bins: 40
   x:
     quantity: "black_hole_masses.max"
     units: Solar_Mass

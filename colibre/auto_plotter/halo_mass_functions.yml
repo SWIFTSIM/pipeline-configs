@@ -5,7 +5,7 @@ halo_mass_function:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     units: 1/Mpc**3

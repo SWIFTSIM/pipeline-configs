@@ -1,22 +1,22 @@
 stellar_mass_halo_mass_all_100:
   type: "scatter"
-  legend_loc: "lower right"
+  legend_loc: "upper left"
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   median:
     plot: true
     log: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -33,23 +33,23 @@ stellar_mass_halo_mass_centrals_100:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
-  legend_loc: "lower right"
+  legend_loc: "upper left"
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   median:
     plot: true
     log: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -67,11 +67,11 @@ stellar_mass_halo_mass_centrals_ratio_100:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
-  legend_loc: "lower right"
+  legend_loc: "upper left"
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     quantity: "derived_quantities.stellar_mass_to_halo_mass_100_kpc"
@@ -81,9 +81,9 @@ stellar_mass_halo_mass_centrals_ratio_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -101,11 +101,11 @@ stellar_mass_halo_mass_centrals_ratio_stellar_100:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
-  legend_loc: "lower left"
+  legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "derived_quantities.stellar_mass_to_halo_mass_100_kpc"
@@ -115,9 +115,9 @@ stellar_mass_halo_mass_centrals_ratio_stellar_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12
@@ -133,23 +133,23 @@ stellar_mass_halo_mass_centrals_ratio_stellar_100:
 
 stellar_mass_halo_mass_all_30:
   type: "scatter"
-  legend_loc: "lower right"
+  legend_loc: "upper left"
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   median:
     plot: true
     log: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -166,24 +166,24 @@ stellar_mass_halo_mass_all_30:
 stellar_mass_halo_mass_centrals_30:
   type: "scatter"
   comment: "Centrals only"
-  legend_loc: "lower right"
+  legend_loc: "upper left"
   select_structure_type: 10
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   median:
     plot: true
     log: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -202,11 +202,11 @@ stellar_mass_halo_mass_centrals_ratio_30:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
-  legend_loc: "lower right"
+  legend_loc: "upper left"
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e7
+    start: 1e8
     end: 1e13
   y:
     quantity: "derived_quantities.stellar_mass_to_halo_mass_30_kpc"
@@ -218,7 +218,7 @@ stellar_mass_halo_mass_centrals_ratio_30:
     log: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -237,11 +237,11 @@ stellar_mass_halo_mass_centrals_ratio_stellar_30:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
-  legend_loc: "lower left"
+  legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e5
+    start: 1e6
     end: 1e12
   y:
     quantity: "derived_quantities.stellar_mass_to_halo_mass_30_kpc"
@@ -251,9 +251,9 @@ stellar_mass_halo_mass_centrals_ratio_stellar_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e5
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e12

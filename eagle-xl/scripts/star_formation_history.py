@@ -76,7 +76,7 @@ observation_labels = []
 
 for index, observation in enumerate(observational_data):
     if observation.fitting_formula:
-        if observation.description == "EAGLE NoAGN":
+        if observation.description == "EAGLE-25 REF":
             observation_lines.append(
                 ax.plot(
                     observation.scale_factor,

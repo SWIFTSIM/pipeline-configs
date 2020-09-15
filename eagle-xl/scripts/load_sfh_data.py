@@ -290,11 +290,11 @@ def read_obs_data(path="observational_data"):
     )
 
     # Load the EAGLE NOAGN data
-    eagle_data = loadtxt(f"{path}/EAGLE_NOAGN_sfr.txt")
+    eagle_data = loadtxt(f"{path}/EAGLE_25_REF_sfr.txt")
 
     output.append(
         ObservationalData(
-            eagle_data[:, 0], eagle_data[:, 2] / (25 ** 3), None, "EAGLE NoAGN"
+            eagle_data[:, 0], eagle_data[:, 2] / (25 ** 3), None, "EAGLE-25 REF"
         )
     )
 

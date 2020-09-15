@@ -12,8 +12,8 @@ from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
 
 # Set the limits of the figure.
-density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
-temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
+density_bounds = [10 ** (-9.5), 1e4]  # in nh/cm^3
+temperature_bounds = [10 ** (2), 10 ** (9.5)]  # in K
 bins = 256
 
 

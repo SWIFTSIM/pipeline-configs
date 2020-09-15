@@ -1,0 +1,20 @@
+halo_mass_function:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e7
+    end: 1e13
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e1
+  metadata:
+    title: "Halo Mass Function ($M_{200, crit}$)"
+    caption: Halo masses are masses within the over-density radius enclosing 200x the critical density.
+    section: Halo Mass Function
+  observational_data:
+    - filename: HaloMassFunction/Tinker2008.hdf5
+    - filename: HaloMassFunction/Bocquet2016.hdf5

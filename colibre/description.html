@@ -147,23 +147,23 @@
     </tr>
     <tr>
         <td>Use sub-grid properties</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:use_subgrid_gas_properties"] | int }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_subgrid_gas_properties", 0) | int }}</td>
     </tr>
     <tr>
         <td>Multi-phase Bondi</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:use_multi_phase_bondi"] | int }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_multi_phase_bondi", 0) | int }}</td>
     </tr>
     <tr>
         <td>Use Krumholtz Accretion</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:use_krumholz"] | int }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_krumholz", 0) | int }}</td>
     </tr>
     <tr>
         <td>Use Krumholtz Vorticity</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:use_krumholz_vorticity"] | int }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_krumholz_vorticity", 0) | int }}</td>
     </tr>
     <tr>
         <td>Use Angular Momentum Limiter</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:with_angmom_limiter"] | int }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:with_angmom_limiter", 0) | int }}</td>
     </tr>
     <tr>
         <td>Reposition Velocity</td>
@@ -175,7 +175,7 @@
     </tr>
     <tr>
         <td>With Reposition Threshold</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:with_reposition_velocity_threshold"] | int }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:with_reposition_velocity_threshold", 0) | int }}</td>
     </tr>
     <tr>
         <td>Maximal Velocity Offset</td>

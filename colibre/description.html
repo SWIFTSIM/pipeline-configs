@@ -133,32 +133,25 @@
     </tr>
     <tr>
         <td>Reposition Velocity</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:reposition_coefficient_upsilon"] | float | format_number }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }}</td>
+    </tr>
+    <tr>
+        <td>Subgrid Seed Mass</td>
+        <td>{{ data.metadata.parameters["COLIBREAGN:subgrid_seed_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
+    </tr>
+    <tr>
+        <td>N\(_{\rm heat}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:AGN_num_ngb_to_heat"] | float) }}</td>
+    </tr>
+    <tr>
+        <td>Multi-phase Bondi</td>
+        <td>{{ data.metadata.parameters["COLIBREAGN:use_multi_phase_bondi"] }}</td>
     </tr>
 </table>
 
 {# 
-        agn_feedback += f"""
-        <li>Subgrid seed mass (Msol) = {parameter_file['COLIBREAGN']['subgrid_seed_mass_Msun']}</li>
-        """
-    except KeyError:
-        pass
 
-    try:
-        agn_feedback += f"""
-        <li>Number of neighbours to heat = {parameter_file['COLIBREAGN']['AGN_num_ngb_to_heat']}</li>
-        """
-    except KeyError:
-        pass
-
-    try:
-        agn_feedback += f"""
-        <li>Use multi-phase Bondi = {parameter_file['COLIBREAGN']['use_multi_phase_bondi']}</li>
-        """
-    except KeyError:
-        pass
-
-    try:
+     try:
         agn_feedback += f"""
         <li>Use subgrid properties = {parameter_file['COLIBREAGN']['use_subgrid_gas_properties']}</li>
         """

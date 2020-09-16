@@ -96,6 +96,19 @@
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_delta_v_km_p_s"] | float) }} km s\(^{-1}\)</td>
     </tr>
 </table>
+<h4>Entropy Floor</h4>
+<table>
+    <tr>
+        <th>\(n_{\rm H, norm}\) [cm\(^{-3}\)]</th>
+        <th>\(T_{\rm norm}\) [K]</th>
+        <th>Slope</th>
+    </tr>
+    <tr>
+        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3"] | float) | format_number }}</td>
+        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_temperature_norm_K"] | float) | format_number }}</td>
+        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_gamma_effective"] | float) | format_number }}</td>
+    </tr>
+</table>
 
 <h4>Code Setup</h4>
 <ul>

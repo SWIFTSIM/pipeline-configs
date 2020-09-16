@@ -5,16 +5,11 @@
     <li>Box-size: {{ data.metadata.boxsize[0] | format_number }}</li>
     <li>Dark matter particle mass: {{ data.dark_matter.masses[0].to("Solar_Mass") | format_number }}</li>
     <li>Gas particle mass: {{ data.gas.masses.min().to("Solar_Mass") | format_number }}</li>
-    <li>Cube root of particle number: {{ (data.metadata.n_dark_matter**(1/3)+0.01) | int }}</li>
+    <li></li>
     <li>Snapshot \(z={{ "%2.2f" | format(data.metadata.z)}}\), \(a={{ "%2.2f" | format(data.metadata.a)}}\)</li>
-    <li>Gravitational softenings:
-        <ul>
-            <li>Dark matter: {{ ((data.metadata.parameters["Gravity:max_physical_DM_softening"] | float) * data.units.length).to('kpc') | format_number }}</li>
-            <li>Baryons: {{ ((data.metadata.parameters["Gravity:max_physical_baryon_softening"] | float) * data.units.length).to('kpc') | format_number }}</li>
-        </ul>
-    </li>
 </ul>
 <h4>Particle Numbers</h4>
+<p>Cube root of Dark Matter particle number: {{ (data.metadata.n_dark_matter**(1/3)+0.01) | int }}</p>
 <table>
     <tr>
         <th>Gas</th>
@@ -46,6 +41,33 @@
         <td>{{ ((data.metadata.parameters["Gravity:comoving_baryon_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
         <td>{{ ((data.metadata.parameters["Gravity:max_physical_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
         <td>{{ ((data.metadata.parameters["Gravity:comoving_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
+    </tr>
+</table>
+<h4>Star Formation</h4>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Star Formaion Model</td>
+        <td>{{ data.metadata.parameters["COLIBREStarFormation:SF_Model"] }}</td>
+    </tr>
+    <tr>
+        <td>Temperature Ceiling</td>
+        <td>{{ ((data.metadata.parameters["COLIBREStarFormation:temperature_threshold_K"] | float) * data.units.temperature).to('K') | format_number }}</td>
+    </tr>
+    <tr>
+        <td>Virial Parameter</td>
+        <td>{{ (data.metadata.parameters["COLIBREStarFormation:alpha_virial"] | float) | format_number }}</td>
+    </tr>
+    <tr>
+        <td>Threshold SF \(n_{\rm H, max}\)</td>
+        <td>{{ (data.metadata.parameters["COLIBREStarFormation:subgrid_density_threshold_H_p_CM3"] | float) | format_number }} cm\(^{-3}\)</td>
+    </tr>
+    <tr>
+        <td>Immediate SF \(n_{\rm H, max}\)</td>
+        <td>{{ (data.metadata.parameters["COLIBREStarFormation:threshold_max_density_H_p_cm3"] | float) | format_number }} cm\(^{-3}\)</td>
     </tr>
 </table>
 <h4>Code Setup</h4>

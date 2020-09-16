@@ -97,6 +97,7 @@
     </tr>
 </table>
 <h4>Entropy Floor</h4>
+{% if data.metadata.parameters.get("COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3", False) %}
 <table>
     <tr>
         <th>\(n_{\rm H, norm}\) [cm\(^{-3}\)]</th>
@@ -109,7 +110,110 @@
         <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_gamma_effective"] | float) | format_number }}</td>
     </tr>
 </table>
+{% else %}
+<p>No entropy floor present.</p>
+{% endif %}
+<h4>AGN</h4>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>\(\Delta T\)</td>
+        <td>{{ data.metadata.parameters["COLIBREAGN:AGN_delta_T_K"] | float | format_number }} K</td>
+    </tr>
+    <tr>
+        <td>\(C_{\rm eff}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:coupling_efficiency"] | float) }}</td>
+    </tr>
+    <tr>
+        <td>Viscous \(\alpha\)</td>
+        <td>{{ data.metadata.parameters["COLIBREAGN:viscous_alpha"] | float | format_number }}</td>
+    </tr>
+    <tr>
+        <td>Reposition Velocity</td>
+        <td>{{ data.metadata.parameters["COLIBREAGN:reposition_coefficient_upsilon"] | float | format_number }}</td>
+    </tr>
+</table>
 
+{# 
+        agn_feedback += f"""
+        <li>Subgrid seed mass (Msol) = {parameter_file['COLIBREAGN']['subgrid_seed_mass_Msun']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Number of neighbours to heat = {parameter_file['COLIBREAGN']['AGN_num_ngb_to_heat']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Use multi-phase Bondi = {parameter_file['COLIBREAGN']['use_multi_phase_bondi']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Use subgrid properties = {parameter_file['COLIBREAGN']['use_subgrid_gas_properties']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Use Krumholz+2006 accretion rates = {parameter_file['COLIBREAGN']['use_krumholz']}</li>
+        <li>Use Krumholz+2006 vorticity term  = {parameter_file['COLIBREAGN']['with_krumholz_vorticity']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Use Rosas-Guevara (2015) viscous time-scale reduction term = {parameter_file['COLIBREAGN']['with_angmom_limiter']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Coupling efficiency = {parameter_file['COLIBREAGN']['coupling_efficiency']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Maximal BH mass considered for BH repositioning = {parameter_file['COLIBREAGN']['max_reposition_mass']} M$_\\odot$</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Only reposition to particles that move slowly w.r.t. the black hole =
+        {parameter_file['COLIBREAGN']['with_reposition_velocity_threshold']}</li>
+        """
+    except KeyError:
+        pass
+
+    try:
+        agn_feedback += f"""
+        <li>Maximal velocity offset for repositioning (units of BH sound speed) =
+        {parameter_file['COLIBREAGN']['max_reposition_velocity_ratio']}</li>
+        """
+    except KeyError:
+        pass
+
+except KeyError:
+    pass
+
+#}
 <h4>Code Setup</h4>
 <ul>
     <li>Code info: {{ data.metadata.code_info }}</li>

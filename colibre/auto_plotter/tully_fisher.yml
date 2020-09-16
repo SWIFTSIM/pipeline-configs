@@ -1,0 +1,62 @@
+tully_fisher_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "velocities.vmax"
+    units: km/s
+    start: 4
+    end: 700
+  median:
+    plot: true
+    log: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: Tully-Fisher (stellar mass, 100 kpc)
+    caption: The Tully-Fisher relation based on stellar mass.
+    section: Tully-Fisher
+  observational_data:
+    - filename: TullyFisherRelation/AvilaReese2008.hdf5
+    - filename: TullyFisherRelation/Reyes2011.hdf5
+
+tully_fisher_30:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "velocities.vmax"
+    units: km/s
+    start: 4
+    end: 700
+  median:
+    plot: true
+    log: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: Tully-Fisher (stellar mass, 100 kpc)
+    caption: The Tully-Fisher relation based on stellar mass.
+    section: Tully-Fisher
+    show_on_webpage: false
+  observational_data:
+    - filename: TullyFisherRelation/AvilaReese2008.hdf5
+    - filename: TullyFisherRelation/Reyes2011.hdf5

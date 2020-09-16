@@ -1,0 +1,175 @@
+stellar_mass_histogram_30:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Stellar Mass Histogram (30 kpc aperture)
+    caption: Histogram of stellar masses using the same bins as the mass function.
+    section: Histograms
+    show_on_webpage: false
+
+stellar_mass_histogram_active_only_30:
+  type: "histogram"
+  legend_loc: "upper right"
+  comment: "Active only"
+  comment_loc: "upper center"
+  selection_mask: "derived_quantities.is_active_30_kpc"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Stellar Mass Histogram (30 kpc aperture, active)
+    caption: Only for active galaxies.
+    section: Histograms
+    show_on_webpage: false
+
+stellar_mass_histogram_passive_only_30:
+  type: "histogram"
+  legend_loc: "upper right"
+  comment: "Passive only"
+  comment_loc: "upper center"
+  selection_mask: "derived_quantities.is_passive_30_kpc"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Stellar Mass Histogram (30 kpc aperture, passive)
+    caption: Only for passive galaxies.
+    section: Histograms
+    show_on_webpage: false
+
+stellar_mass_histogram_100:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Stellar Mass Histogram (100 kpc aperture)
+    caption: Histogram of stellar masses using the same bins as the mass function.
+    section: Histograms
+
+stellar_mass_histogram_active_only_100:
+  type: "histogram"
+  legend_loc: "upper right"
+  comment: "Active only"
+  comment_loc: "upper center"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Stellar Mass Histogram (100 kpc aperture, active)
+    caption: Only for active galaxies.
+    section: Histograms
+
+stellar_mass_histogram_passive_only_100:
+  type: "histogram"
+  legend_loc: "upper right"
+  comment: "Passive only"
+  comment_loc: "upper center"
+  selection_mask: "derived_quantities.is_passive_100_kpc"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Stellar Mass Histogram (100 kpc aperture, passive)
+    caption: Only for passive galaxies.
+    section: Histograms
+
+halo_mass_m200crit_histogram:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 25
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e8
+    end: 1e13
+  histogram:
+    scatter: "none"
+  metadata:
+    title: "Halo Mass Histogram (\\(M_{200, crit}\\))"
+    caption: All halo masses (200 crit).
+    section: Histograms
+
+star_formation_rate_histogram_30:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.sfr_gas_30_kpc"
+    units: "Solar_Mass / year"
+    start: 1e-3
+    end: 1e3
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Star Formation Rate Histogram (30 kpc aperture)
+    caption: Histogram of star formation rates using the same bins as the star formation rates function.
+    section: Histograms
+    show_on_webpage: false
+
+star_formation_rate_histogram_100:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 30
+  x:
+    quantity: "apertures.sfr_gas_100_kpc"
+    units: "Solar_Mass / year"
+    start: 1e-3
+    end: 1e3
+  histogram:
+    scatter: "none"
+  metadata:
+    title: Star Formation Rate Histogram (100 kpc aperture)
+    caption: Histogram of star formation rates using the same bins as the star formation rates function.
+    section: Histograms
+
+black_hole_mass_histogram:
+  type: "histogram"
+  legend_loc: "upper right"
+  number_of_bins: 40
+  x:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e3
+    end: 1e11
+  histogram:
+    scatter: "none"
+  metadata:
+    title: "Black Hole Mass Histogram (Max, subgrid)"
+    caption: Uses the same bins as in the black holes section.
+    section: Histograms

@@ -5,7 +5,6 @@
     <li>Box-size: {{ data.metadata.boxsize[0] | format_number }}</li>
     <li>Dark matter particle mass: {{ data.dark_matter.masses[0].to("Solar_Mass") | format_number }}</li>
     <li>Gas particle mass: {{ data.gas.masses.min().to("Solar_Mass") | format_number }}</li>
-    <li></li>
     <li>Snapshot \(z={{ "%2.2f" | format(data.metadata.z)}}\), \(a={{ "%2.2f" | format(data.metadata.a)}}\)</li>
 </ul>
 <h4>Particle Numbers</h4>
@@ -50,7 +49,7 @@
         <th>Value</th>
     </tr>
     <tr>
-        <td>Star Formaion Model</td>
+        <td>Star Formation Model</td>
         <td>{{ data.metadata.parameters["COLIBREStarFormation:SF_Model"] }}</td>
     </tr>
     <tr>
@@ -70,6 +69,34 @@
         <td>{{ (data.metadata.parameters["COLIBREStarFormation:threshold_max_density_H_p_cm3"] | float) | format_number }} cm\(^{-3}\)</td>
     </tr>
 </table>
+<h4>Stellar Feedback</h4>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Supernova Energy</td>
+        <td>{{ (data.metadata.parameters["COLIBREFeedback:SNII_energy_erg"] | float) | format_number }} erg</td>
+    </tr>
+    <tr>
+        <td>\(f_{\rm E, min}\)</td>
+        <td>{{ "%.4g" % ( parameter_file["COLIBREFeedback:SNII_energy_fraction_min"] | float ) }}</td>
+    </tr>
+    <tr>
+        <td>\(f_{\rm E, max}\)</td>
+        <td>{{ "%.4g" % ( parameter_file["COLIBREFeedback:SNII_energy_fraction_max"] | float ) }}</td>
+    </tr>
+    <tr>
+        <td>\(f_{\rm kinetic}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_f_kinetic"] | float) }}</td>
+    </tr>
+    <tr>
+        <td>\(v_{\rm kinetic}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_delta_v_km_p_s"] | float) }} km s\(^{-1}\)</td>
+    </tr>
+</table>
+
 <h4>Code Setup</h4>
 <ul>
     <li>Code info: {{ data.metadata.code_info }}</li>

@@ -81,11 +81,11 @@
     </tr>
     <tr>
         <td>\(f_{\rm E, min}\)</td>
-        <td>{{ "%.4g" % ( parameter_file["COLIBREFeedback:SNII_energy_fraction_min"] | float ) }}</td>
+        <td>{{ "%.4g" % ( data.metadata.parameters["COLIBREFeedback:SNII_energy_fraction_min"] | float ) }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm E, max}\)</td>
-        <td>{{ "%.4g" % ( parameter_file["COLIBREFeedback:SNII_energy_fraction_max"] | float ) }}</td>
+        <td>{{ "%.4g" % ( data.metadata.parameters["COLIBREFeedback:SNII_energy_fraction_max"] | float ) }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm kinetic}\)</td>

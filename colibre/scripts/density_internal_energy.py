@@ -13,7 +13,7 @@ from matplotlib.animation import FuncAnimation
 
 # Constants; these could be put in the parameter file but are rarely changed.
 density_bounds = [10**(-9.5), 1e6]  # in nh/cm^3
-internal_energy_bounds = [10 ** (-2), 10 ** (8)]  # in 
+internal_energy_bounds = [10 ** (-4), 10 ** (6)]  # in 
 bins = 256
 
 def get_data(filename):

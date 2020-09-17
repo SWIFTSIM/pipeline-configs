@@ -7,7 +7,7 @@ baryon_fraction_200:
     start: 1e12
     end: 1e15
   y:
-    quantity: "derived_quantities.baryon_fraction_true"
+    quantity: "derived_quantities.baryon_fraction_true_R200"
     units:  "dimensionless"
     log: false
     start: 0.
@@ -36,7 +36,7 @@ gas_fraction_200:
     start: 1e12
     end: 1e15
   y:
-    quantity: "derived_quantities.gas_fraction_true"
+    quantity: "derived_quantities.gas_fraction_true_R200"
     units:  "dimensionless"
     log: false
     start: 0.
@@ -65,7 +65,7 @@ baryon_fraction_500:
     start: 1e12
     end: 1e15
   y:
-    quantity: "derived_quantities.baryon_fraction_true"
+    quantity: "derived_quantities.baryon_fraction_true_R500"
     units:  "dimensionless"
     log: false
     start: 0.
@@ -94,7 +94,7 @@ gas_fraction_500:
     start: 1e12
     end: 1e15
   y:
-    quantity: "derived_quantities.gas_fraction_true"
+    quantity: "derived_quantities.gas_fraction_true_R500"
     units:  "dimensionless"
     log: false
     start: 0.

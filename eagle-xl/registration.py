@@ -172,13 +172,29 @@ M_200_gas = catalogue.masses.mass_200crit_gas
 M_200_star = catalogue.masses.mass_200crit_star
 M_200_baryon = M_200_gas + M_200_star
 
-f_b = M_200_baryon / M_200
-name = "$f_{\\rm b, true}$"
-f_b.name = name
+f_b_200 = M_200_baryon / M_200
+name = "$f_{\\rm b, 200, true}$"
+f_b_200.name = name
 
-f_gas = M_200_gas / M_200
-name = "$f_{\\rm gas, true}$"
-f_gas.name = name
+f_gas_200 = M_200_gas / M_200
+name = "$f_{\\rm gas, 200, true}$"
+f_gas_200.name = name
 
-setattr(self, "baryon_fraction_true" ,f_b)
-setattr(self, "gas_fraction_true" ,f_gas)
+setattr(self, "baryon_fraction_true_R200" ,f_b_200)
+setattr(self, "gas_fraction_true_R200" ,f_gas_200)
+
+M_500 = catalogue.masses.mass_500crit
+M_500_gas = catalogue.masses.mass_500crit_gas
+M_500_star = catalogue.masses.mass_500crit_star
+M_500_baryon = M_500_gas + M_500_star
+
+f_b_500 = M_500_baryon / M_500
+name = "$f_{\\rm b, 500, true}$"
+f_b_500.name = name
+
+f_gas_500 = M_500_gas / M_500
+name = "$f_{\\rm gas, 500, true}$"
+f_gas_500.name = name
+
+setattr(self, "baryon_fraction_true_R500" ,f_b_500)
+setattr(self, "gas_fraction_true_R500" ,f_gas_500)

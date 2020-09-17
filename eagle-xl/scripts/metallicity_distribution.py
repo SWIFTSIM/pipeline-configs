@@ -15,7 +15,7 @@ from matplotlib.animation import FuncAnimation
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a star formation history plot, with added observational data."
+    description="Creates metal mass fraction distribution plots for stars and gas."
 )
 
 snapshot_filenames = [

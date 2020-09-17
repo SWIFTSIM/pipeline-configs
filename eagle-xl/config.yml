@@ -56,3 +56,8 @@ scripts:
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_distribution.py
+    caption: Stars (dynamical) birth densities
+    output_file: birth_density_distribution.png
+    section: Star and feedback properties
+    title: Star birth densities

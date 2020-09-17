@@ -20,7 +20,7 @@ This file calculates:
     + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
         Stellar Mass / Halo Mass (mass_200crit) for 30 and 100 kpc apertures.
     + HI and H_2 masses (gas_HI_mass_Msun and gas_H2_mass_Msun).
-    + baryon fraction in M_(200,cr).
+    + baryon fraction in M_(200,cr) and M_(500,cr).
 """
 
 aperture_sizes = [30, 100]
@@ -180,8 +180,8 @@ f_gas_200 = M_200_gas / M_200
 name = "$f_{\\rm gas, 200, true}$"
 f_gas_200.name = name
 
-setattr(self, "baryon_fraction_true_R200" ,f_b_200)
-setattr(self, "gas_fraction_true_R200" ,f_gas_200)
+setattr(self, "baryon_fraction_true_R200", f_b_200)
+setattr(self, "gas_fraction_true_R200", f_gas_200)
 
 M_500 = catalogue.masses.mass_500crit
 M_500_gas = catalogue.masses.mass_500crit_gas
@@ -196,5 +196,5 @@ f_gas_500 = M_500_gas / M_500
 name = "$f_{\\rm gas, 500, true}$"
 f_gas_500.name = name
 
-setattr(self, "baryon_fraction_true_R500" ,f_b_500)
-setattr(self, "gas_fraction_true_R500" ,f_gas_500)
+setattr(self, "baryon_fraction_true_R500", f_b_500)
+setattr(self, "gas_fraction_true_R500", f_gas_500)

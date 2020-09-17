@@ -28,7 +28,7 @@ scripts:
     title: Density-Temperature
   - filename: scripts/subgrid_density_temperature.py
     caption: Density-temperature diagram constructed from the sub-grid quantities.
-    output_file: density_temperature.png
+    output_file: subgrid_density_temperature.png
     section: Density-Temperature
     title: Density-Temperature
   - filename: scripts/density_temperature_metals.py

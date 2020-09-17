@@ -108,6 +108,7 @@ for aperture_size in aperture_sizes:
     except AttributeError:
         pass
 
+# Now stellar mass - halo mass relation
 
 for aperture_size in aperture_sizes:
     stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
@@ -118,3 +119,15 @@ for aperture_size in aperture_sizes:
     smhm.name = name
 
     setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
+
+# Now HI mass functions
+
+gas_mass = catalogue.masses.m_gas
+H_frac = getattr(catalogue.element_mass_fractions, "element_0")
+HI_frac = getattr(catalogue.species_fractions, "species_0")
+
+HI_mass = gas_mass * H_frac * HI_frac
+name = "$M_{\\rm HI}$"
+HI_mass.name = name
+
+setattr(self, "gas_HI_mass_Msun" , HI_mass)

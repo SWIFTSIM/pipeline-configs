@@ -53,7 +53,7 @@ ax_dict = {
 
 for label, ax in ax_dict.items():
     ax.loglog()
-    ax.text(0.025, 0.975, label, transform=ax.transAxes, ha="left", va="top")
+    ax.text(0.025, 1.0 - 0.025 * 3, label, transform=ax.transAxes, ha="left", va="top")
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 

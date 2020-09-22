@@ -137,7 +137,7 @@ except AttributeError:
         self,
         "gas_HI_mass_Msun",
         unyt.unyt_array(
-            np.zeros_like(catalogue.masses.m_gas), name="$M{\\rm HI} not found"
+            catalogue.masses.m_gas, name="$M{\\rm HI}$ not found, showing $M_{\\rm g}$"
         ),
     )
 

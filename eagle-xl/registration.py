@@ -128,10 +128,16 @@ try:
     HI_frac = getattr(catalogue.species_fractions, "species_0")
 
     HI_mass = gas_mass * H_frac * HI_frac
-    name = "$M_{\\rm HI}$"
-    HI_mass.name = name
+    HI_mass.name = "$M_{\\rm HI}$"
 
     setattr(self, "gas_HI_mass_Msun", HI_mass)
 except AttributeError:
     # We did not produce these quantities.
-    setattr(self, "gas_HI_mass_Msun", np.zeros_like(catalogue.masses.m_gas))
+    setattr(
+        self,
+        "gas_HI_mass_Msun",
+        unyt.unyt_array(
+            np.zeros_like(catalogue.masses.m_gas), name="$M{\\rm HI} not found"
+        ),
+    )
+

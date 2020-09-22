@@ -42,7 +42,8 @@ birth_density_centers = 0.5 * (birth_density_bins[1:] + birth_density_bins[:-1])
 
 # Begin plotting
 
-fig, axes = plt.subplots(1, 3, sharex=True, sharey=True)
+fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
+axes = axes.flat
 
 ax_dict = {
     "$z < 1$": axes[0],

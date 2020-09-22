@@ -39,7 +39,7 @@ def setup_axes(number_of_simulations: int):
 
     # Set all valid on bottom row to have the horizontal axis label.
     for axis in np.atleast_2d(ax)[:][-1]:
-        axis.set_xlabel("Stellar Birth Density [$n_H$ cm$^{-3}$]")
+        axis.set_xlabel("Birth Density [$n_H$ cm$^{-3}$]")
 
     for axis in np.atleast_2d(ax).T[:][0]:
         axis.set_ylabel("Feedback energy fraction $f_E$ []")
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
         ax.text(
             0.025,
-            0.975,
+            0.025,
             "\n".join(
                 [
                     "$f_E$ values:",
@@ -120,8 +120,7 @@ if __name__ == "__main__":
             ),
             transform=ax.transAxes,
             ha="left",
-            va="top",
-            fontsize=6,
+            va="bottom",
         )
 
     fig.colorbar(mappable, label="Number of particles")

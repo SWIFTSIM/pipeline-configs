@@ -56,3 +56,8 @@ scripts:
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_f_E.py
+    caption: Feedback energy fractions $f_E$ shown against the birth densities for the stars. Any variation here is due to differing metallicity of the gas.
+    section: Feedback Energy Fraction
+    title: $f_E$ as a Function of Birth Density
+    output_file: birth_density_f_E.png

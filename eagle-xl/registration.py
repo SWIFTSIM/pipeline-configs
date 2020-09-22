@@ -122,12 +122,16 @@ for aperture_size in aperture_sizes:
 
 # Now HI mass functions
 
-gas_mass = catalogue.masses.m_gas
-H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-HI_frac = getattr(catalogue.species_fractions, "species_0")
+try:
+    gas_mass = catalogue.masses.m_gas
+    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
+    HI_frac = getattr(catalogue.species_fractions, "species_0")
 
-HI_mass = gas_mass * H_frac * HI_frac
-name = "$M_{\\rm HI}$"
-HI_mass.name = name
+    HI_mass = gas_mass * H_frac * HI_frac
+    name = "$M_{\\rm HI}$"
+    HI_mass.name = name
 
-setattr(self, "gas_HI_mass_Msun" , HI_mass)
+    setattr(self, "gas_HI_mass_Msun", HI_mass)
+except AttributeError:
+    # We did not produce these quantities.
+    setattr(self, "gas_HI_mass_Msun", np.zeros_like(catalogue.masses.m_gas))

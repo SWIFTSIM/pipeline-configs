@@ -66,4 +66,9 @@ scripts:
     title: Stellar Birth Densities
     section: Feedback Energy Fraction
     output_file: birth_density_distribution.png
+  - filename: scripts/birth_density_metallicity.py
+    caption: Birth density-metallicity plane. Contour lines show stars formed at all epochs, with the background color map showing the feedback energy fraction associated with this particle's feedback event.
+    title: Birth Density-Metallicity Plane
+    section: Feedback Energy Fraction
+    output_file: birth_density_metallicity.png
 

@@ -87,8 +87,8 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
 
 
-ax[0].legend(loc="upper left")
-ax[2].set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")
-ax[1].set_ylabel("Number of Stars / d$\\log\\rho_B$")
+axes[0].legend(loc="upper left")
+axes[2].set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")
+axes[1].set_ylabel("Number of Stars / d$\\log\\rho_B$")
 
 fig.savefig(f"{arguments.output_directory}/birth_density_distribution.png")

@@ -100,8 +100,10 @@ if __name__ == "__main__":
     vmax = max([H.max() for H in histograms])
 
     for ax, name, snapshot, H in zip(axes.flat, arguments.name_list, data, histograms):
-        mappable = ax.pcolormesh(density_edges, f_E_edges, H.T, norm=LogNorm(vmin=1, vmax=vmax, clip=True))
-        f_E_fractions = data.stars.feedback_energy_fractions.value
+        mappable = ax.pcolormesh(
+            density_edges, f_E_edges, H.T, norm=LogNorm(vmin=1, vmax=vmax, clip=True)
+        )
+        f_E_fractions = snapshot.stars.feedback_energy_fractions.value
         f_E_fractions = f_E_fractions[f_E_fractions > 0.0]
 
         ax.text(

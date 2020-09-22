@@ -160,7 +160,19 @@ if __name__ == "__main__":
 
 
     for ax, snapshot, name in zip(axes, snapshots, arguments.name_list):
-        parameters = snapshot.metadata.parameters
+        used_parameters = snapshot.metadata.parameters
+
+        parameters = {
+            k: float(used_parameters[v])
+            for k, v in {
+                "f_E,min": "EAGLEFeedback:SNII_energy_fraction_min",
+                "f_E,max": "EAGLEFeedback:SNII_energy_fraction_max",
+                "n_Z": "EAGLEFeedback:SNII_energy_fraction_n_Z",
+                "n_n": "EAGLEFeedback:SNII_energy_fraction_n_n",
+                "Z_pivot": "EAGLEFeedback:SNII_energy_fraction_Z_0",
+                "n_pivot": "EAGLEFeedback:SNII_energy_fraction_n_0_H_p_cm3",
+            }.items()
+        }
 
         ax.text(
             0.975,

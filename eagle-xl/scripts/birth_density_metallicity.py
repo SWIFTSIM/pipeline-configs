@@ -148,7 +148,7 @@ if __name__ == "__main__":
         except:
             pass
 
-    legend = axes.flat[0].legend(markerfirst=True, loc="lower left")
+    legend = axes.flat[-1].legend(markerfirst=False, loc="center right")
     plt.setp(legend.get_texts(), color="white")
 
     fig.colorbar(mappable, label="Feedback energy fraction $f_E$")

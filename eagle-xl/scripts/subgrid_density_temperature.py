@@ -24,8 +24,13 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.subgrid_physical_densities / mh).to(cm ** -3)
-    temperature = data.gas.subgrid_temperatures.to_physical().to("K")
+    try:
+        number_density = (data.gas.subgrid_physical_densities / mh).to(cm ** -3)
+        temperature = data.gas.subgrid_temperatures.to_physical().to("K")
+    except:
+        # No sub-grid quantities present. Still make the figure, but it is empty.
+        number_density = unyt.unyt_array([])
+        temperature = unyt.unyt_array([])
 
     return number_density.value, temperature.value
 

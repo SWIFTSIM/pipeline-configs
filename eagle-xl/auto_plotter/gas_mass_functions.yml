@@ -54,8 +54,8 @@ gas_H2_mass_function:
     start: 1e-6
     end: 0.316 # (1e-0.5)
   metadata:
-    title: H_2 Mass Function
-    caption: H_2 MF, showing all galaxies with a fixed bin-width of 0.2 dex.
+    title: H$_2$ Mass Function
+    caption: H$_2$ MF, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Gas Mass Function
 
 adaptive_gas_H2_mass_function:
@@ -72,6 +72,6 @@ adaptive_gas_H2_mass_function:
     start: 1e-6
     end: 0.316 # (1e-0.5)
   metadata:
-    title: H_2 Mass Function
-    caption: H_2 MF, showing all galaxies with an adaptive bin-width.
+    title: H$_2$ Mass Function
+    caption: H$_2$ MF, showing all galaxies with an adaptive bin-width.
     section: Gas Mass Function

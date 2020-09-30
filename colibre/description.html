@@ -53,7 +53,7 @@
     </tr>
     <tr>
         <td>Star Formation Model</td>
-        <td>{{ data.metadata.parameters["COLIBREStarFormation:SF_Model"] }}</td>
+        <td>{{ data.metadata.parameters["COLIBREStarFormation:SF_model"].decode("utf-8") }}</td>
     </tr>
     <tr>
         <td>Temperature Ceiling</td>
@@ -99,7 +99,18 @@
         <td>\(v_{\rm kinetic}\)</td>
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_delta_v_km_p_s"] | float) }} km s\(^{-1}\)</td>
     </tr>
+     <tr>
+        <td>\(\Delta T\)</td>
+        <td>{{ data.metadata.parameters["COLIBREFeedback:SNII_delta_T_K"] | float | format_number }} K</td>
+    </tr>
 </table>
+
+<h4>Gas Cooling</h4>
+{% if data.metadata.parameters.get("CHIMESCooling:data_path", False) %}
+<p>CHIMES</p>
+{% else %}
+<p>Table cooling (Ploeckinger, 2020)</p>
+{% endif %}
 
 <h4>Entropy Floor</h4>
 {% if data.metadata.parameters.get("COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3", False) %}
@@ -119,6 +130,18 @@
 <p>No entropy floor present.</p>
 {% endif %}
 
+<h4>Chemistry</h4>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Metal diffusion constant</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREChemistry:metal_diffusion_constant"] | float) }}</td>
+    </tr>
+</table>
+
 <h4>AGN</h4>
 <table>
     <tr>
@@ -130,23 +153,27 @@
         <td>{{ data.metadata.parameters["COLIBREAGN:AGN_delta_T_K"] | float | format_number }} K</td>
     </tr>
     <tr>
-        <td>\(C_{\rm eff}\)</td>
+        <td>Coupling efficiency</td>
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:coupling_efficiency"] | float) }}</td>
     </tr>
     <tr>
-        <td>Viscous \(\alpha\)</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:viscous_alpha"] | float | format_number }}</td>
+        <td>Radiative efficiency</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:radiative_efficiency"] | float) }}</td>
     </tr>
     <tr>
         <td>Subgrid Seed Mass</td>
         <td>{{ data.metadata.parameters["COLIBREAGN:subgrid_seed_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
+        <td>Seed halo mass</td>
+        <td>{{ data.metadata.parameters["FOF:black_hole_seed_halo_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
+    </tr>
+    <tr>
         <td>N\(_{\rm heat}\)</td>
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:AGN_num_ngb_to_heat"] | float) }}</td>
     </tr>
     <tr>
-        <td>Use sub-grid properties</td>
+        <td>Use gas sub-grid properties</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:use_subgrid_gas_properties", 0) | int }}</td>
     </tr>
     <tr>
@@ -159,27 +186,43 @@
     </tr>
     <tr>
         <td>Use Krumholtz Vorticity</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_krumholz_vorticity", 0) | int }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:with_krumholz_vorticity", 0) | int }}</td>
     </tr>
     <tr>
         <td>Use Angular Momentum Limiter</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:with_angmom_limiter", 0) | int }}</td>
     </tr>
     <tr>
-        <td>Reposition Velocity</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }}</td>
+        <td>Viscous \(\alpha\)</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:viscous_alpha", 0.0) | float | format_number }}</td>
+    </tr>
+    <tr>
+        <td>Use Nibbling</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_nibbling", 0) | int }}</td>
+    </tr>
+    <tr>
+        <td>Min Gas Mass For Nibbling</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:min_gas_mass_for_nibbling", 0.0) | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
         <td>Max Reposition Mass</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }} M\(_\odot\)</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:max_reposition_mass", 0.0) | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
-        <td>With Reposition Threshold</td>
+        <td>With Reposition Velocity Threshold</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:with_reposition_velocity_threshold", 0) | int }}</td>
     </tr>
     <tr>
         <td>Maximal Velocity Offset</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }} \(c_{s, {\rm BH}}\)</td>
+    </tr>
+    <tr>
+        <td>Merger Threshold Type</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:merger_threshold_type", 0) | int }}</td>
+    </tr>
+    <tr>
+        <td>Merger Max Distance Ratio</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:merger_max_distance_ratio"] | float) }}</td>
     </tr>
 </table>
 

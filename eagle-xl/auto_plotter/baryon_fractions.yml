@@ -4,7 +4,7 @@ baryon_fraction_200:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e12
+    start: 1e11
     end: 1e15
   y:
     quantity: "derived_quantities.baryon_fraction_true_R200"
@@ -15,16 +15,16 @@ baryon_fraction_200:
   median:
     plot: true
     log: true
-    number_of_bins: 15
+    number_of_bins: 20
     start:
-      value: 1e12
+      value: 1e11
       units: Solar_Mass
     end:
       value: 1e15
       units: Solar_Mass
   metadata:
     title: "Halo baryon fractions within R_200"
-    caption: Baryon (gas + stars) fractions within R_200. These are 'true' values, i.e. no observational correction was applied.
+    caption: Baryon (gas + stars) fractions within R_200 normalised by the cosmic mean. These are 'true' values, i.e. no observational correction was applied.
     section: Baryon Fractions
 
 gas_fraction_200:
@@ -33,7 +33,7 @@ gas_fraction_200:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e12
+    start: 1e11
     end: 1e15
   y:
     quantity: "derived_quantities.gas_fraction_true_R200"
@@ -44,72 +44,14 @@ gas_fraction_200:
   median:
     plot: true
     log: true
-    number_of_bins: 15
+    number_of_bins: 20
     start:
-      value: 1e12
+      value: 1e11
       units: Solar_Mass
     end:
       value: 1e15
       units: Solar_Mass
   metadata:
     title: "Halo gas fractions within R_200"
-    caption: Gas fractions within R_200. These are 'true' values, i.e. no observational correction was applied.
-    section: Baryon Fractions
-
-baryon_fraction_500:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "masses.mass_500crit"
-    units: Solar_Mass
-    start: 1e12
-    end: 1e15
-  y:
-    quantity: "derived_quantities.baryon_fraction_true_R500"
-    units:  "dimensionless"
-    log: false
-    start: 0.
-    end: 1.2
-  median:
-    plot: true
-    log: true
-    number_of_bins: 15
-    start:
-      value: 1e12
-      units: Solar_Mass
-    end:
-      value: 1e15
-      units: Solar_Mass
-  metadata:
-    title: "Halo baryon fractions within R_500"
-    caption: Baryon (gas + stars) fractions within R_500. These are 'true' values, i.e. no observational correction was applied.
-    section: Baryon Fractions
-
-gas_fraction_500:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "masses.mass_500crit"
-    units: Solar_Mass
-    start: 1e12
-    end: 1e15
-  y:
-    quantity: "derived_quantities.gas_fraction_true_R500"
-    units:  "dimensionless"
-    log: false
-    start: 0.
-    end: 1.2
-  median:
-    plot: true
-    log: true
-    number_of_bins: 15
-    start:
-      value: 1e12
-      units: Solar_Mass
-    end:
-      value: 1e15
-      units: Solar_Mass
-  metadata:
-    title: "Halo gas fractions within R_500"
-    caption: Gas fractions within R_500. These are 'true' values, i.e. no observational correction was applied.
+    caption: Gas fractions within R_200 normalised by the cosmic mean. These are 'true' values, i.e. no observational correction was applied.
     section: Baryon Fractions

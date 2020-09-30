@@ -19,6 +19,7 @@ This file calculates:
         Metallicity in solar units (relative to metal_mass_fraction).
     + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
         Stellar Mass / Halo Mass (mass_200crit) for 30 and 100 kpc apertures.
+    + HI and H_2 masses (gas_HI_mass_Msun and gas_H2_mass_Msun).
 """
 
 aperture_sizes = [30, 100]
@@ -122,12 +123,44 @@ for aperture_size in aperture_sizes:
 
 # Now HI mass functions
 
-gas_mass = catalogue.masses.m_gas
-H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-HI_frac = getattr(catalogue.species_fractions, "species_0")
+try:
+    gas_mass = catalogue.masses.m_gas
+    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
+    HI_frac = getattr(catalogue.species_fractions, "species_0")
 
-HI_mass = gas_mass * H_frac * HI_frac
-name = "$M_{\\rm HI}$"
-HI_mass.name = name
+    HI_mass = gas_mass * H_frac * HI_frac
+    HI_mass.name = "$M_{\\rm HI}$"
 
-setattr(self, "gas_HI_mass_Msun" , HI_mass)
+    setattr(self, "gas_HI_mass_Msun", HI_mass)
+except AttributeError:
+    # We did not produce these quantities.
+    setattr(
+        self,
+        "gas_HI_mass_Msun",
+        unyt.unyt_array(
+            catalogue.masses.m_gas, name="$M{\\rm HI}$ not found, showing $M_{\\rm g}$"
+        ),
+    )
+
+
+# Now H2 mass functions
+
+try:
+    gas_mass = catalogue.masses.m_gas
+    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
+    H2_frac = getattr(catalogue.species_fractions, "species_2")
+
+    H2_mass = gas_mass * H_frac * H2_frac
+    H2_mass.name = "$M_{\\rm H_2}$"
+
+    setattr(self, "gas_H2_mass_Msun", H2_mass)
+except AttributeError:
+    # We did not produce these quantities.
+    setattr(
+        self,
+        "gas_H2_mass_Msun",
+        unyt.unyt_array(
+            catalogue.masses.m_gas, name="$M{\\rm H_2}$ not found, showing $M_{\\rm g}$"
+        ),
+    )
+

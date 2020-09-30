@@ -56,3 +56,19 @@ scripts:
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_f_E.py
+    caption: Feedback energy fractions $f_E$ shown against the birth densities for the stars. Any variation here is due to differing metallicity of the gas.
+    section: Feedback Energy Fraction
+    title: $f_E$ as a Function of Birth Density
+    output_file: birth_density_f_E.png
+  - filename: scripts/birth_density_distribution.py
+    caption: Distributions of birth densities, split by redshift.
+    title: Stellar Birth Densities
+    section: Feedback Energy Fraction
+    output_file: birth_density_distribution.png
+  - filename: scripts/birth_density_metallicity.py
+    caption: Birth density-metallicity plane. Contour lines show stars formed at all epochs, with the background color map showing the feedback energy fraction associated with this particle's feedback event.
+    title: Birth Density-Metallicity Plane
+    section: Feedback Energy Fraction
+    output_file: birth_density_metallicity.png
+

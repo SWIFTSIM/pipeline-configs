@@ -4,8 +4,8 @@ stellar_mass_ages_30:
   y:
     quantity: "stellar_age.tage_star"
     units: yr
-    start: 1e7
-    end: 1e14
+    start: 1e8
+    end: 3e10
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass

@@ -41,7 +41,7 @@ stellar_mass_galaxy_size_30:
     quantity: "apertures.rhalfmass_star_30_kpc"
     units: kpc
     start: 1e-1
-    end: 1e1
+    end: 3e1
   median:
     plot: true
     log: true
@@ -73,7 +73,7 @@ stellar_mass_projected_galaxy_size_100:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
     units: kpc
     start: 1e-1
-    end: 1e1
+    end: 3e1
   median:
     plot: true
     log: true
@@ -105,7 +105,7 @@ stellar_mass_projected_galaxy_size_30:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
     units: kpc
     start: 1e-1
-    end: 1e1
+    end: 3e1
   median:
     plot: true
     log: true
@@ -141,7 +141,7 @@ stellar_mass_projected_galaxy_size_active_only_100:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
     units: kpc
     start: 1e-1
-    end: 1e1
+    end: 3e1
   median:
     plot: true
     log: true
@@ -176,7 +176,7 @@ stellar_mass_projected_galaxy_size_active_only_30:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
     units: kpc
     start: 1e-1
-    end: 1e1
+    end: 3e1
   median:
     plot: true
     log: true
@@ -212,7 +212,7 @@ stellar_mass_projected_galaxy_size_passive_only_100:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
     units: kpc
     start: 1e-1
-    end: 1e1
+    end: 3e1
   median:
     plot: true
     log: true
@@ -247,7 +247,7 @@ stellar_mass_projected_galaxy_size_passive_only_30:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
     units: kpc
     start: 1e-1
-    end: 1e1
+    end: 3e1
   median:
     plot: true
     log: true

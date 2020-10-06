@@ -143,6 +143,7 @@
 </table>
 
 <h4>AGN</h4>
+{% if data.metadata.parameters.get("COLIBREAGN:AGN_delta_T_K", False) %}
 <table>
     <tr>
         <th>Parameter</th>
@@ -161,23 +162,23 @@
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:radiative_efficiency"] | float) }}</td>
     </tr>
     <tr>
-        <td>Subgrid Seed Mass</td>
+        <td>BH Subgrid Seed Mass</td>
         <td>{{ data.metadata.parameters["COLIBREAGN:subgrid_seed_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
-        <td>Seed halo mass</td>
+        <td>Seed Halo Mass</td>
         <td>{{ data.metadata.parameters["FOF:black_hole_seed_halo_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
-        <td>N\(_{\rm heat}\)</td>
+        <td>Targer number of particles to heat N\(_{\rm heat}\)</td>
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:AGN_num_ngb_to_heat"] | float) }}</td>
     </tr>
     <tr>
-        <td>Use gas sub-grid properties</td>
+        <td>Use sub-grid gas properties</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:use_subgrid_gas_properties", 0) | int }}</td>
     </tr>
     <tr>
-        <td>Multi-phase Bondi</td>
+        <td>Use Multi-phase Bondi</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:use_multi_phase_bondi", 0) | int }}</td>
     </tr>
     <tr>
@@ -193,7 +194,7 @@
         <td>{{ data.metadata.parameters.get("COLIBREAGN:with_angmom_limiter", 0) | int }}</td>
     </tr>
     <tr>
-        <td>Viscous \(\alpha\)</td>
+        <td>Normalisation of the viscous time-scale</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:viscous_alpha", 0.0) | float | format_number }}</td>
     </tr>
     <tr>
@@ -201,30 +202,45 @@
         <td>{{ data.metadata.parameters.get("COLIBREAGN:use_nibbling", 0) | int }}</td>
     </tr>
     <tr>
-        <td>Min Gas Mass For Nibbling</td>
+        <td>Minimal Gas Mass For Nibbling</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:min_gas_mass_for_nibbling", 0.0) | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
-        <td>Max Reposition Mass</td>
+        <td>Maximal Reposition Mass</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:max_reposition_mass", 0.0) | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
-        <td>With Reposition Velocity Threshold</td>
+        <td>Use Reposition Velocity Threshold</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:with_reposition_velocity_threshold", 0) | int }}</td>
     </tr>
     <tr>
-        <td>Maximal Velocity Offset</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }} \(c_{s, {\rm BH}}\)</td>
+        <td>Maximal Reposition Velocity Offset</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:max_reposition_velocity_ratio", 0.0) | float | format_number }} \(c_{s, {\rm BH}}\)</td>
     </tr>
     <tr>
-        <td>Merger Threshold Type</td>
+        <td>Minimal Reposition Velocity Threshold</td>
+	<td>{{ data.metadata.parameters.get("COLIBREAGN:min_reposition_velocity_threshold", 0.0) | float | format_number }} km s\(^{-1}\)</td>
+    </tr>
+    <tr>
+        <td>Set Black Hole Reposition Speed</td>
+	<td>{{ data.metadata.parameters.get("COLIBREAGN:set_reposition_speed", 0) | int }}</td>
+    </tr>
+    <tr>
+        <td>Repositioning Speed Normalisation</td>
+	<td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }} km s\(^{-1}\) M\(_\odot\)\(^{-1}\)</td>
+    </tr>
+    <tr>
+        <td>Black Hole Merger Threshold Type</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:merger_threshold_type", 0) | int }}</td>
     </tr>
     <tr>
-        <td>Merger Max Distance Ratio</td>
+        <td>Black Hole Merger Max Distance Ratio</td>
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:merger_max_distance_ratio"] | float) }}</td>
     </tr>
 </table>
+{% else %}
+<p>No AGN feedback parameters were found.</p>
+{% endif %}
 
 <h4>Code Setup</h4>
 <ul>

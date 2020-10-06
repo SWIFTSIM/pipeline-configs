@@ -38,7 +38,6 @@ for run_name, run_directory, snapshot_name in zip(run_names,
     timesteps_filename = timesteps_glob[0]
     snapshot_filename = f"{run_directory}/{snapshot_name}"
     
-    
     snapshot = load(snapshot_filename)
     data = np.genfromtxt(
         timesteps_filename, skip_footer=5, loose=True, invalid_raise=False
@@ -60,7 +59,5 @@ ax.set_xlabel("Wallclock time [Hours]")
 
 ax.set_xlim(0, None)
 ax.set_ylim(0, None)
-
-fig.tight_layout()
 
 fig.savefig(f"{output_path}/wallclock_number_of_steps.png")

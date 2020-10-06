@@ -41,7 +41,6 @@ birth_density_centers = 0.5 * (birth_density_bins[1:] + birth_density_bins[:-1])
 
 
 # Begin plotting
-
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
@@ -73,9 +72,19 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         data = birth_densities_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=birth_density_bins)
+
+        # Total number of stars formed
+        Num_of_obj = np.sum(H)
+
+        # Check to avoid division by zero
+        if Num_of_obj:
+            y_points = H / log_birth_density_bin_width / Num_of_obj
+        else:
+            y_points = np.zeros_like(H)
+
         ax.plot(
             birth_density_centers,
-            H / log_birth_density_bin_width,
+            y_points,
             label=name,
             color=f"C{color}",
         )
@@ -90,6 +99,6 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
 axes[0].legend(loc="upper right", markerfirst=False)
 axes[2].set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")
-axes[1].set_ylabel("Number of Stars / d$\\log\\rho_B$")
+axes[1].set_ylabel("$N_{\\rm bin}$ / d$\\log\\rho_B$ / $N_{\\rm total}$")
 
 fig.savefig(f"{arguments.output_directory}/birth_density_distribution.png")

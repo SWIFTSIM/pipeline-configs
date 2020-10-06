@@ -85,9 +85,19 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
                                  gas_SNII_densities_by_redshift[redshift]])
 
         H, _ = np.histogram(data, bins=SNII_density_bins)
+
+        # Total number SNII-heated gas particles
+        Num_of_obj = np.sum(H)
+
+        # Check to avoid division by zero
+        if Num_of_obj:
+            y_points = H / log_SNII_density_bin_width / Num_of_obj
+        else:
+            y_points = np.zeros_like(H)
+
         ax.plot(
             SNII_density_centers,
-            H / log_SNII_density_bin_width,
+            y_points,
             label=name,
             color=f"C{color}",
         )
@@ -102,6 +112,6 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
 axes[0].legend(loc="upper right", markerfirst=False)
 axes[2].set_xlabel("Density of the gas heated by SNII $\\rho_{\\rm SNII}$ [$n_H$ cm$^{-3}$]")
-axes[1].set_ylabel("Num of gas part. / d$\\log\\rho_{\\rm SNII}$")
+axes[1].set_ylabel("$N_{\\rm bin}$ / d$\\log\\rho_{\\rm SNII}$ / $N_{\\rm total}$")
    
 fig.savefig(f"{arguments.output_directory}/SNII_density_distribution.png")

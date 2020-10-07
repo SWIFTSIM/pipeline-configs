@@ -55,6 +55,10 @@ gas_fraction_500:
     title: "Halo gas fractions within R_500"
     caption: Gas fractions within R_500 normalised by the cosmic mean. These are 'true' values, i.e. no cut or observational correction was applied.
     section: Baryon Fractions
+  observational_data:
+    - filename: HaloMassGasFractions/Lin2012.hdf5
+    - filename: HaloMassGasFractions/Sun2009.hdf5
+    - filename: HaloMassGasFractions/Vikhlinin2006.hdf5
 
 gas_mass_500:
   type: "scatter"

@@ -171,18 +171,18 @@ except AttributeError:
 Omega_m = catalogue.units.cosmology.Om0
 Omega_b = catalogue.units.cosmology.Ob0
 
-M_200 = catalogue.masses.mass_200crit
-M_200_gas = catalogue.masses.mass_200crit_gas
-M_200_star = catalogue.masses.mass_200crit_star
-M_200_baryon = M_200_gas + M_200_star
+M_500 = catalogue.spherical_overdensities.mass_500_rhocrit
+M_500_gas = catalogue.spherical_overdensities.mass_gas_500_rhocrit
+M_500_star = catalogue.spherical_overdensities.mass_star_500_rhocrit
+M_500_baryon = M_500_gas + M_500_star
 
-f_b_200 = (M_200_baryon / M_200) * (Omega_b / Omega_m)
-name = "$f_{\\rm b, 200, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
-f_b_200.name = name
+f_b_500 = (M_500_baryon / M_500) / (Omega_b / Omega_m)
+name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+f_b_500.name = name
 
-f_gas_200 = (M_200_gas / M_200) * (Omega_b / Omega_m)
-name = "$f_{\\rm gas, 200, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
-f_gas_200.name = name
+f_gas_500 = (M_500_gas / M_500) / (Omega_b / Omega_m)
+name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+f_gas_500.name = name
 
-setattr(self, "baryon_fraction_true_R200", f_b_200)
-setattr(self, "gas_fraction_true_R200", f_gas_200)
+setattr(self, "baryon_fraction_true_R500", f_b_500)
+setattr(self, "gas_fraction_true_R500", f_gas_500)

@@ -108,7 +108,7 @@
 <h4>Gas Cooling</h4>
 {% if data.metadata.parameters.get("CHIMESCooling:data_path", False) %}
 <p>CHIMES</p>
-{% elsif data.metadata.parameters.get("COLIBRECooling:dir_name", False) %}
+{% elif data.metadata.parameters.get("COLIBRECooling:dir_name", False) %}
 <p>Table cooling (Ploeckinger, 2020)</p>
 {% else %}
 <p>Disabled or unknown</p>
@@ -129,7 +129,7 @@
     </tr>
 </table>
 {% else %}
-<p>No entropy floor present.</p>
+<p>No entropy floor present</p>
 {% endif %}
 
 <h4>Chemistry</h4>
@@ -196,7 +196,7 @@
         <td>{{ data.metadata.parameters.get("COLIBREAGN:with_angmom_limiter", 0) | int }}</td>
     </tr>
     <tr>
-        <td>Normalisation of the viscous time-scale</td>
+        <td>Viscous \(\alpha\)</td>
         <td>{{ data.metadata.parameters.get("COLIBREAGN:viscous_alpha", 0.0) | float | format_number }}</td>
     </tr>
     <tr>

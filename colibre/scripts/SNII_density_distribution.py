@@ -6,16 +6,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import unyt
 
+from unyt import mh, cm
+
 from swiftsimio import load
 
-from unyt import mh, cm, Gyr
-from matplotlib.colors import LogNorm, Normalize
-from matplotlib.animation import FuncAnimation
+try:
+    plt.style.use("mnras.mplstyle")
+except:
+    pass
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a star formation history plot, with added observational data."
+    description="Creates a plot showing the distribution of the gas densities recorded when the gas was last heated by SNII, split by redshift"
 )
 
 snapshot_filenames = [
@@ -57,10 +60,14 @@ for label, ax in ax_dict.items():
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    stars_SNII_densities = (snapshot.stars.densities_at_last_supernova_event / mh).to(SNII_density_bins.units)
+    stars_SNII_densities = (snapshot.stars.densities_at_last_supernova_event / mh).to(
+        SNII_density_bins.units
+    )
     stars_SNII_redshifts = 1 / snapshot.stars.last_sniifeedback_scale_factors.value - 1
 
-    gas_SNII_densities = (snapshot.gas.densities_at_last_supernova_event / mh).to(SNII_density_bins.units)
+    gas_SNII_densities = (snapshot.gas.densities_at_last_supernova_event / mh).to(
+        SNII_density_bins.units
+    )
     gas_SNII_redshifts = 1 / snapshot.gas.last_sniifeedback_scale_factors.value - 1
 
     # Segment SNII densities into redshift bins
@@ -81,8 +88,12 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     }
 
     for redshift, ax in ax_dict.items():
-        data = np.concatenate([stars_SNII_densities_by_redshift[redshift],
-                                 gas_SNII_densities_by_redshift[redshift]])
+        data = np.concatenate(
+            [
+                stars_SNII_densities_by_redshift[redshift],
+                gas_SNII_densities_by_redshift[redshift],
+            ]
+        )
 
         H, _ = np.histogram(data, bins=SNII_density_bins)
 
@@ -96,10 +107,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             y_points = np.zeros_like(H)
 
         ax.plot(
-            SNII_density_centers,
-            y_points,
-            label=name,
-            color=f"C{color}",
+            SNII_density_centers, y_points, label=name, color=f"C{color}",
         )
         ax.axvline(
             np.median(data),
@@ -111,7 +119,9 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
 
 axes[0].legend(loc="upper right", markerfirst=False)
-axes[2].set_xlabel("Density of the gas heated by SNII $\\rho_{\\rm SNII}$ [$n_H$ cm$^{-3}$]")
+axes[2].set_xlabel(
+    "Density of the gas heated by SNII $\\rho_{\\rm SNII}$ [$n_H$ cm$^{-3}$]"
+)
 axes[1].set_ylabel("$N_{\\rm bin}$ / d$\\log\\rho_{\\rm SNII}$ / $N_{\\rm total}$")
-   
+
 fig.savefig(f"{arguments.output_directory}/SNII_density_distribution.png")

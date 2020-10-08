@@ -14,8 +14,8 @@ try:
 except:
     pass
 
-from glob import glob
 from swiftpipeline.argumentparser import ScriptArgumentParser
+from glob import glob
 
 arguments = ScriptArgumentParser(
     description="Creates a run performance plot: simulation time versus wall-clock time"
@@ -30,9 +30,9 @@ plt.style.use(arguments.stylesheet_location)
 
 fig, ax = plt.subplots()
 
-for run_name, run_directory, snapshot_name in zip(run_names,
-                                                  run_directories,
-                                                  snapshot_names):
+for run_name, run_directory, snapshot_name in zip(
+    run_names, run_directories, snapshot_names
+):
 
     timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
     timesteps_filename = timesteps_glob[0]
@@ -40,17 +40,22 @@ for run_name, run_directory, snapshot_name in zip(run_names,
 
     snapshot = load(snapshot_filename)
     data = np.genfromtxt(
-        timesteps_filename, skip_footer=5, loose=True, 
-        invalid_raise=False).T
-     
+        timesteps_filename, skip_footer=5, loose=True, invalid_raise=False
+    ).T
+
     sim_time = unyt.unyt_array(data[1], units=snapshot.units.time).to("Gyr")
     wallclock_time = unyt.unyt_array(np.cumsum(data[-2]), units="ms").to("Hour")
-   
+
     # Simulation data plotting
     (mpl_line,) = ax.plot(wallclock_time, sim_time, label=run_name)
-    
-    ax.scatter(wallclock_time[-1], sim_time[-1], color=mpl_line.get_color(),
-               marker=".", zorder=10)
+
+    ax.scatter(
+        wallclock_time[-1],
+        sim_time[-1],
+        color=mpl_line.get_color(),
+        marker=".",
+        zorder=10,
+    )
 
 ax.set_xlim(0, None)
 ax.set_xlim(0, None)

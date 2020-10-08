@@ -6,16 +6,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import unyt
 
+from unyt import mh, cm
+
 from swiftsimio import load
 
-from unyt import mh, cm, Gyr
-from matplotlib.colors import LogNorm, Normalize
-from matplotlib.animation import FuncAnimation
+try:
+    plt.style.use("mnras.mplstyle")
+except:
+    pass
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a star formation history plot, with added observational data."
+    description="Creates a stellar birth density distribution plot, split by redshift"
 )
 
 snapshot_filenames = [
@@ -83,10 +86,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             y_points = np.zeros_like(H)
 
         ax.plot(
-            birth_density_centers,
-            y_points,
-            label=name,
-            color=f"C{color}",
+            birth_density_centers, y_points, label=name, color=f"C{color}",
         )
         ax.axvline(
             np.median(data),

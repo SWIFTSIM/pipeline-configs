@@ -10,9 +10,8 @@ import numpy as np
 import sys
 import glob
 
-from swiftsimio import load
 
-from swiftsimio.statistics import SWIFTStatisticsFile
+from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
@@ -46,7 +45,7 @@ ax.loglog()
 for snapshot_filename, stats_filename, name in zip(
     snapshot_filenames, stats_filenames, names
 ):
-    data = SWIFTStatisticsFile(stats_filename)
+    data = load_statistics(stats_filename)
 
     snapshot = load(snapshot_filename)
     boxsize = snapshot.metadata.boxsize
@@ -70,26 +69,9 @@ observational_data = glob.glob(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/StellarMassDensity/*.hdf5"
 )
 
-observation_lines = []
-observation_labels = []
-
 for index, observation in enumerate(observational_data):
     obs = load_observation(observation)
-    observation_lines.append(
-        ax.errorbar(
-            obs.x,
-            obs.y.to(stellar_mass_density.units),
-            obs.y_scatter,
-            xerr=obs.x_scatter,
-            label=obs.citation,
-            linestyle="none",
-            marker="o",
-            markeredgecolor="none",
-            markersize=4,
-            zorder=index,  # Required to have line and blob at same zodrer
-        )
-    )
-    observation_labels.append(obs.citation)
+    obs.plot_on_axes(ax)
 
 ax.set_xlabel("Redshift $z$")
 ax.set_ylabel(r"Stellar Mass Density $\rho_*$ [M$_\odot$ Mpc$^{-3}$]")
@@ -115,16 +97,16 @@ ax.set_xticklabels(redshift_labels)
 ax.tick_params(axis="x", which="minor", bottom=False)
 
 ax.set_xlim(1.02, 0.07)
-ax.set_ylim(1e6, 2e9)
+ax.set_ylim(1e6, 1.3e9)
 
-observation_legend = ax.legend(
-    observation_lines, observation_labels, markerfirst=True, loc="lower left"
-)
+observation_legend = ax.legend(markerfirst=True, loc="lower left")
+
+ax.add_artist(observation_legend)
 
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
 )
 
-ax.add_artist(observation_legend)
+ax.add_artist(simulation_legend)
 
 fig.savefig(f"{output_path}/stellar_mass_evolution.png")

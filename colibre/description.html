@@ -81,35 +81,37 @@
     </tr>
     <tr>
         <td>Supernova Energy</td>
-        <td>{{ (data.metadata.parameters["COLIBREFeedback:SNII_energy_erg"] | float) | format_number }} erg</td>
+        <td>{{ (data.metadata.parameters.get("COLIBREFeedback:SNII_energy_erg", 0.0) | float ) | format_number }} erg</td>
     </tr>
     <tr>
         <td>\(f_{\rm E, min}\)</td>
-        <td>{{ "%.4g" % ( data.metadata.parameters["COLIBREFeedback:SNII_energy_fraction_min"] | float ) }}</td>
+        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_energy_fraction_min", 0.0) | float ) }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm E, max}\)</td>
-        <td>{{ "%.4g" % ( data.metadata.parameters["COLIBREFeedback:SNII_energy_fraction_max"] | float ) }}</td>
+        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_energy_fraction_max", 0.0) | float ) }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm kinetic}\)</td>
-        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_f_kinetic"] | float) }}</td>
+        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_f_kinetic", 0.0) | float) }}</td>
     </tr>
     <tr>
         <td>\(v_{\rm kinetic}\)</td>
-        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_delta_v_km_p_s"] | float) }} km s\(^{-1}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_delta_v_km_p_s", 0.0) | float) }} km s\(^{-1}\)</td>
     </tr>
      <tr>
         <td>\(\Delta T\)</td>
-        <td>{{ data.metadata.parameters["COLIBREFeedback:SNII_delta_T_K"] | float | format_number }} K</td>
+        <td>{{ data.metadata.parameters.get("COLIBREFeedback:SNII_delta_T_K", 0.0) | float | format_number }} K</td>
     </tr>
 </table>
 
 <h4>Gas Cooling</h4>
 {% if data.metadata.parameters.get("CHIMESCooling:data_path", False) %}
 <p>CHIMES</p>
-{% else %}
+{% elsif data.metadata.parameters.get("COLIBRECooling:dir_name", False) %}
 <p>Table cooling (Ploeckinger, 2020)</p>
+{% else %}
+<p>Disabled or unknown</p>
 {% endif %}
 
 <h4>Entropy Floor</h4>
@@ -138,11 +140,11 @@
     </tr>
     <tr>
         <td>Metal diffusion constant</td>
-        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREChemistry:metal_diffusion_constant"] | float) }}</td>
+        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREChemistry:metal_diffusion_constant", 0.0) | float) }}</td>
     </tr>
 </table>
 
-<h4>AGN</h4>
+<h4>AGN feedback</h4>
 {% if data.metadata.parameters.get("COLIBREAGN:AGN_delta_T_K", False) %}
 <table>
     <tr>
@@ -170,7 +172,7 @@
         <td>{{ data.metadata.parameters["FOF:black_hole_seed_halo_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
     </tr>
     <tr>
-        <td>Targer number of particles to heat N\(_{\rm heat}\)</td>
+        <td>Target number of particles to heat N\(_{\rm heat}\)</td>
         <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:AGN_num_ngb_to_heat"] | float) }}</td>
     </tr>
     <tr>
@@ -219,15 +221,15 @@
     </tr>
     <tr>
         <td>Minimal Reposition Velocity Threshold</td>
-	<td>{{ data.metadata.parameters.get("COLIBREAGN:min_reposition_velocity_threshold", 0.0) | float | format_number }} km s\(^{-1}\)</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:min_reposition_velocity_threshold", 0.0) | float | format_number }} km s\(^{-1}\)</td>
     </tr>
     <tr>
         <td>Set Black Hole Reposition Speed</td>
-	<td>{{ data.metadata.parameters.get("COLIBREAGN:set_reposition_speed", 0) | int }}</td>
+	    <td>{{ data.metadata.parameters.get("COLIBREAGN:set_reposition_speed", 0) | int }}</td>
     </tr>
     <tr>
         <td>Repositioning Speed Normalisation</td>
-	<td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }} km s\(^{-1}\) M\(_\odot\)\(^{-1}\)</td>
+	    <td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }} km s\(^{-1}\) M\(_\odot\)\(^{-1}\)</td>
     </tr>
     <tr>
         <td>Black Hole Merger Threshold Type</td>
@@ -235,7 +237,7 @@
     </tr>
     <tr>
         <td>Black Hole Merger Max Distance Ratio</td>
-        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:merger_max_distance_ratio"] | float) }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:merger_max_distance_ratio", 0.0) | float | format_number }}</td>
     </tr>
 </table>
 {% else %}

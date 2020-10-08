@@ -1,0 +1,130 @@
+"""
+Plots the stellar mass density evolution.
+"""
+import matplotlib
+
+import unyt
+
+import matplotlib.pyplot as plt
+import numpy as np
+import sys
+import glob
+
+from swiftsimio import load
+
+from swiftsimio.statistics import SWIFTStatisticsFile
+
+from swiftpipeline.argumentparser import ScriptArgumentParser
+
+from velociraptor.observations import load_observation
+
+arguments = ScriptArgumentParser(
+    description="Creates a stellar mass density evolution plot, with added observational data."
+)
+
+snapshot_filenames = [
+    f"{directory}/{snapshot}"
+    for directory, snapshot in zip(arguments.directory_list, arguments.snapshot_list)
+]
+
+stats_filenames = [
+    f"{directory}/statistics.txt" for directory in arguments.directory_list
+]
+
+names = arguments.name_list
+output_path = arguments.output_directory
+
+plt.style.use(arguments.stylesheet_location)
+
+simulation_lines = []
+simulation_labels = []
+
+fig, ax = plt.subplots()
+
+ax.loglog()
+
+for snapshot_filename, stats_filename, name in zip(
+    snapshot_filenames, stats_filenames, names
+):
+    data = SWIFTStatisticsFile(stats_filename)
+
+    snapshot = load(snapshot_filename)
+    boxsize = snapshot.metadata.boxsize
+    box_volume = boxsize[0] * boxsize[1] * boxsize[2]
+
+    # a, Redshift, SFR
+    scale_factor = data.a
+    redshift = data.z
+    stellar_mass = data.star_mass
+    stellar_mass_density = stellar_mass / box_volume
+
+    # High z-order as we always want these to be on top of the observations
+    simulation_lines.append(
+        ax.plot(scale_factor, stellar_mass_density, zorder=10000)[0]
+    )
+    simulation_labels.append(name)
+
+# Observational data plotting
+
+observational_data = glob.glob(
+    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/StellarMassDensity/*.hdf5"
+)
+
+observation_lines = []
+observation_labels = []
+
+for index, observation in enumerate(observational_data):
+    obs = load_observation(observation)
+    observation_lines.append(
+        ax.errorbar(
+            obs.x,
+            obs.y.to(stellar_mass_density.units),
+            obs.y_scatter,
+            xerr=obs.x_scatter,
+            label=obs.citation,
+            linestyle="none",
+            marker="o",
+            markeredgecolor="none",
+            markersize=4,
+            zorder=index,  # Required to have line and blob at same zodrer
+        )
+    )
+    observation_labels.append(obs.citation)
+
+ax.set_xlabel("Redshift $z$")
+ax.set_ylabel(r"Stellar Mass Density $\rho_*$ [M$_\odot$ Mpc$^{-3}$]")
+
+redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
+redshift_labels = [
+    "$0$",
+    "$0.2$",
+    "$0.5$",
+    "$1$",
+    "$2$",
+    "$3$",
+    "$5$",
+    "$10$",
+    "$20$",
+    "$50$",
+    "$100$",
+]
+a_ticks = 1.0 / (redshift_ticks + 1.0)
+
+ax.set_xticks(a_ticks)
+ax.set_xticklabels(redshift_labels)
+ax.tick_params(axis="x", which="minor", bottom=False)
+
+ax.set_xlim(1.02, 0.07)
+ax.set_ylim(1e6, 2e9)
+
+observation_legend = ax.legend(
+    observation_lines, observation_labels, markerfirst=True, loc="lower left"
+)
+
+simulation_legend = ax.legend(
+    simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
+)
+
+ax.add_artist(observation_legend)
+
+fig.savefig(f"{output_path}/stellar_mass_evolution.png")

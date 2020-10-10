@@ -71,4 +71,14 @@ scripts:
     title: Birth Density-Metallicity Plane
     section: Feedback Energy Fraction
     output_file: birth_density_metallicity.png
+  - filename: scripts/metallicity_evolution.py
+    caption: Evolution of the metal mass in gas and stars per unit co-moving volume.
+    output_file: metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Density Evolution
+  - filename: scripts/bh_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in black holes per unit co-moving volume.
+    output_file: bh_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Black Holes Density Evolution
 

@@ -78,7 +78,7 @@ for color, (snapshot_filename, stats_filename, name) in enumerate(
     simulation_labels.append(name)
 
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"Metal Mass Density $\rho_{\rm Z}$ [M$_\odot$ Mpc$^{-3}$]")
+ax.set_ylabel(r"Metal Mass $\rho_{\rm Z}$ [M$_\odot$ Mpc$^{-3}$]")
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [

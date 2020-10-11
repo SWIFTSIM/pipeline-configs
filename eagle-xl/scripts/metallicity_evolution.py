@@ -45,14 +45,14 @@ for color, (snapshot_filename, stats_filename, name) in enumerate(
     data = load_statistics(stats_filename)
 
     snapshot = load(snapshot_filename)
-    boxsize = snapshot.metadata.boxsize
+    boxsize = snapshot.metadata.boxsize.to("Mpc")
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
 
     # a, Redshift, SFR
     scale_factor = data.a
     redshift = data.z
-    gas_Z_mass = data.gas_z_mass
-    star_Z_mass = data.star_z_mass
+    gas_Z_mass = data.gas_z_mass.to("Msun")
+    star_Z_mass = data.star_z_mass.to("Msun")
     gas_Z_mass_density = gas_Z_mass / box_volume
     star_Z_mass_density = star_Z_mass / box_volume
 

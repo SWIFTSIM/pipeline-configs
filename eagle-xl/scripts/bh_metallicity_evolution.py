@@ -45,13 +45,13 @@ for snapshot_filename, stats_filename, name in zip(
     data = load_statistics(stats_filename)
 
     snapshot = load(snapshot_filename)
-    boxsize = snapshot.metadata.boxsize
+    boxsize = snapshot.metadata.boxsize.to("Mpc")
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
 
     # a, Redshift, SFR
     scale_factor = data.a
     redshift = data.z
-    bh_Z_mass = data.bh_z_mass
+    bh_Z_mass = data.bh_z_mass.to("Msun")
     bh_Z_mass_density = bh_Z_mass / box_volume
 
     # High z-order as we always want these to be on top of the observations

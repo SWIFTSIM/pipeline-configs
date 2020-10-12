@@ -20,6 +20,8 @@ This file calculates:
     + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
         Stellar Mass / Halo Mass (mass_200crit) for 30 and 100 kpc apertures.
     + HI and H_2 masses (gas_HI_mass_Msun and gas_H2_mass_Msun).
+    + baryon and gas fractions in R_(200,cr) normalized by the
+        cosmic baryon fraction (baryon_fraction_true_R200, gas_fraction_true_R200).
 """
 
 aperture_sizes = [30, 100]
@@ -164,3 +166,45 @@ except AttributeError:
         ),
     )
 
+# Now baryon fractions
+
+try:
+    Omega_m = catalogue.units.cosmology.Om0
+    Omega_b = catalogue.units.cosmology.Ob0
+
+    M_500 = catalogue.spherical_overdensities.mass_500_rhocrit
+    M_500_gas = catalogue.spherical_overdensities.mass_gas_500_rhocrit
+    M_500_star = catalogue.spherical_overdensities.mass_star_500_rhocrit
+    M_500_baryon = M_500_gas + M_500_star
+
+    f_b_500 = (M_500_baryon / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_b_500.name = name
+
+    f_gas_500 = (M_500_gas / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_gas_500.name = name
+
+    setattr(self, "baryon_fraction_true_R500", f_b_500)
+    setattr(self, "gas_fraction_true_R500", f_gas_500)
+except AttributeError:
+    # We did not produce these quantities, let's make an array of ones.
+    ones = unyt.unyt_array(
+        np.ones(np.size(catalogue.masses.mass_200crit)), "dimensionless"
+    )
+    setattr(
+        self,
+        "baryon_fraction_true_R500",
+        unyt.unyt_array(
+            ones,
+            name="$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
+        ),
+    )
+    setattr(
+        self,
+        "gas_fraction_true_R500",
+        unyt.unyt_array(
+            ones,
+            name="$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
+        ),
+    )

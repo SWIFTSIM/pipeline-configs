@@ -168,21 +168,43 @@ except AttributeError:
 
 # Now baryon fractions
 
-Omega_m = catalogue.units.cosmology.Om0
-Omega_b = catalogue.units.cosmology.Ob0
+try:
+    Omega_m = catalogue.units.cosmology.Om0
+    Omega_b = catalogue.units.cosmology.Ob0
 
-M_500 = catalogue.spherical_overdensities.mass_500_rhocrit
-M_500_gas = catalogue.spherical_overdensities.mass_gas_500_rhocrit
-M_500_star = catalogue.spherical_overdensities.mass_star_500_rhocrit
-M_500_baryon = M_500_gas + M_500_star
+    M_500 = catalogue.spherical_overdensities.mass_500_rhocrit
+    M_500_gas = catalogue.spherical_overdensities.mass_gas_500_rhocrit
+    M_500_star = catalogue.spherical_overdensities.mass_star_500_rhocrit
+    M_500_baryon = M_500_gas + M_500_star
 
-f_b_500 = (M_500_baryon / M_500) / (Omega_b / Omega_m)
-name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
-f_b_500.name = name
+    f_b_500 = (M_500_baryon / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_b_500.name = name
 
-f_gas_500 = (M_500_gas / M_500) / (Omega_b / Omega_m)
-name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
-f_gas_500.name = name
+    f_gas_500 = (M_500_gas / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_gas_500.name = name
 
-setattr(self, "baryon_fraction_true_R500", f_b_500)
-setattr(self, "gas_fraction_true_R500", f_gas_500)
+    setattr(self, "baryon_fraction_true_R500", f_b_500)
+    setattr(self, "gas_fraction_true_R500", f_gas_500)
+except AttributeError:
+    # We did not produce these quantities, let's make an array of ones.
+    ones = unyt.unyt_array(
+        np.ones(np.size(catalogue.masses.mass_200crit)), "dimensionless"
+    )
+    setattr(
+        self,
+        "baryon_fraction_true_R500",
+        unyt.unyt_array(
+            ones,
+            name="$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
+        ),
+    )
+    setattr(
+        self,
+        "gas_fraction_true_R500",
+        unyt.unyt_array(
+            ones,
+            name="$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
+        ),
+    )

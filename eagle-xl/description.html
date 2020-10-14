@@ -38,10 +38,10 @@
         <th>Comoving</th>
     </tr>
     <tr>
-        <td>{{ ((data.metadata.parameters["Gravity:max_physical_baryon_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
-        <td>{{ ((data.metadata.parameters["Gravity:comoving_baryon_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
-        <td>{{ ((data.metadata.parameters["Gravity:max_physical_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
-        <td>{{ ((data.metadata.parameters["Gravity:comoving_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_baryon_softening", data.units.length, "kpc") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_baryon_softening", data.units.length, "kpc") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_DM_softening", data.units.length, "kpc") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_DM_softening", data.units.length, "kpc") }}</td>
     </tr>
 </table>
 

@@ -15,6 +15,7 @@ baryon_fraction_500:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 20
     start:
       value: 1e11
@@ -44,6 +45,7 @@ gas_fraction_500:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 20
     start:
       value: 1e11
@@ -76,6 +78,7 @@ gas_mass_500:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 20
     start:
       value: 1e11

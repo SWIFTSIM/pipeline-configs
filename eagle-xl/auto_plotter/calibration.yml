@@ -1,0 +1,49 @@
+calibration_stellar_mass_function:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e7
+    end: 1e12
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: Stellar Mass Function (100 kpc aperture)
+    caption: 100 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex, and showing the data used for calibration.
+    section: Calibration
+  observational_data:
+    - filename: GalaxyStellarMassFunction/Vernon.hdf5
+
+calibration_stellar_mass_galaxy_size:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e7
+    end: 1e12
+  y:
+    quantity: "apertures.rhalfmass_star_100_kpc"
+    units: kpc
+    start: 0.5
+    end: 50
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    start:
+      value: 1e7
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (100 kpc aperture)
+    caption: Uses a 100 kpc 3D aperture, with fixed bin-width of 0.2 dex. Used for calibration.
+    section: Calibration
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Vernon.hdf5

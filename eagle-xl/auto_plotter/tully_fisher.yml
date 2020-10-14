@@ -14,6 +14,7 @@ tully_fisher_100:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 25
     start:
       value: 1e7
@@ -45,6 +46,7 @@ tully_fisher_30:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 25
     start:
       value: 1e7

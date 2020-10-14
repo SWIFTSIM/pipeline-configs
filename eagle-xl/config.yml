@@ -86,4 +86,14 @@ scripts:
     output_file: bh_metallicity_evolution.png
     section: Metal Evolution
     title: Metal Mass Locked in Black Holes Density Evolution
+  - filename: scripts/bh_accretion_evolution.py
+    caption: Evolution of the accretion rate onto BHs per unit co-moving volume.
+    output_file: bh_accretion_evolution.png
+    section: Black Holes
+    title: Black Hole Accretion History
+  - filename: scripts/bh_mass_evolution.py
+    caption: Evolution of the BH mass per unit co-moving volume.
+    output_file: bh_mass_evolution.png
+    section: Black Holes
+    title: Black Hole Mass History
 

@@ -17,7 +17,7 @@ matplotlib_stylesheet: mnras.mplstyle
 
 # Jinja2 template that gets fed the swiftsimio metadata
 # object for you to describe the run with.
-description_template: description_mod.html
+description_template: description.html
 
 # Location and description of additional figures
 scripts:

@@ -1,0 +1,37 @@
+hi_mass_function:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.neutral_hydrogen_masses"
+    units: Solar_Mass
+    start: 1e6
+    end: 4e11
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1.316 # (1e-0.5)
+  metadata:
+    title: HI Mass Function 
+    section: Hydrogen Species Mass Functions
+  observational_data:   
+    - filename: GalaxyHIMassFunction/Jones2018.hdf5
+
+h2_mass_function:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.molecular_hydrogen_masses"
+    units: Solar_Mass
+    start: 1e6
+    end: 4e11
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1.316 # (1e-0.5)
+  metadata:
+    title: H2 Mass Function
+    section: Hydrogen Species Mass Functions
+  observational_data:
+    - filename: GalaxyH2MassFunction/Fletcher2020.hdf5

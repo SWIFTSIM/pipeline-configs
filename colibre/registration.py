@@ -118,3 +118,44 @@ for aperture_size in aperture_sizes:
     smhm.name = name
 
     setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
+
+# iterate through available dust types
+dust_idx = 0
+total_dust_fraction = metal_mass_fraction_gas*0.
+while 1:
+    if not hasattr(catalogue.dust_mass_fractions, f"dust_{dust_idx}"):
+        break
+    total_dust_fraction += getattr(catalogue.dust_mass_fractions, f"dust_{dust_idx}")
+    dust_idx += 1
+
+
+total_dust_mass = total_dust_fraction * catalogue.apertures.mass_gas_30_kpc
+total_dust_mass.name = "$M_{\\rm dust}$"
+
+setattr(self, f"total_dust_masses", total_dust_mass)
+
+#species fraction properties
+gas_mass = catalogue.masses.m_gas
+H_frac = catalogue.element_mass_fractions.element_0
+gal_area = np.pi * catalogue.projected_apertures.projected_2_rhalfmass_star_30_kpc**2
+mstar_30 = catalogue.projected_apertures.projected_2_mass_star_30_kpc.to('Msun')
+
+# NB: this is designed for CHIMES species arrays
+self.neutral_hydrogen_masses = gas_mass * H_frac * catalogue.species_fractions.species_1
+self.ionized_hydrogen_masses = gas_mass * H_frac * catalogue.species_fractions.species_2
+self.molecular_hydrogen_masses =  gas_mass * H_frac * catalogue.species_fractions.species_7
+self.hi_to_stellar_mass = self.neutral_hydrogen_masses / catalogue.masses.m_star
+self.h2_to_stellar_mass = self.molecular_hydrogen_masses / catalogue.masses.m_star
+self.mu_star = mstar_30 / gal_area
+
+self.xgass_sel = (mstar_30 > (1e9 * mstar_30.units)) * (mstar_30 < (pow(10,11.5) * mstar_30.units))
+self.xcoldgass_sel = (mstar_30 > (1e9 * mstar_30.units)) * (mstar_30 < (pow(10,11.5) * mstar_30.units))
+
+self.neutral_hydrogen_masses.name = "HI Mass"
+self.molecular_hydrogen_masses.name = "H2 Mass"
+self.ionized_hydrogen_masses.name = "HII Mass"
+
+self.hi_to_stellar_mass.name = 'HI to Stellar Mass Fraction'
+self.h2_to_stellar_mass.name = 'H2 to Stellar Mass Fraction'
+
+self.mu_star.name = f"Stellar Surface Density"

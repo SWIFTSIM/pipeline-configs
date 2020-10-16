@@ -1,0 +1,183 @@
+h2_frac_func_stellar_mass:
+  type: "scatter"
+  legend_loc: "lower left"
+  selection_mask: "derived_quantities.xcoldgass_sel"
+  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e9
+    end: 4e11
+  y:
+    quantity: "derived_quantities.h2_to_stellar_mass"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    log: true
+    number_of_bins: 9
+    start:
+      value: 1e9
+      units: Solar_Mass
+    end:
+      value: 4e11
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-H2 Fraction
+    section: H_2 Fractions
+  observational_data:
+    - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
+
+h2_frac_func_ssfr:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.xcoldgass_sel"
+  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    units: "1 / Gigayear"
+    start: 1e-4
+    end: 1e4
+  y:
+    quantity: "derived_quantities.h2_to_stellar_mass"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    log: true
+    number_of_bins: 29
+    start:
+      value: 1e-4
+      units: "1 / Gigayear"
+    end:
+      value: 1e4
+      units: "1 / Gigayear"
+  metadata:
+    title: Stellar Mass-H2 Fraction
+    section: H_2 Fractions
+  observational_data:
+    - filename: GalaxyH2Fractions/Saintonge2017_abcissa_sSFR.hdf5
+
+h2_frac_func_stellar_surface_density:
+  type: "scatter"
+  legend_loc: "lower left"
+  selection_mask: "derived_quantities.xcoldgass_sel"
+  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  x:
+    quantity: "derived_quantities.mu_star"
+    units: "Solar_Mass / (kpc**2)"
+    start: 1e6
+    end: 1e11
+  y:
+    quantity: "derived_quantities.h2_to_stellar_mass"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    log: true
+    number_of_bins: 9
+    start:
+      value: 1e5
+      units: "Solar_Mass / (kpc**2)"
+    end:
+      value: 1e11
+      units: "Solar_Mass / (kpc**2)"
+  metadata:
+    title: Stellar Mass Surface Density-H2 Fraction
+    section: H_2 Fractions
+  observational_data:
+    - filename: GalaxyH2Fractions/Saintonge2017_abcissa_mu_star.hdf5
+
+hi_frac_func_stellar_mass:
+  type: "scatter"
+  legend_loc: "lower left"
+  selection_mask: "derived_quantities.xgass_sel"
+  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e9
+    end: 4e11
+  y:
+    quantity: "derived_quantities.hi_to_stellar_mass"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    log: true
+    number_of_bins: 9
+    start:
+      value: 1e9
+      units: Solar_Mass
+    end:
+      value: 4e11
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-HI Fraction
+    section: H_I Fractions
+  observational_data:
+    - filename: GalaxyHIFractions/Catinella2018_abcissa_M_star.hdf5
+
+hi_frac_func_ssfr:
+  type: "scatter"
+  legend_loc: "lower right"
+  selection_mask: "derived_quantities.xgass_sel"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    units: "1 / Gigayear"
+    start: 1e-4
+    end: 1e4
+  y:
+    quantity: "derived_quantities.hi_to_stellar_mass"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    log: true
+    number_of_bins: 29
+    start:
+      value: 1e-4
+      units: "1 / Gigayear"
+    end:
+      value: 1e4
+      units: "1 / Gigayear"
+  metadata:
+    title: Stellar Mass-HI Fraction
+    section: H_I Fractions
+  observational_data:
+    - filename: GalaxyHIFractions/Catinella2018_abcissa_sSFR.hdf5
+
+hi_frac_func_stellar_surface_density:
+  type: "scatter"
+  legend_loc: "lower left"
+  selection_mask: "derived_quantities.xgass_sel"
+  x:
+    quantity: "derived_quantities.mu_star"
+    units: "Solar_Mass / (kpc**2)"
+    start: 1e6
+    end: 1e11
+  y:
+    quantity: "derived_quantities.hi_to_stellar_mass"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    log: true
+    number_of_bins: 9
+    start:
+      value: 1e5
+      units: "Solar_Mass / (kpc**2)"
+    end:
+      value: 1e11
+      units: "Solar_Mass / (kpc**2)"
+  metadata:
+    title: Stellar Mass Surface Density-HI Fraction
+    section: H_I Fractions
+  observational_data:
+    - filename: GalaxyHIFractions/Catinella2018_abcissa_mu_star.hdf5

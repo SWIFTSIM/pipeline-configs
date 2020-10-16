@@ -17,7 +17,7 @@ matplotlib_stylesheet: mnras.mplstyle
 
 # Jinja2 template that gets fed the swiftsimio metadata
 # object for you to describe the run with.
-description_template: description.html
+description_template: description_mod.html
 
 # Location and description of additional figures
 scripts:
@@ -81,4 +81,27 @@ scripts:
     title: Number of steps vs. cosmic time
     section: Run Performance
     output_file: simulation_time_number_of_steps.png
- 
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by H2 mass fraction.
+    output_file: subgrid_density_temperature_H2.png
+    section: Hydrogen Phase Density-Temperature
+    title: H2
+    additional_arguments:
+      hydrogen_species: H2
+      quantity_type: subgrid
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by HI mass fraction.
+    output_file: subgrid_density_temperature_HI.png
+    section: Hydrogen Phase Density-Temperature
+    title: HI
+    additional_arguments:
+      hydrogen_species: HI
+      quantity_type: subgrid
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by HII mass fraction.
+    output_file: subgrid_density_temperature_HII.png
+    section: Hydrogen Phase Density-Temperature
+    title: HII
+    additional_arguments:
+      hydrogen_species: HII
+      quantity_type: subgrid

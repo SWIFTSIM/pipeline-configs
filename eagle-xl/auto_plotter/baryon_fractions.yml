@@ -1,0 +1,92 @@
+baryon_fraction_500:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "spherical_overdensities.mass_500_rhocrit"
+    units: Solar_Mass
+    start: 1e11
+    end: 1e15
+  y:
+    quantity: "derived_quantities.baryon_fraction_true_R500"
+    units:  "dimensionless"
+    log: false
+    start: 0.
+    end: 1.2
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 20
+    start:
+      value: 1e11
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: "Halo baryon fractions within R_500"
+    caption: Baryon (gas + stars) fractions within R_500 normalised by the cosmic mean. These are 'true' values, i.e. no cut or observational correction was applied.
+    section: Baryon Fractions
+
+gas_fraction_500:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "spherical_overdensities.mass_500_rhocrit"
+    units: Solar_Mass
+    start: 1e11
+    end: 1e15
+  y:
+    quantity: "derived_quantities.gas_fraction_true_R500"
+    units:  "dimensionless"
+    log: false
+    start: 0.
+    end: 1.2
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 20
+    start:
+      value: 1e11
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: "Halo gas fractions within R_500"
+    caption: Gas fractions within R_500 normalised by the cosmic mean. These are 'true' values, i.e. no cut or observational correction was applied.
+    section: Baryon Fractions
+  observational_data:
+    - filename: HaloMassGasFractions/Lin2012.hdf5
+    - filename: HaloMassGasFractions/Sun2009.hdf5
+    - filename: HaloMassGasFractions/Vikhlinin2006.hdf5
+
+gas_mass_500:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "spherical_overdensities.mass_500_rhocrit"
+    units: Solar_Mass
+    start: 1e11
+    end: 1e15
+  y:
+    quantity: "spherical_overdensities.mass_gas_500_rhocrit"
+    units: Solar_Mass
+    start: 3e9
+    end: 1e14
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 20
+    start:
+      value: 1e11
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: "Halo gas masses within R_500"
+    caption: Gas masses within R_500 normalised. These are 'true' values, i.e. no cut or observational correction was applied.
+    section: Baryon Fractions

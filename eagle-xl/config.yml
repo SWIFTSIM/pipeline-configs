@@ -47,10 +47,15 @@ scripts:
     section: Density-Temperature
     title: Density-Pressure
   - filename: scripts/star_formation_history.py
-    caption: Star formation history plotted directly from the SFR.txt produced by SWIFT.
+    caption: Star formation history plotted directly from the SFR.txt file produced by SWIFT.
     output_file: star_formation_history.png
     section: Star Formation History
     title: Star Formation History
+  - filename: scripts/stellar_mass_evolution.py
+    caption: Evolution of the stellar mass plotted directly from the statistics.txt file produced by SWIFT.
+    output_file: stellar_mass_evolution.png
+    section: Star Formation History
+    title: Stellar Mass Evolution
   - filename: scripts/metallicity_distribution.py
     caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
     output_file: metallicity_distribution.png
@@ -71,4 +76,24 @@ scripts:
     title: Birth Density-Metallicity Plane
     section: Feedback Energy Fraction
     output_file: birth_density_metallicity.png
+  - filename: scripts/metallicity_evolution.py
+    caption: Evolution of the metal mass in gas and stars per unit co-moving volume.
+    output_file: metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Density Evolution
+  - filename: scripts/bh_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in black holes per unit co-moving volume.
+    output_file: bh_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Black Holes Density Evolution
+  - filename: scripts/bh_accretion_evolution.py
+    caption: Evolution of the accretion rate onto BHs per unit co-moving volume.
+    output_file: bh_accretion_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Accretion History
+  - filename: scripts/bh_mass_evolution.py
+    caption: Evolution of the BH mass per unit co-moving volume.
+    output_file: bh_mass_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Mass History
 

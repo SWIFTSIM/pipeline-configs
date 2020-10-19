@@ -74,7 +74,7 @@ stellar_mass_specific_sfr_100:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
     units: 1 / gigayear
     start: 0.5e-2
-    end: 1e0
+    end: 3e0
   median:
     plot: true
     log: true
@@ -111,7 +111,7 @@ stellar_mass_specific_sfr_30:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
     units: 1 / gigayear
     start: 0.5e-2
-    end: 1e0
+    end: 3e0
   median:
     plot: true
     log: true
@@ -149,7 +149,7 @@ halo_mass_specific_sfr_30:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
     units: 1 / gigayear
     start: 0.5e-2
-    end: 1e0
+    end: 3e0
   median:
     plot: true
     log: true
@@ -184,7 +184,7 @@ halo_mass_specific_sfr_100:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
     units: 1 / gigayear
     start: 0.5e-2
-    end: 1e0
+    end: 3e0
   median:
     plot: true
     log: true

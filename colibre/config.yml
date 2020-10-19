@@ -51,3 +51,24 @@ scripts:
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_distribution.py
+    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
+    title: Stellar Birth Densities
+    section: Density distributions
+    output_file: birth_density_distribution.png
+  - filename: scripts/SNII_density_distribution.py
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
+    title: Density of the gas heated by SNII
+    section: Density distributions
+    output_file: SNII_density_distribution.png
+  - filename: scripts/wallclock_simulation_time.py
+    caption: The cosmic time as a function of the wall-clock time.
+    title: Cosmic time vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_simulation_time.png
+  - filename: scripts/wallclock_number_of_steps.py
+    caption: The cumulative number of the simulation time-steps as a function of the wall-clock times.
+    title: The number of steps vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_number_of_steps.png
+ 

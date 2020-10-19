@@ -38,10 +38,10 @@
         <th>Comoving</th>
     </tr>
     <tr>
-        <td>{{ ((data.metadata.parameters["Gravity:max_physical_baryon_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
-        <td>{{ ((data.metadata.parameters["Gravity:comoving_baryon_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
-        <td>{{ ((data.metadata.parameters["Gravity:max_physical_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
-        <td>{{ ((data.metadata.parameters["Gravity:comoving_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_baryon_softening", data.units.length, "kpc") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_baryon_softening", data.units.length, "kpc") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_DM_softening", data.units.length, "kpc") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_DM_softening", data.units.length, "kpc") }}</td>
     </tr>
 </table>
 
@@ -57,19 +57,19 @@
     </tr>
     <tr>
         <td>Temperature Ceiling</td>
-        <td>{{ ((data.metadata.parameters["COLIBREStarFormation:temperature_threshold_K"] | float) * data.units.temperature).to('K') | format_number }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:temperature_threshold_K", "K") }}</td>
     </tr>
     <tr>
         <td>Virial Parameter</td>
-        <td>{{ (data.metadata.parameters["COLIBREStarFormation:alpha_virial"] | float) | format_number }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:alpha_virial") }}</td>
     </tr>
     <tr>
         <td>Threshold SF \(n_{\rm H, max}\)</td>
-        <td>{{ (data.metadata.parameters["COLIBREStarFormation:subgrid_density_threshold_H_p_CM3"] | float) | format_number }} cm\(^{-3}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:subgrid_density_threshold_H_p_CM3") }} cm\(^{-3}\)</td>
     </tr>
     <tr>
         <td>Immediate SF \(n_{\rm H, max}\)</td>
-        <td>{{ (data.metadata.parameters["COLIBREStarFormation:threshold_max_density_H_p_cm3"] | float) | format_number }} cm\(^{-3}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:threshold_max_density_H_p_cm3") }} cm\(^{-3}\)</td>
     </tr>
 </table>
 
@@ -80,28 +80,28 @@
         <th>Value</th>
     </tr>
     <tr>
-        <td>Supernova Energy</td>
-        <td>{{ (data.metadata.parameters.get("COLIBREFeedback:SNII_energy_erg", 0.0) | float ) | format_number }} erg</td>
+        <td>SNII Energy</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_erg", "erg") }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm E, min}\)</td>
-        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_energy_fraction_min", 0.0) | float ) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_min") }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm E, max}\)</td>
-        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_energy_fraction_max", 0.0) | float ) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_max") }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm kinetic}\)</td>
-        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_f_kinetic", 0.0) | float) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_f_kinetic") }}</td>
     </tr>
     <tr>
-        <td>\(v_{\rm kinetic}\)</td>
-        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREFeedback:SNII_delta_v_km_p_s", 0.0) | float) }} km s\(^{-1}\)</td>
+        <td>SNII \(v_{\rm kinetic}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_v_km_p_s", "km/s") }}</td>
     </tr>
-     <tr>
-        <td>\(\Delta T\)</td>
-        <td>{{ data.metadata.parameters.get("COLIBREFeedback:SNII_delta_T_K", 0.0) | float | format_number }} K</td>
+    <tr>
+        <td>SNII \(\Delta T\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K", "K") }}</td>
     </tr>
 </table>
 
@@ -138,7 +138,7 @@
     </tr>
     <tr>
         <td>Metal diffusion constant</td>
-        <td>{{ "%.4g" % (data.metadata.parameters.get("COLIBREChemistry:metal_diffusion_constant", 0.0) | float) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREChemistry:metal_diffusion_constant") }}</td>
     </tr>
 </table>
 
@@ -151,91 +151,91 @@
     </tr>
     <tr>
         <td>\(\Delta T\)</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:AGN_delta_T_K"] | float | format_number }} K</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_delta_T_K", "K") }}</td>
     </tr>
     <tr>
         <td>Coupling efficiency</td>
-        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:coupling_efficiency"] | float) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:coupling_efficiency") }}</td>
     </tr>
     <tr>
         <td>Radiative efficiency</td>
-        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:radiative_efficiency"] | float) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:radiative_efficiency") }}</td>
     </tr>
     <tr>
         <td>BH Subgrid Seed Mass</td>
-        <td>{{ data.metadata.parameters["COLIBREAGN:subgrid_seed_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:subgrid_seed_mass_Msun", "Msun") }}</td>
     </tr>
     <tr>
         <td>Seed Halo Mass</td>
-        <td>{{ data.metadata.parameters["FOF:black_hole_seed_halo_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("FOF:black_hole_seed_halo_mass_Msun", "Msun") }}</td>
     </tr>
     <tr>
         <td>Target number of particles to heat N\(_{\rm heat}\)</td>
-        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:AGN_num_ngb_to_heat"] | float) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_num_ngb_to_heat") }}</td>
     </tr>
     <tr>
         <td>Use sub-grid gas properties</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_subgrid_gas_properties", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_subgrid_gas_properties") }}</td>
     </tr>
     <tr>
         <td>Use Multi-phase Bondi</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_multi_phase_bondi", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_multi_phase_bondi") }}</td>
     </tr>
     <tr>
         <td>Use Krumholtz Accretion</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_krumholz", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_krumholz") }}</td>
     </tr>
     <tr>
         <td>Use Krumholtz Vorticity</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:with_krumholz_vorticity", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_krumholz_vorticity") }}</td>
     </tr>
     <tr>
         <td>Use Angular Momentum Limiter</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:with_angmom_limiter", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_angmom_limiter") }}</td>
     </tr>
     <tr>
         <td>Viscous \(\alpha\)</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:viscous_alpha", 0.0) | float | format_number }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:viscous_alpha") }}</td>
     </tr>
     <tr>
         <td>Use Nibbling</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:use_nibbling", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_nibbling") }}</td>
     </tr>
     <tr>
         <td>Minimal Gas Mass For Nibbling</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:min_gas_mass_for_nibbling", 0.0) | float | format_number }} M\(_\odot\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_gas_mass_for_nibbling", "Msun") }}</td>
     </tr>
     <tr>
         <td>Maximal Reposition Mass</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:max_reposition_mass", 0.0) | float | format_number }} M\(_\odot\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:max_reposition_mass", "Msun") }}</td>
     </tr>
     <tr>
         <td>Use Reposition Velocity Threshold</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:with_reposition_velocity_threshold", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_reposition_velocity_threshold") }}</td>
     </tr>
     <tr>
         <td>Maximal Reposition Velocity Offset</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:max_reposition_velocity_ratio", 0.0) | float | format_number }} \(c_{s, {\rm BH}}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:max_reposition_velocity_ratio") }} \(c_{s, {\rm BH}}\)</td>
     </tr>
     <tr>
         <td>Minimal Reposition Velocity Threshold</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:min_reposition_velocity_threshold", 0.0) | float | format_number }} km s\(^{-1}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_reposition_velocity_threshold", "km/s") }}</td>
     </tr>
     <tr>
         <td>Set Black Hole Reposition Speed</td>
-	    <td>{{ data.metadata.parameters.get("COLIBREAGN:set_reposition_speed", 0) | int }}</td>
+	    <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:set_reposition_speed") }}</td>
     </tr>
     <tr>
         <td>Repositioning Speed Normalisation</td>
-	    <td>{{ data.metadata.parameters.get("COLIBREAGN:reposition_coefficient_upsilon", 0.0) | float | format_number }} km s\(^{-1}\) M\(_\odot\)\(^{-1}\)</td>
+	    <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:reposition_coefficient_upsilon", "km/s/Msun") }}</td>
     </tr>
     <tr>
         <td>Black Hole Merger Threshold Type</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:merger_threshold_type", 0) | int }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:merger_threshold_type") }}</td>
     </tr>
     <tr>
         <td>Black Hole Merger Max Distance Ratio</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:merger_max_distance_ratio", 0.0) | float | format_number }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:merger_max_distance_ratio") }}</td>
     </tr>
 </table>
 {% else %}

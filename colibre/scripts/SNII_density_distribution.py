@@ -18,7 +18,8 @@ except:
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a plot showing the distribution of the gas densities recorded when the gas was last heated by SNII, split by redshift"
+    description="Creates a plot showing the distribution of the gas densities recorded "
+                "when the gas was last heated by SNII, split by redshift"
 )
 
 snapshot_filenames = [

@@ -104,11 +104,11 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K", "K") }}</td>
     </tr>
     <tr>
-        <td>Use stellar winds</td>
+        <td>Use Stellar Winds</td>
         <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_StellarWinds") }}</td>
     </tr>
     <tr>
-        <td>Use radiation pressure</td>
+        <td>Use Radiation Pressure</td>
         <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_RadiationPressure") }}</td>
     </tr>
     <tr>
@@ -116,7 +116,7 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:Momentum_desired_delta_v", "km/s") }}</td>
     </tr>
     <tr>
-        <td>Use HII regions</td>
+        <td>Use HII Regions</td>
         <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_HIIRegions") }}</td>
     </tr>
 </table>
@@ -170,7 +170,7 @@
         <td>{{ data.metadata.parameters.get("COLIBREAGN:AGN_feedback_model", "".encode()).decode("utf-8") }}</td>
     </tr>
     <tr>
-        <td>Use deterministic feedback</td>
+        <td>Use Deterministic Feedback</td>
         <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:AGN_use_deterministic_feedback") }}</td>
     </tr>
     <tr>

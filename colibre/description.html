@@ -96,12 +96,28 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_f_kinetic") }}</td>
     </tr>
     <tr>
-        <td>SNII \(v_{\rm kinetic}\)</td>
+        <td>SNII \(v_{\rm kick}\)</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_v_km_p_s", "km/s") }}</td>
     </tr>
     <tr>
         <td>SNII \(\Delta T\)</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K", "K") }}</td>
+    </tr>
+    <tr>
+        <td>Use Stellar Winds</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_StellarWinds") }}</td>
+    </tr>
+    <tr>
+        <td>Use Radiation Pressure</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_RadiationPressure") }}</td>
+    </tr>
+    <tr>
+        <td>Early Feedback \(v_{\rm kick}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:Momentum_desired_delta_v", "km/s") }}</td>
+    </tr>
+    <tr>
+        <td>Use HII Regions</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_HIIRegions") }}</td>
     </tr>
 </table>
 
@@ -148,6 +164,14 @@
     <tr>
         <th>Parameter</th>
         <th>Value</th>
+    </tr>
+    <tr>
+        <td>AGN Feedback Model</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:AGN_feedback_model", "".encode()).decode("utf-8") }}</td>
+    </tr>
+    <tr>
+        <td>Use Deterministic Feedback</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:AGN_use_deterministic_feedback") }}</td>
     </tr>
     <tr>
         <td>\(\Delta T\)</td>
@@ -204,6 +228,10 @@
     <tr>
         <td>Minimal Gas Mass For Nibbling</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_gas_mass_for_nibbling", "Msun") }}</td>
+    </tr>
+    <tr>
+        <td>Minimum BH time-step</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:minimum_timestep_yr", "yr") }}</td>
     </tr>
     <tr>
         <td>Maximal Reposition Mass</td>

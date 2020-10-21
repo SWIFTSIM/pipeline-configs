@@ -9,12 +9,6 @@ import unyt
 from unyt import mh, cm
 
 from swiftsimio import load
-
-try:
-    plt.style.use("mnras.mplstyle")
-except:
-    pass
-
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(

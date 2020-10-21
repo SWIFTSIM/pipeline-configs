@@ -24,7 +24,8 @@ def get_data(filename):
     mass_sub = data.black_holes.subgrid_masses.to("Msun")
     mass_dyn = data.black_holes.dynamical_masses.to("Msun")
     mass_seed = unyt_quantity(
-        float(data.metadata.parameters["EAGLEAGN:subgrid_seed_mass_Msun"]), "Msun"
+        float(data.metadata.parameters.get("EAGLEAGN:subgrid_seed_mass_Msun", 0.0)),
+        "Msun",
     )
     mass_gas = np.min(data.gas.masses.to("Msun"))
 
@@ -54,11 +55,11 @@ def setup_axes(mass_bounds, number_of_simulations: int):
 
     # Set all valid on bottom row to have the horizontal axis label.
     for axis in np.atleast_2d(ax)[:][-1]:
-        axis.set_xlabel("Black Hole Dynamical Masses $M_{\\rm dyn}$ [M$_\odot$]")
+        axis.set_xlabel("BH Dyn. Masses $M_{\\rm dyn}$ [M$_\odot$]")
         axis.set_xlim(mass_bounds)
 
     for axis in np.atleast_2d(ax).T[:][0]:
-        axis.set_ylabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\odot$]")
+        axis.set_ylabel("BH Sub. Masses $M_{\\rm sub}$ [M$_\odot$]")
         axis.set_ylim(mass_bounds)
 
     ax.flat[0].loglog()

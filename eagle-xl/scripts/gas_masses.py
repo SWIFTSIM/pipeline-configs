@@ -21,11 +21,13 @@ def get_data(filename):
 
     data = load(filename)
 
-    mass_gas = data.gas.masses.to("Msun") / 10 ** 6
+    mass_gas = data.gas.masses.to("1e6 * Msun")
     mass_split = unyt_quantity(
-        1e4 * float(data.metadata.parameters["SPH:particle_splitting_mass_threshold"]),
-        "Msun",
-    )
+        float(
+            data.metadata.parameters.get("SPH:particle_splitting_mass_threshold", 0.0)
+        ),
+        units=data.units.mass,
+    ).to("1e6 * Msun")
 
     return mass_gas, mass_split
 

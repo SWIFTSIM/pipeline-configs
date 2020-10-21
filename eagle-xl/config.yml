@@ -96,4 +96,14 @@ scripts:
     output_file: bh_mass_evolution.png
     section: Black Holes Evolution
     title: Black Hole Mass History
+  - filename: scripts/bh_masses.py
+    caption: Relation between black hole particle (dynamical) masses and subgrid masses. The vertical dashed lines shows the primordial gas particle mass and the horizontal dashed lines corresponds to the black hole seed mass.
+    output_file: bh_masses.png
+    section: Black Holes
+    title: Black Hole Dynanmical and Subgrid Masses
+  - filename: scripts/gas_masses.py
+    caption: Gas Particle Masses with the threshold for splitting indicated by the vertical dashed line.
+    output_file: gas_masses.png
+    section: Histograms
+    title: Gas Particle Masses
 

@@ -45,6 +45,7 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
         ax.plot(bins, h, label=name)
 
     ax.legend()
+    ax.set_xlim(*T_bounds)
 
     fig.savefig(f"{output_path}/gas_max_temperatures.png")
 

@@ -106,11 +106,6 @@ scripts:
     output_file: gas_masses.png
     section: Histograms
     title: Gas Particle Masses
-  - filename: scripts/SNII_density_distribution.py
-    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
-    title: Density of the gas heated by SNII
-    section: Stellar Feedback
-    output_file: SNII_density_distribution.png
   - filename: scripts/wallclock_simulation_time.py
     caption: The cosmic time as a function of the wall-clock time.
     title: Cosmic time vs. wall-clock time

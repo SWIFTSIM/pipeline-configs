@@ -1,5 +1,5 @@
 """
-Plots wallclock v.s. simulation time.
+Plots wallclock v.s. number of steps.
 """
 
 import unyt

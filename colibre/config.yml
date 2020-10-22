@@ -61,14 +61,24 @@ scripts:
     title: Density of the gas heated by SNII
     section: Density distributions
     output_file: SNII_density_distribution.png
+  - filename: scripts/max_temperatures.py
+    caption: Maximal temperature recorded by gas particles throughout the entire simulation.
+    output_file: gas_max_temperatures.png
+    section: Histograms
+    title: Maximal Temperature reached by gas particles
   - filename: scripts/wallclock_simulation_time.py
     caption: The cosmic time as a function of the wall-clock time.
     title: Cosmic time vs. wall-clock time
     section: Run Performance
     output_file: wallclock_simulation_time.png
   - filename: scripts/wallclock_number_of_steps.py
-    caption: The cumulative number of the simulation time-steps as a function of the wall-clock times.
+    caption: The cumulative number of the simulation time-steps as a function of the wall-clock time.
     title: The number of steps vs. wall-clock time
     section: Run Performance
     output_file: wallclock_number_of_steps.png
+  - filename: scripts/simulation_time_number_of_steps.py
+    caption: The cumulative number of the simulation time-steps as a function of the cosmic time.
+    title: Number of steps vs. cosmic time
+    section: Run Performance
+    output_file: simulation_time_number_of_steps.png
  

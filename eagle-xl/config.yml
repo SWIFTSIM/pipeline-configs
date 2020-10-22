@@ -63,18 +63,18 @@ scripts:
     title: Metal Mass Fraction Distribution
   - filename: scripts/birth_density_f_E.py
     caption: Feedback energy fractions $f_E$ shown against the birth densities for the stars. Any variation here is due to differing metallicity of the gas.
-    section: Feedback Energy Fraction
+    section: Stellar Feedback
     title: $f_E$ as a Function of Birth Density
     output_file: birth_density_f_E.png
   - filename: scripts/birth_density_distribution.py
     caption: Distributions of birth densities, split by redshift.
     title: Stellar Birth Densities
-    section: Feedback Energy Fraction
+    section: Stellar Feedback
     output_file: birth_density_distribution.png
   - filename: scripts/birth_density_metallicity.py
     caption: Birth density-metallicity plane. Contour lines show stars formed at all epochs, with the background color map showing the feedback energy fraction associated with this particle's feedback event.
     title: Birth Density-Metallicity Plane
-    section: Feedback Energy Fraction
+    section: Stellar Feedback
     output_file: birth_density_metallicity.png
   - filename: scripts/metallicity_evolution.py
     caption: Evolution of the metal mass in gas and stars per unit co-moving volume.
@@ -106,4 +106,19 @@ scripts:
     output_file: gas_masses.png
     section: Histograms
     title: Gas Particle Masses
+  - filename: scripts/SNII_density_distribution.py
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
+    title: Density of the gas heated by SNII
+    section: Stellar Feedback
+    output_file: SNII_density_distribution.png
+  - filename: scripts/wallclock_simulation_time.py
+    caption: The cosmic time as a function of the wall-clock time.
+    title: Cosmic time vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_simulation_time.png
+  - filename: scripts/wallclock_number_of_steps.py
+    caption: The cumulative number of the simulation time-steps as a function of the wall-clock times.
+    title: The number of steps vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_number_of_steps.png
 

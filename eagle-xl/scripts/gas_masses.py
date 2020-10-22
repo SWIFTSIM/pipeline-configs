@@ -42,7 +42,7 @@ def make_single_image(
     fig, ax = plt.subplots()
     ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^6$ M$_\odot$]")
     ax.set_ylabel("Counts [-]")
-    ax.loglog()
+    ax.semilogy()
 
     for filename, name in zip(filenames, names):
         m_gas, m_split = get_data(filename)

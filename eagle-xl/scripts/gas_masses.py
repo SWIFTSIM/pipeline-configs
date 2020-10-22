@@ -51,6 +51,8 @@ def make_single_image(
         (line,) = ax.plot(bins, h, label=name)
         ax.axvline(x=m_split, color=line.get_color(), ls="--", lw=0.2)
 
+    ax.legend()
+
     fig.savefig(f"{output_path}/gas_masses.png")
 
     return

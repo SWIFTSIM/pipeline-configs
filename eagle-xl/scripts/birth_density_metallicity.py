@@ -1,4 +1,3 @@
-
 """
 Creates the plot of metallicity against birth density, with
 the background coloured by f_E.
@@ -101,10 +100,15 @@ if __name__ == "__main__":
         # Now need to make background grid of f_E.
         birth_density_grid, metal_mass_fraction_grid = np.meshgrid(
             0.5 * (birth_density_bins.value[1:] + birth_density_bins.value[:-1]),
-            0.5 * (metal_mass_fraction_bins.value[1:] + metal_mass_fraction_bins.value[:-1]),
+            0.5
+            * (
+                metal_mass_fraction_bins.value[1:] + metal_mass_fraction_bins.value[:-1]
+            ),
         )
 
-        f_E_grid = parameters["f_E,min"] + (parameters["f_E,max"] - parameters["f_E,min"]) / (
+        f_E_grid = parameters["f_E,min"] + (
+            parameters["f_E,max"] - parameters["f_E,min"]
+        ) / (
             1.0
             + (metal_mass_fraction_grid / parameters["Z_pivot"]) ** parameters["n_Z"]
             * (birth_density_grid / parameters["n_pivot"]) ** (-parameters["n_n"])
@@ -132,12 +136,15 @@ if __name__ == "__main__":
             bins=[birth_density_bins.value, metal_mass_fraction_bins.value],
         )
 
-        ax.contour(birth_density_grid, metal_mass_fraction_grid, H.T, levels=6, cmap="Pastel1")
+        ax.contour(
+            birth_density_grid, metal_mass_fraction_grid, H.T, levels=6, cmap="Pastel1"
+        )
 
         # Add line showing SF law
         try:
             sf_threshold_density = star_formation_parameters["threshold_n0"] * (
-                metal_mass_fraction_bins.value / star_formation_parameters["threshold_Z0"]
+                metal_mass_fraction_bins.value
+                / star_formation_parameters["threshold_Z0"]
             ) ** (star_formation_parameters["slope"])
             ax.plot(
                 sf_threshold_density,
@@ -154,12 +161,11 @@ if __name__ == "__main__":
     fig.colorbar(mappable, label="Feedback energy fraction $f_E$")
 
     try:
-        fontsize=legend.get_texts()[0].get_fontsize()
+        fontsize = legend.get_texts()[0].get_fontsize()
     except:
-        fontsize=6
+        fontsize = 6
 
-
-    for ax, snapshot, name in zip(axes, snapshots, arguments.name_list):
+    for ax, snapshot, name in zip(axes.flat, snapshots, arguments.name_list):
         used_parameters = snapshot.metadata.parameters
 
         parameters = {
@@ -178,7 +184,10 @@ if __name__ == "__main__":
             0.975,
             0.025,
             "\n".join(
-                [f"${k.replace('_', '_{') + '}'}$: ${v:.4g}$" for k, v in parameters.items()]
+                [
+                    f"${k.replace('_', '_{') + '}'}$: ${v:.4g}$"
+                    for k, v in parameters.items()
+                ]
             ),
             color="white",
             transform=ax.transAxes,
@@ -205,7 +214,7 @@ if __name__ == "__main__":
             ha="left",
             va="bottom",
             transform=ax.transAxes,
-            color="white"
+            color="white",
         )
 
     fig.savefig(f"{arguments.output_directory}/birth_density_metallicity.png")

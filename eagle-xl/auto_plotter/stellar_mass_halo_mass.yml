@@ -1,4 +1,4 @@
-stellar_mass_halo_mass_all_100:
+stellar_mass_halo_mass_M200_all_100:
   type: "scatter"
   legend_loc: "lower right"
   x:
@@ -23,14 +23,44 @@ stellar_mass_halo_mass_all_100:
       value: 1e14
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (100 kpc aperture)
+    title: Stellar Mass-Halo Mass relation (100 kpc aperture, M$_{200}$)
     caption: Includes all haloes, including subhaloes.
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
 
-stellar_mass_halo_mass_centrals_100:
+stellar_mass_halo_mass_MBN98_all_100:
+  type: "scatter"
+  legend_loc: "lower right"
+  x:
+    quantity: "masses.mass_bn98"
+    units: Solar_Mass
+    start: 1e9
+    end: 3e14
+  y:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e9
+      units: Solar_Mass
+    end:
+      value: 1e14
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Halo Mass relation (100 kpc aperture, M$_{\rm BN98}$)
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Mass-Halo Mass
+  observational_data:
+    - filename: GalaxyStellarMassHaloMass/Behroozi2019_z000p000.hdf5
+
+stellar_mass_halo_mass_M200_centrals_100:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
@@ -57,15 +87,47 @@ stellar_mass_halo_mass_centrals_100:
       value: 1e14
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (100 kpc aperture, centrals only)
+    title: Stellar Mass-Halo Mass relation (100 kpc aperture, centrals only, M$_{200}$)
     caption: Includes only central haloes.
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0.hdf5
+
+stellar_mass_halo_mass_MBN98_centrals_100:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "lower right"
+  x:
+    quantity: "masses.mass_bn98"
+    units: Solar_Mass
+    start: 1e9
+    end: 3e14
+  y:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e9
+      units: Solar_Mass
+    end:
+      value: 1e14
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Halo Mass relation (100 kpc aperture, centrals only, M$_{\rm BN98}$)
+    caption: Includes only central haloes.
+    section: Stellar Mass-Halo Mass
+  observational_data:
+    - filename: GalaxyStellarMassHaloMass/Behroozi2019_z000p000.hdf5
       
-stellar_mass_halo_mass_centrals_ratio_100:
+stellar_mass_halo_mass_M200_centrals_ratio_100:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
@@ -91,15 +153,14 @@ stellar_mass_halo_mass_centrals_ratio_100:
       value: 1e14
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, centrals only)
+    title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, centrals only, M$_{200}$)
     caption: Includes only central haloes.
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013Ratio.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_Ratio.hdf5
 
-stellar_mass_halo_mass_centrals_ratio_stellar_100:
+stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
@@ -126,15 +187,14 @@ stellar_mass_halo_mass_centrals_ratio_stellar_100:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, centrals only, stellar x-axis)
+    title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, centrals only, stellar x-axis, M$_{200}$)
     caption: Includes only central haloes.
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013RatioStellar.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013RatioStellar.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_RatioStellar.hdf5
 
-stellar_mass_halo_mass_all_30:
+stellar_mass_halo_mass_M200_all_30:
   type: "scatter"
   legend_loc: "lower right"
   x:
@@ -159,15 +219,46 @@ stellar_mass_halo_mass_all_30:
       value: 1e14
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (30 kpc aperture)
+    title: Stellar Mass-Halo Mass relation (30 kpc aperture, M$_{200}$)
     caption: Includes all haloes, including subhaloes.
     section: Stellar Mass-Halo Mass
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
 
-stellar_mass_halo_mass_centrals_30:
+stellar_mass_halo_mass_MBN98_all_30:
+  type: "scatter"
+  legend_loc: "lower right"
+  x:
+    quantity: "masses.mass_bn98"
+    units: Solar_Mass
+    start: 1e9
+    end: 3e14
+  y:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e9
+      units: Solar_Mass
+    end:
+      value: 1e14
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Halo Mass relation (30 kpc aperture, M$_{\rm BN98}$)
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Mass-Halo Mass
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassHaloMass/Behroozi2019_z000p000.hdf5
+
+stellar_mass_halo_mass_M200_centrals_30:
   type: "scatter"
   comment: "Centrals only"
   legend_loc: "lower right"
@@ -194,16 +285,49 @@ stellar_mass_halo_mass_centrals_30:
       value: 1e14
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (30 kpc aperture, centrals only)
+    title: Stellar Mass-Halo Mass relation (30 kpc aperture, centrals only, M$_{200}$)
     caption: Includes only central haloes.
     section: Stellar Mass-Halo Mass
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0.hdf5
 
-stellar_mass_halo_mass_centrals_ratio_30:
+stellar_mass_halo_mass_MBN98_centrals_30:
+  type: "scatter"
+  comment: "Centrals only"
+  legend_loc: "lower right"
+  select_structure_type: 10
+  x:
+    quantity: "masses.mass_bn98"
+    units: Solar_Mass
+    start: 1e9
+    end: 3e14
+  y:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e9
+      units: Solar_Mass
+    end:
+      value: 1e14
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Halo Mass relation (30 kpc aperture, centrals only, M$_{\rm BN98}$)
+    caption: Includes only central haloes.
+    section: Stellar Mass-Halo Mass
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassHaloMass/Behroozi2019_z000p000.hdf5
+
+stellar_mass_halo_mass_M200_centrals_ratio_30:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
@@ -230,16 +354,15 @@ stellar_mass_halo_mass_centrals_ratio_30:
       value: 1e14
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, centrals only)
+    title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, centrals only, M$_{200}$)
     caption: Includes only central haloes.
     section: Stellar Mass-Halo Mass
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013Ratio.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_Ratio.hdf5
 
-stellar_mass_halo_mass_centrals_ratio_stellar_30:
+stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
@@ -266,11 +389,10 @@ stellar_mass_halo_mass_centrals_ratio_stellar_30:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, centrals only, stellar x-axis)
+    title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, centrals only, stellar x-axis, M$_{200}$)
     caption: Includes only central haloes.
     section: Stellar Mass-Halo Mass
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013RatioStellar.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013RatioStellar.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_RatioStellar.hdf5

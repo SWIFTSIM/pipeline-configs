@@ -1,5 +1,5 @@
 """
-Plots wallclock v.s. number of steps.
+Plots simulation time v.s. number of steps.
 """
 
 import unyt
@@ -12,7 +12,7 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 from glob import glob
 
 arguments = ScriptArgumentParser(
-    description="Creates a run performance plot: number of steps versus wall-clock time"
+    description="Creates a run performance plot: number of steps versus simulation time"
 )
 
 run_names = arguments.name_list
@@ -37,14 +37,14 @@ for run_name, run_directory, snapshot_name in zip(
         timesteps_filename, skip_footer=5, loose=True, invalid_raise=False
     ).T
 
-    wallclock_time = unyt.unyt_array(np.cumsum(data[-2]), units="ms").to("Hour")
-    number_of_steps = np.arange(wallclock_time.size) / 1e6
+    sim_time = unyt.unyt_array(data[1], units=snapshot.units.time).to("Gyr")
+    number_of_steps = np.arange(sim_time.size) / 1e6
 
     # Simulation data plotting
-    (mpl_line,) = ax.plot(wallclock_time, number_of_steps, label=run_name)
+    (mpl_line,) = ax.plot(sim_time, number_of_steps, label=run_name)
 
     ax.scatter(
-        wallclock_time[-1],
+        sim_time[-1],
         number_of_steps[-1],
         color=mpl_line.get_color(),
         marker=".",
@@ -57,6 +57,6 @@ ax.set_ylim(0, None)
 ax.legend(loc="lower right")
 
 ax.set_ylabel("Number of steps [millions]")
-ax.set_xlabel("Wallclock time [Hours]")
+ax.set_xlabel("Simulation time [Gyr]")
 
-fig.savefig(f"{output_path}/wallclock_number_of_steps.png")
+fig.savefig(f"{output_path}/simulation_time_number_of_steps.png")

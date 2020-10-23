@@ -27,7 +27,7 @@ calibration_stellar_mass_galaxy_size:
     start: 1e7
     end: 1e12
   y:
-    quantity: "apertures.rhalfmass_star_100_kpc"
+    quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
     units: kpc
     start: 0.5
     end: 50
@@ -43,7 +43,7 @@ calibration_stellar_mass_galaxy_size:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Galaxy Size relation (100 kpc aperture)
-    caption: Uses a 100 kpc 3D aperture, with fixed bin-width of 0.2 dex. Used for calibration.
+    caption: Uses a 100 kpc 2D projected aperture, with fixed bin-width of 0.2 dex. Used for calibration.
     section: Calibration
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Vernon.hdf5

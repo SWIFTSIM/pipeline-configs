@@ -96,6 +96,7 @@ stellar_mass_halo_mass_M200_centrals_100:
 
 stellar_mass_halo_mass_MBN98_centrals_100:
   type: "scatter"
+  select_structure_type: 10
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -163,6 +164,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_100:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_100:
   type: "scatter"
+  select_structure_type: 10
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -294,9 +296,9 @@ stellar_mass_halo_mass_M200_all_30:
 
 stellar_mass_halo_mass_M200_centrals_30:
   type: "scatter"
+  select_structure_type: 10
   comment: "Centrals only"
   legend_loc: "upper left"
-  select_structure_type: 10
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass

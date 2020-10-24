@@ -1,5 +1,6 @@
 stellar_mass_histogram_30:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 30
   x:
@@ -16,7 +17,8 @@ stellar_mass_histogram_30:
     show_on_webpage: false
 
 stellar_mass_histogram_active_only_30:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
@@ -36,7 +38,8 @@ stellar_mass_histogram_active_only_30:
     show_on_webpage: false
 
 stellar_mass_histogram_passive_only_30:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
@@ -56,7 +59,8 @@ stellar_mass_histogram_passive_only_30:
     show_on_webpage: false
 
 stellar_mass_histogram_100:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 30
   x:
@@ -72,7 +76,8 @@ stellar_mass_histogram_100:
     section: Histograms
 
 stellar_mass_histogram_active_only_100:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
@@ -91,7 +96,8 @@ stellar_mass_histogram_active_only_100:
     section: Histograms
 
 stellar_mass_histogram_passive_only_100:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
@@ -110,7 +116,8 @@ stellar_mass_histogram_passive_only_100:
     section: Histograms
 
 halo_mass_m200crit_histogram:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 25
   x:
@@ -126,7 +133,8 @@ halo_mass_m200crit_histogram:
     section: Histograms
 
 star_formation_rate_histogram_30:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 30
   x:
@@ -143,7 +151,8 @@ star_formation_rate_histogram_30:
     show_on_webpage: false
 
 star_formation_rate_histogram_100:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 30
   x:
@@ -159,7 +168,8 @@ star_formation_rate_histogram_100:
     section: Histograms
 
 black_hole_mass_histogram:
-  type: "histogram"
+  type: "cumulative_histogram"
+  reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 40
   x:

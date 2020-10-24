@@ -74,7 +74,7 @@ t_ticks = Planck13.age(z_ticks).value
 ax2.set_xticks(t_ticks)
 
 # Format the ticks' labels
-ax2.set_xticklabels(["%2.1f" % z_tick for z_tick in z_ticks])
+ax2.set_xticklabels(["$%2.1f$" % z_tick for z_tick in z_ticks])
 
 ax.set_xlim(0, t_max * 1.05)
 ax2.set_xlim(0, t_max * 1.05)

@@ -65,7 +65,7 @@ for run_name, run_directory, snapshot_name in zip(
 # Create second Y-axis (to plot redshift alongside the cosmic time)
 ax2 = ax.twinx()
 
-# z ticks along the second Y-axis we want to display
+# z ticks along the second Y-axis
 z_ticks = np.array([0, 0.2, 0.5, 1, 1.5, 2, 3,  5, 10])
 
 # To place the new ticks onto the Y-axis we need to know the corresponding cosmic times

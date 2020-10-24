@@ -153,7 +153,7 @@ ax.add_artist(observation_legend)
 ax2 = ax.twiny()
 ax2.set_xscale('log')
 
-# Cosmic time ticks (in Gyr) along the second X-axis we want to display
+# Cosmic-time ticks (in Gyr) along the second X-axis
 t_ticks = np.array([0.5, 1, 2, 4, 6, 8, 10, Planck13.age(1.0e-5).value])
 
 # To place the new ticks onto the X-axis we need to know the corresponding scale factors
@@ -165,7 +165,7 @@ ax2.set_xticks(a_ticks_2axis)
 # Format the ticks' labels
 ax2.set_xticklabels(["$%2.1f$" % t_tick for t_tick in t_ticks])
 
-# Final adjustments of the first and second X axes
+# Final adjustments
 ax.tick_params(axis="x", which="minor", bottom=False)
 ax2.tick_params(axis="x", which="minor", top=False)
 

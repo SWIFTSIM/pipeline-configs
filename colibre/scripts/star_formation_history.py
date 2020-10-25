@@ -151,13 +151,15 @@ ax.add_artist(observation_legend)
 
 # Create second X-axis (to plot cosmic time alongside redshift)
 ax2 = ax.twiny()
-ax2.set_xscale('log')
+ax2.set_xscale("log")
 
 # Cosmic-time ticks (in Gyr) along the second X-axis
-t_ticks = np.array([0.5, 1, 2, 4, 6, 8, 10, Planck13.age(1.0e-5).value])
+t_ticks = np.array([0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, Planck13.age(1.0e-5).value])
 
 # To place the new ticks onto the X-axis we need to know the corresponding scale factors
-a_ticks_2axis = [1. / (1.+z_at_value(Planck13.age, t_tick * Gyr)) for t_tick in t_ticks]
+a_ticks_2axis = [
+    1.0 / (1.0 + z_at_value(Planck13.age, t_tick * Gyr)) for t_tick in t_ticks
+]
 
 # Attach the ticks to the second X-axis
 ax2.set_xticks(a_ticks_2axis)

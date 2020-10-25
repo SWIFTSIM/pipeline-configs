@@ -28,7 +28,7 @@ plt.style.use(arguments.stylesheet_location)
 fig, ax = plt.subplots()
 
 # We will need to keep track of the maximum cosmic time reached in the simulation(s)
-t_max = unyt.unyt_array(0., units="Gyr")
+t_max = unyt.unyt_array(0.0, units="Gyr")
 
 for run_name, run_directory, snapshot_name in zip(
     run_names, run_directories, snapshot_names
@@ -65,7 +65,7 @@ for run_name, run_directory, snapshot_name in zip(
 ax2 = ax.twiny()
 
 # z ticks along the second X-axis
-z_ticks = np.array([0, 0.2, 0.5, 1, 1.5, 2, 3, 10])
+z_ticks = np.array([0.0, 0.2, 0.5, 1.0, 1.5, 2.0, 3.0, 10.0])
 
 # To place the new ticks onto the X-axis we need to know the corresponding cosmic times
 t_ticks = Planck13.age(z_ticks).value

@@ -119,43 +119,76 @@ for aperture_size in aperture_sizes:
 
     setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
 
-# iterate through available dust types
-dust_idx = 0
-total_dust_fraction = metal_mass_fraction_gas*0.
-while 1:
-    if not hasattr(catalogue.dust_mass_fractions, f"dust_{dust_idx}"):
-        break
-    total_dust_fraction += getattr(catalogue.dust_mass_fractions, f"dust_{dust_idx}")
-    dust_idx += 1
+# if present iterate through available dust types
+try:
+    total_dust_fraction = sum(
+        [
+            getattr(catalogue.dust_mass_fractions, sub_path)
+            for sub_path in catalogue.dust_mass_fractions.valid_sub_paths
+        ]
+    )
+except AttributeError:
+    total_dust_fraction = np.zeros(stellar_mass.size)
 
-
-total_dust_mass = total_dust_fraction * catalogue.apertures.mass_gas_30_kpc
-total_dust_mass.name = "$M_{\\rm dust}$"
+total_dust_mass = total_dust_fraction * catalogue.masses.m_star
+total_dust_mass.name = "$M_{\\rm dust}$ not found"
 
 setattr(self, f"total_dust_masses", total_dust_mass)
 
-#species fraction properties
+# species fraction properties
 gas_mass = catalogue.masses.m_gas
-H_frac = catalogue.element_mass_fractions.element_0
-gal_area = np.pi * catalogue.projected_apertures.projected_2_rhalfmass_star_30_kpc**2
-mstar_30 = catalogue.projected_apertures.projected_2_mass_star_30_kpc.to('Msun')
+gal_area = (
+    2 * np.pi * catalogue.projected_apertures.projected_1_rhalfmass_star_100_kpc ** 2
+)
+mstar_100 = catalogue.projected_apertures.projected_1_mass_star_100_kpc
 
-# NB: this is designed for CHIMES species arrays
-self.neutral_hydrogen_masses = gas_mass * H_frac * catalogue.species_fractions.species_1
-self.ionized_hydrogen_masses = gas_mass * H_frac * catalogue.species_fractions.species_2
-self.molecular_hydrogen_masses =  gas_mass * H_frac * catalogue.species_fractions.species_7
-self.hi_to_stellar_mass = self.neutral_hydrogen_masses / catalogue.masses.m_star
-self.h2_to_stellar_mass = self.molecular_hydrogen_masses / catalogue.masses.m_star
-self.mu_star = mstar_30 / gal_area
+self.xgass_galaxy_selection = np.logical_and(
+    catalogue.apertures.mass_star_100_kpc > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+    catalogue.apertures.mass_star_100_kpc
+    < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+)
 
-self.xgass_sel = (mstar_30 > (1e9 * mstar_30.units)) * (mstar_30 < (pow(10,11.5) * mstar_30.units))
-self.xcoldgass_sel = (mstar_30 > (1e9 * mstar_30.units)) * (mstar_30 < (pow(10,11.5) * mstar_30.units))
+self.xcoldgass_galaxy_selection = np.logical_and(
+    catalogue.apertures.mass_star_100_kpc > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+    catalogue.apertures.mass_star_100_kpc
+    < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+)
 
-self.neutral_hydrogen_masses.name = "HI Mass"
-self.molecular_hydrogen_masses.name = "H2 Mass"
-self.ionized_hydrogen_masses.name = "HII Mass"
+self.mu_star = mstar_100 / gal_area
+self.mu_star.name = "$\\pi R_{*, 100 {\\rm kpc}}^2 / M_{*, 100 {\\rm kpc}}$"
 
-self.hi_to_stellar_mass.name = 'HI to Stellar Mass Fraction'
-self.h2_to_stellar_mass.name = 'H2 to Stellar Mass Fraction'
+self.neutral_hydrogen_mass = catalogue.masses.m_star * 0.0
+self.molecular_hydrogen_mass = catalogue.masses.m_star * 0.0
+self.h2_to_stellar_mass = catalogue.apertures.zmet_star_100_kpc * 0.0
+self.hi_to_stellar_mass = catalogue.apertures.zmet_star_100_kpc * 0.0
 
-self.mu_star.name = f"Stellar Surface Density"
+self.molecular_hydrogen_mass.name = "HI Mass (100 kpc)"
+self.h2_to_stellar_mass.name = "HI to Stellar Mass Fraction (100 kpc)"
+self.molecular_hydrogen_mass.name = "H$_2$ Mass (100 kpc)"
+self.h2_to_stellar_mass.name = "H$_2$ to Stellar Mass Fraction (100 kpc)"
+
+try:
+    H_frac = catalogue.element_mass_fractions.element_0
+    # NB: this is designed for CHIMES species arrays
+    try:
+        self.neutral_hydrogen_mass = (
+            gas_mass * H_frac * catalogue.species_fractions.species_1
+        )
+        self.hi_to_stellar_mass = self.neutral_hydrogen_mass / catalogue.masses.m_star
+    except AttributeError:
+        self.neutral_hydrogen_mass.name += " not found (no species field)"
+        self.hi_to_stellar_mass.name += " not calculable (no species field)"
+    try:
+        self.molecular_hydrogen_mass = (
+            gas_mass * H_frac * catalogue.species_fractions.species_7
+        )
+        self.h2_to_stellar_mass = self.molecular_hydrogen_mass / catalogue.masses.m_star
+    except AttributeError:
+        self.molecular_hydrogen_mass.name += " not found (no species field)"
+        self.h2_to_stellar_mass.name += " not calculable (no species field)"
+
+except AttributeError:
+    self.molecular_hydrogen_mass.name += " not found (no H abundance)"
+    self.neutrsal_hydrogen_mass.name += " not found (no H abundance)"
+    self.hi_to_stellar_mass.name += " not calculable (no H abundance)"
+    self.h2_to_stellar_mass.name += " not calculable (no H abundance)"

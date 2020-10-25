@@ -4,23 +4,23 @@ Makes a rho-T plot. Uses the swiftsimio library.
 
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.stats import binned_statistic_2d as bs2d
 
 from swiftsimio import load
 
-from unyt import mh, cm
-from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
+from unyt import mh, cm, Gyr
+from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
-from matplotlib.cm import get_cmap
 
 # Set the limits of the figure.
 density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
 temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
-specfracs_bounds = [1e-2, 1]  # In metal mass fraction
-min_specfracs = specfracs_bounds[0]
+dustfracs_bounds = [1e-4, 1e-1]  # In metal mass fraction
+min_dustfracs = dustfracs_bounds[0]
 bins = 256
 
 
-def get_data(filename, prefix_rho, prefix_T, species):
+def get_data(filename, prefix_rho, prefix_T):
     """
     Grabs the data (T in Kelvin and density in mh / cm^3).
     """
@@ -32,24 +32,21 @@ def get_data(filename, prefix_rho, prefix_T, species):
     ).to(cm ** -3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
     masses = data.gas.masses.to_physical().to("Msun")
-    hfrac = data.gas.element_mass_fractions.hydrogen.to_physical()
 
-    sfracs = getattr(data.gas.species_fractions, species) * hfrac
-    if species == "H2":
-        sfracs *= 2.0
-    sfracs[sfracs < min_specfracs] = min_specfracs
+    dfracs = np.zeros(data.gas.masses.shape)
 
-    return number_density.value, temperature.value, sfracs.value, masses.value
+    for d in dir(data.gas.dust_mass_fractions):
+        if hasattr(getattr(data.gas.dust_mass_fractions, d), "units"):
+            dfracs += getattr(data.gas.dust_mass_fractions, d)
+
+    dfracs[dfracs < min_dustfracs] = min_dustfracs
+    print(dfracs)
+
+    return number_density.value, temperature.value, dfracs.value, masses.value
 
 
 def make_hist(
-    filename,
-    density_bounds,
-    temperature_bounds,
-    bins,
-    prefix_rho="",
-    prefix_T="",
-    species="HI",
+    filename, density_bounds, temperature_bounds, bins, prefix_rho="", prefix_T=""
 ):
     """
     Makes the histogram for filename with bounds as lower, higher
@@ -65,7 +62,7 @@ def make_hist(
         np.log10(temperature_bounds[0]), np.log10(temperature_bounds[1]), bins
     )
 
-    nH, T, D, Mg = get_data(filename, prefix_rho, prefix_T, species)
+    nH, T, D, Mg = get_data(filename, prefix_rho, prefix_T)
 
     H, density_edges, temperature_edges = np.histogram2d(
         nH, T, bins=[density_bins, temperature_bins], weights=D * Mg
@@ -76,7 +73,7 @@ def make_hist(
 
     # Avoid div/0
     mask = H_norm == 0.0
-    H[mask] = None
+    H[mask] = -50
     H_norm[mask] = 1.0
 
     return np.ma.array((H / H_norm).T, mask=mask.T), density_edges, temperature_edges
@@ -115,7 +112,7 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
         if prop_type == "hydro":
             axis.set_ylabel("Temperature [K]")
         elif prop_type == "subgrid":
-            axis.set_ylabel("Subgrid Temperature [K]")
+            axis.set_xlabel("Subgrid Temperature [K]")
 
     ax.flat[0].loglog()
 
@@ -131,7 +128,6 @@ def make_single_image(
     bins,
     output_path,
     prop_type,
-    species,
 ):
     """
     Makes a single plot of rho-T
@@ -152,34 +148,26 @@ def make_single_image(
 
     for filename in filenames:
         hist, d, T = make_hist(
-            filename,
-            density_bounds,
-            temperature_bounds,
-            bins,
-            prefix_rho,
-            prefix_T,
-            species,
+            filename, density_bounds, temperature_bounds, bins, prefix_rho, prefix_T
         )
         hists.append(hist)
-
-    smap = get_cmap("cividis")
-    ncols = 10
-    collist = []
-    for i in range(ncols):
-        collist.append(smap(i / float(ncols - 1)))
-
-    cmap = ListedColormap(collist)
-
-    norm = BoundaryNorm(np.linspace(*np.log10(specfracs_bounds), ncols + 1), ncols)
 
     vmax = np.max([np.max(hist) for hist in hists])
 
     for hist, name, axis in zip(hists, names, ax.flat):
-        mappable = axis.pcolormesh(d, T, np.log10(hist), cmap=cmap, norm=norm)
+        mappable = axis.pcolormesh(
+            d, T, hist, norm=LogNorm(vmin=dustfracs_bounds[0], vmax=dustfracs_bounds[1])
+        )
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
 
-    fig.colorbar(mappable, ax=ax.ravel().tolist(), label=f"{species} Mass Fraction")
-    fig.savefig(f"{output_path}/{prefix_T}density_temperature_{species}.png")
+    # add line
+    x = np.linspace(1e-2, 1e4, 100)
+    plt.plot(x, 160 * pow(x, -0.23), lw=0.5)
+
+    fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Dust Mass Fraction")
+
+    fig.savefig(f"{output_path}/{prefix_T}density_temperature_dust.png")
+
     return
 
 
@@ -188,7 +176,7 @@ if __name__ == "__main__":
 
     arguments = ScriptArgumentParser(
         description="Basic density-temperature figure.",
-        additional_arguments={"quantity_type": "hydro", "hydrogen_species": "HI"},
+        additional_arguments={"quantity_type": "hydro"},
     )
 
     snapshot_filenames = [
@@ -209,5 +197,4 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
         prop_type=arguments.quantity_type,
-        species=arguments.hydrogen_species,
     )

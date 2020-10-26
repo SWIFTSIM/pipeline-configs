@@ -66,15 +66,16 @@ for color, (snapshot_filename, stats_filename, name) in enumerate(
             zorder=10000,
         )[0]
     )
-    simulation_lines.append(
-        ax.plot(
-            scale_factor,
-            star_Z_mass_density,
-            linestyle="dashed",
-            color=f"C{color}",
-            zorder=10000,
-        )[0]
+
+    # Stellar metallicity not used as a line.
+    ax.plot(
+        scale_factor,
+        star_Z_mass_density,
+        linestyle="dashed",
+        color=f"C{color}",
+        zorder=10000,
     )
+
     simulation_labels.append(name)
 
 ax.set_xlabel("Redshift $z$")

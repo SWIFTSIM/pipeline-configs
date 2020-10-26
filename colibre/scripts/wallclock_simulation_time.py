@@ -27,8 +27,8 @@ fig, ax = plt.subplots()
 # We will need to keep track of the maximum cosmic time reached in the simulation(s)
 t_max = unyt.unyt_array(0.0, units="Gyr")
 
-for idx, (run_name, run_directory, snapshot_name) in enumerate(zip(
-    run_names, run_directories, snapshot_names)
+for idx, (run_name, run_directory, snapshot_name) in enumerate(
+    zip(run_names, run_directories, snapshot_names)
 ):
 
     timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")

@@ -45,8 +45,8 @@ fig, ax = plt.subplots()
 
 ax.loglog()
 
-for idx, (snapshot_filename, sfr_filename, name) in enumerate(zip(
-    snapshot_filenames, sfr_filenames, names)
+for idx, (snapshot_filename, sfr_filename, name) in enumerate(
+    zip(snapshot_filenames, sfr_filenames, names)
 ):
     data = np.genfromtxt(sfr_filename).T
 

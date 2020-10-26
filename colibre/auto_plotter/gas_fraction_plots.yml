@@ -1,7 +1,7 @@
 h2_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xcoldgass_sel"
+  selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
   comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -34,7 +34,7 @@ h2_frac_func_stellar_mass:
 h2_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.xcoldgass_sel"
+  selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
   comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
@@ -67,7 +67,7 @@ h2_frac_func_ssfr:
 h2_frac_func_stellar_surface_density:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xcoldgass_sel"
+  selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
   comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
   x:
     quantity: "derived_quantities.mu_star"
@@ -92,7 +92,7 @@ h2_frac_func_stellar_surface_density:
       units: "Solar_Mass / (kpc**2)"
   metadata:
     title: Stellar Mass Surface Density-H$_2$ Fraction
-    section: H_2 Fraction
+    section: H_2 Fractions
     caption: Galaxy H_$2$ fraction as a function of stellar mass surfaced density in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_mu_star.hdf5
@@ -100,7 +100,7 @@ h2_frac_func_stellar_surface_density:
 hi_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xgass_sel"
+  selection_mask: "derived_quantities.xgass_galaxy_selection"
   comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -133,7 +133,7 @@ hi_frac_func_stellar_mass:
 hi_frac_func_ssfr:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.xgass_sel"
+  selection_mask: "derived_quantities.xgass_galaxy_selection"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
     units: "1 / Gigayear"
@@ -165,7 +165,7 @@ hi_frac_func_ssfr:
 hi_frac_func_stellar_surface_density:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xgass_sel"
+  selection_mask: "derived_quantities.xgass_galaxy_selection"
   x:
     quantity: "derived_quantities.mu_star"
     units: "Solar_Mass / (kpc**2)"

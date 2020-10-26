@@ -120,18 +120,26 @@ for aperture_size in aperture_sizes:
     setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
 
 # if present iterate through available dust types
+
+
+# print(getattr(catalogue.dust_mass_fractions, 'dust_0'))
+
+# print([getattr(catalogue.dust_mass_fractions, sub_path) for sub_path in dir(catalogue.dust_mass_fractions) if sub_path.startswith('dust_')])
+
+print("done")
+
 try:
-    total_dust_fraction = sum(
-        [
-            getattr(catalogue.dust_mass_fractions, sub_path)
-            for sub_path in catalogue.dust_mass_fractions.valid_sub_paths
-        ]
-    )
+    dust_fields = []
+    for sub_path in dir(catalogue.dust_mass_fractions):
+        if sub_path.startswith("dust_"):
+            dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
+    total_dust_fraction = sum(dust_fields)
 except AttributeError:
     total_dust_fraction = np.zeros(stellar_mass.size)
 
 total_dust_mass = total_dust_fraction * catalogue.masses.m_star
 total_dust_mass.name = "$M_{\\rm dust}$ not found"
+
 
 setattr(self, f"total_dust_masses", total_dust_mass)
 

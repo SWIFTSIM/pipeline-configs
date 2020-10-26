@@ -1,5 +1,5 @@
 hi_mass_function:
-  type: "adaptivemassfunction"
+  type: "massfunction"
   legend_loc: "lower left"
   number_of_bins: 30
   x:
@@ -19,7 +19,7 @@ hi_mass_function:
     - filename: GalaxyHIMassFunction/Jones2018.hdf5
 
 h2_mass_function:
-  type: "adaptivemassfunction"
+  type: "massfunction"
   legend_loc: "lower left"
   number_of_bins: 30
   x:

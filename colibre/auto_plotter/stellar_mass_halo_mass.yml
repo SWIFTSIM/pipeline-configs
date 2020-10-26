@@ -28,7 +28,6 @@ stellar_mass_halo_mass_M200_all_100:
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
 
 stellar_mass_halo_mass_MBN98_all_100:
   type: "scatter"
@@ -94,7 +93,6 @@ stellar_mass_halo_mass_M200_centrals_100:
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_100:
@@ -162,7 +160,6 @@ stellar_mass_halo_mass_M200_centrals_ratio_100:
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013Ratio.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_Ratio.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_100:
@@ -230,7 +227,6 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013RatioStellar.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013RatioStellar.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_RatioStellar.hdf5
       
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
@@ -298,7 +294,6 @@ stellar_mass_halo_mass_M200_all_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
 
 stellar_mass_halo_mass_M200_centrals_30:
   type: "scatter"
@@ -333,7 +328,6 @@ stellar_mass_halo_mass_M200_centrals_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0.hdf5
 
 stellar_mass_halo_mass_M200_centrals_ratio_30:
@@ -369,7 +363,6 @@ stellar_mass_halo_mass_M200_centrals_ratio_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013Ratio.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_Ratio.hdf5
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
@@ -405,5 +398,4 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013RatioStellar.hdf5
-    - filename: GalaxyStellarMassHaloMass/Behroozi2013RatioStellar.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_z0p0_RatioStellar.hdf5

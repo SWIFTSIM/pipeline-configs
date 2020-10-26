@@ -9,8 +9,8 @@ stellar_birth_density_halo_mass_average_all_100:
   y:
     quantity: "stellar_birth_densities.average"
     units: "mh/cm**3"
-    start: 1e-1
-    end: 1e6
+    start: 5e0
+    end: 5e5
   median:
     plot: true
     log: true
@@ -38,8 +38,8 @@ stellar_birth_density_halo_mass_max_all_100:
   y:
     quantity: "stellar_birth_densities.max"
     units: "mh/cm**3"
-    start: 1e-1
-    end: 1e6
+    start: 5e0
+    end: 5e5
   median:
     plot: true
     log: true
@@ -67,8 +67,8 @@ stellar_birth_density_stellar_mass_average_all_100:
   y:
     quantity: "stellar_birth_densities.average"
     units: "mh/cm**3"
-    start: 1e-1
-    end: 1e6
+    start: 5e0
+    end: 5e5
   median:
     plot: true
     log: true
@@ -96,8 +96,8 @@ stellar_birth_density_stellar_mass_max_all_100:
   y:
     quantity: "stellar_birth_densities.max"
     units: "mh/cm**3"
-    start: 1e-1
-    end: 1e6
+    start: 5e0
+    end: 5e5
   median:
     plot: true
     log: true

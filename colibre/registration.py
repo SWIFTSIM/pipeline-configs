@@ -170,8 +170,8 @@ self.molecular_hydrogen_mass = catalogue.masses.m_star * 0.0
 self.h2_to_stellar_mass = catalogue.apertures.zmet_star_100_kpc * 0.0
 self.hi_to_stellar_mass = catalogue.apertures.zmet_star_100_kpc * 0.0
 
-self.molecular_hydrogen_mass.name = "HI Mass (100 kpc)"
-self.h2_to_stellar_mass.name = "HI to Stellar Mass Fraction (100 kpc)"
+self.neutral_hydrogen_mass.name = "HI Mass (100 kpc)"
+self.hi_to_stellar_mass.name = "HI to Stellar Mass Fraction (100 kpc)"
 self.molecular_hydrogen_mass.name = "H$_2$ Mass (100 kpc)"
 self.h2_to_stellar_mass.name = "H$_2$ to Stellar Mass Fraction (100 kpc)"
 
@@ -197,6 +197,6 @@ try:
 
 except AttributeError:
     self.molecular_hydrogen_mass.name += " not found (no H abundance)"
-    self.neutrsal_hydrogen_mass.name += " not found (no H abundance)"
+    self.neutral_hydrogen_mass.name += " not found (no H abundance)"
     self.hi_to_stellar_mass.name += " not calculable (no H abundance)"
     self.h2_to_stellar_mass.name += " not calculable (no H abundance)"

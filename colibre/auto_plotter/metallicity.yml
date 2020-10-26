@@ -17,6 +17,7 @@ stellar_mass_gas_sf_metallicity_30:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -53,6 +54,7 @@ stellar_mass_gas_sf_metallicity_100:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -85,6 +87,7 @@ stellar_mass_star_metallicity_100:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -116,6 +119,7 @@ stellar_mass_star_metallicity_30:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6

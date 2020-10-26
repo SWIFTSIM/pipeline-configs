@@ -14,6 +14,7 @@ stellar_mass_halo_mass_all_100:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -47,6 +48,7 @@ stellar_mass_halo_mass_centrals_100:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -81,6 +83,7 @@ stellar_mass_halo_mass_centrals_ratio_100:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e8
@@ -115,6 +118,7 @@ stellar_mass_halo_mass_centrals_ratio_stellar_100:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -147,6 +151,7 @@ stellar_mass_halo_mass_all_30:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -181,6 +186,7 @@ stellar_mass_halo_mass_centrals_30:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -216,6 +222,7 @@ stellar_mass_halo_mass_centrals_ratio_30:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -251,6 +258,7 @@ stellar_mass_halo_mass_centrals_ratio_stellar_30:
   median:
     plot: true
     log: true
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6

@@ -58,6 +58,7 @@ stellar_mass_halo_mass_MBN98_all_100:
     title: Stellar Mass-Halo Mass relation (100 kpc aperture, $M_{\rm BN98}$)
     caption: Includes all haloes, including subhaloes.
     section: Stellar Mass-Halo Mass
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Behroozi2019_z000p000.hdf5
 
@@ -262,6 +263,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
     title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, $M_{\rm BN98}$, centrals only, stellar x-axis)
     caption: Includes only central haloes.
     section: Stellar Mass-Halo Mass
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Behroozi2019RatioStellar_z000p000.hdf5
 

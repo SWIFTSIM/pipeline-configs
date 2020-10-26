@@ -11,9 +11,6 @@ from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from glob import glob
 
-# Import EAGLE cosmology object
-from astropy.cosmology import Planck13
-
 arguments = ScriptArgumentParser(
     description="Creates a run performance plot: number of steps versus simulation time"
 )
@@ -30,8 +27,8 @@ fig, ax = plt.subplots()
 # We will need to keep track of the maximum cosmic time reached in the simulation(s)
 t_max = unyt.unyt_array(0.0, units="Gyr")
 
-for run_name, run_directory, snapshot_name in zip(
-    run_names, run_directories, snapshot_names
+for idx, (run_name, run_directory, snapshot_name) in enumerate(zip(
+    run_names, run_directories, snapshot_names)
 ):
 
     timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
@@ -39,6 +36,11 @@ for run_name, run_directory, snapshot_name in zip(
     snapshot_filename = f"{run_directory}/{snapshot_name}"
 
     snapshot = load(snapshot_filename)
+
+    # Read cosmology from the first run in the list
+    if idx == 0:
+        cosmology = snapshot.metadata.cosmology
+
     data = np.genfromtxt(
         timesteps_filename, skip_footer=5, loose=True, invalid_raise=False
     ).T
@@ -68,7 +70,7 @@ ax2 = ax.twiny()
 z_ticks = np.array([0.0, 0.2, 0.5, 1.0, 1.5, 2.0, 3.0, 10.0])
 
 # To place the new ticks onto the X-axis we need to know the corresponding cosmic times
-t_ticks = Planck13.age(z_ticks).value
+t_ticks = cosmology.age(z_ticks).value
 
 # Attach the ticks to the second X-axis
 ax2.set_xticks(t_ticks)

@@ -15,7 +15,7 @@ from swiftsimio import load
 from load_sfh_data import read_obs_data
 
 # Import EAGLE cosmology object
-from astropy.cosmology import Planck13, z_at_value
+from astropy.cosmology import z_at_value
 from astropy.units import Gyr
 
 sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc ** 3)
@@ -45,12 +45,17 @@ fig, ax = plt.subplots()
 
 ax.loglog()
 
-for snapshot_filename, sfr_filename, name in zip(
-    snapshot_filenames, sfr_filenames, names
+for idx, (snapshot_filename, sfr_filename, name) in enumerate(zip(
+    snapshot_filenames, sfr_filenames, names)
 ):
     data = np.genfromtxt(sfr_filename).T
 
     snapshot = load(snapshot_filename)
+
+    # Read cosmology from the first run in the list
+    if idx == 0:
+        cosmology = snapshot.metadata.cosmology
+
     units = snapshot.units
     boxsize = snapshot.metadata.boxsize
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
@@ -154,11 +159,11 @@ ax2 = ax.twiny()
 ax2.set_xscale("log")
 
 # Cosmic-time ticks (in Gyr) along the second X-axis
-t_ticks = np.array([0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, Planck13.age(1.0e-5).value])
+t_ticks = np.array([0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, cosmology.age(1.0e-5).value])
 
 # To place the new ticks onto the X-axis we need to know the corresponding scale factors
 a_ticks_2axis = [
-    1.0 / (1.0 + z_at_value(Planck13.age, t_tick * Gyr)) for t_tick in t_ticks
+    1.0 / (1.0 + z_at_value(cosmology.age, t_tick * Gyr)) for t_tick in t_ticks
 ]
 
 # Attach the ticks to the second X-axis

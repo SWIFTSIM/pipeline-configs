@@ -9,7 +9,7 @@ stellar_mass_halo_mass_M200_all_100:
   y:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   median:
     plot: true
@@ -40,7 +40,7 @@ stellar_mass_halo_mass_MBN98_all_100:
   y:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   median:
     plot: true
@@ -74,7 +74,7 @@ stellar_mass_halo_mass_M200_centrals_100:
   y:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   median:
     plot: true
@@ -108,7 +108,7 @@ stellar_mass_halo_mass_MBN98_centrals_100:
   y:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   median:
     plot: true
@@ -203,7 +203,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   y:
     quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_100_kpc"
@@ -216,7 +216,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 5e4
+      value: 9e3
       units: Solar_Mass
     end:
       value: 1e12
@@ -237,7 +237,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   y:
     quantity: "derived_quantities.stellar_mass_to_halo_mass_bn98_100_kpc"
@@ -250,7 +250,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
     adapive: true
     number_of_bins: 30
     start:
-      value: 5e4
+      value: 9e3
       units: Solar_Mass
     end:
       value: 1e12
@@ -274,7 +274,7 @@ stellar_mass_halo_mass_M200_all_30:
   y:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   median:
     plot: true
@@ -308,7 +308,7 @@ stellar_mass_halo_mass_M200_centrals_30:
   y:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   median:
     plot: true
@@ -373,7 +373,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 5e4
+    start: 9e3
     end: 1e12
   y:
     quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_30_kpc"
@@ -386,7 +386,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 5e4
+      value: 9e3
       units: Solar_Mass
     end:
       value: 1e12

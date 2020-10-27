@@ -111,13 +111,19 @@ for aperture_size in aperture_sizes:
 
 for aperture_size in aperture_sizes:
     stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-    halo_mass = catalogue.masses.mass_200crit
 
+    halo_M200crit = catalogue.masses.mass_200crit
     smhm = stellar_mass / halo_mass
     name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
     smhm.name = name
+    setattr(self, f"stellar_mass_to_halo_mass_200crit_{aperture_size}_kpc", smhm)
 
-    setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
+    halo_MBN98 = catalogue.masses.mass_bn98
+    smhm = stellar_mass / halo_MBN98
+    name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
+    smhm.name = name
+    setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
+
 
 # if present iterate through available dust types
 try:

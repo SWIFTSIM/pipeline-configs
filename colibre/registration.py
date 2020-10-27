@@ -126,12 +126,14 @@ try:
         if sub_path.startswith("dust_"):
             dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
     total_dust_fraction = sum(dust_fields)
+    dust_frac_error = ""
 except AttributeError:
     total_dust_fraction = np.zeros(stellar_mass.size)
-
+    dust_frac_error = " (no dust field)"
+    
 total_dust_mass = total_dust_fraction * catalogue.masses.m_star
-total_dust_mass.name = "$M_{\\rm dust}$ not found"
-
+name = f"$M_{{\\rm dust}}${dust_frac_error}"
+total_dust_mass.name = name
 
 setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
 
@@ -169,23 +171,28 @@ except:
    hydrogen_frac_error = "(no H abundance)"
    
    
-# Test for CHIMES arrays
+# Test for species fields with either CHIMES or COLIBRE format.
 try:
-   species_1 = catalogue.species_fractions.species_1
-   species_7 = catalogue.species_fractions.species_7
-   species_frac_error = ""
+    if hasattr(catalogue.species_fractions, "species_7"):
+        species_neutral = catalogue.species_fractions.species_1
+        species_molecular = catalogue.species_fractions.species_7
+        species_frac_error = ""
+    else:
+        species_neutral = catalogue.species_fractions.species_0
+        species_molecular = catalogue.species_fractions.species_2
+        species_frac_error = ""
 except:
-   species_1 = 0.0
-   species_7 = 0.0
+   species_neutral = 0.0
+   species_molecular = 0.0
    species_frac_error = "(no species field)"
    
 total_error = f" {species_frac_error}{hydrogen_frac_error}"
 
-self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_1
+self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_neutral
 self.hi_to_stellar_mass_100_kpc = (
    self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )
-self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_7
+self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_molecular
 self.h2_to_stellar_mass_100_kpc = (
    self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )

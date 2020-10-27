@@ -120,14 +120,6 @@ for aperture_size in aperture_sizes:
     setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
 
 # if present iterate through available dust types
-
-
-# print(getattr(catalogue.dust_mass_fractions, 'dust_0'))
-
-# print([getattr(catalogue.dust_mass_fractions, sub_path) for sub_path in dir(catalogue.dust_mass_fractions) if sub_path.startswith('dust_')])
-
-print("done")
-
 try:
     dust_fields = []
     for sub_path in dir(catalogue.dust_mass_fractions):

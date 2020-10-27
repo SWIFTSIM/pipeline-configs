@@ -1,0 +1,21 @@
+dust_mass_function:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 30
+  x:
+    quantity: "derived_quantities.total_dust_masses_100_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e10
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    section: Dust Mass Functions
+    title: Dust Mass Function
+    caption: 100 kpc aperture Galaxy HI Mass Function, showing all galaxies with a fixed bin-width of 0.2 dex.
+  observational_data:
+    - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
+    - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
+    - filename: GalaxyDustMassFunction/Beeston2018_z000p000.hdf5

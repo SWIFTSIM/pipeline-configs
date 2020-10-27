@@ -118,3 +118,79 @@ for aperture_size in aperture_sizes:
     smhm.name = name
 
     setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
+
+# if present iterate through available dust types
+try:
+    dust_fields = []
+    for sub_path in dir(catalogue.dust_mass_fractions):
+        if sub_path.startswith("dust_"):
+            dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
+    total_dust_fraction = sum(dust_fields)
+except AttributeError:
+    total_dust_fraction = np.zeros(stellar_mass.size)
+
+total_dust_mass = total_dust_fraction * catalogue.masses.m_star
+total_dust_mass.name = "$M_{\\rm dust}$ not found"
+
+
+setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
+
+# species fraction properties
+gas_mass = catalogue.apertures.mass_gas_100_kpc
+gal_area = (
+    2 * np.pi * catalogue.projected_apertures.projected_1_rhalfmass_star_100_kpc ** 2
+)
+mstar_100 = catalogue.projected_apertures.projected_1_mass_star_100_kpc
+
+# Selection functions for the xGASS and xCOLDGASS surveys, used for the H species fraction comparison.
+# Note these are identical mass selections, but are separated to keep survey selections explicit
+# and to allow more detailed selection criteria to be added for each.
+
+self.xgass_galaxy_selection = np.logical_and(
+    catalogue.apertures.mass_star_100_kpc > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+    catalogue.apertures.mass_star_100_kpc
+    < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+)
+
+self.xcoldgass_galaxy_selection = np.logical_and(
+    catalogue.apertures.mass_star_100_kpc > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+    catalogue.apertures.mass_star_100_kpc
+    < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+)
+
+self.mu_star_100_kpc = mstar_100 / gal_area
+self.mu_star_100_kpc.name = "$\\pi R_{*, 100 {\\rm kpc}}^2 / M_{*, 100 {\\rm kpc}}$"
+
+try:
+   H_frac = catalogue.element_mass_fractions.element_0
+   hydrogen_frac_error = ""
+except:
+   H_frac = 0.0
+   hydrogen_frac_error = "(no H abundance)"
+   
+   
+# Test for CHIMES arrays
+try:
+   species_1 = catalogue.species_fractions.species_1
+   species_7 = catalogue.species_fractions.species_7
+   species_frac_error = ""
+except:
+   species_1 = 0.0
+   species_7 = 0.0
+   species_frac_error = "(no species field)"
+   
+total_error = f" {species_frac_error}{hydrogen_frac_error}"
+
+self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_1
+self.hi_to_stellar_mass_100_kpc = (
+   self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
+)
+self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_7
+self.h2_to_stellar_mass_100_kpc = (
+   self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
+)
+
+self.neutral_hydrogen_mass_100_kpc.name = f"HI Mass (100 kpc){total_error}"
+self.hi_to_stellar_mass_100_kpc.name = f"HI to Stellar Mass Fraction (100 kpc){total_error}"
+self.molecular_hydrogen_mass_100_kpc.name = f"H$_2$ Mass (100 kpc){total_error}"
+self.h2_to_stellar_mass_100_kpc.name = f"H$_2$ to Stellar Mass Fraction (100 kpc){total_error}"

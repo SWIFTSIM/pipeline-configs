@@ -82,7 +82,7 @@ def setup_axes(number_of_simulations: int):
 
     # Set all valid on bottom row to have the horizontal axis label.
     for axis in np.atleast_2d(ax)[:][-1]:
-        axis.set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")
+        axis.set_xlabel("$\\rho_B$ [$n_H$ cm$^{-3}$]")
 
     for axis in np.atleast_2d(ax).T[:][0]:
         axis.set_ylabel("Smoothed MMF $Z$")

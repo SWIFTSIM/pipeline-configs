@@ -133,7 +133,7 @@ total_dust_mass = total_dust_fraction * catalogue.masses.m_star
 total_dust_mass.name = "$M_{\\rm dust}$ not found"
 
 
-setattr(self, f"total_dust_masses", total_dust_mass)
+setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
 
 # species fraction properties
 gas_mass = catalogue.apertures.mass_gas_100_kpc
@@ -158,8 +158,8 @@ self.xcoldgass_galaxy_selection = np.logical_and(
     < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
 )
 
-self.mu_star = mstar_100 / gal_area
-self.mu_star.name = "$\\pi R_{*, 100 {\\rm kpc}}^2 / M_{*, 100 {\\rm kpc}}$"
+self.mu_star_100_kpc = mstar_100 / gal_area
+self.mu_star_100_kpc.name = "$\\pi R_{*, 100 {\\rm kpc}}^2 / M_{*, 100 {\\rm kpc}}$"
 
 try:
    H_frac = catalogue.element_mass_fractions.element_0
@@ -181,16 +181,16 @@ except:
    
 total_error = f" {species_frac_error}{hydrogen_frac_error}"
 
-self.neutral_hydrogen_mass = gas_mass * H_frac * species_1
-self.hi_mass_to_stellar_mass_100_kpc = (
-   self.neutral_hydrogen_mass / catalogue.apertures.mass_star_100_kpc
+self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_1
+self.hi_to_stellar_mass_100_kpc = (
+   self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )
-self.molecular_hydrogen_mass = gas_mass * H_frac * species_7
-self.h2_mass_to_stellar_mass_100_kpc = (
-   self.molecular_hydrogen_mass / catalogue.apertures.mass_star_100_kpc
+self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_7
+self.h2_to_stellar_mass_100_kpc = (
+   self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )
 
-self.neutral_hydrogen_mass.name = f"HI Mass (100 kpc){total_error}"
-self.hi_to_stellar_mass.name = f"HI to Stellar Mass Fraction (100 kpc){total_error}"
-self.molecular_hydrogen_mass.name = f"H$_2$ Mass (100 kpc){total_error}"
-self.h2_to_stellar_mass.name = f"H$_2$ to Stellar Mass Fraction (100 kpc){total_error}"
+self.neutral_hydrogen_mass_100_kpc.name = f"HI Mass (100 kpc){total_error}"
+self.hi_to_stellar_mass_100_kpc.name = f"HI to Stellar Mass Fraction (100 kpc){total_error}"
+self.molecular_hydrogen_mass_100_kpc.name = f"H$_2$ Mass (100 kpc){total_error}"
+self.h2_to_stellar_mass_100_kpc.name = f"H$_2$ to Stellar Mass Fraction (100 kpc){total_error}"

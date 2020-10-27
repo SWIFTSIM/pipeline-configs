@@ -3,7 +3,7 @@ hi_mass_function:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.neutral_hydrogen_mass"
+    quantity: "derived_quantities.neutral_hydrogen_mass_100_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -23,7 +23,7 @@ h2_mass_function:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.molecular_hydrogen_mass"
+    quantity: "derived_quantities.molecular_hydrogen_mass_100_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12

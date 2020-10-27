@@ -9,7 +9,7 @@ h2_frac_func_stellar_mass:
     start: 1e9
     end: 1e12
   y:
-    quantity: "derived_quantities.h2_to_stellar_mass"
+    quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -42,7 +42,7 @@ h2_frac_func_ssfr:
     start: 1e-4
     end: 1e4
   y:
-    quantity: "derived_quantities.h2_to_stellar_mass"
+    quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -70,12 +70,12 @@ h2_frac_func_stellar_surface_density:
   selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
   comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
   x:
-    quantity: "derived_quantities.mu_star"
+    quantity: "derived_quantities.mu_star_100_kpc"
     units: "Solar_Mass / (kpc**2)"
     start: 1e6
     end: 1e11
   y:
-    quantity: "derived_quantities.h2_to_stellar_mass"
+    quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -108,7 +108,7 @@ hi_frac_func_stellar_mass:
     start: 1e9
     end: 1e12
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass"
+    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -140,7 +140,7 @@ hi_frac_func_ssfr:
     start: 1e-4
     end: 1e4
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass"
+    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -167,12 +167,12 @@ hi_frac_func_stellar_surface_density:
   legend_loc: "lower left"
   selection_mask: "derived_quantities.xgass_galaxy_selection"
   x:
-    quantity: "derived_quantities.mu_star"
+    quantity: "derived_quantities.mu_star_100_kpc"
     units: "Solar_Mass / (kpc**2)"
     start: 1e6
     end: 1e11
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass"
+    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100

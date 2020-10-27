@@ -128,6 +128,31 @@
 <p>Disabled</p>
 {% endif %}
 
+<h4>Dust</h4>
+{% if data.metadata.subgrid_scheme.get("Dust Model", False) %}
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Dust Model</td>
+        <td>{{ data.metadata.subgrid_scheme["Dust Model"].decode("utf-8") }}</td>
+    </tr>
+    <tr>
+        <td>With Coupling to Cooling</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("DustEvolution:pair_to_cooling") }}</td>
+    </tr>
+    <tr>
+        <td>Clumping Factor</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("DustEvolution:clumping_factor") }}</td>
+    </tr>
+</table>
+
+{% else %}
+<p>No dust</p>
+{% endif %}
+
 <h4>Entropy Floor</h4>
 {% if data.metadata.parameters.get("COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3", False) %}
 <table>

@@ -1,0 +1,74 @@
+# Example configuration file for a COLIBRE-like simulation
+
+# Location of your other .yml files that are passed to the
+# velociraptor auto plotter (these describe your scaling)
+# relation figures. Also required is the registration file
+# in the case where you have non-catalogue properties
+# used in the autoplotter.
+auto_plotter_directory: auto_plotter
+auto_plotter_registration: registration.py
+
+# Location of the 'observational data' repository and its compiled
+# contents.
+observational_data_directory: ../observational_data
+
+# Style sheet to be used throughout with plotting
+matplotlib_stylesheet: mnras.mplstyle
+
+# Jinja2 template that gets fed the swiftsimio metadata
+# object for you to describe the run with.
+description_template: description.html
+
+# Location and description of additional figures
+scripts:
+  - filename: scripts/density_temperature.py
+    caption: Density-temperature diagram.
+    output_file: density_temperature.png
+    section: Density-Temperature
+    title: Density-Temperature
+  - filename: scripts/density_temperature_metals.py
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metallicity in that bin. Medians are not used due to their computational complexity.
+    output_file: density_temperature_metals.png
+    section: Density-Temperature
+    title: Density-Temperature (Metals)
+  - filename: scripts/density_internal_energy.py
+    caption: Density-Internal Energy diagram.
+    output_file: density_internal_energy.png
+    section: Density-Temperature
+    title: Density-Internal Energy
+  - filename: scripts/density_pressure.py
+    caption: Density-pressure diagram.
+    output_file: density_pressure.png
+    section: Density-Temperature
+    title: Density-Pressure
+  - filename: scripts/star_formation_history.py
+    caption: Star formation history plotted directly from the SFR.txt produced by SWIFT.
+    output_file: star_formation_history.png
+    section: Star Formation History
+    title: Star Formation History
+  - filename: scripts/metallicity_distribution.py
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
+    output_file: metallicity_distribution.png
+    section: Metal Mass Fractions
+    title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_distribution.py
+    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
+    title: Stellar Birth Densities
+    section: Density distributions
+    output_file: birth_density_distribution.png
+  - filename: scripts/SNII_density_distribution.py
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
+    title: Density of the gas heated by SNII
+    section: Density distributions
+    output_file: SNII_density_distribution.png
+  - filename: scripts/wallclock_simulation_time.py
+    caption: The cosmic time as a function of the wall-clock time.
+    title: Cosmic time vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_simulation_time.png
+  - filename: scripts/wallclock_number_of_steps.py
+    caption: The cumulative number of the simulation time-steps as a function of the wall-clock times.
+    title: The number of steps vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_number_of_steps.png
+ 

@@ -1,0 +1,123 @@
+<h3>{{ data.metadata.run_name }}</h3>
+
+<h4>Basic</h4>
+<ul>
+    <li>Box-size: {{ data.metadata.boxsize[0] | format_number }}</li>
+    <li>Dark matter particle mass: {{ data.dark_matter.masses[0].to("Solar_Mass") | format_number }}</li>
+    <li>Gas particle mass: {{ data.gas.masses.min().to("Solar_Mass") | format_number }}</li>
+    <li>Snapshot \(z={{ "%2.2f" | format(data.metadata.z)}}\), \(a={{ "%2.2f" | format(data.metadata.a)}}\)</li>
+</ul>
+
+<h4>Particle Numbers</h4>
+<p>Cube root of Dark Matter particle number: {{ (data.metadata.n_dark_matter**(1/3)+0.01) | int }}</p>
+<table>
+    <tr>
+        <th>Gas</th>
+        <th>Dark Matter</th>
+        <th>Star</th>
+        <th>Black Hole</th>
+    </tr>
+    <tr>
+        <td>{{ data.metadata.n_gas }}</td>
+        <td>{{ data.metadata.n_dark_matter }}</td>
+        <td>{{ data.metadata.n_stars }}</td>
+        <td>{{ data.metadata.n_black_holes }}</td>
+    </tr>
+</table>
+
+<h4>Gravitational Softening</h4>
+<table>
+    <tr>
+        <th colspan=2>Baryons [kpc]</th>
+        <th colspan=2>Dark Matter [kpc]</th>
+    </tr>
+    <tr>
+        <th>Max Physical</th>
+        <th>Comoving</th>
+        <th>Max Physical</th>
+        <th>Comoving</th>
+    </tr>
+    <tr>
+        <td>{{ ((data.metadata.parameters["Gravity:max_physical_baryon_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
+        <td>{{ ((data.metadata.parameters["Gravity:comoving_baryon_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
+        <td>{{ ((data.metadata.parameters["Gravity:max_physical_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
+        <td>{{ ((data.metadata.parameters["Gravity:comoving_DM_softening"] | float) * data.units.length).to('kpc') | float | format_number }}</td>
+    </tr>
+</table>
+
+<h4>Code Setup</h4>
+<ul>
+    <li>Code info: {{ data.metadata.code_info }}</li>
+    <li>Compiler info: {{ data.metadata.compiler_info }}</li>
+    <li>Hydrodynamics: {{ data.metadata.hydro_info }}</li>
+</ul>
+
+<h4>Stellar Feedback</h4>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Supernova Energy</td>
+        <td>{{ (data.metadata.parameters["COLIBREFeedback:SNII_energy_erg"] | float) | format_number }} erg</td>
+    </tr>
+    <tr>
+        <td>\(f_{\rm E, min}\)</td>
+        <td>{{ "%.4g" % ( data.metadata.parameters["COLIBREFeedback:SNII_energy_fraction_min"] | float ) }}</td>
+    </tr>
+    <tr>
+        <td>\(f_{\rm E, max}\)</td>
+        <td>{{ "%.4g" % ( data.metadata.parameters["COLIBREFeedback:SNII_energy_fraction_max"] | float ) }}</td>
+    </tr>
+    <tr>
+        <td>\(f_{\rm termal}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_delta_T_K"] | float) }}</td>
+    </tr>
+    <tr>
+        <td>\(f_{\rm termal}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREFeedback:SNII_delta_v_km_p_s"] | float) }}</td>
+    </tr>
+</table>
+
+<h4>AGN</h4>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>\(\Delta T\)</td>
+        <td>{{ data.metadata.parameters["COLIBREAGN:AGN_delta_T_K"] | float | format_number }} K</td>
+    </tr>
+    <tr>
+        <td>\(C_{\rm eff}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:coupling_efficiency"] | float) }}</td>
+    </tr>
+    <tr>
+        <td>Subgrid Seed Mass</td>
+        <td>{{ data.metadata.parameters["COLIBREAGN:subgrid_seed_mass_Msun"] | float | format_number }} M\(_\odot\)</td>
+    </tr>
+    <tr>
+        <td>N\(_{\rm heat}\)</td>
+        <td>{{ "%.4g" % (data.metadata.parameters["COLIBREAGN:AGN_num_ngb_to_heat"] | float) }}</td>
+    </tr>
+    <tr>
+        <td>Max Reposition Mass</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:max_reposition_mass", 0.0) | float | format_number }} M\(_\odot\)</td>
+    </tr>
+    <tr>
+        <td>With Reposition Threshold</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:with_reposition_velocity_threshold", 0) | int }}</td>
+    </tr>
+<!--
+    <tr>
+        <td>\alpha from Booth, Schaye(2009)</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:boost_alpha") | float }}</td>
+    </tr>
+    <tr>
+        <td>\beta from Booth, Schaye(2009)</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:boost_beta") | float }}</td>
+    </tr>
+-->
+</table>

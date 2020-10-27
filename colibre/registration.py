@@ -142,6 +142,10 @@ gal_area = (
 )
 mstar_100 = catalogue.projected_apertures.projected_1_mass_star_100_kpc
 
+# Selection functions for the xGASS and xCOLDGASS surveys, used for the H species fraction comparison.
+# Note these are identical mass selections, but are separated to keep survey selections explicit
+# and to allow more detailed selection criteria to be added for each.
+
 self.xgass_galaxy_selection = np.logical_and(
     catalogue.apertures.mass_star_100_kpc > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
     catalogue.apertures.mass_star_100_kpc

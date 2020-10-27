@@ -54,12 +54,22 @@ scripts:
   - filename: scripts/birth_density_distribution.py
     caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
     title: Stellar Birth Densities
-    section: Density distributions
+    section: Stellar Birth Densities
     output_file: birth_density_distribution.png
+  - filename: scripts/birth_density_redshift.py
+    caption: Stellar birth densities vs redshift diagram. The pixel colour indicates the number of stellar particle in the pixel.
+    title: Stellar Birth Densities-Redshift 
+    section: Stellar Birth Densities
+    output_file: birth_density_redshift.png
+  - filename: scripts/birth_density_metallicity.py
+    caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particle in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin.
+    title: Stellar Birth Densities-Metallicity 
+    section: Stellar Birth Densities
+    output_file: birth_density_metallicity.png
   - filename: scripts/SNII_density_distribution.py
     caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
     title: Density of the gas heated by SNII
-    section: Density distributions
+    section: Feedback Densities
     output_file: SNII_density_distribution.png
   - filename: scripts/metallicity_evolution.py
     caption: Evolution of the metal mass in gas and stars per unit co-moving volume.

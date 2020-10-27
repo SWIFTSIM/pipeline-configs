@@ -14,6 +14,10 @@ from swiftsimio import load
 
 from load_sfh_data import read_obs_data
 
+# Import EAGLE cosmology object
+from astropy.cosmology import z_at_value
+from astropy.units import Gyr
+
 sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc ** 3)
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
@@ -41,12 +45,17 @@ fig, ax = plt.subplots()
 
 ax.loglog()
 
-for snapshot_filename, sfr_filename, name in zip(
-    snapshot_filenames, sfr_filenames, names
+for idx, (snapshot_filename, sfr_filename, name) in enumerate(
+    zip(snapshot_filenames, sfr_filenames, names)
 ):
     data = np.genfromtxt(sfr_filename).T
 
     snapshot = load(snapshot_filename)
+
+    # Read cosmology from the first run in the list
+    if idx == 0:
+        cosmology = snapshot.metadata.cosmology
+
     units = snapshot.units
     boxsize = snapshot.metadata.boxsize
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
@@ -116,11 +125,6 @@ for index, observation in enumerate(observational_data):
         )
     observation_labels.append(observation.description)
 
-
-ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"SFR Density $\dot{\rho}_*$ [M$_\odot$ yr$^{-1}$ Mpc$^{-3}$]")
-
-
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [
     "$0$",
@@ -139,10 +143,6 @@ a_ticks = 1.0 / (redshift_ticks + 1.0)
 
 ax.set_xticks(a_ticks)
 ax.set_xticklabels(redshift_labels)
-ax.tick_params(axis="x", which="minor", bottom=False)
-
-ax.set_xlim(1.02, 0.07)
-ax.set_ylim(1.8e-4, 1.7)
 
 observation_legend = ax.legend(
     observation_lines, observation_labels, markerfirst=True, loc=3, fontsize=4, ncol=2
@@ -153,5 +153,35 @@ simulation_legend = ax.legend(
 )
 
 ax.add_artist(observation_legend)
+
+# Create second X-axis (to plot cosmic time alongside redshift)
+ax2 = ax.twiny()
+ax2.set_xscale("log")
+
+# Cosmic-time ticks (in Gyr) along the second X-axis
+t_ticks = np.array([0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, cosmology.age(1.0e-5).value])
+
+# To place the new ticks onto the X-axis we need to know the corresponding scale factors
+a_ticks_2axis = [
+    1.0 / (1.0 + z_at_value(cosmology.age, t_tick * Gyr)) for t_tick in t_ticks
+]
+
+# Attach the ticks to the second X-axis
+ax2.set_xticks(a_ticks_2axis)
+
+# Format the ticks' labels
+ax2.set_xticklabels(["$%2.1f$" % t_tick for t_tick in t_ticks])
+
+# Final adjustments
+ax.tick_params(axis="x", which="minor", bottom=False)
+ax2.tick_params(axis="x", which="minor", top=False)
+
+ax.set_ylim(1.8e-4, 1.7)
+ax.set_xlim(1.02, 0.07)
+ax2.set_xlim(1.02, 0.07)
+
+ax.set_xlabel("Redshift $z$")
+ax.set_ylabel(r"SFR Density $\dot{\rho}_*$ [M$_\odot$ yr$^{-1}$ Mpc$^{-3}$]")
+ax2.set_xlabel("Cosmic time [Gyr]")
 
 fig.savefig(f"{output_path}/star_formation_history.png")

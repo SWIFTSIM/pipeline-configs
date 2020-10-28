@@ -51,11 +51,17 @@ scripts:
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
-  - filename: scripts/birth_density_distribution.py
-    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
-    title: Stellar Birth Densities
-    section: Stellar Birth Densities
-    output_file: birth_density_distribution.png
+  - filename: scripts/metallicity_distribution.py
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
+    output_file: metallicity_distribution.png
+    section: Metal Mass Fractions
+    title: Metal Mass Fraction Distribution
+  - filename: scripts/stellar_mass_mean_stellar_FeH.py
+    caption: Stellar mass-metallicity relation. The y axis shows either the log of the mean (Fe/H) or mean of log(Fe/H).
+    title: Stellar mass-Fe/H relation
+    section: Metallicity
+    output_file: stellar_mass_mean_of_log_stellar_FeH.png
+    output_file: stellar_mass_log_of_mean_stellar_FeH.png
   - filename: scripts/birth_density_redshift.py
     caption: Stellar birth densities vs redshift diagram. The pixel colour indicates the number of stellar particle in the pixel.
     title: Stellar Birth Densities-Redshift 

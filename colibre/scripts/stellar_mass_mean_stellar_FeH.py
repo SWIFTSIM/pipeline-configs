@@ -12,34 +12,40 @@ from velociraptor import load
 
 import sys
 
-run_name = sys.argv[1]
-run_directory = sys.argv[2]
-snapshot_name = sys.argv[3]
-velociraptor_base_name = sys.argv[4]
-output_path = sys.argv[5]
+from swiftpipeline.argumentparser import ScriptArgumentParser
 
-snapshot_filename = f"{run_directory}/{snapshot_name}"
-print(snapshot_filename)
-velociraptor_filename = f"{run_directory}/{velociraptor_base_name}"
-print(velociraptor_filename)
+arguments = ScriptArgumentParser(
+    description="Creates a metallicity density evolution plot for gas, stars and black holes."
+)
 
-plt.style.use("mnras.mplstyle")
+snapshot_filename = [
+    f"{directory}/{snapshot}"
+    for directory, snapshot in zip(arguments.directory_list, arguments.snapshot_list)
+]
 
-velociraptor_properties = velociraptor_filename
-velociraptor_groups = velociraptor_filename.replace("properties", "catalog_groups")
-print(velociraptor_groups)
+velociraptor_filename = [
+    f"{directory}/{catalogue}"
+    for directory, catalogue in zip(arguments.directory_list, arguments.catalogue_list)
+]
+
+names = arguments.name_list
+output_path = arguments.output_directory
+
+plt.style.use(arguments.stylesheet_location)
+
+velociraptor_properties = velociraptor_filename[0]
+velociraptor_groups = velociraptor_properties.replace("properties", "catalog_groups")
 
 filenames = {
-    "parttypes_filename": velociraptor_filename.replace(
+    "parttypes_filename": velociraptor_properties.replace(
         "properties", "catalog_parttypes"),
-    "particles_filename": velociraptor_filename.replace(
+    "particles_filename": velociraptor_properties.replace(
         "properties", "catalog_particles"),
-    "unbound_parttypes_filename": velociraptor_filename.replace(
+    "unbound_parttypes_filename": velociraptor_properties.replace(
         "properties", "catalog_parttypes.unbound"),
-    "unbound_particles_filename": velociraptor_filename.replace(
+    "unbound_particles_filename": velociraptor_properties.replace(
         "properties", "catalog_particles.unbound"),
 }
-print(filenames)
 
 #Before reading a bit more I keep some quantities here
 mp_in_cgs = 1.6737236e-24
@@ -62,7 +68,7 @@ for halo_id in halo_ids:
     particles, unbound_particles = groups.extract_halo(halo_id, filenames=filenames)
     
     # This reads particles using the cell metadata that are around our halo
-    data, mask = to_swiftsimio_dataset(particles, snapshot_filename, generate_extra_mask=True)
+    data, mask = to_swiftsimio_dataset(particles, snapshot_filename[0], generate_extra_mask=True)
     Fe = data.stars.element_mass_fractions.iron #this should work but it doesn't
     H = data.stars.element_mass_fractions.hydrogen
 

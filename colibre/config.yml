@@ -56,11 +56,15 @@ scripts:
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
-  - filename: scripts/stellar_mass_mean_stellar_FeH.py
-    caption: Stellar mass-metallicity relation. The y axis shows either the log of the mean (Fe/H) or mean of log(Fe/H).
+  - filename: scripts/stellar_mass_mean_log_stellar_FeH.py
+    caption: Stellar mass-metallicity relation. The y axis shows either the mean of the log of (Fe/H).
     title: Stellar mass-Fe/H relation
     section: Metallicity
     output_file: stellar_mass_mean_of_log_stellar_FeH.png
+  - filename: scripts/stellar_mass_log_mean_stellar_FeH.py
+    caption: Stellar mass-metallicity relation. The y axis shows either the log of the mean (Fe/H).
+    title: Stellar mass-Fe/H relation
+    section: Metallicity
     output_file: stellar_mass_log_of_mean_stellar_FeH.png
   - filename: scripts/birth_density_redshift.py
     caption: Stellar birth densities vs redshift diagram. The pixel colour indicates the number of stellar particle in the pixel.

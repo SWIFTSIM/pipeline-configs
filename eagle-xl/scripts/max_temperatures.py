@@ -34,12 +34,14 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
     fig, ax = plt.subplots()
 
     ax.set_xlabel("Gas Max. Temperature $T_{\\rm max}$ [K]")
-    ax.set_ylabel("Counts [-]")
+    ax.set_ylabel("PDF [-]")
     ax.loglog()
 
     for filename, name in zip(filenames, names):
         T_max = get_data(filename)
-        h, bin_edges = np.histogram(np.log10(T_max), range=np.log10(T_bounds), bins=250)
+        h, bin_edges = np.histogram(
+            np.log10(T_max), range=np.log10(T_bounds), bins=250, density=True
+        )
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
         bins = 10 ** bins
         ax.plot(bins, h, label=name)

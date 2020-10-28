@@ -9,6 +9,7 @@ import unyt
 from velociraptor.swift.swift import to_swiftsimio_dataset
 from velociraptor.particles import load_groups
 from velociraptor import load
+from swiftsimio import load as snap_load
 
 import sys
 
@@ -66,15 +67,24 @@ mean_FeH = []
 
 for halo_id in halo_ids:
     particles, unbound_particles = groups.extract_halo(halo_id, filenames=filenames)
+    #data, mask = to_swiftsimio_dataset(particles, snapshot_filename[0], generate_extra_mask=True)
+    stars_in_halo = particles.particle_ids[particles.particle_types==4]
     
     # This reads particles using the cell metadata that are around our halo
-    data, mask = to_swiftsimio_dataset(particles, snapshot_filename[0], generate_extra_mask=True)
+    data = snap_load(snapshot_filename[0])
+    stars_in_snap = data.stars.particle_ids
     Fe = data.stars.element_mass_fractions.iron #this should work but it doesn't
     H = data.stars.element_mass_fractions.hydrogen
-
+    
+    # Select only relevant parts
+    _, indices_v, indices_p = np.intersect1d(stars_in_halo,stars_in_snap,assume_unique=True,
+                                             return_indices=True,)
+                                            
+    Fe = Fe[indices_p]
+    H = H[indices_p]
     FeH = Fe[Fe>0]/H[Fe>0] #getting rid of zero metal particles
     FeH_mean = np.append(FeH_mean,np.log10(np.mean(FeH)))
-    mean_FeH = np.append(FeH_mean,np.mean(np.log10(FeH)))
+    mean_FeH = np.append(mean_FeH,np.mean(np.log10(FeH)))
 
 FeH_mean -= Fe_H_Sun
 mean_FeH -= Fe_H_Sun
@@ -84,7 +94,7 @@ mean_FeH -= Fe_H_Sun
 
 fig, ax = plt.subplots()
 
-ax.loglog()
+ax.set_xscale('log')
 
 ax.plot(stellar_mass,mean_FeH,'o',ms=5)
 
@@ -98,7 +108,7 @@ fig.savefig(f"{output_path}/stellar_mass_log_of_mean_stellar_FeH.png")
 
 fig, ax = plt.subplots()
 
-ax.loglog()
+ax.set_xscale('log')
 
 ax.plot(stellar_mass,mean_FeH,'o',ms=5)
 

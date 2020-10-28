@@ -174,19 +174,19 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_num_ngb_to_heat") }}</td>
     </tr>
     <tr>
-        <td>Are we using the Booth, Schaye (2009) model</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_boost") }}</td>
+        <td>Are we using the boost factor</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_boost_factor") }}</td>
     </tr>
     <tr>
-        <td>Value of \(\alpha) in the Booth, Schaye (2009) model</td>
+        <td>Value of \(\alpha\) for boost factor</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_alpha") }}</td>
     </tr>
     <tr>
-        <td>Value of \(\beta) in the Booth, Schaye (2009) model</td>
+        <td>Value of \(\beta\) for boost factor</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_beta") }}</td>
     </tr>
     <tr>
-        <td>Value of \(n_{H,*}) in cm\(^{-3}) in the Booth, Schaye (2009) model</td>
+        <td>Value of \(n_{H,*}\) in cm\(^{-3}\) for boost factor</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_n_h_star_cm3") }}</td>
     </tr>
     <tr>

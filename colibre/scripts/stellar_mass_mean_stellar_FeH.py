@@ -15,7 +15,7 @@ import sys
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a metallicity density evolution plot for gas, stars and black holes."
+    description="Creates stellar mass-[Fe/H] relations using either the mean of log or log of mean, pick your favourite."
 )
 
 snapshot_filename = [

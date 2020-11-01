@@ -1,4 +1,4 @@
-stellar_birth_density_halo_mass_logaverage_all_100:
+stellar_birth_density_halo_mass_average_of_log_all:
   type: "scatter"
   legend_loc: "upper left"
   x:
@@ -7,9 +7,9 @@ stellar_birth_density_halo_mass_logaverage_all_100:
     start: 1e8
     end: 1e13
   y:
-    quantity: "stellar_birth_densities.logaverage"
+    quantity: "derived_quantities.average_of_log_stellar_birth_density"
     units: "mh/cm**3"
-    start: 5e0
+    start: 5e-2
     end: 5e5
   median:
     plot: true
@@ -23,11 +23,11 @@ stellar_birth_density_halo_mass_logaverage_all_100:
       value: 1e13
       units: Solar_Mass
   metadata:
-    title: Log-average Stellar Birth Density-Halo Mass relation
+    title: Average of log Stellar Birth Density-Halo Mass relation
     caption: Includes all haloes, including subhaloes.
     section: Stellar Birth Densities
 
-stellar_birth_density_halo_mass_max_all_100:
+stellar_birth_density_halo_mass_max_all:
   type: "scatter"
   legend_loc: "upper left"
   x:
@@ -38,7 +38,7 @@ stellar_birth_density_halo_mass_max_all_100:
   y:
     quantity: "stellar_birth_densities.max"
     units: "mh/cm**3"
-    start: 5e0
+    start: 5e-2
     end: 5e5
   median:
     plot: true
@@ -56,18 +56,18 @@ stellar_birth_density_halo_mass_max_all_100:
     caption: Includes all haloes, including subhaloes.
     section: Stellar Birth Densities
 
-stellar_birth_density_stellar_mass_logaverage_all_100:
+stellar_birth_density_stellar_mass_average_of_log_all_100:
   type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e6
+    start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_densities.logaverage"
+    quantity: "derived_quantities.average_of_log_stellar_birth_density"
     units: "mh/cm**3"
-    start: 5e0
+    start: 5e-2
     end: 5e5
   median:
     plot: true
@@ -81,7 +81,7 @@ stellar_birth_density_stellar_mass_logaverage_all_100:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Log-average Stellar Birth Density-Stellar Mass relation
+    title: Average of log Stellar Birth Density-Stellar Mass relation
     caption: Includes all haloes, including subhaloes.
     section: Stellar Birth Densities
 
@@ -91,12 +91,12 @@ stellar_birth_density_stellar_mass_max_all_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e6
+    start: 1e4
     end: 1e12
   y:
     quantity: "stellar_birth_densities.max"
     units: "mh/cm**3"
-    start: 5e0
+    start: 5e-2
     end: 5e5
   median:
     plot: true

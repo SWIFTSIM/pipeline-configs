@@ -32,7 +32,9 @@ def get_data(filename):
     below_Z_min = np.where(metal_mass_fractions < metal_mass_fraction_bounds[0])
 
     # Stars with Z < lowest Z in the figure should be added to the lowest-Z bin
-    metal_mass_fractions[below_Z_min] = metal_mass_fraction_bounds[0] * (1. + 1e-3/bins)
+    metal_mass_fractions[below_Z_min] = metal_mass_fraction_bounds[0] * (
+        1.0 + 1e-3 / bins
+    )
 
     return metal_mass_fractions, birth_redshifts
 
@@ -46,7 +48,9 @@ def make_hist(filename, metal_mass_fraction_bounds, redshift_bounds, bins):
     """
 
     metal_mass_fraction_bins = np.logspace(
-        np.log10(metal_mass_fraction_bounds[0]), np.log10(metal_mass_fraction_bounds[1]), bins
+        np.log10(metal_mass_fraction_bounds[0]),
+        np.log10(metal_mass_fraction_bounds[1]),
+        bins,
     )
     redshift_bins = np.linspace(redshift_bounds[0], redshift_bounds[1], bins)
 
@@ -109,7 +113,9 @@ def make_single_image(
     hists = []
 
     for filename in filenames:
-        hist, Z, z = make_hist(filename, metal_mass_fraction_bounds, redshift_bounds, bins)
+        hist, Z, z = make_hist(
+            filename, metal_mass_fraction_bounds, redshift_bounds, bins
+        )
         hists.append(hist)
 
     vmax = np.max([np.max(hist) for hist in hists])

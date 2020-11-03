@@ -1,5 +1,5 @@
 """
-Makes a stellar-birth-density vs. redshift 2D plot. Uses the swiftsimio library.
+Makes a stellar metallicity vs. redshift 2D plot. Uses the swiftsimio library.
 """
 
 import matplotlib.pyplot as plt
@@ -7,29 +7,37 @@ import numpy as np
 
 from swiftsimio import load
 
-from unyt import mh, cm
 from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
-density_bounds = [0.01, 1e5]  # in nh/cm^3
+metal_mass_fraction_bounds = [1e-4, 0.5]  # dimensionless
 redshift_bounds = [-1.5, 12]
 bins = 128
 
 
 def get_data(filename):
     """
-    Grabs the data (z and stellar birth density in mh / cm^3).
+    Grabs the data (redshifts and MMF).
     """
 
     data = load(filename)
 
-    birth_densities = (data.stars.birth_densities / mh).to(cm ** -3)
     birth_redshifts = 1 / data.stars.birth_scale_factors.value - 1
 
-    return birth_densities.value, birth_redshifts
+    try:
+        metal_mass_fractions = data.stars.smoothed_metal_mass_fractions.value
+    except AttributeError:
+        metal_mass_fractions = data.stars.metal_mass_fractions.value
+
+    below_Z_min = np.where(metal_mass_fractions < metal_mass_fraction_bounds[0])
+
+    # Stars with Z < lowest Z in the figure should be added to the lowest-Z bin
+    metal_mass_fractions[below_Z_min] = metal_mass_fraction_bounds[0] * (1. + 1e-3/bins)
+
+    return metal_mass_fractions, birth_redshifts
 
 
-def make_hist(filename, density_bounds, redshift_bounds, bins):
+def make_hist(filename, metal_mass_fraction_bounds, redshift_bounds, bins):
     """
     Makes the histogram for filename with bounds as lower, higher
     for the bins and "bins" the number of bins along each dimension.
@@ -37,16 +45,16 @@ def make_hist(filename, density_bounds, redshift_bounds, bins):
     Also returns the edges for pcolormesh to use.
     """
 
-    density_bins = np.logspace(
-        np.log10(density_bounds[0]), np.log10(density_bounds[1]), bins
+    metal_mass_fraction_bins = np.logspace(
+        np.log10(metal_mass_fraction_bounds[0]), np.log10(metal_mass_fraction_bounds[1]), bins
     )
     redshift_bins = np.linspace(redshift_bounds[0], redshift_bounds[1], bins)
 
-    H, density_edges, redshift_edges = np.histogram2d(
-        *get_data(filename), bins=[density_bins, redshift_bins]
+    H, metal_mass_fraction_edges, redshift_edges = np.histogram2d(
+        *get_data(filename), bins=[metal_mass_fraction_bins, redshift_bins]
     )
 
-    return H.T, density_edges, redshift_edges
+    return H.T, metal_mass_fraction_edges, redshift_edges
 
 
 def setup_axes(number_of_simulations: int):
@@ -72,7 +80,7 @@ def setup_axes(number_of_simulations: int):
 
     # Set all valid on bottom row to have the horizontal axis label.
     for axis in np.atleast_2d(ax)[:][-1]:
-        axis.set_xlabel("$\\rho_B$ [$n_H$ cm$^{-3}$]")
+        axis.set_xlabel("Smoothed MMF $Z$")
 
     for axis in np.atleast_2d(ax).T[:][0]:
         axis.set_ylabel("Redshift $z$")
@@ -87,13 +95,13 @@ def make_single_image(
     filenames,
     names,
     number_of_simulations,
-    density_bounds,
+    metal_mass_fraction_bounds,
     redshift_bounds,
     bins,
     output_path,
 ):
     """
-    Makes a single plot of rho_birth-z
+    Makes a single plot of MMF-z
     """
 
     fig, ax = setup_axes(number_of_simulations=number_of_simulations)
@@ -101,18 +109,18 @@ def make_single_image(
     hists = []
 
     for filename in filenames:
-        hist, d, z = make_hist(filename, density_bounds, redshift_bounds, bins)
+        hist, Z, z = make_hist(filename, metal_mass_fraction_bounds, redshift_bounds, bins)
         hists.append(hist)
 
     vmax = np.max([np.max(hist) for hist in hists])
 
     for hist, name, axis in zip(hists, names, ax.flat):
-        mappable = axis.pcolormesh(d, z, hist, norm=LogNorm(vmin=1, vmax=vmax))
+        mappable = axis.pcolormesh(Z, z, hist, norm=LogNorm(vmin=1, vmax=vmax))
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
 
     fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Number of stellar particles")
 
-    fig.savefig(f"{output_path}/birth_density_redshift.png")
+    fig.savefig(f"{output_path}/metallicity_redshift.png")
 
     return
 
@@ -121,7 +129,7 @@ if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
     arguments = ScriptArgumentParser(
-        description="Stellar-birth-density vs. redshift phase plot."
+        description="Stellar-metallicity vs. redshift phase plot."
     )
 
     snapshot_filenames = [
@@ -137,7 +145,7 @@ if __name__ == "__main__":
         filenames=snapshot_filenames,
         names=arguments.name_list,
         number_of_simulations=arguments.number_of_inputs,
-        density_bounds=density_bounds,
+        metal_mass_fraction_bounds=metal_mass_fraction_bounds,
         redshift_bounds=redshift_bounds,
         bins=bins,
         output_path=arguments.output_directory,

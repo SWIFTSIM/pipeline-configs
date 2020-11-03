@@ -12,7 +12,7 @@ from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 density_bounds = [0.01, 1e5]  # in nh/cm^3
-metal_mass_fraction_bounds = [1e-7, 1]  # dimensionless
+metal_mass_fraction_bounds = [1e-4, 0.5]  # dimensionless
 bins = 128
 
 
@@ -30,7 +30,9 @@ def get_data(filename):
         metal_mass_fractions = data.stars.metal_mass_fractions.value
 
     below_Z_min = np.where(metal_mass_fractions < metal_mass_fraction_bounds[0])
-    metal_mass_fractions[below_Z_min] = metal_mass_fraction_bounds[0]
+
+    # Stars with Z < lowest Z in the figure should be added to the lowest-Z bin
+    metal_mass_fractions[below_Z_min] = metal_mass_fraction_bounds[0] * (1. + 1e-3/bins)
 
     return birth_densities.value, metal_mass_fractions
 

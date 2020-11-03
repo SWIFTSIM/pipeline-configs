@@ -75,7 +75,7 @@ stellar_birth_density_stellar_mass_average_of_log_all_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e6
+      value: 1e4
       units: Solar_Mass
     end:
       value: 1e12
@@ -104,7 +104,7 @@ stellar_birth_density_stellar_mass_max_all_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e6
+      value: 1e4
       units: Solar_Mass
     end:
       value: 1e12

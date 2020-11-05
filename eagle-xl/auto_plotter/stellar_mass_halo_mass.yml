@@ -138,7 +138,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_100:
     start: 1e9
     end: 3e14
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_100_kpc"
+    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_100_kpc"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -171,7 +171,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
     start: 1e7
     end: 1e12
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_100_kpc"
+    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_100_kpc"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -338,7 +338,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_30:
     start: 1e9
     end: 3e14
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_30_kpc"
+    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_30_kpc"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -373,7 +373,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
     start: 1e7
     end: 1e12
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_30_kpc"
+    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_30_kpc"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1

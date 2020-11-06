@@ -179,9 +179,12 @@ except:
 
 
 # Test for CHIMES arrays
+# NOTE: apply factor 2 boost to molecular species fractions, as these are number
+# density fractions of instances of each species, but need mass fractions (H2 has
+# mean molecular weight mu=2)
 try:
     species_1 = catalogue.species_fractions.species_1
-    species_7 = catalogue.species_fractions.species_7
+    species_7 = 2*catalogue.species_fractions.species_7
     species_frac_error = ""
 except:
     species_1 = 0.0
@@ -194,7 +197,8 @@ self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_1
 self.hi_to_stellar_mass_100_kpc = (
     self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )
-self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_7
+
+self.molecular_hydrogen_mass_100_kpc = 2 * gas_mass * H_frac * species_7
 self.h2_to_stellar_mass_100_kpc = (
     self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )

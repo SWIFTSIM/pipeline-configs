@@ -10,7 +10,7 @@ This file calculates:
         specific star formation rate is 1e-11 year^-1.
     + sfr_halo_mass (30, 100 kpc) (sfr_halo_mass_{x}_kpc)
         Star formation rate divided by halo mass with the star formation rate
-         computed within apertures.
+        computed within apertures.
     + 12 + log(O/H) ({gas_sf_twelve_plus_log_OH_{x}_kpc, 30, 100 kpc)
         12 + log(O/H) based on metallicities. These should be removed at some point
         once velociraptor has a more sensible way of dealing with metallicity

@@ -158,7 +158,7 @@ try:
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
     H2_frac = getattr(catalogue.species_fractions, "species_2")
 
-    H2_mass = gas_mass * H_frac * H2_frac
+    H2_mass = gas_mass * H_frac * H2_frac * 2
     H2_mass.name = "$M_{\\rm H_2}$"
 
     setattr(self, "gas_H2_mass_Msun", H2_mass)
@@ -181,7 +181,7 @@ try:
     H2_frac = getattr(catalogue.species_fractions, "species_2")
 
     HI_mass = gas_mass * H_frac * HI_frac
-    H2_mass = gas_mass * H_frac * H2_frac
+    H2_mass = gas_mass * H_frac * H2_frac * 2
     neutral_H_mass = HI_mass + H2_mass
     neutral_H_mass.name = "$M_{\\rm HI + H_2}$"
 
@@ -270,13 +270,13 @@ except:
 try:
     # Test for CHIMES arrays
     species_HI = catalogue.species_fractions.species_1
-    species_H2 = catalogue.species_fractions.species_7
+    species_H2 = 2. * catalogue.species_fractions.species_7
     species_frac_error = ""
 except:
     try:
         # Test for COLIBRE arrays
         species_HI = catalogue.species_fractions.species_0
-        species_H2 = catalogue.species_fractions.species_2
+        species_H2 = 2. * catalogue.species_fractions.species_2
         species_frac_error = ""
     except:
         species_HI = 0.0

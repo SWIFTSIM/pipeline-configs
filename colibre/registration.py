@@ -10,7 +10,7 @@ This file calculates:
         specific star formation rate is 1e-11 year^-1.
     + sfr_halo_mass (30, 100 kpc) (sfr_halo_mass_{x}_kpc)
         Star formation rate divided by halo mass with the star formation rate
-        computed within apertures.
+         computed within apertures.
     + 12 + log(O/H) ({gas_sf_twelve_plus_log_OH_{x}_kpc, 30, 100 kpc)
         12 + log(O/H) based on metallicities. These should be removed at some point
         once velociraptor has a more sensible way of dealing with metallicity
@@ -184,7 +184,7 @@ except:
 # mean molecular weight mu=2)
 try:
     species_1 = catalogue.species_fractions.species_1
-    species_7 = 2*catalogue.species_fractions.species_7
+    species_7 = 2 * catalogue.species_fractions.species_7
     species_frac_error = ""
 except:
     species_1 = 0.0
@@ -197,7 +197,6 @@ self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_1
 self.hi_to_stellar_mass_100_kpc = (
     self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )
-
 self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_7
 self.h2_to_stellar_mass_100_kpc = (
     self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc

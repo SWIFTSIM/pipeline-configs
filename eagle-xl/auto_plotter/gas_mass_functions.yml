@@ -18,6 +18,7 @@ gas_HI_mass_function:
   observational_data:
     - filename: GalaxyHIMassFunction/Zwaan2003.hdf5
     - filename: GalaxyHIMassFunction/Haynes2011.hdf5
+    - filename: GalaxyHIMassFunction/Jones2018.hdf5
 
 adaptive_gas_HI_mass_function:
   type: "adaptivemassfunction"
@@ -39,6 +40,7 @@ adaptive_gas_HI_mass_function:
   observational_data:
     - filename: GalaxyHIMassFunction/Zwaan2003.hdf5
     - filename: GalaxyHIMassFunction/Haynes2011.hdf5
+    - filename: GalaxyHIMassFunction/Jones2018.hdf5
 
 gas_H2_mass_function:
   type: "massfunction"
@@ -57,6 +59,8 @@ gas_H2_mass_function:
     title: H$_2$ Mass Function
     caption: H$_2$ MF, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Gas Mass Function
+  observational_data:
+    - filename: GalaxyH2MassFunction/Fletcher2020.hdf5
 
 adaptive_gas_H2_mass_function:
   type: "adaptivemassfunction"
@@ -75,3 +79,5 @@ adaptive_gas_H2_mass_function:
     title: H$_2$ Mass Function
     caption: H$_2$ MF, showing all galaxies with an adaptive bin-width.
     section: Gas Mass Function
+  observational_data:
+    - filename: GalaxyH2MassFunction/Fletcher2020.hdf5

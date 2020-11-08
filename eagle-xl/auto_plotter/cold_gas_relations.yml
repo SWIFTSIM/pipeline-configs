@@ -25,7 +25,7 @@ stellar_mass_neutral_fraction_30:
   metadata:
     title: Stellar Mass-Neutral Gas Fraction (30 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
     show_on_webpage: false
 
 stellar_mass_neutral_fraction_100:
@@ -55,7 +55,7 @@ stellar_mass_neutral_fraction_100:
   metadata:
     title: Stellar Mass-Neutral Gas Fraction (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
 
 stellar_mass_molecular_fraction_30:
   type: "scatter"
@@ -84,7 +84,7 @@ stellar_mass_molecular_fraction_30:
   metadata:
     title: Stellar Mass-Molecular Gas Fraction (30 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
     show_on_webpage: false
 
 stellar_mass_molecular_fraction_100:
@@ -114,7 +114,7 @@ stellar_mass_molecular_fraction_100:
   metadata:
     title: Stellar Mass-Molecular Gas Fraction (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
 
 stellar_mass_H2_mass_30:
   type: "scatter"
@@ -143,7 +143,7 @@ stellar_mass_H2_mass_30:
   metadata:
     title: Stellar Mass-H$_2$ Gas Mass (30 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
     show_on_webpage: false
 
 stellar_mass_H2_mass_100:
@@ -173,7 +173,7 @@ stellar_mass_H2_mass_100:
   metadata:
     title: Stellar Mass-H$_2$ Gas Mass (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
 
 stellar_mass_HI_mass_30:
   type: "scatter"
@@ -202,7 +202,7 @@ stellar_mass_HI_mass_30:
   metadata:
     title: Stellar Mass-HI Gas Mass (30 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
     show_on_webpage: false
 
 stellar_mass_HI_mass_100:
@@ -232,7 +232,7 @@ stellar_mass_HI_mass_100:
   metadata:
     title: Stellar Mass-HI Gas Mass (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
 
 H2_mass_star_formation_rate_30:
   type: "scatter"
@@ -261,7 +261,7 @@ H2_mass_star_formation_rate_30:
   metadata:
     title: H2 Gas Mass - Star Formation Rate
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations
     show_on_webpage: false
 
 H2_mass_star_formation_rate_100:
@@ -291,4 +291,4 @@ H2_mass_star_formation_rate_100:
   metadata:
     title: H2 Gas Mass - Star Formation Rate
     caption: All galaxies are included in the median line.
-    section: Gas Relations
+    section: Cold Gas Relations

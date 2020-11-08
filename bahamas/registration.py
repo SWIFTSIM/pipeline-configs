@@ -18,7 +18,7 @@ This file calculates:
     + metallicity_in_solar (star_metallicity_in_solar_{x}_kpc, 30, 100 kpc)
         Metallicity in solar units (relative to metal_mass_fraction).
     + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
-        Stellar Mass / Halo Mass (mass_200crit and mass_BN98) for 30 and 100 kpc apertures.
+        Stellar Mass / Halo Mass (mass_200crit) for 30 and 100 kpc apertures.
     + HI and H_2 masses (gas_HI_mass_Msun and gas_H2_mass_Msun).
     + baryon and gas fractions in R_(200,cr) normalized by the
         cosmic baryon fraction (baryon_fraction_true_R200, gas_fraction_true_R200).
@@ -117,17 +117,11 @@ for aperture_size in aperture_sizes:
     stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
     halo_mass = catalogue.masses.mass_200crit
 
-    halo_M200crit = catalogue.masses.mass_200crit
     smhm = stellar_mass / halo_mass
     name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
     smhm.name = name
-    setattr(self, f"stellar_mass_to_halo_mass_200crit_{aperture_size}_kpc", smhm)
 
-    halo_MBN98 = catalogue.masses.mass_bn98
-    smhm = stellar_mass / halo_MBN98
-    name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
-    smhm.name = name
-    setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
+    setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
 
 # Now HI masses
 
@@ -233,75 +227,6 @@ except AttributeError:
                 name=f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc) not found, showing $1$",
             ),
         )
-
-# species fraction properties
-gas_mass = catalogue.apertures.mass_gas_100_kpc
-gal_area = (
-    2 * np.pi * catalogue.projected_apertures.projected_1_rhalfmass_star_100_kpc ** 2
-)
-mstar_100 = catalogue.projected_apertures.projected_1_mass_star_100_kpc
-
-# Selection functions for the xGASS and xCOLDGASS surveys, used for the H species fraction comparison.
-# Note these are identical mass selections, but are separated to keep survey selections explicit
-# and to allow more detailed selection criteria to be added for each.
-
-self.xgass_galaxy_selection = np.logical_and(
-    catalogue.apertures.mass_star_100_kpc > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
-    catalogue.apertures.mass_star_100_kpc
-    < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
-)
-
-self.xcoldgass_galaxy_selection = np.logical_and(
-    catalogue.apertures.mass_star_100_kpc > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
-    catalogue.apertures.mass_star_100_kpc
-    < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
-)
-
-self.mu_star_100_kpc = mstar_100 / gal_area
-self.mu_star_100_kpc.name = "$\\pi R_{*, 100 {\\rm kpc}}^2 / M_{*, 100 {\\rm kpc}}$"
-
-try:
-    H_frac = catalogue.element_mass_fractions.element_0
-    hydrogen_frac_error = ""
-except:
-    H_frac = 0.0
-    hydrogen_frac_error = "(no H abundance)"
-
-try:
-    # Test for CHIMES arrays
-    species_HI = catalogue.species_fractions.species_1
-    species_H2 = catalogue.species_fractions.species_7
-    species_frac_error = ""
-except:
-    try:
-        # Test for COLIBRE arrays
-        species_HI = catalogue.species_fractions.species_0
-        species_H2 = catalogue.species_fractions.species_2
-        species_frac_error = ""
-    except:
-        species_HI = 0.0
-        species_H2 = 0.0
-        species_frac_error = "(no species field)"
-
-total_error = f" {species_frac_error}{hydrogen_frac_error}"
-
-self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_HI
-self.hi_to_stellar_mass_100_kpc = (
-    self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
-)
-self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_H2
-self.h2_to_stellar_mass_100_kpc = (
-    self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
-)
-
-self.neutral_hydrogen_mass_100_kpc.name = f"HI Mass (100 kpc){total_error}"
-self.hi_to_stellar_mass_100_kpc.name = (
-    f"$M_{{\\rm HI}} / M_*$ (100 kpc) {total_error}"
-)
-self.molecular_hydrogen_mass_100_kpc.name = f"H$_2$ Mass (100 kpc){total_error}"
-self.h2_to_stellar_mass_100_kpc.name = (
-    f"$M_{{\\rm H_2}} / M_*$ (100 kpc) {total_error}"
-)
 
 # Now baryon fractions
 

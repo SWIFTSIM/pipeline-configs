@@ -54,13 +54,58 @@ scripts:
   - filename: scripts/birth_density_distribution.py
     caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
     title: Stellar Birth Densities
-    section: Density distributions
+    section: Stellar Birth Densities
     output_file: birth_density_distribution.png
+  - filename: scripts/birth_density_metallicity.py
+    caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin.
+    title: Stellar Birth Densities-Metallicity
+    section: Stellar Birth Densities
+    output_file: birth_density_metallicity.png
+  - filename: scripts/birth_density_redshift.py
+    caption: Stellar birth densities vs redshift diagram. The pixel colour indicates the number of stellar particles in the pixel.
+    title: Stellar Birth Densities-Redshift
+    section: Stellar Birth Densities
+    output_file: birth_density_redshift.png
+  - filename: scripts/metallicity_redshift.py
+    caption: Stellar metallicity vs redshift diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given redshift, particles with metallicities lower than the smallest value along the X axis are placed in the lowest-metallicity bin.
+    title: Stellar Metallicity-Redshift
+    section: Stellar Birth Densities
+    output_file: metallicity_redshift.png
   - filename: scripts/SNII_density_distribution.py
     caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
     title: Density of the gas heated by SNII
-    section: Density distributions
+    section: Feedback Densities
     output_file: SNII_density_distribution.png
+  - filename: scripts/metallicity_evolution.py
+    caption: Evolution of the metal mass in gas and stars per unit co-moving volume.
+    output_file: metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Density Evolution
+  - filename: scripts/bh_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in black holes per unit co-moving volume.
+    output_file: bh_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Black Holes Density Evolution
+  - filename: scripts/bh_accretion_evolution.py
+    caption: Evolution of the accretion rate onto BHs per unit co-moving volume.
+    output_file: bh_accretion_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Accretion History
+  - filename: scripts/bh_mass_evolution.py
+    caption: Evolution of the BH mass per unit co-moving volume.
+    output_file: bh_mass_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Mass History
+  - filename: scripts/bh_masses.py
+    caption: Relation between black hole particle (dynamical) masses and subgrid masses. The vertical dashed lines shows the primordial gas particle mass and the horizontal dashed lines corresponds to the black hole seed mass.
+    output_file: bh_masses.png
+    section: Black Holes
+    title: Black Hole Dynanmical and Subgrid Masses
+  - filename: scripts/gas_masses.py
+    caption: Gas Particle Masses with the threshold for splitting indicated by the vertical dashed line.
+    output_file: gas_masses.png
+    section: Histograms
+    title: Gas Particle Masses
   - filename: scripts/max_temperatures.py
     caption: Maximal temperature recorded by gas particles throughout the entire simulation.
     output_file: gas_max_temperatures.png

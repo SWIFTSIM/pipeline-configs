@@ -18,7 +18,10 @@ This file calculates:
     + metallicity_in_solar (star_metallicity_in_solar_{x}_kpc, 30, 100 kpc)
         Metallicity in solar units (relative to metal_mass_fraction).
     + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
-        Stellar Mass / Halo Mass (mass_200crit) for 30 and 100 kpc apertures.
+        Stellar Mass / Halo Mass (both mass_200crit and mass_bn98) for 30 and 100 kpc
+        apertures.
+    + average of log of stellar birth densities (average_of_log_stellar_birth_density)
+        velociraptor outputs the log of the quantity we need, so we take exp(...) of it
 """
 
 aperture_sizes = [30, 100]
@@ -111,13 +114,19 @@ for aperture_size in aperture_sizes:
 
 for aperture_size in aperture_sizes:
     stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-    halo_mass = catalogue.masses.mass_200crit
 
+    halo_M200crit = catalogue.masses.mass_200crit
     smhm = stellar_mass / halo_mass
     name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
     smhm.name = name
+    setattr(self, f"stellar_mass_to_halo_mass_200crit_{aperture_size}_kpc", smhm)
 
-    setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
+    halo_MBN98 = catalogue.masses.mass_bn98
+    smhm = stellar_mass / halo_MBN98
+    name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
+    smhm.name = name
+    setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
+
 
 # if present iterate through available dust types
 try:
@@ -164,18 +173,21 @@ self.mu_star_100_kpc = mstar_100 / gal_area
 self.mu_star_100_kpc.name = "$\\pi R_{*, 100 {\\rm kpc}}^2 / M_{*, 100 {\\rm kpc}}$"
 
 try:
-   H_frac = catalogue.element_mass_fractions.element_0
-   hydrogen_frac_error = ""
+    H_frac = catalogue.element_mass_fractions.element_0
+    hydrogen_frac_error = ""
 except:
    H_frac = 0.0
    hydrogen_frac_error = "(no H abundance)"
    
    
 # Test for species fields with either CHIMES or COLIBRE format.
+# NOTE: apply factor 2 boost to molecular species fractions in CHIMES,
+# as these are number density fractions of instances of each species,
+# but need mass fractions (H2 has mean molecular weight mu=2)
 try:
     if hasattr(catalogue.species_fractions, "species_7"):
         species_neutral = catalogue.species_fractions.species_1
-        species_molecular = catalogue.species_fractions.species_7
+        species_molecular = 2 * catalogue.species_fractions.species_7
         species_frac_error = ""
     else:
         species_neutral = catalogue.species_fractions.species_0
@@ -185,19 +197,42 @@ except:
    species_neutral = 0.0
    species_molecular = 0.0
    species_frac_error = "(no species field)"
-   
+
 total_error = f" {species_frac_error}{hydrogen_frac_error}"
 
 self.neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * species_neutral
 self.hi_to_stellar_mass_100_kpc = (
-   self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
+    self.neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )
 self.molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * species_molecular
 self.h2_to_stellar_mass_100_kpc = (
-   self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
+    self.molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
 )
 
 self.neutral_hydrogen_mass_100_kpc.name = f"HI Mass (100 kpc){total_error}"
-self.hi_to_stellar_mass_100_kpc.name = f"HI to Stellar Mass Fraction (100 kpc){total_error}"
+self.hi_to_stellar_mass_100_kpc.name = (
+    f"HI to Stellar Mass Fraction (100 kpc){total_error}"
+)
 self.molecular_hydrogen_mass_100_kpc.name = f"H$_2$ Mass (100 kpc){total_error}"
-self.h2_to_stellar_mass_100_kpc.name = f"H$_2$ to Stellar Mass Fraction (100 kpc){total_error}"
+self.h2_to_stellar_mass_100_kpc.name = (
+    f"H$_2$ to Stellar Mass Fraction (100 kpc){total_error}"
+)
+
+# Formatting script for average of the log of stellar birth densities
+try:
+    average_log_n_b = catalogue.stellar_birth_densities.logaverage
+    stellar_mass = catalogue.apertures.mass_star_100_kpc
+
+    exp_average_log_n_b = unyt.unyt_array(
+        np.exp(average_log_n_b), units=average_log_n_b.units
+    )
+
+    # Ensure haloes with zero stellar mass have zero stellar birth densities
+    no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
+    exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(0.0, average_log_n_b.units)
+
+    name = "Stellar Birth Density (average of log)"
+    exp_average_log_n_b.name = name
+    setattr(self, "average_of_log_stellar_birth_density", exp_average_log_n_b)
+except AttributeError:
+    pass

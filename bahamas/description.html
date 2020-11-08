@@ -60,16 +60,8 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:temperature_threshold_K", "K") }}</td>
     </tr>
     <tr>
-        <td>Virial Parameter</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:alpha_virial") }}</td>
-    </tr>
-    <tr>
         <td>Threshold SF \(n_{\rm H, max}\)</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:subgrid_density_threshold_H_p_CM3") }} cm\(^{-3}\)</td>
-    </tr>
-    <tr>
-        <td>Immediate SF \(n_{\rm H, max}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:threshold_max_density_H_p_cm3") }} cm\(^{-3}\)</td>
     </tr>
 </table>
 
@@ -103,22 +95,6 @@
         <td>SNII \(\Delta T\)</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K", "K") }}</td>
     </tr>
-    <tr>
-        <td>Use Stellar Winds</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_StellarWinds") }}</td>
-    </tr>
-    <tr>
-        <td>Use Radiation Pressure</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_RadiationPressure") }}</td>
-    </tr>
-    <tr>
-        <td>Early Feedback \(v_{\rm kick}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:Momentum_desired_delta_v", "km/s") }}</td>
-    </tr>
-    <tr>
-        <td>Use HII Regions</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_HIIRegions") }}</td>
-    </tr>
 </table>
 
 <h4>Gas Cooling</h4>
@@ -126,31 +102,6 @@
 <p>{{ data.metadata.subgrid_scheme["Cooling Model"].decode("utf-8") }}</p>
 {% else %}
 <p>Disabled</p>
-{% endif %}
-
-<h4>Dust</h4>
-{% if data.metadata.subgrid_scheme.get("Dust Model", False) %}
-<table>
-    <tr>
-        <th>Parameter</th>
-        <th>Value</th>
-    </tr>
-    <tr>
-        <td>Dust Model</td>
-        <td>{{ data.metadata.subgrid_scheme["Dust Model"].decode("utf-8") }}</td>
-    </tr>
-    <tr>
-        <td>With Coupling to Cooling</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("DustEvolution:pair_to_cooling") }}</td>
-    </tr>
-    <tr>
-        <td>Clumping Factor</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("DustEvolution:clumping_factor") }}</td>
-    </tr>
-</table>
-
-{% else %}
-<p>No dust</p>
 {% endif %}
 
 <h4>Entropy Floor</h4>
@@ -223,36 +174,24 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_num_ngb_to_heat") }}</td>
     </tr>
     <tr>
+        <td>Are we using the boost factor</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_boost_factor") }}</td>
+    </tr>
+    <tr>
+        <td>Value of \(\alpha\) for boost factor</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_alpha") }}</td>
+    </tr>
+    <tr>
+        <td>Value of \(\beta\) for boost factor</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_beta") }}</td>
+    </tr>
+    <tr>
+        <td>Value of \(n_{H,*}\) in cm\(^{-3}\) for boost factor</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_n_h_star_cm3") }}</td>
+    </tr>
+    <tr>
         <td>Use sub-grid gas properties</td>
         <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_subgrid_gas_properties") }}</td>
-    </tr>
-    <tr>
-        <td>Use Multi-phase Bondi</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_multi_phase_bondi") }}</td>
-    </tr>
-    <tr>
-        <td>Use Krumholtz Accretion</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_krumholz") }}</td>
-    </tr>
-    <tr>
-        <td>Use Krumholtz Vorticity</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_krumholz_vorticity") }}</td>
-    </tr>
-    <tr>
-        <td>Use Angular Momentum Limiter</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_angmom_limiter") }}</td>
-    </tr>
-    <tr>
-        <td>Viscous \(\alpha\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:viscous_alpha") }}</td>
-    </tr>
-    <tr>
-        <td>Use Nibbling</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_nibbling") }}</td>
-    </tr>
-    <tr>
-        <td>Minimal Gas Mass For Nibbling</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_gas_mass_for_nibbling", "Msun") }}</td>
     </tr>
     <tr>
         <td>Minimum BH time-step</td>
@@ -261,26 +200,6 @@
     <tr>
         <td>Maximal Reposition Mass</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:max_reposition_mass", "Msun") }}</td>
-    </tr>
-    <tr>
-        <td>Use Reposition Velocity Threshold</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_reposition_velocity_threshold") }}</td>
-    </tr>
-    <tr>
-        <td>Maximal Reposition Velocity Offset</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:max_reposition_velocity_ratio") }} \(c_{s, {\rm BH}}\)</td>
-    </tr>
-    <tr>
-        <td>Minimal Reposition Velocity Threshold</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_reposition_velocity_threshold", "km/s") }}</td>
-    </tr>
-    <tr>
-        <td>Set Black Hole Reposition Speed</td>
-	    <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:set_reposition_speed") }}</td>
-    </tr>
-    <tr>
-        <td>Repositioning Speed Normalisation</td>
-	    <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:reposition_coefficient_upsilon", "km/s/Msun") }}</td>
     </tr>
     <tr>
         <td>Black Hole Merger Threshold Type</td>

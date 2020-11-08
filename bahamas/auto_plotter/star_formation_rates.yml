@@ -14,7 +14,6 @@ stellar_mass_sfr_30:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -46,7 +45,6 @@ stellar_mass_sfr_100:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -80,7 +78,6 @@ stellar_mass_specific_sfr_100:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -118,7 +115,6 @@ stellar_mass_specific_sfr_30:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -157,7 +153,6 @@ halo_mass_specific_sfr_30:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -193,7 +188,6 @@ halo_mass_specific_sfr_100:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -228,7 +222,6 @@ halo_mass_sfr_30_halo_mass:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -261,7 +254,6 @@ halo_mass_sfr_100_halo_mass:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 25
     start:
       value: 1e8
@@ -293,7 +285,6 @@ stellar_mass_passive_fraction_30:
     plot: true
     log: true
     scatter: "none"
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -329,7 +320,6 @@ stellar_mass_passive_fraction_100:
     plot: true
     log: true
     scatter: "none"
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6

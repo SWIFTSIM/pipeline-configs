@@ -1,6 +1,6 @@
 stellar_mass_gas_sf_metallicity_30:
   type: "scatter"
-  legend_loc: "upper left"
+  legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_30_kpc"
   comment: "Active only"
   y:
@@ -12,18 +12,17 @@ stellar_mass_gas_sf_metallicity_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e6
-    end: 1e12
+    start: 1e9
+    end: 1e13
   median:
     plot: true
     log: true
-    adaptive: true
-    number_of_bins: 30
+    number_of_bins: 25
     start:
-      value: 1e6
+      value: 1e9
       units: solar_mass
     end:
-      value: 1e12
+      value: 1e13
       units: solar_mass
   metadata:
     title: "Stellar mass - Gas metallicity relation (30 kpc aperture)"
@@ -37,7 +36,7 @@ stellar_mass_gas_sf_metallicity_30:
 
 stellar_mass_gas_sf_metallicity_100:
   type: "scatter"
-  legend_loc: "upper left"
+  legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_100_kpc"
   comment: "Active only"
   y:
@@ -49,18 +48,17 @@ stellar_mass_gas_sf_metallicity_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e6
-    end: 1e12
+    start: 1e9
+    end: 1e13
   median:
     plot: true
     log: true
-    adaptive: true
-    number_of_bins: 30
+    number_of_bins: 25
     start:
-      value: 1e6
+      value: 1e9
       units: solar_mass
     end:
-      value: 1e12
+      value: 1e13
       units: solar_mass
   metadata:
     title: "Stellar mass - Gas metallicity relation (100 kpc aperture)"
@@ -73,7 +71,7 @@ stellar_mass_gas_sf_metallicity_100:
 
 stellar_mass_star_metallicity_100:
   type: "scatter"
-  legend_loc: "upper left"
+  legend_loc: "lower right"
   y:
     quantity: "derived_quantities.star_metallicity_in_solar_100_kpc"
     units: "dimensionless"
@@ -82,18 +80,17 @@ stellar_mass_star_metallicity_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e6
-    end: 1e12
+    start: 1e9
+    end: 1e13
   median:
     plot: true
     log: true
-    adaptive: true
-    number_of_bins: 30
+    number_of_bins: 25
     start:
-      value: 1e6
+      value: 1e9
       units: solar_mass
     end:
-      value: 1e12
+      value: 1e13
       units: solar_mass
   metadata:
     title: "Stellar mass - Star metallicity relation (100 kpc aperture)"
@@ -114,18 +111,17 @@ stellar_mass_star_metallicity_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e6
-    end: 1e12
+    start: 1e9
+    end: 1e13
   median:
     plot: true
     log: true
-    adaptive: true
-    number_of_bins: 30
+    number_of_bins: 25
     start:
-      value: 1e6
+      value: 1e9
       units: solar_mass
     end:
-      value: 1e12
+      value: 1e13
       units: solar_mass
   metadata:
     title: "Stellar mass - Star metallicity relation (30 kpc aperture)"

@@ -66,7 +66,7 @@ for color, (snapshot_filename, stats_filename, name) in enumerate(
             zorder=10000,
         )[0]
     )
-    
+
     # Stellar metallicity not used as a line.
     ax.plot(
         scale_factor,

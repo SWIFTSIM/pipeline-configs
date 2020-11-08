@@ -14,7 +14,6 @@ stellar_mass_galaxy_size_100:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -46,7 +45,6 @@ stellar_mass_galaxy_size_30:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -79,7 +77,6 @@ stellar_mass_projected_galaxy_size_100:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -112,7 +109,6 @@ stellar_mass_projected_galaxy_size_30:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -149,7 +145,6 @@ stellar_mass_projected_galaxy_size_active_only_100:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -185,7 +180,6 @@ stellar_mass_projected_galaxy_size_active_only_30:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -222,7 +216,6 @@ stellar_mass_projected_galaxy_size_passive_only_100:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -258,7 +251,6 @@ stellar_mass_projected_galaxy_size_passive_only_30:
   median:
     plot: true
     log: true
-    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6

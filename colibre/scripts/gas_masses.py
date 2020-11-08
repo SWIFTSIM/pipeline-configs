@@ -11,23 +11,23 @@ from unyt import unyt_quantity
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
 
-mass_bounds = [0.5, 8.5]
+mass_bounds = [0.5, 10]
 
 
 def get_data(filename):
     """
-    Grabs the data (masses in 10**6 Msun).
+    Grabs the data (masses in 10**5 Msun).
     """
 
     data = load(filename)
 
-    mass_gas = data.gas.masses.to("1e6 * Msun")
+    mass_gas = data.gas.masses.to("1e5 * Msun")
     mass_split = unyt_quantity(
         float(
             data.metadata.parameters.get("SPH:particle_splitting_mass_threshold", 0.0)
         ),
         units=data.units.mass,
-    ).to("1e6 * Msun")
+    ).to("1e5 * Msun")
 
     return mass_gas, mass_split
 
@@ -40,7 +40,7 @@ def make_single_image(
     """
 
     fig, ax = plt.subplots()
-    ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^6$ M$_\odot$]")
+    ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^5$ M$_\odot$]")
     ax.set_ylabel("PDF [-]")
     ax.semilogy()
 

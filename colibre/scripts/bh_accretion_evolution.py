@@ -1,5 +1,5 @@
 """
-Plots the gas and stellar metallicity density evolution.
+Plots the BH accretion rate density evolution
 """
 import matplotlib
 
@@ -8,14 +8,17 @@ import unyt
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+import glob
 
 
 from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
+from velociraptor.observations import load_observation
+
 arguments = ScriptArgumentParser(
-    description="Creates a metallicity density evolution plot for gas, stars and black holes."
+    description="Creates a BH accretion rate density evolution plot, with added observational data."
 )
 
 snapshot_filenames = [
@@ -39,8 +42,8 @@ fig, ax = plt.subplots()
 
 ax.loglog()
 
-for color, (snapshot_filename, stats_filename, name) in enumerate(
-    zip(snapshot_filenames, stats_filenames, names)
+for snapshot_filename, stats_filename, name in zip(
+    snapshot_filenames, stats_filenames, names
 ):
     data = load_statistics(stats_filename)
 
@@ -48,38 +51,42 @@ for color, (snapshot_filename, stats_filename, name) in enumerate(
     boxsize = snapshot.metadata.boxsize.to("Mpc")
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
 
-    # a, Redshift, SFR
+    # a, Redshift, BHARD
     scale_factor = data.a
     redshift = data.z
-    gas_Z_mass = data.gas_z_mass.to("Msun")
-    star_Z_mass = data.star_z_mass.to("Msun")
-    gas_Z_mass_density = gas_Z_mass / box_volume
-    star_Z_mass_density = star_Z_mass / box_volume
+    bh_instant_accretion_rate = data.bh_acc_rate.to("Msun / yr")
+    bh_instant_accretion_rate_density = bh_instant_accretion_rate / box_volume
+
+    # Compute BHAR from BH accreted mass and time
+    time = data.time.to("yr")
+    bh_accreted_mass = data.bh_acc_mass.to("Msun")
+    bh_accretion_rate = (bh_accreted_mass[1:] - bh_accreted_mass[:-1]) / (
+        time[1:] - time[:-1]
+    )
+    bh_accretion_rate_density = bh_accretion_rate / box_volume
 
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(
         ax.plot(
-            scale_factor,
-            gas_Z_mass_density,
-            linestyle="solid",
-            color=f"C{color}",
+            0.5 * (scale_factor[1:] + scale_factor[:-1]),
+            bh_accretion_rate_density,
             zorder=10000,
         )[0]
     )
-    
-    # Stellar metallicity not used as a line.
-    ax.plot(
-        scale_factor,
-        star_Z_mass_density,
-        linestyle="dashed",
-        color=f"C{color}",
-        zorder=10000,
-    )
-
     simulation_labels.append(name)
 
+# Observational data plotting
+
+observational_data = glob.glob(
+    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/BlackHoleAccretionHistory/*.hdf5"
+)
+
+for index, observation in enumerate(observational_data):
+    obs = load_observation(observation)
+    obs.plot_on_axes(ax)
+
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"Metal Mass $\rho_{\rm Z}$ [M$_\odot$ Mpc$^{-3}$]")
+ax.set_ylabel(r"BH Accretion Rate Density [M$_\odot$ yr$^{-1}$ Mpc$^{-3}$]")
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [
@@ -102,19 +109,11 @@ ax.set_xticklabels(redshift_labels)
 ax.tick_params(axis="x", which="minor", bottom=False)
 
 ax.set_xlim(1.02, 0.07)
-ax.set_ylim(3e4, 4e7)
+ax.set_ylim(6e-7, 6e-4)
 
-from matplotlib.lines import Line2D
+observation_legend = ax.legend(markerfirst=True, loc="lower left")
 
-custom_lines = [
-    Line2D([0], [0], color="black", linestyle="solid"),
-    Line2D([0], [0], color="black", linestyle="dashed"),
-]
-custom_legend = ax.legend(
-    custom_lines, ["Gas", "Stars"], markerfirst=True, loc="lower left"
-)
-
-ax.add_artist(custom_legend)
+ax.add_artist(observation_legend)
 
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
@@ -122,4 +121,4 @@ simulation_legend = ax.legend(
 
 ax.add_artist(simulation_legend)
 
-fig.savefig(f"{output_path}/metallicity_evolution.png")
+fig.savefig(f"{output_path}/bh_accretion_evolution.png")

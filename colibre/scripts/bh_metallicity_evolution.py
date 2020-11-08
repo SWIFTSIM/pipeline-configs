@@ -1,5 +1,5 @@
 """
-Plots the gas and stellar metallicity density evolution.
+Plots the stellar metallicity density evolution.
 """
 import matplotlib
 
@@ -39,8 +39,8 @@ fig, ax = plt.subplots()
 
 ax.loglog()
 
-for color, (snapshot_filename, stats_filename, name) in enumerate(
-    zip(snapshot_filenames, stats_filenames, names)
+for snapshot_filename, stats_filename, name in zip(
+    snapshot_filenames, stats_filenames, names
 ):
     data = load_statistics(stats_filename)
 
@@ -51,35 +51,15 @@ for color, (snapshot_filename, stats_filename, name) in enumerate(
     # a, Redshift, SFR
     scale_factor = data.a
     redshift = data.z
-    gas_Z_mass = data.gas_z_mass.to("Msun")
-    star_Z_mass = data.star_z_mass.to("Msun")
-    gas_Z_mass_density = gas_Z_mass / box_volume
-    star_Z_mass_density = star_Z_mass / box_volume
+    bh_Z_mass = data.bh_z_mass.to("Msun")
+    bh_Z_mass_density = bh_Z_mass / box_volume
 
     # High z-order as we always want these to be on top of the observations
-    simulation_lines.append(
-        ax.plot(
-            scale_factor,
-            gas_Z_mass_density,
-            linestyle="solid",
-            color=f"C{color}",
-            zorder=10000,
-        )[0]
-    )
-    
-    # Stellar metallicity not used as a line.
-    ax.plot(
-        scale_factor,
-        star_Z_mass_density,
-        linestyle="dashed",
-        color=f"C{color}",
-        zorder=10000,
-    )
-
+    simulation_lines.append(ax.plot(scale_factor, bh_Z_mass_density, zorder=10000)[0])
     simulation_labels.append(name)
 
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"Metal Mass $\rho_{\rm Z}$ [M$_\odot$ Mpc$^{-3}$]")
+ax.set_ylabel(r"Metal Mass in Black Holes $\rho_{\rm BH,Z}$ [M$_\odot$ Mpc$^{-3}$]")
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [
@@ -102,19 +82,7 @@ ax.set_xticklabels(redshift_labels)
 ax.tick_params(axis="x", which="minor", bottom=False)
 
 ax.set_xlim(1.02, 0.07)
-ax.set_ylim(3e4, 4e7)
-
-from matplotlib.lines import Line2D
-
-custom_lines = [
-    Line2D([0], [0], color="black", linestyle="solid"),
-    Line2D([0], [0], color="black", linestyle="dashed"),
-]
-custom_legend = ax.legend(
-    custom_lines, ["Gas", "Stars"], markerfirst=True, loc="lower left"
-)
-
-ax.add_artist(custom_legend)
+ax.set_ylim(3e1, 4e4)
 
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
@@ -122,4 +90,4 @@ simulation_legend = ax.legend(
 
 ax.add_artist(simulation_legend)
 
-fig.savefig(f"{output_path}/metallicity_evolution.png")
+fig.savefig(f"{output_path}/bh_metallicity_evolution.png")

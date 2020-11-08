@@ -111,6 +111,11 @@ scripts:
     output_file: gas_max_temperatures.png
     section: Histograms
     title: Maximal Temperature reached by gas particles
+  - filename: scripts/particle_updates_step_cost.py
+    caption: Wall-clock time to run a time-step as a function of the number of gas particles updated. The tracks at the top correspond to steps where the tree is rebuilt, i/o is performed, FoF is run or other non-regular operations are done.
+    title: Wall-clock time per gas particle updates.
+    section: Run Performance
+    output_file: particle_updates_step_cost.png
   - filename: scripts/wallclock_simulation_time.py
     caption: The cosmic time as a function of the wall-clock time.
     title: Cosmic time vs. wall-clock time

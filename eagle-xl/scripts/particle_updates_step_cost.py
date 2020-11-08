@@ -13,14 +13,14 @@ from swiftsimio import load
 from glob import glob
 
 # Set the limits of the figure.
-update_bounds = [1, 10.0 ** 10.0]  #
-wallclock_bounds = [1, 10.0 ** 6.0]  # in ms
+update_bounds = unyt.unyt_array([1, 10.0 ** 10.0], units="dimensionless")
+wallclock_bounds = unyt.unyt_array([1, 10.0 ** 6.0], units="ms")
 bins = 512
 
 
 def get_data(filename):
     """
-    Grabs the data (T in Kelvin and density in mh / cm^3).
+    Grabs the data (number of updates, wallclock time in milliseconds).
     """
 
     data = np.genfromtxt(filename, skip_footer=5, loose=True, invalid_raise=False).T
@@ -28,7 +28,7 @@ def get_data(filename):
     number_of_updates = unyt.unyt_array(data[7], units="dimensionless")
     wallclock_time = unyt.unyt_array(data[-2], units="ms")
 
-    return number_of_updates.value, wallclock_time.value
+    return number_of_updates, wallclock_time
 
 
 def make_hist(filename, update_bounds, wallclock_bounds, bins):
@@ -40,12 +40,10 @@ def make_hist(filename, update_bounds, wallclock_bounds, bins):
     """
 
     number_of_updates_bins = unyt.unyt_array(
-        np.logspace(np.log10(update_bounds[0]), np.log10(update_bounds[1]), bins),
-        units="dimensionless",
+        np.logspace(*np.log10(update_bounds), bins), units=update_bounds.units
     )
     wallclock_time_bins = unyt.unyt_array(
-        np.logspace(np.log10(wallclock_bounds[0]), np.log10(wallclock_bounds[1]), bins),
-        units="ms",
+        np.logspace(*np.log10(wallclock_bounds), bins), units=wallclock_bounds.units
     )
 
     H, update_edges, wallclock_edges = np.histogram2d(

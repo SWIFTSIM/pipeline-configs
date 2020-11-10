@@ -2,7 +2,7 @@ h2_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
-  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
@@ -26,7 +26,7 @@ h2_frac_func_stellar_mass:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-H$_2$ Fraction
-    section: Hydrogen Species H_2 Fractions
+    section: Cold Gas Relations
     caption: Galaxy H_$2$ fraction as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
@@ -35,7 +35,7 @@ h2_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
   selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
-  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
     units: "1 / Gigayear"
@@ -59,7 +59,7 @@ h2_frac_func_ssfr:
       units: "1 / Gigayear"
   metadata:
     title: sSFR-H$_2$ Fraction
-    section: Hydrogen Species H_2 Fractions
+    section: Cold Gas Relations
     caption: Galaxy H_$2$ fraction as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_sSFR.hdf5
@@ -68,11 +68,11 @@ h2_frac_func_stellar_surface_density:
   type: "scatter"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
-  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
     quantity: "derived_quantities.mu_star_100_kpc"
     units: "Solar_Mass / (kpc**2)"
-    start: 1e6
+    start: 1e9
     end: 1e11
   y:
     quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
@@ -92,7 +92,7 @@ h2_frac_func_stellar_surface_density:
       units: "Solar_Mass / (kpc**2)"
   metadata:
     title: Stellar Mass Surface Density-H$_2$ Fraction
-    section: Hydrogen Species H_2 Fractions
+    section: Cold Gas Relations
     caption: Galaxy H_$2$ fraction as a function of stellar mass surfaced density in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_mu_star.hdf5
@@ -101,7 +101,7 @@ hi_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.xgass_galaxy_selection"
-  comment: r"$10^9 M_{\odot} < M_{\ast} < 10^{11.5} M_{\odot}$"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
@@ -125,7 +125,7 @@ hi_frac_func_stellar_mass:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-HI Fraction
-    section: Hydrogen Species HI Fractions
+    section: Cold Gas Relations
     caption: Galaxy HI fraction as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_M_star.hdf5
@@ -157,7 +157,7 @@ hi_frac_func_ssfr:
       units: "1 / Gigayear"
   metadata:
     title: sSFR-HI Fraction
-    section: Hydrogen Species HI Fractions
+    section: Cold Gas Relations
     caption: Galaxy HI fraction as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_sSFR.hdf5
@@ -169,7 +169,7 @@ hi_frac_func_stellar_surface_density:
   x:
     quantity: "derived_quantities.mu_star_100_kpc"
     units: "Solar_Mass / (kpc**2)"
-    start: 1e6
+    start: 1e9
     end: 1e11
   y:
     quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
@@ -189,7 +189,7 @@ hi_frac_func_stellar_surface_density:
       units: "Solar_Mass / (kpc**2)"
   metadata:
     title: Stellar Mass Surface Density-HI Fraction
-    section: Hydrogen Species HI Fractions
+    section: Cold Gas Relations
     caption: Galaxy HI fraction as a function of stellar mass surface density in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_mu_star.hdf5

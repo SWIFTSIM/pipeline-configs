@@ -27,7 +27,7 @@ stellar_mass_gas_sf_metallicity_30:
       units: solar_mass
   metadata:
     title: "Stellar mass - Gas metallicity relation (30 kpc aperture)"
-    caption: Only shown for star forming galaxies. A minimum metallicity of 12 + log O/H = 7.5 is imposed for the star-forming gas. All haloes are plotted, including subhaloes.
+    caption: Only shown for star forming galaxies. Computed as the average mass-weighted metal mass fraction over the star forming gas. A minimum metallicity of 12 + log O/H = 7.5 is imposed for the star-forming gas. All haloes are plotted, including subhaloes.
     section: Metallicity
     show_on_webpage: false
   observational_data:
@@ -64,7 +64,7 @@ stellar_mass_gas_sf_metallicity_100:
       units: solar_mass
   metadata:
     title: "Stellar mass - Gas metallicity relation (100 kpc aperture)"
-    caption: Only shown for star forming galaxies. A minimum metallicity of 12 + log O/H = 7.5 is imposed for the star-forming gas. All haloes are plotted, including subhaloes.
+    caption: Only shown for star forming galaxies. Computed as the average mass-weighted metal mass fraction over the star forming gas. A minimum metallicity of 12 + log O/H = 7.5 is imposed for the star-forming gas. All haloes are plotted, including subhaloes.
     section: Metallicity
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5

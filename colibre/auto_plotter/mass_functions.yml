@@ -71,8 +71,8 @@ adaptive_stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
 
-stellar_mass_function_active_only_30:
-  type: "massfunction"
+adaptive_stellar_mass_function_active_only_30:
+  type: "adaptivemassfunction"
   legend_loc: "lower left"
   comment: "Active only"
   comment_loc: "lower right"
@@ -89,7 +89,7 @@ stellar_mass_function_active_only_30:
     end: 1e0
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
-    caption: Only for active galaxies.
+    caption: Only for active galaxies, using an adaptive bin width.
     section: Stellar Mass Function
     show_on_webpage: false
   observational_data:
@@ -97,8 +97,8 @@ stellar_mass_function_active_only_30:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
 
-stellar_mass_function_passive_only_30:
-  type: "massfunction"
+adaptive_stellar_mass_function_passive_only_30:
+  type: "adaptivemassfunction"
   legend_loc: "lower left"
   comment: "Passive only"
   comment_loc: "lower right"
@@ -115,7 +115,7 @@ stellar_mass_function_passive_only_30:
     end: 1e0
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
-    caption: Only for passive galaxies.
+    caption: Only for passive galaxies, using an adaptive bin width.
     section: Stellar Mass Function
     show_on_webpage: false
   observational_data:
@@ -168,7 +168,7 @@ adaptive_stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
 
-stellar_mass_function_passive_only_100:
+adaptive_stellar_mass_function_passive_only_100:
   type: "massfunction"
   number_of_bins: 30
   legend_loc: "lower left"
@@ -186,15 +186,15 @@ stellar_mass_function_passive_only_100:
     end: 1e0
   metadata:
     title: Stellar Mass Function (100 kpc aperture)
-    caption: Only for passive galaxies.
+    caption: Only for passive galaxies, using an adaptive bin width.
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
 
-stellar_mass_function_active_only_100:
-  type: "massfunction"
+adaptive_stellar_mass_function_active_only_100:
+  type: "adaptivemassfunction"
   number_of_bins: 30
   legend_loc: "lower left"
   comment: "Active only"
@@ -211,7 +211,7 @@ stellar_mass_function_active_only_100:
     end: 1e0
   metadata:
     title: Stellar Mass Function (100 kpc aperture)
-    caption: Only for active galaxies.
+    caption: Only for active galaxies, using an adaptive bin width.
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5

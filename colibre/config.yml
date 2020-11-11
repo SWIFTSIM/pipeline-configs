@@ -27,7 +27,7 @@ scripts:
     section: Density-Temperature
     title: Density-Temperature
   - filename: scripts/density_temperature_metals.py
-    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metallicity in that bin. Medians are not used due to their computational complexity.
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity.
     output_file: density_temperature_metals.png
     section: Density-Temperature
     title: Density-Temperature (Metals)

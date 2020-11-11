@@ -25,7 +25,7 @@ stellar_mass_galaxy_size_100:
   metadata:
     title: Stellar Mass-Galaxy Size relation (100 kpc aperture)
     caption: Uses a 100 kpc 3D aperture.
-    section: Galaxy Sizes
+    section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Trujillo2020.hdf5
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
@@ -57,7 +57,7 @@ stellar_mass_galaxy_size_30:
   metadata:
     title: Stellar Mass-Galaxy Size relation (30 kpc aperture)
     caption: Uses a 30 kpc 3D aperture.
-    section: Galaxy Sizes
+    section: Sizes
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Trujillo2020.hdf5
@@ -90,7 +90,7 @@ stellar_mass_projected_galaxy_size_100:
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
     caption: Uses stellar sizes calculated from a projected distribution within a 100 kpc aperture.
-    section: Galaxy Sizes
+    section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
@@ -123,7 +123,7 @@ stellar_mass_projected_galaxy_size_30:
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
     caption: Uses stellar sizes calculated from a projected distribution within a 100 kpc aperture.
-    section: Galaxy Sizes
+    section: Sizes
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
@@ -160,7 +160,7 @@ stellar_mass_projected_galaxy_size_active_only_100:
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
     caption: Only shows active galaxies defined based on their sSFRs.
-    section: Galaxy Sizes
+    section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
@@ -196,7 +196,7 @@ stellar_mass_projected_galaxy_size_active_only_30:
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
     caption: Only shows active galaxies defined based on their sSFRs.
-    section: Galaxy Sizes
+    section: Sizes
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
@@ -233,7 +233,7 @@ stellar_mass_projected_galaxy_size_passive_only_100:
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
     caption: Only shows passive galaxies defined based on their sSFRs.
-    section: Galaxy Sizes
+    section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
@@ -269,7 +269,7 @@ stellar_mass_projected_galaxy_size_passive_only_30:
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
     caption: Only shows passive galaxies defined based on their sSFRs.
-    section: Galaxy Sizes
+    section: Sizes
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5

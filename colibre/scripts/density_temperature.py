@@ -7,13 +7,12 @@ import numpy as np
 
 from swiftsimio import load
 
-from unyt import mh, cm, Gyr
+from unyt import mh, cm
 from matplotlib.colors import LogNorm
-from matplotlib.animation import FuncAnimation
 
 # Set the limits of the figure.
 density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
-temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
+temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
 bins = 256
 
 
@@ -142,4 +141,3 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
     )
-

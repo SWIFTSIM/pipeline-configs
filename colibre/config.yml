@@ -52,7 +52,7 @@ scripts:
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
   - filename: scripts/birth_density_distribution.py
-    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
+    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for f_t=10.
     title: Stellar Birth Densities
     section: Stellar Birth Densities
     output_file: birth_density_distribution.png
@@ -72,7 +72,7 @@ scripts:
     section: Stellar Birth Densities
     output_file: metallicity_redshift.png
   - filename: scripts/SNII_density_distribution.py
-    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for f_t=10.
     title: Density of the gas heated by SNII
     section: Feedback Densities
     output_file: SNII_density_distribution.png

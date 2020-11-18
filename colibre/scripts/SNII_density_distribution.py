@@ -39,8 +39,8 @@ def critical_density_DVS2012(
     X_H: Average mass fraction of hydrogen
 
     f_t: float
-        The ratio of the sound crossing time-scale (through an SPH kernel)
-        to the cooling time-scale (at temperature T_K)
+        The ratio of the cooling time-scale (at temperature T_K) to the sound crossing
+        time-scale (through the SPH kernel corresponding to M_gas and n_Hc)
 
     mu: Mean molecular weight of the heated gas (0.6 assumes the gas is fully ionised)
 

@@ -47,7 +47,7 @@ def critical_density_DVS2012(
     Returns
     -------
 
-    output: float
+    n_Hc: float
         The critical density expressed in hydrogen particles per cubic centimetre
     """
 
@@ -55,7 +55,7 @@ def critical_density_DVS2012(
     g = np.power(X_H, -1.0 / 3.0) * f_X
 
     # Critical density
-    n_H = (
+    n_Hc = (
         31.0
         * np.power(T_K / 10.0 ** 7.5, 3.0 / 2.0)
         * np.power(f_t / 10.0, -3.0 / 2.0)
@@ -65,7 +65,7 @@ def critical_density_DVS2012(
         * np.power(g / 0.14, 3.0 / 2.0)
     )  # Eq. 18 in DV&S2012
 
-    return n_H
+    return n_Hc
 
 
 arguments = ScriptArgumentParser(

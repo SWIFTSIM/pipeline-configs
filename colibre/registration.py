@@ -128,7 +128,7 @@ for aperture_size in aperture_sizes:
     setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
 
 
-# if present iterate through available dust types
+# If present, iterate through available dust types
 try:
     dust_fields = []
     for sub_path in dir(catalogue.dust_mass_fractions):
@@ -146,12 +146,17 @@ total_dust_mass.name = name
 
 setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
 
-# Now HI masses
-
+# Get HI masses
 try:
     gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
+
+    # Try CHIMES arrays
+    if hasattr(catalogue.species_fractions, "species_7"):
+        HI_frac = getattr(catalogue.species_fractions, "species_1")
+    # If species_7 doesn't exist, switch to the (default) Table-cooling case
+    else:
+        HI_frac = getattr(catalogue.species_fractions, "species_0")
 
     HI_mass = gas_mass * H_frac * HI_frac
     HI_mass.name = "$M_{\\rm HI}$"
@@ -167,15 +172,19 @@ except AttributeError:
         ),
     )
 
-
-# Now H2 masses
-
+# Get H2 masses
 try:
     gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
 
-    H2_mass = gas_mass * H_frac * H2_frac * 2
+    # Try CHIMES arrays
+    if hasattr(catalogue.species_fractions, "species_7"):
+        H2_frac = getattr(catalogue.species_fractions, "species_7")
+    # If species_7 doesn't exist, switch to the (default) Table-cooling case
+    else:
+        H2_frac = getattr(catalogue.species_fractions, "species_2")
+
+    H2_mass = gas_mass * H_frac * H2_frac * 2.0
     H2_mass.name = "$M_{\\rm H_2}$"
 
     setattr(self, "gas_H2_mass_Msun", H2_mass)
@@ -189,13 +198,19 @@ except AttributeError:
         ),
     )
 
-# Now neutral H masses and fractions
-
+# Get neutral H masses and fractions
 try:
     gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
+
+    # Try CHIMES arrays
+    if hasattr(catalogue.species_fractions, "species_7"):
+        HI_frac = getattr(catalogue.species_fractions, "species_1")
+        H2_frac = getattr(catalogue.species_fractions, "species_7")
+    # If species_7 doesn't exist, switch to the (default) Table-cooling case
+    else:
+        HI_frac = getattr(catalogue.species_fractions, "species_0")
+        H2_frac = getattr(catalogue.species_fractions, "species_2")
 
     HI_mass = gas_mass * H_frac * HI_frac
     H2_mass = gas_mass * H_frac * H2_frac * 2

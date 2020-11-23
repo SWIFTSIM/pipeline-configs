@@ -15,7 +15,7 @@ from swiftsimio import load, load_statistics
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a metallicity density evolution plot for gas, stars and black holes."
+    description="Creates a metallicity density evolution plot for black holes."
 )
 
 snapshot_filenames = [
@@ -48,7 +48,7 @@ for snapshot_filename, stats_filename, name in zip(
     boxsize = snapshot.metadata.boxsize.to("Mpc")
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
 
-    # a, Redshift, SFR
+    # a, Redshift, Z
     scale_factor = data.a
     redshift = data.z
     bh_Z_mass = data.bh_z_mass.to("Msun")

@@ -7,14 +7,14 @@ import numpy as np
 
 from swiftsimio import load
 
-from unyt import mh, cm, Gyr, s, km
+from unyt import mh, cm, s, km
 from matplotlib.colors import LogNorm
-from matplotlib.animation import FuncAnimation
 
 # Constants; these could be put in the parameter file but are rarely changed.
-density_bounds = [10**(-9.5), 1e6]  # in nh/cm^3
-internal_energy_bounds = [10 ** (-4), 10 ** (6)]  # in 
+density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
+internal_energy_bounds = [10 ** (-4), 10 ** 6]  # in
 bins = 256
+
 
 def get_data(filename):
     """
@@ -22,9 +22,9 @@ def get_data(filename):
     """
 
     data = load(filename)
-    
-    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
-    internal_energy = (data.gas.internal_energies.to_physical()).to(km**2 / s**2)
+
+    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
+    internal_energy = (data.gas.internal_energies.to_physical()).to(km ** 2 / s ** 2)
 
     return number_density.value, internal_energy.value
 
@@ -116,6 +116,7 @@ def make_single_image(
 
     return
 
+
 if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
@@ -139,4 +140,3 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
     )
-

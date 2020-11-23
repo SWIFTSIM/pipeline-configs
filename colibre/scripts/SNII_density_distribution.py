@@ -65,6 +65,16 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     )
     gas_SNII_redshifts = 1 / snapshot.gas.last_sniifeedback_scale_factors.value - 1
 
+    # Limit only to those gas/stellar particles that were in fact heated by SNII
+    stars_SNII_heated = stars_SNII_densities > 0.0
+    gas_SNII_heated = gas_SNII_densities > 0.0
+
+    # Select only those parts that were heated by SNII in the past
+    stars_SNII_densities = stars_SNII_densities[stars_SNII_heated]
+    stars_SNII_redshifts = stars_SNII_redshifts[stars_SNII_heated]
+    gas_SNII_densities = gas_SNII_densities[gas_SNII_heated]
+    gas_SNII_redshifts = gas_SNII_redshifts[gas_SNII_heated]
+
     # Segment SNII densities into redshift bins
     stars_SNII_densities_by_redshift = {
         "$z < 1$": stars_SNII_densities[stars_SNII_redshifts < 1],

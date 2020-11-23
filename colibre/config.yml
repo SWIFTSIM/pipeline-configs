@@ -31,6 +31,11 @@ scripts:
     output_file: density_temperature_metals.png
     section: Density-Temperature
     title: Density-Temperature (Metals)
+  - filename: scripts/density_temperature_dust.py
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic dust mass fraction in that bin. Medians are not used due to their computational complexity.
+    output_file: density_temperature_dust.png
+    section: Density-Temperature
+    title: Density-Temperature (Dust)
   - filename: scripts/density_internal_energy.py
     caption: Density-Internal Energy diagram.
     output_file: density_internal_energy.png

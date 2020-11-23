@@ -13,8 +13,9 @@ from matplotlib.animation import FuncAnimation
 
 # Constants; these could be put in the parameter file but are rarely changed.
 density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
-pressure_bounds = [10 ** (-8), 10 ** (8)]  # in K/cm^3
+pressure_bounds = [10 ** (-8.0), 10 ** 8.0]  # in K/cm^3
 bins = 256
+
 
 def get_data(filename):
     """
@@ -89,6 +90,7 @@ def make_single_image(filename, density_bounds, pressure_bounds, bins, output_pa
     Makes a single plot of rho-P
     """
 
+
 def make_single_image(
     filenames,
     names,
@@ -146,4 +148,3 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
     )
-

@@ -1,28 +1,25 @@
 """
-Makes a rho-T plot. Uses the swiftsimio library.
+Makes a rho-T plot normalised by the dust mass fraction. Uses the swiftsimio library.
 """
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.stats import binned_statistic_2d as bs2d
-
 from swiftsimio import load
 
-from unyt import mh, cm, Gyr
-from matplotlib.colors import LogNorm
-from matplotlib.animation import FuncAnimation
+from unyt import mh, cm
+from matplotlib.colors import Normalize
 
 # Set the limits of the figure.
 density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
-temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
-dustfracs_bounds = [1e-4, 1e-1]  # In metal mass fraction
+temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
+dustfracs_bounds = [-5, -1]  # dimensionless (dust mass / gas mass)
 min_dustfracs = dustfracs_bounds[0]
 bins = 256
 
 
 def get_data(filename, prefix_rho, prefix_T):
     """
-    Grabs the data (T in Kelvin and density in mh / cm^3).
+    Grabs the data (T in Kelvin, density in mh / cm^3, and log10 dust mass fraction)
     """
 
     data = load(filename)
@@ -31,7 +28,6 @@ def get_data(filename, prefix_rho, prefix_T):
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
     ).to(cm ** -3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
-    masses = data.gas.masses.to_physical().to("Msun")
 
     dfracs = np.zeros(data.gas.masses.shape)
 
@@ -39,10 +35,9 @@ def get_data(filename, prefix_rho, prefix_T):
         if hasattr(getattr(data.gas.dust_mass_fractions, d), "units"):
             dfracs += getattr(data.gas.dust_mass_fractions, d)
 
-    dfracs[dfracs < min_dustfracs] = min_dustfracs
-    print(dfracs)
+    dfracs[dfracs < 10.0 ** min_dustfracs] = 10.0 ** min_dustfracs
 
-    return number_density.value, temperature.value, dfracs.value, masses.value
+    return number_density.value, temperature.value, np.log10(dfracs.value)
 
 
 def make_hist(
@@ -62,14 +57,12 @@ def make_hist(
         np.log10(temperature_bounds[0]), np.log10(temperature_bounds[1]), bins
     )
 
-    nH, T, D, Mg = get_data(filename, prefix_rho, prefix_T)
+    nH, T, D = get_data(filename, prefix_rho, prefix_T)
 
     H, density_edges, temperature_edges = np.histogram2d(
-        nH, T, bins=[density_bins, temperature_bins], weights=D * Mg
+        nH, T, bins=[density_bins, temperature_bins], weights=D
     )
-    H_norm, _, _ = np.histogram2d(
-        nH, T, bins=[density_bins, temperature_bins], weights=Mg
-    )
+    H_norm, _, _ = np.histogram2d(nH, T, bins=[density_bins, temperature_bins])
 
     # Avoid div/0
     mask = H_norm == 0.0
@@ -105,7 +98,7 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
         if prop_type == "hydro":
             axis.set_xlabel("Density [$n_H$ cm$^{-3}$]")
         elif prop_type == "subgrid":
-            axis.set_xlabel("Subgrid Physical Density [$n_H$ cm$^{-3}$]")
+            axis.set_xlabel("Subgrid Density [$n_H$ cm$^{-3}$]")
         else:
             raise Exception("Unrecognised property type.")
     for axis in np.atleast_2d(ax).T[:][0]:
@@ -125,6 +118,7 @@ def make_single_image(
     number_of_simulations,
     density_bounds,
     temperature_bounds,
+    dustfracs_bounds,
     bins,
     output_path,
     prop_type,
@@ -152,19 +146,18 @@ def make_single_image(
         )
         hists.append(hist)
 
-    vmax = np.max([np.max(hist) for hist in hists])
-
     for hist, name, axis in zip(hists, names, ax.flat):
         mappable = axis.pcolormesh(
-            d, T, hist, norm=LogNorm(vmin=dustfracs_bounds[0], vmax=dustfracs_bounds[1])
+            d,
+            T,
+            hist,
+            norm=Normalize(vmin=dustfracs_bounds[0], vmax=dustfracs_bounds[1]),
         )
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
 
-    # add line
-    x = np.linspace(1e-2, 1e4, 100)
-    plt.plot(x, 160 * pow(x, -0.23), lw=0.5)
-
-    fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Dust Mass Fraction")
+    fig.colorbar(
+        mappable, ax=ax.ravel().tolist(), label="Mean (Logarithmic) Dust Mass Fraction",
+    )
 
     fig.savefig(f"{output_path}/{prefix_T}density_temperature_dust.png")
 
@@ -194,6 +187,7 @@ if __name__ == "__main__":
         number_of_simulations=arguments.number_of_inputs,
         density_bounds=density_bounds,
         temperature_bounds=temperature_bounds,
+        dustfracs_bounds=dustfracs_bounds,
         bins=bins,
         output_path=arguments.output_directory,
         prop_type=arguments.quantity_type,

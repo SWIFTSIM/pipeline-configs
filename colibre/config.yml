@@ -57,7 +57,7 @@ scripts:
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
   - filename: scripts/birth_density_distribution.py
-    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
+    caption: Distributions of stellar birth densities, split by birth redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
     title: Stellar Birth Densities
     section: Stellar Birth Densities
     output_file: birth_density_distribution.png

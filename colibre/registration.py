@@ -24,9 +24,11 @@ This file calculates:
         velociraptor outputs the log of the quantity we need, so we take exp(...) of it
 """
 
+# Aperture sizes in kpc in which stellar mass is computed
 aperture_sizes = [30, 100]
 
-# Specific star formation rate in apertures, as well as passive fraction
+# Specific star formation rate in apertures below which a galaxy is identified as
+# passive
 marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
 
 for aperture_size in aperture_sizes:
@@ -38,11 +40,10 @@ for aperture_size in aperture_sizes:
 
     star_formation_rate = getattr(catalogue.apertures, f"sfr_gas_{aperture_size}_kpc")
 
-    ssfr = np.ones(len(star_formation_rate)) * marginal_ssfr
+    ssfr = unyt.unyt_array(np.zeros(len(star_formation_rate)), units=1 / unyt.year)
     ssfr[good_stellar_mass] = (
         star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
     )
-    ssfr[ssfr < marginal_ssfr] = marginal_ssfr
     ssfr.name = f"Specific SFR ({aperture_size} kpc)"
 
     is_passive = unyt.unyt_array(
@@ -64,7 +65,6 @@ for aperture_size in aperture_sizes:
     setattr(self, f"sfr_halo_mass_{aperture_size}_kpc", sfr_M200)
 
 # Now metallicities relative to different units
-
 solar_metal_mass_fraction = 0.0126
 twelve_plus_log_OH_solar = 8.69
 minimal_twelve_plus_log_OH = 7.5
@@ -353,7 +353,9 @@ try:
 
     # Ensure haloes with zero stellar mass have zero stellar birth densities
     no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
-    exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(0.0, average_log_n_b.units)
+    exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(
+        0.0, average_log_n_b.units
+    )
 
     name = "Stellar Birth Density (average of log)"
     exp_average_log_n_b.name = name

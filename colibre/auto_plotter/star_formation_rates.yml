@@ -73,7 +73,7 @@ stellar_mass_specific_sfr_all_100:
   y:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
     units: 1 / gigayear
-    start: 0.5e-2
+    start: 0.5e-3
     end: 3e0
   median:
     plot: true
@@ -108,7 +108,7 @@ stellar_mass_specific_sfr_all_30:
   y:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
     units: 1 / gigayear
-    start: 0.5e-2
+    start: 0.5e-3
     end: 3e0
   median:
     plot: true

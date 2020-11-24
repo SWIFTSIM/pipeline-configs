@@ -4,7 +4,7 @@ stellar_mass_halo_mass_M200_all_100:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e9
+    start: 1e6
     end: 3e14
   y:
     quantity: "apertures.mass_star_100_kpc"
@@ -17,7 +17,7 @@ stellar_mass_halo_mass_M200_all_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e14
@@ -36,7 +36,7 @@ stellar_mass_halo_mass_MBN98_all_100:
   x:
     quantity: "masses.mass_bn98"
     units: Solar_Mass
-    start: 1e9
+    start: 1e6
     end: 3e14
   y:
     quantity: "apertures.mass_star_100_kpc"
@@ -49,7 +49,7 @@ stellar_mass_halo_mass_MBN98_all_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e14
@@ -203,7 +203,7 @@ stellar_mass_halo_mass_M200_all_30:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e9
+    start: 1e6
     end: 3e14
   y:
     quantity: "apertures.mass_star_30_kpc"
@@ -216,7 +216,7 @@ stellar_mass_halo_mass_M200_all_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e14
@@ -236,7 +236,7 @@ stellar_mass_halo_mass_MBN98_all_30:
   x:
     quantity: "masses.mass_bn98"
     units: Solar_Mass
-    start: 1e9
+    start: 1e6
     end: 3e14
   y:
     quantity: "apertures.mass_star_30_kpc"
@@ -249,7 +249,7 @@ stellar_mass_halo_mass_MBN98_all_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e6
       units: Solar_Mass
     end:
       value: 1e14

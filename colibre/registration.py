@@ -273,7 +273,7 @@ except AttributeError:
             self,
             f"gas_neutral_H_to_stellar_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                ones,
                 name="$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc) not found, showing $1$",
             ),
         )
@@ -281,7 +281,7 @@ except AttributeError:
             self,
             f"gas_molecular_H_to_molecular_plus_stellar_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                ones,
                 name=f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc) not found, showing $1$",
             ),
         )
@@ -289,7 +289,7 @@ except AttributeError:
             self,
             f"gas_molecular_H_to_neutral_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                ones,
                 name=f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc) not found, showing $1$",
             ),
         )

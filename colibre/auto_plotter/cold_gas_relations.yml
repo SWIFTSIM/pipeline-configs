@@ -9,7 +9,7 @@ stellar_mass_molecular_to_neutral_fraction_30:
   y:
     quantity: "derived_quantities.gas_molecular_H_to_neutral_fraction_30_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
@@ -39,7 +39,7 @@ stellar_mass_molecular_to_neutral_fraction_100:
   y:
     quantity: "derived_quantities.gas_molecular_H_to_neutral_fraction_100_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
@@ -68,7 +68,7 @@ stellar_mass_neutral_to_stellar_fraction_30:
   y:
     quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_30_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
@@ -98,7 +98,7 @@ stellar_mass_neutral_to_stellar_fraction_100:
   y:
     quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_100_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
@@ -127,7 +127,7 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_30:
   y:
     quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_30_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
@@ -157,7 +157,7 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_100:
   y:
     quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_100_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true

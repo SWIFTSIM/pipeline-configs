@@ -47,7 +47,7 @@ gas_H2_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_H2_mass_Msun"
+    quantity: "derived_quantities.gas_H2_plus_He_mass_Msun"
     units: Solar_Mass
     start: 1e6
     end: 1e11

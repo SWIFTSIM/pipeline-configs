@@ -165,6 +165,7 @@ try:
 
     setattr(self, "gas_HI_mass", HI_mass)
     setattr(self, "gas_HI_plus_He_mass", HI_mass_wHe)
+    
 except AttributeError:
     # We did not produce these quantities.
     setattr(
@@ -193,6 +194,7 @@ try:
     
     setattr(self, "gas_H2_mass", H2_mass)
     setattr(self, "gas_H2_plus_He_mass", H2_mass_wHe)
+
 except AttributeError:
     # We did not produce these quantities.
     setattr(
@@ -459,7 +461,8 @@ except AttributeError:
             self,
             f"has_neutral_gas_{aperture_size}_kpc",
             ones.astype(bool),
-        )     
+        )
+        
 # species fraction properties
 gas_mass = catalogue.apertures.mass_gas_100_kpc
 gal_area = (

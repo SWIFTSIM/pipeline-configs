@@ -342,7 +342,7 @@ try:
             sf_to_stellar_fraction,
         )
         
-except SyntaxError:
+except AttributeError:
     # We did not produce these quantities.
     setattr(
         self,
@@ -445,7 +445,7 @@ except SyntaxError:
                 name="Fraction not found, showing $1$",
             ),
         )
-
+        
 # species fraction properties
 gas_mass = catalogue.apertures.mass_gas_100_kpc
 gal_area = (

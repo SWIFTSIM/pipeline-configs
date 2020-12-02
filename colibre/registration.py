@@ -111,6 +111,8 @@ for aperture_size in aperture_sizes:
     except AttributeError:
         pass
 
+metal_frac = catalogue.apertures.zmet_gas_sf_100_kpc
+nonmetal_frac = 1.-metal_frac
 
 for aperture_size in aperture_sizes:
     stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
@@ -143,9 +145,65 @@ except AttributeError:
 total_dust_mass = total_dust_fraction * catalogue.masses.m_gas
 name = f"$M_{{\\rm dust}}${dust_frac_error}"
 total_dust_mass.name = name
-nonmetal_frac = 1. - catalogue.apertures.zmet_gas_sf_100_kpc
+total_dust_fraction.name = f"$\\mathcal{DTG}${dust_frac_error}"
+total_dust_mass = total_dust_fraction * catalogue.masses.m_gas
+total_dust_mass.name = f"$M_{\\rm dust}${dust_frac_error}"
+dust_to_metals = total_dust_fraction / metal_frac
+dust_to_metals.name = f"$\\mathcal{DTM}${dust_frac_error}"
 
+nonmetal_frac = 1. - catalogue.apertures.zmet_gas_sf_100_kpc
+    
 setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
+setattr(self, f"dust_to_metal_ratio_100_kpc", dust_to_metals)
+setattr(self, f"dust_to_gas_ratio_100_kpc", total_dust_fraction)
+
+# Get depletion properties
+try:
+    gas_mass = catalogue.masses.m_gas
+    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
+    C_frac = getattr(catalogue.element_mass_fractions, "element_2")
+    O_frac = getattr(catalogue.element_mass_fractions, "element_4")
+    Mg_frac = getattr(catalogue.element_mass_fractions, "element_6")
+    Si_frac = getattr(catalogue.element_mass_fractions, "element_7")
+    Fe_frac = getattr(catalogue.element_mass_fractions, "element_8")
+
+    # want [Zn/Fe], but no Zn. assume Zn undepleted (decent approx wrt Fe),
+    # and follows general Fe yield
+    zn_to_fe_abundance_estimate =  unyt.unyt_array(np.log10(
+        Fe_frac / (Fe_frac - 0.2934*catalogue.dust_mass_fractions.dust_1)),
+        "dimensionless")
+    zn_to_fe_abundance_estimate.name = "${{\\rm [Zn/Fe]}}$"
+
+    o_abundance = unyt.unyt_array(
+        12+np.log10(O_frac/(16*H_frac)), "dimensionless")
+    o_abundance.name = "$12+\\log_10({{\\rm O/H}})$" 
+
+    setattr(self, "gas_zn_to_fe_abundance_estimate", zn_to_fe_abundance_estimate)
+    setattr(self, "gas_o_abundance", o_abundance)
+    
+except AttributeError:
+    # We did not produce these quantities.
+    setattr(
+        self,
+        "gas_zn_to_fe_abundance_estimate",
+        unyt.unyt_array(
+            catalogue.masses.m_gas**0,
+            name="${{\\rm [Zn/Fe]}}$ not found, default to 1s"
+        ),
+    )
+    setattr(
+        self,
+        "gas_o_abundance",
+        unyt.unyt_array(
+            catalogue.masses.m_gas**0,
+            name="$12+\\log_10({{\\rm O/H}})$ not found, default to 1s"
+        ),
+    )
+
+
+# mask galaxies where abundances are well defined
+self.valid_abundances = np.logical_and(np.isfinite(dust_to_metals),
+                                       np.isfinite(zn_to_fe_abundance_estimate))
 
 # Get HI masses
 try:
@@ -175,6 +233,27 @@ except AttributeError:
             catalogue.masses.m_gas, name="$M{\\rm HI}$ not found, showing $M_{\\rm g}$"
         ),
     )
+
+# Get HI to dust ratio
+try:
+    dust_to_hi_ratio = total_dust_mass / HI_mass
+    dust_to_hi_ratio.name = "M_{{\\rm dust}}/M_{{\\rm HI}}"
+
+    grunt
+    
+    setattr(self, "gas_dust_to_hi_ratio", dust_to_hi_ratio)
+    
+except AttributeError:
+    # We did not produce these quantities.
+    setattr(
+        self,
+        "gas_dust_to_hi_ratio",
+        unyt.unyt_array(
+            catalogue.masses.m_gas**0,
+            name="$M_{{\\rm dust}}/M_{{\\rm HI}}$ not found, default to 1s"
+        ),
+    )
+
 
 # Get H2 masses
 try:

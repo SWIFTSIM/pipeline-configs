@@ -5,7 +5,7 @@
 # relation figures. Also required is the registration file
 # in the case where you have non-catalogue properties
 # used in the autoplotter.
-auto_plotter_directory: auto_plotter
+auto_plotter_directory: auto_plotter_dev
 auto_plotter_registration: registration.py
 
 # Location of the 'observational data' repository and its compiled
@@ -189,6 +189,164 @@ scripts:
       quantity_type: subgrid
   - filename: scripts/density_temperature_species.py
     caption: Density-temperature diagram shaded by HII mass fraction. The fraction is computed as the HII mass contained in each cell over the mass of gas in that cell.
+    output_file: subgrid_density_temperature_HII.png
+    section: Hydrogen Phase Density-Temperature
+    title: HII
+  - filename: scripts_dev/dummy.py
+    caption: Density-temperature diagram shaded by the total fraction of metals in the dust phase.
+    output_file: density_temperature_dust2metal.png
+    section: Density-Temperature
+    title: Dust-to-metal Ratio
+    additional_arguments:
+      quantity_type: hydro
+  - filename: scripts/density_temperature_dust2metal.py
+    caption: Density-temperature diagram shaded by the total fraction of metals in the dust phase.
+    output_file: density_temperature_dust2metal.png
+    section: Density-Temperature
+    title: Dust-to-metal Ratio
+    additional_arguments:
+      quantity_type: hydro
+  - filename: scripts/density_species_interp.py
+    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function opf gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+    output_file: density_vs_species_fraction.png
+    section: Hydrogen phases
+    title: Hydrogen phases
+    additional_arguments:
+      cooling_tables: /cosma7/data/dp004/wmfw23/colibre_dust/coolingtables/UV_dust1_CR1_G1_shield1.hdf5
+      quantity_type: hydro
+  - filename: scripts/density_temperature.py
+    caption: Density-temperature diagram.
+    output_file: density_temperature.png
+    section: Density-Temperature
+    title: Density-Temperature
+  - filename: scripts/density_temperature_metals.py
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity.
+    output_file: density_temperature_metals.png
+    section: Density-Temperature
+    title: Density-Temperature (Metals)
+  - filename: scripts/density_temperature_dust.py
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic dust mass fraction in that bin. Medians are not used due to their computational complexity.
+    output_file: density_temperature_dust.png
+    section: Density-Temperature
+    title: Density-Temperature (Dust)
+  - filename: scripts/density_internal_energy.py
+    caption: Density-Internal Energy diagram.
+    output_file: density_internal_energy.png
+    section: Density-Temperature
+    title: Density-Internal Energy
+  - filename: scripts/density_pressure.py
+    caption: Density-pressure diagram.
+    output_file: density_pressure.png
+    section: Density-Temperature
+    title: Density-Pressure
+  - filename: scripts/star_formation_history.py
+    caption: Star formation history plotted directly from the SFR.txt produced by SWIFT.
+    output_file: star_formation_history.png
+    section: Star Formation History
+    title: Star Formation History
+  - filename: scripts/metallicity_distribution.py
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
+    output_file: metallicity_distribution.png
+    section: Metal Mass Fractions
+    title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_distribution.py
+    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
+    title: Stellar Birth Densities
+    section: Stellar Birth Densities
+    output_file: birth_density_distribution.png
+  - filename: scripts/birth_density_metallicity.py
+    caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin.
+    title: Stellar Birth Densities-Metallicity
+    section: Stellar Birth Densities
+    output_file: birth_density_metallicity.png
+  - filename: scripts/birth_density_redshift.py
+    caption: Stellar birth densities vs redshift diagram. The pixel colour indicates the number of stellar particles in the pixel.
+    title: Stellar Birth Densities-Redshift
+    section: Stellar Birth Densities
+    output_file: birth_density_redshift.png
+  - filename: scripts/metallicity_redshift.py
+    caption: Stellar metallicity vs redshift diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given redshift, particles with metallicities lower than the smallest value along the X axis are placed in the lowest-metallicity bin.
+    title: Stellar Metallicity-Redshift
+    section: Stellar Birth Densities
+    output_file: metallicity_redshift.png
+  - filename: scripts/SNII_density_distribution.py
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
+    title: Density of the gas heated by SNII
+    section: Feedback Densities
+    output_file: SNII_density_distribution.png
+  - filename: scripts/gas_metallicity_evolution.py
+    caption: Evolution of the metal mass in gas per unit co-moving volume.
+    output_file: gas_metallicity_evolution.png
+    section: Metal Evolution
+    title: Gas Phase Metal Mass Density Evolution
+  - filename: scripts/star_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in stars per unit co-moving volume.
+    output_file: star_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Stars Density Evolution
+  - filename: scripts/bh_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in black holes per unit co-moving volume.
+    output_file: bh_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Black Holes Density Evolution
+  - filename: scripts/bh_accretion_evolution.py
+    caption: Evolution of the accretion rate onto BHs per unit co-moving volume.
+    output_file: bh_accretion_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Accretion History
+  - filename: scripts/bh_mass_evolution.py
+    caption: Evolution of the BH mass per unit co-moving volume.
+    output_file: bh_mass_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Mass History
+  - filename: scripts/bh_masses.py
+    caption: Relation between black hole particle (dynamical) masses and subgrid masses. The vertical dashed lines shows the primordial gas particle mass and the horizontal dashed lines corresponds to the black hole seed mass.
+    output_file: bh_masses.png
+    section: Black Holes
+    title: Black Hole Dynanmical and Subgrid Masses
+  - filename: scripts/gas_masses.py
+    caption: Gas Particle Masses with the threshold for splitting indicated by the vertical dashed line.
+    output_file: gas_masses.png
+    section: Histograms
+    title: Gas Particle Masses
+  - filename: scripts/max_temperatures.py
+    caption: Maximal temperature recorded by gas particles throughout the entire simulation.
+    output_file: gas_max_temperatures.png
+    section: Histograms
+    title: Maximal Temperature reached by gas particles
+  - filename: scripts/wallclock_simulation_time.py
+    caption: The cosmic time as a function of the wall-clock time.
+    title: Cosmic time vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_simulation_time.png
+  - filename: scripts/wallclock_number_of_steps.py
+    caption: The cumulative number of the simulation time-steps as a function of the wall-clock time.
+    title: The number of steps vs. wall-clock time
+    section: Run Performance
+    output_file: wallclock_number_of_steps.png
+  - filename: scripts/simulation_time_number_of_steps.py
+    caption: The cumulative number of the simulation time-steps as a function of the cosmic time.
+    title: Number of steps vs. cosmic time
+    section: Run Performance
+    output_file: simulation_time_number_of_steps.png
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by H2 mass fraction.
+    output_file: subgrid_density_temperature_H2.png
+    section: Hydrogen Phase Density-Temperature
+    title: H2
+    additional_arguments:
+      hydrogen_species: H2
+      quantity_type: subgrid
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by HI mass fraction.
+    output_file: subgrid_density_temperature_HI.png
+    section: Hydrogen Phase Density-Temperature
+    title: HI
+    additional_arguments:
+      hydrogen_species: HI
+      quantity_type: subgrid
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by HII mass fraction.
     output_file: subgrid_density_temperature_HII.png
     section: Hydrogen Phase Density-Temperature
     title: HII

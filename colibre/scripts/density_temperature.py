@@ -87,7 +87,7 @@ def setup_axes(number_of_simulations: int):
 
 def plot_eos(metadata, ax):
     """
-    Plots the Equation of State (Entropy Floor).
+    Plots the Equation of State (Entropy Floor) and .
     """
 
     densities_to_plot = np.logspace(
@@ -112,6 +112,15 @@ def plot_eos(metadata, ax):
         ax.plot(
             unyt_array([first_point_H, second_point_H], "cm**-3"),
             unyt_array([temp_first_point, temp_second_point], "K"),
+            linestyle="dashed",
+            alpha=0.5,
+            color="k",
+            lw=0.5
+        )
+        
+        ax.plot(
+            unyt_array([first_point_H, second_point_H], "cm**-3"),
+            unyt_array([temp_first_point, temp_second_point], "K")*pow(10,0.3),
             linestyle="dashed",
             alpha=0.5,
             color="k",

@@ -298,14 +298,15 @@ stellar_mass_HI_mass_100:
 H2_mass_star_formation_rate_30:
   type: "scatter"
   legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "derived_quantities.gas_H2_mass_Msun"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
   y:
-    quantity: "apertures.sfr_gas_30_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    units: "1 / Gyr"
     start: 0.01
     end: 100
   median:
@@ -328,14 +329,15 @@ H2_mass_star_formation_rate_30:
 H2_mass_star_formation_rate_100:
   type: "scatter"
   legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "derived_quantities.gas_H2_mass_Msun"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
   y:
-    quantity: "apertures.sfr_gas_100_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
     start: 0.01
     end: 100
   median:
@@ -601,17 +603,18 @@ stellar_mass_H2_to_sf_fraction_100:
 
 sfr_neutral_to_stellar_mass_100_kpc_100:
   type: "scatter"
-  legend_loc: "upper left"  
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
     start: 1e-3
-    end: 1e3
+    end: 10
   y:
     quantity: "derived_quantities.neutral_to_stellar_mass_100_kpc"
     units: "dimensionless"
     start: 1e-4
-    end: 1.1
+    end: 10
   median:
     plot: true
     log: true
@@ -619,10 +622,10 @@ sfr_neutral_to_stellar_mass_100_kpc_100:
     number_of_bins: 15
     start:
       value: 1e-3
-      units: "Solar_Mass / year"
+      units: "1 / Gyr"
     end:
-      value: 1e3
-      units: "Solar_Mass / year"
+      value: 10
+      units: "1 / Gyr"
     lower:
       value: 0
       units: "dimensionless"
@@ -630,23 +633,24 @@ sfr_neutral_to_stellar_mass_100_kpc_100:
       value: 1e99
       units: "dimensionless"
   metadata:
-    title: SFR-Neutral Gas to SF Gas Fraction (100 kpc Stellar Mass)
+    title: sSFR-Neutral Gas to SF Gas Fraction (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line. Fraction is HI + H_2 mass over stellar mass in a 100 kpc aperture.
-    section: Cold Gas Fractions vs SFR
+    section: Cold Gas Fractions vs sSFR
 
 sfr_hi_to_stellar_mass_100_kpc_100:
   type: "scatter"
-  legend_loc: "upper left"  
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
     start: 1e-3
-    end: 1e3
+    end: 10
   y:
     quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
     units: "dimensionless"
     start: 1e-4
-    end: 1.1
+    end: 10
   median:
     plot: true
     log: true
@@ -654,10 +658,10 @@ sfr_hi_to_stellar_mass_100_kpc_100:
     number_of_bins: 15
     start:
       value: 1e-3
-      units: "Solar_Mass / year"
+      units: "1 / Gyr"
     end:
-      value: 1e3
-      units: "Solar_Mass / year"
+      value: 10
+      units: "1 / Gyr"
     lower:
       value: 0
       units: "dimensionless"
@@ -665,18 +669,19 @@ sfr_hi_to_stellar_mass_100_kpc_100:
       value: 1e99
       units: "dimensionless"
   metadata:
-    title: SFR-HI Gas to SF Gas Fraction (100 kpc Stellar Mass)
+    title: sSFR-HI Gas to SF Gas Fraction (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line. Fraction is HI mass over stellar mass in a 100 kpc aperture.
-    section: Cold Gas Fractions vs SFR
+    section: Cold Gas Fractions vs sSFR
 
 sfr_h2_to_stellar_mass_100_kpc_100:
   type: "scatter"
-  legend_loc: "upper left"  
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
     start: 1e-3
-    end: 1e3
+    end: 10
   y:
     quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
     units: "dimensionless"
@@ -689,10 +694,10 @@ sfr_h2_to_stellar_mass_100_kpc_100:
     number_of_bins: 15
     start:
       value: 1e-3
-      units: "Solar_Mass / year"
+      units: "1 / Gyr"
     end:
-      value: 1e3
-      units: "Solar_Mass / year"
+      value: 10
+      units: "1 / Gyr"
     lower:
       value: 0
       units: "dimensionless"
@@ -700,24 +705,25 @@ sfr_h2_to_stellar_mass_100_kpc_100:
       value: 1e99
       units: "dimensionless"
   metadata:
-    title: SFR-H2 Gas to SF Gas Fraction (100 kpc Stellar Mass)
+    title: sSFR-H2 Gas to SF Gas Fraction (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line. Fraction is H2 mass over stellar mass in a 100 kpc aperture.
-    section: Cold Gas Fractions vs SFR
+    section: Cold Gas Fractions vs sSFR
 
 
 sfr_sf_to_stellar_fraction_kpc_100:
   type: "scatter"
-  legend_loc: "upper left"  
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
     start: 1e-3
-    end: 1e3
+    end: 10
   y:
     quantity: "derived_quantities.gas_sf_to_stellar_fraction_100_kpc"
     units: "dimensionless"
     start: 1e-4
-    end: 1.1
+    end: 10
   median:
     plot: true
     log: true
@@ -725,10 +731,10 @@ sfr_sf_to_stellar_fraction_kpc_100:
     number_of_bins: 15
     start:
       value: 1e-3
-      units: "Solar_Mass / year"
+      units: "1 / Gyr"
     end:
-      value: 1e3
-      units: "Solar_Mass / year"
+      value: 10
+      units: "1 / Gyr"
     lower:
       value: 0
       units: "dimensionless"
@@ -736,9 +742,9 @@ sfr_sf_to_stellar_fraction_kpc_100:
       value: 1e99
       units: "dimensionless"
   metadata:
-    title: SFR-SF Gas to Stellar Fraction (100 kpc Stellar Mass)
+    title: sSFR-SF Gas to Stellar Fraction (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line. Fraction is SF gas mass over stellar mass in a 100 kpc aperture.
-    section: Cold Gas Fractions vs SFR
+    section: Cold Gas Fractions vs sSFR
 
 sigma_neutral_H_to_baryonic_fraction_100:
   type: "scatter"

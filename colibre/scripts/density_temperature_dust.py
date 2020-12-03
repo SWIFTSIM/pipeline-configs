@@ -111,9 +111,10 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
 
     return fig, ax
 
+
 def plot_eos(metadata, ax):
     """
-    Plots the Equation of State (Entropy Floor) and .
+    Plots the Equation of State (Entropy Floor) and +0.3 dex in Temperature, which should generally enclose particles with divergent subgrid properties.
     """
 
     densities_to_plot = np.logspace(
@@ -124,7 +125,9 @@ def plot_eos(metadata, ax):
 
     for name in ["Cool", "Jeans"]:
         try:
-            norm_H = float(parameters[f"COLIBREEntropyFloor:{name}_density_norm_H_p_cm3"])
+            norm_H = float(
+                parameters[f"COLIBREEntropyFloor:{name}_density_norm_H_p_cm3"]
+            )
             gamma_eff = float(parameters[f"COLIBREEntropyFloor:{name}_gamma_effective"])
             norm_T = float(parameters[f"COLIBREEntropyFloor:{name}_temperature_norm_K"])
         except:
@@ -132,8 +135,8 @@ def plot_eos(metadata, ax):
 
         first_point_H = 1e-10 * norm_H
         second_point_H = 1e10 * norm_H
-        temp_first_point = norm_T * (first_point_H / norm_H)**(gamma_eff - 1)
-        temp_second_point = norm_T * (second_point_H / norm_H)**(gamma_eff - 1)
+        temp_first_point = norm_T * (first_point_H / norm_H) ** (gamma_eff - 1)
+        temp_second_point = norm_T * (second_point_H / norm_H) ** (gamma_eff - 1)
 
         ax.plot(
             unyt_array([first_point_H, second_point_H], "cm**-3"),
@@ -141,19 +144,20 @@ def plot_eos(metadata, ax):
             linestyle="dashed",
             alpha=0.5,
             color="k",
-            lw=0.5
+            lw=0.5,
         )
-        
+
         ax.plot(
             unyt_array([first_point_H, second_point_H], "cm**-3"),
-            unyt_array([temp_first_point, temp_second_point], "K")*pow(10,0.3),
+            unyt_array([temp_first_point, temp_second_point], "K") * pow(10, 0.3),
             linestyle="dashed",
             alpha=0.5,
             color="k",
-            lw=0.5
+            lw=0.5,
         )
-    
+
     return
+
 
 def make_single_image(
     filenames,
@@ -200,7 +204,7 @@ def make_single_image(
         metadata = load(filename).metadata
         plot_eos(metadata, axis)
         axis.set_xlim(*density_bounds)
-        axis.set_ylim(*temperature_bounds)        
+        axis.set_ylim(*temperature_bounds)
 
     fig.colorbar(
         mappable, ax=ax.ravel().tolist(), label="Mean (Logarithmic) Dust Mass Fraction",

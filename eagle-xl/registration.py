@@ -158,7 +158,7 @@ try:
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
     H2_frac = getattr(catalogue.species_fractions, "species_2")
 
-    H2_mass = gas_mass * H_frac * H2_frac
+    H2_mass = gas_mass * H_frac * H2_frac * 2
     H2_mass.name = "$M_{\\rm H_2}$"
 
     setattr(self, "gas_H2_mass_Msun", H2_mass)
@@ -181,7 +181,7 @@ try:
     H2_frac = getattr(catalogue.species_fractions, "species_2")
 
     HI_mass = gas_mass * H_frac * HI_frac
-    H2_mass = gas_mass * H_frac * H2_frac
+    H2_mass = gas_mass * H_frac * H2_frac * 2
     neutral_H_mass = HI_mass + H2_mass
     neutral_H_mass.name = "$M_{\\rm HI + H_2}$"
 
@@ -189,17 +189,37 @@ try:
 
     for aperture_size in aperture_sizes:
         stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-        neutral_H_fraction = neutral_H_mass / stellar_mass
-        neutral_H_fraction.name = f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
+        neutral_H_to_stellar_fraction = neutral_H_mass / stellar_mass
+        neutral_H_to_stellar_fraction.name = (
+            f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
+        )
 
-        molecular_H_fraction = H2_mass / (H2_mass + stellar_mass)
-        molecular_H_fraction.name = (
+        molecular_H_to_molecular_plus_stellar_fraction = H2_mass / (
+            H2_mass + stellar_mass
+        )
+        molecular_H_to_molecular_plus_stellar_fraction.name = (
             f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc)"
         )
 
-        setattr(self, f"gas_neutral_H_fraction_{aperture_size}_kpc", neutral_H_fraction)
+        molecular_H_to_neutral_fraction = H2_mass / neutral_H_mass
+        molecular_H_to_neutral_fraction.name = (
+            f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+        )
+
         setattr(
-            self, f"gas_molecular_H_fraction_{aperture_size}_kpc", molecular_H_fraction
+            self,
+            f"gas_neutral_H_to_stellar_fraction_{aperture_size}_kpc",
+            neutral_H_to_stellar_fraction,
+        )
+        setattr(
+            self,
+            f"gas_molecular_H_to_molecular_plus_stellar_fraction_{aperture_size}_kpc",
+            molecular_H_to_molecular_plus_stellar_fraction,
+        )
+        setattr(
+            self,
+            f"gas_molecular_H_to_neutral_fraction_{aperture_size}_kpc",
+            molecular_H_to_neutral_fraction,
         )
 
 except AttributeError:
@@ -219,18 +239,29 @@ except AttributeError:
     for aperture_size in aperture_sizes:
         setattr(
             self,
-            f"gas_neutral_H_fraction_{aperture_size}_kpc",
+            f"gas_neutral_H_to_stellar_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                np.ones_like(catalogue.masses.m_gas),
                 name="$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc) not found, showing $1$",
+                units="dimensionless",
             ),
         )
         setattr(
             self,
-            f"gas_molecular_H_fraction_{aperture_size}_kpc",
+            f"gas_molecular_H_to_molecular_plus_stellar_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                np.ones_like(catalogue.masses.m_gas),
                 name=f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc) not found, showing $1$",
+                units="dimensionless",
+            ),
+        )
+        setattr(
+            self,
+            f"gas_molecular_H_to_neutral_fraction_{aperture_size}_kpc",
+            unyt.unyt_array(
+                np.ones_like(catalogue.masses.m_gas),
+                name=f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc) not found, showing $1$",
+                units="dimensionless",
             ),
         )
 
@@ -270,13 +301,13 @@ except:
 try:
     # Test for CHIMES arrays
     species_HI = catalogue.species_fractions.species_1
-    species_H2 = catalogue.species_fractions.species_7
+    species_H2 = 2.0 * catalogue.species_fractions.species_7
     species_frac_error = ""
 except:
     try:
         # Test for COLIBRE arrays
         species_HI = catalogue.species_fractions.species_0
-        species_H2 = catalogue.species_fractions.species_2
+        species_H2 = 2.0 * catalogue.species_fractions.species_2
         species_frac_error = ""
     except:
         species_HI = 0.0
@@ -295,13 +326,9 @@ self.h2_to_stellar_mass_100_kpc = (
 )
 
 self.neutral_hydrogen_mass_100_kpc.name = f"HI Mass (100 kpc){total_error}"
-self.hi_to_stellar_mass_100_kpc.name = (
-    f"$M_{{\\rm HI}} / M_*$ (100 kpc) {total_error}"
-)
+self.hi_to_stellar_mass_100_kpc.name = f"$M_{{\\rm HI}} / M_*$ (100 kpc) {total_error}"
 self.molecular_hydrogen_mass_100_kpc.name = f"H$_2$ Mass (100 kpc){total_error}"
-self.h2_to_stellar_mass_100_kpc.name = (
-    f"$M_{{\\rm H_2}} / M_*$ (100 kpc) {total_error}"
-)
+self.h2_to_stellar_mass_100_kpc.name = f"$M_{{\\rm H_2}} / M_*$ (100 kpc) {total_error}"
 
 # Now baryon fractions
 

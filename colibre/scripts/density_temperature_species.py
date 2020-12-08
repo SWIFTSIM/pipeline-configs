@@ -1,5 +1,5 @@
 """
-Makes a rho-T plot. Uses the swiftsimio library.
+Makes a rho-T plot normalised by the species fraction. Uses the swiftsimio library.
 """
 
 import matplotlib.pyplot as plt
@@ -8,21 +8,20 @@ import numpy as np
 from swiftsimio import load
 
 from unyt import mh, cm
-from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
-from matplotlib.animation import FuncAnimation
+from matplotlib.colors import ListedColormap, BoundaryNorm
 from matplotlib.cm import get_cmap
 
 # Set the limits of the figure.
 density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
-temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
-specfracs_bounds = [1e-2, 1]  # In metal mass fraction
+temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
+specfracs_bounds = [1e-2, 1]  # dimensionless
 min_specfracs = specfracs_bounds[0]
 bins = 256
 
 
 def get_data(filename, prefix_rho, prefix_T, species):
     """
-    Grabs the data (T in Kelvin and density in mh / cm^3).
+    Grabs the data (T in Kelvin, density in mh / cm^3, species fraction and gas mass).
     """
 
     data = load(filename)
@@ -128,6 +127,7 @@ def make_single_image(
     number_of_simulations,
     density_bounds,
     temperature_bounds,
+    specfracs_bounds,
     bins,
     output_path,
     prop_type,
@@ -164,15 +164,10 @@ def make_single_image(
 
     smap = get_cmap("cividis")
     ncols = 10
-    collist = []
-    for i in range(ncols):
-        collist.append(smap(i / float(ncols - 1)))
+    collist = [smap(i / float(ncols - 1)) for i in range(ncols)]
 
     cmap = ListedColormap(collist)
-
     norm = BoundaryNorm(np.linspace(*np.log10(specfracs_bounds), ncols + 1), ncols)
-
-    vmax = np.max([np.max(hist) for hist in hists])
 
     for hist, name, axis in zip(hists, names, ax.flat):
         mappable = axis.pcolormesh(d, T, np.log10(hist), cmap=cmap, norm=norm)
@@ -206,6 +201,7 @@ if __name__ == "__main__":
         number_of_simulations=arguments.number_of_inputs,
         density_bounds=density_bounds,
         temperature_bounds=temperature_bounds,
+        specfracs_bounds=specfracs_bounds,
         bins=bins,
         output_path=arguments.output_directory,
         prop_type=arguments.quantity_type,

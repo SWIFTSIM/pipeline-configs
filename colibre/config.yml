@@ -27,10 +27,15 @@ scripts:
     section: Density-Temperature
     title: Density-Temperature
   - filename: scripts/density_temperature_metals.py
-    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metallicity in that bin. Medians are not used due to their computational complexity.
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity.
     output_file: density_temperature_metals.png
     section: Density-Temperature
     title: Density-Temperature (Metals)
+  - filename: scripts/density_temperature_dust.py
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic dust mass fraction in that bin. Medians are not used due to their computational complexity.
+    output_file: density_temperature_dust.png
+    section: Density-Temperature
+    title: Density-Temperature (Dust)
   - filename: scripts/density_internal_energy.py
     caption: Density-Internal Energy diagram.
     output_file: density_internal_energy.png
@@ -76,11 +81,16 @@ scripts:
     title: Density of the gas heated by SNII
     section: Feedback Densities
     output_file: SNII_density_distribution.png
-  - filename: scripts/metallicity_evolution.py
-    caption: Evolution of the metal mass in gas and stars per unit co-moving volume.
-    output_file: metallicity_evolution.png
+  - filename: scripts/gas_metallicity_evolution.py
+    caption: Evolution of the metal mass in gas per unit co-moving volume.
+    output_file: gas_metallicity_evolution.png
     section: Metal Evolution
-    title: Metal Mass Density Evolution
+    title: Gas Phase Metal Mass Density Evolution
+  - filename: scripts/star_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in stars per unit co-moving volume.
+    output_file: star_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Stars Density Evolution
   - filename: scripts/bh_metallicity_evolution.py
     caption: Evolution of the metal mass locked in black holes per unit co-moving volume.
     output_file: bh_metallicity_evolution.png

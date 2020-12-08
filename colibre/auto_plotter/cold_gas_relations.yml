@@ -4,7 +4,7 @@ stellar_mass_molecular_to_neutral_fraction_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_molecular_H_to_neutral_fraction_30_kpc"
@@ -17,7 +17,7 @@ stellar_mass_molecular_to_neutral_fraction_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -34,7 +34,7 @@ stellar_mass_molecular_to_neutral_fraction_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_molecular_H_to_neutral_fraction_100_kpc"
@@ -47,7 +47,7 @@ stellar_mass_molecular_to_neutral_fraction_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -63,7 +63,7 @@ stellar_mass_neutral_to_stellar_fraction_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_30_kpc"
@@ -76,7 +76,7 @@ stellar_mass_neutral_to_stellar_fraction_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -93,7 +93,7 @@ stellar_mass_neutral_to_stellar_fraction_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_100_kpc"
@@ -106,7 +106,7 @@ stellar_mass_neutral_to_stellar_fraction_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -122,7 +122,7 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_30_kpc"
@@ -135,7 +135,7 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -152,7 +152,7 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_100_kpc"
@@ -165,7 +165,7 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -181,12 +181,12 @@ stellar_mass_H2_mass_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_H2_mass_Msun"
     units: "Solar_Mass"
-    start: 1e7
+    start: 1e5
     end: 1e11
   median:
     plot: true
@@ -194,7 +194,7 @@ stellar_mass_H2_mass_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -211,12 +211,12 @@ stellar_mass_H2_mass_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_H2_mass_Msun"
     units: "Solar_Mass"
-    start: 1e7
+    start: 1e5
     end: 1e11
   median:
     plot: true
@@ -224,7 +224,7 @@ stellar_mass_H2_mass_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -240,12 +240,12 @@ stellar_mass_HI_mass_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_HI_mass_Msun"
     units: "Solar_Mass"
-    start: 1e7
+    start: 1e5
     end: 1e11
   median:
     plot: true
@@ -253,7 +253,7 @@ stellar_mass_HI_mass_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -270,12 +270,12 @@ stellar_mass_HI_mass_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e7
+    start: 1e5
     end: 1e12
   y:
     quantity: "derived_quantities.gas_HI_mass_Msun"
     units: "Solar_Mass"
-    start: 1e7
+    start: 1e5
     end: 1e11
   median:
     plot: true
@@ -283,7 +283,7 @@ stellar_mass_HI_mass_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -299,7 +299,7 @@ H2_mass_star_formation_rate_30:
   x:
     quantity: "derived_quantities.gas_H2_mass_Msun"
     units: "Solar_Mass"
-    start: 1e7
+    start: 1e5
     end: 1e11
   y:
     quantity: "apertures.sfr_gas_30_kpc"
@@ -312,7 +312,7 @@ H2_mass_star_formation_rate_30:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -329,7 +329,7 @@ H2_mass_star_formation_rate_100:
   x:
     quantity: "derived_quantities.gas_H2_mass_Msun"
     units: "Solar_Mass"
-    start: 1e7
+    start: 1e5
     end: 1e11
   y:
     quantity: "apertures.sfr_gas_100_kpc"
@@ -342,7 +342,7 @@ H2_mass_star_formation_rate_100:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12

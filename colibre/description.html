@@ -3,8 +3,9 @@
 <h4>Basic</h4>
 <ul>
     <li>Box-size: {{ data.metadata.boxsize[0] | format_number }}</li>
-    <li>Dark matter particle mass: {{ data.dark_matter.masses[0].to("Solar_Mass") | format_number }}</li>
-    <li>Gas particle mass: {{ data.gas.masses.min().to("Solar_Mass") | format_number }}</li>
+    <li>Dark matter particle mass:
+        {{ data.metadata.initial_mass_table.dark_matter.to("Solar_Mass") | format_number }}</li>
+    <li>Gas particle mass: {{ data.metadata.initial_mass_table.gas.to("Solar_Mass") | format_number }}</li>
     <li>Snapshot \(z={{ "%2.2f" | format(data.metadata.z)}}\), \(a={{ "%2.2f" | format(data.metadata.a)}}\)</li>
 </ul>
 
@@ -38,10 +39,14 @@
         <th>Comoving</th>
     </tr>
     <tr>
-        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_baryon_softening", data.units.length, "kpc") }}</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_baryon_softening", data.units.length, "kpc") }}</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_DM_softening", data.units.length, "kpc") }}</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_DM_softening", data.units.length, "kpc") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_baryon_softening", data.units.length, "kpc") }}
+        </td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_baryon_softening", data.units.length, "kpc") }}
+        </td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:max_physical_DM_softening", data.units.length, "kpc") }}
+        </td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Gravity:comoving_DM_softening", data.units.length, "kpc") }}
+        </td>
     </tr>
 </table>
 
@@ -57,7 +62,8 @@
     </tr>
     <tr>
         <td>Temperature Ceiling</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:temperature_threshold_K", "K") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:temperature_threshold_K", "K") }}
+        </td>
     </tr>
     <tr>
         <td>Virial Parameter</td>
@@ -65,11 +71,13 @@
     </tr>
     <tr>
         <td>Threshold SF \(n_{\rm H, max}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:subgrid_density_threshold_H_p_CM3") }} cm\(^{-3}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:subgrid_density_threshold_H_p_CM3") }}
+            cm\(^{-3}\)</td>
     </tr>
     <tr>
         <td>Immediate SF \(n_{\rm H, max}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:threshold_max_density_H_p_cm3") }} cm\(^{-3}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:density_direct_H_p_cm3") }}
+            cm\(^{-3}\)</td>
     </tr>
 </table>
 
@@ -113,7 +121,8 @@
     </tr>
     <tr>
         <td>Early Feedback \(v_{\rm kick}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:Momentum_desired_delta_v", "km/s") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:Momentum_desired_delta_v", "km/s") }}
+        </td>
     </tr>
     <tr>
         <td>Use HII Regions</td>
@@ -162,8 +171,10 @@
         <th>Slope</th>
     </tr>
     <tr>
-        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3"] | float) | format_number }}</td>
-        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_temperature_norm_K"] | float) | format_number }}</td>
+        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3"] | float) | format_number }}
+        </td>
+        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_temperature_norm_K"] | float) | format_number }}
+        </td>
         <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_gamma_effective"] | float) | format_number }}</td>
     </tr>
 </table>
@@ -268,19 +279,22 @@
     </tr>
     <tr>
         <td>Maximal Reposition Velocity Offset</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:max_reposition_velocity_ratio") }} \(c_{s, {\rm BH}}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:max_reposition_velocity_ratio") }} \(c_{s,
+            {\rm BH}}\)</td>
     </tr>
     <tr>
         <td>Minimal Reposition Velocity Threshold</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_reposition_velocity_threshold", "km/s") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_reposition_velocity_threshold", "km/s") }}
+        </td>
     </tr>
     <tr>
         <td>Set Black Hole Reposition Speed</td>
-	    <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:set_reposition_speed") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:set_reposition_speed") }}</td>
     </tr>
     <tr>
         <td>Repositioning Speed Normalisation</td>
-	    <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:reposition_coefficient_upsilon", "km/s/Msun") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:reposition_coefficient_upsilon", "km/s/Msun") }}
+        </td>
     </tr>
     <tr>
         <td>Black Hole Merger Threshold Type</td>
@@ -301,4 +315,3 @@
     <li>Compiler info: {{ data.metadata.compiler_info }}</li>
     <li>Hydrodynamics: {{ data.metadata.hydro_info }}</li>
 </ul>
-

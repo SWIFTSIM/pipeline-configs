@@ -135,12 +135,14 @@ try:
         if sub_path.startswith("dust_"):
             dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
     total_dust_fraction = sum(dust_fields)
+    dust_frac_error = ""
 except AttributeError:
     total_dust_fraction = np.zeros(stellar_mass.size)
-
+    dust_frac_error = " (no dust field)"
+    
 total_dust_mass = total_dust_fraction * catalogue.masses.m_star
-total_dust_mass.name = "$M_{\\rm dust}$ not found"
-
+name = f"$M_{{\\rm dust}}${dust_frac_error}"
+total_dust_mass.name = name
 
 setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
 
@@ -307,6 +309,7 @@ try:
     H_frac = catalogue.element_mass_fractions.element_0
     hydrogen_frac_error = ""
 except:
+
     H_frac = 0.0
     hydrogen_frac_error = "(no H abundance)"
 

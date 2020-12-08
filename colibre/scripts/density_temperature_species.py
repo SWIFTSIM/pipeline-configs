@@ -7,7 +7,7 @@ import numpy as np
 
 from swiftsimio import load
 
-from unyt import mh, cm
+from unyt import mh, cm, unyt_array
 from matplotlib.colors import ListedColormap, BoundaryNorm
 from matplotlib.cm import get_cmap
 
@@ -121,6 +121,53 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     return fig, ax
 
 
+def plot_eos(metadata, ax):
+    """
+    Plots the Equation of State (Entropy Floor) and +0.3 dex in Temperature, which should generally enclose particles with divergent subgrid properties.
+    """
+
+    densities_to_plot = np.logspace(
+        np.log10(density_bounds[0]), np.log10(density_bounds[1]), bins
+    )
+
+    parameters = metadata.parameters
+
+    for name in ["Cool", "Jeans"]:
+        try:
+            norm_H = float(
+                parameters[f"COLIBREEntropyFloor:{name}_density_norm_H_p_cm3"]
+            )
+            gamma_eff = float(parameters[f"COLIBREEntropyFloor:{name}_gamma_effective"])
+            norm_T = float(parameters[f"COLIBREEntropyFloor:{name}_temperature_norm_K"])
+        except:
+            continue
+
+        first_point_H = 1e-10 * norm_H
+        second_point_H = 1e10 * norm_H
+        temp_first_point = norm_T * (first_point_H / norm_H) ** (gamma_eff - 1)
+        temp_second_point = norm_T * (second_point_H / norm_H) ** (gamma_eff - 1)
+
+        ax.plot(
+            unyt_array([first_point_H, second_point_H], "cm**-3"),
+            unyt_array([temp_first_point, temp_second_point], "K"),
+            linestyle="dashed",
+            alpha=0.5,
+            color="k",
+            lw=0.5,
+        )
+
+        ax.plot(
+            unyt_array([first_point_H, second_point_H], "cm**-3"),
+            unyt_array([temp_first_point, temp_second_point], "K") * pow(10, 0.3),
+            linestyle="dashed",
+            alpha=0.5,
+            color="k",
+            lw=0.5,
+        )
+
+    return
+
+
 def make_single_image(
     filenames,
     names,
@@ -169,9 +216,13 @@ def make_single_image(
     cmap = ListedColormap(collist)
     norm = BoundaryNorm(np.linspace(*np.log10(specfracs_bounds), ncols + 1), ncols)
 
-    for hist, name, axis in zip(hists, names, ax.flat):
+    for filename, hist, name, axis in zip(filenames, hists, names, ax.flat):
         mappable = axis.pcolormesh(d, T, np.log10(hist), cmap=cmap, norm=norm)
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        metadata = load(filename).metadata
+        plot_eos(metadata, axis)
+        axis.set_xlim(*density_bounds)
+        axis.set_ylim(*temperature_bounds)
 
     fig.colorbar(mappable, ax=ax.ravel().tolist(), label=f"{species} Mass Fraction")
     fig.savefig(f"{output_path}/{prefix_T}density_temperature_{species}.png")

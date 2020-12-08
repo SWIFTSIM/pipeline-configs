@@ -22,12 +22,12 @@ description_template: description.html
 # Location and description of additional figures
 scripts:
   - filename: scripts/density_temperature.py
-    caption: Density-temperature diagram.
+    caption: Density-temperature diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_temperature.png
     section: Density-Temperature
     title: Density-Temperature
   - filename: scripts/density_temperature_metals.py
-    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity.
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_temperature_metals.png
     section: Density-Temperature
     title: Density-Temperature (Metals)
@@ -37,12 +37,12 @@ scripts:
     section: Density-Temperature
     title: Density-Temperature (Dust)
   - filename: scripts/density_internal_energy.py
-    caption: Density-Internal Energy diagram.
+    caption: Density-Internal Energy diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_internal_energy.png
     section: Density-Temperature
     title: Density-Internal Energy
   - filename: scripts/density_pressure.py
-    caption: Density-pressure diagram.
+    caption: Density-pressure diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_pressure.png
     section: Density-Temperature
     title: Density-Pressure
@@ -57,7 +57,7 @@ scripts:
     section: Star Formation History
     title: Stellar Mass Evolution
   - filename: scripts/metallicity_distribution.py
-    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars. If present, dashed line represents the entropy floor (equation of state).
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution

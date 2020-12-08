@@ -356,7 +356,9 @@ try:
 
     # Ensure haloes with zero stellar mass have zero stellar birth densities
     no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
-    exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(0.0, average_log_n_b.units)
+    exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(
+        0.0, average_log_n_b.units
+    )
 
     name = "Stellar Birth Density (average of log)"
     exp_average_log_n_b.name = name

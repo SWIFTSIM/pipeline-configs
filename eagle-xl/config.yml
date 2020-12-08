@@ -127,7 +127,7 @@ scripts:
     section: Run Performance
     output_file: wallclock_simulation_time.png
   - filename: scripts/wallclock_number_of_steps.py
-    caption: The cumulative number of the simulation time-steps as a function of the wall-clock times.
+    caption: The cumulative number of the simulation time-steps as a function of the wall-clock time.
     title: The number of steps vs. wall-clock time
     section: Run Performance
     output_file: wallclock_number_of_steps.png

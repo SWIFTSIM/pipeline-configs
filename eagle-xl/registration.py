@@ -131,46 +131,64 @@ for aperture_size in aperture_sizes:
 
 # Now HI masses
 
+gas_mass = catalogue.masses.m_gas
 try:
-    gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
+    hydrogen_frac_error = ""
+except:
+    H_frac = 0.0
+    hydrogen_frac_error = "(no H abundance)"
 
-    HI_mass = gas_mass * H_frac * HI_frac
-    HI_mass.name = "$M_{\\rm HI}$"
+try:
+    # Test for CHIMES arrays
+    HI_frac = catalogue.species_fractions.species_1
+    species_frac_error = ""
+except:
+    try:
+        # Test for COLIBRE arrays
+        HI_frac = catalogue.species_fractions.species_0
+        species_frac_error = ""
+    except:
+        # Test for COLIBRE arrays
+        HI_frac = catalogue.species_fractions.species_1
+        species_frac_error = "(no species field)"
 
-    setattr(self, "gas_HI_mass_Msun", HI_mass)
-except AttributeError:
-    # We did not produce these quantities.
-    setattr(
-        self,
-        "gas_HI_mass_Msun",
-        unyt.unyt_array(
-            catalogue.masses.m_gas, name="$M{\\rm HI}$ not found, showing $M_{\\rm g}$"
-        ),
-    )
+total_error = f" {species_frac_error}{hydrogen_frac_error}"
+HI_mass = gas_mass * H_frac * HI_frac
+HI_mass.name = f"$M_{{\\rm HI}}${total_error}"
 
+setattr(self, "gas_HI_mass_Msun", HI_mass)
 
 # Now H2 masses
 
+gas_mass = catalogue.masses.m_gas
 try:
-    gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
+    hydrogen_frac_error = ""
+except:
+    H_frac = 0.0
+    hydrogen_frac_error = "(no H abundance)"
 
-    H2_mass = gas_mass * H_frac * H2_frac * 2
-    H2_mass.name = "$M_{\\rm H_2}$"
+try:
+    # Test for CHIMES arrays
+    H2_frac = catalogue.species_fractions.species_7
+    species_frac_error = ""
+except:
+    try:
+        # Test for COLIBRE arrays
+        H2_frac = catalogue.species_fractions.species_0
+        species_frac_error = ""
+    except:
+        H2_frac = catalogue.species_fractions.species_2
+        species_frac_error = "(no species field)"
 
-    setattr(self, "gas_H2_mass_Msun", H2_mass)
-except AttributeError:
-    # We did not produce these quantities.
-    setattr(
-        self,
-        "gas_H2_mass_Msun",
-        unyt.unyt_array(
-            catalogue.masses.m_gas, name="$M{\\rm H_2}$ not found, showing $M_{\\rm g}$"
-        ),
-    )
+total_error = f" {species_frac_error}{hydrogen_frac_error}"
+H2_mass = (
+    gas_mass * H_frac * H2_frac * 2
+)  # Factor of 2 to convert H2 species fraction to mass fraction
+H2_mass.name = f"$M_{{\\rm H_2}}{total_error}$"
+
+setattr(self, "gas_H2_mass_Msun", H2_mass)
 
 # Now neutral H masses and fractions
 

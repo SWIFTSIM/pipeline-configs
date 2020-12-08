@@ -47,10 +47,15 @@ scripts:
     section: Density-Temperature
     title: Density-Pressure
   - filename: scripts/star_formation_history.py
-    caption: Star formation history plotted directly from the SFR.txt produced by SWIFT.
+    caption: Star formation history plotted directly from the SFR.txt file produced by SWIFT.
     output_file: star_formation_history.png
     section: Star Formation History
     title: Star Formation History
+  - filename: scripts/stellar_mass_evolution.py
+    caption: Evolution of the stellar mass plotted directly from the statistics.txt file produced by SWIFT.
+    output_file: stellar_mass_evolution.png
+    section: Star Formation History
+    title: Stellar Mass Evolution
   - filename: scripts/metallicity_distribution.py
     caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
     output_file: metallicity_distribution.png
@@ -121,6 +126,11 @@ scripts:
     output_file: gas_max_temperatures.png
     section: Histograms
     title: Maximal Temperature reached by gas particles
+  - filename: scripts/particle_updates_step_cost.py
+    caption: Wall-clock time to run a time-step as a function of the number of gas particles updated. The tracks at the top correspond to steps where the tree is rebuilt, i/o is performed, FoF is run or other non-regular operations are done.
+    title: Wall-clock time per gas particle updates.
+    section: Run Performance
+    output_file: particle_updates_step_cost.png
   - filename: scripts/wallclock_simulation_time.py
     caption: The cosmic time as a function of the wall-clock time.
     title: Cosmic time vs. wall-clock time

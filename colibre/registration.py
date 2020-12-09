@@ -163,13 +163,13 @@ try:
     HI_mass_wHe = gas_mass * nonmetal_frac * HI_frac
     HI_mass.name = "$M_{\\rm HI}$"
 
-    setattr(self, "gas_HI_mass_Msun", HI_mass)
-    setattr(self, "gas_HI_plus_He_mass_Msun", HI_mass_wHe)
+    setattr(self, "gas_HI_mass", HI_mass)
+    setattr(self, "gas_HI_plus_He_mass", HI_mass_wHe)
 except AttributeError:
     # We did not produce these quantities.
     setattr(
         self,
-        "gas_HI_mass_Msun",
+        "gas_HI_mass",
         unyt.unyt_array(
             catalogue.masses.m_gas, name="$M{\\rm HI}$ not found, showing $M_{\\rm g}$"
         ),
@@ -191,13 +191,13 @@ try:
     H2_mass_wHe = gas_mass * nonmetal_frac * H2_frac * 2.0
     H2_mass.name = "$M_{\\rm H_2}$"
     
-    setattr(self, "gas_H2_mass_Msun", H2_mass)
-    setattr(self, "gas_H2_plus_He_mass_Msun", H2_mass_wHe)
+    setattr(self, "gas_H2_mass", H2_mass)
+    setattr(self, "gas_H2_plus_He_mass", H2_mass_wHe)
 except AttributeError:
     # We did not produce these quantities.
     setattr(
         self,
-        "gas_H2_mass_Msun",
+        "gas_H2_mass",
         unyt.unyt_array(
             catalogue.masses.m_gas, name="$M{\\rm H_2}$ not found, showing $M_{\\rm g}$"
         ),
@@ -222,7 +222,7 @@ try:
     neutral_H_mass = HI_mass + H2_mass
     neutral_H_mass.name = "$M_{\\rm HI + H_2}$"
 
-    setattr(self, "gas_neutral_H_mass_Msun", neutral_H_mass)
+    setattr(self, "gas_neutral_H_mass", neutral_H_mass)
 
     for aperture_size in aperture_sizes:
         stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
@@ -341,12 +341,17 @@ try:
             f"gas_sf_to_stellar_fraction_{aperture_size}_kpc",
             sf_to_stellar_fraction,
         )
+        setattr(
+            self,
+            f"has_neutral_gas_{aperture_size}_kpc",
+            neutral_H_mass > 0.,
+        )
         
 except AttributeError:
     # We did not produce these quantities.
     setattr(
         self,
-        "gas_neutral_H_mass_Msun",
+        "gas_neutral_H_mass",
         unyt.unyt_array(
             catalogue.masses.m_gas,
             name="$M_{\\rm HI + H_2}$ not found, showing $M_{\\rm g}$",
@@ -445,7 +450,11 @@ except AttributeError:
                 name="Fraction not found, showing $1$",
             ),
         )
-        
+        setattr(
+            self,
+            f"has_neutral_gas_{aperture_size}_kpc",
+            ones.astype(bool),
+        )     
 # species fraction properties
 gas_mass = catalogue.apertures.mass_gas_100_kpc
 gal_area = (

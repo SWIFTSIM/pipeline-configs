@@ -22,12 +22,12 @@ description_template: description.html
 # Location and description of additional figures
 scripts:
   - filename: scripts/density_temperature.py
-    caption: Density-temperature diagram.
+    caption: Density-temperature diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_temperature.png
     section: Density-Temperature
     title: Density-Temperature
   - filename: scripts/density_temperature_metals.py
-    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity.
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_temperature_metals.png
     section: Density-Temperature
     title: Density-Temperature (Metals)
@@ -37,27 +37,32 @@ scripts:
     section: Density-Temperature
     title: Density-Temperature (Dust)
   - filename: scripts/density_internal_energy.py
-    caption: Density-Internal Energy diagram.
+    caption: Density-Internal Energy diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_internal_energy.png
     section: Density-Temperature
     title: Density-Internal Energy
   - filename: scripts/density_pressure.py
-    caption: Density-pressure diagram.
+    caption: Density-pressure diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_pressure.png
     section: Density-Temperature
     title: Density-Pressure
   - filename: scripts/star_formation_history.py
-    caption: Star formation history plotted directly from the SFR.txt produced by SWIFT.
+    caption: Star formation history plotted directly from the SFR.txt file produced by SWIFT.
     output_file: star_formation_history.png
     section: Star Formation History
     title: Star Formation History
+  - filename: scripts/stellar_mass_evolution.py
+    caption: Evolution of the stellar mass plotted directly from the statistics.txt file produced by SWIFT.
+    output_file: stellar_mass_evolution.png
+    section: Star Formation History
+    title: Stellar Mass Evolution
   - filename: scripts/metallicity_distribution.py
-    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars. If present, dashed line represents the entropy floor (equation of state).
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
   - filename: scripts/birth_density_distribution.py
-    caption: Distributions of stellar birth densities, split by birth redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
+    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for f_t=10.
     title: Stellar Birth Densities
     section: Stellar Birth Densities
     output_file: birth_density_distribution.png
@@ -77,7 +82,7 @@ scripts:
     section: Stellar Birth Densities
     output_file: metallicity_redshift.png
   - filename: scripts/SNII_density_distribution.py
-    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for f_t=10.
     title: Density of the gas heated by SNII
     section: Feedback Densities
     output_file: SNII_density_distribution.png
@@ -121,6 +126,11 @@ scripts:
     output_file: gas_max_temperatures.png
     section: Histograms
     title: Maximal Temperature reached by gas particles
+  - filename: scripts/particle_updates_step_cost.py
+    caption: Wall-clock time to run a time-step as a function of the number of gas particles updated. The tracks at the top correspond to steps where the tree is rebuilt, i/o is performed, FoF is run or other non-regular operations are done.
+    title: Wall-clock time per gas particle updates.
+    section: Run Performance
+    output_file: particle_updates_step_cost.png
   - filename: scripts/wallclock_simulation_time.py
     caption: The cosmic time as a function of the wall-clock time.
     title: Cosmic time vs. wall-clock time

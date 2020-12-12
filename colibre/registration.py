@@ -128,28 +128,35 @@ for aperture_size in aperture_sizes:
     setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
 
 
-# if present iterate through available dust types
+# If present, iterate through available dust types
 try:
     dust_fields = []
     for sub_path in dir(catalogue.dust_mass_fractions):
         if sub_path.startswith("dust_"):
             dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
     total_dust_fraction = sum(dust_fields)
+    dust_frac_error = ""
 except AttributeError:
     total_dust_fraction = np.zeros(stellar_mass.size)
-
+    dust_frac_error = " (no dust field)"
+    
 total_dust_mass = total_dust_fraction * catalogue.masses.m_star
-total_dust_mass.name = "$M_{\\rm dust}$ not found"
-
+name = f"$M_{{\\rm dust}}${dust_frac_error}"
+total_dust_mass.name = name
 
 setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
 
-# Now HI masses
-
+# Get HI masses
 try:
     gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
+
+    # Try CHIMES arrays
+    if hasattr(catalogue.species_fractions, "species_7"):
+        HI_frac = getattr(catalogue.species_fractions, "species_1")
+    # If species_7 doesn't exist, switch to the (default) Table-cooling case
+    else:
+        HI_frac = getattr(catalogue.species_fractions, "species_0")
 
     HI_mass = gas_mass * H_frac * HI_frac
     HI_mass.name = "$M_{\\rm HI}$"
@@ -165,15 +172,19 @@ except AttributeError:
         ),
     )
 
-
-# Now H2 masses
-
+# Get H2 masses
 try:
     gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
 
-    H2_mass = gas_mass * H_frac * H2_frac * 2
+    # Try CHIMES arrays
+    if hasattr(catalogue.species_fractions, "species_7"):
+        H2_frac = getattr(catalogue.species_fractions, "species_7")
+    # If species_7 doesn't exist, switch to the (default) Table-cooling case
+    else:
+        H2_frac = getattr(catalogue.species_fractions, "species_2")
+
+    H2_mass = gas_mass * H_frac * H2_frac * 2.0
     H2_mass.name = "$M_{\\rm H_2}$"
 
     setattr(self, "gas_H2_mass_Msun", H2_mass)
@@ -187,13 +198,19 @@ except AttributeError:
         ),
     )
 
-# Now neutral H masses and fractions
-
+# Get neutral H masses and fractions
 try:
     gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
+
+    # Try CHIMES arrays
+    if hasattr(catalogue.species_fractions, "species_7"):
+        HI_frac = getattr(catalogue.species_fractions, "species_1")
+        H2_frac = getattr(catalogue.species_fractions, "species_7")
+    # If species_7 doesn't exist, switch to the (default) Table-cooling case
+    else:
+        HI_frac = getattr(catalogue.species_fractions, "species_0")
+        H2_frac = getattr(catalogue.species_fractions, "species_2")
 
     HI_mass = gas_mass * H_frac * HI_frac
     H2_mass = gas_mass * H_frac * H2_frac * 2
@@ -256,7 +273,7 @@ except AttributeError:
             self,
             f"gas_neutral_H_to_stellar_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                ones,
                 name="$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc) not found, showing $1$",
             ),
         )
@@ -264,7 +281,7 @@ except AttributeError:
             self,
             f"gas_molecular_H_to_molecular_plus_stellar_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                ones,
                 name=f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc) not found, showing $1$",
             ),
         )
@@ -272,7 +289,7 @@ except AttributeError:
             self,
             f"gas_molecular_H_to_neutral_fraction_{aperture_size}_kpc",
             unyt.unyt_array(
-                catalogue.masses.m_gas,
+                ones,
                 name=f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc) not found, showing $1$",
             ),
         )
@@ -307,6 +324,7 @@ try:
     H_frac = catalogue.element_mass_fractions.element_0
     hydrogen_frac_error = ""
 except:
+
     H_frac = 0.0
     hydrogen_frac_error = "(no H abundance)"
 
@@ -353,7 +371,9 @@ try:
 
     # Ensure haloes with zero stellar mass have zero stellar birth densities
     no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
-    exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(0.0, average_log_n_b.units)
+    exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(
+        0.0, average_log_n_b.units
+    )
 
     name = "Stellar Birth Density (average of log)"
     exp_average_log_n_b.name = name

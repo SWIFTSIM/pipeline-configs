@@ -13,46 +13,57 @@ h_bounds = [1e-2, 5e2]  # comoving kpc
 
 def get_data(filename):
     """
-    Grabs the data (gas-particle smoothing lengths are in comoving kpc).
+    Grabs the data (gas-particle smoothing lengths in comoving kpc).
     """
 
     data = load(filename)
 
-    h_gas = data.gas.smoothing_lengths.to("kpc")
+    # Gas particles' comoving smoothing lengths
+    h_gas = data.gas.smoothing_lengths.to_comoving().to("kpc")
 
     # Minimal smoothing length in units of gravitational softening
     h_min_ratio = unyt_quantity(
         float(data.metadata.parameters.get("SPH:h_min_ratio")), units=dimensionless,
     )
 
-    # Comoving softening
+    # Comoving softening length (Plummer equivalent)
     eps_b_comov = unyt_quantity(
         float(
             data.metadata.gravity_scheme.get(
-                "Comoving baryon softening length (Plummer equivalent)  [internal units]"
+                "Comoving baryon softening length (Plummer equivalent)  [internal units]",
+                0.0,
             )
         ),
-        units=Mpc,
+        units=data.metadata.units.length,
     ).to("kpc")
 
-    # Maximal physical softening
+    # Maximal physical softening length (Plummer equivalent)
     eps_b_phys_max = unyt_quantity(
         float(
             data.metadata.gravity_scheme.get(
-                "Maximal physical baryon softening length (Plummer equivalent) [internal units]"
+                "Maximal physical baryon softening length (Plummer equivalent) [internal units]",
+                0.0,
             )
         ),
-        units=Mpc,
+        units=data.metadata.units.length,
     ).to("kpc")
 
-    # Get gamma = H/h
+    # Get gamma = Kernel size / Kernel smoothing length
     gamma = data.metadata.hydro_scheme.get("Kernel gamma")
 
     # Redshift of the snapshot
     z = data.metadata.redshift
 
-    # Compute minimal comoving smoothing length in ckpc
-    h_min = 3.0 * h_min_ratio.value * min(eps_b_comov, eps_b_phys_max * (1 + z)) / gamma
+    # ρ(|r|) = W (|r|, 3.0 * eps_Plummer )
+    softening_plummer_equivalent = 3.0
+
+    # Compute the minimal comoving smoothing length in ckpc
+    h_min = (
+        softening_plummer_equivalent
+        * h_min_ratio.value
+        * min(eps_b_comov, eps_b_phys_max * (1.0 + z))
+        / gamma
+    )
 
     return h_gas, h_min
 
@@ -69,12 +80,20 @@ def make_single_image(filenames, names, h_bounds, number_of_simulations, output_
 
     for filename, name in zip(filenames, names):
         h_gas, h_min = get_data(filename)
-        h, bin_edges = np.histogram(h_gas, range=h_bounds, bins=250, density=True)
+        h, bin_edges = np.histogram(
+            np.log10(h_gas), range=np.log10(h_bounds), bins=250, density=True
+        )
+
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
+        bins = 10 ** bins
+
         (line,) = ax.plot(bins, h, label=name)
+
+        # Add h_min vertical line
         ax.axvline(x=h_min, color=line.get_color(), ls="--", lw=0.2)
 
     ax.legend()
+    ax.set_xlim(*h_bounds)
 
     fig.savefig(f"{output_path}/gas_smoothing_lengths.png")
 

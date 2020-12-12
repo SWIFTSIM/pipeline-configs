@@ -122,7 +122,7 @@ scripts:
     section: Histograms
     title: Gas Particle Masses
   - filename: scripts/gas_smoothing_lengths.py
-    caption: Gas Particle Comoving Smoothing Lengths with the mimimal smoothing length indicated by the vertical dashed line.
+    caption: Gas Particle Comoving Smoothing Lengths with the minimal smoothing length indicated by the vertical dashed line.
     output_file: gas_smoothing_lengths.png
     section: Histograms
     title: Gas Particle Smoothing Lengths

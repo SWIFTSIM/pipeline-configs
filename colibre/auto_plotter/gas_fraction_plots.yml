@@ -83,7 +83,7 @@ h2_frac_func_stellar_surface_density:
     plot: true
     adaptive: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 20
     start:
       value: 1e7
       units: "Solar_Mass / (kpc**2)"
@@ -180,7 +180,7 @@ hi_frac_func_stellar_surface_density:
     plot: true
     adaptive: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 20
     start:
       value: 1e7
       units: "Solar_Mass / (kpc**2)"

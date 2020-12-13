@@ -23,7 +23,7 @@ def get_data(filename):
 
     # Minimal smoothing length in units of gravitational softening
     h_min_ratio = unyt_quantity(
-        float(data.metadata.parameters.get("SPH:h_min_ratio")), units=dimensionless,
+        float(data.metadata.parameters.get("SPH:h_min_ratio")), units=dimensionless
     )
 
     # Comoving softening length (Plummer equivalent)

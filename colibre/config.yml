@@ -72,13 +72,13 @@ scripts:
     section: Stellar Birth Densities
     output_file: birth_density_metallicity.png
   - filename: scripts/birth_density_redshift.py
-    caption: Stellar birth densities vs redshift diagram. The pixel colour indicates the number of stellar particles in the pixel.
-    title: Stellar Birth Densities-Redshift
+    caption: Stellar birth densities vs birth redshift diagram. The pixel colour indicates the number of stellar particles in the pixel.
+    title: Stellar Birth Densities-Birth Redshift
     section: Stellar Birth Densities
     output_file: birth_density_redshift.png
   - filename: scripts/metallicity_redshift.py
-    caption: Stellar metallicity vs redshift diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given redshift, particles with metallicities lower than the smallest value along the X axis are placed in the lowest-metallicity bin.
-    title: Stellar Metallicity-Redshift
+    caption: Stellar metallicity vs birth redshift diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth redshift, particles with metallicities lower than the smallest value along the X axis are placed in the lowest-metallicity bin.
+    title: Stellar Metallicity-Birth Redshift
     section: Stellar Birth Densities
     output_file: metallicity_redshift.png
   - filename: scripts/SNII_density_distribution.py

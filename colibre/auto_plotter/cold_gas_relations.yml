@@ -1,6 +1,7 @@
 stellar_mass_molecular_to_neutral_fraction_30:
   type: "scatter"
   legend_loc: "upper right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
@@ -9,13 +10,13 @@ stellar_mass_molecular_to_neutral_fraction_30:
   y:
     quantity: "derived_quantities.gas_molecular_H_to_neutral_fraction_30_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -24,38 +25,9 @@ stellar_mass_molecular_to_neutral_fraction_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Molecular to Neutral Gas Fraction (30 kpc Stellar Mass)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    caption: All galaxies are included in the median line. Gas fraction is H2 mass over HI + H_2 mass in a 30 kpc aperture.
+    section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
-
-stellar_mass_molecular_to_neutral_fraction_100:
-  type: "scatter"
-  legend_loc: "upper right"
-  x:
-    quantity: "apertures.mass_star_100_kpc"
-    units: Solar_Mass
-    start: 1e5
-    end: 1e12
-  y:
-    quantity: "derived_quantities.gas_molecular_H_to_neutral_fraction_100_kpc"
-    units: "dimensionless"
-    start: 0.003
-    end: 3.
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 25
-    start:
-      value: 1e5
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-Molecular to Neutral Gas Fraction (100 kpc Stellar Mass)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
 
 stellar_mass_neutral_to_stellar_fraction_30:
   type: "scatter"
@@ -68,23 +40,24 @@ stellar_mass_neutral_to_stellar_fraction_30:
   y:
     quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_30_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
       units: Solar_Mass
+
   metadata:
     title: Stellar Mass-Neutral To Stellar Gas Fraction (30 kpc Stellar Mass)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    caption: All galaxies are included in the median line. Gas fraction is HI + H_2 mass divided by stellar mass in a 30 kpc aperture.
+    section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
 
 stellar_mass_neutral_to_stellar_fraction_100:
@@ -98,13 +71,13 @@ stellar_mass_neutral_to_stellar_fraction_100:
   y:
     quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_100_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -113,8 +86,8 @@ stellar_mass_neutral_to_stellar_fraction_100:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Neutral To Stellar Gas Fraction (100 kpc Stellar Mass)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    caption: All galaxies are included in the median line. Gas fraction is HI + H_2 mass divided by stellar mass in a 100 kpc aperture.
+    section: Cold Gas Relations (Stellar Mass)
 
 stellar_mass_molecular_to_stellar_plus_molecular_fraction_30:
   type: "scatter"
@@ -127,13 +100,13 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_30:
   y:
     quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_30_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -142,8 +115,8 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Molecular Gas To Molecular Plus Stellar Fraction (30 kpc Stellar Mass)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    caption: All galaxies are included in the median line. Gas fraction is H2 mass divided by H_2 mass + stellar mass in a 30 kpc aperture.
+    section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
 
 stellar_mass_molecular_to_stellar_plus_molecular_fraction_100:
@@ -157,13 +130,13 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_100:
   y:
     quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_100_kpc"
     units: "dimensionless"
-    start: 0.003
+    start: 1e-4
     end: 3.
   median:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -172,8 +145,8 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_100:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Molecular Gas To Molecular Plus Stellar Fraction (100 kpc Stellar Mass)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    caption: All galaxies are included in the median line. Gas fraction is H2 mass divided by H_2 mass + stellar mass in a 100 kpc aperture.
+    section: Cold Gas Relations (Stellar Mass)
 
 stellar_mass_H2_mass_30:
   type: "scatter"
@@ -184,7 +157,7 @@ stellar_mass_H2_mass_30:
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_mass_Msun"
+    quantity: "derived_quantities.gas_H2_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -192,7 +165,7 @@ stellar_mass_H2_mass_30:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -202,19 +175,20 @@ stellar_mass_H2_mass_30:
   metadata:
     title: Stellar Mass-H$_2$ Gas Mass (30 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
 
 stellar_mass_H2_mass_100:
   type: "scatter"
   legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_mass_Msun"
+    quantity: "derived_quantities.gas_H2_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -222,7 +196,7 @@ stellar_mass_H2_mass_100:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -232,18 +206,19 @@ stellar_mass_H2_mass_100:
   metadata:
     title: Stellar Mass-H$_2$ Gas Mass (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    section: Cold Gas Relations (Stellar Mass)
 
 stellar_mass_HI_mass_30:
   type: "scatter"
   legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass_Msun"
+    quantity: "derived_quantities.gas_HI_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -251,7 +226,7 @@ stellar_mass_HI_mass_30:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -261,19 +236,20 @@ stellar_mass_HI_mass_30:
   metadata:
     title: Stellar Mass-HI Gas Mass (30 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
 
 stellar_mass_HI_mass_100:
   type: "scatter"
   legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass_Msun"
+    quantity: "derived_quantities.gas_HI_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -281,7 +257,7 @@ stellar_mass_HI_mass_100:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -291,26 +267,27 @@ stellar_mass_HI_mass_100:
   metadata:
     title: Stellar Mass-HI Gas Mass (100 kpc Stellar Mass)
     caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    section: Cold Gas Relations (Stellar Mass)
 
 H2_mass_star_formation_rate_30:
   type: "scatter"
   legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "derived_quantities.gas_H2_mass_Msun"
+    quantity: "derived_quantities.gas_H2_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
   y:
-    quantity: "apertures.sfr_gas_30_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    units: "1 / Gyr"
     start: 0.01
     end: 100
   median:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -318,29 +295,30 @@ H2_mass_star_formation_rate_30:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: H2 Gas Mass - Star Formation Rate
+    title: H$_2$ Gas Mass - Star Formation Rate
     caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    section: Cold Gas Relations (Gas Mass)
     show_on_webpage: false
 
 H2_mass_star_formation_rate_100:
   type: "scatter"
   legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "derived_quantities.gas_H2_mass_Msun"
+    quantity: "derived_quantities.gas_H2_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
   y:
-    quantity: "apertures.sfr_gas_100_kpc"
-    units: "Solar_Mass / year"
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
     start: 0.01
     end: 100
   median:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e5
       units: Solar_Mass
@@ -348,6 +326,459 @@ H2_mass_star_formation_rate_100:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: H2 Gas Mass - Star Formation Rate
+    title: H$_2$ Gas Mass - Star Formation Rate
     caption: All galaxies are included in the median line.
-    section: Cold Gas Relations
+    section: Cold Gas Relations (Gas Mass)
+
+stellar_mass_neutral_H_to_baryonic_fraction_100:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_neutral_H_to_baryonic_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+    lower: 
+      value: 0
+      units: "dimensionless"
+    upper:
+      value: 1e99
+      units: "dimensionless"
+  metadata:
+    title: Stellar Mass-Neutral Gas to Baryonic Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is HI + H_2 mass over total baryonic mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Stellar Mass)
+
+stellar_mass_HI_to_neutral_H_fraction_100:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_HI_to_neutral_H_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-1
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-HI to Neutral Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is HI mass over HI + H2 mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Stellar Mass)
+
+stellar_mass_H2_to_neutral_H_fraction_100:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-H$_2$ to Neutral Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is H2 mass over HI + H2 mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Stellar Mass)
+
+stellar_mass_sf_to_sf_plus_stellar_fraction_100:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_sf_to_sf_plus_stellar_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SF gas to SF Gas + Stellar Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is star-forming gas mass over SF gas + stellar mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Stellar Mass)
+
+stellar_mass_neutral_H_to_sf_fraction_100:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_neutral_H_to_sf_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-1
+    end: 10.
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Neutral to SF Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is HI+H2 gas mass over SF gas in a 100 kpc aperture.
+    section: Cold Gas Fractions (Stellar Mass)
+
+stellar_mass_HI_to_sf_fraction_100:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_HI_to_sf_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-1
+    end: 10.
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-HI to SF Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is HI gas mass over SF gas in a 100 kpc aperture.
+    section: Cold Gas Fractions (Stellar Mass)
+
+stellar_mass_H2_to_sf_fraction_100:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_H2_to_sf_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 10.
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-H$_2$ to SF Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is H2 gas mass over SF gas in a 100 kpc aperture.
+    section: Cold Gas Fractions (Stellar Mass)
+
+sfr_neutral_to_stellar_mass_100_kpc_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
+    start: 1e-3
+    end: 10
+  y:
+    quantity: "derived_quantities.neutral_to_stellar_mass_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 10
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 20
+    start:
+      value: 1e-3
+      units: "1 / Gyr"
+    end:
+      value: 10
+      units: "1 / Gyr"
+  metadata:
+    title: sSFR-Neutral Gas to SF Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is HI + H_2 mass over stellar mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (sSFR)
+
+sfr_hi_to_stellar_mass_100_kpc_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
+    start: 1e-3
+    end: 10
+  y:
+    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 10
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 20
+    start:
+      value: 1e-3
+      units: "1 / Gyr"
+    end:
+      value: 10
+      units: "1 / Gyr"
+  metadata:
+    title: sSFR-HI Gas to SF Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is HI mass over stellar mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (sSFR)
+
+sfr_h2_to_stellar_mass_100_kpc_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
+    start: 1e-3
+    end: 10
+  y:
+    quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 20
+    start:
+      value: 1e-3
+      units: "1 / Gyr"
+    end:
+      value: 10
+      units: "1 / Gyr"
+  metadata:
+    title: sSFR-H$_2$ Gas to SF Gas Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is H2 mass over stellar mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (sSFR)
+
+
+sfr_sf_to_stellar_fraction_kpc_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gyr"
+    start: 1e-3
+    end: 10
+  y:
+    quantity: "derived_quantities.gas_sf_to_stellar_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 10
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 20
+    start:
+      value: 1e-3
+      units: "1 / Gyr"
+    end:
+      value: 10
+      units: "1 / Gyr"
+  metadata:
+    title: sSFR-SF Gas to Stellar Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is SF gas mass over stellar mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (sSFR)
+
+sigma_neutral_H_to_baryonic_fraction_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "derived_quantities.mu_star_100_kpc"
+    units: "Solar_Mass / kpc**2"
+    start: 1e5
+    end: 1e10
+  y:
+    quantity: "derived_quantities.gas_neutral_H_to_baryonic_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e5
+      units: "Solar_Mass / kpc**2"
+    end:
+      value: 1e10
+      units: "Solar_Mass / kpc**2"
+  metadata:
+    title: Surface Density-Neutral Gas to Baryonic Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is neutral gas mass over baryonic mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Surface Density)
+
+sigma_hi_to_neutral_H_fraction_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "derived_quantities.mu_star_100_kpc"
+    units: "Solar_Mass / kpc**2"
+    start: 1e5
+    end: 1e10
+  y:
+    quantity: "derived_quantities.gas_HI_to_neutral_H_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-1
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e5
+      units: "Solar_Mass / kpc**2"
+    end:
+      value: 1e10
+      units: "Solar_Mass / kpc**2"
+  metadata:
+    title: Surface Density-HI Gas to Neutral Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is HI gas mass over neutral gas mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Surface Density)
+
+sigma_h2_to_neutral_H_fraction_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "derived_quantities.mu_star_100_kpc"
+    units: "Solar_Mass / kpc**2"
+    start: 1e5
+    end: 1e10
+  y:
+    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e5
+      units: "Solar_Mass / kpc**2"
+    end:
+      value: 1e10
+      units: "Solar_Mass / kpc**2"
+  metadata:
+    title: Surface Density-H$_2$ Gas to Neutral Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is H2 gas mass over neutral gas mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Surface Density)
+
+sigma_sf_to_sf_plus_stellar_fraction_100:
+  type: "scatter"
+  legend_loc: "upper left"  
+  x:
+    quantity: "derived_quantities.mu_star_100_kpc"
+    units: "Solar_Mass / kpc**2"
+    start: 1e5
+    end: 1e10
+  y:
+    quantity: "derived_quantities.gas_sf_to_sf_plus_stellar_fraction_100_kpc"
+    units: "dimensionless"
+    start: 1e-4
+    end: 1.1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e5
+      units: "Solar_Mass / kpc**2"
+    end:
+      value: 1e10
+      units: "Solar_Mass / kpc**2"
+  metadata:
+    title: Surface Density-SF Gas to SF Gas + Stellar Fraction (100 kpc Stellar Mass)
+    caption: All galaxies are included in the median line. Fraction is SF gas mass over SF gas mass + Stellar mass in a 100 kpc aperture.
+    section: Cold Gas Fractions (Surface Density)

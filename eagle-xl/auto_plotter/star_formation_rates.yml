@@ -345,6 +345,81 @@ stellar_mass_passive_fraction_100:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
 
+stellar_mass_passive_fraction_centrals_30:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "lower left"
+  redshift_loc: "upper center"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: solar_mass
+    start: 1e7
+    end: 1e12
+  y:
+    quantity: "derived_quantities.is_passive_30_kpc"
+    units: "dimensionless"
+    log: false
+    start: 0
+    end: 1
+  mean:
+    plot: true
+    log: true
+    scatter: "none"
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e7
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: Passive Fraction - Stellar Mass (30 kpc aperture, centrals)
+    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. This figure shows only the central galaxies (structure type 10).
+    section: Star Formation Rates
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
+
+stellar_mass_passive_fraction_centrals_100:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "lower left"
+  redshift_loc: "upper center"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e7
+    end: 1e12
+  y:
+    quantity: "derived_quantities.is_passive_100_kpc"
+    units: "dimensionless"
+    log: false
+    start: 0
+    end: 1
+  mean:
+    plot: true
+    log: true
+    scatter: "none"
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e7
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: Passive Fraction - Stellar Mass (100 kpc aperture, centrals)
+    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. This figure shows only the central galaxies (structure type 10).
+    section: Star Formation Rates
+  observational_data:
+    - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
+
 star_formation_rate_function_100:
   type: "massfunction"
   legend_loc: "lower left"

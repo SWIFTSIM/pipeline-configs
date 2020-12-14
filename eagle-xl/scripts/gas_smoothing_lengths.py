@@ -8,7 +8,7 @@ import numpy as np
 from swiftsimio import load
 from unyt import unyt_quantity, dimensionless, Mpc
 
-h_bounds = [1e-2, 5e2]  # comoving kpc
+h_bounds = [1e-2, 9e2]  # comoving kpc
 
 
 def get_data(filename):

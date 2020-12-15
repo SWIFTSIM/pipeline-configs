@@ -27,17 +27,17 @@ scripts:
     section: Density-Temperature
     title: Density-Temperature
   - filename: scripts/density_temperature_metals.py
-    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity. If present, dashed line represents the entropy floor (equation of state).
+    caption: Density-temperature diagram with the pixel value weighted by the mean logarithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_temperature_metals.png
     section: Density-Temperature
     title: Density-Temperature (Metals)
   - filename: scripts/density_temperature_dust.py
-    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic dust mass fraction in that bin. Medians are not used due to their computational complexity.
+    caption: Density-temperature diagram with the pixel value weighted by the mean logarithmic dust mass fraction in that bin. Medians are not used due to their computational complexity.
     output_file: density_temperature_dust.png
     section: Density-Temperature
     title: Density-Temperature (Dust)
   - filename: scripts/density_temperature_dust_to_metals.py
-    caption: Density-temperature diagram with the pixel value the ratio of dust to metals for the particles within that bin (i.e. the values are binned weighted by dust, then by metals, and those two grids are divided to produce the dust to metals ratio).
+    caption: Density-temperature diagram with the pixel value the ratio of dust to metals for the particles within that bin (i.e. the values are binned weighted by dust, then by metals, and those two grids are divided to produce the dust to metals ratio). Only particles with a metal mass fraction of $Z > 10^{-8}$ are plotted.
     output_file: density_temperature_dust_to_metals.png
     section: Density-Temperature
     title: Density-Temperature (Dust / Metals)

@@ -82,7 +82,7 @@ scripts:
     section: Stellar Birth Densities
     output_file: metallicity_redshift.png
   - filename: scripts/SNII_density_distribution.py
-    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for f_t=10.
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for $f_t=10$.
     title: Density of the gas heated by SNII
     section: Feedback Densities
     output_file: SNII_density_distribution.png
@@ -152,10 +152,10 @@ scripts:
     section: Run Performance
     output_file: simulation_time_number_of_steps.png
   - filename: scripts/density_temperature_species.py
-    caption: Density-temperature diagram shaded by H2 mass fraction.
+    caption: Density-temperature diagram shaded by H$_2$ mass fraction.
     output_file: subgrid_density_temperature_H2.png
     section: Hydrogen Phase Density-Temperature
-    title: H2
+    title: H$_2$
     additional_arguments:
       hydrogen_species: H2
       quantity_type: subgrid

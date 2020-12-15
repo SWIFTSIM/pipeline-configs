@@ -85,12 +85,6 @@ def setup_axes(number_of_simulations: int):
     return fig, ax
 
 
-def make_single_image(filename, density_bounds, pressure_bounds, bins, output_path):
-    """
-    Makes a single plot of rho-P
-    """
-
-
 def make_single_image(
     filenames,
     names,

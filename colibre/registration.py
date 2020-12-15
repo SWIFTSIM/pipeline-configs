@@ -257,7 +257,7 @@ try:
 
         H2_to_neutral_H_fraction = H2_mass / neutral_H_mass
         H2_to_neutral_H_fraction.name = (
-            f"$M_{{\\rm H2}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+            f"$M_{{\\rm H_2}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
         )
         
         sf_to_sf_plus_stellar_fraction = sf_mass / (
@@ -278,7 +278,7 @@ try:
 
         H2_to_sf_fraction = H2_mass / sf_mass
         H2_to_sf_fraction.name = (
-            f"$M_{{\\rm H2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
+            f"$M_{{\\rm H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
         )
 
         sf_to_stellar_fraction = H2_mass / sf_mass

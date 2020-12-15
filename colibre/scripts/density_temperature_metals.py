@@ -99,12 +99,10 @@ def setup_axes(number_of_simulations: int):
 
 def plot_eos(metadata, ax):
     """
-    Plots the Equation of State (Entropy Floor) and +0.3 dex in Temperature, which should generally enclose particles with divergent subgrid properties.
+    Plots the Equation of State (Entropy Floor) and +0.3 dex in Temperature,
+    which should generally enclose particles with divergent subgrid
+    properties.
     """
-
-    densities_to_plot = np.logspace(
-        np.log10(density_bounds[0]), np.log10(density_bounds[1]), bins
-    )
 
     parameters = metadata.parameters
 
@@ -135,7 +133,7 @@ def plot_eos(metadata, ax):
         ax.plot(
             unyt_array([first_point_H, second_point_H], "cm**-3"),
             unyt_array([temp_first_point, temp_second_point], "K") * pow(10, 0.3),
-            linestyle="dashed",
+            linestyle="dotted",
             alpha=0.5,
             color="k",
             lw=0.5,

@@ -14,7 +14,7 @@ dust_mass_function:
   metadata:
     section: Dust Mass Functions
     title: Dust Mass Function
-    caption: 100 kpc aperture Galaxy HI Mass Function, showing all galaxies with a fixed bin-width of 0.2 dex.
+    caption: 100 kpc aperture Galaxy Dust Mass Function, showing all galaxies with a fixed bin-width of 0.2 dex.
   observational_data:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
@@ -36,7 +36,7 @@ adaptive_dust_mass_function:
   metadata:
     section: Dust Mass Functions
     title: Dust Mass Function
-    caption: 100 kpc aperture Galaxy HI Mass Function, showing all galaxies with an adaptive bin-width.
+    caption: 100 kpc aperture Galaxy Dust Mass Function, showing all galaxies with an adaptive bin-width.
   observational_data:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5

@@ -8,8 +8,7 @@ import numpy as np
 from swiftsimio import load
 
 from unyt import mh, cm, unyt_array
-from matplotlib.colors import ListedColormap, BoundaryNorm
-from matplotlib.cm import get_cmap
+from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
@@ -123,12 +122,10 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
 
 def plot_eos(metadata, ax):
     """
-    Plots the Equation of State (Entropy Floor) and +0.3 dex in Temperature, which should generally enclose particles with divergent subgrid properties.
+    Plots the Equation of State (Entropy Floor) and +0.3 dex in Temperature,
+    which should generally enclose particles with divergent subgrid
+    properties.
     """
-
-    densities_to_plot = np.logspace(
-        np.log10(density_bounds[0]), np.log10(density_bounds[1]), bins
-    )
 
     parameters = metadata.parameters
 
@@ -159,7 +156,7 @@ def plot_eos(metadata, ax):
         ax.plot(
             unyt_array([first_point_H, second_point_H], "cm**-3"),
             unyt_array([temp_first_point, temp_second_point], "K") * pow(10, 0.3),
-            linestyle="dashed",
+            linestyle="dotted",
             alpha=0.5,
             color="k",
             lw=0.5,
@@ -209,15 +206,8 @@ def make_single_image(
         )
         hists.append(hist)
 
-    smap = get_cmap("cividis")
-    ncols = 10
-    collist = [smap(i / float(ncols - 1)) for i in range(ncols)]
-
-    cmap = ListedColormap(collist)
-    norm = BoundaryNorm(np.linspace(*np.log10(specfracs_bounds), ncols + 1), ncols)
-
     for filename, hist, name, axis in zip(filenames, hists, names, ax.flat):
-        mappable = axis.pcolormesh(d, T, np.log10(hist), cmap=cmap, norm=norm)
+        mappable = axis.pcolormesh(d, T, hist, norm=LogNorm(vmin=1e-2, vmax=1e0))
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
         metadata = load(filename).metadata
         plot_eos(metadata, axis)

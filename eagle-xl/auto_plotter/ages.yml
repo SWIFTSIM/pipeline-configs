@@ -25,6 +25,7 @@ stellar_mass_ages_30:
   metadata:
     title: "Stellar mass - Stellar age relation (30 kpc aperture)"
     section: Ages
+    caption: Median age of stars within the 30 kpc 3D aperture of each galaxy.
     show_on_webpage: False
   observational_data:
     - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5
@@ -56,5 +57,6 @@ stellar_mass_ages_100:
   metadata:
     title: "Stellar mass - Stellar age relation (100 kpc aperture)"
     section: Ages
+    caption: Median age of stars within the 100 kpc 3D aperture of each galaxy.
   observational_data:
     - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5

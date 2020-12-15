@@ -36,6 +36,11 @@ scripts:
     output_file: density_temperature_dust.png
     section: Density-Temperature
     title: Density-Temperature (Dust)
+  - filename: scripts/density_temperature_dust_to_metals.py
+    caption: Density-temperature diagram with the pixel value the ratio of dust to metals for the particles within that bin (i.e. the values are binned weighted by dust, then by metals, and those two grids are divided to produce the dust to metals ratio).
+    output_file: density_temperature_dust_to_metals.png
+    section: Density-Temperature
+    title: Density-Temperature (Dust / Metals)
   - filename: scripts/density_internal_energy.py
     caption: Density-Internal Energy diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_internal_energy.png
@@ -47,15 +52,15 @@ scripts:
     section: Density-Temperature
     title: Density-Pressure
   - filename: scripts/star_formation_history.py
-    caption: Star formation history plotted directly from the SFR.txt file produced by SWIFT.
+    caption: Star formation density history plotted directly from the SFR.txt file produced by SWIFT.
     output_file: star_formation_history.png
-    section: Star Formation History
+    section: Star Formation Density History
     title: Star Formation History
   - filename: scripts/stellar_mass_evolution.py
-    caption: Evolution of the stellar mass plotted directly from the statistics.txt file produced by SWIFT.
+    caption: Evolution of the stellar mass density plotted directly from the statistics.txt file produced by SWIFT.
     output_file: stellar_mass_evolution.png
     section: Star Formation History
-    title: Stellar Mass Evolution
+    title: Stellar Mass Density Evolution
   - filename: scripts/metallicity_distribution.py
     caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars. If present, dashed line represents the entropy floor (equation of state).
     output_file: metallicity_distribution.png

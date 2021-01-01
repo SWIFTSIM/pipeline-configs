@@ -121,6 +121,16 @@ scripts:
     output_file: gas_max_temperatures.png
     section: Histograms
     title: Maximal Temperature reached by gas particles
+  - filename: scripts/feedback_SNII_events.py
+    caption: Number of stellar feedback events recorded by gas particles throughout the entire simulation.
+    output_file: gas_num_SNII_events.png
+    section: Histograms
+    title: Number of stellar feedback events 
+  - filename: scripts/feedback_AGN_events.py
+    caption: Number of AGN feedback events recorded by gas particles throughout the entire simulation.
+    output_file: gas_num_AGN_events.png
+    section: Histograms
+    title: Number of AGN feedback events
   - filename: scripts/particle_updates_step_cost.py
     caption: Wall-clock time to run a time-step as a function of the number of gas particles updated. The tracks at the top correspond to steps where the tree is rebuilt, i/o is performed, FoF is run or other non-regular operations are done.
     title: Wall-clock time per gas particle updates.

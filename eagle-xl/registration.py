@@ -24,6 +24,7 @@ This file calculates:
         cosmic baryon fraction (baryon_fraction_true_R200, gas_fraction_true_R200).
 """
 
+# Aperture sizes in kpc in which stellar mass is computed
 aperture_sizes = [30, 100]
 
 # Specific star formation rate in apertures, as well as passive fraction
@@ -111,6 +112,7 @@ for aperture_size in aperture_sizes:
     except AttributeError:
         pass
 
+
 # Now stellar mass - halo mass relation
 
 for aperture_size in aperture_sizes:
@@ -132,6 +134,7 @@ for aperture_size in aperture_sizes:
 # Now HI masses
 
 gas_mass = catalogue.masses.m_gas
+nonmetal_frac = 1.0 - catalogue.apertures.zmet_gas_sf_100_kpc
 try:
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
     hydrogen_frac_error = ""
@@ -141,27 +144,31 @@ except:
 
 try:
     # Test for CHIMES arrays
-    HI_frac = catalogue.species_fractions.species_1
+    HI_species_frac = catalogue.species_fractions.species_1
     species_frac_error = ""
 except:
     try:
         # Test for COLIBRE arrays
-        HI_frac = catalogue.species_fractions.species_0
+        HI_species_frac = catalogue.species_fractions.species_0
         species_frac_error = ""
     except:
-        # Test for COLIBRE arrays
-        HI_frac = catalogue.species_fractions.species_1
+        HI_species_frac = catalogue.species_fractions.species_1
         species_frac_error = "(no species field)"
 
 total_error = f" {species_frac_error}{hydrogen_frac_error}"
-HI_mass = gas_mass * H_frac * HI_frac
+HI_mass = gas_mass * H_frac * HI_species_frac
 HI_mass.name = f"$M_{{\\rm HI}}${total_error}"
 
-setattr(self, "gas_HI_mass_Msun", HI_mass)
+HI_mass_wHe = gas_mass * nonmetal_frac * HI_species_frac
+HI_mass_wHe.name = f"$M_{{\\rm HI}}${total_error}"
+
+setattr(self, "gas_HI_mass", HI_mass)
+setattr(self, "gas_HI_plus_He_mass", HI_mass_wHe)
 
 # Now H2 masses
 
 gas_mass = catalogue.masses.m_gas
+nonmetal_frac = 1.0 - catalogue.apertures.zmet_gas_sf_100_kpc
 try:
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
     hydrogen_frac_error = ""
@@ -171,39 +178,52 @@ except:
 
 try:
     # Test for CHIMES arrays
-    H2_frac = catalogue.species_fractions.species_7
+    H2_species_frac = catalogue.species_fractions.species_7
     species_frac_error = ""
 except:
     try:
         # Test for COLIBRE arrays
-        H2_frac = catalogue.species_fractions.species_0
+        H2_species_frac = catalogue.species_fractions.species_0
         species_frac_error = ""
     except:
-        H2_frac = catalogue.species_fractions.species_2
+        H2_species_frac = catalogue.species_fractions.species_2
         species_frac_error = "(no species field)"
 
 total_error = f" {species_frac_error}{hydrogen_frac_error}"
 H2_mass = (
-    gas_mass * H_frac * H2_frac * 2
+    gas_mass * H_frac * H2_species_frac * 2
 )  # Factor of 2 to convert H2 species fraction to mass fraction
-H2_mass.name = f"$M_{{\\rm H_2}}{total_error}$"
+H2_mass_wHe = (
+    gas_mass * nonmetal_frac * H2_species_frac * 2
+)  # Factor of 2 to convert H2 species fraction to mass fraction
 
-setattr(self, "gas_H2_mass_Msun", H2_mass)
+H2_mass.name = f"$M_{{\\rm H_2}}{total_error}$"
+H2_mass_wHe.name = f"$M_{{\\rm H_2}}{total_error}$"
+
+setattr(self, "gas_H2_mass", H2_mass)
+setattr(self, "gas_H2_plus_He_mass", H2_mass_wHe)
 
 # Now neutral H masses and fractions
 
 try:
     gas_mass = catalogue.masses.m_gas
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
 
-    HI_mass = gas_mass * H_frac * HI_frac
-    H2_mass = gas_mass * H_frac * H2_frac * 2
+    # Try CHIMES arrays
+    if hasattr(catalogue.species_fractions, "species_7"):
+        HI_species_frac = getattr(catalogue.species_fractions, "species_1")
+        H2_species_frac = getattr(catalogue.species_fractions, "species_7")
+    # If species_7 doesn't exist, switch to the (default) Table-cooling case
+    else:
+        HI_species_frac = getattr(catalogue.species_fractions, "species_0")
+        H2_species_frac = getattr(catalogue.species_fractions, "species_2")
+
+    HI_mass = gas_mass * H_frac * HI_species_frac
+    H2_mass = gas_mass * H_frac * H2_species_frac * 2
     neutral_H_mass = HI_mass + H2_mass
     neutral_H_mass.name = "$M_{\\rm HI + H_2}$"
 
-    setattr(self, "gas_neutral_H_mass_Msun", neutral_H_mass)
+    setattr(self, "gas_neutral_H_mass", neutral_H_mass)
 
     for aperture_size in aperture_sizes:
         stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
@@ -244,7 +264,7 @@ except AttributeError:
     # We did not produce these quantities.
     setattr(
         self,
-        "gas_neutral_H_mass_Msun",
+        "gas_neutral_H_mass",
         unyt.unyt_array(
             catalogue.masses.m_gas,
             name="$M_{\\rm HI + H_2}$ not found, showing $M_{\\rm g}$",

@@ -9,7 +9,7 @@ stellar_mass_black_hole_mass_30:
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
-    start: 1e5
+    start: 6e3
     end: 1e11
   median:
     plot: true
@@ -27,11 +27,11 @@ stellar_mass_black_hole_mass_30:
     caption: SMBHM relation for the 30 kpc stellar mass aperture. 
     section: Black Holes
     show_on_webpage: false
+    observational_data_bracket_width: 0.2
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
-
 
 stellar_mass_black_hole_mass_100:
   type: "scatter"
@@ -44,7 +44,7 @@ stellar_mass_black_hole_mass_100:
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
-    start: 1e5
+    start: 6e3
     end: 1e11
   median:
     plot: true
@@ -61,6 +61,7 @@ stellar_mass_black_hole_mass_100:
     title: Stellar Mass-Black Hole Mass relation (100 kpc Stellar Mass)
     caption: SMBHM relation for the 100 kpc stellar mass aperture.
     section: Black Holes
+    observational_data_bracket_width: 0.2
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
@@ -78,7 +79,7 @@ halo_mass_black_hole_mass:
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
-    start: 1e5
+    start: 6e3
     end: 1e11
   median:
     plot: true
@@ -108,7 +109,7 @@ stellar_veldisp_black_hole_mass_10:
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
-    start: 1e5
+    start: 6e3
     end: 1e11
   median:
     plot: true
@@ -140,7 +141,7 @@ stellar_veldisp_black_hole_mass_30:
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
-    start: 1e5
+    start: 6e3
     end: 1e11
   median:
     plot: true

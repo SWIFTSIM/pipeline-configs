@@ -55,7 +55,7 @@ for snapshot_filename, stats_filename, name in zip(
     # a, Redshift, BH mass
     scale_factor = data.a
     redshift = data.z
-    bh_mass = data.bh_mass.to("Msun")
+    bh_mass = data.bh_sub_mass.to("Msun")
     bh_mass_density = bh_mass / box_volume
 
     # High z-order as we always want these to be on top of the observations
@@ -73,7 +73,7 @@ for index, observation in enumerate(observational_data):
     obs.plot_on_axes(ax)
 
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"BH Mass Density [M$_\odot$ Mpc$^{-3}$]")
+ax.set_ylabel(r"BH Subgrid Mass Density [M$_\odot$ Mpc$^{-3}$]")
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [

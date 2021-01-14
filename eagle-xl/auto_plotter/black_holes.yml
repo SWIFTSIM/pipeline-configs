@@ -27,16 +27,11 @@ stellar_mass_black_hole_mass_30:
     caption: SMBHM relation for the 30 kpc stellar mass aperture. 
     section: Black Holes
     show_on_webpage: false
+    observational_data_bracket_width: 0.2
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
-      minimum_redshift: 0.0
-      maximum_redshift: 0.5
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
-      minimum_redshift: 0.0
-      maximum_redshift: 0.5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
-      minimum_redshift: 0.0
-      maximum_redshift: 2.0
 
 stellar_mass_black_hole_mass_100:
   type: "scatter"
@@ -66,16 +61,11 @@ stellar_mass_black_hole_mass_100:
     title: Stellar Mass-Black Hole Mass relation (100 kpc Stellar Mass)
     caption: SMBHM relation for the 100 kpc stellar mass aperture.
     section: Black Holes
+    observational_data_bracket_width: 0.2
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
-      minimum_redshift: 0.0
-      maximum_redshift: 0.5
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
-      minimum_redshift: 0.0
-      maximum_redshift: 0.5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
-      minimum_redshift: 0.0
-      maximum_redshift: 2.0
 
 
 halo_mass_black_hole_mass:

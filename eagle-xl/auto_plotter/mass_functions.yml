@@ -18,8 +18,35 @@ stellar_mass_function_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0
 
 adaptive_stellar_mass_function_30:
   type: "adaptivemassfunction"
@@ -41,8 +68,35 @@ adaptive_stellar_mass_function_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0
 
 adaptive_stellar_mass_function_active_only_30:
   type: "adaptivemassfunction"
@@ -67,8 +121,35 @@ adaptive_stellar_mass_function_active_only_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0
 
 adaptive_stellar_mass_function_passive_only_30:
   type: "adaptivemassfunction"
@@ -93,9 +174,35 @@ adaptive_stellar_mass_function_passive_only_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0
 
 stellar_mass_function_100:
   type: "massfunction"
@@ -116,8 +223,35 @@ stellar_mass_function_100:
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0
 
 adaptive_stellar_mass_function_100:
   type: "adaptivemassfunction"
@@ -138,8 +272,35 @@ adaptive_stellar_mass_function_100:
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0
 
 adaptive_stellar_mass_function_passive_only_100:
   type: "adaptivemassfunction"
@@ -163,8 +324,35 @@ adaptive_stellar_mass_function_passive_only_100:
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0
 
 adaptive_stellar_mass_function_active_only_100:
   type: "adaptivemassfunction"
@@ -188,5 +376,32 @@ adaptive_stellar_mass_function_active_only_100:
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+      maximum_redshift: 0.1
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+      maximum_redshift: 0.1
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+      minimum_redshift: 0.1
+      maximum_redshift: 0.3
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+      minimum_redshift: 0.3
+      maximum_redshift: 0.7
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+      minimum_redshift: 0.7
+      maximum_redshift: 1.0
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+      minimum_redshift: 1.0
+      maximum_redshift: 1.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+      minimum_redshift: 1.25
+      maximum_redshift: 1.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+      minimum_redshift: 1.75
+      maximum_redshift: 2.25
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+      minimum_redshift: 2.25
+      maximum_redshift: 2.75
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+      minimum_redshift: 2.75
+      maximum_redshift: 4.0

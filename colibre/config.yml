@@ -10,7 +10,7 @@ auto_plotter_registration: registration.py
 
 # Location of the 'observational data' repository and its compiled
 # contents.
-observational_data_directory: ../observational_data
+observational_data_directory: ../../observational_data
 
 # Style sheet to be used throughout with plotting
 matplotlib_stylesheet: mnras.mplstyle
@@ -41,8 +41,6 @@ scripts:
     output_file: density_temperature_dust_to_metals.png
     section: Density-Temperature
     title: Density-Temperature (Dust / Metals)
-  - filename: scripts/density_internal_energy.py
-    caption: Density-Internal Energy diagram. If present, dashed line represents the entropy floor (equation of state).
   - filename: scripts/density_temperature_dust2metal.py
     caption: Density-temperature diagram shaded by the total fraction of metals in the dust phase.
     output_file: density_temperature_dust2metal.png
@@ -50,6 +48,8 @@ scripts:
     title: Dust-to-metal Ratio
     additional_arguments:
       quantity_type: hydro
+  - filename: scripts/density_internal_energy.py
+    caption: Density-Internal Energy diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_internal_energy.png
     section: Density-Temperature
     title: Density-Internal Energy
@@ -199,13 +199,6 @@ scripts:
     output_file: subgrid_density_temperature_HII.png
     section: Hydrogen Phase Density-Temperature
     title: HII
-  - filename: scripts_dev/dummy.py
-    caption: Density-temperature diagram shaded by the total fraction of metals in the dust phase.
-    output_file: density_temperature_dust2metal.png
-    section: Density-Temperature
-    title: Dust-to-metal Ratio
-    additional_arguments:
-      quantity_type: hydro
   - filename: scripts/density_temperature_dust2metal.py
     caption: Density-temperature diagram shaded by the total fraction of metals in the dust phase.
     output_file: density_temperature_dust2metal.png
@@ -221,27 +214,3 @@ scripts:
     additional_arguments:
       cooling_tables: /cosma7/data/dp004/wmfw23/colibre_dust/coolingtables/UV_dust1_CR1_G1_shield1.hdf5
       quantity_type: hydro
-  - filename: scripts/density_temperature_species.py
-    caption: Density-temperature diagram shaded by H2 mass fraction.
-    output_file: subgrid_density_temperature_H2.png
-    section: Hydrogen Phases
-    title: H2 subgrid phase diagram
-    additional_arguments:
-      hydrogen_species: H2
-      quantity_type: subgrid
-  - filename: scripts/density_temperature_species.py
-    caption: Density-temperature diagram shaded by HI mass fraction.
-    output_file: subgrid_density_temperature_HI.png
-    Section: Hydrogen Phases
-    title: HI subgrid phase diagram
-    additional_arguments:
-      hydrogen_species: HI
-      quantity_type: subgrid
-  - filename: scripts/density_temperature_species.py
-    caption: Density-temperature diagram shaded by HII mass fraction.
-    output_file: subgrid_density_temperature_HII.png
-    section: Hydrogen Phases
-    title: HII subgrid phase diagram
-    additional_arguments:
-      hydrogen_species: HII
-      quantity_type: subgrid

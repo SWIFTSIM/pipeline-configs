@@ -160,6 +160,7 @@ stellar_mass_projected_galaxy_size_active_only_100:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_active_only_30:
   type: "scatter"
@@ -196,6 +197,7 @@ stellar_mass_projected_galaxy_size_active_only_30:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_passive_only_100:
   type: "scatter"
@@ -231,6 +233,7 @@ stellar_mass_projected_galaxy_size_passive_only_100:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
 
 stellar_mass_projected_galaxy_size_passive_only_30:
   type: "scatter"
@@ -267,4 +270,5 @@ stellar_mass_projected_galaxy_size_passive_only_30:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
 

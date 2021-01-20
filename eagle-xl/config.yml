@@ -146,4 +146,9 @@ scripts:
     title: The number of steps vs. wall-clock time
     section: Run Performance
     output_file: wallclock_number_of_steps.png
+  - filename: scripts/wallclock_timebin_hist.py
+    caption: Total wall-clock time spent in each of the different simulation time-bins.
+    title: Wall-clock time per time-bin
+    section: Run Performance
+    output_file: wallclock_timebin_hist.png
 

@@ -49,11 +49,11 @@ for run_name, run_directory, snapshot_name in zip(
         times[i] = np.sum(wallclock_time[time_bin_max == time_bins[i]])
 
     # Simulation data plotting
-    ax.plot(time_bins, times, zorder=10, label=run_name)
+    ax.step(time_bins + 0.5, times, zorder=10, label=run_name)
 
     ax.axvline(56, color="k", ls="--", lw=1)
 
-ax.set_xlim(28, 58)
+ax.set_xlim(28, 57)
 
 ax.legend(loc="upper left")
 

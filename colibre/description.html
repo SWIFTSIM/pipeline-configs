@@ -50,6 +50,34 @@
     </tr>
 </table>
 
+<h4>Stars</h4>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Max time-step of young stars</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Stars:max_timestep_young_Myr", "Myr") }}
+        </td>
+    </tr>
+    <tr>
+        <td>Transition from young to old</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Stars:timestep_age_threshold_Myr", "Myr")}}
+        </td>
+    </tr>
+    <tr>
+        <td>Max time-step of old stars</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Stars:max_timestep_old_Myr", "Myr") }}
+        </td>
+    </tr>
+    <tr>
+        <td>Transition from old to unlimited</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("Stars:timestep_age_threshold_unlimited_Myr", "Myr") }}
+        </td>
+    </tr>
+</table>
+
 <h4>Star Formation</h4>
 <table>
     <tr>
@@ -303,6 +331,23 @@
     <tr>
         <td>Black Hole Merger Max Distance Ratio</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:merger_max_distance_ratio") }}</td>
+    </tr>
+    <tr>
+        <td>Use Black Hole Accretion Boost Factor</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_boost_factor") }}</td>
+    </tr>
+    <tr>
+        <td>Boost \(\alpha\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_alpha") }}</td>
+    </tr>
+    <tr>
+        <td>Boost \(\beta\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_beta") }}</td>
+    </tr>
+    <tr>
+        <td>Boost \(n_{\rm norm}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_n_h_star_cm3") }}
+        cm\(^{-3}\) </td>
     </tr>
 </table>
 {% else %}

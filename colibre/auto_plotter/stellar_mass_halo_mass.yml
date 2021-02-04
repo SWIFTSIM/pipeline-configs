@@ -31,6 +31,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_100:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200_Ratio.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017_Ratio.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_100:
   type: "scatter"
@@ -99,6 +100,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013RatioStellar.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200_RatioStellar.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017_RatioStellar.hdf5
       
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
   type: "scatter"
@@ -165,6 +167,7 @@ stellar_mass_halo_mass_M200_all_100:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017.hdf5
 
 stellar_mass_halo_mass_MBN98_all_100:
   type: "scatter"
@@ -232,6 +235,7 @@ stellar_mass_halo_mass_M200_centrals_100:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_100:
   type: "scatter"
@@ -302,6 +306,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_30:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200_Ratio.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017_Ratio.hdf5
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
   type: "scatter"
@@ -337,6 +342,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013RatioStellar.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200_RatioStellar.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017_RatioStellar.hdf5
 
 stellar_mass_halo_mass_M200_all_30:
   type: "scatter"
@@ -370,6 +376,7 @@ stellar_mass_halo_mass_M200_all_30:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017.hdf5
 
 stellar_mass_halo_mass_M200_centrals_30:
   type: "scatter"
@@ -405,3 +412,4 @@ stellar_mass_halo_mass_M200_centrals_30:
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Moster2013.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_M200.hdf5
+    - filename: GalaxyStellarMassHaloMass/Reed2017.hdf5

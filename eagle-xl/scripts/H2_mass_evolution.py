@@ -1,5 +1,5 @@
 """
-Plots the stellar mass density evolution.
+Plots the molecular gas mass density evolution.
 """
 import matplotlib
 
@@ -18,7 +18,7 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor.observations import load_observation
 
 arguments = ScriptArgumentParser(
-    description="Creates a stellar mass density evolution plot, with added observational data."
+    description="Creates a molecular gas mass density evolution plot, with added observational data."
 )
 
 snapshot_filenames = [

@@ -97,6 +97,18 @@ for index, observation in enumerate(observational_data):
                     alpha=0.5,
                 )[0]
             )
+        elif observation.description == "EAGLE-12 REF":
+            observation_lines.append(
+                ax.plot(
+                    observation.scale_factor,
+                    observation.sfr,
+                    label=observation.description,
+                    color="olive",
+                    zorder=-10000,
+                    linewidth=1,
+                    alpha=0.5,
+                )[0]
+            )
         else:
             observation_lines.append(
                 ax.plot(

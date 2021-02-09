@@ -266,22 +266,27 @@ try:
             f"$M_{{\\rm SF}}/(M_{{\\rm SF}} + M_*)$ ({aperture_size} kpc)"
         )
 
-        neutral_H_to_sf_fraction = neutral_H_mass / sf_mass
+        mask = sf_mass > 0.0 * sf_mass.units
+
+        neutral_H_to_sf_fraction = unyt.unyt_array(np.zeros_like(neutral_H_mass), units="dimensionless")
+        neutral_H_to_sf_fraction[mask] = neutral_H_mass[mask] / sf_mass[mask]
         neutral_H_to_sf_fraction.name = (
             f"$M_{{\\rm HI + H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
         )
 
-        HI_to_sf_fraction = HI_mass / sf_mass
+        HI_to_sf_fraction = unyt.unyt_array(np.zeros_like(HI_mass), units="dimensionless")
+        HI_to_sf_fraction[mask] = HI_mass[mask] / sf_mass[mask]
         HI_to_sf_fraction.name = (
             f"$M_{{\\rm HI}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
         )
 
-        H2_to_sf_fraction = H2_mass / sf_mass
+        H2_to_sf_fraction = unyt.unyt_array(np.zeros_like(H2_mass), units="dimensionless")
+        H2_to_sf_fraction[mask] = H2_mass[mask] / sf_mass[mask]
         H2_to_sf_fraction.name = (
             f"$M_{{\\rm H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
         )
 
-        sf_to_stellar_fraction = H2_mass / sf_mass
+        sf_to_stellar_fraction = sf_mass / stellar_mass
         sf_to_stellar_fraction.name = (
             f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
         )

@@ -10,6 +10,7 @@ import numpy as np
 import sys
 import glob
 
+from unyt import unyt_quantity
 
 from swiftsimio import load, load_statistics
 
@@ -50,6 +51,10 @@ for snapshot_filename, stats_filename, name in zip(
     snapshot = load(snapshot_filename)
     boxsize = snapshot.metadata.boxsize.to("Mpc")
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
+    cosmo = snapshot.metadata.cosmology
+    Omega_b = cosmo.Ob0
+    rho_crit0 = unyt_quantity.from_astropy(cosmo.critical_density0)
+    rho_crit0 = rho_crit0.to("Msun / Mpc**3")
 
     # a, Redshift, SFR
     scale_factor = data.a
@@ -57,9 +62,14 @@ for snapshot_filename, stats_filename, name in zip(
     HI_mass = data.gas_hi_mass.to("Msun")
     HI_mass_density = HI_mass / box_volume
 
+    # Convert to abundance
+    Omega_HI = HI_mass_density / rho_crit0
+
     # High z-order as we always want these to be on top of the observations
-    simulation_lines.append(ax.plot(scale_factor, HI_mass_density, zorder=10000)[0])
+    simulation_lines.append(ax.plot(scale_factor, Omega_HI, zorder=10000)[0])
     simulation_labels.append(name)
+
+    ax.axhline(Omega_b, c="0.4", ls="--", lw=0.5)
 
 # Observational data plotting
 
@@ -72,7 +82,7 @@ for snapshot_filename, stats_filename, name in zip(
 #    obs.plot_on_axes(ax)
 
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"Atomic Gas Mass Density $\rho_{HI}$ [M$_{HI}$ Mpc$^{-3}$]")
+ax.set_ylabel(r"Atomic Gas Cosmic Abundance $\Omega_{HI}$ [-]")
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [
@@ -95,14 +105,14 @@ ax.set_xticklabels(redshift_labels)
 ax.tick_params(axis="x", which="minor", bottom=False)
 
 ax.set_xlim(1.02, 0.07)
-ax.set_ylim(1e6, 1.3e9)
+ax.set_ylim(3e-6, 8e-2)
 
 observation_legend = ax.legend(markerfirst=True, loc="lower left")
 
 ax.add_artist(observation_legend)
 
 simulation_legend = ax.legend(
-    simulation_lines, simulation_labels, markerfirst=False, loc="upper left"
+    simulation_lines, simulation_labels, markerfirst=False, loc="lower right"
 )
 
 ax.add_artist(simulation_legend)

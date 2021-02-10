@@ -382,6 +382,7 @@ stellar_mass_passive_fraction_30:
   observational_data:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/Behroozi2019.hdf5
 
 stellar_mass_passive_fraction_100:
   type: "scatter"
@@ -417,6 +418,7 @@ stellar_mass_passive_fraction_100:
   observational_data:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/Behroozi2019.hdf5
 
 stellar_mass_passive_fraction_centrals_30:
   type: "scatter"
@@ -455,6 +457,7 @@ stellar_mass_passive_fraction_centrals_30:
   observational_data:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/Behroozi2019_centrals.hdf5
 
 stellar_mass_passive_fraction_centrals_100:
   type: "scatter"
@@ -492,6 +495,7 @@ stellar_mass_passive_fraction_centrals_100:
   observational_data:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/Behroozi2019_centrals.hdf5
 
 star_formation_rate_function_100:
   type: "massfunction"

@@ -9,7 +9,7 @@ snii_thermal_feedback_density_halo_mass_max_all:
   y:
     quantity: "snii_thermal_feedback_densities.max"
     units: "mh/cm**3"
-    start: 1e-4
+    start: 5e-2
     end: 5e6
   median:
     plot: true
@@ -38,7 +38,7 @@ snii_thermal_feedback_density_stellar_mass_max_all_100:
   y:
     quantity: "snii_thermal_feedback_densities.max"
     units: "mh/cm**3"
-    start: 1e-4
+    start: 5e-2
     end: 5e6
   median:
     plot: true
@@ -62,12 +62,12 @@ snii_thermal_feedback_density_stellar_birth_density_max_all:
   x:
     quantity: "stellar_birth_densities.max"
     units: "mh/cm**3"
-    start: 1e-4
+    start: 5e-2
     end: 5e6
   y:
     quantity: "snii_thermal_feedback_densities.max"
     units: "mh/cm**3"
-    start: 1e-4
+    start: 5e-2
     end: 5e6
   median:
     plot: true
@@ -75,7 +75,7 @@ snii_thermal_feedback_density_stellar_birth_density_max_all:
     adaptive: true
     number_of_bins: 25
     start:
-      value: 1e-4
+      value: 5e-2
       units: "mh/cm**3"
     end:
       value: 5e6

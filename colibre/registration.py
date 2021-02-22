@@ -587,6 +587,9 @@ self.h2_plus_he_to_stellar_mass_100_kpc = (
 self.hi_plus_he_to_stellar_mass_100_kpc = (
     HI_mass_wHe / catalogue.apertures.mass_star_100_kpc
 )
+self.cold_gas_to_stellar_mass_100_kpc = (
+    (HI_mass_wHe + H2_mass_wHe) / catalogue.apertures.mass_star_100_kpc
+)
 
 
 self.neutral_to_stellar_mass_100_kpc = (self.hi_to_stellar_mass_100_kpc +

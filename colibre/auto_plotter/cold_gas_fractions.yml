@@ -1,0 +1,128 @@
+cold_gas_frac_func_stellar_mass:
+  type: "scatter"
+  legend_loc: "lower left"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 2e7
+    end: 1e12
+  y:
+    quantity: "derived_quantities.neutral_to_stellar_mass_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 15
+    start:
+      value: 2e7
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Cold gas Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy H_$2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+  observational_data:
+    - filename: GalaxyColdGasFractions/Catinella2018_abcissa_M_star.hdf5
+    
+cold_gas_frac_func_ssfr:
+  type: "scatter"
+  legend_loc: "upper right"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gigayear"
+    start: 1e-4
+    end: 6e1
+  y:
+    quantity: "derived_quantities.neutral_to_stellar_mass_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 40
+    start:
+      value: 1e-4
+      units: "1 / Gigayear"
+    end:
+      value: 6e1
+      units: "1 / Gigayear"
+  metadata:
+    title: sSFR-Cold gas Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy H_$2$ mass (including Helium following the observations) over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+  observational_data:
+    - filename: GalaxyColdGasFractions/Catinella2018_abcissa_sSFR.hdf5
+
+h2_to_neutral_gas_frac_func_stellar_mass:
+  type: "scatter"
+  legend_loc: "lower left"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 2e7
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 1
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 15
+    start:
+      value: 2e7
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Cold gas Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy H_$2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+  observational_data:
+    - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_M_star.hdf5
+    
+h2_to_neutral_gas_frac_func_ssfr:
+  type: "scatter"
+  legend_loc: "upper right"
+  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: "1 / Gigayear"
+    start: 1e-4
+    end: 6e1
+  y:
+    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 1
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 40
+    start:
+      value: 1e-4
+      units: "1 / Gigayear"
+    end:
+      value: 6e1
+      units: "1 / Gigayear"
+  metadata:
+    title: sSFR-H2 Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy H_$2$ mass (including Helium following the observations) over neutral gas mass (HI+H$_2$) as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+  observational_data:
+    - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_sSFR.hdf5
+

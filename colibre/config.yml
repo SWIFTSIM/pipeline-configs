@@ -103,7 +103,7 @@ scripts:
     title: Stellar Metallicity-Birth Redshift
     section: Stellar Birth Densities
     output_file: metallicity_redshift.png
-  - filename: scripts/SNII_density_distribution.py
+  - filename: scripts/last_SNII_density_distribution.py
     caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for $f_t=10$.
     title: Density of the gas heated by SNII
     section: Feedback Densities
@@ -207,3 +207,13 @@ scripts:
     additional_arguments:
       cooling_tables: /cosma7/data/dp004/wmfw23/colibre_dust/coolingtables/UV_dust1_CR1_G1_shield1.hdf5
       quantity_type: hydro
+  - filename: scripts/last_SNII_kick_velocity_distribution.py
+    caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity.
+    output_file: SNII_last_kick_velocity_distribution.png
+    section: Feedback kick velocities
+    title: Kick velocity distribution at last SNII
+  - filename: scripts/max_SNII_kick_velocities.py
+    caption: Maximal SNII kick velocities by experienced by particles in SNII kinetic feedback throughout the entire simulation.
+    output_file: SNII_maximal_kick_velocities.png
+    section: Feedback kick velocities
+    title: Maximal SNII kick velocity

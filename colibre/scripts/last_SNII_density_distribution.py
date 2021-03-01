@@ -1,5 +1,5 @@
 """
-Plots the SNII density distribution.
+Plots the SNII density distribution (at last SNII thermal injections).
 """
 
 import matplotlib.pyplot as plt
@@ -115,12 +115,28 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     stars_SNII_densities = (snapshot.stars.densities_at_last_supernova_event / mh).to(
         SNII_density_bins.units
     )
-    stars_SNII_redshifts = 1 / snapshot.stars.last_sniifeedback_scale_factors.value - 1
+
+    # swift-colibre master branch as of Feb 26 2021
+    try:
+        stars_SNII_redshifts = (
+            1 / snapshot.stars.last_sniithermal_feedback_scale_factors.value - 1
+        )
+    # swift-colibre master prior to Feb 26 2021
+    except AttributeError:
+        stars_SNII_redshifts = (
+            1 / snapshot.stars.last_sniifeedback_scale_factors.value - 1
+        )
 
     gas_SNII_densities = (snapshot.gas.densities_at_last_supernova_event / mh).to(
         SNII_density_bins.units
     )
-    gas_SNII_redshifts = 1 / snapshot.gas.last_sniifeedback_scale_factors.value - 1
+
+    try:
+        gas_SNII_redshifts = (
+            1 / snapshot.gas.last_sniithermal_feedback_scale_factors.value - 1
+        )
+    except AttributeError:
+        gas_SNII_redshifts = 1 / snapshot.gas.last_sniifeedback_scale_factors.value - 1
 
     # Limit only to those gas/stellar particles that were in fact heated by SNII
     stars_SNII_heated = stars_SNII_densities > 0.0
@@ -181,7 +197,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             y_points = np.zeros_like(H)
 
         ax.plot(
-            SNII_density_centers, y_points, label=name, color=f"C{color}",
+            SNII_density_centers,
+            y_points,
+            label=name,
+            color=f"C{color}",
         )
         ax.axvline(
             np.median(data),
@@ -193,7 +212,11 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
         # Add the DV&S2012 line
         ax.axvline(
-            n_crit, color=f"C{color}", linestyle="dotted", zorder=-10, alpha=0.5,
+            n_crit,
+            color=f"C{color}",
+            linestyle="dotted",
+            zorder=-10,
+            alpha=0.5,
         )
 
 axes[0].legend(loc="upper right", markerfirst=False)

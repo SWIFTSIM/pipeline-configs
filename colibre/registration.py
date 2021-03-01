@@ -111,6 +111,8 @@ for aperture_size in aperture_sizes:
     except AttributeError:
         pass
 
+metal_frac = catalogue.apertures.zmet_gas_100_kpc
+nonmetal_frac = 1.0 - metal_frac
 
 for aperture_size in aperture_sizes:
     stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
@@ -139,13 +141,51 @@ try:
 except AttributeError:
     total_dust_fraction = np.zeros(stellar_mass.size)
     dust_frac_error = " (no dust field)"
-    
+
 total_dust_mass = total_dust_fraction * catalogue.masses.m_gas
 name = f"$M_{{\\rm dust}}${dust_frac_error}"
 total_dust_mass.name = name
-nonmetal_frac = 1. - catalogue.apertures.zmet_gas_sf_100_kpc
+total_dust_fraction.name = f"$\\mathcal{{DTG}}${dust_frac_error}"
+total_dust_mass = total_dust_fraction * catalogue.masses.m_gas
+total_dust_mass.name = f"$M_{{\\rm dust}}${dust_frac_error}"
+dust_to_metals = total_dust_fraction / metal_frac
+dust_to_metals.name = f"$\\mathcal{{DTM}}${dust_frac_error}"
+dust_to_stars = total_dust_mass / catalogue.apertures.mass_star_100_kpc
+dust_to_stars.name = f"$M_{{\\rm dust}}/M_*${dust_frac_error}"
+
+nonmetal_frac = 1.0 - catalogue.apertures.zmet_gas_100_kpc
 
 setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
+setattr(self, f"dust_to_metal_ratio_100_kpc", dust_to_metals)
+setattr(self, f"dust_to_gas_ratio_100_kpc", total_dust_fraction)
+setattr(self, f"dust_to_stellar_ratio_100_kpc", dust_to_stars)
+
+# Get depletion properties
+try:
+    # Abundances measured over entire subhalo, using VR additional properties
+    gas_mass = catalogue.masses.m_gas
+    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
+    O_frac = getattr(catalogue.element_mass_fractions, "element_4")
+    o_abundance = unyt.unyt_array(
+        12 + np.log10(O_frac / (16 * H_frac)), "dimensionless"
+    )
+    o_abundance.name = "Gas $12+\\log_{10}({{\\rm O/H}})$"
+    setattr(self, "gas_o_abundance", o_abundance)
+
+except AttributeError:
+    # We did not produce these quantities.
+    setattr(
+        self,
+        "gas_o_abundance",
+        unyt.unyt_array(
+            unyt.unyt_array(np.ones(np.size(catalogue.masses.m_gas)), "dimensionless"),
+            name="$12+\\log_10({{\\rm O/H}})$ not found, default to 1s",
+        ),
+    )
+
+
+# mask galaxies where abundances are well defined
+self.valid_abundances = np.isfinite(dust_to_metals)
 
 # Get HI masses
 try:
@@ -165,6 +205,7 @@ try:
 
     setattr(self, "gas_HI_mass", HI_mass)
     setattr(self, "gas_HI_plus_He_mass", HI_mass_wHe)
+
 except AttributeError:
     # We did not produce these quantities.
     setattr(
@@ -174,6 +215,24 @@ except AttributeError:
             catalogue.masses.m_gas, name="$M{\\rm HI}$ not found, showing $M_{\\rm g}$"
         ),
     )
+
+# Get HI to dust ratio
+try:
+    dust_to_hi_ratio = total_dust_mass / HI_mass
+    dust_to_hi_ratio.name = "M_{{\\rm dust}}/M_{{\\rm HI}}"
+    setattr(self, "gas_dust_to_hi_ratio", dust_to_hi_ratio)
+
+except AttributeError:
+    # We did not produce these quantities.
+    setattr(
+        self,
+        "gas_dust_to_hi_ratio",
+        unyt.unyt_array(
+            unyt.unyt_array(np.ones(np.size(catalogue.masses.m_gas)), "dimensionless"),
+            name="$M_{{\\rm dust}}/M_{{\\rm HI}}$ not found, default to 1s",
+        ),
+    )
+
 
 # Get H2 masses
 try:
@@ -190,9 +249,10 @@ try:
     H2_mass = gas_mass * H_frac * H2_frac * 2.0
     H2_mass_wHe = gas_mass * nonmetal_frac * H2_frac * 2.0
     H2_mass.name = "$M_{\\rm H_2}$"
-    
+
     setattr(self, "gas_H2_mass", H2_mass)
     setattr(self, "gas_H2_plus_He_mass", H2_mass_wHe)
+
 except AttributeError:
     # We did not produce these quantities.
     setattr(
@@ -245,11 +305,12 @@ try:
         )
 
         neutral_H_to_baryonic_fraction = neutral_H_mass / (
-            neutral_H_mass + stellar_mass)
+            neutral_H_mass + stellar_mass
+        )
         neutral_H_to_baryonic_fraction.name = (
             f"$M_{{\\rm HI + H_2}}/((M_*+ M_{{\\rm HI + H_2}})$ ({aperture_size} kpc)"
         )
-        
+
         HI_to_neutral_H_fraction = HI_mass / neutral_H_mass
         HI_to_neutral_H_fraction.name = (
             f"$M_{{\\rm HI}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
@@ -259,38 +320,37 @@ try:
         H2_to_neutral_H_fraction.name = (
             f"$M_{{\\rm H_2}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
         )
-        
-        sf_to_sf_plus_stellar_fraction = sf_mass / (
-            sf_mass + stellar_mass)
+
+        sf_to_sf_plus_stellar_fraction = sf_mass / (sf_mass + stellar_mass)
         sf_to_sf_plus_stellar_fraction.name = (
             f"$M_{{\\rm SF}}/(M_{{\\rm SF}} + M_*)$ ({aperture_size} kpc)"
         )
 
         mask = sf_mass > 0.0 * sf_mass.units
 
-        neutral_H_to_sf_fraction = unyt.unyt_array(np.zeros_like(neutral_H_mass), units="dimensionless")
+        neutral_H_to_sf_fraction = unyt.unyt_array(
+            np.zeros_like(neutral_H_mass), units="dimensionless"
+        )
         neutral_H_to_sf_fraction[mask] = neutral_H_mass[mask] / sf_mass[mask]
         neutral_H_to_sf_fraction.name = (
             f"$M_{{\\rm HI + H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
         )
 
-        HI_to_sf_fraction = unyt.unyt_array(np.zeros_like(HI_mass), units="dimensionless")
+        HI_to_sf_fraction = unyt.unyt_array(
+            np.zeros_like(HI_mass), units="dimensionless"
+        )
         HI_to_sf_fraction[mask] = HI_mass[mask] / sf_mass[mask]
-        HI_to_sf_fraction.name = (
-            f"$M_{{\\rm HI}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
-        )
+        HI_to_sf_fraction.name = f"$M_{{\\rm HI}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
 
-        H2_to_sf_fraction = unyt.unyt_array(np.zeros_like(H2_mass), units="dimensionless")
-        H2_to_sf_fraction[mask] = H2_mass[mask] / sf_mass[mask]
-        H2_to_sf_fraction.name = (
-            f"$M_{{\\rm H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
+        H2_to_sf_fraction = unyt.unyt_array(
+            np.zeros_like(H2_mass), units="dimensionless"
         )
+        H2_to_sf_fraction[mask] = H2_mass[mask] / sf_mass[mask]
+        H2_to_sf_fraction.name = f"$M_{{\\rm H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
 
         sf_to_stellar_fraction = sf_mass / stellar_mass
-        sf_to_stellar_fraction.name = (
-            f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
-        )
-        
+        sf_to_stellar_fraction.name = f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
+
         setattr(
             self,
             f"gas_neutral_H_to_stellar_fraction_{aperture_size}_kpc",
@@ -332,14 +392,10 @@ try:
             neutral_H_to_sf_fraction,
         )
         setattr(
-            self,
-            f"gas_HI_to_sf_fraction_{aperture_size}_kpc",
-            HI_to_sf_fraction,
+            self, f"gas_HI_to_sf_fraction_{aperture_size}_kpc", HI_to_sf_fraction,
         )
         setattr(
-            self,
-            f"gas_H2_to_sf_fraction_{aperture_size}_kpc",
-            H2_to_sf_fraction,
+            self, f"gas_H2_to_sf_fraction_{aperture_size}_kpc", H2_to_sf_fraction,
         )
         setattr(
             self,
@@ -347,11 +403,9 @@ try:
             sf_to_stellar_fraction,
         )
         setattr(
-            self,
-            f"has_neutral_gas_{aperture_size}_kpc",
-            neutral_H_mass > 0.,
+            self, f"has_neutral_gas_{aperture_size}_kpc", neutral_H_mass > 0.0,
         )
-        
+
 except AttributeError:
     # We did not produce these quantities.
     setattr(
@@ -394,72 +448,47 @@ except AttributeError:
         setattr(
             self,
             f"gas_neutral_H_to_baryonic_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
             self,
             f"gas_HI_to_neutral_H_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
             self,
             f"gas_H2_to_neutral_H_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
             self,
             f"gas_sf_to_sf_plus_stellar_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
             self,
             f"gas_neutral_H_to_sf_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
             self,
             f"gas_HI_to_sf_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
             self,
             f"gas_H2_to_sf_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
             self,
             f"gas_sf_to_stellar_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                ones,
-                name="Fraction not found, showing $1$",
-            ),
+            unyt.unyt_array(ones, name="Fraction not found, showing $1$",),
         )
         setattr(
-            self,
-            f"has_neutral_gas_{aperture_size}_kpc",
-            ones.astype(bool),
-        )     
+            self, f"has_neutral_gas_{aperture_size}_kpc", ones.astype(bool),
+        )
+
 # species fraction properties
 gas_mass = catalogue.apertures.mass_gas_100_kpc
 gal_area = (
@@ -527,19 +556,29 @@ self.h2_plus_he_to_stellar_mass_100_kpc = (
 self.hi_plus_he_to_stellar_mass_100_kpc = (
     HI_mass_wHe / catalogue.apertures.mass_star_100_kpc
 )
+self.cold_gas_to_stellar_mass_100_kpc = (
+    HI_mass_wHe + H2_mass_wHe
+) / catalogue.apertures.mass_star_100_kpc
 
 
-self.neutral_to_stellar_mass_100_kpc = (self.hi_to_stellar_mass_100_kpc +
-                                         self.h2_to_stellar_mass_100_kpc)
+self.neutral_to_stellar_mass_100_kpc = (
+    self.hi_to_stellar_mass_100_kpc + self.h2_to_stellar_mass_100_kpc
+)
 
 self.neutral_hydrogen_mass_100_kpc.name = f"HI Mass (100 kpc){total_error}"
 self.hi_to_stellar_mass_100_kpc.name = f"$M_{{\\rm HI}} / M_*$ (100 kpc) {total_error}"
 self.molecular_hydrogen_mass_100_kpc.name = f"H$_2$ Mass (100 kpc){total_error}"
 self.h2_to_stellar_mass_100_kpc.name = f"$M_{{\\rm H_2}} / M_*$ (100 kpc) {total_error}"
-self.h2_plus_he_to_stellar_mass_100_kpc.name = f"$M_{{\\rm H_2}} / M_*$ (100 kpc, inc. He) {total_error}"
-self.hi_plus_he_to_stellar_mass_100_kpc.name = f"$M_{{\\rm HI}} / M_*$ (100 kpc, inc. He) {total_error}"
+self.h2_plus_he_to_stellar_mass_100_kpc.name = (
+    f"$M_{{\\rm H_2}} / M_*$ (100 kpc, inc. He) {total_error}"
+)
+self.hi_plus_he_to_stellar_mass_100_kpc.name = (
+    f"$M_{{\\rm HI}} / M_*$ (100 kpc, inc. He) {total_error}"
+)
 
-self.neutral_to_stellar_mass_100_kpc.name = f"$M_{{\\rm HI + H_2}} / M_*$ (100 kpc) {total_error}"
+self.neutral_to_stellar_mass_100_kpc.name = (
+    f"$M_{{\\rm HI + H_2}} / M_*$ (100 kpc) {total_error}"
+)
 
 # Formatting script for average of the log of stellar birth densities
 try:

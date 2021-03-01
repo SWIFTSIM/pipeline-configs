@@ -41,6 +41,13 @@ scripts:
     output_file: density_temperature_dust_to_metals.png
     section: Density-Temperature
     title: Density-Temperature (Dust / Metals)
+  - filename: scripts/density_temperature_dust2metal.py
+    caption: Density-temperature diagram shaded by the total fraction of metals in the dust phase.
+    output_file: density_temperature_dust2metal.png
+    section: Density-Temperature
+    title: Dust-to-metal Ratio
+    additional_arguments:
+      quantity_type: hydro
   - filename: scripts/density_internal_energy.py
     caption: Density-Internal Energy diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_internal_energy.png
@@ -192,6 +199,11 @@ scripts:
     output_file: subgrid_density_temperature_HII.png
     section: Hydrogen Phase Density-Temperature
     title: HII
+  - filename: scripts/density_species_interp.py
+    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function opf gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+    output_file: density_vs_species_fraction.png
+    section: Hydrogen Phases
+    title: Hydrogen Phase Fractions
     additional_arguments:
-      hydrogen_species: HII
-      quantity_type: subgrid
+      cooling_tables: /cosma7/data/dp004/wmfw23/colibre_dust/coolingtables/UV_dust1_CR1_G1_shield1.hdf5
+      quantity_type: hydro

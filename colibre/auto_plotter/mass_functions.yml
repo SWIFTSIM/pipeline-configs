@@ -21,14 +21,7 @@ stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
 
 adaptive_stellar_mass_function_30:
   type: "adaptivemassfunction"
@@ -53,14 +46,7 @@ adaptive_stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
 
 adaptive_stellar_mass_function_active_only_30:
   type: "adaptivemassfunction"
@@ -87,14 +73,7 @@ adaptive_stellar_mass_function_active_only_30:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
 
 adaptive_stellar_mass_function_passive_only_30:
   type: "adaptivemassfunction"
@@ -122,14 +101,7 @@ adaptive_stellar_mass_function_passive_only_30:
     - filename: GalaxyStellarMassFunction/Behroozi2019_passive.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
 
 
 stellar_mass_function_100:
@@ -154,14 +126,7 @@ stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
 
 adaptive_stellar_mass_function_100:
   type: "adaptivemassfunction"
@@ -185,14 +150,7 @@ adaptive_stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
 
 adaptive_stellar_mass_function_passive_only_100:
   type: "massfunction"
@@ -219,14 +177,7 @@ adaptive_stellar_mass_function_passive_only_100:
     - filename: GalaxyStellarMassFunction/Behroozi2019_passive.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
 
 adaptive_stellar_mass_function_active_only_100:
   type: "adaptivemassfunction"
@@ -252,11 +203,4 @@ adaptive_stellar_mass_function_active_only_100:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5

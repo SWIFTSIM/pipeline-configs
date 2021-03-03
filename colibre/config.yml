@@ -199,6 +199,9 @@ scripts:
     output_file: subgrid_density_temperature_HII.png
     section: Hydrogen Phase Density-Temperature
     title: HII
+    additional_arguments:
+      hydrogen_species: HII
+      quantity_type: subgrid
   - filename: scripts/density_species_interp.py
     caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function opf gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
     output_file: density_vs_species_fraction.png

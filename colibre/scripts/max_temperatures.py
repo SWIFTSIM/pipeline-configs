@@ -7,7 +7,7 @@ import numpy as np
 
 from swiftsimio import load
 
-T_bounds = [1e5, 3e10]  # in K
+T_bounds = [1e5, 1e11]  # in K
 
 
 def get_data(filename):

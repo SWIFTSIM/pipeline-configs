@@ -7,11 +7,11 @@ import numpy as np
 
 from swiftsimio import load
 
-from unyt import mh, cm
+from unyt import mh
 from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
-density_bounds = [0.01, 1e5]  # in nh/cm^3
+density_bounds = [0.01, 10 ** 6.5]  # in nh/cm^3
 metal_mass_fraction_bounds = [1e-4, 0.5]  # dimensionless
 bins = 128
 
@@ -23,7 +23,7 @@ def get_data(filename):
 
     data = load(filename)
 
-    birth_densities = (data.stars.birth_densities / mh).to(cm ** -3)
+    birth_densities = data.stars.birth_densities.to("g/cm**3") / mh.to("g")
     try:
         metal_mass_fractions = data.stars.smoothed_metal_mass_fractions.value
     except AttributeError:
@@ -32,7 +32,9 @@ def get_data(filename):
     below_Z_min = np.where(metal_mass_fractions < metal_mass_fraction_bounds[0])
 
     # Stars with Z < lowest Z in the figure should be added to the lowest-Z bin
-    metal_mass_fractions[below_Z_min] = metal_mass_fraction_bounds[0] * (1. + 1e-3/bins)
+    metal_mass_fractions[below_Z_min] = metal_mass_fraction_bounds[0] * (
+        1.0 + 1e-3 / bins
+    )
 
     return birth_densities.value, metal_mass_fractions
 
@@ -73,7 +75,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

@@ -86,9 +86,6 @@ stellar_mass_specific_sfr_all_100:
     end:
       value: 1e12
       units: solar_mass
-    lower:
-      value: 1.01e-11
-      units: 1 / year
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (100 kpc aperture)
     caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
@@ -121,9 +118,6 @@ stellar_mass_specific_sfr_all_30:
     end:
       value: 1e12
       units: solar_mass
-    lower:
-      value: 1.01e-11
-      units: 1 / year
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (30 kpc aperture)
     caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
@@ -160,9 +154,6 @@ stellar_mass_specific_sfr_active_100:
     end:
       value: 1e12
       units: solar_mass
-    lower:
-      value: 1.01e-11
-      units: 1 / year
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (100 kpc aperture, active only)
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
@@ -198,9 +189,6 @@ stellar_mass_specific_sfr_active_30:
     end:
       value: 1e12
       units: solar_mass
-    lower:
-      value: 1.01e-11
-      units: 1 / year
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (30 kpc aperture, active only)
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
@@ -237,9 +225,6 @@ halo_mass_specific_sfr_30:
     end:
       value: 1e13
       units: solar_mass
-    lower:
-      value: 1.01e-11
-      units: 1 / year
   metadata:
     title: Specific Star Formation Rate (30 kpc aperture) - Halo Mass
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
@@ -273,9 +258,6 @@ halo_mass_specific_sfr_100:
     end:
       value: 1e13
       units: solar_mass
-    lower:
-      value: 1.01e-11
-      units: 1 / year
   metadata:
     title: Specific Star Formation Rate (100 kpc aperture) - Halo Mass
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.

@@ -33,8 +33,8 @@ def make_single_image(filenames, names, N_bounds, number_of_simulations, output_
 
     fig, ax = plt.subplots()
 
-    ax.set_xlabel("Cumulative number of AGN thermal injections")
-    ax.set_ylabel("Number of Black Holes")
+    ax.set_xlabel("Total number of AGN thermal injections")
+    ax.set_ylabel("Cumulative number of Black Holes")
     ax.loglog()
 
     for filename, name in zip(filenames, names):
@@ -45,7 +45,9 @@ def make_single_image(filenames, names, N_bounds, number_of_simulations, output_
         )
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
         bins = 10 ** bins
-        ax.plot(bins, h, label=name)
+
+        # The cumsum is done from right to left (along the X axis)
+        ax.plot(bins, np.cumsum(h[::-1])[::-1], label=name)
 
     ax.legend()
     ax.set_xlim(*N_bounds)
@@ -59,8 +61,9 @@ if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
     arguments = ScriptArgumentParser(
-        description="Histogram showing the number of BHs with a given cumulative number"
-        " of thermal energy injections in AGN feedback"
+        description="Histogram showing the cumulative number of BHs with a given total"
+        " number of thermal energy injections the black hole has had throughout the"
+        " entire simulation"
     )
 
     snapshot_filenames = [

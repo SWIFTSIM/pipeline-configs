@@ -7,7 +7,7 @@ import numpy as np
 
 from swiftsimio import load
 
-N_bounds = [0.7, 7e5]  # Min and max number of AGN thermal injections
+N_bounds = [0.7, 7e5]  # Min and max number of AGN thermal energy injections
 
 
 def get_data(filename):
@@ -20,6 +20,7 @@ def get_data(filename):
     num_of_agn_thermal_injections = data.black_holes.number_of_heating_events
 
     # Take only those BHs that have had at least one AGN thermal injection event
+    # (i.e. heated at least one gas particle)
     had_at_least_one_agn = num_of_agn_thermal_injections > 0
 
     return num_of_agn_thermal_injections[had_at_least_one_agn]
@@ -27,7 +28,7 @@ def get_data(filename):
 
 def make_single_image(filenames, names, N_bounds, number_of_simulations, output_path):
     """
-    Makes a single histogram of the number of AGN thermal injections.
+    Makes a single histogram of the number of AGN thermal energy injections.
     """
 
     fig, ax = plt.subplots()
@@ -59,7 +60,7 @@ if __name__ == "__main__":
 
     arguments = ScriptArgumentParser(
         description="Histogram showing the number of BHs with a given cumulative number"
-                    " of thermal injections in AGN feedback"
+        " of thermal energy injections in AGN feedback"
     )
 
     snapshot_filenames = [

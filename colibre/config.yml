@@ -149,7 +149,7 @@ scripts:
     section: Histograms
     title: Gas Particle Smoothing Lengths
   - filename: scripts/number_of_agn_thermal_injections.py
-    caption: A histogram showing the number of black holes with a given cumulative number of thermal injections (<= number of particles heated) in AGN feedback.
+    caption: A histogram showing the number of black holes with a given cumulative number of thermal energy injections (less than or equal to the number of particles heated) in AGN feedback.
     output_file: num_agn_thermal_injections.png
     section: Black Holes
     title: Cumulative number of AGN thermal injections
@@ -159,7 +159,7 @@ scripts:
     section: Maximal Temperatures
     title: Maximal Temperature reached by gas particles
   - filename: scripts/max_temperature_redshift.py
-    caption: Maximal temperature vs birth redshift diagram. The pixel colour indicates the number of stellar+gas particles in the pixel.
+    caption: A diagram displaying maximal temperatures vs redshifts at which they were reached. The pixel colour indicates the number of stellar + gas particles in the pixel.
     output_file: max_temperature_redshift.png"
     section: Maximal Temperatures
     title: Maximal Temperature-Redshift

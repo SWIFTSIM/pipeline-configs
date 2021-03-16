@@ -21,10 +21,12 @@ def get_data(filename):
 
     data = load(filename)
 
+    # Fetch the maximal temperatures of gas and stars
     max_T_gas = data.gas.maximal_temperatures.to("K").value
     max_T_stars = data.stars.maximal_temperatures.to("K").value
     max_T = np.concatenate([max_T_gas, max_T_stars])
 
+    # Fetch the redshifts at which the maximal temperatures were reached
     max_T_redshifts_gas = 1 / data.gas.maximal_temperature_scale_factors.value - 1
     max_T_redshifts_stars = 1 / data.stars.maximal_temperature_scale_factors.value - 1
     max_T_redshifts = np.concatenate([max_T_redshifts_gas, max_T_redshifts_stars])
@@ -64,7 +66,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -96,7 +102,7 @@ def make_single_image(
     output_path,
 ):
     """
-    Makes a single plot of rho_birth-z
+    Makes a single plot of T_max-z
     """
 
     fig, ax = setup_axes(number_of_simulations=number_of_simulations)
@@ -104,16 +110,18 @@ def make_single_image(
     hists = []
 
     for filename in filenames:
-        hist, temp_max, z = make_hist(filename, max_temperature_bounds, redshift_bounds, bins)
+        hist, max_temp, z = make_hist(
+            filename, max_temperature_bounds, redshift_bounds, bins
+        )
         hists.append(hist)
 
     vmax = np.max([np.max(hist) for hist in hists])
 
     for hist, name, axis in zip(hists, names, ax.flat):
-        mappable = axis.pcolormesh(temp_max, z, hist, norm=LogNorm(vmin=1, vmax=vmax))
+        mappable = axis.pcolormesh(max_temp, z, hist, norm=LogNorm(vmin=1, vmax=vmax))
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
 
-    fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Number of stellar particles")
+    fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Number of particles")
 
     fig.savefig(f"{output_path}/max_temperature_redshift.png")
 

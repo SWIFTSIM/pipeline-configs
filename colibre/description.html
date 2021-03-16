@@ -98,6 +98,10 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:alpha_virial") }}</td>
     </tr>
     <tr>
+        <td>Star-formation efficiency (Schmidt law)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:star_formation_efficiency") }}</td>
+    </tr>
+    <tr>
         <td>Threshold SF \(n_{\rm H, max}\)</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:subgrid_density_threshold_H_p_CM3") }}
             cm\(^{-3}\)</td>

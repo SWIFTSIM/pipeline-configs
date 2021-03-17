@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import unyt
 
-from unyt import mh, cm
+from unyt import mh
 
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
@@ -87,7 +87,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 SNII_density_bins = unyt.unyt_array(
-    np.logspace(-5, 5, number_of_bins), units=1 / cm ** 3
+    np.logspace(-5, 6.5, number_of_bins), units="1/cm**3"
 )
 log_SNII_density_bin_width = np.log10(SNII_density_bins[1].value) - np.log10(
     SNII_density_bins[0].value
@@ -112,9 +112,9 @@ for label, ax in ax_dict.items():
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    stars_SNII_densities = (snapshot.stars.densities_at_last_supernova_event / mh).to(
-        SNII_density_bins.units
-    )
+    stars_SNII_densities = snapshot.stars.densities_at_last_supernova_event.to(
+        "g/cm**3"
+    ) / mh.to("g")
 
     # swift-colibre master branch as of Feb 26 2021
     try:

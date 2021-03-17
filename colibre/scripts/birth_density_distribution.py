@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import unyt
 
-from unyt import mh, cm
+from unyt import mh
 
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
@@ -86,7 +86,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 birth_density_bins = unyt.unyt_array(
-    np.logspace(-3, 5, number_of_bins), units=1 / cm ** 3
+    np.logspace(-2, 6.5, number_of_bins), units="1/cm**3"
 )
 log_birth_density_bin_width = np.log10(birth_density_bins[1].value) - np.log10(
     birth_density_bins[0].value
@@ -110,7 +110,7 @@ for label, ax in ax_dict.items():
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    birth_densities = (snapshot.stars.birth_densities / mh).to(birth_density_bins.units)
+    birth_densities = snapshot.stars.birth_densities.to("g/cm**3") / mh.to("g")
     birth_redshifts = 1 / snapshot.stars.birth_scale_factors.value - 1
 
     # Segment birth densities into redshift bins
@@ -149,7 +149,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             y_points = np.zeros_like(H)
 
         ax.plot(
-            birth_density_centers, y_points, label=name, color=f"C{color}",
+            birth_density_centers,
+            y_points,
+            label=name,
+            color=f"C{color}",
         )
 
         # Add the median stellar birth-density line
@@ -163,7 +166,11 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
         # Add the DV&S2012 line
         ax.axvline(
-            n_crit, color=f"C{color}", linestyle="dotted", zorder=-10, alpha=0.5,
+            n_crit,
+            color=f"C{color}",
+            linestyle="dotted",
+            zorder=-10,
+            alpha=0.5,
         )
 
 axes[0].legend(loc="upper right", markerfirst=False)

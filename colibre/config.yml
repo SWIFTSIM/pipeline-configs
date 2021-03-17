@@ -26,6 +26,11 @@ scripts:
     output_file: density_temperature.png
     section: Density-Temperature
     title: Density-Temperature
+  - filename: scripts/density_temperature_sf_fraction.py
+    caption: Density-temperature diagram shaded by the mass fraction of the gas whose instantaneous star formation rate is greater than zero.
+    output_file: density_temperature_sf_fraction.png
+    section: Density-Temperature
+    title: Density-Temperature (Star Forming Gas)
   - filename: scripts/density_temperature_metals.py
     caption: Density-temperature diagram with the pixel value weighted by the mean logarithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_temperature_metals.png
@@ -98,7 +103,7 @@ scripts:
     title: Stellar Birth Densities-Birth Redshift
     section: Stellar Birth Densities
     output_file: birth_density_redshift.png
-  - filename: scripts/metallicity_redshift.py
+  - filename: scripts/birth_metallicity_redshift.py
     caption: Stellar metallicity vs birth redshift diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth redshift, particles with metallicities lower than the smallest value along the X axis are placed in the lowest-metallicity bin.
     title: Stellar Metallicity-Birth Redshift
     section: Stellar Birth Densities

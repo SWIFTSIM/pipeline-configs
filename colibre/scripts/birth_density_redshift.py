@@ -7,11 +7,11 @@ import numpy as np
 
 from swiftsimio import load
 
-from unyt import mh, cm
+from unyt import mh
 from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
-density_bounds = [0.01, 1e5]  # in nh/cm^3
+density_bounds = [0.01, 10 ** 6.5]  # in nh/cm^3
 redshift_bounds = [-1.5, 12]  # dimensionless
 bins = 128
 
@@ -23,7 +23,7 @@ def get_data(filename):
 
     data = load(filename)
 
-    birth_densities = (data.stars.birth_densities / mh).to(cm ** -3)
+    birth_densities = data.stars.birth_densities.to("g/cm**3") / mh.to("g")
     birth_redshifts = 1 / data.stars.birth_scale_factors.value - 1
 
     return birth_densities.value, birth_redshifts
@@ -61,7 +61,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

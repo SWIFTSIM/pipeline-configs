@@ -1,5 +1,5 @@
 """
-Makes a stellar metallicity vs. redshift 2D plot. Uses the swiftsimio library.
+Makes a stellar birth metallicity vs. redshift 2D plot. Uses the swiftsimio library.
 """
 
 import matplotlib.pyplot as plt
@@ -73,7 +73,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

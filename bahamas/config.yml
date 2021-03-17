@@ -1,4 +1,4 @@
-# Example configuration file for a COLIBRE-like simulation
+# Example configuration file for a EAGLE-XL-like simulation
 
 # Location of your other .yml files that are passed to the
 # velociraptor auto plotter (these describe your scaling)
@@ -26,8 +26,13 @@ scripts:
     output_file: density_temperature.png
     section: Density-Temperature
     title: Density-Temperature
+  - filename: scripts/subgrid_density_temperature.py
+    caption: Density-temperature diagram constructed from the sub-grid quantities.
+    output_file: subgrid_density_temperature.png
+    section: Density-Temperature
+    title: Subgrid Density-Temperature
   - filename: scripts/density_temperature_metals.py
-    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metallicity in that bin. Medians are not used due to their computational complexity.
+    caption: Density-temperature diagram with the pixel value weighted by the mean logrithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity.
     output_file: density_temperature_metals.png
     section: Density-Temperature
     title: Density-Temperature (Metals)
@@ -42,33 +47,123 @@ scripts:
     section: Density-Temperature
     title: Density-Pressure
   - filename: scripts/star_formation_history.py
-    caption: Star formation history plotted directly from the SFR.txt produced by SWIFT.
+    caption: Star formation history plotted directly from the SFR.txt file produced by SWIFT.
     output_file: star_formation_history.png
     section: Star Formation History
     title: Star Formation History
+  - filename: scripts/stellar_mass_evolution.py
+    caption: Evolution of the stellar mass plotted directly from the statistics.txt file produced by SWIFT.
+    output_file: stellar_mass_evolution.png
+    section: Star Formation History
+    title: Stellar Mass Evolution
+  - filename: scripts/HI_mass_evolution.py
+    caption: Evolution of the atomic gas mass abundance plotted directly from the statistics.txt file produced by SWIFT. The horizontal dashed line corresponds to $\Omega_b$.
+    output_file: HI_mass_evolution.png
+    section: Cold Gas Evolution
+    title: Atomic Gas Mass Evolution
+  - filename: scripts/H2_mass_evolution.py
+    caption: Evolution of the molecular gas mass abundance plotted directly from the statistics.txt file produced by SWIFT. The horizontal dashed line corresponds to $\Omega_b$.
+    output_file: H2_mass_evolution.png
+    section: Cold Gas Evolution
+    title: Molecular Gas Mass Evolution
   - filename: scripts/metallicity_distribution.py
     caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars.
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_f_E.py
+    caption: Feedback energy fractions $f_E$ shown against the birth densities for the stars. Any variation here is due to differing metallicity of the gas.
+    section: Stellar Feedback
+    title: $f_E$ as a Function of Birth Density
+    output_file: birth_density_f_E.png
   - filename: scripts/birth_density_distribution.py
-    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars.
+    caption: Distributions of birth densities, split by redshift.
     title: Stellar Birth Densities
-    section: Density distributions
+    section: Stellar Feedback
     output_file: birth_density_distribution.png
-  - filename: scripts/SNII_density_distribution.py
-    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles.
-    title: Density of the gas heated by SNII
-    section: Density distributions
-    output_file: SNII_density_distribution.png
+  - filename: scripts/birth_density_metallicity.py
+    caption: Birth density-metallicity plane. Contour lines show stars formed at all epochs, with the background color map showing the feedback energy fraction associated with this particle's feedback event.
+    title: Birth Density-Metallicity Plane
+    section: Stellar Feedback
+    output_file: birth_density_metallicity.png
+  - filename: scripts/gas_metallicity_evolution.py
+    caption: Evolution of the metal mass in gas per unit co-moving volume.
+    output_file: gas_metallicity_evolution.png
+    section: Metal Evolution
+    title: Gas Phase Metal Mass Density Evolution
+  - filename: scripts/star_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in stars per unit co-moving volume.
+    output_file: star_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Stars Density Evolution
+  - filename: scripts/bh_metallicity_evolution.py
+    caption: Evolution of the metal mass locked in black holes per unit co-moving volume.
+    output_file: bh_metallicity_evolution.png
+    section: Metal Evolution
+    title: Metal Mass Locked in Black Holes Density Evolution
+  - filename: scripts/bh_accretion_evolution.py
+    caption: Evolution of the accretion rate onto BHs per unit co-moving volume.
+    output_file: bh_accretion_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Accretion History
+  - filename: scripts/bh_mass_evolution.py
+    caption: Evolution of the BH mass per unit co-moving volume.
+    output_file: bh_mass_evolution.png
+    section: Black Holes Evolution
+    title: Black Hole Mass History
+  - filename: scripts/bh_masses.py
+    caption: Relation between black hole particle (dynamical) masses and subgrid masses. The vertical dashed lines shows the primordial gas particle mass and the horizontal dashed lines corresponds to the black hole seed mass.
+    output_file: bh_masses.png
+    section: Black Holes
+    title: Black Hole Dynanmical and Subgrid Masses
+  - filename: scripts/gas_masses.py
+    caption: Gas Particle Masses with the threshold for splitting indicated by the vertical dashed line.
+    output_file: gas_masses.png
+    section: Histograms
+    title: Gas Particle Masses
+  - filename: scripts/gas_smoothing_lengths.py
+    caption: Gas Particle Comoving Smoothing Lengths with the minimal smoothing length indicated by the vertical dashed line.
+    output_file: gas_smoothing_lengths.png
+    section: Histograms
+    title: Gas Particle Smoothing Lengths
+  - filename: scripts/max_temperatures.py
+    caption: Maximal temperature recorded by gas particles throughout the entire simulation.
+    output_file: gas_max_temperatures.png
+    section: Histograms
+    title: Maximal Temperature reached by gas particles
+  - filename: scripts/feedback_SNII_events.py
+    caption: Number of stellar feedback events recorded by gas particles throughout the entire simulation.
+    output_file: gas_num_SNII_events.png
+    section: Histograms
+    title: Number of stellar feedback events 
+  - filename: scripts/feedback_AGN_events.py
+    caption: Number of AGN feedback events recorded by gas particles throughout the entire simulation.
+    output_file: gas_num_AGN_events.png
+    section: Histograms
+    title: Number of AGN feedback events
+  - filename: scripts/particle_updates_step_cost.py
+    caption: Wall-clock time to run a time-step as a function of the number of gas particles updated. The tracks at the top correspond to steps where the tree is rebuilt, i/o is performed, FoF is run or other non-regular operations are done.
+    title: Wall-clock time per gas particle updates.
+    section: Run Performance
+    output_file: particle_updates_step_cost.png
   - filename: scripts/wallclock_simulation_time.py
     caption: The cosmic time as a function of the wall-clock time.
     title: Cosmic time vs. wall-clock time
     section: Run Performance
     output_file: wallclock_simulation_time.png
   - filename: scripts/wallclock_number_of_steps.py
-    caption: The cumulative number of the simulation time-steps as a function of the wall-clock times.
+    caption: The cumulative number of the simulation time-steps as a function of the wall-clock time.
     title: The number of steps vs. wall-clock time
     section: Run Performance
     output_file: wallclock_number_of_steps.png
- 
+  - filename: scripts/simulation_time_number_of_steps.py
+    caption: The cumulative number of the simulation time-steps as a function of the cosmic time.
+    title: Number of steps vs. cosmic time
+    section: Run Performance
+    output_file: simulation_time_number_of_steps.png
+  - filename: scripts/wallclock_timebin_hist.py
+    caption: Total wall-clock time spent in each of the different simulation time-bins.
+    title: Wall-clock time per time-bin
+    section: Run Performance
+    output_file: wallclock_timebin_hist.png
+

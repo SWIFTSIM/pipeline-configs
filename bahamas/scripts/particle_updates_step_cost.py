@@ -1,36 +1,37 @@
 """
-Makes a rho-T plot. Uses the swiftsimio library.
+Plots the distribution of particle updates vs. step wallclok time
 """
+
+import unyt
 
 import matplotlib.pyplot as plt
 import numpy as np
-
-from swiftsimio import load
-
-from unyt import mh, cm, Gyr
 from matplotlib.colors import LogNorm
-from matplotlib.animation import FuncAnimation
+
+from swiftpipeline.argumentparser import ScriptArgumentParser
+from swiftsimio import load
+from glob import glob
 
 # Set the limits of the figure.
-density_bounds = [10 ** (-9.5), 1e4]  # in nh/cm^3
-temperature_bounds = [10 ** (2), 10 ** (9.5)]  # in K
-bins = 256
+update_bounds = unyt.unyt_array([1, 10.0 ** 10.0], units="dimensionless")
+wallclock_bounds = unyt.unyt_array([1, 10.0 ** 6.0], units="ms")
+bins = 512
 
 
 def get_data(filename):
     """
-    Grabs the data (T in Kelvin and density in mh / cm^3).
+    Grabs the data (number of updates, wallclock time in milliseconds).
     """
 
-    data = load(filename)
+    data = np.genfromtxt(filename, skip_footer=5, loose=True, invalid_raise=False).T
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
-    temperature = data.gas.temperatures.to_physical().to("K")
+    number_of_updates = unyt.unyt_array(data[7], units="dimensionless")
+    wallclock_time = unyt.unyt_array(data[-2], units="ms")
 
-    return number_density.value, temperature.value
+    return number_of_updates, wallclock_time
 
 
-def make_hist(filename, density_bounds, temperature_bounds, bins):
+def make_hist(filename, update_bounds, wallclock_bounds, bins):
     """
     Makes the histogram for filename with bounds as lower, higher
     for the bins and "bins" the number of bins along each dimension.
@@ -38,18 +39,19 @@ def make_hist(filename, density_bounds, temperature_bounds, bins):
     Also returns the edges for pcolormesh to use.
     """
 
-    density_bins = np.logspace(
-        np.log10(density_bounds[0]), np.log10(density_bounds[1]), bins
+    number_of_updates_bins = unyt.unyt_array(
+        np.logspace(*np.log10(update_bounds), bins), units=update_bounds.units
     )
-    temperature_bins = np.logspace(
-        np.log10(temperature_bounds[0]), np.log10(temperature_bounds[1]), bins
-    )
-
-    H, density_edges, temperature_edges = np.histogram2d(
-        *get_data(filename), bins=[density_bins, temperature_bins]
+    wallclock_time_bins = unyt.unyt_array(
+        np.logspace(*np.log10(wallclock_bounds), bins), units=wallclock_bounds.units
     )
 
-    return H.T, density_edges, temperature_edges
+    H, update_edges, wallclock_edges = np.histogram2d(
+        *get_data(filename),
+        bins=[number_of_updates_bins.value, wallclock_time_bins.value],
+    )
+
+    return H.T, update_edges, wallclock_edges
 
 
 def setup_axes(number_of_simulations: int):
@@ -64,7 +66,7 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -75,10 +77,10 @@ def setup_axes(number_of_simulations: int):
 
     # Set all valid on bottom row to have the horizontal axis label.
     for axis in np.atleast_2d(ax)[:][-1]:
-        axis.set_xlabel("Density [$n_H$ cm$^{-3}$]")
+        axis.set_xlabel("# of gas part. updates in step")
 
     for axis in np.atleast_2d(ax).T[:][0]:
-        axis.set_ylabel("Temperature [K]")
+        axis.set_ylabel("Wallclock time for step [ms]")
 
     ax.flat[0].loglog()
 
@@ -89,8 +91,8 @@ def make_single_image(
     filenames,
     names,
     number_of_simulations,
-    density_bounds,
-    temperature_bounds,
+    update_bounds,
+    wallclock_bounds,
     bins,
     output_path,
 ):
@@ -103,7 +105,7 @@ def make_single_image(
     hists = []
 
     for filename in filenames:
-        hist, d, T = make_hist(filename, density_bounds, temperature_bounds, bins)
+        hist, d, T = make_hist(filename, update_bounds, wallclock_bounds, bins)
         hists.append(hist)
 
     vmax = np.max([np.max(hist) for hist in hists])
@@ -112,9 +114,9 @@ def make_single_image(
         mappable = axis.pcolormesh(d, T, hist, norm=LogNorm(vmin=1, vmax=vmax))
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
 
-    fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Number of particles")
+    fig.colorbar(mappable, label="Number of steps", pad=0)
 
-    fig.savefig(f"{output_path}/density_temperature.png")
+    fig.savefig(f"{output_path}/particle_updates_step_cost.png")
 
     return
 
@@ -122,24 +124,23 @@ def make_single_image(
 if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
-    arguments = ScriptArgumentParser(description="Basic density-temperature figure.")
+    arguments = ScriptArgumentParser(
+        description="Creates a run performance plot: particle updates versus wall-clock time"
+    )
 
-    snapshot_filenames = [
-        f"{directory}/{snapshot}"
-        for directory, snapshot in zip(
-            arguments.directory_list, arguments.snapshot_list
-        )
+    timestep_filenames = [
+        glob(f"{directory}/timesteps_*.txt")[0]
+        for directory in arguments.directory_list
     ]
 
     plt.style.use(arguments.stylesheet_location)
 
     make_single_image(
-        filenames=snapshot_filenames,
+        filenames=timestep_filenames,
         names=arguments.name_list,
         number_of_simulations=arguments.number_of_inputs,
-        density_bounds=density_bounds,
-        temperature_bounds=temperature_bounds,
+        update_bounds=update_bounds,
+        wallclock_bounds=wallclock_bounds,
         bins=bins,
         output_path=arguments.output_directory,
     )
-

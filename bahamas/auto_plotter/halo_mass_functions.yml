@@ -18,3 +18,24 @@ halo_mass_function:
   observational_data:
     - filename: HaloMassFunction/Tinker2008.hdf5
     - filename: HaloMassFunction/Bocquet2016.hdf5
+
+halo_mass_function_adaptive:
+  type: "adaptivemassfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e9
+    end: 1e15
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e1
+  metadata:
+    title: "Halo Mass Function ($M_{200, crit}$)"
+    caption: Halo masses are masses within the over-density radius enclosing 200x the critical density, using adaptive binning.
+    section: Halo Mass Function
+  observational_data:
+    - filename: HaloMassFunction/Tinker2008.hdf5
+    - filename: HaloMassFunction/Bocquet2016.hdf5

@@ -1,5 +1,5 @@
 stellar_mass_gas_sf_metallicity_30:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_30_kpc"
   comment: "Active only"
@@ -28,14 +28,14 @@ stellar_mass_gas_sf_metallicity_30:
     title: "Stellar mass - Gas metallicity relation (30 kpc aperture)"
     caption: Only shown for star forming galaxies. A minimum metallicity of 12 + log O/H = 7.5 is imposed for the star-forming gas. All haloes are plotted, including subhaloes.
     section: Metallicity
-    show_on_webpage: false
+    show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
 
 stellar_mass_gas_sf_metallicity_100:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_100_kpc"
   comment: "Active only"
@@ -70,7 +70,7 @@ stellar_mass_gas_sf_metallicity_100:
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
 
 stellar_mass_star_metallicity_100:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "lower right"
   y:
     quantity: "derived_quantities.star_metallicity_in_solar_100_kpc"
@@ -101,7 +101,7 @@ stellar_mass_star_metallicity_100:
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
 
 stellar_mass_star_metallicity_30:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "lower right"
   y:
     quantity: "derived_quantities.star_metallicity_in_solar_30_kpc"
@@ -127,7 +127,7 @@ stellar_mass_star_metallicity_30:
     title: "Stellar mass - Star metallicity relation (30 kpc aperture)"
     caption: Metallicity is measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
     section: Metallicity
-    show_on_webpage: false
+    show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5

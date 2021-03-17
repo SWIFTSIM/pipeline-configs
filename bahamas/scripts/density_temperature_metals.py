@@ -12,8 +12,8 @@ from matplotlib.colors import Normalize
 from matplotlib.animation import FuncAnimation
 
 # Constants; these could be put in the parameter file but are rarely changed.
-density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
-temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
+density_bounds = [10 ** (-9.5), 1e4]  # in nh/cm^3
+temperature_bounds = [10 ** (2), 10 ** (9.5)]  # in K
 metallicity_bounds = [-6, -1]  # In metal mass fraction
 min_metallicity = 1e-8
 bins = 256

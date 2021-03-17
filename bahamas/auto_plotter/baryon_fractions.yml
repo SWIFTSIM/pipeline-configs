@@ -1,5 +1,5 @@
 baryon_fraction_500:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
@@ -29,7 +29,7 @@ baryon_fraction_500:
     section: Baryon Fractions
 
 gas_fraction_500:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
@@ -65,7 +65,7 @@ gas_fraction_500:
     - filename: HaloMassGasFractions/Lovisari2015.hdf5
 
 gas_mass_500:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"

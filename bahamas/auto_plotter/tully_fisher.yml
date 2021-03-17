@@ -1,5 +1,5 @@
 tully_fisher_100:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -30,7 +30,7 @@ tully_fisher_100:
     - filename: TullyFisherRelation/Reyes2011.hdf5
 
 tully_fisher_30:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_30_kpc"
@@ -53,7 +53,7 @@ tully_fisher_30:
       value: 1e13
       units: solar_mass
   metadata:
-    title: Tully-Fisher (stellar mass, 100 kpc)
+    title: Tully-Fisher (stellar mass, 30 kpc)
     caption: The Tully-Fisher relation based on stellar mass.
     section: Tully-Fisher
     show_on_webpage: true

@@ -58,16 +58,16 @@
     </tr>
     <tr>
         <td>Star Formation Model</td>
-        <td>{{ data.metadata.parameters["COLIBREStarFormation:SF_model"].decode("utf-8") }}</td>
+        <td>{{ data.metadata.parameters["EAGLEStarFormation:SF_model"].decode("utf-8") }}</td>
     </tr>
     <tr>
         <td>Temperature Ceiling</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:temperature_threshold_K", "K") }}
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEStarFormation:temperature_threshold_K", "K") }}
         </td>
     </tr>
     <tr>
         <td>Threshold SF \(n_{\rm H, max}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREStarFormation:subgrid_density_threshold_H_p_CM3") }}
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEStarFormation:subgrid_density_threshold_H_p_CM3") }}
             cm\(^{-3}\)</td>
     </tr>
 </table>
@@ -80,27 +80,27 @@
     </tr>
     <tr>
         <td>SNII Energy</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_erg", "erg") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_erg", "erg") }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm E, min}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_min") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_min") }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm E, max}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_max") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_max") }}</td>
     </tr>
     <tr>
         <td>\(f_{\rm kinetic}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_f_kinetic") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_f_kinetic") }}</td>
     </tr>
     <tr>
         <td>SNII \(v_{\rm kick}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_v_km_p_s", "km/s") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_delta_v_km_p_s", "km/s") }}</td>
     </tr>
     <tr>
         <td>SNII \(\Delta T\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K", "K") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_delta_T_K", "K") }}</td>
     </tr>
 </table>
 
@@ -112,7 +112,7 @@
 {% endif %}
 
 <h4>Entropy Floor</h4>
-{% if data.metadata.parameters.get("COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3", False) %}
+{% if data.metadata.parameters.get("EAGLEEntropyFloor:Jeans_density_norm_H_p_cm3", False) %}
 <table>
     <tr>
         <th>\(n_{\rm H, norm}\) [cm\(^{-3}\)]</th>
@@ -120,11 +120,11 @@
         <th>Slope</th>
     </tr>
     <tr>
-        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_density_norm_H_p_cm3"] | float) | format_number }}
+        <td>{{ (data.metadata.parameters["EAGLEEntropyFloor:Jeans_density_norm_H_p_cm3"] | float) | format_number }}
         </td>
-        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_temperature_norm_K"] | float) | format_number }}
+        <td>{{ (data.metadata.parameters["EAGLEEntropyFloor:Jeans_temperature_norm_K"] | float) | format_number }}
         </td>
-        <td>{{ (data.metadata.parameters["COLIBREEntropyFloor:Jeans_gamma_effective"] | float) | format_number }}</td>
+        <td>{{ (data.metadata.parameters["EAGLEEntropyFloor:Jeans_gamma_effective"] | float) | format_number }}</td>
     </tr>
 </table>
 {% else %}
@@ -139,12 +139,12 @@
     </tr>
     <tr>
         <td>Metal diffusion constant</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREChemistry:metal_diffusion_constant") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEChemistry:metal_diffusion_constant") }}</td>
     </tr>
 </table>
 
 <h4>AGN feedback</h4>
-{% if data.metadata.parameters.get("COLIBREAGN:AGN_delta_T_K", False) %}
+{% if data.metadata.parameters.get("EAGLEAGN:AGN_delta_T_K", False) %}
 <table>
     <tr>
         <th>Parameter</th>
@@ -152,27 +152,27 @@
     </tr>
     <tr>
         <td>AGN Feedback Model</td>
-        <td>{{ data.metadata.parameters.get("COLIBREAGN:AGN_feedback_model", "".encode()).decode("utf-8") }}</td>
+        <td>{{ data.metadata.parameters.get("EAGLEAGN:AGN_feedback_model", "".encode()).decode("utf-8") }}</td>
     </tr>
     <tr>
         <td>Use Deterministic Feedback</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:AGN_use_deterministic_feedback") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("EAGLEAGN:AGN_use_deterministic_feedback") }}</td>
     </tr>
     <tr>
         <td>\(\Delta T\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_delta_T_K", "K") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:AGN_delta_T_K", "K") }}</td>
     </tr>
     <tr>
         <td>Coupling efficiency</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:coupling_efficiency") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:coupling_efficiency") }}</td>
     </tr>
     <tr>
         <td>Radiative efficiency</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:radiative_efficiency") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:radiative_efficiency") }}</td>
     </tr>
     <tr>
         <td>BH Subgrid Seed Mass</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:subgrid_seed_mass_Msun", "Msun") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:subgrid_seed_mass_Msun", "Msun") }}</td>
     </tr>
     <tr>
         <td>Seed Halo Mass</td>
@@ -180,43 +180,43 @@
     </tr>
     <tr>
         <td>Target number of particles to heat N\(_{\rm heat}\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_num_ngb_to_heat") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:AGN_num_ngb_to_heat") }}</td>
     </tr>
     <tr>
         <td>Are we using the boost factor</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:with_boost_factor") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("EAGLEAGN:with_boost_factor") }}</td>
     </tr>
     <tr>
         <td>Value of \(\alpha\) for boost factor</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_alpha") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:boost_alpha") }}</td>
     </tr>
     <tr>
         <td>Value of \(\beta\) for boost factor</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_beta") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:boost_beta") }}</td>
     </tr>
     <tr>
         <td>Value of \(n_{H,*}\) in cm\(^{-3}\) for boost factor</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:boost_n_h_star_cm3") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:boost_n_h_star_cm3") }}</td>
     </tr>
     <tr>
         <td>Use sub-grid gas properties</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:use_subgrid_gas_properties") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("EAGLEAGN:use_subgrid_gas_properties") }}</td>
     </tr>
     <tr>
         <td>Minimum BH time-step</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:minimum_timestep_yr", "yr") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:minimum_timestep_yr", "yr") }}</td>
     </tr>
     <tr>
         <td>Maximal Reposition Mass</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:max_reposition_mass", "Msun") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:max_reposition_mass", "Msun") }}</td>
     </tr>
     <tr>
         <td>Black Hole Merger Threshold Type</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:merger_threshold_type") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_int("EAGLEAGN:merger_threshold_type") }}</td>
     </tr>
     <tr>
         <td>Black Hole Merger Max Distance Ratio</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:merger_max_distance_ratio") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:merger_max_distance_ratio") }}</td>
     </tr>
 </table>
 {% else %}

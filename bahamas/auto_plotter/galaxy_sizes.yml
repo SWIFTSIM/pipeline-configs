@@ -1,5 +1,5 @@
 stellar_mass_galaxy_size_100:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -30,7 +30,7 @@ stellar_mass_galaxy_size_100:
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
 
 stellar_mass_galaxy_size_30:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_30_kpc"
@@ -62,7 +62,7 @@ stellar_mass_galaxy_size_30:
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
 
 stellar_mass_projected_galaxy_size_100:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -94,7 +94,7 @@ stellar_mass_projected_galaxy_size_100:
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
 
 stellar_mass_projected_galaxy_size_30:
-  type: "scatter"
+  type: "2dhistogram"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_30_kpc"
@@ -127,7 +127,7 @@ stellar_mass_projected_galaxy_size_30:
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
 
 stellar_mass_projected_galaxy_size_active_only_100:
-  type: "scatter"
+  type: "2dhistogram"
   comment: "Active only"
   comment_loc: "lower left"
   legend_loc: "upper left"
@@ -163,7 +163,7 @@ stellar_mass_projected_galaxy_size_active_only_100:
     - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_active_only_30:
-  type: "scatter"
+  type: "2dhistogram"
   comment: "Active only"
   comment_loc: "lower left"
   legend_loc: "upper left"
@@ -200,7 +200,7 @@ stellar_mass_projected_galaxy_size_active_only_30:
     - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_passive_only_100:
-  type: "scatter"
+  type: "2dhistogram"
   comment: "Passive only"
   comment_loc: "lower left"
   legend_loc: "upper left"
@@ -233,10 +233,10 @@ stellar_mass_projected_galaxy_size_passive_only_100:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_passive_only_30:
-  type: "scatter"
+  type: "2dhistogram"
   comment: "Passive only"
   comment_loc: "lower left"
   legend_loc: "upper left"
@@ -270,5 +270,4 @@ stellar_mass_projected_galaxy_size_passive_only_30:
     - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
-
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5

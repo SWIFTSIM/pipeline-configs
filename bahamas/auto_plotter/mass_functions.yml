@@ -13,13 +13,21 @@ stellar_mass_function_30:
     end: 0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
-    caption: 30 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex.
+    caption: 30 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. For 30kpc look at the Li and White (2009) data.
     section: Stellar Mass Function
-    show_on_webpage: false
+    show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
 
 adaptive_stellar_mass_function_30:
   type: "adaptivemassfunction"
@@ -36,13 +44,21 @@ adaptive_stellar_mass_function_30:
     end: 0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture, adaptive)
-    caption: 30 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
+    caption: 30 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. For 30kpc look at the Li and White (2009) data.
     section: Stellar Mass Function
-    show_on_webpage: false
+    show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
 
 stellar_mass_function_active_only_30:
   type: "massfunction"
@@ -62,13 +78,21 @@ stellar_mass_function_active_only_30:
     end: 0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
-    caption: Only for active galaxies.
+    caption: Only for active galaxies. For 30kpc look at the Li and White (2009) data.
     section: Stellar Mass Function
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
 
 stellar_mass_function_passive_only_30:
   type: "massfunction"
@@ -88,13 +112,21 @@ stellar_mass_function_passive_only_30:
     end: 0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
-    caption: Only for passive galaxies.
+    caption: Only for passive galaxies. For 30kpc look at the Li and White (2009) data.
     section: Stellar Mass Function
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
 
 
 stellar_mass_function_100:
@@ -118,6 +150,14 @@ stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
 
 adaptive_stellar_mass_function_100:
   type: "adaptivemassfunction"
@@ -140,6 +180,14 @@ adaptive_stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
 
 stellar_mass_function_passive_only_100:
   type: "massfunction"
@@ -165,6 +213,14 @@ stellar_mass_function_passive_only_100:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
 
 stellar_mass_function_active_only_100:
   type: "massfunction"
@@ -190,3 +246,73 @@ stellar_mass_function_active_only_100:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+
+stellar_mass_function_50:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e9
+    end: 1e13
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: Stellar Mass Function (50 kpc aperture)
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. For 50kpc, look at D'Souza (2015) data.
+    section: Stellar Mass Function
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+
+adaptive_stellar_mass_function_50:
+  type: "adaptivemassfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e9
+    end: 1e13
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: Stellar Mass Function (50 kpc aperture, adaptive)
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. For 50kpc, look at D'Souza (2015) data.
+    section: Stellar Mass Function
+  observational_data:
+    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p200.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z000p800.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p100.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z001p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p000.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z002p500.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013_z003p000.hdf5
+

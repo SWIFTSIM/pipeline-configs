@@ -11,7 +11,7 @@ from unyt import unyt_quantity
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
 
-mass_bounds = [6e3, 6e9]
+mass_bounds = [9e4, 1e12]
 
 
 def get_data(filename):

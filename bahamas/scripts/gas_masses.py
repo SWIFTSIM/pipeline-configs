@@ -41,12 +41,12 @@ def make_single_image(
 
     fig, ax = plt.subplots()
     ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^6$ M$_\odot$]")
-    ax.set_ylabel("Counts [-]")
+    ax.set_ylabel("PDF [-]")
     ax.semilogy()
 
     for filename, name in zip(filenames, names):
         m_gas, m_split = get_data(filename)
-        h, bin_edges = np.histogram(m_gas, range=mass_bounds, bins=250)
+        h, bin_edges = np.histogram(m_gas, range=mass_bounds, bins=250, density=True)
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
         (line,) = ax.plot(bins, h, label=name)
         ax.axvline(x=m_split, color=line.get_color(), ls="--", lw=0.2)

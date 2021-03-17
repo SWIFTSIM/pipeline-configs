@@ -1,0 +1,60 @@
+stellar_mass_ages_30:
+  type: "2dhistogram"
+  legend_loc: "lower right"
+  y:
+    quantity: "stellar_age.tage_star"
+    units: yr
+    start: 1e9
+    end: 3e10
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: solar_mass
+    start: 1e7
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    adaptive: true
+    start:
+      value: 1e9
+      units: solar_mass
+    end:
+      value: 1e13
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Stellar age relation (30 kpc aperture)"
+    section: Ages
+    show_on_webpage: True
+  observational_data:
+    - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5
+
+stellar_mass_ages_100:
+  type: "2dhistogram"
+  legend_loc: "lower right"
+  y:
+    quantity: "stellar_age.tage_star"
+    units: yr
+    start: 1e8
+    end: 3e10
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e9
+    end: 1e13
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    adaptive: true
+    start:
+      value: 1e7
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Stellar age relation (100 kpc aperture)"
+    section: Ages
+  observational_data:
+    - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5

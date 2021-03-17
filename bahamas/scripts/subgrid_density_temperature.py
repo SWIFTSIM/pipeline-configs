@@ -7,7 +7,7 @@ import numpy as np
 
 from swiftsimio import load
 
-from unyt import mh, cm, Gyr
+from unyt import mh, cm, Gyr, unyt_array
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
 
@@ -24,8 +24,13 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.subgrid_physical_densities / mh).to(cm ** -3)
-    temperature = data.gas.subgrid_temperatures.to_physical().to("K")
+    try:
+        number_density = (data.gas.subgrid_physical_densities / mh).to(cm ** -3)
+        temperature = data.gas.subgrid_temperatures.to_physical().to("K")
+    except:
+        # No sub-grid quantities present. Still make the figure, but use non-subgrid.
+        number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
+        temperature = data.gas.temperatures.to_physical().to("K")
 
     return number_density.value, temperature.value
 

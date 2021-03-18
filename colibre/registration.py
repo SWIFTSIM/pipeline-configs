@@ -312,16 +312,19 @@ try:
         )
 
         HI_to_neutral_H_fraction = HI_mass / neutral_H_mass
+        HI_to_neutral_H_fraction[np.isnan(HI_to_neutral_H_fraction)] = 0. * unyt.dimensionless
         HI_to_neutral_H_fraction.name = (
             f"$M_{{\\rm HI}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
         )
 
         H2_to_neutral_H_fraction = H2_mass / neutral_H_mass
+        H2_to_neutral_H_fraction[np.isnan(H2_to_neutral_H_fraction)] = 0. * unyt.dimensionless
         H2_to_neutral_H_fraction.name = (
             f"$M_{{\\rm H_2}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
         )
-
-        sf_to_sf_plus_stellar_fraction = sf_mass / (sf_mass + stellar_mass)
+        
+        sf_to_sf_plus_stellar_fraction = sf_mass / (
+            sf_mass + stellar_mass)
         sf_to_sf_plus_stellar_fraction.name = (
             f"$M_{{\\rm SF}}/(M_{{\\rm SF}} + M_*)$ ({aperture_size} kpc)"
         )

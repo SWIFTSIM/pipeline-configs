@@ -73,9 +73,48 @@ for snapshot_filename, stats_filename, name in zip(
 
 # Observational data plotting
 
-# observational_data = glob.glob(
-#    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/StellarMassDensity/*.hdf5"
-# )
+zgrid = np.linspace(0,4, 50)
+
+P20_data = np.genfromtxt(
+    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+    "/data/CosmicHIAbundance/raw/Peroux2020_OmegaHI.txt", usecols=[1,2])
+P20eq13 = lambda z,a,b: a*(1+z)**b
+P20_rhoHI = P20eq13(zgrid, *P20_data[0])
+P20_rhoHI_lo = P20eq13(zgrid, *P20_data[1])
+P20_rhoHI_hi = P20eq13(zgrid, *P20_data[2])
+simulation_lines.append(ax.fill_between(pow(1+zgrid,-1),
+                                        P20_rhoHI_lo,
+                                        P20_rhoHI_hi,
+                                        alpha=0.2,
+                                        color='C2',
+                                        label="Peroux & Howk (2020) Fit"))
+simulation_lines.append(ax.plot(pow(1+zgrid,-1),
+                                P20_rhoHI,
+                                color='C2'))
+
+
+W20_data = np.genfromtxt(
+    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+    "/data/CosmicHIAbundance/raw/Walter2020_rhoHI.txt", usecols=[1,2,3])
+W20eq2 = lambda z,a,b,c: (a*np.tanh(1+z-b) + c) / rho_crit0
+W20_rhoHI = W20eq2(zgrid, *W20_data[0])
+W20_rhoHI_lo = W20eq2(zgrid, *W20_data[1])
+W20_rhoHI_hi = W20eq2(zgrid, *W20_data[2])
+simulation_lines.append(ax.fill_between(pow(1+zgrid,-1),
+                                        W20_rhoHI_lo,
+                                        W20_rhoHI_hi,
+                                        alpha=0.2,
+                                        color='C3',
+                                        label="Walter et al. (2020) Fit"))
+simulation_lines.append(ax.plot(pow(1+zgrid,-1),
+                                W20_rhoHI,
+                                color='C3'))
+
+
+observational_data = glob.glob(
+   f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/StellarMassDensity/*.hdf5"
+)
+
 
 # for index, observation in enumerate(observational_data):
 #    obs = load_observation(observation)
@@ -105,7 +144,7 @@ ax.set_xticklabels(redshift_labels)
 ax.tick_params(axis="x", which="minor", bottom=False)
 
 ax.set_xlim(1.02, 0.07)
-ax.set_ylim(3e-6, 8e-2)
+ax.set_ylim(3e-7, 4e-3)
 
 observation_legend = ax.legend(markerfirst=True, loc="lower left")
 

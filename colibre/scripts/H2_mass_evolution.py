@@ -53,6 +53,7 @@ for snapshot_filename, stats_filename, name in zip(
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
     cosmo = snapshot.metadata.cosmology
     Omega_b = cosmo.Ob0
+    Omega_m = cosmo.Om0
     rho_crit0 = unyt_quantity.from_astropy(cosmo.critical_density0)
     rho_crit0 = rho_crit0.to("Msun / Mpc**3")
 
@@ -61,33 +62,39 @@ for snapshot_filename, stats_filename, name in zip(
     redshift = data.z
     H2_mass = data.gas_h2_mass.to("Msun")
     H2_mass_density = H2_mass / box_volume
+    rho_crit = lambda rho_crit0, a: pow(a,3)*rho_crit0*(1 + Omega_m*(pow(a,-3)-1))
 
+    
     # Convert to abundance
-    Omega_H2 = H2_mass_density / rho_crit0
+    Omega_H2 = H2_mass_density / rho_crit(rho_crit0, scale_factor)
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(ax.plot(scale_factor, Omega_H2, zorder=10000)[0])
     simulation_labels.append(name)
 
     ax.axhline(Omega_b, c="0.4", ls="--", lw=0.5)
 # Observational data plotting
-S18_data = (10.**np.genfromtxt(
-    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-    "/data/CosmicH2Abundance/raw/Saintonge18_CH2D.txt"))/rho_crit0.value
-simulation_lines.append(ax.errorbar(1, S18_data[0],
-                                    np.row_stack([S18_data[0]-S18_data[1], S18_data[2]-S18_data[0]]),
-                                    marker='o', label="Saintonge et. al (2018)"))
-
 S17_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
     "/data/CosmicH2Abundance/raw/Scoville17_CH2D.txt")
 S17_expansion_factor = 1./(1+S17_data[:,0])
-S17_Omega_H2 = pow(10.,S17_data[:,1])/rho_crit0.value
-simulation_lines.append(ax.errorbar(S17_expansion_factor, S17_Omega_H2, 0, ls='none',
-                                    marker='o', label="Scoville et. al (2017)"))
+S17_Omega_H2 = pow(10.,S17_data[:,1])/rho_crit(rho_crit0.value, S17_expansion_factor)
+simulation_lines.append(ax.errorbar(S17_expansion_factor, S17_Omega_H2*S17_expansion_factor**3,
+                                    0, ls='none', marker='o', label="Scoville et. al (2017)"))
+
+D20_data = np.genfromtxt(
+    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+    "/data/CosmicH2Abundance/raw/Decarli20_CH2D.txt")
+D20_expansion_factor = 1./(1+D20_data[:,0])
+D20_Omega_H2 = 1e7*D20_data[:,1]/rho_crit0.value
+D20_Omega_H2_lo = 1e7*D20_data[:,2]/rho_crit0.value
+D20_Omega_H2_hi = 1e7*D20_data[:,3]/rho_crit0.value
+simulation_lines.append(ax.errorbar(D20_expansion_factor, D20_Omega_H2*D20_expansion_factor**3,
+                                    [D20_Omega_H2_lo, D20_Omega_H2_hi]*D20_expansion_factor**3, ls='none',
+                                    marker='o', label="Decarli et. al (2020)"))
 
 F21_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-    "/data/CosmicH2Abundance/raw/Fletcher2021_H2.txt")/snapshot.metadata.cosmology.h
+    "/data/CosmicH2Abundance/raw/Fletcher2021_H2.txt")*snapshot.metadata.cosmology.h
 simulation_lines.append(ax.errorbar(1, F21_data[0],
                                     np.row_stack([F21_data[0]-F21_data[1], F21_data[2]-F21_data[0]]),
                                     marker='o', label="Fletcher et. al (2021)"))
@@ -108,13 +115,17 @@ simulation_lines.append(ax.errorbar(pow(G21_data[:,0]+1,-1), G21_data[:,1]*1e-7,
                                     np.row_stack([G21_data[:,2], G21_data[:,2]])*1e-7,
                                     zorder=0, fmt='o', 
                                     marker='o', label="Garrat et al. (2021)"))
+simulation_lines.append(ax.errorbar(pow(G21_data[:,0]+1,-1), G21_data[:,3]*1e6/rho_crit(rho_crit0.value, pow(G21_data[:,0]+1,-3)),
+                                    np.row_stack([G21_data[:,4], G21_data[:,4]])*1e6/rho_crit(rho_crit0.value,pow(G21_data[:,0]+1,-3)),
+                                    zorder=0, fmt='o', color='k', alpha=0.3,
+                                    marker='o', label="Garrat et al. (2021, rhos)"))
 
 zgrid = np.linspace(0,4, 50)
 
 W20_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
     "/data/CosmicH2Abundance/raw/Walter2020_rhoH2.txt", usecols=[1,2,3,4])
-W20eq1 = lambda z,a,b,c,d: ((a*(1+z)**b)/ (1+((1+z)/c)**d)) / rho_crit0
+W20eq1 = lambda z,a,b,c,d: ((a*(1+z)**b)/ (1+((1+z)/c)**d)) * pow(1+z,-1) / rho_crit(rho_crit0, 1/(1+z))
 W20_rhoH2 = W20eq1(zgrid, *W20_data[0])
 W20_rhoH2_lo = W20eq1(zgrid, *W20_data[1])
 W20_rhoH2_hi = W20eq1(zgrid, *W20_data[2])

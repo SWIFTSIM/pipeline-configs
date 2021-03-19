@@ -153,11 +153,21 @@ scripts:
     output_file: gas_smoothing_lengths.png
     section: Histograms
     title: Gas Particle Smoothing Lengths
+  - filename: scripts/number_of_agn_thermal_injections.py
+    caption: The cumulative number of black holes (summed from right to left) with a given total number of thermal energy injections (less than or equal to the number of particles heated) the black hole has had throughout the simulation.
+    output_file: num_agn_thermal_injections.png
+    section: Black Holes
+    title: Cumulative number of AGN thermal injections
   - filename: scripts/max_temperatures.py
     caption: Maximal temperature recorded by gas particles throughout the entire simulation.
     output_file: gas_max_temperatures.png
-    section: Histograms
+    section: Maximal Temperatures
     title: Maximal Temperature reached by gas particles
+  - filename: scripts/max_temperature_redshift.py
+    caption: The maximal temperatures reached by all star and gas particles (density given by the colour map) against the redshift at which they were at that temperature.
+    output_file: max_temperature_redshift.png"
+    section: Maximal Temperatures
+    title: Maximal Temperature-Redshift
   - filename: scripts/particle_updates_step_cost.py
     caption: Wall-clock time to run a time-step as a function of the number of gas particles updated. The tracks at the top correspond to steps where the tree is rebuilt, i/o is performed, FoF is run or other non-regular operations are done.
     title: Wall-clock time per gas particle updates.

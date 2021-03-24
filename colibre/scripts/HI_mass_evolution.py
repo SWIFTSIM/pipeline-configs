@@ -62,11 +62,8 @@ for snapshot_filename, stats_filename, name in zip(
     HI_mass = data.gas_hi_mass.to("Msun")
     HI_mass_density = HI_mass / box_volume
 
-    # Convert to abundance
-    Omega_HI = HI_mass_density / rho_crit0
-
     # High z-order as we always want these to be on top of the observations
-    simulation_lines.append(ax.plot(scale_factor, Omega_HI, zorder=10000)[0])
+    simulation_lines.append(ax.plot(scale_factor, HI_mass_density, zorder=10000)[0])
     simulation_labels.append(name)
 
     ax.axhline(Omega_b, c="0.4", ls="--", lw=0.5)
@@ -78,7 +75,7 @@ zgrid = np.linspace(0,4, 50)
 P20_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
     "/data/CosmicHIAbundance/raw/Peroux2020_OmegaHI.txt", usecols=[1,2])
-P20eq13 = lambda z,a,b: a*(1+z)**b
+P20eq13 = lambda z,a,b: a*rho_crit0*(1+z)**b 
 P20_rhoHI = P20eq13(zgrid, *P20_data[0])
 P20_rhoHI_lo = P20eq13(zgrid, *P20_data[1])
 P20_rhoHI_hi = P20eq13(zgrid, *P20_data[2])
@@ -96,7 +93,7 @@ simulation_lines.append(ax.plot(pow(1+zgrid,-1),
 W20_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
     "/data/CosmicHIAbundance/raw/Walter2020_rhoHI.txt", usecols=[1,2,3])
-W20eq2 = lambda z,a,b,c: (a*np.tanh(1+z-b) + c) / rho_crit0
+W20eq2 = lambda z,a,b,c: (a*np.tanh(1+z-b) + c)
 W20_rhoHI = W20eq2(zgrid, *W20_data[0])
 W20_rhoHI_lo = W20eq2(zgrid, *W20_data[1])
 W20_rhoHI_hi = W20eq2(zgrid, *W20_data[2])
@@ -121,7 +118,7 @@ observational_data = glob.glob(
 #    obs.plot_on_axes(ax)
 
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"Atomic Gas Cosmic Abundance $\Omega_{HI}$ [-]")
+ax.set_ylabel(r"Atomic Gas Cosmic Density $\rho_{\rm H2} [{\rm M_\odot \; cMpc^{-3}}]$")
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [
@@ -144,7 +141,7 @@ ax.set_xticklabels(redshift_labels)
 ax.tick_params(axis="x", which="minor", bottom=False)
 
 ax.set_xlim(1.02, 0.07)
-ax.set_ylim(3e-7, 4e-3)
+ax.set_ylim(5e6, 1e10)
 
 observation_legend = ax.legend(markerfirst=True, loc="lower left")
 

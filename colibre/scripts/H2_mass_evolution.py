@@ -52,8 +52,6 @@ for snapshot_filename, stats_filename, name in zip(
     boxsize = snapshot.metadata.boxsize.to("Mpc")
     box_volume = boxsize[0] * boxsize[1] * boxsize[2]
     cosmo = snapshot.metadata.cosmology
-    Omega_b = cosmo.Ob0
-    Omega_m = cosmo.Om0
     rho_crit0 = unyt_quantity.from_astropy(cosmo.critical_density0)
     rho_crit0 = rho_crit0.to("Msun / Mpc**3")
 
@@ -66,8 +64,7 @@ for snapshot_filename, stats_filename, name in zip(
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(ax.plot(scale_factor, H2_mass_density, zorder=10000)[0])
     simulation_labels.append(name)
-
-    ax.axhline(Omega_b, c="0.4", ls="--", lw=0.5)
+    
 # Observational data plotting
 S17_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"

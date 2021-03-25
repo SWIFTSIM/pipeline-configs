@@ -59,7 +59,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     atomfrac = X * masses * data.gas.species_fractions.HI
     molfrac = 2 * X * masses * data.gas.species_fractions.H2
     ionfrac = X * masses * data.gas.species_fractions.HII
-    
+
     # Dust Mass Fractions
     dfracs = np.zeros(data.gas.masses.shape)
     for d in dir(data.gas.dust_mass_fractions):
@@ -110,16 +110,16 @@ def get_data(filename, tables, prefix_rho, prefix_T):
 
     # casting to float64 to avoid arcane np.histogram bug(?)
     out_tuple = (
-        number_density.value.astype('float64'),
-        temperature.value.astype('float64'),
-        difracs.astype('float64'),
-        dfracs.astype('float64'),
-        masses.value.astype('float64'),
-        molfrac.value.astype('float64'),
-        atomfrac.value.astype('float64'),
-        ionfrac.value.astype('float64'),
-        X.value.astype('float64'),
-        Z.value.astype('float64'),
+        number_density.value.astype("float64"),
+        temperature.value.astype("float64"),
+        difracs.astype("float64"),
+        dfracs.astype("float64"),
+        masses.value.astype("float64"),
+        molfrac.value.astype("float64"),
+        atomfrac.value.astype("float64"),
+        ionfrac.value.astype("float64"),
+        X.value.astype("float64"),
+        Z.value.astype("float64"),
     )
 
     return out_tuple
@@ -150,22 +150,22 @@ def make_hist(
 
     ret_tuple = get_data(filename, tables, prefix_rho, prefix_T)
     nH, T, Di, D, Mg, mol, atom, ion, X, Z = ret_tuple
-    
+
     Hd, density_edges = np.histogram(nH, bins=density_bins, weights=D * Mg)
 
     Hdi, density_edges = np.histogram(nH, bins=density_bins, weights=Di * Mg)
 
     H_Z, _ = np.histogram(nH, bins=density_bins, weights=Z * Mg)
-    
+
     Hh2, _ = np.histogram(nH, bins=density_bins, weights=mol)
-    
+
     Hhi, _ = np.histogram(nH, bins=density_bins, weights=atom)
-    
+
     Hhii, _ = np.histogram(nH, bins=density_bins, weights=ion)
-    
+
     H_norm, _ = np.histogram(nH, bins=density_bins, weights=Mg)
-    
-    H_h, _ = np.histogram(nH, bins=density_bins, weights=(X*Mg))
+
+    H_h, _ = np.histogram(nH, bins=density_bins, weights=(X * Mg))
 
     # Avoid div/0
     mask = H_norm == 0.0
@@ -286,7 +286,9 @@ def make_single_image(
         axis.plot(binmids, np.clip(hist_h2, 0, 1), label="molecular")
         axis.plot(binmids, np.clip(hist_hi, 0, 1), label="atomic")
         axis.plot(binmids, np.clip(hist_hii, 0, 1), label="ionised")
-        axis.plot(binmids, hist_h2+hist_hi+hist_hii, color='0.7', label="total", ls=':')
+        axis.plot(
+            binmids, hist_h2 + hist_hi + hist_hii, color="0.7", label="total", ls=":"
+        )
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
         axis.legend(frameon=False, loc=6)
         axis.set_ylim(0, 1.1)

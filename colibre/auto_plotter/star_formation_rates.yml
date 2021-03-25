@@ -262,6 +262,7 @@ halo_mass_specific_sfr_100:
     title: Specific Star Formation Rate (100 kpc aperture) - Halo Mass
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
     section: Star Formation Rates
+    show_on_webpage: false
 
 halo_mass_sfr_30_halo_mass:
   type: "scatter"
@@ -333,6 +334,7 @@ stellar_mass_passive_fraction_30:
   type: "scatter"
   legend_loc: "lower left"
   redshift_loc: "upper center"
+  min_num_points_highlight: 0
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
@@ -370,6 +372,7 @@ stellar_mass_passive_fraction_100:
   type: "scatter"
   legend_loc: "lower left"
   redshift_loc: "upper center"
+  min_num_points_highlight: 0
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass

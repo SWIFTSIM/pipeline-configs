@@ -207,9 +207,13 @@ def register_dust(self, catalogue):
                 dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
         total_dust_fraction = sum(dust_fields)
         dust_frac_error = ""
+
     # If the catalogue has no dust fields
     except AttributeError:
-        total_dust_fraction = np.zeros(metal_frac.size)
+        total_dust_fraction = unyt.unyt_array(
+            np.zeros(metal_frac.size),
+            units="dimensionless",
+        )
         dust_frac_error = " (no dust field)"
 
     # Label for the dust-fraction derived field
@@ -276,7 +280,7 @@ def register_hi_masses(self, catalogue):
     # Fetch gas mass
     gas_mass = catalogue.masses.m_gas
 
-    # Fetch mass fraction of H
+    # Fetch the mass fraction of Hydrogen
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
 
     # Fetch the fraction of H in HI (try CHIMES arrays first)
@@ -295,6 +299,7 @@ def register_hi_masses(self, catalogue):
     # Label of the derived field
     HI_mass.name = "$M_{\\rm HI}$"
 
+    # Register derived fields
     setattr(self, "gas_HI_mass", HI_mass)
     setattr(self, "gas_HI_plus_He_mass", HI_mass_wHe)
 
@@ -334,7 +339,7 @@ def register_dust_to_hi_ratio(self, catalogue):
         dust_to_hi_ratio = total_dust_mass / HI_mass
 
         # Register the field
-        dust_to_hi_ratio.name = "M_{{\\rm dust}}/M_{{\\rm HI}}"
+        dust_to_hi_ratio.name = "M_{\\rm dust}/M_{\\rm HI}"
         setattr(self, "gas_dust_to_hi_ratio", dust_to_hi_ratio)
 
     # Dust fields might not be present in the catalogue
@@ -348,7 +353,7 @@ def register_dust_to_hi_ratio(self, catalogue):
                 unyt.unyt_array(
                     np.ones(np.size(catalogue.masses.m_gas)), "dimensionless"
                 ),
-                name="$M_{{\\rm dust}}/M_{{\\rm HI}}$ not found, default to 1s",
+                name="$M_{\\rm dust}/M_{\\rm HI}$ not found, default to 1s",
             ),
         )
 
@@ -394,6 +399,7 @@ def register_cold_gas_mass_ratios(self, catalogue):
 
     # Fetch gas mass
     gas_mass = catalogue.masses.m_gas
+
     # Fetch hydrogen mass fraction
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
 
@@ -577,7 +583,10 @@ def register_species_fractions(self, catalogue):
     nonmetal_frac = 1.0 - catalogue.apertures.zmet_gas_100_kpc
 
     # Fetch gas mass in the apertures of 100 kpc
-    gas_mass = catalogue.apertures.mass_gas_100_kpc
+    gas_mass_100kpc = catalogue.apertures.mass_gas_100_kpc
+
+    # Fetch all gas mass
+    gas_mass = catalogue.masses.m_gas
 
     # Compute galaxy area (pi r^2)
     gal_area = (
@@ -624,64 +633,61 @@ def register_species_fractions(self, catalogue):
         HI_frac = getattr(catalogue.species_fractions, "species_0")
         H2_frac = getattr(catalogue.species_fractions, "species_2")
 
-    # H2 and HI with He
+    # H2 and HI with He (no apertures)
     H2_mass_wHe = gas_mass * nonmetal_frac * H2_frac * 2.0
     HI_mass_wHe = gas_mass * nonmetal_frac * HI_frac
 
     # Neutral hydrogen mass in the 100-kpc aperture
-    neutral_hydrogen_mass_100_kpc = gas_mass * H_frac * HI_frac
+    neutral_hydrogen_mass_100_kpc = gas_mass_100kpc * H_frac * HI_frac
     neutral_hydrogen_mass_100_kpc.name = "HI Mass (100 kpc)"
 
     # Neutral hydrogen to stellar mass in the 100 kpc aperture
     hi_to_stellar_mass_100_kpc = (
         neutral_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
     )
-    hi_to_stellar_mass_100_kpc.name = "$M_{{\\rm HI}} / M_*$ (100 kpc)"
+    hi_to_stellar_mass_100_kpc.name = "$M_{\\rm HI} / M_*$ (100 kpc)"
 
     # Molecular hydrogen mass in the 100-kpc aperture
     # (species_H2 already contains a factor of 2.0)
-    molecular_hydrogen_mass_100_kpc = gas_mass * H_frac * H2_frac * 2.0
+    molecular_hydrogen_mass_100_kpc = gas_mass_100kpc * H_frac * H2_frac * 2.0
     molecular_hydrogen_mass_100_kpc.name = "H$_2$ Mass (100 kpc)"
 
     # Molecular hydrogen mass to stellar mass in the 100 kpc aperture
     h2_to_stellar_mass_100_kpc = (
         molecular_hydrogen_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
     )
-    h2_to_stellar_mass_100_kpc.name = "$M_{{\\rm H_2}} / M_*$ (100 kpc)"
+    h2_to_stellar_mass_100_kpc.name = "$M_{\\rm H_2} / M_*$ (100 kpc)"
 
     # H2 mass including He divided by stellar mass
     h2_plus_he_to_stellar_mass_100_kpc = (
         H2_mass_wHe / catalogue.apertures.mass_star_100_kpc
     )
-    h2_plus_he_to_stellar_mass_100_kpc.name = (
-        "$M_{{\\rm H_2}} / M_*$ (100 kpc, inc. He)"
-    )
+    h2_plus_he_to_stellar_mass_100_kpc.name = "$M_{\\rm H_2} / M_*$ (100 kpc, inc. He)"
 
     # HI with He / stellar mass
     hi_plus_he_to_stellar_mass_100_kpc = (
         HI_mass_wHe / catalogue.apertures.mass_star_100_kpc
     )
-    hi_plus_he_to_stellar_mass_100_kpc.name = (
-        f"$M_{{\\rm HI}} / M_*$ (100 kpc, inc. He)"
-    )
+    hi_plus_he_to_stellar_mass_100_kpc.name = "$M_{\\rm HI} / M_*$ (100 kpc, inc. He)"
 
     # Neutral H / stellar mass
     neutral_to_stellar_mass_100_kpc = (
         hi_to_stellar_mass_100_kpc + h2_to_stellar_mass_100_kpc
     )
-    neutral_to_stellar_mass_100_kpc.name = f"$M_{{\\rm HI + H_2}} / M_*$ (100 kpc)"
+    neutral_to_stellar_mass_100_kpc.name = "$M_{\\rm HI + H_2} / M_*$ (100 kpc)"
 
     # Register all derived fields
     setattr(self, "neutral_hydrogen_mass_100_kpc", neutral_hydrogen_mass_100_kpc)
     setattr(self, "hi_to_stellar_mass_100_kpc", hi_to_stellar_mass_100_kpc)
     setattr(self, "molecular_hydrogen_mass_100_kpc", molecular_hydrogen_mass_100_kpc)
     setattr(self, "h2_to_stellar_mass_100_kpc", h2_to_stellar_mass_100_kpc)
-    setattr(self, "h2_plus_he_to_stellar_mass_100_kpc",
-            h2_plus_he_to_stellar_mass_100_kpc)
-    setattr(self, "hi_plus_he_to_stellar_mass_100_kpc",
-            hi_plus_he_to_stellar_mass_100_kpc)
-    setattr(self, "neutral_to_stellar_mass_100_kpc",
-            neutral_to_stellar_mass_100_kpc)
+    setattr(
+        self, "h2_plus_he_to_stellar_mass_100_kpc", h2_plus_he_to_stellar_mass_100_kpc
+    )
+    setattr(
+        self, "hi_plus_he_to_stellar_mass_100_kpc", hi_plus_he_to_stellar_mass_100_kpc
+    )
+    setattr(self, "neutral_to_stellar_mass_100_kpc", neutral_to_stellar_mass_100_kpc)
 
     return
 

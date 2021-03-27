@@ -211,8 +211,7 @@ def register_dust(self, catalogue):
     # If the catalogue has no dust fields
     except AttributeError:
         total_dust_fraction = unyt.unyt_array(
-            np.zeros(metal_frac.size),
-            units="dimensionless",
+            np.zeros(metal_frac.size), units="dimensionless"
         )
         dust_frac_error = " (no dust field)"
 
@@ -553,26 +552,14 @@ def register_cold_gas_mass_ratios(self, catalogue):
             f"gas_neutral_H_to_sf_fraction_{aperture_size}_kpc",
             neutral_H_to_sf_fraction,
         )
-        setattr(
-            self,
-            f"gas_HI_to_sf_fraction_{aperture_size}_kpc",
-            HI_to_sf_fraction,
-        )
-        setattr(
-            self,
-            f"gas_H2_to_sf_fraction_{aperture_size}_kpc",
-            H2_to_sf_fraction,
-        )
+        setattr(self, f"gas_HI_to_sf_fraction_{aperture_size}_kpc", HI_to_sf_fraction)
+        setattr(self, f"gas_H2_to_sf_fraction_{aperture_size}_kpc", H2_to_sf_fraction)
         setattr(
             self,
             f"gas_sf_to_stellar_fraction_{aperture_size}_kpc",
             sf_to_stellar_fraction,
         )
-        setattr(
-            self,
-            f"has_neutral_gas_{aperture_size}_kpc",
-            neutral_H_mass > 0.0,
-        )
+        setattr(self, f"has_neutral_gas_{aperture_size}_kpc", neutral_H_mass > 0.0)
 
     return
 

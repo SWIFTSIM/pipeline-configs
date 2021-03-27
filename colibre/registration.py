@@ -208,6 +208,12 @@ def register_dust(self, catalogue):
         total_dust_fraction = sum(dust_fields)
         dust_frac_error = ""
 
+        if total_dust_fraction == 0:
+            total_dust_fraction = unyt.unyt_array(
+                np.zeros(metal_frac.size), units="dimensionless"
+            )
+            dust_frac_error = " (no dust field)"
+
     # If the catalogue has no dust fields
     except AttributeError:
         total_dust_fraction = unyt.unyt_array(

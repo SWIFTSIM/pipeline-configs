@@ -225,7 +225,7 @@ def register_dust(self, catalogue):
     total_dust_fraction.name = f"$\\mathcal{{DTG}}${dust_frac_error}"
 
     # Compute total dust mass
-    total_dust_mass = total_dust_fraction * catalogue.masses.m_gas
+    total_dust_mass = total_dust_fraction * catalogue.masses.mass_gas
     total_dust_mass.name = f"$M_{{\\rm dust}}${dust_frac_error}"
 
     # Compute to metal ratio
@@ -268,7 +268,7 @@ def register_oxygen_to_hydrogen(self, catalogue):
             "gas_o_abundance",
             unyt.unyt_array(
                 unyt.unyt_array(
-                    np.ones(np.size(catalogue.masses.m_gas)), "dimensionless"
+                    np.ones(np.size(catalogue.masses.mass_gas)), "dimensionless"
                 ),
                 name="$12+\\log_10({{\\rm O/H}})$ not found, default to 1",
             ),
@@ -283,7 +283,7 @@ def register_hi_masses(self, catalogue):
     nonmetal_frac = 1.0 - catalogue.apertures.zmet_gas_100_kpc
 
     # Fetch gas mass
-    gas_mass = catalogue.masses.m_gas
+    gas_mass = catalogue.masses.mass_gas
 
     # Fetch the mass fraction of Hydrogen
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
@@ -314,7 +314,7 @@ def register_hi_masses(self, catalogue):
 def register_dust_to_hi_ratio(self, catalogue):
 
     # Fetch gas masses
-    gas_mass = catalogue.masses.m_gas
+    gas_mass = catalogue.masses.mass_gas
 
     # Fetch the fraction of H in HI (try CHIMES arrays first)
     if hasattr(catalogue.species_fractions, "species_7"):
@@ -338,7 +338,7 @@ def register_dust_to_hi_ratio(self, catalogue):
             if sub_path.startswith("dust_"):
                 dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
         total_dust_fraction = sum(dust_fields)
-        total_dust_mass = total_dust_fraction * catalogue.masses.m_gas
+        total_dust_mass = total_dust_fraction * catalogue.masses.mass_gas
 
         # Compute dust-to-HI mass ratios
         dust_to_hi_ratio = total_dust_mass / HI_mass
@@ -356,7 +356,7 @@ def register_dust_to_hi_ratio(self, catalogue):
             "gas_dust_to_hi_ratio",
             unyt.unyt_array(
                 unyt.unyt_array(
-                    np.ones(np.size(catalogue.masses.m_gas)), "dimensionless"
+                    np.ones(np.size(catalogue.masses.mass_gas)), "dimensionless"
                 ),
                 name="$M_{\\rm dust}/M_{\\rm HI}$ not found, default to 1s",
             ),
@@ -371,7 +371,7 @@ def register_h2_masses(self, catalogue):
     nonmetal_frac = 1.0 - catalogue.apertures.zmet_gas_100_kpc
 
     # Fetch gas mass
-    gas_mass = catalogue.masses.m_gas
+    gas_mass = catalogue.masses.mass_gas
     # Fetch hydrogen mass fraction
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
 
@@ -403,7 +403,7 @@ def register_cold_gas_mass_ratios(self, catalogue):
     aperture_sizes = [30, 100]
 
     # Fetch gas mass
-    gas_mass = catalogue.masses.m_gas
+    gas_mass = catalogue.masses.mass_gas
 
     # Fetch hydrogen mass fraction
     H_frac = getattr(catalogue.element_mass_fractions, "element_0")
@@ -579,7 +579,7 @@ def register_species_fractions(self, catalogue):
     gas_mass_100kpc = catalogue.apertures.mass_gas_100_kpc
 
     # Fetch all gas mass
-    gas_mass = catalogue.masses.m_gas
+    gas_mass = catalogue.masses.mass_gas
 
     # Compute galaxy area (pi r^2)
     gal_area = (

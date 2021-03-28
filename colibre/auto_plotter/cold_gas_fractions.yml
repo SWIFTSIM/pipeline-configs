@@ -25,7 +25,7 @@ h2_frac_func_stellar_mass:
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. Grossi+16 use a Herschel (FIR) detected (by >5$\sigma$ in 4 bands) sample of Virgo Cluster star-forming dwarf galaxies, with CO detection. This biases towards higher SFR and metallicity systems. conversion uses a radio H-band luminosity estimate. MAGMA (Hunt+20) are selected on both CO and HI detecions, but find the galaxies down to $10^7 \; {\rm M_\odot}$ consistent with the extrapolated SFMS (i.e. typical star-forming galaxies). XCOLDGASS (Saintonge+17) is a uniform subsample of XGASS (see Stellar Mass-HI Fraction caption) plotting those above the CO detection limit ($M_{\rm H2}/M_*$ > $1.5\%$).    
+    caption: Galaxy H$_2$ mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
     - filename: GalaxyH2Fractions/Hunt2020_Data.hdf5
@@ -95,7 +95,7 @@ cold_gas_frac_func_ssfr:
   metadata:
     title: sSFR-Cold gas Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyColdGasFractions/Catinella2018_abcissa_sSFR.hdf5
 
@@ -127,7 +127,7 @@ h2_to_neutral_gas_frac_func_stellar_mass:
   metadata:
     title: Stellar Mass-Cold gas Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over neutral gas (HI+H$_2$) mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. MAGMA (Hunt+20) are selected on both CO and HI detecions, but find the galaxies down to $10^7 \; {\rm M_\odot}$ consistent with the extrapolated SFMS (i.e. typical star-forming galaxies). XGASS and XCOLDGASS samples are uniform in mass in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$ and $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$ and plotting those above the CO detection limit ($M_{\rm H2}/M_*$ > $1.5\%$).
+    caption: Galaxy H$_2$ mass over neutral gas (HI+H$_2$) mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. MAGMA (Hunt+20) are selected on both CO and HI detecions, but find the galaxies down to $10^7 \; {\rm M_\odot}$ consistent with the extrapolated SFMS (i.e. typical star-forming galaxies). XGASS and XCOLDGASS samples are uniform in mass in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$ and $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$ and plotting those above the CO detection limit ($M_{\rm H2}/M_*$ > $1.5\%$).
   observational_data:
     - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_M_star.hdf5
     - filename: GalaxyColdGasFractions/Hunt2020_Data.hdf5
@@ -162,7 +162,7 @@ h2_to_neutral_gas_frac_func_ssfr:
   metadata:
     title: sSFR-H2 Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over neutral gas mass (HI+H$_2$) as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_sSFR.hdf5
 

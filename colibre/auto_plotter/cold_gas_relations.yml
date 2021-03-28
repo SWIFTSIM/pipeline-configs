@@ -159,7 +159,7 @@ stellar_mass_H2_mass_30:
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -175,7 +175,7 @@ stellar_mass_H2_mass_30:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-H$_2$ Gas Mass (30 kpc Stellar Mass)
+    title: Stellar Mass-H$_2$ Gas Mass (30 kpc)
     caption: All galaxies are included in the median line.
     section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
@@ -190,7 +190,7 @@ stellar_mass_H2_mass_100:
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_100_kpc"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -206,7 +206,7 @@ stellar_mass_H2_mass_100:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-H$_2$ Gas Mass (100 kpc Stellar Mass)
+    title: Stellar Mass-H$_2$ Gas Mass (100 kpc)
     caption: All galaxies are included in the median line.
     section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
@@ -221,7 +221,7 @@ stellar_mass_HI_mass_30:
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass"
+    quantity: "derived_quantities.gas_HI_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -237,7 +237,7 @@ stellar_mass_HI_mass_30:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-HI Gas Mass (30 kpc Stellar Mass)
+    title: Stellar Mass-HI Gas Mass (30 kpc)
     caption: All galaxies are included in the median line.
     section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
@@ -252,7 +252,7 @@ stellar_mass_HI_mass_100:
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass"
+    quantity: "derived_quantities.gas_HI_mass_100_kpc"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -268,7 +268,7 @@ stellar_mass_HI_mass_100:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-HI Gas Mass (100 kpc Stellar Mass)
+    title: Stellar Mass-HI Gas Mass (100 kpc)
     caption: All galaxies are included in the median line.
     section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
@@ -278,7 +278,7 @@ H2_mass_star_formation_rate_30:
   legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -299,7 +299,7 @@ H2_mass_star_formation_rate_30:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: H$_2$ Gas Mass - Star Formation Rate
+    title: H$_2$ Gas Mass - Star Formation Rate (30 kpc)
     caption: All galaxies are included in the median line.
     section: Cold Gas Relations (Gas Mass)
     show_on_webpage: false
@@ -309,7 +309,7 @@ H2_mass_star_formation_rate_100:
   legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_100_kpc"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
@@ -330,7 +330,7 @@ H2_mass_star_formation_rate_100:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: H$_2$ Gas Mass - Star Formation Rate
+    title: H$_2$ Gas Mass - Star Formation Rate (100 kpc)
     caption: All galaxies are included in the median line.
     section: Cold Gas Relations (Gas Mass)
     show_on_webpage: false

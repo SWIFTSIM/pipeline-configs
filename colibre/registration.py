@@ -200,22 +200,21 @@ def register_dust(self, catalogue):
     metal_frac = catalogue.apertures.zmet_gas_100_kpc
 
     # Get total dust mass fractions by iterating through available dust types
-    try:
-        dust_fields = []
-        for sub_path in dir(catalogue.dust_mass_fractions):
-            if sub_path.startswith("dust_"):
-                dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
-        total_dust_fraction = sum(dust_fields)
+    dust_fields = []
+    for sub_path in dir(catalogue.dust_mass_fractions):
+        if sub_path.startswith("dust_"):
+            dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path).value)
+
+    # We have found at least one dust field
+    if len(dust_fields) > 0:
+        # Sum along the zeroth axis of a 2D array
+        total_dust_fraction = unyt.unyt_array(
+            np.sum(dust_fields, axis=0), units="dimensionless"
+        )
         dust_frac_error = ""
 
-        if total_dust_fraction == 0:
-            total_dust_fraction = unyt.unyt_array(
-                np.zeros(metal_frac.size), units="dimensionless"
-            )
-            dust_frac_error = " (no dust field)"
-
-    # If the catalogue has no dust fields
-    except AttributeError:
+    # No dust fields have been found
+    else:
         total_dust_fraction = unyt.unyt_array(
             np.zeros(metal_frac.size), units="dimensionless"
         )
@@ -330,14 +329,18 @@ def register_dust_to_hi_ratio(self, catalogue):
     # Compute HI mass
     HI_mass = gas_mass * H_frac * HI_frac
 
-    # Fetch dust mass and compute dust to hi ratio ratio
-    try:
-        # Compute total dust mass
-        dust_fields = []
-        for sub_path in dir(catalogue.dust_mass_fractions):
-            if sub_path.startswith("dust_"):
-                dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path))
-        total_dust_fraction = sum(dust_fields)
+    # Get total dust mass fractions by iterating through available dust types
+    dust_fields = []
+    for sub_path in dir(catalogue.dust_mass_fractions):
+        if sub_path.startswith("dust_"):
+            dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path).value)
+
+    # We have found at least one dust field
+    if len(dust_fields) > 0:
+        # Sum along the zeroth axis of a 2D array
+        total_dust_fraction = unyt.unyt_array(
+            np.sum(dust_fields, axis=0), units="dimensionless"
+        )
         total_dust_mass = total_dust_fraction * catalogue.masses.mass_gas
 
         # Compute dust-to-HI mass ratios
@@ -347,9 +350,8 @@ def register_dust_to_hi_ratio(self, catalogue):
         dust_to_hi_ratio.name = "M_{\\rm dust}/M_{\\rm HI}"
         setattr(self, "gas_dust_to_hi_ratio", dust_to_hi_ratio)
 
-    # Dust fields might not be present in the catalogue
-    except AttributeError:
-
+    # No dust fields have been found
+    else:
         # We did not produce these quantities.
         setattr(
             self,

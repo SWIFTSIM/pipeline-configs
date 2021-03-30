@@ -56,7 +56,7 @@ cold_gas_frac_func_ssfr:
   metadata:
     title: sSFR-Cold gas Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy neutral gas mass mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy neutral gas mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyColdGasFractions/Catinella2018_abcissa_sSFR.hdf5
 

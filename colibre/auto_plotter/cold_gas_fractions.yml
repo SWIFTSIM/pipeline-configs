@@ -25,7 +25,7 @@ h2_frac_func_stellar_mass:
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy neutral gas mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
     - filename: GalaxyH2Fractions/Hunt2020_Data.hdf5
@@ -95,14 +95,13 @@ cold_gas_frac_func_ssfr:
   metadata:
     title: sSFR-Cold gas Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy neutral gas mass mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyColdGasFractions/Catinella2018_abcissa_sSFR.hdf5
 
 h2_to_neutral_gas_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
-  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
@@ -137,7 +136,6 @@ h2_to_neutral_gas_frac_func_stellar_mass:
 h2_to_neutral_gas_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
-  comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
     units: "1 / Gigayear"

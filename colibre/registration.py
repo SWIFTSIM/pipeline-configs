@@ -24,11 +24,17 @@ This file calculates:
         velociraptor outputs the log of the quantity we need, so we take exp(...) of it
 """
 
+# Define aperture size in kpc
+aperture_sizes = [30, 100]
 
-def register_spesific_star_formation_rates(self, catalogue):
+# Solar metal mass fraction used in Plöckinger S. & Schaye J. (2020)
+solar_metal_mass_fraction = 0.0134
 
-    # Define aperture size in kpc
-    aperture_sizes = [30, 100]
+# Solar value for O/H
+twelve_plus_log_OH_solar = 8.69
+
+
+def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
     # Lowest sSFR below which the galaxy is considered passive
     marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
@@ -83,25 +89,18 @@ def register_spesific_star_formation_rates(self, catalogue):
     return
 
 
-def register_star_metallicities(self, catalogue):
-
-    # Define aperture size in kpc
-    aperture_sizes = [30, 100]
-
-    # Solar metallicity
-    solar_metal_mass_fraction = 0.0126
+def register_star_metallicities(self, catalogue, aperture_sizes, Z_sun):
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
 
         try:
             metal_mass_fraction_star = (
-                getattr(catalogue.apertures, f"zmet_star_{aperture_size}_kpc")
-                / solar_metal_mass_fraction
+                getattr(catalogue.apertures, f"zmet_star_{aperture_size}_kpc") / Z_sun
             )
             metal_mass_fraction_star.name = (
                 f"Star Metallicity $Z_*$ rel. to "
-                f"$Z_\\odot={solar_metal_mass_fraction}$ ({aperture_size} kpc)"
+                f"$Z_\\odot={Z_sun}$ ({aperture_size} kpc)"
             )
             setattr(
                 self,
@@ -114,14 +113,11 @@ def register_star_metallicities(self, catalogue):
     return
 
 
-def register_gas_phase_metallicities(self, catalogue):
+def register_gas_metallicities(
+    self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_solar
+):
 
-    # Define aperture size in kpc
-    aperture_sizes = [30, 100]
-
-    # Metallicities relative to different units
-    solar_metal_mass_fraction = 0.0126
-    twelve_plus_log_OH_solar = 8.69
+    # Minimal value for O/H
     minimal_twelve_plus_log_OH = 7.5
 
     # Loop over apertures
@@ -130,8 +126,7 @@ def register_gas_phase_metallicities(self, catalogue):
         try:
             # Metallicity of star forming gas in units of solar metallicity
             metal_mass_fraction_gas = (
-                getattr(catalogue.apertures, f"zmet_gas_sf_{aperture_size}_kpc")
-                / solar_metal_mass_fraction
+                getattr(catalogue.apertures, f"zmet_gas_sf_{aperture_size}_kpc") / Z_sun
             )
 
             # Handle scenario where metallicity is zero, as we are bounded
@@ -168,10 +163,7 @@ def register_gas_phase_metallicities(self, catalogue):
     return
 
 
-def register_stellar_to_halo_mass_ratios(self, catalogue):
-
-    # Define aperture size in kpc
-    aperture_sizes = [30, 100]
+def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
@@ -194,97 +186,102 @@ def register_stellar_to_halo_mass_ratios(self, catalogue):
     return
 
 
-def register_dust(self, catalogue):
+def register_dust(self, catalogue, aperture_sizes):
 
-    # Metal mass fractions of the gas
-    metal_frac = catalogue.apertures.zmet_gas_100_kpc
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
 
-    # Get total dust mass fractions by iterating through available dust types
-    dust_fields = []
-    for sub_path in dir(catalogue.dust_mass_fractions):
-        if sub_path.startswith("dust_"):
-            dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path).value)
+        # Metal mass fractions of the gas
+        metal_frac = getattr(catalogue.apertures, f"zmet_gas_{aperture_size}_kpc")
 
-    # We have found at least one dust field
-    if len(dust_fields) > 0:
-        # Sum along the zeroth axis of a 2D array
-        total_dust_fraction = unyt.unyt_array(
-            np.sum(dust_fields, axis=0), units="dimensionless"
-        )
-        dust_frac_error = ""
+        try:
+            # Fetch dust fields
+            dust_mass_silicates = getattr(
+                catalogue.dust_masses, f"silicates_mass_{aperture_size}_kpc"
+            )
+            dust_mass_graphite = getattr(
+                catalogue.dust_masses, f"graphite_mass_{aperture_size}_kpc"
+            )
+            # All dust mass
+            dust_mass_total = dust_mass_graphite + dust_mass_silicates
 
-    # No dust fields have been found
-    else:
-        total_dust_fraction = unyt.unyt_array(
-            np.zeros(metal_frac.size), units="dimensionless"
-        )
-        dust_frac_error = " (no dust field)"
+        # In case run without dust
+        except AttributeError:
+            dust_mass_total = unyt.unyt_array(np.zeros_like(metal_frac), units="Msun")
 
-    # Label for the dust-fraction derived field
-    total_dust_fraction.name = f"$\\mathcal{{DTG}}${dust_frac_error}"
+        # Fetch gas mass
+        gas_mass = getattr(catalogue.apertures, f"mass_gas_{aperture_size}_kpc")
 
-    # Compute total dust mass
-    total_dust_mass = total_dust_fraction * catalogue.masses.mass_gas
-    total_dust_mass.name = f"$M_{{\\rm dust}}${dust_frac_error}"
+        # Add label to the dust mass field
+        dust_mass_total.name = f"$M_{{\\rm dust}}$ ({aperture_size} kpc)"
 
-    # Compute to metal ratio
-    dust_to_metals = total_dust_fraction / metal_frac
-    dust_to_metals.name = f"$\\mathcal{{DTM}}${dust_frac_error}"
+        # Compute dust to gas fraction
+        dust_to_gas = dust_mass_total / gas_mass
+        # Label for the dust-fraction derived field
+        dust_to_gas.name = f"$\\mathcal{{DTG}}$ ({aperture_size} kpc)"
 
-    # Compute dust to stellar ratio
-    dust_to_stars = total_dust_mass / catalogue.apertures.mass_star_100_kpc
-    dust_to_stars.name = f"$M_{{\\rm dust}}/M_*${dust_frac_error}"
+        # Compute to metal ratio
+        dust_to_metals = dust_to_gas / metal_frac
+        dust_to_metals.name = f"$\\mathcal{{DTM}}$ ({aperture_size} kpc)"
 
-    # Create mask for the galaxies where abundances are well defined
-    setattr(self, "valid_abundances", np.isfinite(dust_to_metals))
+        # Compute dust to stellar ratio
+        dust_to_stars = dust_mass_total / catalogue.apertures.mass_star_100_kpc
+        dust_to_stars.name = f"$M_{{\\rm dust}}/M_*$ ({aperture_size} kpc)"
 
-    # Register derived fields with dust
-    setattr(self, f"total_dust_masses_100_kpc", total_dust_mass)
-    setattr(self, f"dust_to_metal_ratio_100_kpc", dust_to_metals)
-    setattr(self, f"dust_to_gas_ratio_100_kpc", total_dust_fraction)
-    setattr(self, f"dust_to_stellar_ratio_100_kpc", dust_to_stars)
-
-    return
-
-
-# Get depletion properties
-def register_oxygen_to_hydrogen(self, catalogue):
-
-    try:
-        # Abundances measured over entire subhalo, using VR additional properties
-        H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-        O_frac = getattr(catalogue.element_mass_fractions, "element_4")
-        o_abundance = unyt.unyt_array(
-            12 + np.log10(O_frac / (16 * H_frac)), "dimensionless"
-        )
-        o_abundance.name = "Gas $12+\\log_{10}({{\\rm O/H}})$"
-        setattr(self, "gas_o_abundance", o_abundance)
-    # In case the catalogue does not have oxygen
-    except AttributeError:
-        # We did not produce these quantities.
+        # Create mask for the galaxies where abundances are well defined
         setattr(
             self,
-            "gas_o_abundance",
-            unyt.unyt_array(
-                unyt.unyt_array(
-                    np.ones(np.size(catalogue.masses.mass_gas)), "dimensionless"
-                ),
-                name="$12+\\log_10({{\\rm O/H}})$ not found, default to 1",
-            ),
+            f"dust_valid_abundances_{aperture_size}_kpc",
+            np.isfinite(dust_to_metals),
         )
+
+        # Register derived fields with dust
+        setattr(self, f"total_dust_masses_{aperture_size}_kpc", dust_mass_total)
+        setattr(self, f"dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals)
+        setattr(self, f"dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas)
+        setattr(self, f"dust_to_stellar_ratio_{aperture_size}_kpc", dust_to_stars)
 
     return
 
 
-def register_hi_masses(self, catalogue):
+def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
 
-    # Define aperture size in kpc
-    aperture_sizes = [30, 100]
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
 
+        # Fetch O over H times gas mass computed in apertures
+        O_over_H_times_gas_mass = getattr(
+            catalogue.gas_element_ratios_times_masses,
+            f"O_over_H_times_mass_{aperture_size}_kpc",
+        )
+        # Fetch gas mass in apertures
+        gas_mass = getattr(catalogue.apertures, f"mass_gas_{aperture_size}_kpc")
+
+        # Compute gas-mass weighted O over H
+        O_over_H = unyt.unyt_array(np.zeros_like(gas_mass), "dimensionless")
+        # Avoid division by zero
+        mask = gas_mass > 0.0 * gas_mass.units
+        O_over_H[mask] = O_over_H_times_gas_mass[mask] / gas_mass[mask]
+
+        # Convert to units used in observations (16 is the mass ratio between O and H)
+        O_abundance = unyt.unyt_array(12 + np.log10(O_over_H / 16.0), "dimensionless")
+        O_abundance.name = f"Gas $12+\\log_{10}({{\\rm O/H}})$ ({aperture_size} kpc)"
+
+        # Register the field
+        setattr(self, f"gas_o_abundance_{aperture_size}_kpc", O_abundance)
+
+    return
+
+
+def register_hi_masses(self, catalogue, aperture_sizes):
+
+    # Loop over aperture sizes
     for aperture_size in aperture_sizes:
 
         # Fetch HI mass
-        HI_mass = getattr(catalogue.gas_species_masses, f"HI_mass_{aperture_size}_kpc")
+        HI_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+        )
 
         # Label of the derived field
         HI_mass.name = f"$M_{{\\rm HI}}$ ({aperture_size} kpc)"
@@ -295,79 +292,88 @@ def register_hi_masses(self, catalogue):
     return
 
 
-def register_dust_to_hi_ratio(self, catalogue):
+def register_dust_to_hi_ratio(self, catalogue, aperture_sizes):
 
-    # Get total dust mass fractions by iterating through available dust types
-    dust_fields = []
-    for sub_path in dir(catalogue.dust_mass_fractions):
-        if sub_path.startswith("dust_"):
-            dust_fields.append(getattr(catalogue.dust_mass_fractions, sub_path).value)
+    # Loop over aperture sizes
+    for aperture_size in aperture_sizes:
 
-    # We have found at least one dust field
-    if len(dust_fields) > 0:
-        # Sum along the zeroth axis of a 2D array
-        total_dust_fraction = unyt.unyt_array(
-            np.sum(dust_fields, axis=0), units="dimensionless"
+        # Fetch HI mass in apertures
+        HI_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
         )
-        total_dust_mass = total_dust_fraction * catalogue.masses.mass_gas
 
-        # Fetch HI mass (in 100 kpc apertures)
-        HI_mass_100_kpc = getattr(catalogue.gas_species_masses, "HI_mass_100_kpc")
+        try:
+            # Fetch dust fields
+            dust_mass_silicates = getattr(
+                catalogue.dust_masses, f"silicates_mass_{aperture_size}_kpc"
+            )
+            dust_mass_graphite = getattr(
+                catalogue.dust_masses, f"graphite_mass_{aperture_size}_kpc"
+            )
+            # All dust mass
+            dust_mass_total = dust_mass_graphite + dust_mass_silicates
+
+        # In case run without dust
+        except AttributeError:
+            dust_mass_total = unyt.unyt_array(np.zeros_like(HI_mass), units="Msun")
 
         # Compute dust-to-HI mass ratios
-        dust_to_hi_ratio = total_dust_mass / HI_mass_100_kpc
+        # Compute gas-mass weighted O over H
+        dust_to_hi_ratio = unyt.unyt_array(np.zeros_like(HI_mass), "dimensionless")
+        # Avoid division by zero
+        mask = HI_mass > 0.0 * HI_mass.units
+        dust_to_hi_ratio[mask] = dust_mass_total[mask] / HI_mass[mask]
+
+        # Add label
+        dust_to_hi_ratio.name = f"M_{{\\rm dust}}/M_{{\\rm HI}} ({aperture_size} kpc)"
 
         # Register field
-        dust_to_hi_ratio.name = "M_{\\rm dust}/M_{\\rm HI} (100 kpc)"
-        setattr(self, "gas_dust_to_hi_ratio", dust_to_hi_ratio)
-
-    # No dust fields have been found
-    else:
-        # We did not produce these quantities.
-        setattr(
-            self,
-            "gas_dust_to_hi_ratio",
-            unyt.unyt_array(
-                unyt.unyt_array(
-                    np.ones(np.size(catalogue.masses.mass_gas)), "dimensionless"
-                ),
-                name="$M_{\\rm dust}/M_{\\rm HI}$ not found, default to 1s",
-            ),
-        )
+        setattr(self, f"gas_dust_to_hi_ratio_{aperture_size}_kpc", dust_to_hi_ratio)
 
     return
 
 
-def register_h2_masses(self, catalogue):
+def register_h2_masses(self, catalogue, aperture_sizes):
 
-    # Define aperture size in kpc
-    aperture_sizes = [30, 100]
-
+    # Loop over aperture sizes
     for aperture_size in aperture_sizes:
 
         # Fetch H2 mass
-        H2_mass = getattr(catalogue.gas_species_masses, f"H2_mass_{aperture_size}_kpc")
+        H2_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+        )
 
         # Label of the derived field
         H2_mass.name = f"$M_{{\\rm H_2}}$ ({aperture_size} kpc)"
 
+        # Compute H2 mass with correction due to He
+        He_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
+        H_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
+
+        H2_mass_with_He = H2_mass * (1.0 + He_mass / H_mass)
+
+        # Add label
+        H2_mass_with_He.name = f"$M_{{\\rm H_2}}$ (incl. He, {aperture_size} kpc)"
+
         # Register field
         setattr(self, f"gas_H2_mass_{aperture_size}_kpc", H2_mass)
+        setattr(self, f"gas_H2_plus_He_mass_{aperture_size}_kpc", H2_mass_with_He)
 
     return
 
 
-def register_cold_gas_mass_ratios(self, catalogue):
-
-    # Define aperture size in kpc
-    aperture_sizes = [30, 100]
+def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
 
     # Loop over aperture sizes
     for aperture_size in aperture_sizes:
 
         # Fetch HI and H2 masses in apertures of a given size
-        HI_mass = getattr(catalogue.gas_species_masses, f"HI_mass_{aperture_size}_kpc")
-        H2_mass = getattr(catalogue.gas_species_masses, f"H2_mass_{aperture_size}_kpc")
+        HI_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+        )
+        H2_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+        )
 
         # Compute neutral H mass (HI + H2)
         neutral_H_mass = HI_mass + H2_mass
@@ -528,68 +534,100 @@ def register_cold_gas_mass_ratios(self, catalogue):
     return
 
 
-def register_species_fractions(self, catalogue):
+def register_species_fractions(self, catalogue, aperture_sizes):
 
-    # Compute galaxy area (pi r^2)
-    gal_area = (
-        2
-        * np.pi
-        * catalogue.projected_apertures.projected_1_rhalfmass_star_100_kpc ** 2
-    )
+    # Loop over aperture sizes
+    for aperture_size in aperture_sizes:
 
-    # Mass in the projected apertures
-    mstar_100 = catalogue.projected_apertures.projected_1_mass_star_100_kpc
+        # Compute galaxy area (pi r^2)
+        gal_area = (
+            2
+            * np.pi
+            * getattr(
+                catalogue.projected_apertures,
+                f"projected_1_rhalfmass_star_{aperture_size}_kpc",
+            )
+            ** 2
+        )
 
-    # Selection functions for the xGASS and xCOLDGASS surveys, used for the H species
-    # fraction comparison. Note these are identical mass selections, but are separated
-    # to keep survey selections explicit and to allow more detailed selection criteria
-    # to be added for each.
+        # Stellar mass
+        M_star = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+        M_star_projected = getattr(
+            catalogue.projected_apertures, f"projected_1_mass_star_{aperture_size}_kpc"
+        )
 
-    self.xgass_galaxy_selection = np.logical_and(
-        catalogue.apertures.mass_star_100_kpc
-        > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
-        catalogue.apertures.mass_star_100_kpc
-        < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
-    )
-    self.xcoldgass_galaxy_selection = np.logical_and(
-        catalogue.apertures.mass_star_100_kpc
-        > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
-        catalogue.apertures.mass_star_100_kpc
-        < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
-    )
+        # Selection functions for the xGASS and xCOLDGASS surveys, used for the H species
+        # fraction comparison. Note these are identical mass selections, but are separated
+        # to keep survey selections explicit and to allow more detailed selection criteria
+        # to be added for each.
 
-    # Register stellar mass density
-    mu_star_100_kpc = mstar_100 / gal_area
-    mu_star_100_kpc.name = "$M_{*, 100 {\\rm kpc}} / \\pi R_{*, 100 {\\rm kpc}}^2$"
+        self.xgass_galaxy_selection = np.logical_and(
+            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+            M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+        )
+        self.xcoldgass_galaxy_selection = np.logical_and(
+            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+            M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+        )
 
-    # Atomic hydrogen mass (100 kpc apertures)
-    HI_mass_100_kpc = getattr(catalogue.gas_species_masses, "HI_mass_100_kpc")
-    HI_mass_100_kpc.name = "HI Mass (100 kpc)"
+        # Register stellar mass density in apertures
+        mu_star = M_star_projected / gal_area
+        mu_star.name = f"$M_{{*, {aperture_size} {{\\rm kpc}}}} / \\pi R_{{*, {aperture_size} {{\\rm kpc}}}}^2$"
 
-    # Molecular hydrogen mass (100 kpc apertures)
-    H2_mass_100_kpc = getattr(catalogue.gas_species_masses, "H2_mass_100_kpc")
-    H2_mass_100_kpc.name = "H$_2$ Mass (100 kpc)"
+        # Atomic hydrogen mass in apertures
+        HI_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+        )
+        HI_mass.name = f"HI Mass ({aperture_size} kpc)"
 
-    # Atomic hydrogen to stellar mass in the 100 kpc aperture
-    hi_to_stellar_mass_100_kpc = HI_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
-    hi_to_stellar_mass_100_kpc.name = "$M_{\\rm HI} / M_*$ (100 kpc)"
+        # Molecular hydrogen mass in apertures
+        H2_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+        )
+        H2_mass.name = f"H$_2$ Mass ({aperture_size} kpc)"
 
-    # Molecular hydrogen mass to stellar mass in the 100 kpc aperture
-    h2_to_stellar_mass_100_kpc = H2_mass_100_kpc / catalogue.apertures.mass_star_100_kpc
-    h2_to_stellar_mass_100_kpc.name = "$M_{\\rm H_2} / M_*$ (100 kpc)"
+        # Compute H2 mass with correction due to He
+        He_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
+        H_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
 
-    # Neutral H / stellar mass
-    neutral_to_stellar_mass_100_kpc = (
-        hi_to_stellar_mass_100_kpc + h2_to_stellar_mass_100_kpc
-    )
-    neutral_to_stellar_mass_100_kpc.name = "$M_{\\rm HI + H_2} / M_*$ (100 kpc)"
+        H2_mass_with_He = H2_mass * (1.0 + He_mass / H_mass)
+        H2_mass_with_He.name = f"$M_{{\\rm H_2}}$ (incl. He, {aperture_size} kpc)"
 
-    # Register all derived fields
-    setattr(self, "mu_star_100_kpc", mu_star_100_kpc)
+        # Atomic hydrogen to stellar mass in apertures
+        hi_to_stellar_mass = HI_mass / M_star
+        hi_to_stellar_mass.name = f"$M_{{\\rm HI}} / M_*$ ({aperture_size} kpc)"
 
-    setattr(self, "hi_to_stellar_mass_100_kpc", hi_to_stellar_mass_100_kpc)
-    setattr(self, "h2_to_stellar_mass_100_kpc", h2_to_stellar_mass_100_kpc)
-    setattr(self, "neutral_to_stellar_mass_100_kpc", neutral_to_stellar_mass_100_kpc)
+        # Molecular hydrogen mass to stellar mass in apertures
+        h2_to_stellar_mass = H2_mass / M_star
+        h2_to_stellar_mass.name = f"$M_{{\\rm H_2}} / M_*$ ({aperture_size} kpc)"
+
+        # Molecular hydrogen mass to stellar mass in apertures
+        h2_plus_he_to_stellar_mass = H2_mass_with_He / M_star
+        h2_plus_he_to_stellar_mass.name = (
+            f"$M_{{\\rm H_2}} / M_*$ (incl. He, {aperture_size} kpc)"
+        )
+
+        # Neutral H / stellar mass
+        neutral_to_stellar_mass = hi_to_stellar_mass + h2_to_stellar_mass
+        neutral_to_stellar_mass.name = (
+            f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
+        )
+
+        # Register all derived fields
+        setattr(self, f"mu_star_{aperture_size}_kpc", mu_star)
+
+        setattr(self, f"hi_to_stellar_mass_{aperture_size}_kpc", hi_to_stellar_mass)
+        setattr(self, f"h2_to_stellar_mass_{aperture_size}_kpc", h2_to_stellar_mass)
+        setattr(
+            self,
+            f"h2_plus_he_to_stellar_mass_{aperture_size}_kpc",
+            h2_plus_he_to_stellar_mass,
+        )
+        setattr(
+            self,
+            f"neutral_to_stellar_mass_{aperture_size}_kpc",
+            neutral_to_stellar_mass,
+        )
 
     return
 
@@ -624,15 +662,17 @@ def register_stellar_birth_densities(self, catalogue):
 
 
 # Register derived fields
-register_spesific_star_formation_rates(self, catalogue)
-register_star_metallicities(self, catalogue)
-register_gas_phase_metallicities(self, catalogue)
-register_stellar_to_halo_mass_ratios(self, catalogue)
-register_dust(self, catalogue)
-register_oxygen_to_hydrogen(self, catalogue)
-register_hi_masses(self, catalogue)
-register_h2_masses(self, catalogue)
-register_dust_to_hi_ratio(self, catalogue)
-register_cold_gas_mass_ratios(self, catalogue)
-register_species_fractions(self, catalogue)
+register_spesific_star_formation_rates(self, catalogue, aperture_sizes)
+register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fraction)
+register_gas_metallicities(
+    self, catalogue, aperture_sizes, solar_metal_mass_fraction, twelve_plus_log_OH_solar
+)
+register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes)
+register_dust(self, catalogue, aperture_sizes)
+register_oxygen_to_hydrogen(self, catalogue, aperture_sizes)
+register_hi_masses(self, catalogue, aperture_sizes)
+register_h2_masses(self, catalogue, aperture_sizes)
+register_dust_to_hi_ratio(self, catalogue, aperture_sizes)
+register_cold_gas_mass_ratios(self, catalogue, aperture_sizes)
+register_species_fractions(self, catalogue, aperture_sizes)
 register_stellar_birth_densities(self, catalogue)

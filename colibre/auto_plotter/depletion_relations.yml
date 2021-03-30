@@ -31,7 +31,7 @@ oxygen_abundance_v_dust_to_gas:
       value: 1
       units: "dimensionless"
   metadata:
-    title:  Oxygen abundance vs dust-to-gas ratio (100 kpc)
+    title:  Oxygen abundance vs dust-to-gas ratio (100 kpc aperture)
     caption: Dust-to-gas mass ratio as a function of oxygen number density abundance.
     section: Dust Depletion Relations
     show_on_webpage: true

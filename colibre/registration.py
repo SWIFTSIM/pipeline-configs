@@ -252,7 +252,7 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
         # Fetch O over H times gas mass computed in apertures
         O_over_H_times_gas_mass = getattr(
             catalogue.gas_element_ratios_times_masses,
-            f"O_over_H_times_mass_{aperture_size}_kpc",
+            f"O_over_H_times_gas_mass_{aperture_size}_kpc",
         )
         # Fetch gas mass in apertures
         gas_mass = getattr(catalogue.apertures, f"mass_gas_{aperture_size}_kpc")

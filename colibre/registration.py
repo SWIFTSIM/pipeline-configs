@@ -348,7 +348,7 @@ def register_h2_masses(self, catalogue, aperture_sizes):
 
         # Compute H2 mass with correction due to He
         He_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
-        H_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
+        H_mass = getattr(catalogue.gas_H_and_He_masses, f"H_mass_{aperture_size}_kpc")
 
         H2_mass_with_He = H2_mass * (1.0 + He_mass / H_mass)
 
@@ -588,7 +588,7 @@ def register_species_fractions(self, catalogue, aperture_sizes):
 
         # Compute H2 mass with correction due to He
         He_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
-        H_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
+        H_mass = getattr(catalogue.gas_H_and_He_masses, f"H_mass_{aperture_size}_kpc")
 
         H2_mass_with_He = H2_mass * (1.0 + He_mass / H_mass)
         H2_mass_with_He.name = f"$M_{{\\rm H_2}}$ (incl. He, {aperture_size} kpc)"

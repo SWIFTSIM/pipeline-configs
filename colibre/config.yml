@@ -113,6 +113,11 @@ scripts:
     title: Density of the gas heated by SNII
     section: Feedback Densities
     output_file: SNII_density_distribution.png
+  - filename: scripts/last_AGN_density_distribution.py
+    caption: Distributions of the gas densities recorded when the gas was last heated by AGN, split by redshift. The y axis shows the number of AGN-heated gas particles per bin divided by the bin width and by the total of AGN-heated gas particles. The dashed vertical lines show the median AGN gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for $f_t=10$.
+    title: Density of the gas heated by AGN
+    section: Feedback Densities
+    output_file: AGN_density_distribution.png
   - filename: scripts/gas_metallicity_evolution.py
     caption: Evolution of the metal mass in gas per unit co-moving volume.
     output_file: gas_metallicity_evolution.png

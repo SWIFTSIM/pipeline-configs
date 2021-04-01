@@ -477,9 +477,7 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
 
         # Finally, register all the above fields
         setattr(
-            self,
-            f"gas_neutral_H_mass_{aperture_size}_kpc",
-            neutral_H_mass,
+            self, f"gas_neutral_H_mass_{aperture_size}_kpc", neutral_H_mass,
         )
 
         setattr(

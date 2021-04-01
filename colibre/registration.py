@@ -255,16 +255,16 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
             f"O_over_H_times_gas_mass_{aperture_size}_kpc",
         )
         # Fetch gas mass in apertures
-        gas_mass = getattr(catalogue.apertures, f"mass_gas_{aperture_size}_kpc")
+        gas_sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
 
         # Compute gas-mass weighted O over H
-        O_over_H = unyt.unyt_array(np.zeros_like(gas_mass), "dimensionless")
+        O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
         # Avoid division by zero
-        mask = gas_mass > 0.0 * gas_mass.units
-        O_over_H[mask] = O_over_H_times_gas_mass[mask] / gas_mass[mask]
+        mask = gas_sf_mass > 0.0 * gas_sf_mass.units
+        O_over_H[mask] = O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
 
         # Convert to units used in observations (16 is the mass ratio between O and H)
-        O_abundance = unyt.unyt_array(12 + np.log10(O_over_H / 16.0), "dimensionless")
+        O_abundance = unyt.unyt_array(12 + np.log10(O_over_H), "dimensionless")
         O_abundance.name = f"Gas $12+\\log_{10}({{\\rm O/H}})$ ({aperture_size} kpc)"
 
         # Register the field

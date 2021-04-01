@@ -73,7 +73,7 @@ hi_stellar_fraction_o_abundance:
   legend_loc: "upper right"
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
-    quantity: "derived_quantities.gas_o_abundance"
+    quantity: "derived_quantities.gas_o_abundance_100_kpc"
     units: "dimensionless"
     start: 6.8
     end: 9.2
@@ -97,7 +97,7 @@ hi_stellar_fraction_o_abundance:
       units: "dimensionless"
   metadata:
     title: HI-to-stellar mass ratio vs Oxygen abundance
-    caption: HI to stellar mass ratio as a function of the gas-phase Oxygen abundance measured in 100kpc apertures
+    caption: HI to stellar mass ratio as a function of the gas-phase Oxygen abundance measured in 100 kpc apertures
     section: Dust Scaling Relations
     show_on_webpage: true
   observational_data:

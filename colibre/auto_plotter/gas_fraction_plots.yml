@@ -27,7 +27,7 @@ h2_frac_func_stellar_mass:
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H_$2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
 
@@ -60,7 +60,7 @@ h2_frac_func_ssfr:
   metadata:
     title: sSFR-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H_$2$ mass (including Helium following the observations) over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_sSFR.hdf5
 
@@ -93,7 +93,7 @@ h2_frac_func_stellar_surface_density:
   metadata:
     title: Stellar Mass Surface Density-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H_$2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass surfaced density in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass surfaced density in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_mu_star.hdf5
 

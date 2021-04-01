@@ -659,8 +659,6 @@ def register_stellar_birth_densities(self, catalogue):
     return
 
 
-print(dir(catalogue.apertures))
-
 # Register derived fields
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes)
 register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fraction)

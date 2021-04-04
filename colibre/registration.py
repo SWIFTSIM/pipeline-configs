@@ -213,7 +213,7 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
         # Avoid division by zero
         mask = gas_sf_mass > 0.0 * gas_sf_mass.units
         O_over_H[mask] = (
-            pow(10.0, log_O_over_H_times_gas_mass[mask]) / gas_sf_mass[mask]
+            pow(10.0, log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask])
         )
 
         # Convert to units used in observations
@@ -247,7 +247,7 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes):
         # Avoid division by zero
         mask = star_mass > 0.0 * star_mass.units
         Fe_over_H[mask] = (
-            pow(10.0, log_Fe_over_H_times_star_mass[mask]) / star_mass[mask]
+            pow(10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask])
         )
 
         # Convert to units used in observations

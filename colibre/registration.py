@@ -212,8 +212,8 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
         O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
         # Avoid division by zero
         mask = gas_sf_mass > 0.0 * gas_sf_mass.units
-        O_over_H[mask] = (
-            pow(10.0, log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask])
+        O_over_H[mask] = pow(
+            10.0, log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
         )
 
         # Convert to units used in observations
@@ -228,7 +228,7 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
     return
 
 
-def register_iron_to_hydrogen(self, catalogue, aperture_sizes):
+def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundance):
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
@@ -246,8 +246,8 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes):
         Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
         # Avoid division by zero
         mask = star_mass > 0.0 * star_mass.units
-        Fe_over_H[mask] = (
-            pow(10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask])
+        Fe_over_H[mask] = pow(
+            10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
         )
 
         # Convert to units used in observations
@@ -653,7 +653,7 @@ register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fr
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes)
 register_dust(self, catalogue, aperture_sizes)
 register_oxygen_to_hydrogen(self, catalogue, aperture_sizes)
-register_iron_to_hydrogen(self, catalogue, aperture_sizes)
+register_iron_to_hydrogen(self, catalogue, aperture_sizes, solar_fe_abundance)
 register_hi_masses(self, catalogue, aperture_sizes)
 register_h2_masses(self, catalogue, aperture_sizes)
 register_dust_to_hi_ratio(self, catalogue, aperture_sizes)

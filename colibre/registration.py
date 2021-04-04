@@ -30,6 +30,8 @@ aperture_sizes = [30, 100]
 # Solar metal mass fraction used in Plöckinger S. & Schaye J. (2020)
 solar_metal_mass_fraction = 0.0134
 
+# Solar Fe abundance (from Wiersma et al 2009a)
+solar_fe_abundance = 2.82e-5
 
 def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
@@ -198,9 +200,9 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
 
         # Fetch O over H times gas mass computed in apertures.  The factor of 16 (the
         # mass ratio between O and H) has already been accounted for.
-        O_over_H_times_gas_mass = getattr(
-            catalogue.gas_element_ratios_times_masses,
-            f"O_over_H_times_gas_mass_{aperture_size}_kpc",
+        log_O_over_H_times_gas_mass = getattr(
+            catalogue.element_ratios_times_masses,
+            f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc",
         )
         # Fetch gas mass in apertures
         gas_sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
@@ -209,7 +211,7 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
         O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
         # Avoid division by zero
         mask = gas_sf_mass > 0.0 * gas_sf_mass.units
-        O_over_H[mask] = O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
+        O_over_H[mask] = pow(10.,log_O_over_H_times_gas_mass[mask]) / gas_sf_mass[mask]
 
         # Convert to units used in observations
         O_abundance = unyt.unyt_array(12 + np.log10(O_over_H), "dimensionless")
@@ -217,6 +219,35 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
 
         # Register the field
         setattr(self, f"gas_o_abundance_{aperture_size}_kpc", O_abundance)
+
+    return
+
+def register_iron_to_hydrogen(self, catalogue, aperture_sizes):
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+
+        # Fetch Fe over H times stellar mass computed in apertures. The
+        # mass ratio between Fe and H has already been accounted for.
+        log_Fe_over_H_times_star_mass = getattr(
+            catalogue.element_ratios_times_masses,
+            f"log_Fe_over_H_times_star_mass_lowfloor_{aperture_size}_kpc",
+        )
+        # Fetch stellar mass in apertures
+        star_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+
+        # Compute stellar-mass weighted Fe over H
+        Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+        # Avoid division by zero
+        mask = star_mass > 0.0 * star_mass.units
+        Fe_over_H[mask] = pow(10.,log_Fe_over_H_times_star_mass[mask]) / star_mass[mask]
+
+        # Convert to units used in observations
+        Fe_abundance = unyt.unyt_array(np.log10(Fe_over_H / solar_fe_abundance), "dimensionless")
+        Fe_abundance.name = f"Stellar $[{{\\rm Fe/H}}]$ ({aperture_size} kpc)"
+
+        # Register the field
+        setattr(self, f"star_fe_abundance_{aperture_size}_kpc", Fe_abundance)
 
     return
 
@@ -266,7 +297,6 @@ def register_dust_to_hi_ratio(self, catalogue, aperture_sizes):
             dust_mass_total = unyt.unyt_array(np.zeros_like(HI_mass), units="Msun")
 
         # Compute dust-to-HI mass ratios
-        # Compute gas-mass weighted O over H
         dust_to_hi_ratio = unyt.unyt_array(np.zeros_like(HI_mass), "dimensionless")
         # Avoid division by zero
         mask = HI_mass > 0.0 * HI_mass.units
@@ -615,6 +645,7 @@ register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fr
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes)
 register_dust(self, catalogue, aperture_sizes)
 register_oxygen_to_hydrogen(self, catalogue, aperture_sizes)
+register_iron_to_hydrogen(self, catalogue, aperture_sizes)
 register_hi_masses(self, catalogue, aperture_sizes)
 register_h2_masses(self, catalogue, aperture_sizes)
 register_dust_to_hi_ratio(self, catalogue, aperture_sizes)

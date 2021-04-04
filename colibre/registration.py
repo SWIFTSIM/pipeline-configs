@@ -209,15 +209,13 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
         gas_sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
 
         # Compute gas-mass weighted O over H
-        O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
+        log_O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
         # Avoid division by zero
         mask = gas_sf_mass > 0.0 * gas_sf_mass.units
-        O_over_H[mask] = pow(
-            10.0, log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
-        )
+        log_O_over_H[mask] = log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
 
         # Convert to units used in observations
-        O_abundance = unyt.unyt_array(12 + np.log10(O_over_H), "dimensionless")
+        O_abundance = unyt.unyt_array(12 + log_O_over_H, "dimensionless")
         O_abundance.name = (
             f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
         )
@@ -249,10 +247,9 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
         Fe_over_H[mask] = pow(
             10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
         )
-
         # Convert to units used in observations
         Fe_abundance = unyt.unyt_array(
-            np.log10(Fe_over_H / solar_fe_abundance), "dimensionless"
+            np.log10(Fe_over_H / fe_solar_abundance), "dimensionless"
         )
         Fe_abundance.name = f"Stellar $[{{\\rm Fe/H}}]$ ({aperture_size} kpc)"
 

@@ -30,9 +30,6 @@ aperture_sizes = [30, 100]
 # Solar metal mass fraction used in Plöckinger S. & Schaye J. (2020)
 solar_metal_mass_fraction = 0.0134
 
-# Solar value for O/H
-twelve_plus_log_OH_solar = 8.69
-
 
 def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
@@ -106,56 +103,6 @@ def register_star_metallicities(self, catalogue, aperture_sizes, Z_sun):
                 self,
                 f"star_metallicity_in_solar_{aperture_size}_kpc",
                 metal_mass_fraction_star,
-            )
-        except AttributeError:
-            pass
-
-    return
-
-
-def register_gas_metallicities(
-    self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_solar
-):
-
-    # Minimal value for O/H
-    minimal_twelve_plus_log_OH = 7.5
-
-    # Loop over apertures
-    for aperture_size in aperture_sizes:
-
-        try:
-            # Metallicity of star forming gas in units of solar metallicity
-            metal_mass_fraction_gas = (
-                getattr(catalogue.apertures, f"zmet_gas_sf_{aperture_size}_kpc") / Z_sun
-            )
-
-            # Handle scenario where metallicity is zero, as we are bounded
-            # by approx 1e-2 metal mass fraction anyway:
-            metal_mass_fraction_gas[metal_mass_fraction_gas < 1e-5] = 1e-5
-
-            # Get the log of the metallicity
-            log_metal_mass_fraction_gas = np.log10(metal_mass_fraction_gas.value)
-
-            # Get the O/H ratio
-            twelve_plus_log_OH = unyt.unyt_array(
-                twelve_plus_log_OH_solar + log_metal_mass_fraction_gas,
-                units="dimensionless",
-            )
-            # Define name (label) of the derived field
-            twelve_plus_log_OH.name = (
-                f"Gas (SF) $12+\\log_{{10}}$O/H from "
-                f"$Z$ (Solar={twelve_plus_log_OH_solar}) ({aperture_size} kpc)"
-            )
-
-            # Gas metallicity cannot be lower than the minimal value
-            twelve_plus_log_OH[
-                twelve_plus_log_OH < minimal_twelve_plus_log_OH
-            ] = minimal_twelve_plus_log_OH
-
-            setattr(
-                self,
-                f"gas_sf_twelve_plus_log_OH_{aperture_size}_kpc",
-                twelve_plus_log_OH,
             )
         except AttributeError:
             pass
@@ -249,7 +196,8 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
     # Loop over apertures
     for aperture_size in aperture_sizes:
 
-        # Fetch O over H times gas mass computed in apertures
+        # Fetch O over H times gas mass computed in apertures.  The factor of 16 (the
+        # mass ratio between O and H) has already been accounted for.
         O_over_H_times_gas_mass = getattr(
             catalogue.gas_element_ratios_times_masses,
             f"O_over_H_times_gas_mass_{aperture_size}_kpc",
@@ -263,9 +211,9 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
         mask = gas_sf_mass > 0.0 * gas_sf_mass.units
         O_over_H[mask] = O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
 
-        # Convert to units used in observations (16 is the mass ratio between O and H)
+        # Convert to units used in observations
         O_abundance = unyt.unyt_array(12 + np.log10(O_over_H), "dimensionless")
-        O_abundance.name = f"Gas $12+\\log_{10}({{\\rm O/H}})$ ({aperture_size} kpc)"
+        O_abundance.name = f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
 
         # Register the field
         setattr(self, f"gas_o_abundance_{aperture_size}_kpc", O_abundance)
@@ -477,7 +425,9 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
 
         # Finally, register all the above fields
         setattr(
-            self, f"gas_neutral_H_mass_{aperture_size}_kpc", neutral_H_mass,
+            self,
+            f"gas_neutral_H_mass_{aperture_size}_kpc",
+            neutral_H_mass,
         )
 
         setattr(
@@ -662,9 +612,6 @@ def register_stellar_birth_densities(self, catalogue):
 # Register derived fields
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes)
 register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fraction)
-register_gas_metallicities(
-    self, catalogue, aperture_sizes, solar_metal_mass_fraction, twelve_plus_log_OH_solar
-)
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes)
 register_dust(self, catalogue, aperture_sizes)
 register_oxygen_to_hydrogen(self, catalogue, aperture_sizes)

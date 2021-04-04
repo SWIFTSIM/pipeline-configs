@@ -33,6 +33,7 @@ solar_metal_mass_fraction = 0.0134
 # Solar Fe abundance (from Wiersma et al 2009a)
 solar_fe_abundance = 2.82e-5
 
+
 def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
     # Lowest sSFR below which the galaxy is considered passive
@@ -211,16 +212,21 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
         O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
         # Avoid division by zero
         mask = gas_sf_mass > 0.0 * gas_sf_mass.units
-        O_over_H[mask] = pow(10.,log_O_over_H_times_gas_mass[mask]) / gas_sf_mass[mask]
+        O_over_H[mask] = (
+            pow(10.0, log_O_over_H_times_gas_mass[mask]) / gas_sf_mass[mask]
+        )
 
         # Convert to units used in observations
         O_abundance = unyt.unyt_array(12 + np.log10(O_over_H), "dimensionless")
-        O_abundance.name = f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
+        O_abundance.name = (
+            f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
+        )
 
         # Register the field
         setattr(self, f"gas_o_abundance_{aperture_size}_kpc", O_abundance)
 
     return
+
 
 def register_iron_to_hydrogen(self, catalogue, aperture_sizes):
 
@@ -240,10 +246,14 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes):
         Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
         # Avoid division by zero
         mask = star_mass > 0.0 * star_mass.units
-        Fe_over_H[mask] = pow(10.,log_Fe_over_H_times_star_mass[mask]) / star_mass[mask]
+        Fe_over_H[mask] = (
+            pow(10.0, log_Fe_over_H_times_star_mass[mask]) / star_mass[mask]
+        )
 
         # Convert to units used in observations
-        Fe_abundance = unyt.unyt_array(np.log10(Fe_over_H / solar_fe_abundance), "dimensionless")
+        Fe_abundance = unyt.unyt_array(
+            np.log10(Fe_over_H / solar_fe_abundance), "dimensionless"
+        )
         Fe_abundance.name = f"Stellar $[{{\\rm Fe/H}}]$ ({aperture_size} kpc)"
 
         # Register the field
@@ -455,9 +465,7 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
 
         # Finally, register all the above fields
         setattr(
-            self,
-            f"gas_neutral_H_mass_{aperture_size}_kpc",
-            neutral_H_mass,
+            self, f"gas_neutral_H_mass_{aperture_size}_kpc", neutral_H_mass,
         )
 
         setattr(

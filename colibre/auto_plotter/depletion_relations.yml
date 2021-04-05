@@ -1,7 +1,7 @@
 oxygen_abundance_v_dust_to_gas:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.dust_valid_abundances_100_kpc"
+  selection_mask: "derived_quantities.is_active_30_kpc"
   x:
     quantity: "derived_quantities.gas_o_abundance_100_kpc"
     units: "dimensionless"

@@ -178,13 +178,6 @@ def register_dust(self, catalogue, aperture_sizes):
         dust_to_stars = dust_mass_total / catalogue.apertures.mass_star_100_kpc
         dust_to_stars.name = f"$M_{{\\rm dust}}/M_*$ ({aperture_size} kpc)"
 
-        # Create mask for the galaxies where abundances are well defined
-        setattr(
-            self,
-            f"dust_valid_abundances_{aperture_size}_kpc",
-            np.isfinite(dust_to_metals),
-        )
-
         # Register derived fields with dust
         setattr(self, f"total_dust_masses_{aperture_size}_kpc", dust_mass_total)
         setattr(self, f"dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals)
@@ -198,30 +191,30 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
+        for floor, floor_label in zip(["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]):
+            # Fetch O over H times gas mass computed in apertures.  The factor of 16 (the
+            # mass ratio between O and H) has already been accounted for.
+            log_O_over_H_times_gas_mass = getattr(
+                catalogue.element_ratios_times_masses,
+                f"log_O_over_H_times_gas_mass_{floor}floor_{aperture_size}_kpc",
+            )
+            # Fetch gas mass in apertures
+            gas_sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
 
-        # Fetch O over H times gas mass computed in apertures.  The factor of 16 (the
-        # mass ratio between O and H) has already been accounted for.
-        log_O_over_H_times_gas_mass = getattr(
-            catalogue.element_ratios_times_masses,
-            f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc",
-        )
-        # Fetch gas mass in apertures
-        gas_sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
+            # Compute gas-mass weighted O over H
+            log_O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
+            # Avoid division by zero
+            mask = gas_sf_mass > 0.0 * gas_sf_mass.units
+            log_O_over_H[mask] = log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
 
-        # Compute gas-mass weighted O over H
-        log_O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
-        # Avoid division by zero
-        mask = gas_sf_mass > 0.0 * gas_sf_mass.units
-        log_O_over_H[mask] = log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
+            # Convert to units used in observations
+            O_abundance = unyt.unyt_array(12 + log_O_over_H, "dimensionless")
+            O_abundance.name = (
+                f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({floor_label}, {aperture_size} kpc)"
+            )
 
-        # Convert to units used in observations
-        O_abundance = unyt.unyt_array(12 + log_O_over_H, "dimensionless")
-        O_abundance.name = (
-            f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
-        )
-
-        # Register the field
-        setattr(self, f"gas_o_abundance_{aperture_size}_kpc", O_abundance)
+            # Register the field
+            setattr(self, f"gas_o_abundance_{floor}_{aperture_size}_kpc", O_abundance)
 
     return
 

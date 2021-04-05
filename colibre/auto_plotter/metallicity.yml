@@ -4,7 +4,7 @@ stellar_mass_gas_sf_metallicity_30:
   selection_mask: "derived_quantities.is_active_30_kpc"
   comment: "Active only"
   y:
-    quantity: "derived_quantities.gas_o_abundance_30_kpc"
+    quantity: "derived_quantities.gas_o_abundance_low_30_kpc"
     log: false
     units: "dimensionless"
     start: 7
@@ -41,7 +41,7 @@ stellar_mass_gas_sf_metallicity_100:
   selection_mask: "derived_quantities.is_active_100_kpc"
   comment: "Active only"
   y:
-    quantity: "derived_quantities.gas_o_abundance_100_kpc"
+    quantity: "derived_quantities.gas_o_abundance_low_100_kpc"
     log: false
     units: "dimensionless"
     start: 7

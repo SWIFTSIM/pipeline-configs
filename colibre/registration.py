@@ -230,31 +230,32 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
+    
+        for thr, thr_label in zip(["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]):
 
-        # Fetch Fe over H times stellar mass computed in apertures. The
-        # mass ratio between Fe and H has already been accounted for.
-        log_Fe_over_H_times_star_mass = getattr(
-            catalogue.element_ratios_times_masses,
-            f"log_Fe_over_H_times_star_mass_lowfloor_{aperture_size}_kpc",
-        )
-        # Fetch stellar mass in apertures
-        star_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+            # Fetch Fe over H times stellar mass computed in apertures. The
+            # mass ratio between Fe and H has already been accounted for.
+            log_Fe_over_H_times_star_mass = getattr(
+                catalogue.element_ratios_times_masses,
+                f"log_Fe_over_H_times_star_mass_{thr}floor_{aperture_size}_kpc",
+            )
+            # Fetch stellar mass in apertures
+            star_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+    
+            # Compute stellar-mass weighted Fe over H
+            Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+            # Avoid division by zero
+            mask = star_mass > 0.0 * star_mass.units
+            Fe_over_H[mask] = pow(
+                10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
+            )
+            # Convert to units used in observations
+            Fe_abundance = unyt.unyt_array(Fe_over_H / fe_solar_abundance, "dimensionless")
+            Fe_abundance.name = f"Stellar $[{{\\rm Fe/H}}]$ ({thr_label}, {aperture_size} kpc)"
+    
+            # Register the field
+            setattr(self, f"star_fe_abundance_{thr}_{aperture_size}_kpc", Fe_abundance)
 
-        # Compute stellar-mass weighted Fe over H
-        Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
-        # Avoid division by zero
-        mask = star_mass > 0.0 * star_mass.units
-        Fe_over_H[mask] = pow(
-            10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
-        )
-        # Convert to units used in observations
-        Fe_abundance = unyt.unyt_array(
-            np.log10(Fe_over_H / fe_solar_abundance), "dimensionless"
-        )
-        Fe_abundance.name = f"Stellar $[{{\\rm Fe/H}}]$ ({aperture_size} kpc)"
-
-        # Register the field
-        setattr(self, f"star_fe_abundance_{aperture_size}_kpc", Fe_abundance)
 
     return
 

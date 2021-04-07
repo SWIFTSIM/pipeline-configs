@@ -160,7 +160,7 @@ h2_to_neutral_gas_frac_func_ssfr:
   metadata:
     title: sSFR-H2 Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate, with using adaptive binning, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_sSFR.hdf5
 

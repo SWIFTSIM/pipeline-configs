@@ -30,6 +30,9 @@ aperture_sizes = [30, 100]
 # Solar metal mass fraction used in Plöckinger S. & Schaye J. (2020)
 solar_metal_mass_fraction = 0.0134
 
+# Solar value for O/H
+twelve_plus_log_OH_solar = 8.69
+
 # Solar Fe abundance (from Wiersma et al 2009a)
 solar_fe_abundance = 2.82e-5
 
@@ -88,7 +91,6 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
     return
 
-
 def register_star_metallicities(self, catalogue, aperture_sizes, Z_sun):
 
     # Loop over apertures
@@ -111,7 +113,6 @@ def register_star_metallicities(self, catalogue, aperture_sizes, Z_sun):
             pass
 
     return
-
 
 def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
 
@@ -186,50 +187,99 @@ def register_dust(self, catalogue, aperture_sizes):
 
     return
 
-
 def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
-
-    # Loop over apertures
+    # Loop over aperture average-of-linear O-abundances
     for aperture_size in aperture_sizes:
-        for floor, floor_label in zip(["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]):
+        # register lnearly averaged O abundances
+        for short_phase, long_phase in zip(["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]):
             # Fetch O over H times gas mass computed in apertures.  The factor of 16 (the
             # mass ratio between O and H) has already been accounted for.
             log_O_over_H_times_gas_mass = getattr(
-                catalogue.element_ratios_times_masses,
-                f"log_O_over_H_times_gas_mass_{floor}floor_{aperture_size}_kpc",
-            )
+                catalogue.lin_element_ratios_times_masses,
+                f"lin_O_over_H{short_phase}_times_gas_mass_{aperture_size}_kpc",
+                )
             # Fetch gas mass in apertures
-            gas_sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
+            gas_cold_dense_mass = getattr(catalogue.cold_dense_gas_properties,
+                                          f"cold_dense_gas_mass_{aperture_size}_kpc")
 
             # Compute gas-mass weighted O over H
-            log_O_over_H = unyt.unyt_array(np.zeros_like(gas_sf_mass), "dimensionless")
+            log_O_over_H = unyt.unyt_array(np.zeros_like(gas_cold_dense_mass), "dimensionless")
             # Avoid division by zero
-            mask = gas_sf_mass > 0.0 * gas_sf_mass.units
-            log_O_over_H[mask] = log_O_over_H_times_gas_mass[mask] / gas_sf_mass[mask]
+            mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+            log_O_over_H[mask] = np.log10(log_O_over_H_times_gas_mass[mask] / gas_cold_dense_mass[mask])
 
             # Convert to units used in observations
             O_abundance = unyt.unyt_array(12 + log_O_over_H, "dimensionless")
             O_abundance.name = (
-                f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({floor_label}, {aperture_size} kpc)"
+                f"SF {long_phase} Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
             )
 
             # Register the field
-            setattr(self, f"gas_o_abundance_{floor}_{aperture_size}_kpc", O_abundance)
+            setattr(self, f"gas_o_abundance{short_phase}_avglin_{aperture_size}_kpc", O_abundance)
+            setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
+        
+        # register average-of-log O-abundances (high and low particle floors)
+        for floor, floor_label in zip(["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]):
+            # Fetch O over H times gas mass computed in apertures.  The factor of 16 (the
+            # mass ratio between O and H) has already been accounted for.
+            log_O_over_H_times_gas_mass = getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_O_over_H_times_gas_mass_{floor}floor_{aperture_size}_kpc",
+            )
+            
+            # Fetch gas mass in apertures
+            gas_cold_dense_mass = getattr(catalogue.cold_dense_gas_properties,
+                                          f"cold_dense_gas_mass_{aperture_size}_kpc")
+
+            # Compute gas-mass weighted O over H
+            log_O_over_H = unyt.unyt_array(np.zeros_like(gas_cold_dense_mass), "dimensionless")
+            # Avoid division by zero
+            mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+            log_O_over_H[mask] = log_O_over_H_times_gas_mass[mask] / gas_cold_dense_mass[mask]
+
+            # Convert to units used in observations
+            O_abundance = unyt.unyt_array(12 + log_O_over_H, "dimensionless")
+            O_abundance.name = (
+                f"SF Gas Diffuse $12+\\log_{{10}}({{\\rm O/H}})$ ({floor_label}, {aperture_size} kpc)"
+            )
+
+            # Register the field
+            setattr(self, f"gas_o_abundance_avglog_{floor}_{aperture_size}_kpc", O_abundance)
 
     return
 
 
 def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundance):
-
     # Loop over apertures
     for aperture_size in aperture_sizes:
-    
+        # Fetch linear Fe over H times stellar mass computed in apertures. The
+        # mass ratio between Fe and H has already been accounted for.
+        lin_Fe_over_H_times_star_mass = getattr(
+            catalogue.lin_element_ratios_times_masses,
+            f"lin_Fe_over_H_times_star_mass_{aperture_size}_kpc",
+        )
+        # Fetch stellar mass in apertures
+        star_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+
+        # Compute stellar-mass weighted Fe over H
+        Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+        # Avoid division by zero
+        mask = star_mass > 0.0 * star_mass.units
+        Fe_over_H[mask] = lin_Fe_over_H_times_star_mass[mask] / star_mass[mask]
+        # Convert to units used in observations
+        Fe_abundance = unyt.unyt_array(Fe_over_H / fe_solar_abundance, "dimensionless")
+        Fe_abundance.name = f"Stellar $10^{{\\rm [Fe/H]}}$ ({aperture_size} kpc)"
+
+        # Register the field
+        setattr(self, f"star_fe_abundance_avglin_{aperture_size}_kpc", Fe_abundance)        
+
+        # register average-of-log Fe-abundances (high and low particle floors)
         for floor, floor_label in zip(["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]):
 
             # Fetch Fe over H times stellar mass computed in apertures. The
             # mass ratio between Fe and H has already been accounted for.
             log_Fe_over_H_times_star_mass = getattr(
-                catalogue.element_ratios_times_masses,
+                catalogue.log_element_ratios_times_masses,
                 f"log_Fe_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc",
             )
             # Fetch stellar mass in apertures
@@ -244,14 +294,44 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
             )
             # Convert to units used in observations
             Fe_abundance = unyt.unyt_array(Fe_over_H / fe_solar_abundance, "dimensionless")
-            Fe_abundance.name = f"Stellar $[{{\\rm Fe/H}}]$ ({floor_label}, {aperture_size} kpc)"
+            Fe_abundance.name = f"Stellar $10^{{\\rm [Fe/H]}}$ ({floor_label}, {aperture_size} kpc)"
     
             # Register the field
-            setattr(self, f"star_fe_abundance_{floor}_{aperture_size}_kpc", Fe_abundance)
-
+            setattr(self, f"star_fe_abundance_avglog_{aperture_size}_kpc", Fe_abundance)
 
     return
 
+def register_cold_dense_gas_metallicity(self, catalogue, aperture_sizes, Z_sun, log_twelve_plus_logOH_solar):
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+        # Fetch linear Fe over H times stellar mass computed in apertures. The
+        # mass ratio between Fe and H has already been accounted for.
+        lin_diffuse_metallicity = getattr(
+            catalogue.cold_dense_gas_properties,
+            f"cold_dense_diffuse_metal_mass_{aperture_size}_kpc",
+        )
+        # Fetch gas mass in apertures
+        gas_cold_dense_mass = getattr(catalogue.cold_dense_gas_properties,
+                                      f"cold_dense_gas_mass_{aperture_size}_kpc")
+        
+        # Compute stellar-mass weighted metallicity, floor at a non-zero metallicity 1e-5 
+        twelve_plus_logOH = unyt.unyt_array(np.zeros_like(gas_cold_dense_mass)+1e-5, "dimensionless")
+        # Avoid division by zero
+        mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+        
+        # convert absolute metallicity to 12_+log10(O/H), assuming solar abundance patterns
+        twelve_plus_logOH[mask] = np.log10(lin_diffuse_metallicity[mask] / (Z_sun * gas_cold_dense_mass[mask])) + log_twelve_plus_logOH_solar
+        
+        # Convert to units used in observations
+        O_abundance = unyt.unyt_array(twelve_plus_logOH, "dimensionless")
+        O_abundance.name = (
+            f"SF Gas $12+\\log_{{10}}({{\\rm O/H}})$ from $Z$ ({aperture_size} kpc)"
+        )
+
+        # Register the field
+        setattr(self, f"gas_o_abundance_fromz_avglin_{aperture_size}_kpc", O_abundance)
+
+    return
 
 def register_hi_masses(self, catalogue, aperture_sizes):
 
@@ -637,13 +717,13 @@ def register_stellar_birth_densities(self, catalogue):
 
     return
 
-
 # Register derived fields
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes)
 register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fraction)
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes)
 register_dust(self, catalogue, aperture_sizes)
 register_oxygen_to_hydrogen(self, catalogue, aperture_sizes)
+register_cold_dense_gas_metallicity(self, catalogue, aperture_sizes, solar_metal_mass_fraction, twelve_plus_log_OH_solar)
 register_iron_to_hydrogen(self, catalogue, aperture_sizes, solar_fe_abundance)
 register_hi_masses(self, catalogue, aperture_sizes)
 register_h2_masses(self, catalogue, aperture_sizes)

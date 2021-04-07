@@ -73,7 +73,7 @@ cold_gas_frac_func_ssfr:
   legend_loc: "upper right"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gigayear"
+    units: 1 / gigayear
     start: 1e-4
     end: 6e1
   y:
@@ -88,14 +88,14 @@ cold_gas_frac_func_ssfr:
     number_of_bins: 30
     start:
       value: 1e-4
-      units: "1 / Gigayear"
+      units: 1 / gigayear
     end:
-      value: 1e2
-      units: "1 / Gigayear"
+      value: 6e1
+      units: 1 / gigayear
   metadata:
     title: sSFR-Cold gas Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy neutral gas mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy neutral gas mass over stellar mass as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyColdGasFractions/Catinella2018_abcissa_sSFR.hdf5
 
@@ -138,7 +138,7 @@ h2_to_neutral_gas_frac_func_ssfr:
   legend_loc: "upper right"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gigayear"
+    units: 1 / gigayear
     start: 1e-4
     end: 6e1
   y:
@@ -153,14 +153,14 @@ h2_to_neutral_gas_frac_func_ssfr:
     number_of_bins: 30
     start:
       value: 1e-4
-      units: "1 / Gigayear"
+      units: 1 / gigayear
     end:
-      value: 1e2
-      units: "1 / Gigayear"
+      value: 6e1
+      units: 1 / gigayear
   metadata:
     title: sSFR-H2 Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate, with using adaptive binning, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_sSFR.hdf5
 

@@ -284,7 +284,7 @@ H2_mass_star_formation_rate_30:
     end: 1e11
   y:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
-    units: "1 / Gyr"
+    units: 1 / gigayear
     start: 0.01
     end: 100
   median:
@@ -315,7 +315,7 @@ H2_mass_star_formation_rate_100:
     end: 1e11
   y:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gyr"
+    units: 1 / gigayear
     start: 0.01
     end: 100
   median:
@@ -558,7 +558,7 @@ sfr_neutral_to_stellar_mass_100_kpc_100:
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gyr"
+    units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
@@ -573,10 +573,10 @@ sfr_neutral_to_stellar_mass_100_kpc_100:
     number_of_bins: 20
     start:
       value: 1e-3
-      units: "1 / Gyr"
+      units: 1 / gigayear
     end:
       value: 10
-      units: "1 / Gyr"
+      units: 1 / gigayear
   metadata:
     title: sSFR-Neutral Gas to SF Gas Fraction (100 kpc aperture)
     caption: All galaxies are included in the median line. Fraction is HI + H$_2$ mass over stellar mass in a 100 kpc aperture.
@@ -588,7 +588,7 @@ sfr_hi_to_stellar_mass_100_kpc_100:
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gyr"
+    units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
@@ -603,10 +603,10 @@ sfr_hi_to_stellar_mass_100_kpc_100:
     number_of_bins: 20
     start:
       value: 1e-3
-      units: "1 / Gyr"
+      units: 1 / gigayear
     end:
       value: 10
-      units: "1 / Gyr"
+      units: 1 / gigayear
   metadata:
     title: sSFR-HI Gas to SF Gas Fraction (100 kpc aperture)
     caption: All galaxies are included in the median line. Fraction is HI mass over stellar mass in a 100 kpc aperture.
@@ -618,7 +618,7 @@ sfr_h2_to_stellar_mass_100_kpc_100:
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gyr"
+    units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
@@ -633,10 +633,10 @@ sfr_h2_to_stellar_mass_100_kpc_100:
     number_of_bins: 20
     start:
       value: 1e-3
-      units: "1 / Gyr"
+      units: 1 / gigayear
     end:
       value: 10
-      units: "1 / Gyr"
+      units: 1 / gigayear
   metadata:
     title: sSFR-H$_2$ Gas to SF Gas Fraction (100 kpc aperture)
     caption: All galaxies are included in the median line. Fraction is H$_2$ mass over stellar mass in a 100 kpc aperture.
@@ -649,7 +649,7 @@ sfr_sf_to_stellar_fraction_kpc_100:
   selection_mask: "derived_quantities.is_active_100_kpc"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gyr"
+    units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
@@ -664,10 +664,10 @@ sfr_sf_to_stellar_fraction_kpc_100:
     number_of_bins: 20
     start:
       value: 1e-3
-      units: "1 / Gyr"
+      units: 1 / gigayear
     end:
       value: 10
-      units: "1 / Gyr"
+      units: 1 / gigayear
   metadata:
     title: sSFR-SF Gas to Stellar Fraction (100 kpc aperture)
     caption: All galaxies are included in the median line. Fraction is SF gas mass over stellar mass in a 100 kpc aperture.

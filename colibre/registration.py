@@ -115,6 +115,7 @@ def register_star_metallicities(self, catalogue, aperture_sizes, Z_sun):
 
     return
 
+
 def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
 
     # Loop over apertures
@@ -348,9 +349,9 @@ def register_cold_dense_gas_metallicity(
             f"cold_dense_gas_mass_{aperture_size}_kpc",
         )
 
-        # Compute gas-mass weighted metallicity, floor at a non-zero metallicity 1e-5
+        # Compute gas-mass weighted metallicity, floor at a non-zero metallicity 1e-8
         twelve_plus_logOH = unyt.unyt_array(
-            np.zeros_like(gas_cold_dense_mass) + 1e-5, "dimensionless"
+            np.zeros_like(gas_cold_dense_mass) + 1e-8, "dimensionless"
         )
         # Avoid division by zero
         mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units

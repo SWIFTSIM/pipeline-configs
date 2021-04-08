@@ -471,7 +471,6 @@ stellar_mass_star_metallicity_100:
     caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
     section: Stellar Metallicity
     show_on_webpage: true
-    show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5

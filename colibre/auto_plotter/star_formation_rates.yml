@@ -411,6 +411,7 @@ stellar_mass_passive_fraction_centrals_30:
   comment: "Centrals only"
   legend_loc: "lower left"
   redshift_loc: "upper center"
+  min_num_points_highlight: 0
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
@@ -450,6 +451,7 @@ stellar_mass_passive_fraction_centrals_100:
   comment: "Centrals only"
   legend_loc: "lower left"
   redshift_loc: "upper center"
+  min_num_points_highlight: 0
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass

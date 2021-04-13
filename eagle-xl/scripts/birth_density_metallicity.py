@@ -133,7 +133,7 @@ if __name__ == "__main__":
             birth_density_bins.value,
             metal_mass_fraction_bins.value,
             f_E_grid,
-            norm=LogNorm(1e-2, 1e1, clip=True),
+            norm=Normalize(0.3, 10, clip=True),
         )
 
         try:

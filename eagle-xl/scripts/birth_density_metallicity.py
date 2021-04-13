@@ -93,14 +93,6 @@ if __name__ == "__main__":
                 "n_pivot": "EAGLEFeedback:SNII_energy_fraction_n_0_H_p_cm3",
             }.items()
         }
-        star_formation_parameters = {
-            k: float(used_parameters[v])
-            for k, v in {
-                "threshold_Z0": "EAGLEStarFormation:threshold_Z0",
-                "threshold_n0": "EAGLEStarFormation:threshold_norm_H_p_cm3",
-                "slope": "EAGLEStarFormation:threshold_slope",
-            }.items()
-        }
 
         # Now need to make background grid of f_E.
         birth_density_grid, metal_mass_fraction_grid = np.meshgrid(
@@ -158,21 +150,6 @@ if __name__ == "__main__":
         ax.contour(
             birth_density_grid, metal_mass_fraction_grid, H.T, levels=6, cmap="Pastel1"
         )
-
-        # Add line showing SF law
-        try:
-            sf_threshold_density = star_formation_parameters["threshold_n0"] * (
-                metal_mass_fraction_bins.value
-                / star_formation_parameters["threshold_Z0"]
-            ) ** (star_formation_parameters["slope"])
-            ax.plot(
-                sf_threshold_density,
-                metal_mass_fraction_bins,
-                linestyle="dashed",
-                label="SF threshold",
-            )
-        except:
-            pass
 
     legend = axes.flat[-1].legend(markerfirst=False, loc="center right")
     plt.setp(legend.get_texts(), color="white")

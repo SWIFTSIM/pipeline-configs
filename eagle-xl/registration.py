@@ -31,6 +31,8 @@ aperture_sizes = [30, 100]
 solar_metal_mass_fraction = 0.0134
 
 # Solar value for O/H
+global twelve_plus_log_OH_solar
+global minimal_twelve_plus_log_OH
 twelve_plus_log_OH_solar = 8.69
 minimal_twelve_plus_log_OH = 7.5
 
@@ -140,7 +142,9 @@ def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
     return
 
 
-def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
+def register_oxygen_to_hydrogen(
+    self, catalogue, aperture_sizes, solar_metal_mass_fraction
+):
     # Loop over apertures
     for aperture_size in aperture_sizes:
         metal_mass_fraction_gas = (
@@ -393,13 +397,6 @@ def register_species_fractions(self, catalogue, aperture_sizes):
         )
         H2_mass.name = f"H$_2$ Mass ({aperture_size} kpc)"
 
-        # Compute H2 mass with correction due to He
-        He_mass = getattr(catalogue.gas_H_and_He_masses, f"He_mass_{aperture_size}_kpc")
-        H_mass = getattr(catalogue.gas_H_and_He_masses, f"H_mass_{aperture_size}_kpc")
-
-        H2_mass_with_He = H2_mass * (1.0 + He_mass / H_mass)
-        H2_mass_with_He.name = f"$M_{{\\rm H_2}}$ (incl. He, {aperture_size} kpc)"
-
         # Atomic hydrogen to stellar mass in apertures
         hi_to_stellar_mass = HI_mass / M_star
         hi_to_stellar_mass.name = f"$M_{{\\rm HI}} / M_*$ ({aperture_size} kpc)"
@@ -407,12 +404,6 @@ def register_species_fractions(self, catalogue, aperture_sizes):
         # Molecular hydrogen mass to stellar mass in apertures
         h2_to_stellar_mass = H2_mass / M_star
         h2_to_stellar_mass.name = f"$M_{{\\rm H_2}} / M_*$ ({aperture_size} kpc)"
-
-        # Molecular hydrogen mass to stellar mass in apertures
-        h2_plus_he_to_stellar_mass = H2_mass_with_He / M_star
-        h2_plus_he_to_stellar_mass.name = (
-            f"$M_{{\\rm H_2}} / M_*$ (incl. He, {aperture_size} kpc)"
-        )
 
         # Neutral H / stellar mass
         neutral_to_stellar_mass = hi_to_stellar_mass + h2_to_stellar_mass
@@ -425,11 +416,6 @@ def register_species_fractions(self, catalogue, aperture_sizes):
 
         setattr(self, f"hi_to_stellar_mass_{aperture_size}_kpc", hi_to_stellar_mass)
         setattr(self, f"h2_to_stellar_mass_{aperture_size}_kpc", h2_to_stellar_mass)
-        setattr(
-            self,
-            f"h2_plus_he_to_stellar_mass_{aperture_size}_kpc",
-            h2_plus_he_to_stellar_mass,
-        )
         setattr(
             self,
             f"neutral_to_stellar_mass_{aperture_size}_kpc",
@@ -468,12 +454,97 @@ def register_stellar_birth_densities(self, catalogue):
     return
 
 
+def register_h2_masses(self, catalogue, aperture_sizes):
+
+    # Loop over aperture sizes
+    for aperture_size in aperture_sizes:
+
+        # Fetch H2 mass
+        H2_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+        )
+
+        # Label of the derived field
+        H2_mass.name = f"$M_{{\\rm H_2}}$ ({aperture_size} kpc)"
+
+        # Register field
+        setattr(self, f"gas_H2_mass_{aperture_size}_kpc", H2_mass)
+
+    return
+
+
+def register_hi_masses(self, catalogue, aperture_sizes):
+
+    # Loop over aperture sizes
+    for aperture_size in aperture_sizes:
+
+        # Fetch HI mass
+        HI_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+        )
+
+        # Label of the derived field
+        HI_mass.name = f"$M_{{\\rm HI}}$ ({aperture_size} kpc)"
+
+        # Register derived field
+        setattr(self, f"gas_HI_mass_{aperture_size}_kpc", HI_mass)
+
+    return
+
+
+def register_baryon_fractions(self, catalogue):
+    try:
+        Omega_m = catalogue.units.cosmology.Om0
+        Omega_b = catalogue.units.cosmology.Ob0
+
+        M_500 = catalogue.spherical_overdensities.mass_500_rhocrit
+        M_500_gas = catalogue.spherical_overdensities.mass_gas_500_rhocrit
+        M_500_star = catalogue.spherical_overdensities.mass_star_500_rhocrit
+        M_500_baryon = M_500_gas + M_500_star
+
+        f_b_500 = (M_500_baryon / M_500) / (Omega_b / Omega_m)
+        name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+        f_b_500.name = name
+
+        f_gas_500 = (M_500_gas / M_500) / (Omega_b / Omega_m)
+        name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+        f_gas_500.name = name
+
+        setattr(self, "baryon_fraction_true_R500", f_b_500)
+        setattr(self, "gas_fraction_true_R500", f_gas_500)
+    except AttributeError:
+        # We did not produce these quantities, let's make an array of ones.
+        ones = unyt.unyt_array(
+            np.ones(np.size(catalogue.masses.mass_200crit)), "dimensionless"
+        )
+        setattr(
+            self,
+            "baryon_fraction_true_R500",
+            unyt.unyt_array(
+                ones,
+                name="$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
+            ),
+        )
+        setattr(
+            self,
+            "gas_fraction_true_R500",
+            unyt.unyt_array(
+                ones,
+                name="$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
+            ),
+        )
+
+    return
+
+
 # Register derived fields
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes)
 register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fraction)
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes)
-register_oxygen_to_hydrogen(self, catalogue, aperture_sizes)
-register_hi_masses(self, catalogue, aperture_sizes)
-register_h2_masses(self, catalogue, aperture_sizes)
+register_cold_gas_mass_ratios(self, catalogue, aperture_sizes)
+register_oxygen_to_hydrogen(self, catalogue, aperture_sizes, solar_metal_mass_fraction)
 register_species_fractions(self, catalogue, aperture_sizes)
 register_stellar_birth_densities(self, catalogue)
+register_hi_masses(self, catalogue, aperture_sizes)
+register_h2_masses(self, catalogue, aperture_sizes)
+register_baryon_fractions(self, catalogue)

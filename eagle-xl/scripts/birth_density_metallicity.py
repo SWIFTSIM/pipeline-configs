@@ -35,7 +35,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -46,10 +50,10 @@ def setup_axes(number_of_simulations: int):
 
     # Set all valid on bottom row to have the horizontal axis label.
     for axis in np.atleast_2d(ax)[:][-1]:
-        axis.set_xlabel("Birth Density [$n_H$ cm$^{-3}$]")
+        axis.set_xlabel("Density [$n_H$ cm$^{-3}$]")
 
     for axis in np.atleast_2d(ax).T[:][0]:
-        axis.set_ylabel("Smoothed MMF $Z$ []")
+        axis.set_ylabel("Metal Mass Fraction $Z$ []")
 
     ax.flat[0].loglog()
 
@@ -59,7 +63,7 @@ def setup_axes(number_of_simulations: int):
 if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
-    arguments = ScriptArgumentParser(description="Basic density-temperature figure.")
+    arguments = ScriptArgumentParser(description="Density-Metallicity-FE plane")
 
     snapshot_filenames = [
         f"{directory}/{snapshot}"
@@ -82,8 +86,9 @@ if __name__ == "__main__":
             for k, v in {
                 "f_E,min": "EAGLEFeedback:SNII_energy_fraction_min",
                 "f_E,max": "EAGLEFeedback:SNII_energy_fraction_max",
-                "n_Z": "EAGLEFeedback:SNII_energy_fraction_n_Z",
-                "n_n": "EAGLEFeedback:SNII_energy_fraction_n_n",
+                "f_E,max,n": "EAGLEFeedback:SNII_energy_fraction_max",
+                "s_Z": "EAGLEFeedback:SNII_energy_fraction_sigma_Z",
+                "s_n": "EAGLEFeedback:SNII_energy_fraction_sigma_n",
                 "Z_pivot": "EAGLEFeedback:SNII_energy_fraction_Z_0",
                 "n_pivot": "EAGLEFeedback:SNII_energy_fraction_n_0_H_p_cm3",
             }.items()
@@ -106,12 +111,26 @@ if __name__ == "__main__":
             ),
         )
 
-        f_E_grid = parameters["f_E,min"] + (
-            parameters["f_E,max"] - parameters["f_E,min"]
-        ) / (
-            1.0
-            + (metal_mass_fraction_grid / parameters["Z_pivot"]) ** parameters["n_Z"]
-            * (birth_density_grid / parameters["n_pivot"]) ** (-parameters["n_n"])
+        f_E_grid = (
+            parameters["f_E,max"]
+            - (parameters["f_E,max"] - parameters["f_E,min"])
+            / (
+                1
+                + np.exp(
+                    -np.log10(metal_mass_fraction_grid / parameters["Z_pivot"])
+                    / parameters["s_Z"]
+                )
+            )
+        ) * (
+            parameters["f_E,max,n"]
+            - (parameters["f_E,max,n"] - 1)
+            / (
+                1
+                + np.exp(
+                    np.log10(birth_density_grid / parameters["n_pivot"])
+                    / parameters["s_n"]
+                )
+            )
         )
 
         # Begin plotting
@@ -173,8 +192,9 @@ if __name__ == "__main__":
             for k, v in {
                 "f_E,min": "EAGLEFeedback:SNII_energy_fraction_min",
                 "f_E,max": "EAGLEFeedback:SNII_energy_fraction_max",
-                "n_Z": "EAGLEFeedback:SNII_energy_fraction_n_Z",
-                "n_n": "EAGLEFeedback:SNII_energy_fraction_n_n",
+                "f_E,max,n": "EAGLEFeedback:SNII_energy_fraction_max",
+                "s_Z": "EAGLEFeedback:SNII_energy_fraction_sigma_Z",
+                "s_n": "EAGLEFeedback:SNII_energy_fraction_sigma_n",
                 "Z_pivot": "EAGLEFeedback:SNII_energy_fraction_Z_0",
                 "n_pivot": "EAGLEFeedback:SNII_energy_fraction_n_0_H_p_cm3",
             }.items()

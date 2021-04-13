@@ -68,42 +68,42 @@
         <th>Value</th>
     <tr>
         <td>$f_{\rm E, min}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_min") }}</td>
     </tr>
     <tr>
         <td>$f_{\rm E, max}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_max") }}</td>
     </tr>
     <tr>
         <td>$f_{\rm E, max, n}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_delta_E_n") }}</td>
     </tr>
     <tr>
         <td>$\log_{10}$ $n_{\rm H, 0}$ / cm$^{3}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_n_0_H_p_cm3") }}</td>
     </tr>
     <tr>
         <td>$\log_{10} \Delta T_{\rm SN}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_delta_T_K") }}</td>
     </tr>
     <tr>
         <td>$\sigma_{Z}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_sigma_Z") }}</td>
     </tr>
     <tr>
         <td>$\log_{10} \sigma_{n}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEFeedback:SNII_energy_fraction_sigma_n") }}</td>
     </tr>
     <tr>
         <td>$\epsilon_{\rm eff}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:coupling_efficiency") }}</td>
     </tr>
     <tr>
         <td>$\beta_{\rm boost}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:boost_beta") }}</td>
     </tr>
     <tr>
         <td>$\log_{10} \Delta T_{\rm AGN}$</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("EAGLEAGN:AGN_delta_T_K") }}</td>
     </tr>
 </table>

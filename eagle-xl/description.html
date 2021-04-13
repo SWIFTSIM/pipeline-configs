@@ -66,34 +66,44 @@
     <tr>
         <th>Parameter</th>
         <th>Value</th>
-    </tr>
-    {% for name, key in zip([
-    "$f_{\\rm E, min}$",
-    "$f_{\\rm E, max}$",
-    "$f_{\\rm E, max, n}$",
-    "$\\log_{10}$ $n_{\\rm H, 0}$ / cm$^{3}$",
-    "$\\log_{10} \\Delta T_{\\rm SN}$",
-    "$\\sigma_{Z}$",
-    "$\\log_{10} \\sigma_{n}$",
-    "$\epsilon_{\\rm eff}$",
-    "$\\beta_{\\rm boost}$",
-    "$\\log_{10} \\Delta T_{\\rm AGN}$",
-    ],
-    [
-    "EAGLEFeedback:SNII_energy_fraction_min",
-    "EAGLEFeedback:SNII_energy_fraction_max",
-    "EAGLEFeedback:SNII_energy_fraction_delta_E_n",
-    "EAGLEFeedback:SNII_energy_fraction_n_0_H_p_cm3",
-    "EAGLEFeedback:SNII_delta_T_K",
-    "EAGLEFeedback:SNII_energy_fraction_sigma_Z",
-    "EAGLEFeedback:SNII_energy_fraction_sigma_n",
-    "EAGLEAGN:coupling_efficiency",
-    "EAGLEAGN:boost_beta",
-    "EAGLEAGN:AGN_delta_T_K",
-    ]) %}
     <tr>
-        <td>{name}</td>
-        <td>{{ data.metadata.parameters | get_if_present_float(key) }}</td>
+        <td>$f_{\rm E, min}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
     </tr>
-    {% endfor %}
+    <tr>
+        <td>$f_{\rm E, max}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$f_{\rm E, max, n}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$\log_{10}$ $n_{\rm H, 0}$ / cm$^{3}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$\log_{10} \Delta T_{\rm SN}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$\sigma_{Z}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$\log_{10} \sigma_{n}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$\epsilon_{\rm eff}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$\beta_{\rm boost}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
+    <tr>
+        <td>$\log_{10} \Delta T_{\rm AGN}$</td>
+        <td>{ data.metadata.parameters | get_if_present_float(key) }</td>
+    </tr>
 </table>

@@ -7,7 +7,7 @@ h2_frac_func_stellar_mass:
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.h2_plus_he_to_stellar_mass_100_kpc"
+    quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100

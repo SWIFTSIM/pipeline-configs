@@ -123,7 +123,7 @@ observational_data = glob.glob(
 #    obs.plot_on_axes(ax)
 
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(r"Atomic Gas Cosmic Density $\rho_{\rm H2} [{\rm M_\odot \; cMpc^{-3}}]$")
+ax.set_ylabel(r"Atomic Gas Cosmic Density $\rho_{\rm HI} [{\rm M_\odot \; cMpc^{-3}}]$")
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [

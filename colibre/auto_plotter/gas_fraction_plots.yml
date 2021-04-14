@@ -1,4 +1,4 @@
-h2_frac_func_stellar_mass:
+h2_frac_func_stellar_mass_xgass_selection:
   type: "scatter"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
@@ -28,6 +28,7 @@ h2_frac_func_stellar_mass:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
     caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
 
@@ -38,7 +39,7 @@ h2_frac_func_ssfr:
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gigayear"
+    units: 1 / gigayear
     start: 1e-4
     end: 1e4
   y:
@@ -53,10 +54,10 @@ h2_frac_func_ssfr:
     number_of_bins: 40
     start:
       value: 1e-4
-      units: "1 / Gigayear"
+      units: 1 / gigayear
     end:
       value: 1e4
-      units: "1 / Gigayear"
+      units: 1 / gigayear
   metadata:
     title: sSFR-H$_2$ Fraction
     section: Cold Gas Data Comparison
@@ -64,7 +65,7 @@ h2_frac_func_ssfr:
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_sSFR.hdf5
 
-h2_frac_func_stellar_surface_density:
+h2_frac_func_stellar_surface_density_xgass_selection:
   type: "scatter"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
@@ -97,7 +98,7 @@ h2_frac_func_stellar_surface_density:
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_mu_star.hdf5
 
-hi_frac_func_stellar_mass:
+hi_frac_func_stellar_mass_xgass_selection:
   type: "scatter"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.xgass_galaxy_selection"
@@ -127,6 +128,7 @@ hi_frac_func_stellar_mass:
     title: Stellar Mass-HI Fraction
     section: Cold Gas Data Comparison
     caption: Galaxy HI mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_M_star.hdf5
 
@@ -136,7 +138,7 @@ hi_frac_func_ssfr:
   selection_mask: "derived_quantities.xgass_galaxy_selection"
   x:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
-    units: "1 / Gigayear"
+    units: 1 / gigayear
     start: 1e-4
     end: 1e4
   y:
@@ -151,10 +153,10 @@ hi_frac_func_ssfr:
     number_of_bins: 40
     start:
       value: 1e-4
-      units: "1 / Gigayear"
+      units: 1 / gigayear
     end:
       value: 1e4
-      units: "1 / Gigayear"
+      units: 1 / gigayear
   metadata:
     title: sSFR-HI Fraction
     section: Cold Gas Data Comparison
@@ -193,3 +195,170 @@ hi_frac_func_stellar_surface_density:
     caption: Galaxy HI mass over stellar mass as a function of stellar mass surface density in 0.2 dex bins, measured in 100 kpc apertures
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_mu_star.hdf5
+
+h2_frac_func_stellar_mass:
+  type: "scatter"
+  legend_loc: "lower left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.h2_plus_he_to_stellar_mass_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-H$_2$ Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy neutral gas mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+  observational_data:
+    - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
+    - filename: GalaxyH2Fractions/Hunt2020_Data.hdf5
+    - filename: GalaxyH2Fractions/Grossi2016_Data.hdf5
+    - filename: GalaxyH2Fractions/Lisenfeld2016_Data.hdf5
+    - filename: GalaxyH2Fractions/Gratier2010_Data.hdf5
+
+hi_frac_func_stellar_mass:
+  type: "scatter"
+  legend_loc: "lower left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-HI Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy HI mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. LITTLE THINGS galaxies are dIrrs selected to be within 10 Mpc, with 50$\%$ of galaxies within 3.6 Mpc, and detected in HI. MAGMA (Hunt+20) are selected on both CO and HI detecions, but find the galaxies down to $10^7 \; {\rm M_\odot}$ consistent with the extrapolated SFMS (i.e. typical star-forming galaxies). XGASS (Catinella+18) galaxies are selected with to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
+  observational_data:
+    - filename: GalaxyHIFractions/Catinella2018_abcissa_M_star.hdf5
+    - filename: GalaxyHIFractions/Hunt2020_Data.hdf5
+    - filename: GalaxyHIFractions/Oh2015_Data.hdf5
+    - filename: GalaxyHIFractions/Lisenfeld2016_Data.hdf5
+    - filename: GalaxyHIFractions/Gratier2010_Data.hdf5
+
+cold_gas_frac_func_ssfr:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: 1 / gigayear
+    start: 1e-4
+    end: 6e1
+  y:
+    quantity: "derived_quantities.neutral_to_stellar_mass_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 30
+    start:
+      value: 1e-4
+      units: 1 / gigayear
+    end:
+      value: 6e1
+      units: 1 / gigayear
+  metadata:
+    title: sSFR-Cold gas Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy neutral gas mass over stellar mass as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures
+  observational_data:
+    - filename: GalaxyColdGasFractions/Catinella2018_abcissa_sSFR.hdf5
+
+h2_to_neutral_gas_frac_func_stellar_mass:
+  type: "scatter"
+  legend_loc: "lower left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-6
+    end: 1
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Cold gas Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy H$_2$ mass over neutral gas (HI+H$_2$) mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. MAGMA (Hunt+20) are selected on both CO and HI detecions, but find the galaxies down to $10^7 \; {\rm M_\odot}$ consistent with the extrapolated SFMS (i.e. typical star-forming galaxies). XGASS and XCOLDGASS samples are uniform in mass in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$ and $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$ and plotting those above the CO detection limit ($M_{\rm H2}/M_*$ > $1.5\%$).
+  observational_data:
+    - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_M_star.hdf5
+    - filename: GalaxyColdGasFractions/Hunt2020_Data.hdf5
+    - filename: GalaxyColdGasFractions/Gratier2010_Data.hdf5
+    - filename: GalaxyColdGasFractions/Lisenfeld2016_Data.hdf5
+
+h2_to_neutral_gas_frac_func_ssfr:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: 1 / gigayear
+    start: 1e-4
+    end: 6e1
+  y:
+    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 1
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 30
+    start:
+      value: 1e-4
+      units: 1 / gigayear
+    end:
+      value: 6e1
+      units: 1 / gigayear
+  metadata:
+    title: sSFR-H2 Fraction
+    section: Cold Gas Data Comparison
+    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures
+  observational_data:
+    - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_sSFR.hdf5
+

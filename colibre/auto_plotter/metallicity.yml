@@ -28,7 +28,44 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
   metadata:
     title: "Stellar mass - Gas diffuse metallicity relation (log-of-mean, from Z, 30 kpc aperture)"
     caption: Only shown for star forming galaxies. Computed as the average mass-weighted metal mass fraction (converted to 12 + $\log_{10}$ O/H by assuming solar abundance patterns) of cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
-    section: SF Gas Metallicity
+    section: Gas Metallicity
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
+
+stellar_mass_gas_sf_metallicity_fromz_lom_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  comment: "Active only, LoM, Diffuse, from Z"
+  y:
+    quantity: "derived_quantities.gas_o_abundance_fromz_avglin_100_kpc"
+    log: false
+    units: "dimensionless"
+    start: 7
+    end: 10
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Gas diffuse metallicity relation (log-of-mean, from Z, 100 kpc aperture)"
+    caption: Only shown for star forming galaxies. Computed as the average mass-weighted metal mass fraction (converted to 12 + $\log_{10}$ O/H by assuming solar abundance patterns) of cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
+    section: Gas Metallicity
     show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
@@ -65,7 +102,44 @@ stellar_mass_gas_sf_metallicity_lom_30:
   metadata:
     title: "Stellar mass - Gas diffuse metallicity relation (log-of-mean, 30 kpc aperture)"
     caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where O/H is linearly averaged for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
-    section: SF Gas Metallicity
+    section: Gas Metallicity
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
+
+stellar_mass_gas_sf_metallicity_lom_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  comment: "Active only, LoM, Diffuse, from O"
+  y:
+    quantity: "derived_quantities.gas_o_abundance_avglin_100_kpc"
+    log: false
+    units: "dimensionless"
+    start: 7
+    end: 10
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Gas diffuse metallicity relation (log-of-mean, 100 kpc aperture)"
+    caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where O/H is linearly averaged for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
+    section: Gas Metallicity
     show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
@@ -100,9 +174,46 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
       value: 1e12
       units: solar_mass
   metadata:
-    title: "Stellar mass - Gas total metallicity relation (log-of-mean, 30 kpc aperture)"
-    caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where O/H is linearly averaged for total O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
-    section: SF Gas Metallicity
+    title: "Stellar mass - Gas (Diffuse + Dust) metallicity relation (log-of-mean, 30 kpc aperture)"
+    caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where O/H is linearly averaged for total O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses undepleted gas metallicity, i.e. it includes metals that are present in dust.
+    section: Gas Metallicity
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
+
+stellar_mass_gas_sf_metallicity_total_lom_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  comment: "Active only, LoM, Total (Diffuse + Dust), from O"
+  y:
+    quantity: "derived_quantities.gas_o_abundance_total_avglin_100_kpc"
+    log: false
+    units: "dimensionless"
+    start: 7
+    end: 10
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Gas (Diffuse + Dust) metallicity relation (log-of-mean, 100 kpc aperture)"
+    caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where O/H is linearly averaged for total O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses undepleted gas metallicity, i.e. it includes metals that are present in dust.
+    section: Gas Metallicity
     show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
@@ -139,7 +250,44 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   metadata:
     title: "Stellar mass - Gas diffuse metallicity relation (mean-of-log, 30 kpc aperture)"
     caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles with a [O/H]=-4 floor and diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
-    section: SF Gas Metallicity
+    section: Gas Metallicity
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
+
+stellar_mass_gas_sf_metallicity_mol_lowfloor_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  comment: "Active only, MoL w. [O/H]=-4 floor, Diffuse, from O"
+  y:
+    quantity: "derived_quantities.gas_o_abundance_avglog_low_100_kpc"
+    log: false
+    units: "dimensionless"
+    start: 7
+    end: 10
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Gas diffuse metallicity relation (mean-of-log, 100 kpc aperture)"
+    caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles with a [O/H]=-4 floor and diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
+    section: Gas Metallicity
     show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
@@ -176,7 +324,44 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   metadata:
     title: "Stellar mass - Gas diffuse metallicity relation (mean-of-log, 30 kpc aperture)"
     caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles with a [O/H]=-3 floor for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
-    section: SF Gas Metallicity
+    section: Gas Metallicity
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
+
+stellar_mass_gas_sf_metallicity_mol_hifloor_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  comment: "Active only, MoL w. [O/H]=-3 floor, Diffuse, from O"
+  y:
+    quantity: "derived_quantities.gas_o_abundance_avglog_high_100_kpc"
+    log: false
+    units: "dimensionless"
+    start: 7
+    end: 10
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Gas diffuse metallicity relation (mean-of-log, 100 kpc aperture)"
+    caption: Only shown for star forming galaxies. Represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles with a [O/H]=-3 floor for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
+    section: Gas Metallicity
     show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
@@ -213,19 +398,18 @@ stellar_mass_gas_sf_metallicity_lom_allgals_30:
   metadata:
     title: "Stellar mass - Gas diffuse metallicity relation (log-of-mean, 30 kpc aperture)"
     caption: Only shown for galaxies with cold, dense gas. Represented by 12 + $\log_{10}$ O/H (where O/H is linearly averaged for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
-    section: SF Gas Metallicity
-    show_on_webpage: true
+    section: Gas Metallicity
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
 
-
-stellar_mass_gas_sf_metallicity_100:
+stellar_mass_gas_sf_metallicity_lom_allgals_100:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_100_kpc"
-  comment: "Active only"
+  selection_mask: "derived_quantities.has_cold_dense_gas_100_kpc"
+  comment: "All galaxies, LoM, Diffuse, from O"
   y:
     quantity: "derived_quantities.gas_o_abundance_avglin_100_kpc"
     log: false
@@ -249,9 +433,10 @@ stellar_mass_gas_sf_metallicity_100:
       value: 1e12
       units: solar_mass
   metadata:
-    title: "Stellar mass - Gas metallicity relation (100 kpc aperture)"
-    caption: Only shown for star forming galaxies. Computed as the average mass-weighted metal mass fraction (displayed as 12 + $\log_{10}$ O/H) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
-    section: SF Gas Metallicity
+    title: "Stellar mass - Gas diffuse metallicity relation (log-of-mean, 100 kpc aperture)"
+    caption: Only shown for galaxies with cold, dense gas. Represented by 12 + $\log_{10}$ O/H (where O/H is linearly averaged for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
+    section: Gas Metallicity
+    show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
@@ -283,9 +468,9 @@ stellar_mass_star_metallicity_100:
       units: solar_mass
   metadata:
     title: "Stellar mass - Star metallicity relation (100 kpc aperture)"
-    caption: Metallicity is measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
-    section: Metallicity
-    show_on_webpage: false
+    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
+    section: Stellar Metallicity
+    show_on_webpage: true
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
@@ -316,10 +501,110 @@ stellar_mass_star_metallicity_30:
       units: solar_mass
   metadata:
     title: "Stellar mass - Star metallicity relation (30 kpc aperture)"
-    caption: Metallicity is measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
+    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
     section: Stellar Metallicity
-    show_on_webpage: true
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
+
+stellar_mass_star_fe_over_h_mol_lofloor_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  comment: "MoL w. [F/H]=-4 floor"
+  y:
+    quantity: "derived_quantities.star_fe_abundance_avglog_low_100_kpc"
+    units: "dimensionless"
+    start: 1e-2
+    end: 1e1
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Star metallicity (Fe/H) relation (mean-of-log, 100 kpc aperture)"
+    section: Stellar Metallicity
+    caption: Computed as the mass-weighted average of log stellar metal mass fraction (displayed as [Fe/H]). The floor value is set to [Fe/H]=-4. All haloes are plotted, including subhaloes.
+  observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
+
+stellar_mass_star_fe_over_h_mol_hifloor_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  comment: "MoL w. [F/H]=-3 floor"
+  y:
+    quantity: "derived_quantities.star_fe_abundance_avglog_high_100_kpc"
+    units: "dimensionless"
+    start: 1e-2
+    end: 1e1
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Star metallicity (Fe/H) relation (mean-of-log, 100 kpc aperture)"
+    section: Stellar Metallicity
+    caption: Computed as the mass-weighted average of log stellar metal mass fraction (displayed as [Fe/H]). The floor value is set to [Fe/H]=-3. All haloes are plotted, including subhaloes.
+  observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
+
+stellar_mass_star_fe_over_h_lom_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  comment: "LoM"
+  y:
+    quantity: "derived_quantities.star_fe_abundance_avglin_100_kpc"
+    units: "dimensionless"
+    start: 1e-2
+    end: 1e1
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Star metallicity (Fe/H) relation (100 kpc aperture)"
+    section: Stellar Metallicity
+    caption: Computed as the mass-weighted average of stellar metal mass fraction (displayed as [Fe/H]). All haloes are plotted, including subhaloes.
+  observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
+
 

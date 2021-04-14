@@ -3,7 +3,7 @@ gas_HI_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_HI_mass"
+    quantity: "derived_quantities.gas_HI_mass_100_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e11
@@ -13,7 +13,7 @@ gas_HI_mass_function:
     end: 0.316 # (1e-0.5)
   metadata:
     title: HI Mass Function
-    caption: HIMF, showing all galaxies with a fixed bin-width of 0.2 dex.
+    caption: HIMF, showing all galaxies with a fixed bin-width of 0.2 dex (HI masses 100 kpc).
     section: Gas Mass Function
   observational_data:
     - filename: GalaxyHIMassFunction/Zwaan2003.hdf5
@@ -25,7 +25,7 @@ adaptive_gas_HI_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_HI_mass"
+    quantity: "derived_quantities.gas_HI_mass_100_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e11
@@ -35,7 +35,7 @@ adaptive_gas_HI_mass_function:
     end: 0.316 # (1e-0.5)
   metadata:
     title: HI Mass Function
-    caption: HIMF, showing all galaxies with an adaptive bin-width.
+    caption: HIMF, showing all galaxies with an adaptive bin-width (HI masses 100 kpc).
     section: Gas Mass Function
   observational_data:
     - filename: GalaxyHIMassFunction/Zwaan2003.hdf5
@@ -47,7 +47,7 @@ gas_H2_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_H2_plus_He_mass"
+    quantity: "derived_quantities.gas_H2_mass_100_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e11
@@ -57,7 +57,7 @@ gas_H2_mass_function:
     end: 0.316 # (1e-0.5)
   metadata:
     title: H$_2$ Mass Function
-    caption: H$_2$ MF, showing all galaxies with a fixed bin-width of 0.2 dex. H$_2$ mass corrected for Helium.
+    caption: H$_2$ MF, showing all galaxies with a fixed bin-width of 0.2 dex. H$_2$ mass not corrected for Helium (uses H$_2$ masses in 100 kpc apertures)
     section: Gas Mass Function
   observational_data:
     - filename: GalaxyH2MassFunction/Fletcher2020.hdf5
@@ -67,7 +67,7 @@ adaptive_gas_H2_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_H2_plus_He_mass"
+    quantity: "derived_quantities.gas_H2_mass_100_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e11
@@ -77,7 +77,7 @@ adaptive_gas_H2_mass_function:
     end: 0.316 # (1e-0.5)
   metadata:
     title: H$_2$ Mass Function
-    caption: H$_2$ MF, showing all galaxies with an adaptive bin-width. H$_2$ mass corrected for Helium.
+    caption: H$_2$ MF, showing all galaxies with an adaptive bin-width. H$_2$ mass not corrected for Helium (uses H$_2$ masses in 100 kpc apertures)
     section: Gas Mass Function
   observational_data:
     - filename: GalaxyH2MassFunction/Fletcher2020.hdf5

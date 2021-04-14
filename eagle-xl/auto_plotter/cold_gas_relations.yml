@@ -184,7 +184,7 @@ stellar_mass_H2_mass_30:
     start: 1e7
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e7
     end: 1e11
@@ -214,7 +214,7 @@ stellar_mass_H2_mass_100:
     start: 1e7
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e7
     end: 1e11
@@ -243,7 +243,7 @@ stellar_mass_HI_mass_30:
     start: 1e7
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass"
+    quantity: "derived_quantities.gas_HI_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e7
     end: 1e11
@@ -273,7 +273,7 @@ stellar_mass_HI_mass_100:
     start: 1e7
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass"
+    quantity: "derived_quantities.gas_HI_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e7
     end: 1e11
@@ -297,7 +297,7 @@ H2_mass_star_formation_rate_30:
   type: "scatter"
   legend_loc: "lower right"
   x:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e7
     end: 1e11
@@ -327,7 +327,7 @@ H2_mass_star_formation_rate_100:
   type: "scatter"
   legend_loc: "lower right"
   x:
-    quantity: "derived_quantities.gas_H2_mass"
+    quantity: "derived_quantities.gas_H2_mass_30_kpc"
     units: "Solar_Mass"
     start: 1e7
     end: 1e11

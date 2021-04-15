@@ -1,0 +1,19 @@
+luminosity_r_function_30:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.magnitudes_r_band_30_kpc"
+    log: false
+    units: "dimensionless"
+    start: 1e3
+    end: 1e10
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: r-band Luminosity Function (30 kpc aperture)
+    caption: 30 kpc aperture luminosity function in the GAMA r-band, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: Luminosity Function
+    show_on_webpage: false

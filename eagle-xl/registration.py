@@ -118,6 +118,32 @@ def register_star_metallicities(self, catalogue, aperture_sizes, Z_sun):
 
     return
 
+def register_star_magnitudes(self, catalogue, aperture_sizes):
+
+    bands = ["i", "g", "r", "H", "u", "J", "Y", "K", "z", "Z"]
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+        for band in bands:
+            try:
+                
+                L_AB = getattr(catalogue.stellar_luminosities, f"{band}_luminosity_{aperture_size}_kpc")
+                m_AB = np.copy(L_AB)
+                mask = L_AB > 0.
+                #m_AB[mask] = 2.5 * np.log10(m_AB[mask])
+
+                print(np.min(m_AB[mask]), np.max(m_AB[mask]))
+
+                m_AB = unyt.unyt_array(m_AB, units="dimensionless")
+                m_AB.name = f"{band}-band magnitudes ({aperture_size} kpc)"
+                setattr(self, f"magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
+
+                #print("aaa")
+
+            except AttributeError:
+                pass
+
+    return
 
 def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
 
@@ -459,17 +485,22 @@ def register_h2_masses(self, catalogue, aperture_sizes):
     # Loop over aperture sizes
     for aperture_size in aperture_sizes:
 
-        # Fetch H2 mass
-        H2_mass = getattr(
-            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
-        )
+        try:
+            
+            # Fetch H2 mass
+            H2_mass = getattr(
+                catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+            )
+            
+            # Label of the derived field
+            H2_mass.name = f"$M_{{\\rm H_2}}$ ({aperture_size} kpc)"
+            
+            # Register field
+            setattr(self, f"gas_H2_mass_{aperture_size}_kpc", H2_mass)
 
-        # Label of the derived field
-        H2_mass.name = f"$M_{{\\rm H_2}}$ ({aperture_size} kpc)"
-
-        # Register field
-        setattr(self, f"gas_H2_mass_{aperture_size}_kpc", H2_mass)
-
+        except AttributeError:
+            pass
+            
     return
 
 
@@ -478,16 +509,21 @@ def register_hi_masses(self, catalogue, aperture_sizes):
     # Loop over aperture sizes
     for aperture_size in aperture_sizes:
 
-        # Fetch HI mass
-        HI_mass = getattr(
-            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
-        )
+        try:
 
-        # Label of the derived field
-        HI_mass.name = f"$M_{{\\rm HI}}$ ({aperture_size} kpc)"
-
-        # Register derived field
-        setattr(self, f"gas_HI_mass_{aperture_size}_kpc", HI_mass)
+            # Fetch HI mass
+            HI_mass = getattr(
+                catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+            )
+            
+            # Label of the derived field
+            HI_mass.name = f"$M_{{\\rm HI}}$ ({aperture_size} kpc)"
+            
+            # Register derived field
+            setattr(self, f"gas_HI_mass_{aperture_size}_kpc", HI_mass)
+            
+        except AttributeError:
+            pass
 
     return
 
@@ -548,3 +584,4 @@ register_stellar_birth_densities(self, catalogue)
 register_hi_masses(self, catalogue, aperture_sizes)
 register_h2_masses(self, catalogue, aperture_sizes)
 register_baryon_fractions(self, catalogue)
+register_star_magnitudes(self, catalogue, aperture_sizes)

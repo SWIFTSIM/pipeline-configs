@@ -7,7 +7,7 @@ luminosity_i_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -26,7 +26,7 @@ luminosity_g_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -45,7 +45,7 @@ luminosity_r_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -64,7 +64,7 @@ luminosity_H_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -83,7 +83,7 @@ luminosity_u_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -102,7 +102,7 @@ luminosity_J_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -121,7 +121,7 @@ luminosity_Y_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -140,7 +140,7 @@ luminosity_K_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -159,7 +159,7 @@ luminosity_z_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6
@@ -178,7 +178,7 @@ luminosity_Z_function_30:
     log: false
     units: "dimensionless"
     start: -25
-    end: -12
+    end: -13.5
   y:
     units: 1/Mpc**3
     start: 1e-6

@@ -130,15 +130,10 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
                 L_AB = getattr(catalogue.stellar_luminosities, f"{band}_luminosity_{aperture_size}_kpc")
                 m_AB = np.copy(L_AB)
                 mask = L_AB > 0.
-                #m_AB[mask] = 2.5 * np.log10(m_AB[mask])
-
-                print(np.min(m_AB[mask]), np.max(m_AB[mask]))
-
+                m_AB[mask] = -2.5 * np.log10(m_AB[mask])
                 m_AB = unyt.unyt_array(m_AB, units="dimensionless")
                 m_AB.name = f"{band}-band magnitudes ({aperture_size} kpc)"
                 setattr(self, f"magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
-
-                #print("aaa")
 
             except AttributeError:
                 pass
@@ -204,169 +199,174 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
     # Loop over aperture sizes
     for aperture_size in aperture_sizes:
 
-        # Fetch HI and H2 masses in apertures of a given size
-        HI_mass = getattr(
-            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
-        )
-        H2_mass = getattr(
-            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
-        )
+        try:
 
-        # Compute neutral H mass (HI + H2)
-        neutral_H_mass = HI_mass + H2_mass
-        # Add label
-        neutral_H_mass.name = f"$M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+            # Fetch HI and H2 masses in apertures of a given size
+            HI_mass = getattr(
+                catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+            )
+            H2_mass = getattr(
+                catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+            )
 
-        # Fetch total stellar mass
-        stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-        # Fetch mass of star-forming gas
-        sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
+            # Compute neutral H mass (HI + H2)
+            neutral_H_mass = HI_mass + H2_mass
+            # Add label
+            neutral_H_mass.name = f"$M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+            
+            # Fetch total stellar mass
+            stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+            # Fetch mass of star-forming gas
+            sf_mass = getattr(catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc")
 
-        # Compute neutral H mass to stellar mass ratio
-        neutral_H_to_stellar_fraction = neutral_H_mass / stellar_mass
-        neutral_H_to_stellar_fraction.name = (
-            f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
-        )
+            # Compute neutral H mass to stellar mass ratio
+            neutral_H_to_stellar_fraction = neutral_H_mass / stellar_mass
+            neutral_H_to_stellar_fraction.name = (
+                f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
+            )
 
-        # Compute molecular H mass to molecular plus stellar mass fraction
-        molecular_H_to_molecular_plus_stellar_fraction = H2_mass / (
-            H2_mass + stellar_mass
-        )
-        molecular_H_to_molecular_plus_stellar_fraction.name = (
-            f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc)"
-        )
+            # Compute molecular H mass to molecular plus stellar mass fraction
+            molecular_H_to_molecular_plus_stellar_fraction = H2_mass / (
+                H2_mass + stellar_mass
+            )
+            molecular_H_to_molecular_plus_stellar_fraction.name = (
+                f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc)"
+            )
+            
+            # Compute molecular H mass to neutral H mass ratio
+            molecular_H_to_neutral_fraction = H2_mass / neutral_H_mass
+            molecular_H_to_neutral_fraction.name = (
+                f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+            )
 
-        # Compute molecular H mass to neutral H mass ratio
-        molecular_H_to_neutral_fraction = H2_mass / neutral_H_mass
-        molecular_H_to_neutral_fraction.name = (
-            f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
-        )
+            # Compute neutral H mass to baryonic mass fraction
+            neutral_H_to_baryonic_fraction = neutral_H_mass / (
+                neutral_H_mass + stellar_mass
+            )
+            neutral_H_to_baryonic_fraction.name = (
+                f"$M_{{\\rm HI + H_2}}/((M_*+ M_{{\\rm HI + H_2}})$ ({aperture_size} kpc)"
+            )
+            
+            # Compute HI mass to neutral H mass ratio
+            HI_to_neutral_H_fraction = HI_mass / neutral_H_mass
+            HI_to_neutral_H_fraction.name = (
+                f"$M_{{\\rm HI}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+            )
+            
+            # Compute H2 mass to neutral H mass ratio
+            H2_to_neutral_H_fraction = H2_mass / neutral_H_mass
+            H2_to_neutral_H_fraction.name = (
+                f"$M_{{\\rm H_2}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+            )
 
-        # Compute neutral H mass to baryonic mass fraction
-        neutral_H_to_baryonic_fraction = neutral_H_mass / (
-            neutral_H_mass + stellar_mass
-        )
-        neutral_H_to_baryonic_fraction.name = (
-            f"$M_{{\\rm HI + H_2}}/((M_*+ M_{{\\rm HI + H_2}})$ ({aperture_size} kpc)"
-        )
+            # Compute SF mass to SF mass plus stellar mass ratio
+            sf_to_sf_plus_stellar_fraction = unyt.unyt_array(
+                np.zeros_like(neutral_H_mass), units="dimensionless"
+            )
+            # Select only good mass
+            star_plus_sf_mass_mask = sf_mass + stellar_mass > 0.0 * sf_mass.units
+            sf_to_sf_plus_stellar_fraction[star_plus_sf_mass_mask] = sf_mass[
+                star_plus_sf_mass_mask
+            ] / (sf_mass[star_plus_sf_mass_mask] + stellar_mass[star_plus_sf_mass_mask])
+            sf_to_sf_plus_stellar_fraction.name = (
+                f"$M_{{\\rm SF}}/(M_{{\\rm SF}} + M_*)$ ({aperture_size} kpc)"
+            )
 
-        # Compute HI mass to neutral H mass ratio
-        HI_to_neutral_H_fraction = HI_mass / neutral_H_mass
-        HI_to_neutral_H_fraction.name = (
-            f"$M_{{\\rm HI}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
-        )
-
-        # Compute H2 mass to neutral H mass ratio
-        H2_to_neutral_H_fraction = H2_mass / neutral_H_mass
-        H2_to_neutral_H_fraction.name = (
-            f"$M_{{\\rm H_2}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
-        )
-
-        # Compute SF mass to SF mass plus stellar mass ratio
-        sf_to_sf_plus_stellar_fraction = unyt.unyt_array(
-            np.zeros_like(neutral_H_mass), units="dimensionless"
-        )
-        # Select only good mass
-        star_plus_sf_mass_mask = sf_mass + stellar_mass > 0.0 * sf_mass.units
-        sf_to_sf_plus_stellar_fraction[star_plus_sf_mass_mask] = sf_mass[
-            star_plus_sf_mass_mask
-        ] / (sf_mass[star_plus_sf_mass_mask] + stellar_mass[star_plus_sf_mass_mask])
-        sf_to_sf_plus_stellar_fraction.name = (
-            f"$M_{{\\rm SF}}/(M_{{\\rm SF}} + M_*)$ ({aperture_size} kpc)"
-        )
-
-        # Select only the star-forming gas mass that is greater than zero
-        sf_mask = sf_mass > 0.0 * sf_mass.units
-
-        # Compute neutral H mass to SF gas mass ratio
-        neutral_H_to_sf_fraction = unyt.unyt_array(
-            np.zeros_like(neutral_H_mass), units="dimensionless"
-        )
-        neutral_H_to_sf_fraction[sf_mask] = neutral_H_mass[sf_mask] / sf_mass[sf_mask]
-        neutral_H_to_sf_fraction.name = (
-            f"$M_{{\\rm HI + H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
-        )
-
-        # Compute HI mass to SF gas mass ratio
-        HI_to_sf_fraction = unyt.unyt_array(
-            np.zeros_like(HI_mass), units="dimensionless"
-        )
-        HI_to_sf_fraction[sf_mask] = HI_mass[sf_mask] / sf_mass[sf_mask]
-        HI_to_sf_fraction.name = f"$M_{{\\rm HI}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
-
-        # Compute H2 mass to SF gas mass ratio
-        H2_to_sf_fraction = unyt.unyt_array(
-            np.zeros_like(H2_mass), units="dimensionless"
-        )
-        H2_to_sf_fraction[sf_mask] = H2_mass[sf_mask] / sf_mass[sf_mask]
-        H2_to_sf_fraction.name = f"$M_{{\\rm H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
-
-        # Compute SF gas mss to stellar mass ratio
-        sf_to_stellar_fraction = unyt.unyt_array(
-            np.zeros_like(neutral_H_mass), units="dimensionless"
-        )
-        # Select only good stellar mass
-        m_star_mask = stellar_mass > 0.0 * stellar_mass.units
-        sf_to_stellar_fraction[m_star_mask] = (
-            sf_mass[m_star_mask] / stellar_mass[m_star_mask]
-        )
-        sf_to_stellar_fraction.name = f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
-
-        # Finally, register all the above fields
-        setattr(
-            self,
-            f"gas_neutral_H_mass_{aperture_size}_kpc",
-            neutral_H_mass,
-        )
-
-        setattr(
-            self,
-            f"gas_neutral_H_to_stellar_fraction_{aperture_size}_kpc",
-            neutral_H_to_stellar_fraction,
-        )
-        setattr(
-            self,
-            f"gas_molecular_H_to_molecular_plus_stellar_fraction_{aperture_size}_kpc",
-            molecular_H_to_molecular_plus_stellar_fraction,
-        )
-        setattr(
-            self,
-            f"gas_molecular_H_to_neutral_fraction_{aperture_size}_kpc",
-            molecular_H_to_neutral_fraction,
-        )
-        setattr(
-            self,
-            f"gas_neutral_H_to_baryonic_fraction_{aperture_size}_kpc",
-            neutral_H_to_baryonic_fraction,
-        )
-        setattr(
-            self,
-            f"gas_HI_to_neutral_H_fraction_{aperture_size}_kpc",
-            HI_to_neutral_H_fraction,
-        )
-        setattr(
-            self,
-            f"gas_H2_to_neutral_H_fraction_{aperture_size}_kpc",
-            H2_to_neutral_H_fraction,
-        )
-        setattr(
-            self,
-            f"gas_sf_to_sf_plus_stellar_fraction_{aperture_size}_kpc",
-            sf_to_sf_plus_stellar_fraction,
-        )
-        setattr(
-            self,
-            f"gas_neutral_H_to_sf_fraction_{aperture_size}_kpc",
-            neutral_H_to_sf_fraction,
-        )
-        setattr(self, f"gas_HI_to_sf_fraction_{aperture_size}_kpc", HI_to_sf_fraction)
-        setattr(self, f"gas_H2_to_sf_fraction_{aperture_size}_kpc", H2_to_sf_fraction)
-        setattr(
-            self,
-            f"gas_sf_to_stellar_fraction_{aperture_size}_kpc",
-            sf_to_stellar_fraction,
-        )
-        setattr(self, f"has_neutral_gas_{aperture_size}_kpc", neutral_H_mass > 0.0)
+            # Select only the star-forming gas mass that is greater than zero
+            sf_mask = sf_mass > 0.0 * sf_mass.units
+            
+            # Compute neutral H mass to SF gas mass ratio
+            neutral_H_to_sf_fraction = unyt.unyt_array(
+                np.zeros_like(neutral_H_mass), units="dimensionless"
+            )
+            neutral_H_to_sf_fraction[sf_mask] = neutral_H_mass[sf_mask] / sf_mass[sf_mask]
+            neutral_H_to_sf_fraction.name = (
+                f"$M_{{\\rm HI + H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
+            )
+            
+            # Compute HI mass to SF gas mass ratio
+            HI_to_sf_fraction = unyt.unyt_array(
+                np.zeros_like(HI_mass), units="dimensionless"
+            )
+            HI_to_sf_fraction[sf_mask] = HI_mass[sf_mask] / sf_mass[sf_mask]
+            HI_to_sf_fraction.name = f"$M_{{\\rm HI}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
+            
+            # Compute H2 mass to SF gas mass ratio
+            H2_to_sf_fraction = unyt.unyt_array(
+                np.zeros_like(H2_mass), units="dimensionless"
+            )
+            H2_to_sf_fraction[sf_mask] = H2_mass[sf_mask] / sf_mass[sf_mask]
+            H2_to_sf_fraction.name = f"$M_{{\\rm H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
+            
+            # Compute SF gas mss to stellar mass ratio
+            sf_to_stellar_fraction = unyt.unyt_array(
+                np.zeros_like(neutral_H_mass), units="dimensionless"
+            )
+            # Select only good stellar mass
+            m_star_mask = stellar_mass > 0.0 * stellar_mass.units
+            sf_to_stellar_fraction[m_star_mask] = (
+                sf_mass[m_star_mask] / stellar_mass[m_star_mask]
+            )
+            sf_to_stellar_fraction.name = f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
+            
+            # Finally, register all the above fields
+            setattr(
+                self,
+                f"gas_neutral_H_mass_{aperture_size}_kpc",
+                neutral_H_mass,
+            )
+            
+            setattr(
+                self,
+                f"gas_neutral_H_to_stellar_fraction_{aperture_size}_kpc",
+                neutral_H_to_stellar_fraction,
+            )
+            setattr(
+                self,
+                f"gas_molecular_H_to_molecular_plus_stellar_fraction_{aperture_size}_kpc",
+                molecular_H_to_molecular_plus_stellar_fraction,
+            )
+            setattr(
+                self,
+                f"gas_molecular_H_to_neutral_fraction_{aperture_size}_kpc",
+                molecular_H_to_neutral_fraction,
+            )
+            setattr(
+                self,
+                f"gas_neutral_H_to_baryonic_fraction_{aperture_size}_kpc",
+                neutral_H_to_baryonic_fraction,
+            )
+            setattr(
+                self,
+                f"gas_HI_to_neutral_H_fraction_{aperture_size}_kpc",
+                HI_to_neutral_H_fraction,
+            )
+            setattr(
+                self,
+                f"gas_H2_to_neutral_H_fraction_{aperture_size}_kpc",
+                H2_to_neutral_H_fraction,
+            )
+            setattr(
+                self,
+                f"gas_sf_to_sf_plus_stellar_fraction_{aperture_size}_kpc",
+                sf_to_sf_plus_stellar_fraction,
+            )
+            setattr(
+                self,
+                f"gas_neutral_H_to_sf_fraction_{aperture_size}_kpc",
+                neutral_H_to_sf_fraction,
+            )
+            setattr(self, f"gas_HI_to_sf_fraction_{aperture_size}_kpc", HI_to_sf_fraction)
+            setattr(self, f"gas_H2_to_sf_fraction_{aperture_size}_kpc", H2_to_sf_fraction)
+            setattr(
+                self,
+                f"gas_sf_to_stellar_fraction_{aperture_size}_kpc",
+                sf_to_stellar_fraction,
+            )
+            setattr(self, f"has_neutral_gas_{aperture_size}_kpc", neutral_H_mass > 0.0)
+        
+        except AttributeError:
+            pass
 
     return
 
@@ -376,77 +376,82 @@ def register_species_fractions(self, catalogue, aperture_sizes):
     # Loop over aperture sizes
     for aperture_size in aperture_sizes:
 
-        # Compute galaxy area (pi r^2)
-        gal_area = (
-            2
-            * np.pi
-            * getattr(
-                catalogue.projected_apertures,
-                f"projected_1_rhalfmass_star_{aperture_size}_kpc",
+        try:
+
+            # Compute galaxy area (pi r^2)
+            gal_area = (
+                2
+                * np.pi
+                * getattr(
+                    catalogue.projected_apertures,
+                    f"projected_1_rhalfmass_star_{aperture_size}_kpc",
+                )
+                ** 2
             )
-            ** 2
-        )
+        
+            # Stellar mass
+            M_star = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+            M_star_projected = getattr(
+                catalogue.projected_apertures, f"projected_1_mass_star_{aperture_size}_kpc"
+            )
+            
+            # Selection functions for the xGASS and xCOLDGASS surveys, used for the H species
+            # fraction comparison. Note these are identical mass selections, but are separated
+            # to keep survey selections explicit and to allow more detailed selection criteria
+            # to be added for each.
+            
+            self.xgass_galaxy_selection = np.logical_and(
+                M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+                M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+            )
+            self.xcoldgass_galaxy_selection = np.logical_and(
+                M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
+                M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
+            )
+            
+            # Register stellar mass density in apertures
+            mu_star = M_star_projected / gal_area
+            mu_star.name = f"$M_{{*, {aperture_size} {{\\rm kpc}}}} / \\pi R_{{*, {aperture_size} {{\\rm kpc}}}}^2$"
+            
+            # Atomic hydrogen mass in apertures
+            HI_mass = getattr(
+                catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+            )
+            HI_mass.name = f"HI Mass ({aperture_size} kpc)"
+        
+            # Molecular hydrogen mass in apertures
+            H2_mass = getattr(
+                catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+            )
+            H2_mass.name = f"H$_2$ Mass ({aperture_size} kpc)"
+    
+            # Atomic hydrogen to stellar mass in apertures
+            hi_to_stellar_mass = HI_mass / M_star
+            hi_to_stellar_mass.name = f"$M_{{\\rm HI}} / M_*$ ({aperture_size} kpc)"
 
-        # Stellar mass
-        M_star = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-        M_star_projected = getattr(
-            catalogue.projected_apertures, f"projected_1_mass_star_{aperture_size}_kpc"
-        )
+            # Molecular hydrogen mass to stellar mass in apertures
+            h2_to_stellar_mass = H2_mass / M_star
+            h2_to_stellar_mass.name = f"$M_{{\\rm H_2}} / M_*$ ({aperture_size} kpc)"
+            
+            # Neutral H / stellar mass
+            neutral_to_stellar_mass = hi_to_stellar_mass + h2_to_stellar_mass
+            neutral_to_stellar_mass.name = (
+                f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
+            )
 
-        # Selection functions for the xGASS and xCOLDGASS surveys, used for the H species
-        # fraction comparison. Note these are identical mass selections, but are separated
-        # to keep survey selections explicit and to allow more detailed selection criteria
-        # to be added for each.
+            # Register all derived fields
+            setattr(self, f"mu_star_{aperture_size}_kpc", mu_star)
 
-        self.xgass_galaxy_selection = np.logical_and(
-            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
-            M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
-        )
-        self.xcoldgass_galaxy_selection = np.logical_and(
-            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
-            M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
-        )
-
-        # Register stellar mass density in apertures
-        mu_star = M_star_projected / gal_area
-        mu_star.name = f"$M_{{*, {aperture_size} {{\\rm kpc}}}} / \\pi R_{{*, {aperture_size} {{\\rm kpc}}}}^2$"
-
-        # Atomic hydrogen mass in apertures
-        HI_mass = getattr(
-            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
-        )
-        HI_mass.name = f"HI Mass ({aperture_size} kpc)"
-
-        # Molecular hydrogen mass in apertures
-        H2_mass = getattr(
-            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
-        )
-        H2_mass.name = f"H$_2$ Mass ({aperture_size} kpc)"
-
-        # Atomic hydrogen to stellar mass in apertures
-        hi_to_stellar_mass = HI_mass / M_star
-        hi_to_stellar_mass.name = f"$M_{{\\rm HI}} / M_*$ ({aperture_size} kpc)"
-
-        # Molecular hydrogen mass to stellar mass in apertures
-        h2_to_stellar_mass = H2_mass / M_star
-        h2_to_stellar_mass.name = f"$M_{{\\rm H_2}} / M_*$ ({aperture_size} kpc)"
-
-        # Neutral H / stellar mass
-        neutral_to_stellar_mass = hi_to_stellar_mass + h2_to_stellar_mass
-        neutral_to_stellar_mass.name = (
-            f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
-        )
-
-        # Register all derived fields
-        setattr(self, f"mu_star_{aperture_size}_kpc", mu_star)
-
-        setattr(self, f"hi_to_stellar_mass_{aperture_size}_kpc", hi_to_stellar_mass)
-        setattr(self, f"h2_to_stellar_mass_{aperture_size}_kpc", h2_to_stellar_mass)
-        setattr(
-            self,
-            f"neutral_to_stellar_mass_{aperture_size}_kpc",
-            neutral_to_stellar_mass,
-        )
+            setattr(self, f"hi_to_stellar_mass_{aperture_size}_kpc", hi_to_stellar_mass)
+            setattr(self, f"h2_to_stellar_mass_{aperture_size}_kpc", h2_to_stellar_mass)
+            setattr(
+                self,
+                f"neutral_to_stellar_mass_{aperture_size}_kpc",
+                neutral_to_stellar_mass,
+            )
+            
+        except AttributeError:
+            pass
 
     return
 

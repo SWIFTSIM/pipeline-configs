@@ -136,7 +136,7 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
                 mask = L_AB > 0.0
                 m_AB[mask] = -2.5 * np.log10(m_AB[mask])
                 m_AB = unyt.unyt_array(m_AB, units="dimensionless")
-                m_AB.name = f"{band}-band magnitudes ({aperture_size} kpc)"
+                m_AB.name = f"{band}-band AB magnitudes ({aperture_size} kpc)"
                 setattr(self, f"magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
 
             except AttributeError:

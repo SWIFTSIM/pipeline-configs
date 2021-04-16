@@ -178,22 +178,3 @@ luminosity_K_function_30:
     title: K-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA K-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
-
-luminosity_Z_function_30:
-  type: "luminosityfunction"
-  legend_loc: "lower left"
-  number_of_bins: 25
-  x:
-    quantity: "derived_quantities.magnitudes_Z_band_30_kpc"
-    log: false
-    units: "dimensionless"
-    start: -25
-    end: -13.5
-  y:
-    units: 1/Mpc**3
-    start: 1e-6
-    end: 0.316 # (1e-0.5)
-  metadata:
-    title: Z-band Luminosity Function (30 kpc aperture)
-    caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA Z-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
-    section: Luminosity Function

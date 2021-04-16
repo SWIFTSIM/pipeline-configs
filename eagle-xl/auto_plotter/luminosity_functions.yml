@@ -17,6 +17,7 @@ luminosity_u_function_30:
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA u-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
   observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_u.hdf5
     - filename: GalaxyLuminosityFunction/Loveday2012_u.hdf5
 
 luminosity_g_function_30:
@@ -38,6 +39,7 @@ luminosity_g_function_30:
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA g-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
   observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_g.hdf5
     - filename: GalaxyLuminosityFunction/Loveday2012_g.hdf5
 
 luminosity_r_function_30:
@@ -59,6 +61,7 @@ luminosity_r_function_30:
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA r-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
   observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_r.hdf5
     - filename: GalaxyLuminosityFunction/Loveday2012_r.hdf5
 
 luminosity_i_function_30:
@@ -80,6 +83,7 @@ luminosity_i_function_30:
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA i-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
   observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_i.hdf5
     - filename: GalaxyLuminosityFunction/Loveday2012_i.hdf5
 
 luminosity_z_function_30:
@@ -101,6 +105,7 @@ luminosity_z_function_30:
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA z-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
   observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
     - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
 
 luminosity_Y_function_30:
@@ -121,6 +126,8 @@ luminosity_Y_function_30:
     title: Y-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA Y-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_Y.hdf5
 
 luminosity_J_function_30:
   type: "luminosityfunction"
@@ -140,6 +147,8 @@ luminosity_J_function_30:
     title: J-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA J-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_J.hdf5
 
 luminosity_H_function_30:
   type: "luminosityfunction"
@@ -159,6 +168,8 @@ luminosity_H_function_30:
     title: H-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA H-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_H.hdf5
 
 luminosity_K_function_30:
   type: "luminosityfunction"
@@ -178,3 +189,5 @@ luminosity_K_function_30:
     title: K-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA K-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_K.hdf5

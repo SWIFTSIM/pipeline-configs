@@ -16,6 +16,8 @@ luminosity_u_function_30:
     title: u-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA u-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Loveday2012_u.hdf5
 
 luminosity_g_function_30:
   type: "luminosityfunction"
@@ -35,6 +37,8 @@ luminosity_g_function_30:
     title: g-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA g-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Loveday2012_g.hdf5
 
 luminosity_r_function_30:
   type: "luminosityfunction"
@@ -54,6 +58,8 @@ luminosity_r_function_30:
     title: r-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA r-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Loveday2012_r.hdf5
 
 luminosity_i_function_30:
   type: "luminosityfunction"
@@ -73,6 +79,8 @@ luminosity_i_function_30:
     title: i-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA i-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Loveday2012_i.hdf5
 
 luminosity_z_function_30:
   type: "luminosityfunction"
@@ -92,6 +100,8 @@ luminosity_z_function_30:
     title: z-band Luminosity Function (30 kpc aperture)
     caption: 30 kpc aperture dust-free rest-frame luminosity function in the GAMA z-band, constructed using the Trayford et al. (2015) model, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Luminosity Function
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
 
 luminosity_Y_function_30:
   type: "luminosityfunction"

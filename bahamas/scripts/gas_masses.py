@@ -21,13 +21,13 @@ def get_data(filename):
 
     data = load(filename)
 
-    mass_gas = data.gas.masses.to("1e6 * Msun")
+    mass_gas = data.gas.masses.to("1e9 * Msun")
     mass_split = unyt_quantity(
         float(
             data.metadata.parameters.get("SPH:particle_splitting_mass_threshold", 0.0)
         ),
         units=data.units.mass,
-    ).to("1e6 * Msun")
+    ).to("1e9 * Msun")
 
     return mass_gas, mass_split
 
@@ -40,7 +40,7 @@ def make_single_image(
     """
 
     fig, ax = plt.subplots()
-    ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^6$ M$_\odot$]")
+    ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^9$ M$_\odot$]")
     ax.set_ylabel("PDF [-]")
     ax.semilogy()
 

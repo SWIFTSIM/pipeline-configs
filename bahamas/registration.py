@@ -22,9 +22,12 @@ This file calculates:
     + HI and H_2 masses (gas_HI_mass_Msun and gas_H2_mass_Msun).
     + baryon and gas fractions in R_(200,cr) normalized by the
         cosmic baryon fraction (baryon_fraction_true_R200, gas_fraction_true_R200).
+    + Stellar masses with an Eddington bias added, to account for the upscattering
+        from bin to bin in the stellar mass function that happens when having
+        realistic observational errors
 """
 
-aperture_sizes = [30, 100]
+aperture_sizes = [30, 50, 100]
 
 # Specific star formation rate in apertures, as well as passive fraction
 marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
@@ -123,111 +126,6 @@ for aperture_size in aperture_sizes:
 
     setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
 
-# Now HI masses
-
-try:
-    gas_mass = catalogue.masses.m_gas
-    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
-
-    HI_mass = gas_mass * H_frac * HI_frac
-    HI_mass.name = "$M_{\\rm HI}$"
-
-    setattr(self, "gas_HI_mass_Msun", HI_mass)
-except AttributeError:
-    # We did not produce these quantities.
-    setattr(
-        self,
-        "gas_HI_mass_Msun",
-        unyt.unyt_array(
-            catalogue.masses.m_gas, name="$M{\\rm HI}$ not found, showing $M_{\\rm g}$"
-        ),
-    )
-
-
-# Now H2 masses
-
-try:
-    gas_mass = catalogue.masses.m_gas
-    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
-
-    H2_mass = gas_mass * H_frac * H2_frac
-    H2_mass.name = "$M_{\\rm H_2}$"
-
-    setattr(self, "gas_H2_mass_Msun", H2_mass)
-except AttributeError:
-    # We did not produce these quantities.
-    setattr(
-        self,
-        "gas_H2_mass_Msun",
-        unyt.unyt_array(
-            catalogue.masses.m_gas, name="$M{\\rm H_2}$ not found, showing $M_{\\rm g}$"
-        ),
-    )
-
-# Now neutral H masses and fractions
-
-try:
-    gas_mass = catalogue.masses.m_gas
-    H_frac = getattr(catalogue.element_mass_fractions, "element_0")
-    HI_frac = getattr(catalogue.species_fractions, "species_0")
-    H2_frac = getattr(catalogue.species_fractions, "species_2")
-
-    HI_mass = gas_mass * H_frac * HI_frac
-    H2_mass = gas_mass * H_frac * H2_frac
-    neutral_H_mass = HI_mass + H2_mass
-    neutral_H_mass.name = "$M_{\\rm HI + H_2}$"
-
-    setattr(self, "gas_neutral_H_mass_Msun", neutral_H_mass)
-
-    for aperture_size in aperture_sizes:
-        stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-        neutral_H_fraction = neutral_H_mass / stellar_mass
-        neutral_H_fraction.name = f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
-
-        molecular_H_fraction = H2_mass / (H2_mass + stellar_mass)
-        molecular_H_fraction.name = (
-            f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc)"
-        )
-
-        setattr(self, f"gas_neutral_H_fraction_{aperture_size}_kpc", neutral_H_fraction)
-        setattr(
-            self, f"gas_molecular_H_fraction_{aperture_size}_kpc", molecular_H_fraction
-        )
-
-except AttributeError:
-    # We did not produce these quantities.
-    setattr(
-        self,
-        "gas_neutral_H_mass_Msun",
-        unyt.unyt_array(
-            catalogue.masses.m_gas,
-            name="$M_{\\rm HI + H_2}$ not found, showing $M_{\\rm g}$",
-        ),
-    )
-    # We did not produce these fractions, let's make an arrays of ones.
-    ones = unyt.unyt_array(
-        np.ones(np.size(catalogue.masses.mass_200crit)), "dimensionless"
-    )
-    for aperture_size in aperture_sizes:
-        setattr(
-            self,
-            f"gas_neutral_H_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                catalogue.masses.m_gas,
-                name="$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc) not found, showing $1$",
-            ),
-        )
-        setattr(
-            self,
-            f"gas_molecular_H_fraction_{aperture_size}_kpc",
-            unyt.unyt_array(
-                catalogue.masses.m_gas,
-                name=f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc) not found, showing $1$",
-            ),
-        )
-
 # Now baryon fractions
 
 try:
@@ -247,8 +145,13 @@ try:
     name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
     f_gas_500.name = name
 
+    f_star_500 = (M_500_star / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm star, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_star_500.name = name
+
     setattr(self, "baryon_fraction_true_R500", f_b_500)
     setattr(self, "gas_fraction_true_R500", f_gas_500)
+    setattr(self, "star_fraction_true_R500", f_star_500)
 except AttributeError:
     # We did not produce these quantities, let's make an array of ones.
     ones = unyt.unyt_array(
@@ -270,6 +173,14 @@ except AttributeError:
             name="$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
         ),
     )
+    setattr(
+        self,
+        "star_fraction_true_R500",
+        unyt.unyt_array(
+            ones,
+            name="$f_{\\rm star, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$ not found, showing $1$",
+        ),
+    )
 
 for aperture_size in aperture_sizes:
     stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
@@ -285,3 +196,16 @@ for aperture_size in aperture_sizes:
     name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
     smhm.name = name
     setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
+
+
+# Add eddington bias to stellar masses, according to Behroozi (2019)
+
+for aperture_size in aperture_sizes:
+    stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+    bias_std = np.min(np.array([0.07 + 0.071 * catalogue.z, 0.3]))
+    bias_factors = 10 ** (np.random.normal(0, bias_std, len(stellar_mass)))
+
+    stellar_mass_with_bias = unyt.unyt_array(stellar_mass * bias_factors)
+    stellar_mass_with_bias.name = f"Stellar Mass $M_*$ ({aperture_size} kpc)"
+
+    setattr(self, f"stellar_mass_eddington_{aperture_size}_kpc", stellar_mass_with_bias)

@@ -34,7 +34,7 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
     ax.loglog()
 
     log_max_Ts = []
-    
+
     for filename, name in zip(filenames, names):
         T_max = get_data(filename)
         log_T_max = np.log10(T_max)
@@ -44,17 +44,18 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
         bins = 10 ** bins
         ax.plot(bins, h, label=name)
-        
+
         log_max_Ts.append(f"{name}: {log_T_max.max():3.3f}")
-        
+
     ax.text(
         0.05,
         0.05,
-        (["Maximum $\\log_{10} T /$K"] + log_max_Ts).join("\n"),
+        "\n".join(["Maximum $\\log_{10} T /$K"] + log_max_Ts),
         ha="left",
         va="bottom",
+        transform=ax.transAxes,
     )
-    
+
     ax.legend(loc="upper right", markerfirst=False)
     ax.set_xlim(*T_bounds)
 

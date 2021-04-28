@@ -45,7 +45,7 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
         bins = 10 ** bins
         ax.plot(bins, h, label=name)
 
-        log_max_Ts.append(f"{name}: {log_T_max.max():3.3f}")
+        log_max_Ts.append(f"{name}: {log_T_max.max():.2f}")
 
     ax.text(
         0.05,

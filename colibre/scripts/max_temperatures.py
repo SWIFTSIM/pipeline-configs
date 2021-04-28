@@ -50,7 +50,7 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
     ax.text(
         0.05,
         0.05,
-        "\n".join(["Maximum $\\log_{10} T /$K"] + log_max_Ts),
+        "\n".join(["Maximum $\\log_{10} T_{\\rm max} /$K"] + log_max_Ts),
         ha="left",
         va="bottom",
         transform=ax.transAxes,

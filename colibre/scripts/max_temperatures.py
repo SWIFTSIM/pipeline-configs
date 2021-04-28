@@ -33,16 +33,29 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
     ax.set_ylabel("PDF [-]")
     ax.loglog()
 
+    log_max_Ts = []
+    
     for filename, name in zip(filenames, names):
         T_max = get_data(filename)
+        log_T_max = np.log10(T_max)
         h, bin_edges = np.histogram(
-            np.log10(T_max), range=np.log10(T_bounds), bins=250, density=True
+            log_T_max, range=np.log10(T_bounds), bins=250, density=True
         )
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
         bins = 10 ** bins
         ax.plot(bins, h, label=name)
-
-    ax.legend()
+        
+        log_max_Ts.append(f"{name}: {log_T_max.max():3.3f}")
+        
+    ax.text(
+        0.05,
+        0.05,
+        (["Maximum $\\log_{10} T /$K"] + log_max_Ts).join("\n"),
+        ha="left",
+        va="bottom",
+    )
+    
+    ax.legend(loc="upper right", markerfirst=False)
     ax.set_xlim(*T_bounds)
 
     fig.savefig(f"{output_path}/gas_max_temperatures.png")

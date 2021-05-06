@@ -4,13 +4,10 @@ Makes a BH dyn. mass vs. subgrid mass plot. Uses the swiftsimio library.
 
 import matplotlib.pyplot as plt
 import numpy as np
-import unyt
 
 from swiftsimio import load
 
-from unyt import unyt_quantity
-from matplotlib.colors import LogNorm
-from matplotlib.animation import FuncAnimation
+from unyt import unyt_quantity, unyt_array
 
 mass_bounds = [8e2, 2e9]
 
@@ -28,8 +25,8 @@ def get_data(filename):
 
     # In case no BHs are found
     except AttributeError:
-        mass_sub = unyt.unyt_array([], units="Msun")
-        mass_dyn = unyt.unyt_array([], units="Msun")
+        mass_sub = unyt_array([], units="Msun")
+        mass_dyn = unyt_array([], units="Msun")
 
     # Fetch gas particle mass
     mass_gas = data.metadata.initial_mass_table.gas.to("Solar_Mass")

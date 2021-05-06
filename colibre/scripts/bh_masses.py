@@ -4,6 +4,7 @@ Makes a BH dyn. mass vs. subgrid mass plot. Uses the swiftsimio library.
 
 import matplotlib.pyplot as plt
 import numpy as np
+import unyt
 
 from swiftsimio import load
 
@@ -21,13 +22,23 @@ def get_data(filename):
 
     data = load(filename)
 
-    mass_sub = data.black_holes.subgrid_masses.to("Msun")
-    mass_dyn = data.black_holes.dynamical_masses.to("Msun")
+    try:
+        mass_sub = data.black_holes.subgrid_masses.to("Msun")
+        mass_dyn = data.black_holes.dynamical_masses.to("Msun")
+
+    # In case no BHs are found
+    except AttributeError:
+        mass_sub = unyt.unyt_array([], units="Msun")
+        mass_dyn = unyt.unyt_array([], units="Msun")
+
+    # Fetch gas particle mass
+    mass_gas = data.metadata.initial_mass_table.gas.to("Solar_Mass")
+
+    # Fetch BH seed mass
     mass_seed = unyt_quantity(
-        float(data.metadata.parameters.get("EAGLEAGN:subgrid_seed_mass_Msun", 0.0)),
+        float(data.metadata.parameters.get("COLIBREAGN:subgrid_seed_mass_Msun", 0.0)),
         "Msun",
     )
-    mass_gas = np.min(data.gas.masses.to("Msun"))
 
     return mass_sub, mass_dyn, mass_seed, mass_gas
 
@@ -78,13 +89,19 @@ def make_single_image(
 
     for filename, name, axis in zip(filenames, names, ax.flat):
         m_sub, m_dyn, m_seed, m_gas = get_data(filename)
+
+        # Draw x=y line
         axis.plot(
             [mass_bounds[0], mass_bounds[1]],
             [mass_bounds[0], mass_bounds[1]],
             "k--",
             lw=0.2,
         )
+
+        # Indicate BH seed mass
         axis.plot([mass_bounds[0], mass_bounds[1]], [m_seed, m_seed], "k--", lw=0.2)
+
+        # Indicate gas mass resolution of the run
         axis.plot([m_gas, m_gas], [mass_bounds[0], mass_bounds[1]], "k--", lw=0.2)
         axis.scatter(m_dyn, m_sub, s=1)
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)

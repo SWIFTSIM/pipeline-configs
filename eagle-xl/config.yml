@@ -52,17 +52,17 @@ scripts:
     section: Star Formation History
     title: Star Formation History
   - filename: scripts/stellar_mass_evolution.py
-    caption: Evolution of the stellar mass plotted directly from the statistics.txt file produced by SWIFT.
+    caption: Evolution of the stellar mass plotted directly from the statistics.txt file produced by SWIFT, compared with assorted observational estimates.
     output_file: stellar_mass_evolution.png
     section: Star Formation History
     title: Stellar Mass Evolution
   - filename: scripts/HI_mass_evolution.py
-    caption: Evolution of the atomic gas mass abundance plotted directly from the statistics.txt file produced by SWIFT. The horizontal dashed line corresponds to $\Omega_b$.
+    caption: Evolution of the atomic gas mass abundance plotted directly from the statistics.txt file produced by SWIFT, compared with assorted observational estimates.
     output_file: HI_mass_evolution.png
     section: Cold Gas Evolution
     title: Atomic Gas Mass Evolution
   - filename: scripts/H2_mass_evolution.py
-    caption: Evolution of the molecular gas mass abundance plotted directly from the statistics.txt file produced by SWIFT. The horizontal dashed line corresponds to $\Omega_b$.
+    caption: Evolution of the molecular gas mass abundance plotted directly from the statistics.txt file produced by SWIFT.
     output_file: H2_mass_evolution.png
     section: Cold Gas Evolution
     title: Molecular Gas Mass Evolution

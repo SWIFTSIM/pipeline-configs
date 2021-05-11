@@ -4,6 +4,7 @@ Makes a histogram of the number of AGN thermal injections. Uses the swiftsimio l
 
 import matplotlib.pyplot as plt
 import numpy as np
+from unyt import unyt_array
 
 from swiftsimio import load
 
@@ -17,7 +18,11 @@ def get_data(filename):
 
     data = load(filename)
 
-    num_of_agn_thermal_injections = data.black_holes.number_of_heating_events
+    try:
+        num_of_agn_thermal_injections = data.black_holes.number_of_heating_events
+    # In case the run has no BHs
+    except AttributeError:
+        num_of_agn_thermal_injections = unyt_array([], units="Dimensionless")
 
     # Take only those BHs that have had at least one AGN thermal injection event
     # (i.e. heated at least one gas particle)

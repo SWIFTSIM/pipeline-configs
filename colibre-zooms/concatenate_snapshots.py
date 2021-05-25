@@ -256,9 +256,12 @@ def concatenate_snapshots(
 
                     # The field has already been created. Use resize to append new data
                     else:
+                        # Header deserves special care
                         if group == "Header":
                             print("Updating particle numbers in the header...")
 
+                            # We want to update the total number of particles saved
+                            # in the header
                             for attr in ["NumPart_ThisFile", "NumPart_Total"]:
                                 concatenated_data[group].attrs[attr] = [
                                     x + y
@@ -317,9 +320,24 @@ def concatenate_snapshots(
                                     f"Skipping resize..."
                                 )
 
-    # Change header name to 'name'
-    concatenated_data["Parameters"].attrs["MetaData:run_name"] = name
-    concatenated_data["Header"].attrs["RunName"] = name
+    # Record how many zooms were concatenated. Also Change header name to 'name'
+    if "Header" in groups:
+        concatenated_data["Header"].attrs.create("NumberOfZooms", len(paths))
+        try:
+            concatenated_data["Header"].attrs["RunName"] = name
+        except AttributeError:
+            print("Can't find attribute 'RunName' in 'Header'. Creating"
+                  "one...")
+            concatenated_data["Header"].attrs.create("RunName", name)
+
+    if "Parameters" in groups:
+        try:
+            concatenated_data["Parameters"].attrs["MetaData:run_name"] = name
+        except AttributeError:
+            print("Can't find attribute 'MetaData:run_name' in 'Parameters'. Creating"
+                  "one...")
+            concatenated_data["Parameters"].attrs.create("MetaData:run_name", name)
+
     concatenated_data.close()
 
     print("The concatenated data have been generated!")

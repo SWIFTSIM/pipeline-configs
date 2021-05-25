@@ -3,6 +3,7 @@
 <h4>Basic</h4>
 <ul>
     <li>Box-size: {{ data.metadata.boxsize[0] | format_number }}</li>
+    <li>Number of concatenated zooms: {{ data.metadata.header | get_if_present_int("NumberOfZooms") }}</li>
     <li>Dark matter particle mass:
         {{ data.metadata.initial_mass_table.dark_matter.to("Solar_Mass") | format_number }}</li>
     <li>Gas particle mass: {{ data.metadata.initial_mass_table.gas.to("Solar_Mass") | format_number }}</li>

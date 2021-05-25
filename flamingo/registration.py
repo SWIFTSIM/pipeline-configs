@@ -209,3 +209,30 @@ for aperture_size in aperture_sizes:
     stellar_mass_with_bias.name = f"Stellar Mass $M_*$ ({aperture_size} kpc)"
 
     setattr(self, f"stellar_mass_eddington_{aperture_size}_kpc", stellar_mass_with_bias)
+
+def register_star_magnitudes(self, catalogue, aperture_sizes):
+
+    bands = ["i", "g", "r", "H", "u", "J", "Y", "K", "z", "Z"]
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+        for band in bands:
+            try:
+
+                L_AB = getattr(
+                    catalogue.stellar_luminosities,
+                    f"{band}_luminosity_{aperture_size}_kpc",
+                )
+                m_AB = np.copy(L_AB)
+                mask = L_AB > 0.0
+                m_AB[mask] = -2.5 * np.log10(m_AB[mask])
+                m_AB = unyt.unyt_array(m_AB, units="dimensionless")
+                m_AB.name = f"{band}-band AB magnitudes ({aperture_size} kpc)"
+                setattr(self, f"magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
+
+            except AttributeError:
+                pass
+
+    return
+
+register_star_magnitudes(self, catalogue, aperture_sizes)

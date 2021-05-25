@@ -173,10 +173,12 @@ def concatenate_snapshots(
     # Keep record which files are concatenated
     concatenated_data.create_group("ConcatenatedFiles")
 
+    # Loop over input files
     for count, path in enumerate(paths, start=1):
         print(f"\n Opening zoom snapshot {count}...")
         with h5.File(path, "r") as data:
 
+            # Keep track of what has been processed
             concatenated_data["ConcatenatedFiles"].attrs.create(
                 path, data["Parameters"].attrs["MetaData:run_name"]
             )
@@ -193,9 +195,8 @@ def concatenate_snapshots(
                 # Create new groups based on the data from the first processed snapshot
                 if group in groups:
 
-                    # Create new groups and fields based on the data from the first
-                    # processed snapshot
                     if count == 1:
+
                         # Create groups
                         concatenated_data.create_group(group)
 
@@ -235,8 +236,9 @@ def concatenate_snapshots(
                                 )
                                 concatenated_data[group].create_group(field)
 
-                                # Field 'NamedColumns' has subfields and no attribures
-                                # and thus needs special care...
+                                # Unlike other fields, field 'NamedColumns' has
+                                # subfields and does not have attributes. It thus needs
+                                # special care...
                                 if field == "NamedColumns":
                                     print("Processing 'NamedColumns'...")
                                     
@@ -261,7 +263,7 @@ def concatenate_snapshots(
                             print("Updating particle numbers in the header...")
 
                             # We want to update the total number of particles saved
-                            # in the header
+                            # in the header (for each particle type)
                             for attr in ["NumPart_ThisFile", "NumPart_Total"]:
                                 concatenated_data[group].attrs[attr] = [
                                     x + y
@@ -320,7 +322,7 @@ def concatenate_snapshots(
                                     f"Skipping resize..."
                                 )
 
-    # Record how many zooms were concatenated. Also Change header name to 'name'
+    # Record how many zooms were concatenated. Also change header name to 'name'
     if "Header" in groups:
         concatenated_data["Header"].attrs.create("NumberOfZooms", len(paths))
         try:
@@ -398,7 +400,7 @@ if __name__ == "__main__":
     paths = load_snapshots(path=config.input_path, filename_patterns=config.pattern)
 
     # Relevant groups to look for for concatenation. We don't want to concatenate data
-    # that we are going going to plot. That is why below there are so many empty lists
+    # that we are not going to plot. That is why below there are so many empty lists
     relevant_groups = {
         "PartType0": fields_gas,
         "PartType1": [],

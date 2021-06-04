@@ -99,6 +99,9 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
     )  # in km/s
 
+    # Total number of objects received SNII kinetic energy
+    Num_of_kicked_parts_total = len(gas_SNII_redshifts) + len(stars_SNII_redshifts)
+
     for redshift, ax in ax_dict.items():
         data = np.concatenate(
             [
@@ -108,21 +111,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
 
         H, _ = np.histogram(data, bins=SNII_v_kick_bins)
-
-        # Total number of particles kicked by SNIIe
-        Num_of_obj = np.sum(H)
-
-        # Check to avoid division by zero
-        if Num_of_obj:
-            y_points = H / log_SNII_v_kick_bin_width / Num_of_obj
-        else:
-            y_points = np.zeros_like(H)
+        y_points = H / log_SNII_v_kick_bin_width / Num_of_kicked_parts_total
 
         ax.plot(
-            SNII_v_kick_centres,
-            y_points,
-            label=name,
-            color=f"C{color}",
+            SNII_v_kick_centres, y_points, label=name, color=f"C{color}",
         )
         ax.axvline(
             np.median(data),

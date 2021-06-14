@@ -166,4 +166,8 @@ scripts:
     title: Wall-clock time per time-bin
     section: Run Performance
     output_file: wallclock_timebin_hist.png
-
+  - filename: scripts/stellar_median_profiles.py
+    caption: Radial distribution of stellar mass in bins of halo mass.
+    output_file: stellar_mass_profiles.png
+    section: Sizes
+    title: Stellar mass profiles

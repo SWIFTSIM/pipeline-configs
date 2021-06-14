@@ -67,11 +67,11 @@ def main():
     # Start by plotting comparison profiles
     comp_dir = os.path.dirname(os.path.realpath(__file__)) + '/comparison_data/'
     comp_sets = {
-        #'EAGLE-Ref-L25': ('EAGLE-Ref-L25_stellar_profiles.hdf5', 'lightgrey'),
+        'EAGLE-Ref-L25': ('EAGLE-Ref-L25_stellar_profiles.hdf5', 'lightgrey'),
         #'EAGLE-NoAGN-L25': ('EAGLE-NoAGN-L25_stellar_profiles.hdf5', 'powderblue'),
         #'EAGLE-Ref-L100': ('EAGLE-Ref-L100_stellar_profiles.hdf5', 'dimgrey'),
-        #'TNG100-1': ('IllustrisTNG-100-1_stellar_profiles.hdf5', 'rosybrown'),
-        'TNG100-2': ('IllustrisTNG-100-2_stellar_profiles.hdf5', 'peachpuff'),
+        'TNG100-1': ('IllustrisTNG-100-1_stellar_profiles.hdf5', 'rosybrown'),
+        #'TNG100-2': ('IllustrisTNG-100-2_stellar_profiles.hdf5', 'peachpuff'),
     }
 
     set_lines = []

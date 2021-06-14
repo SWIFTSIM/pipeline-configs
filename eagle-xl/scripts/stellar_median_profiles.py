@@ -33,7 +33,6 @@ yrange = ((0.0, 1.2), (0.0, 15.8), (0.0, 69.5))
 def main():
     """Main function to create profiles."""
 
-    print("Parsing input arguments...")
     arguments = ScriptArgumentParser(description="Stellar mass profiles")
     plt.style.use(arguments.stylesheet_location)
     names = arguments.name_list
@@ -61,7 +60,6 @@ def main():
     ]
             
     # Set up plot axes
-    print("Set up axes...")
     fig, axes = setup_axes(snapshots[0])
 
     # Start by plotting comparison profiles
@@ -84,7 +82,6 @@ def main():
             z_best = redshifts[ind_best]
             set_labels[iiset] = set_labels[iiset] + f' (z = {z_best:.1f})'
             grp_name = f'z_{z_best:.3f}'.replace('.', 'p')
-            print(f"Using group '{grp_name}'...")
             prof = f[f'{grp_name}/Profiles'][...]
             edges = f[f'{grp_name}/Edges'][...]
             prof_r = (edges[:-1] + edges[1:])/2
@@ -300,6 +297,4 @@ def process_snapshot(snapshot, catalogue, catalogue_file, axes, colour,
 
         
 if __name__ == '__main__':
-    print("Creating stellar profiles...")
     main()
-    print("Done!")

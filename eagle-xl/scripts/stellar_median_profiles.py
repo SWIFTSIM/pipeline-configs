@@ -36,7 +36,6 @@ def main():
     print("Parsing input arguments...")
     arguments = ScriptArgumentParser(description="Stellar mass profiles")
     plt.style.use(arguments.stylesheet_location)
-    colours = arguments.colour_list
     names = arguments.name_list
     
     # Set up the SWIFTsimIO snapshot instances
@@ -68,11 +67,11 @@ def main():
     # Start by plotting comparison profiles
     comp_dir = os.path.dirname(os.path.realpath(__file__)) + '/comparison_data/'
     comp_sets = {
-        'EAGLE-Ref-L25': ('EAGLE-Ref-L25_stellar_profiles.hdf5', 'lightgrey'),
+        #'EAGLE-Ref-L25': ('EAGLE-Ref-L25_stellar_profiles.hdf5', 'lightgrey'),
         #'EAGLE-NoAGN-L25': ('EAGLE-NoAGN-L25_stellar_profiles.hdf5', 'powderblue'),
-        'EAGLE-Ref-L100': ('EAGLE-Ref-L100_stellar_profiles.hdf5', 'dimgrey'),
-        'TNG100-1': ('IllustrisTNG-100-1_stellar_profiles.hdf5', 'rosybrown'),
-        #'TNG100-2': ('IllustrisTNG-100-2_stellar_profiles.hdf5', 'peachpuff'),
+        #'EAGLE-Ref-L100': ('EAGLE-Ref-L100_stellar_profiles.hdf5', 'dimgrey'),
+        #'TNG100-1': ('IllustrisTNG-100-1_stellar_profiles.hdf5', 'rosybrown'),
+        'TNG100-2': ('IllustrisTNG-100-2_stellar_profiles.hdf5', 'peachpuff'),
     }
 
     set_lines = []
@@ -101,12 +100,8 @@ def main():
     sim_lines = []
     for isnap, (snapshot, catalogue, catalogue_file, sim_name) in enumerate(
             zip(snapshots, catalogues, catalogue_files, names)):
-        colour = None
-        if isnap < len(colours):
-            if colours[isnap] is not None:
-                colour = colours[isnap]
 
-        process_snapshot(snapshot, catalogue, catalogue_file, axes, colour,
+        process_snapshot(snapshot, catalogue, catalogue_file, axes, f'C{isnap}',
                          sim_lines, sim_name, isnap)
 
     # Add legends

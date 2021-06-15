@@ -67,7 +67,8 @@ def main():
     comp_sets = {
         'EAGLE-Ref-L25': ('EAGLE-Ref-L25_stellar_profiles.hdf5', 'lightgrey'),
         #'EAGLE-NoAGN-L25': ('EAGLE-NoAGN-L25_stellar_profiles.hdf5', 'powderblue'),
-        #'EAGLE-Ref-L100': ('EAGLE-Ref-L100_stellar_profiles.hdf5', 'dimgrey'),
+        #'EAGLE-FBconst-L50': ('EAGLE-FBconst-L50_stellar_profiles.hdf5', 'plum'),
+        'EAGLE-Ref-L100': ('EAGLE-Ref-L100_stellar_profiles.hdf5', 'dimgrey'),
         'TNG100-1': ('IllustrisTNG-100-1_stellar_profiles.hdf5', 'rosybrown'),
         #'TNG100-2': ('IllustrisTNG-100-2_stellar_profiles.hdf5', 'peachpuff'),
     }

@@ -214,7 +214,10 @@ def process_snapshot(snapshot, catalogue, catalogue_file, axes, colour,
     star_haloes = cx.find_vr_haloes(ids, catalogue_file)
 
     # Extract relevant properties from VR catalogue
-    vr_mstar = catalogue.masses.m_star_30kpc.to('Msun').value
+    try:
+        vr_mstar = catalogue.masses.m_star_30kpc.to('Msun').value
+    except AttributeError:
+        vr_mstar = catalogue.apertures.mass_star_30_kpc.to('Msun').value
     vr_x = catalogue.positions.xcminpot.to('Mpc').value
     vr_y = catalogue.positions.ycminpot.to('Mpc').value
     vr_z = catalogue.positions.zcminpot.to('Mpc').value

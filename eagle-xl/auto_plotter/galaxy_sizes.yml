@@ -163,9 +163,7 @@ stellar_mass_projected_galaxy_size_active_only_100:
     section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/VanDerWel_blue.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_blue.hdf5
     - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_active_only_30:
@@ -202,9 +200,7 @@ stellar_mass_projected_galaxy_size_active_only_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/VanDerWel_blue.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_blue.hdf5
     - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_passive_only_100:
@@ -240,9 +236,7 @@ stellar_mass_projected_galaxy_size_passive_only_100:
     section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/VanDerWel_red.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_red.hdf5
     - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
 
 stellar_mass_projected_galaxy_size_passive_only_30:
@@ -279,8 +273,6 @@ stellar_mass_projected_galaxy_size_passive_only_30:
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/VanDerWel_red.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_red.hdf5
     - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
 

@@ -6,11 +6,11 @@ stellar_mass_function_30:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
     caption: 30 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. For 30kpc look at the Li and White (2009) data.
@@ -30,11 +30,11 @@ adaptive_stellar_mass_function_30:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture, adaptive)
     caption: 30 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. For 30kpc look at the Li and White (2009) data.
@@ -57,11 +57,11 @@ stellar_mass_function_active_only_30:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
     caption: Only for active galaxies. For 30kpc look at the Li and White (2009) data.
@@ -84,11 +84,11 @@ stellar_mass_function_passive_only_30:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
     caption: Only for passive galaxies. For 30kpc look at the Li and White (2009) data.
@@ -108,11 +108,11 @@ stellar_mass_function_100:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (100 kpc aperture)
     caption: 100 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex.
@@ -131,11 +131,11 @@ adaptive_stellar_mass_function_100:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (100 kpc aperture, adaptive)
     caption: 100 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
@@ -157,11 +157,11 @@ stellar_mass_function_passive_only_100:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (100 kpc aperture)
     caption: Only for passive galaxies.
@@ -183,11 +183,11 @@ stellar_mass_function_active_only_100:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (100 kpc aperture)
     caption: Only for active galaxies.
@@ -206,11 +206,11 @@ stellar_mass_function_50:
     quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (50 kpc aperture)
     caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. For 50kpc, look at D'Souza (2015) data.
@@ -230,11 +230,11 @@ adaptive_stellar_mass_function_50:
     quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive)
     caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. For 50kpc, look at D'Souza (2015) data.
@@ -253,11 +253,11 @@ stellar_mass_eddington_function_30:
     quantity: "derived_quantities.stellar_mass_eddington_30_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (30 kpc aperture) with Eddington bias
     caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. Includes Eddington bias.
@@ -277,11 +277,11 @@ stellar_mass_eddington_function_50:
     quantity: "derived_quantities.stellar_mass_eddington_50_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (50 kpc aperture) with Eddington bias
     caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. Includes Eddington bias.
@@ -301,11 +301,11 @@ stellar_mass_eddington_function_100:
     quantity: "derived_quantities.stellar_mass_eddington_100_kpc"
     units: Solar_Mass
     start: 1e9
-    end: 1e13
+    end: 2e12
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 2e-2 #0.316 # (1e-0.5)
   metadata:
     title: Stellar Mass Function (100 kpc aperture) with Eddington bias
     caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. Includes Eddington bias.

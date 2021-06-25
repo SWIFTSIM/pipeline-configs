@@ -21,6 +21,7 @@ stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 adaptive_stellar_mass_function_30:
   type: "adaptivemassfunction"
@@ -45,6 +46,7 @@ adaptive_stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 adaptive_stellar_mass_function_active_only_30:
   type: "adaptivemassfunction"
@@ -72,6 +74,7 @@ adaptive_stellar_mass_function_active_only_30:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 adaptive_stellar_mass_function_passive_only_30:
   type: "adaptivemassfunction"
@@ -99,6 +102,7 @@ adaptive_stellar_mass_function_passive_only_30:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 stellar_mass_function_100:
   type: "massfunction"
@@ -122,6 +126,7 @@ stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 adaptive_stellar_mass_function_100:
   type: "adaptivemassfunction"
@@ -145,6 +150,7 @@ adaptive_stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 adaptive_stellar_mass_function_passive_only_100:
   type: "adaptivemassfunction"
@@ -171,6 +177,7 @@ adaptive_stellar_mass_function_passive_only_100:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 adaptive_stellar_mass_function_active_only_100:
   type: "adaptivemassfunction"
@@ -197,3 +204,4 @@ adaptive_stellar_mass_function_active_only_100:
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5

@@ -1,0 +1,282 @@
+stellar_mass_galaxy_size_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalfmass_star_100_kpc"
+    units: kpc
+    start: 3e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (100 kpc aperture)
+    caption: Uses a 100 kpc 3D aperture.
+    section: Sizes
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Trujillo2020.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
+
+stellar_mass_galaxy_size_30:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalfmass_star_30_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (30 kpc aperture)
+    caption: Uses a 30 kpc 3D aperture.
+    section: Sizes
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Trujillo2020.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
+
+stellar_mass_projected_galaxy_size_100:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
+    caption: Uses stellar sizes calculated from a projected distribution within a 100 kpc aperture.
+    section: Sizes
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+
+stellar_mass_projected_galaxy_size_30:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
+    caption: Uses stellar sizes calculated from a projected distribution within a 100 kpc aperture.
+    section: Sizes
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+
+stellar_mass_projected_galaxy_size_active_only_100:
+  type: "scatter"
+  comment: "Active only"
+  comment_loc: "lower left"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
+    caption: Only shows active galaxies defined based on their sSFRs.
+    section: Sizes
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
+
+stellar_mass_projected_galaxy_size_active_only_30:
+  type: "scatter"
+  comment: "Active only"
+  comment_loc: "lower left"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_30_kpc"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
+    caption: Only shows active galaxies defined based on their sSFRs.
+    section: Sizes
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
+
+stellar_mass_projected_galaxy_size_passive_only_100:
+  type: "scatter"
+  comment: "Passive only"
+  comment_loc: "lower left"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_passive_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
+    caption: Only shows passive galaxies defined based on their sSFRs.
+    section: Sizes
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
+
+stellar_mass_projected_galaxy_size_passive_only_30:
+  type: "scatter"
+  comment: "Passive only"
+  comment_loc: "lower left"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_passive_30_kpc"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
+    caption: Only shows passive galaxies defined based on their sSFRs.
+    section: Sizes
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
+    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
+

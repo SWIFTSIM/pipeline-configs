@@ -1,0 +1,172 @@
+# Example configuration file for a COLIBRE-zoom simulation
+
+# Location of your other .yml files that are passed to the
+# velociraptor auto plotter (these describe your scaling)
+# relation figures. Also required is the registration file
+# in the case where you have non-catalogue properties
+# used in the autoplotter.
+auto_plotter_directory: auto_plotter
+auto_plotter_registration: registration.py
+
+# Location of the 'observational data' repository and its compiled
+# contents.
+observational_data_directory: ../observational_data
+
+# Style sheet to be used throughout with plotting
+matplotlib_stylesheet: mnras.mplstyle
+
+# Jinja2 template that gets fed the swiftsimio metadata
+# object for you to describe the run with.
+description_template: description.html
+
+# Location and description of additional figures
+scripts:
+  - filename: scripts/density_temperature.py
+    caption: Density-temperature diagram. If present, dashed line represents the entropy floor (equation of state).
+    output_file: density_temperature.png
+    section: Density-Temperature
+    title: Density-Temperature
+  - filename: scripts/density_temperature_sf_fraction.py
+    caption: Density-temperature diagram shaded by the mass fraction of the gas whose instantaneous star formation rate is greater than zero.
+    output_file: density_temperature_sf_fraction.png
+    section: Density-Temperature
+    title: Density-Temperature (Star Forming Gas)
+  - filename: scripts/density_temperature_metals.py
+    caption: Density-temperature diagram with the pixel value weighted by the mean logarithmic metal mass fraction (absolute) in that bin. Medians are not used due to their computational complexity. If present, dashed line represents the entropy floor (equation of state).
+    output_file: density_temperature_metals.png
+    section: Density-Temperature
+    title: Density-Temperature (Metals)
+  - filename: scripts/density_temperature_dust.py
+    caption: Density-temperature diagram with the pixel value weighted by the mean logarithmic dust mass fraction in that bin. Medians are not used due to their computational complexity.
+    output_file: density_temperature_dust.png
+    section: Density-Temperature
+    title: Density-Temperature (Dust)
+  - filename: scripts/density_temperature_dust_to_metals.py
+    caption: Density-temperature diagram with the pixel value the ratio of dust to metals for the particles within that bin (i.e. the values are binned weighted by dust, then by metals, and those two grids are divided to produce the dust to metals ratio). Only particles with a metal mass fraction of $Z > 10^{-8}$ are plotted.
+    output_file: density_temperature_dust_to_metals.png
+    section: Density-Temperature
+    title: Density-Temperature (Dust / Metals)
+  - filename: scripts/density_temperature_dust2metal.py
+    caption: Density-temperature diagram shaded by the total fraction of metals in the dust phase.
+    output_file: density_temperature_dust2metal.png
+    section: Density-Temperature
+    title: Dust-to-metal Ratio
+    additional_arguments:
+      quantity_type: hydro
+  - filename: scripts/density_internal_energy.py
+    caption: Density-Internal Energy diagram. If present, dashed line represents the entropy floor (equation of state).
+    output_file: density_internal_energy.png
+    section: Density-Temperature
+    title: Density-Internal Energy
+  - filename: scripts/density_pressure.py
+    caption: Density-pressure diagram. If present, dashed line represents the entropy floor (equation of state).
+    output_file: density_pressure.png
+    section: Density-Temperature
+    title: Density-Pressure
+  - filename: scripts/metallicity_distribution.py
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars. If present, dashed line represents the entropy floor (equation of state).
+    output_file: metallicity_distribution.png
+    section: Metal Mass Fractions
+    title: Metal Mass Fraction Distribution
+  - filename: scripts/birth_density_distribution.py
+    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for f_t=10.
+    title: Stellar Birth Densities
+    section: Stellar Birth Densities
+    output_file: birth_density_distribution.png
+  - filename: scripts/birth_density_metallicity.py
+    caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin.
+    title: Stellar Birth Densities-Metallicity
+    section: Stellar Birth Densities
+    output_file: birth_density_metallicity.png
+  - filename: scripts/birth_density_redshift.py
+    caption: Stellar birth densities vs birth redshift diagram. The pixel colour indicates the number of stellar particles in the pixel.
+    title: Stellar Birth Densities-Birth Redshift
+    section: Stellar Birth Densities
+    output_file: birth_density_redshift.png
+  - filename: scripts/birth_metallicity_redshift.py
+    caption: Stellar metallicity vs birth redshift diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth redshift, particles with metallicities lower than the smallest value along the X axis are placed in the lowest-metallicity bin.
+    title: Stellar Metallicity-Birth Redshift
+    section: Stellar Birth Densities
+    output_file: metallicity_redshift.png
+  - filename: scripts/last_SNII_density_distribution.py
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for $f_t=10$.
+    title: Density of the gas heated by SNII
+    section: Feedback Densities
+    output_file: SNII_density_distribution.png
+  - filename: scripts/last_AGN_density_distribution.py
+    caption: Distributions of the gas densities recorded when the gas was last heated by AGN, split by redshift. The y axis shows the number of AGN-heated gas particles per bin divided by the bin width and by the total of AGN-heated gas particles. The dashed vertical lines show the median AGN gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for $f_t=10$.
+    title: Density of the gas heated by AGN
+    section: Feedback Densities
+    output_file: AGN_density_distribution.png
+  - filename: scripts/bh_masses.py
+    caption: Relation between black hole particle (dynamical) masses and subgrid masses. The vertical dashed lines shows the primordial gas particle mass and the horizontal dashed lines corresponds to the black hole seed mass.
+    output_file: bh_masses.png
+    section: Black Holes
+    title: Black Hole Dynanmical and Subgrid Masses
+  - filename: scripts/gas_masses.py
+    caption: Gas Particle Masses with the threshold for splitting indicated by the vertical dashed line.
+    output_file: gas_masses.png
+    section: Histograms
+    title: Gas Particle Masses
+  - filename: scripts/gas_smoothing_lengths.py
+    caption: Gas Particle Comoving Smoothing Lengths with the minimal smoothing length indicated by the vertical dashed line.
+    output_file: gas_smoothing_lengths.png
+    section: Histograms
+    title: Gas Particle Smoothing Lengths
+  - filename: scripts/number_of_agn_thermal_injections.py
+    caption: The cumulative number of black holes (summed from right to left) with a given total number of thermal energy injections (less than or equal to the number of particles heated) the black hole has had throughout the simulation.
+    output_file: num_agn_thermal_injections.png
+    section: Black Holes
+    title: Cumulative number of AGN thermal injections
+  - filename: scripts/max_temperatures.py
+    caption: Maximal temperature recorded by gas particles throughout the entire simulation.
+    output_file: gas_max_temperatures.png
+    section: Maximal Temperatures
+    title: Maximal Temperature reached by gas particles
+  - filename: scripts/max_temperature_redshift.py
+    caption: The maximal temperatures reached by all star and gas particles (density given by the colour map) against the redshift at which they were at that temperature.
+    output_file: max_temperature_redshift.png
+    section: Maximal Temperatures
+    title: Maximal Temperature-Redshift
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by H$_2$ mass fraction. The fraction is computed as the H$_2$ mass contained in each cell over the mass of gas in that cell.
+    output_file: subgrid_density_temperature_H2.png
+    section: Hydrogen Phase Density-Temperature
+    title: H$_2$
+    additional_arguments:
+      hydrogen_species: H2
+      quantity_type: subgrid
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by HI mass fraction. The fraction is computed as the HI mass contained in each cell over the mass of gas in that cell.
+    output_file: subgrid_density_temperature_HI.png
+    section: Hydrogen Phase Density-Temperature
+    title: HI
+    additional_arguments:
+      hydrogen_species: HI
+      quantity_type: subgrid
+  - filename: scripts/density_temperature_species.py
+    caption: Density-temperature diagram shaded by HII mass fraction. The fraction is computed as the HII mass contained in each cell over the mass of gas in that cell.
+    output_file: subgrid_density_temperature_HII.png
+    section: Hydrogen Phase Density-Temperature
+    title: HII
+    additional_arguments:
+      hydrogen_species: HII
+      quantity_type: subgrid
+  - filename: scripts/density_species_interp.py
+    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function opf gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+    output_file: density_vs_species_fraction.png
+    section: Hydrogen Phases
+    title: Hydrogen Phase Fractions
+    additional_arguments:
+      cooling_tables: /cosma7/data/dp004/wmfw23/colibre_dust/coolingtables/UV_dust1_CR1_G1_shield1.hdf5
+      quantity_type: hydro
+  - filename: scripts/last_SNII_kick_velocity_distribution.py
+    caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity.
+    output_file: SNII_last_kick_velocity_distribution.png
+    section: Feedback kick velocities
+    title: Kick velocity distribution at last SNII
+  - filename: scripts/max_SNII_kick_velocities.py
+    caption: Maximal SNII kick velocities by experienced by particles in SNII kinetic feedback throughout the entire simulation.
+    output_file: SNII_maximal_kick_velocities.png
+    section: Feedback kick velocities
+    title: Maximal SNII kick velocity

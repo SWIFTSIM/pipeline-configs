@@ -96,6 +96,8 @@ halo_mass_black_hole_mass:
     title: Halo Mass-Black Hole Mass relation
     caption: Presented for comparison between schemes as halo mass varies significantly less between models and runs.
     section: Black Holes
+  observational_data:
+    - filename: HaloMassBlackHoleMass/Marasco2021_Data.hdf5
 
 
 stellar_veldisp_black_hole_mass_10:

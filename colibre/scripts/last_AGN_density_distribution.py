@@ -164,6 +164,9 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         T_K=AGN_heating_temperature, M_gas=M_gas.value, N_ngb=N_ngb_target, X_H=X_H
     )
 
+    # Total number of objects received AGN energy
+    Num_of_heated_parts_total = len(gas_AGN_redshifts) + len(stars_AGN_redshifts)
+
     for redshift, ax in ax_dict.items():
         data = np.concatenate(
             [
@@ -173,21 +176,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
 
         H, _ = np.histogram(data, bins=AGN_density_bins)
-
-        # Total number AGN-heated gas particles
-        Num_of_obj = np.sum(H)
-
-        # Check to avoid division by zero
-        if Num_of_obj:
-            y_points = H / log_AGN_density_bin_width / Num_of_obj
-        else:
-            y_points = np.zeros_like(H)
+        y_points = H / log_AGN_density_bin_width / Num_of_heated_parts_total
 
         ax.plot(
-            AGN_density_centers,
-            y_points,
-            label=name,
-            color=f"C{color}",
+            AGN_density_centers, y_points, label=name, color=f"C{color}",
         )
         ax.axvline(
             np.median(data),
@@ -199,11 +191,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
         # Add the DV&S2012 line
         ax.axvline(
-            n_crit,
-            color=f"C{color}",
-            linestyle="dotted",
-            zorder=-10,
-            alpha=0.5,
+            n_crit, color=f"C{color}", linestyle="dotted", zorder=-10, alpha=0.5,
         )
 
 axes[0].legend(loc="upper right", markerfirst=False)

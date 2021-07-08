@@ -162,9 +162,6 @@ stellar_mass_specific_sfr_100:
     end:
       value: 1e12
       units: solar_mass
-    lower:
-      value: 1.01e-11
-      units: 1 / year
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (100 kpc)
     caption: All galaxies are included in the median line.

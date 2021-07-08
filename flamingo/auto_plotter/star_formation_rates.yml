@@ -138,6 +138,71 @@ stellar_mass_specific_sfr_active_only_30:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
 
+stellar_mass_specific_sfr_100:
+  type: "2dhistogram"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: solar_mass
+    start: 1e9
+    end: 1e13
+  y:
+    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    units: 1 / gigayear
+    start: 0.5e-3
+    end: 3e0
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e9
+      units: solar_mass
+    end:
+      value: 1e13
+      units: solar_mass
+  metadata:
+    title: Specific Star Formation Rate - Stellar Mass (100 kpc)
+    caption: All galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
+    section: Star Formation Rates
+  observational_data:
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+
+stellar_mass_specific_sfr_30:
+  type: "2dhistogram"
+  legend_loc: "lower left"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: solar_mass
+    start: 1e9
+    end: 1e13
+  y:
+    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    units: 1 / gigayear
+    start: 0.5e-3
+    end: 3e0
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e9
+      units: solar_mass
+    end:
+      value: 1e13
+      units: solar_mass
+  metadata:
+    title: Specific Star Formation Rate - Stellar Mass (30 kpc)
+    caption: All galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
+    section: Star Formation Rates
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+
 halo_mass_specific_sfr_30:
   type: "2dhistogram"
   selection_mask: "derived_quantities.is_active_30_kpc"

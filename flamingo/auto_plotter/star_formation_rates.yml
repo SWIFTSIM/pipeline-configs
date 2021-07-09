@@ -61,7 +61,7 @@ stellar_mass_sfr_100:
   observational_data:
     - filename: GalaxyStellarMassStarFormationRate/Davies2016_z0p1.hdf5
 
-stellar_mass_specific_sfr_active_only_100:
+stellar_mass_specific_sfr_100:
   type: "2dhistogram"
   selection_mask: "derived_quantities.is_active_100_kpc"
   comment: "Active only"
@@ -99,7 +99,7 @@ stellar_mass_specific_sfr_active_only_100:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
 
-stellar_mass_specific_sfr_active_only_30:
+stellar_mass_specific_sfr_30:
   type: "2dhistogram"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.is_active_30_kpc"
@@ -138,9 +138,9 @@ stellar_mass_specific_sfr_active_only_30:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
 
-stellar_mass_specific_sfr_100:
+stellar_mass_specific_sfr_with_passive_100:
   type: "2dhistogram"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  legend_loc: "lower left"
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
@@ -170,7 +170,7 @@ stellar_mass_specific_sfr_100:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
 
-stellar_mass_specific_sfr_30:
+stellar_mass_specific_sfr_with_passive_30:
   type: "2dhistogram"
   legend_loc: "lower left"
   x:

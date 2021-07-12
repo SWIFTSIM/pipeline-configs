@@ -250,14 +250,14 @@ def plot_abundances(snapshot_filename, observations_directory, output_path, name
     ym = [np.median(O_Fe[ind == i]) for i in range(1, len(bins)) if len(O_Fe[ind == i]) > 10]
     plt.plot(xm, ym, '-', lw=1.5, color='black')
 
-    plt.text(-1.9, 2.6, name+' $z$=%0.2f' % redshift)
+    plt.text(-6.5, 2.6, name+' $z$=%0.2f' % redshift)
 
     plt.xlabel("[Fe/H]", labelpad=2)
     plt.ylabel("[O/Fe]", labelpad=2)
     plt.axis([-7.2, 2, -2, 3])
     plt.legend(loc=[0.05, 0.02], labelspacing=0.1, handlelength=1.5, handletextpad=0.1, frameon=False, ncol=3,
                columnspacing=0.02)
-    plt.savefig(f"{output_path}/"+name+"_FeH_OFe.png", dpi=200)
+    plt.savefig(f"{output_path}/FeH_OFe.png", dpi=200)
 
     ###########################################################################
 
@@ -284,14 +284,14 @@ def plot_abundances(snapshot_filename, observations_directory, output_path, name
     ym = [np.median(Mg_Fe[ind == i]) for i in range(1, len(bins)) if len(Mg_Fe[ind == i]) > 10]
     plt.plot(xm, ym, '-', lw=1.5, color='black')
 
-    plt.text(-1.9, 2.6, name+' $z$=%0.2f' % redshift)
+    plt.text(-6.5, 2.6, name+' $z$=%0.2f' % redshift)
 
     plt.xlabel("[Fe/H]", labelpad=2)
     plt.ylabel("[Mg/Fe]", labelpad=2)
     plt.axis([-7.2, 2, -2, 3])
     plt.legend(loc=[0.05, 0.02], labelspacing=0.1, handlelength=1.5, handletextpad=0.1, frameon=False, ncol=3,
                columnspacing=0.02)
-    plt.savefig(f"{output_path}/"+name+"_FeH_MgFe.png", dpi=200)
+    plt.savefig(f"{output_path}/FeH_MgFe.png", dpi=200)
 
 
 arguments = ScriptArgumentParser(

@@ -246,7 +246,7 @@ scripts:
     section: Stellar Metallicity
     title: [Fe/H] vs [O/Fe]
   - filename: scripts/stellar_abundances.py
-    caption: [Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09."
+    caption: [Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09.
     output_file: FeH_MgFe.png
     section: Stellar Metallicity
     title: [Fe/H] vs [Mg/Fe]

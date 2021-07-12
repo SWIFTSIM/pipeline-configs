@@ -240,3 +240,13 @@ scripts:
     output_file: SNII_maximal_kick_velocities.png
     section: Feedback kick velocities
     title: Maximal SNII kick velocity
+  - filename: scripts/stellar_abundances.py
+    caption: [Fe/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The observational data for MW compiles the works of Mishenina+99, Israelian+98, Cayrel+04, Bai+04, Zhang+05, Koch+08. Most of these works assume Grevesser & Anders (1989) values for solar metallicity, their were corrected  to Asplund+09. Additional data includes Fornax (Letarte+07), Carina (Kock+05), Sculptor (Geisler+05) and  Sagittarious (Sbordone+07).
+    output_file: FeH_OFe.png
+    section: Stellar Metallicity
+    title: [Fe/H] vs [O/Fe]
+  - filename: scripts/stellar_abundances.py
+    caption: [Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09."
+    output_file: FeH_MgFe.png
+    section: Stellar Metallicity
+    title: [Fe/H] vs [Mg/Fe]

@@ -45,22 +45,27 @@ for aperture_size in aperture_sizes:
     ssfr[good_stellar_mass] = (
         star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
     )
-    ssfr[ssfr < marginal_ssfr] = marginal_ssfr
+
+    # Name (label) of the derived field
     ssfr.name = f"Specific SFR ({aperture_size} kpc)"
 
+    # Mask for the passive objects
     is_passive = unyt.unyt_array(
         (ssfr < 1.01 * marginal_ssfr).astype(float), units="dimensionless"
     )
     is_passive.name = "Passive Fraction"
 
+    # Mask for the active objects
     is_active = unyt.unyt_array(
         (ssfr > 1.01 * marginal_ssfr).astype(float), units="dimensionless"
     )
     is_active.name = "Active Fraction"
 
+    # Get the specific star formation rate (per halo mass instead of stellar mass)
     sfr_M200 = star_formation_rate / halo_mass
     sfr_M200.name = "Star formation rate divided by halo mass"
 
+    # Register derived fields with specific star formation rates
     setattr(self, f"specific_sfr_gas_{aperture_size}_kpc", ssfr)
     setattr(self, f"is_passive_{aperture_size}_kpc", is_passive)
     setattr(self, f"is_active_{aperture_size}_kpc", is_active)

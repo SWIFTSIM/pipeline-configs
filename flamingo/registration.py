@@ -45,7 +45,7 @@ for aperture_size in aperture_sizes:
     ssfr[good_stellar_mass] = (
         star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
     )
-    ssfr[ssfr < marginal_ssfr] = marginal_ssfr
+    #ssfr[ssfr < marginal_ssfr] = marginal_ssfr
     ssfr.name = f"Specific SFR ({aperture_size} kpc)"
 
     is_passive = unyt.unyt_array(

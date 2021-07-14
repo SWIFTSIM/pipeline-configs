@@ -94,7 +94,7 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
 def register_global_mask(self, catalogue):
 
-    mfof = catalogue.masses.mass_fof 
+    mfof = catalogue.masses.mass_fof
     m_bg = catalogue.masses.mass_interloper
 
     # ensure halos contribute < 10% of Mfof

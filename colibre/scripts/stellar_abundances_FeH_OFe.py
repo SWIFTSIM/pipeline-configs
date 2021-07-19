@@ -9,6 +9,7 @@ from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor.observations import load_observation
 
+
 def read_data(data):
     """
     Grabs the data
@@ -39,6 +40,7 @@ def read_data(data):
 
     return Fe_H, O_Fe
 
+
 arguments = ScriptArgumentParser(
     description="Creates an [Fe/H] - [O/Fe] plot for stars."
 )
@@ -59,8 +61,7 @@ simulation_labels = []
 fig, ax = plt.subplots()
 ax.grid(True)
 
-for snapshot_filename, name in zip(
-    snapshot_filenames, names):
+for snapshot_filename, name in zip(snapshot_filenames, names):
 
     data = load(snapshot_filename)
     redshift = data.metadata.z
@@ -68,15 +69,23 @@ for snapshot_filename, name in zip(
     Fe_H, O_Fe = read_data(data)
 
     # low zorder, as we want these points to be in the background
-    dots = ax.plot(Fe_H, O_Fe, '.', markersize=0.5, alpha=0.2, zorder=-99)[0]
+    dots = ax.plot(Fe_H, O_Fe, ".", markersize=0.5, alpha=0.2, zorder=-99)[0]
 
     bins = np.arange(-7.2, 1, 0.2)
     ind = np.digitize(Fe_H, bins)
-    xm = [np.median(Fe_H[ind == i]) for i in range(1, len(bins)) if len(Fe_H[ind == i]) > 10]
-    ym = [np.median(O_Fe[ind == i]) for i in range(1, len(bins)) if len(O_Fe[ind == i]) > 10]
+    xm = [
+        np.median(Fe_H[ind == i])
+        for i in range(1, len(bins))
+        if len(Fe_H[ind == i]) > 10
+    ]
+    ym = [
+        np.median(O_Fe[ind == i])
+        for i in range(1, len(bins))
+        if len(O_Fe[ind == i]) > 10
+    ]
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
-    simulation_lines.append(ax.plot(xm, ym, color = dots.get_color(), zorder=1000)[0])
+    simulation_lines.append(ax.plot(xm, ym, color=dots.get_color(), zorder=1000)[0])
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
 
 # we select all files except the Tolstoy* ones containing FeH-MgFe.
@@ -89,16 +98,17 @@ for index, observation in enumerate(observational_data):
 ax.set_xlabel("[Fe/H]")
 ax.set_ylabel("[O/Fe]")
 
-ax.set_ylim(-2., 3.)
-ax.set_xlim(-7.2, 2.)
+ax.set_ylim(-2.0, 3.0)
+ax.set_xlim(-7.2, 2.0)
 
 observation_legend = ax.legend(markerfirst=True, loc="upper right", ncol=2)
 
 ax.add_artist(observation_legend)
 
-simulation_legend = ax.legend(simulation_lines, simulation_labels, markerfirst=False, loc="lower left")
+simulation_legend = ax.legend(
+    simulation_lines, simulation_labels, markerfirst=False, loc="lower left"
+)
 
 ax.add_artist(simulation_legend)
 
 plt.savefig(f"{output_path}/stellar_abundances_FeH_OFe.png")
-

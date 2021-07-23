@@ -92,6 +92,19 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
     return
 
 
+def register_global_mask(self, catalogue):
+
+    mfof = catalogue.masses.mass_fof
+    m_bg = catalogue.masses.mass_interloper
+
+    # ensure halos contribute < 10% of Mfof
+    low_interloper_halos = m_bg < 0.1 * mfof
+
+    setattr(
+        self, f"low_interloper_halos", low_interloper_halos,
+    )
+
+
 def register_star_metallicities(self, catalogue, aperture_sizes, Z_sun):
 
     # Loop over apertures
@@ -578,9 +591,7 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
 
         # Finally, register all the above fields
         setattr(
-            self,
-            f"gas_neutral_H_mass_{aperture_size}_kpc",
-            neutral_H_mass,
+            self, f"gas_neutral_H_mass_{aperture_size}_kpc", neutral_H_mass,
         )
 
         setattr(
@@ -778,3 +789,4 @@ register_dust_to_hi_ratio(self, catalogue, aperture_sizes)
 register_cold_gas_mass_ratios(self, catalogue, aperture_sizes)
 register_species_fractions(self, catalogue, aperture_sizes)
 register_stellar_birth_densities(self, catalogue)
+register_global_mask(self, catalogue)

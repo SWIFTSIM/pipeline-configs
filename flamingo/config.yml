@@ -151,4 +151,28 @@ scripts:
     title: Wall-clock time per time-bin
     section: Run Performance
     output_file: wallclock_timebin_hist.png
+  - filename: scripts/hot_gas_plots.py
+    caption: X-ray luminosity - Halo mass.
+    output_file: hgas_Lx.png
+    section: Hot gas properties
+    title: X-ray luminosity
+  - filename: scripts/dummy.py
+    caption: Hot gas pressure profiles of galaxy groups.
+    output_file: hgas_P_P500_r.png
+    section: Hot gas properties
+    title: Pressure profiles
+  - filename: scripts/dummy.py
+    caption: Hot gas density profiles of galaxy groups.
+    output_file: hgas_rho_r.png
+    section: Hot gas properties
+    title: Density profiles
+  - filename: scripts/dummy.py
+    caption: Hot gas entropy profiles of galaxy groups.
+    output_file: hgas_S_S500_r.png
+    section: Hot gas properties
+    title: Entropy profiles
+  - filename: scripts/dummy.py
+    caption: Local SZ flux−halo mass relation.
+    output_file: hgas_tSZ.png
+    section: Hot gas properties
 

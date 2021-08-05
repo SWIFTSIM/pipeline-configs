@@ -65,6 +65,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_100:
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Behroozi2019Ratio.hdf5
+    - filename: GalaxyStellarMassHaloMass/Moster2018Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98_Ratio.hdf5
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
@@ -134,6 +135,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
     section: Stellar Mass-Halo Mass
   observational_data:
     - filename: GalaxyStellarMassHaloMass/Behroozi2019RatioStellar.hdf5
+    - filename: GalaxyStellarMassHaloMass/Moster2018RatioStellar.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98_RatioStellar.hdf5
 
 stellar_mass_halo_mass_M200_all_100:

@@ -1,5 +1,6 @@
 # Example configuration file for a COLIBRE-zoom simulation
 
+
 # Location of your other .yml files that are passed to the
 # velociraptor auto plotter (these describe your scaling)
 # relation figures. Also required is the registration file
@@ -7,6 +8,8 @@
 # used in the autoplotter.
 auto_plotter_directory: auto_plotter
 auto_plotter_registration: registration.py
+# Mask designed to filter out zoom halos polluted by interloper background particles
+auto_plotter_global_mask: derived_quantities.low_interloper_halos
 
 # Location of the 'observational data' repository and its compiled
 # contents.

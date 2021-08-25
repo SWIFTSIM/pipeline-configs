@@ -101,7 +101,7 @@ ax.set_ylabel("[O/Fe]")
 ax.set_ylim(-2.0, 3.0)
 ax.set_xlim(-7.2, 2.0)
 
-observation_legend = ax.legend(markerfirst=True, loc="upper right", ncol=2)
+observation_legend = ax.legend(markerfirst=True, loc="upper left")
 
 ax.add_artist(observation_legend)
 

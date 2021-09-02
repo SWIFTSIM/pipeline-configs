@@ -74,7 +74,9 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
 # Observational data plotting
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
 
-observational_data = read_obs_data(f"{path_to_obs_data}/data/StarFormationRateHistory/raw")
+observational_data = read_obs_data(
+    f"{path_to_obs_data}/data/StarFormationRateHistory/raw"
+)
 
 observation_lines = []
 observation_labels = []
@@ -135,17 +137,25 @@ for index, observation in enumerate(observational_data):
 
 
 # Add Berhoozi data
-Behroozi2019 = load_observations([f"{path_to_obs_data}/data/StarFormationRateHistory/Behroozi2019_true.hdf5",
-                                  f"{path_to_obs_data}/data/StarFormationRateHistory/Behroozi2019_observed.hdf5"])
+Behroozi2019 = load_observations(
+    [
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Behroozi2019_true.hdf5",
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Behroozi2019_observed.hdf5",
+    ]
+)
 
 for Behroozi_data, color in zip(Behroozi2019, ["lime", "coral"]):
-    observation_lines.append(ax.fill_between(Behroozi_data.x.value,
-                                             Behroozi_data.y.value - Behroozi_data.y_scatter[0].value,
-                                             Behroozi_data.y.value + Behroozi_data.y_scatter[1].value,
-                                             color=color,
-                                             label=Behroozi_data.citation,
-                                             zorder=-10000,
-                                             alpha=0.3))
+    observation_lines.append(
+        ax.fill_between(
+            Behroozi_data.x.value,
+            Behroozi_data.y.value - Behroozi_data.y_scatter[0].value,
+            Behroozi_data.y.value + Behroozi_data.y_scatter[1].value,
+            color=color,
+            label=Behroozi_data.citation,
+            zorder=-10000,
+            alpha=0.3,
+        )
+    )
     observation_labels.append(Behroozi_data.citation)
 
 

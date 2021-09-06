@@ -2,19 +2,17 @@
 Plots the star formation history. Modified version of the script in the
 github.com/swiftsim/swiftsimio-examples repository.
 """
-import matplotlib
-
 import unyt
 
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
 
 from swiftsimio import load
 
 from load_sfh_data import read_obs_data
 
-# Import EAGLE cosmology object
+from velociraptor.observations import load_observations
+
 from astropy.cosmology import z_at_value
 from astropy.units import Gyr
 
@@ -74,10 +72,10 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
     simulation_labels.append(name)
 
 # Observational data plotting
+path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
 
 observational_data = read_obs_data(
-    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-    "/data/StarFormationRateHistory/raw"
+    f"{path_to_obs_data}/data/StarFormationRateHistory/raw"
 )
 
 observation_lines = []
@@ -94,7 +92,7 @@ for index, observation in enumerate(observational_data):
                     color="aquamarine",
                     zorder=-10000,
                     linewidth=1,
-                    alpha=0.5,
+                    alpha=0.75,
                 )[0]
             )
         elif observation.description == "EAGLE-12 REF":
@@ -136,6 +134,30 @@ for index, observation in enumerate(observational_data):
             )
         )
     observation_labels.append(observation.description)
+
+
+# Add Berhoozi data
+Behroozi2019 = load_observations(
+    [
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Behroozi2019_true.hdf5",
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Behroozi2019_observed.hdf5",
+    ]
+)
+
+for Behroozi_data, color in zip(Behroozi2019, ["lime", "coral"]):
+    observation_lines.append(
+        ax.fill_between(
+            Behroozi_data.x.value,
+            Behroozi_data.y.value - Behroozi_data.y_scatter[0].value,
+            Behroozi_data.y.value + Behroozi_data.y_scatter[1].value,
+            color=color,
+            label=Behroozi_data.citation,
+            zorder=-10000,
+            alpha=0.3,
+        )
+    )
+    observation_labels.append(Behroozi_data.citation)
+
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [

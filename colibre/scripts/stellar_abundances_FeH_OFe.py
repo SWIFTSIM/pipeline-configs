@@ -1,5 +1,5 @@
 """
-Plots the stellar abundances of given snapshot
+Plots the stellar abundances ([Fe/H] vs [O/Fe]) for a given snapshot
 """
 import matplotlib.pyplot as plt
 import numpy as np
@@ -7,7 +7,7 @@ import unyt
 import glob
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
-from velociraptor.observations import load_observation
+from velociraptor.observations import load_observations
 
 
 def read_data(data):
@@ -32,8 +32,10 @@ def read_data(data):
 
     Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
     O_Fe = np.log10(oxygen / iron) - O_Fe_Sun
+
     Fe_H[iron == 0] = -7  # set lower limit
     Fe_H[Fe_H < -7] = -7  # set lower limit
+
     O_Fe[iron == 0] = -2  # set lower limit
     O_Fe[oxygen == 0] = -2  # set lower limit
     O_Fe[O_Fe < -2] = -2  # set lower limit
@@ -69,30 +71,31 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     Fe_H, O_Fe = read_data(data)
 
     # low zorder, as we want these points to be in the background
-    dots = ax.plot(Fe_H, O_Fe, ".", markersize=0.5, alpha=0.2, zorder=-99)[0]
+    dots = ax.plot(Fe_H, O_Fe, ".", markersize=0.2, alpha=0.15, zorder=-99)[0]
 
+    # Bins along the X axis (Fe_H) to plot the median line
     bins = np.arange(-7.2, 1, 0.2)
     ind = np.digitize(Fe_H, bins)
-    xm = [
-        np.median(Fe_H[ind == i])
-        for i in range(1, len(bins))
-        if len(Fe_H[ind == i]) > 10
-    ]
-    ym = [
-        np.median(O_Fe[ind == i])
-        for i in range(1, len(bins))
-        if len(O_Fe[ind == i]) > 10
-    ]
+
+    xm, ym = [], []
+    Min_N_points_per_bin = 11
+
+    for i in range(1, len(bins)):
+        in_bin_idx = ind == i
+        N_data_points_per_bin = np.sum(in_bin_idx)
+        if N_data_points_per_bin >= Min_N_points_per_bin:
+            xm.append(np.median(Fe_H[in_bin_idx]))
+            ym.append(np.median(O_Fe[in_bin_idx]))
+
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
     simulation_lines.append(ax.plot(xm, ym, color=dots.get_color(), zorder=1000)[0])
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
 
-# we select all files except the Tolstoy* ones containing FeH-MgFe.
-expr = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/StellarAbundances/[!T]*.hdf5"
-observational_data = glob.glob(expr)
-for index, observation in enumerate(observational_data):
-    obs = load_observation(observation)
+# We select all files except the Tolstoy* ones containing FeH-MgFe.
+path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+observational_data = glob.glob(f"{path_to_obs_data}/data/StellarAbundances/[!T]*.hdf5")
+for obs in load_observations(observational_data):
     obs.plot_on_axes(ax)
 
 ax.set_xlabel("[Fe/H]")

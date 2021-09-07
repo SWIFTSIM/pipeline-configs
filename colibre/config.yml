@@ -241,12 +241,17 @@ scripts:
     section: Feedback kick velocities
     title: Maximal SNII kick velocity
   - filename: scripts/stellar_abundances_FeH_OFe.py
-    caption: '[Fe/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [Fe/H] vs median [O/Fe] is indicated by the solid curve(s). The scatter points show abundancies of individual stellar particles. The observational data for MW compiles the works of Mishenina+99, Israelian+98, Cayrel+04, Bai+04, Zhang+05, Koch+08. Most of these works assume Grevesser & Anders (1989) values for solar metallicity, their were corrected  to Asplund+09. Additional data includes Fornax (Letarte+07), Carina (Kock+05), Sculptor (Geisler+05) and  Sagittarious (Sbordone+07).'
+    caption: '[Fe/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the works of Mishenina+99, Israelian+98, Cayrel+04, Bai+04, Zhang+05, Koch+08. Most of these works assume Grevesser & Anders (1989) values for solar metallicity, their were corrected  to Asplund+09. Additional data includes Fornax (Letarte+07), Carina (Kock+05), Sculptor (Geisler+05) and  Sagittarious (Sbordone+07).'
     output_file: stellar_abundances_FeH_OFe.png
     section: Stellar Metallicity
     title: '[Fe/H] vs [O/Fe]'
   - filename: scripts/stellar_abundances_FeH_MgFe.py
-    caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The median [Fe/H] vs median [Mg/Fe] is indicated by the solid curve(s). The scatter points show abundancies of individual stellar particles. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09.'
+    caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09.'
     output_file: stellar_abundances_FeH_MgFe.png
     section: Stellar Metallicity
     title: '[Fe/H] vs [Mg/Fe]'
+  - filename: scripts/stellar_abundances_FeH_Fe_snia_fraction.py
+    caption: 'The mass fraction of Fe from SNIa vs [Fe/H] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5. The median SNIa Fe fraction vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
+    output_file: stellar_abundances_FeH_Fe_snia_fraction.png
+    section: Stellar Metallicity
+    title: 'Fraction of Fe from SNIa vs [Fe/H]'

@@ -161,7 +161,7 @@ hi_frac_func_ssfr:
   metadata:
     title: sSFR-HI Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy HI mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures. XGASS (Catinella+18) galaxies are selected with to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
+    caption: Galaxy HI mass over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures. XGASS (Catinella+18) galaxies are selected to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_sSFR.hdf5
 
@@ -194,7 +194,7 @@ hi_frac_func_stellar_surface_density:
   metadata:
     title: Stellar Mass Surface Density-HI Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy HI mass over stellar mass as a function of stellar mass surface density in 0.2 dex bins, measured in 100 kpc apertures. XGASS (Catinella+18) galaxies are selected with to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
+    caption: Galaxy HI mass over stellar mass as a function of stellar mass surface density in 0.2 dex bins, measured in 100 kpc apertures. XGASS (Catinella+18) galaxies are selected to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_mu_star.hdf5
 
@@ -260,7 +260,7 @@ hi_frac_func_stellar_mass:
   metadata:
     title: Stellar Mass-HI Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy HI mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. LITTLE THINGS galaxies are dIrrs selected to be within 10 Mpc, with 50$\%$ of galaxies within 3.6 Mpc, and detected in HI. MAGMA (Hunt+20) are selected on both CO and HI detecions, but find the galaxies down to $10^7 \; {\rm M_\odot}$ consistent with the extrapolated SFMS (i.e. typical star-forming galaxies). XGASS (Catinella+18) galaxies are selected with to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
+    caption: Galaxy HI mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. LITTLE THINGS galaxies are dIrrs selected to be within 10 Mpc, with 50$\%$ of galaxies within 3.6 Mpc, and detected in HI. MAGMA (Hunt+20) are selected on both CO and HI detecions, but find the galaxies down to $10^7 \; {\rm M_\odot}$ consistent with the extrapolated SFMS (i.e. typical star-forming galaxies). XGASS (Catinella+18) galaxies are selected to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
   observational_data:
     - filename: GalaxyHIFractions/Catinella2018_abcissa_M_star.hdf5
     - filename: GalaxyHIFractions/Hunt2020_Data.hdf5
@@ -297,7 +297,7 @@ cold_gas_frac_func_ssfr:
   metadata:
     title: sSFR-Cold gas Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy neutral gas mass over stellar mass as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures. XGASS (Catinella+18) galaxies are selected with to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
+    caption: Galaxy neutral gas mass over stellar mass as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures. XGASS (Catinella+18) galaxies are selected to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
   observational_data:
     - filename: GalaxyColdGasFractions/Catinella2018_abcissa_sSFR.hdf5
 
@@ -364,7 +364,7 @@ h2_to_neutral_gas_frac_func_ssfr:
   metadata:
     title: sSFR-Neutral Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures. XCOLDGASS (Saintonge+17) and XGASS (Catinella+18) galaxies are selected with to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
+    caption: Galaxy H$_2$ mass over neutral gas mass (HI+H$_2$) as a function of specific star formation rate, with adaptive binning, measured in 100 kpc apertures. XCOLDGASS (Saintonge+17) and XGASS (Catinella+18) galaxies are selected to have a flat $M_\star$ distribution in the range $10^9 \; {\rm M_\odot} > M_\star > 10^{10} \; {\rm M_\odot}$, and a higher normalised uniform in the range $10^{10} \; {\rm M_\odot} > M_\star > 10^{11} \; {\rm M_\odot}$.
   observational_data:
     - filename: GalaxyColdGasFractions/CatinellaSaintongeComposite_abcissa_sSFR.hdf5
 

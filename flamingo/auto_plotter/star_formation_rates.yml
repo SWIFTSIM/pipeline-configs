@@ -4,7 +4,7 @@ stellar_mass_sfr_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "apertures.sfr_gas_30_kpc"
@@ -17,7 +17,7 @@ stellar_mass_sfr_30:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -36,7 +36,7 @@ stellar_mass_sfr_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "apertures.sfr_gas_100_kpc"
@@ -49,7 +49,7 @@ stellar_mass_sfr_100:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -70,7 +70,7 @@ stellar_mass_specific_sfr_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
@@ -83,7 +83,7 @@ stellar_mass_specific_sfr_100:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -108,7 +108,7 @@ stellar_mass_specific_sfr_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
@@ -121,7 +121,7 @@ stellar_mass_specific_sfr_30:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -144,7 +144,7 @@ stellar_mass_specific_sfr_with_passive_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
@@ -157,7 +157,7 @@ stellar_mass_specific_sfr_with_passive_100:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -176,7 +176,7 @@ stellar_mass_specific_sfr_with_passive_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
@@ -189,7 +189,7 @@ stellar_mass_specific_sfr_with_passive_30:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -212,7 +212,7 @@ halo_mass_specific_sfr_30:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e9
     end: 1e15
   y:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
@@ -222,9 +222,9 @@ halo_mass_specific_sfr_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e10
+      value: 1e9
       units: solar_mass
     end:
       value: 1e15
@@ -247,7 +247,7 @@ halo_mass_specific_sfr_100:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e9
     end: 1e15
   y:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
@@ -257,9 +257,9 @@ halo_mass_specific_sfr_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e10
+      value: 1e9
       units: solar_mass
     end:
       value: 1e15
@@ -278,7 +278,7 @@ halo_mass_specific_sfr_with_passive_100:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e9
     end: 1e15
   y:
     quantity: "derived_quantities.specific_sfr_gas_100_kpc"
@@ -288,9 +288,9 @@ halo_mass_specific_sfr_with_passive_100:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e10
+      value: 1e9
       units: solar_mass
     end:
       value: 1e15
@@ -306,7 +306,7 @@ halo_mass_specific_sfr_with_passive_30:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e9
     end: 1e15
   y:
     quantity: "derived_quantities.specific_sfr_gas_30_kpc"
@@ -316,9 +316,9 @@ halo_mass_specific_sfr_with_passive_30:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e10
+      value: 1e9
       units: solar_mass
     end:
       value: 1e15
@@ -337,7 +337,7 @@ halo_mass_sfr_30_halo_mass:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e9
     end: 1e15
   y:
     quantity: "derived_quantities.sfr_halo_mass_30_kpc"
@@ -347,9 +347,9 @@ halo_mass_sfr_30_halo_mass:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e10
+      value: 1e9
       units: solar_mass
     end:
       value: 1e15
@@ -368,7 +368,7 @@ halo_mass_sfr_100_halo_mass:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e9
     end: 1e15
   y:
     quantity: "derived_quantities.sfr_halo_mass_100_kpc"
@@ -378,9 +378,9 @@ halo_mass_sfr_100_halo_mass:
   median:
     plot: true
     log: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e10
+      value: 1e9
       units: solar_mass
     end:
       value: 1e15
@@ -434,7 +434,7 @@ stellar_mass_passive_fraction_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "derived_quantities.is_passive_100_kpc"
@@ -448,7 +448,7 @@ stellar_mass_passive_fraction_100:
     scatter: "none"
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -471,8 +471,8 @@ stellar_mass_passive_fraction_centrals_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e7
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "derived_quantities.is_passive_30_kpc"
     units: "dimensionless"
@@ -484,9 +484,9 @@ stellar_mass_passive_fraction_centrals_30:
     log: true
     scatter: "none"
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -510,8 +510,8 @@ stellar_mass_passive_fraction_centrals_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e7
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "derived_quantities.is_passive_100_kpc"
     units: "dimensionless"
@@ -525,7 +525,7 @@ stellar_mass_passive_fraction_centrals_100:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13

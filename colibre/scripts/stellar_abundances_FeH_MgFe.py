@@ -2,6 +2,7 @@
 Plots the stellar abundances ([Fe/H] vs [Mg/Fe]) for a given snapshot
 """
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
 import numpy as np
 import unyt
 import glob
@@ -71,7 +72,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     Fe_H, Mg_Fe = read_data(data)
 
     # low zorder, as we want these points to be in the background
-    dots = ax.plot(Fe_H, Mg_Fe, ".", markersize=0.2, alpha=0.15, zorder=-99)[0]
+    dots = ax.plot(Fe_H, Mg_Fe, ".", markersize=0.2, alpha=0.2, zorder=-99)[0]
 
     # Bins along the X axis (Fe_H) to plot the median line
     bins = np.arange(-7.2, 1, 0.2)
@@ -89,7 +90,16 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
-    simulation_lines.append(ax.plot(xm, ym, color=dots.get_color(), zorder=1000)[0])
+    simulation_lines.append(
+        ax.plot(
+            xm,
+            ym,
+            lw=2,
+            color=dots.get_color(),
+            zorder=1000,
+            path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
+        )[0]
+    )
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
 
 # We select all Tolstoy* files containing FeH-MgFe.

@@ -27,7 +27,7 @@ h2_frac_func_stellar_mass_xgass_selection:
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. To include Helium we muptilpy $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown. In Saintonge2017+ data, all galaxies with $10^9 < M_{\rm star} / \mathrm{M_\odot} < 10^{10}$ have $M_{\rm H_2}/M_{\rm star}$ fractions that cannot be lower than $0.025$, and for galaxies with $M_{\rm star} / \mathrm{M_\odot} > 10^{10}$ the floor value is $0.015$.
     show_on_webpage: false
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
@@ -61,7 +61,7 @@ h2_frac_func_ssfr:
   metadata:
     title: sSFR-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of specific star formation rate in 0.2 dex bins, measured in 100 kpc apertures. To include Helium we muptilpy $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown.
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_sSFR.hdf5
 
@@ -94,7 +94,7 @@ h2_frac_func_stellar_surface_density_xgass_selection:
   metadata:
     title: Stellar Mass Surface Density-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass surfaced density in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass surfaced density in 0.2 dex bins, measured in 100 kpc apertures. To include Helium we muptilpy $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown.
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_mu_star.hdf5
 
@@ -225,7 +225,9 @@ h2_frac_func_stellar_mass:
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy neutral gas mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 100 kpc apertures. To include Helium we muptilpy $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown. In Saintonge2017+ data, all galaxies with $10^9 < M_{\rm star} / \mathrm{M_\odot} < 10^{10}$ have $M_{\rm H_2}/M_{\rm star}$ fractions that cannot be lower than $0.025$, and for galaxies with $M_{\rm star} / \mathrm{M_\odot} > 10^{10}$ the floor value is $0.015$.
+Galaxies with Mstar > 10^10 Msun. If the H2 fraction is below 1.5%,
+set them to 1.5%.
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
     - filename: GalaxyH2Fractions/Hunt2020_Data.hdf5

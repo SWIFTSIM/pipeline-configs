@@ -22,6 +22,9 @@ This file calculates:
         apertures.
     + average of log of stellar birth densities (average_of_log_stellar_birth_density)
         velociraptor outputs the log of the quantity we need, so we take exp(...) of it
+    + LOS stellar velocity dispersions (10, 30 kpc) (los_veldisp_star_{x}_kpc)
+        The LOS velocity dispersion, obtained by multiplying the 3D velocity
+        dispersion with 1/sqrt(3).
 """
 
 # Define aperture size in kpc
@@ -762,6 +765,16 @@ def register_stellar_birth_densities(self, catalogue):
     return
 
 
+def register_los_star_veldisp(self, catalogue):
+    for aperture_size in [10, 30]:
+        veldisp = getattr(catalogue.apertures, f"veldisp_star_{aperture_size}_kpc")
+        los_veldisp = veldisp / np.sqrt(3.0)
+        los_veldisp.name = f"LOS stellar velocity dispersion ({aperture_size} kpc)"
+        setattr(self, f"los_veldisp_star_{aperture_size}_kpc", los_veldisp)
+
+    return
+
+
 # Register derived fields
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes)
 register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fraction)
@@ -778,3 +791,4 @@ register_dust_to_hi_ratio(self, catalogue, aperture_sizes)
 register_cold_gas_mass_ratios(self, catalogue, aperture_sizes)
 register_species_fractions(self, catalogue, aperture_sizes)
 register_stellar_birth_densities(self, catalogue)
+register_los_star_veldisp(self, catalogue)

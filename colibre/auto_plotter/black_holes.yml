@@ -122,7 +122,7 @@ stellar_veldisp_black_hole_mass_10:
       value: 1e3
       units: km/s
   metadata:
-    title: Stellar Velocity Dispersion-Black Hole Mass relation (10 kpc)
+    title: LOS Stellar Velocity Dispersion-Black Hole Mass relation (10 kpc)
     caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor. Note that the stellar velocity dispersion in observations is measured in a fixed 1 kpc aperture.
     section: Black Holes
   observational_data:

@@ -769,6 +769,7 @@ def register_los_star_veldisp(self, catalogue):
     for aperture_size in [10, 30]:
         veldisp = getattr(catalogue.apertures, f"veldisp_star_{aperture_size}_kpc")
         los_veldisp = veldisp / np.sqrt(3.0)
+        los_veldisp.name = f"LOS stellar velocity dispersion ({aperture_size} kpc)"
         setattr(self, f"los_veldisp_star_{aperture_size}_kpc", los_veldisp)
 
     return

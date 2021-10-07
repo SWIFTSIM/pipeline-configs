@@ -21,11 +21,11 @@ def read_data(data):
     mO_in_cgs = 15.999 * unyt.mp
 
     # Asplund et al. (2009)
-    Fe_H_Sun = 7.5
-    O_H_Sun = 8.69
+    Fe_H_Sun_Asplund = 7.5
+    O_H_Sun_Asplund = 8.69
 
-    O_Fe_Sun = O_H_Sun - Fe_H_Sun - np.log10(mFe_in_cgs / mO_in_cgs)
-    Fe_H_Sun = Fe_H_Sun - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
+    O_Fe_Sun = O_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mO_in_cgs)
+    Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
 
     oxygen = data.stars.element_mass_fractions.oxygen
     iron = data.stars.element_mass_fractions.iron

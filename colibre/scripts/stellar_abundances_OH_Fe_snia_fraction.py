@@ -1,5 +1,5 @@
 """
-Plots [Fe/H] vs mass fraction of Fe from SNIa
+Plots [O/H] vs mass fraction of Fe from SNIa
 """
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
@@ -17,28 +17,31 @@ def read_data(data: swiftsimio.SWIFTDataset) -> Tuple[np.ndarray, np.ndarray]:
     """
 
     mH_in_cgs = unyt.mh
-    mFe_in_cgs = 55.845 * unyt.mp
+    mO_in_cgs = 15.999 * unyt.mp
 
     # Asplund et al. (2009)
-    Fe_H_Sun_Asplund = 7.5
+    O_H_Sun_Asplund = 8.69
 
-    Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
+    O_H_Sun = O_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mO_in_cgs)
 
     iron = data.stars.element_mass_fractions.iron
     iron_snia = data.stars.iron_mass_fractions_from_snia
+    oxygen = data.stars.element_mass_fractions.oxygen
     hydrogen = data.stars.element_mass_fractions.hydrogen
 
-    Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
+    O_H = np.log10(oxygen / hydrogen) - O_H_Sun
     Fe_snia_fraction = iron_snia / iron
 
-    Fe_H[iron == 0] = -7  # set lower limit
-    Fe_H[Fe_H < -7] = -7  # set lower limit
+    O_H[oxygen == 0] = -7  # set lower limit
+    O_H[O_H < -7] = -7  # set lower limit
 
-    return Fe_H, Fe_snia_fraction
+    particles_with_iron = iron > unyt.unyt_quantity(0.0, "dimensionless")
+
+    return O_H[particles_with_iron], Fe_snia_fraction[particles_with_iron]
 
 
 arguments = ScriptArgumentParser(
-    description="Creates an [Fe/H] - mass fraction of Fe from SNIa for stars."
+    description="Creates an [O/H] - mass fraction of Fe from SNIa for stars."
 )
 
 snapshot_filenames = [
@@ -62,14 +65,14 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     snapshot_data = load(snapshot_filename)
     redshift = snapshot_data.metadata.z
 
-    Fe_H, Fe_snia_fr = read_data(snapshot_data)
+    O_H, Fe_snia_fr = read_data(snapshot_data)
 
     # low zorder, as we want these points to be in the background
-    dots = ax.plot(Fe_H, Fe_snia_fr, ".", markersize=0.2, alpha=0.2, zorder=-99)[0]
+    dots = ax.plot(O_H, Fe_snia_fr, ".", markersize=0.2, alpha=0.2, zorder=-99)[0]
 
-    # Bins along the X axis (Fe_H) to plot the median line
+    # Bins along the X axis (O_H) to plot the median line
     bins = np.arange(-7.2, 1, 0.2)
-    ind = np.digitize(Fe_H, bins)
+    ind = np.digitize(O_H, bins)
 
     xm, ym = [], []
     Min_N_points_per_bin = 11
@@ -78,7 +81,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
         in_bin_idx = ind == i
         N_data_points_per_bin = np.sum(in_bin_idx)
         if N_data_points_per_bin >= Min_N_points_per_bin:
-            xm.append(np.median(Fe_H[in_bin_idx]))
+            xm.append(np.median(O_H[in_bin_idx]))
             ym.append(np.median(Fe_snia_fr[in_bin_idx]))
 
     # high zorder, as we want the simulation lines to be on top of everything else
@@ -95,7 +98,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     )
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
 
-ax.set_xlabel("[Fe/H]")
+ax.set_xlabel("[O/H]")
 ax.set_ylabel("Fe (SNIa) / Fe (Total)")
 
 ax.set_ylim(3e-3, 3.0)
@@ -108,4 +111,4 @@ simulation_legend = ax.legend(
 
 ax.add_artist(simulation_legend)
 
-plt.savefig(f"{output_path}/stellar_abundances_FeH_Fe_snia_fraction.png")
+plt.savefig(f"{output_path}/stellar_abundances_OH_Fe_snia_fraction.png")

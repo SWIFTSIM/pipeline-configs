@@ -245,13 +245,28 @@ scripts:
     output_file: stellar_abundances_FeH_OFe.png
     section: Stellar Metallicity
     title: '[Fe/H] vs [O/Fe]'
+  - filename: scripts/stellar_abundances_OH_OFe.py
+    caption: '[O/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
+    output_file: stellar_abundances_OH_OFe.png
+    section: Stellar Metallicity
+    title: '[O/H] vs [O/Fe]'
   - filename: scripts/stellar_abundances_FeH_MgFe.py
     caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09.'
     output_file: stellar_abundances_FeH_MgFe.png
     section: Stellar Metallicity
     title: '[Fe/H] vs [Mg/Fe]'
+  - filename: scripts/stellar_abundances_OH_MgFe.py
+    caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
+    output_file: stellar_abundances_OH_MgFe.png
+    section: Stellar Metallicity
+    title: '[O/H] vs [Mg/Fe]'
   - filename: scripts/stellar_abundances_FeH_Fe_snia_fraction.py
     caption: 'The mass fraction of Fe from SNIa vs [Fe/H] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5. The median SNIa Fe fraction vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
     output_file: stellar_abundances_FeH_Fe_snia_fraction.png
     section: Stellar Metallicity
     title: 'Fraction of Fe from SNIa vs [Fe/H]'
+  - filename: scripts/stellar_abundances_OH_Fe_snia_fraction.py
+    caption: 'The mass fraction of Fe from SNIa vs [O/H] using Asplund et al. (2009) values for [O/H]Sun = 8.69. The median SNIa Fe fraction vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
+    output_file: stellar_abundances_OH_Fe_snia_fraction.png
+    section: Stellar Metallicity
+    title: 'Fraction of Fe from SNIa vs [O/H]'

@@ -20,9 +20,9 @@ def read_data(data: swiftsimio.SWIFTDataset) -> Tuple[np.ndarray, np.ndarray]:
     mFe_in_cgs = 55.845 * unyt.mp
 
     # Asplund et al. (2009)
-    Fe_H_Sun = 7.5
+    Fe_H_Sun_Asplund = 7.5
 
-    Fe_H_Sun = Fe_H_Sun - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
+    Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
 
     iron = data.stars.element_mass_fractions.iron
     iron_snia = data.stars.iron_mass_fractions_from_snia

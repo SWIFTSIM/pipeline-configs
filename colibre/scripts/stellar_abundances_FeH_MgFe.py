@@ -21,11 +21,11 @@ def read_data(data):
     mMg_in_cgs = 24.305 * unyt.mp
 
     # Asplund et al. (2009)
-    Fe_H_Sun = 7.5
-    Mg_H_Sun = 7.6
+    Fe_H_Sun_Asplund = 7.5
+    Mg_H_Sun_Asplund = 7.6
 
-    Mg_Fe_Sun = Mg_H_Sun - Fe_H_Sun - np.log10(mFe_in_cgs / mMg_in_cgs)
-    Fe_H_Sun = Fe_H_Sun - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
+    Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
+    Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
 
     magnesium = data.stars.element_mass_fractions.magnesium
     iron = data.stars.element_mass_fractions.iron

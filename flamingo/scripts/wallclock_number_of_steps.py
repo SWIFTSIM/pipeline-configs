@@ -7,7 +7,6 @@ import unyt
 import matplotlib.pyplot as plt
 import numpy as np
 
-from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from glob import glob
 
@@ -30,14 +29,17 @@ for run_name, run_directory, snapshot_name in zip(
 
     timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
     timesteps_filename = timesteps_glob[0]
-    snapshot_filename = f"{run_directory}/{snapshot_name}"
 
-    snapshot = load(snapshot_filename)
     data = np.genfromtxt(
-        timesteps_filename, skip_footer=5, loose=True, invalid_raise=False
-    ).T
+        timesteps_filename,
+        skip_footer=5,
+        loose=True,
+        invalid_raise=False,
+        usecols=(12),
+        dtype="f4",
+    )
 
-    wallclock_time = unyt.unyt_array(np.cumsum(data[-2]), units="ms").to("Hour")
+    wallclock_time = unyt.unyt_array(np.cumsum(data), units="ms").to("Hour")
     number_of_steps = np.arange(wallclock_time.size) / 1e6
 
     # Simulation data plotting

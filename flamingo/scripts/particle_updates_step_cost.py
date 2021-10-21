@@ -9,7 +9,6 @@ import numpy as np
 from matplotlib.colors import LogNorm
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
-from swiftsimio import load
 from glob import glob
 
 # Set the limits of the figure.
@@ -23,10 +22,17 @@ def get_data(filename):
     Grabs the data (number of updates, wallclock time in milliseconds).
     """
 
-    data = np.genfromtxt(filename, skip_footer=5, loose=True, invalid_raise=False).T
+    data = np.genfromtxt(
+        filename,
+        skip_footer=5,
+        loose=True,
+        invalid_raise=False,
+        usecols=(7, 12),
+        dtype=[("updates", "i8"), ("wallclock", "f4")],
+    )
 
-    number_of_updates = unyt.unyt_array(data[7], units="dimensionless")
-    wallclock_time = unyt.unyt_array(data[-2], units="ms")
+    number_of_updates = unyt.unyt_array(data["updates"], units="dimensionless")
+    wallclock_time = unyt.unyt_array(data["wallclock"], units="ms")
 
     return number_of_updates, wallclock_time
 

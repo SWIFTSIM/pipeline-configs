@@ -42,16 +42,23 @@ for idx, (run_name, run_directory, snapshot_name) in enumerate(
         cosmology = snapshot.metadata.cosmology
 
     data = np.genfromtxt(
-        timesteps_filename, skip_footer=5, loose=True, invalid_raise=False
-    ).T
+        timesteps_filename,
+        skip_footer=5,
+        loose=True,
+        invalid_raise=False,
+        usecols=(1, 12),
+        dtype=[("time", "f4"), ("wallclock", "f4")],
+    )
 
-    sim_time = unyt.unyt_array(data[1], units=snapshot.units.time).to("Gyr")
+    sim_time = unyt.unyt_array(data["time"], units=snapshot.units.time).to("Gyr")
 
     # Update the maximum cosmic time if needed
     if sim_time[-1] > t_max:
         t_max = sim_time[-1]
 
-    wallclock_time = unyt.unyt_array(np.cumsum(data[-2]), units="ms").to("Hour")
+    wallclock_time = unyt.unyt_array(np.cumsum(data["wallclock"]), units="ms").to(
+        "Hour"
+    )
 
     # Simulation data plotting
     (mpl_line,) = ax.plot(wallclock_time, sim_time, label=run_name)

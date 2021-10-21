@@ -7,7 +7,6 @@ import unyt
 import matplotlib.pyplot as plt
 import numpy as np
 
-from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from glob import glob
 
@@ -30,15 +29,18 @@ for run_name, run_directory, snapshot_name in zip(
 
     timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
     timesteps_filename = timesteps_glob[0]
-    snapshot_filename = f"{run_directory}/{snapshot_name}"
 
-    snapshot = load(snapshot_filename)
     data = np.genfromtxt(
-        timesteps_filename, skip_footer=5, loose=True, invalid_raise=False
-    ).T
+        timesteps_filename,
+        skip_footer=5,
+        loose=True,
+        invalid_raise=False,
+        usecols=(6, 12),
+        dtype=[("time_bin", "i1"), ("wallclock", "f4")],
+    )
 
-    time_bin_max = unyt.unyt_array(data[6], units="dimensionless")
-    wallclock_time = unyt.unyt_array(data[-2], units="ms").to("Hour")
+    time_bin_max = unyt.unyt_array(data["time_bin"], units="dimensionless")
+    wallclock_time = unyt.unyt_array(data["wallclock"], units="ms").to("Hour")
 
     time_bins = np.linspace(0, 57, 58)
     times = unyt.unyt_array(np.zeros(np.size(time_bins)), units="Hour")

@@ -17,6 +17,22 @@ from matplotlib.cm import get_cmap
 from scipy.interpolate import interpn
 from scipy.stats import binned_statistic as bs1d
 
+compdict = {"Graphite":{"Carbon": 1.}}
+
+# atomic weights of silicate elements
+A = {'Oxygen': 15.9994,
+     'Carbon': 12.0107,
+     'Magnesium': 24.305,
+     'Silicon': 28.0855,
+     'Iron': 55.845}
+
+# PLoeckinger+20 solar neighbourhood depletion fractions:
+mw_depletions = {'Carbon':0.34385,
+                 'Oxygen':0.31766,
+                 'Magnesium':0.94338,
+                 'Silicon':0.94492,
+                 'Iron':0.99363}
+
 # Set the limits of the figure.
 density_bounds = [1e-3, 1e3]  # in nh/cm^3
 temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
@@ -39,18 +55,31 @@ elements = [
 ]
 
 
-def get_data(filename, tables, prefix_rho, prefix_T):
+def get_data(filename, prefix_rho, prefix_T):
     """
     Grabs the data (T in Kelvin and density in mh / cm^3) and interpolates for species fractions..
     """
 
     data = load(filename)
+    fe_balance = float(data.metadata.parameters['DustEvolution:silicate_fe_grain_fraction'])
+    pairing = int(data.metadata.parameters['DustEvolution:pair_to_cooling'])
+    
+    mol_O = 6 * A['Oxygen']
+    mol_Mg = (2 - 2*fe_balance) * A['Magnesium']
+    mol_Si = 2 * A['Silicon']
+    mol_Fe = 2 * fe_balance * A['Iron'] 
+    mol_tot = mol_O + mol_Mg + mol_Si + mol_Fe
+
+    compdict['Silicates'] = {'Oxygen': mol_O/mol_tot,
+                             'Magnesium': mol_Mg/mol_tot,
+                             'Silicon': mol_Si/mol_tot,
+                             'Iron': mol_Fe/mol_tot}
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
     ).to(cm ** -3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
     masses = data.gas.masses.to_physical().to("Msun")
-
+    
     # Abundance Mass Fractions
     X = data.gas.element_mass_fractions.hydrogen
     Z = data.gas.metal_mass_fractions
@@ -64,60 +93,33 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     dfracs = np.zeros(data.gas.masses.shape)
     dsfrac_dict = {}
     for d in data.metadata.named_columns['DustMassFractions']:
+        for k in compdict.keys():
+            if k in d:
+                for el in compdict[k].keys():
+                    elfrac = compdict[k][el]*getattr(data.gas.dust_mass_fractions, d)
+                    if el in dsfrac_dict:
+                        # print(f"Add Grain: {d} Element {el} Elfrac : {elfrac}")
+                        dsfrac_dict[el] += elfrac.astype("float64")
+                    else:
+                        # print(f"Make Grain: {d} Element {el} Elfrac : {elfrac}")
+                        dsfrac_dict[el] = elfrac.astype("float64")
+                        
         dfrac = getattr(data.gas.dust_mass_fractions, d)
-        dsfrac_dict[d] = dfrac.astype("float64")  
         dfracs += dfrac
-        
-        
-    if glob.glob(tables):
-        with h5.File(tables, "r") as table_file:
-            lrho = np.log10(
-                (data.gas.subgrid_physical_densities.to_physical() / mh)
-                .to(cm ** -3)
-                .value
-            )
-            lT = np.log10((data.gas.subgrid_temperatures).to_physical().to("K").value)
-            lZ = np.log10((data.gas.metal_mass_fractions.value / 0.0127))
-            z = np.ones(lrho.size) * data.metadata.redshift
 
-            bin_z = np.array(table_file["TableBins/RedshiftBins"])
-            bin_lT = np.array(table_file["TableBins/TemperatureBins"])
-            bin_lZ = np.array(table_file["TableBins/MetallicityBins"])
-            bin_lrho = np.array(table_file["TableBins/DensityBins"])
-
-            z = np.clip(z, bin_z.min(), bin_z.max())
-            lZ = np.clip(lZ, bin_lZ.min(), bin_lZ.max())
-            lT = np.clip(lT, bin_lT.min(), bin_lT.max())
-            lrho = np.clip(lrho, bin_lrho.min(), bin_lrho.max())
-
-            bins = (bin_z, bin_lT, bin_lZ, bin_lrho)
-            vecs = np.column_stack([z, lT, lZ, lrho])
-
-            df = pow(10, np.array(table_file["Tdep/Depletion"]))
-            difracs = np.zeros(z.shape)
-            for i in range(df.shape[-1]):
-                elname = elements[i].lower()
-                if hasattr(data.gas.element_mass_fractions, elname):
-                    elfrac = getattr(data.gas.element_mass_fractions, elname)
-                    interp_elfdust = interpn(
-                        bins, df[:, :, :, :, i], vecs, bounds_error=False
-                    )
-                    indvdust = elfrac * interp_elfdust
-                    difracs += indvdust
-                else:
-                    continue
-
-    else:
-        difracs = np.zeros(masses.size)
-        print("Cooling Tables not found. continuing without tables")
+    elfrac_dict = {}
+    for el in data.metadata.named_columns['ElementMassFractions']:
+        elfrac_dict[el] = getattr(data.gas.element_mass_fractions, el.lower()).astype("float64")
+        if pairing and (el in dsfrac_dict):
+            elfrac_dict[el] += dsfrac_dict[el]
 
     # casting to float64 to avoid arcane np.histogram bug(?)
     out_tuple = (
         number_density.value.astype("float64"),
         temperature.value.astype("float64"),
-        difracs.astype("float64"),
         dfracs.astype("float64"),
         dsfrac_dict,
+        elfrac_dict,
         masses.value.astype("float64"),
         molfrac.value.astype("float64"),
         atomfrac.value.astype("float64"),
@@ -134,7 +136,6 @@ def make_hist(
     density_bounds,
     temperature_bounds,
     bins,
-    tables,
     prefix_rho="",
     prefix_T="",
 ):
@@ -152,12 +153,10 @@ def make_hist(
         np.log10(temperature_bounds[0]), np.log10(temperature_bounds[1]), bins
     )
 
-    ret_tuple = get_data(filename, tables, prefix_rho, prefix_T)
-    nH, T, Di, D, DSdict, Mg, mol, atom, ion, X, Z = ret_tuple
+    ret_tuple = get_data(filename, prefix_rho, prefix_T)
+    nH, T, D, DSdict, Eldict, Mg, mol, atom, ion, X, Z = ret_tuple
 
     Hd, density_edges = np.histogram(nH, bins=density_bins, weights=D * Mg)
-
-    Hdi, density_edges = np.histogram(nH, bins=density_bins, weights=Di * Mg)
 
     H_Z, _ = np.histogram(nH, bins=density_bins, weights=Z * Mg)
 
@@ -174,7 +173,6 @@ def make_hist(
     # Avoid div/0
     mask = H_norm == 0.0
     Hd[mask] = None
-    Hdi[mask] = None
     Hh2[mask] = None
     Hhi[mask] = None
     Hhii[mask] = None
@@ -183,18 +181,20 @@ def make_hist(
     H_norm[mask] = 1.0
 
     # construct dictinary of arrays for individual dust species
+    
     Hds = {}
     for k in DSdict.keys():
         Hds[k], _ = np.histogram(nH, bins=density_bins, weights= DSdict[k]* Mg)
+        Hel, _ = np.histogram(nH, bins=density_bins, weights= Eldict[k]* Mg)
         Hds[k][mask] = None
-        Hds[k] = np.ma.array((Hds[k] / H_Z).T, mask=mask.T)
-    
+        Hds[k] = np.ma.array((Hds[k] / Hel).T, mask=mask.T)
+        # print(np.percentile(k, Hds[k], (0, 50, 100)))
+        
     out_tuple = (
         np.ma.array((Hh2 / H_h).T, mask=mask.T),
         np.ma.array((Hhi / H_h).T, mask=mask.T),
         np.ma.array((Hhii / H_h).T, mask=mask.T),
         np.ma.array((Hd / H_Z).T, mask=mask.T),
-        np.ma.array((Hdi / H_Z).T, mask=mask.T),
         Hds,
         density_edges,
     )
@@ -234,7 +234,7 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     for axis in np.atleast_2d(ax).T[:][0]:
         axis.set_ylabel("Species Mass Fraction")
         axis2 = axis.twinx()
-        axis2.set_ylabel("\n\n\n Fraction of Metals in Dust")
+        axis2.set_ylabel("\n\n\n Log Depletion Fraction")
         axis2.set_yticks([])
     return fig, ax
 
@@ -248,7 +248,6 @@ def make_single_image(
     bins,
     output_path,
     prop_type,
-    tables,
 ):
     """
     Makes a single plot of rho-T
@@ -269,16 +268,14 @@ def make_single_image(
     hist_hi = []
     hist_hii = []
     hist_d2z = []
-    hist_di2z = []
     hists_hds2Z = []
     
     for filename in filenames:
-        hh2, hhi, hhii, hd2z, hdi2z, hds2Z_dict, d = make_hist(
+        hh2, hhi, hhii, hd2z, hds2Z_dict, d = make_hist(
             filename,
             density_bounds,
             temperature_bounds,
             bins,
-            tables,
             prefix_rho,
             prefix_T,
         )
@@ -286,39 +283,39 @@ def make_single_image(
         hist_hi.append(hhi)
         hist_hii.append(hhii)
         hist_d2z.append(hd2z)
-        hist_di2z.append(hdi2z)
         hists_hds2Z.append(hds2Z_dict)
         
     ncols = 20
     collist = []
     binmids = np.log10(d)[:-1] + 0.5 * np.diff(np.log10(d))
 
-    for hist_h2, hist_hi, hist_hii, hist_d2z, hist_di2z, hists_hds2Z, name, axis in zip(
-        hist_h2, hist_hi, hist_hii, hist_d2z, hist_di2z, hists_hds2Z, names, ax.flat
+    for hist_h2, hist_hi, hist_hii, hist_d2z, hists_hds2Z, name, axis in zip(
+        hist_h2, hist_hi, hist_hii, hist_d2z, hists_hds2Z, names, ax.flat
     ):
         # mappable = axis.pcolormesh(d, T, np.log10(hist), cmap=cmap, norm=norm)
         axis.plot(binmids, np.clip(hist_h2, 0, 1), label="molecular")
         axis.plot(binmids, np.clip(hist_hi, 0, 1), label="atomic")
         axis.plot(binmids, np.clip(hist_hii, 0, 1), label="ionised")
         axis.plot(
-            binmids, hist_h2 + hist_hi + hist_hii, color="0.7", label="total", ls=":"
+            binmids, hist_h2 + hist_hi + hist_hii, color="k", label="total", ls="-",
+            lw=0.25, zorder=0
         )
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
         axis.legend(frameon=False, loc=6)
         axis.set_ylim(0, 1.1)
         axis2 = axis.twinx()
-        axis2.plot(binmids, hist_d2z, c="C5", label="Model dust")
-        axis2.plot(binmids, hist_di2z, c="C5", ls="--", label="Table dust")
-        dotcount= 0
+        axis2.plot(binmids, np.log10(hist_d2z), c="C5", label="Total")
+        dotcount= 1
         for k in hists_hds2Z.keys():
-            axis2.plot(binmids, hists_hds2Z[k], c="C6", lw = 0.5*(len(hists_hds2Z.keys())-dotcount),
+            axis2.plot(binmids, np.log10(hists_hds2Z[k]), c="C6", lw = 0.5*(1+len(hists_hds2Z.keys())-dotcount),
                        ls=':', label=k)
-            dotcount += 1
-            print(dotcount)
-        axis2.legend(frameon=False, loc=(0.02, 0.7))
-        axis2.set_ylim(0, axis2.get_ylim()[1])
+            axis2.axhline(np.log10(mw_depletions[k]), alpha=0.2, c='k', lw = 0.5*(1+len(hists_hds2Z.keys())-dotcount),
+                          ls=':')
 
-    fig.savefig(f"{output_path}/{prefix_T}density_vs_species_fraction.png")
+            dotcount += 1
+        axis2.legend(frameon=False, loc=(0.02, 0.7))
+        axis2.set_ylim(-2,0.2)
+    fig.savefig(f"{output_path}/{prefix_T}density_vs_species_fraction_depletions.png")
     return
 
 
@@ -327,8 +324,7 @@ if __name__ == "__main__":
 
     arguments = ScriptArgumentParser(
         description="Basic density-temperature figure.",
-        additional_arguments={
-            "quantity_type": "hydro",
+        additional_arguments={            "quantity_type": "hydro",
             "cooling_tables": "UV_dust1_CR1_G1_shield1.hdf5",
         },
     )
@@ -351,5 +347,4 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
         prop_type=arguments.quantity_type,
-        tables=arguments.cooling_tables,
     )

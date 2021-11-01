@@ -1,50 +1,16 @@
-hi_stellar_fraction_dust_to_metal_ratio:
+hi_stellar_fraction_neutral_dust_to_stellar_ratio:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.jingle_galaxy_selection_30kpc"
+  comment: "$M_{\\ast} > 10^{8} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.dust_to_metal_ratio_100_kpc"
-    units: "dimensionless"
-    start: 1e-3
-    end: 5
-    log: true
-  y:
-    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
-    units: "dimensionless"
-    start: 3e-2
-    end: 5
-    log: true
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 15
-    start:
-      value: 1e-3
-      units: "dimensionless"
-    end:
-      value: 5
-      units: "dimensionless"
-  metadata:
-    title: HI-to-stellar mass ratio vs dust-to-metal ratio
-    caption: HI to stellar mass ratio as a function of the dust-to-metal ratio measured in 100kpc apertures
-    section: Dust Scaling Relations
-    show_on_webpage: true
-  observational_data:
-    - filename: GalaxyHItoStellarFractionDusttoMetalRatio/DeLooze20_composite_median.hdf5
-
-hi_stellar_fraction_dust_to_stellar_ratio:
-  type: "scatter"
-  legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
-  x:
-    quantity: "derived_quantities.dust_to_stellar_ratio_100_kpc"
+    quantity: "derived_quantities.neutral_dust_to_stellar_ratio_30_kpc"
     units: "dimensionless"
     start: 1e-4
     end: 1e-2
     log: true
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
+    quantity: "derived_quantities.hi_to_stellar_mass_30_kpc"
     units: "dimensionless"
     start: 3e-2
     end: 5
@@ -61,25 +27,62 @@ hi_stellar_fraction_dust_to_stellar_ratio:
       value: 1e-2
       units: "dimensionless"
   metadata:
-    title: HI-to-stellar mass ratio vs dust-to-stellar mass ratio
-    caption: HI to stellar mass ratio as a function of the dust-to-stellar mass ratio measured in 100kpc apertures
-    section: Dust Scaling Relations
+    title: HI-to-stellar mass ratio vs dust-to-stellar mass ratio in neutral gas.
+    caption: HI to stellar mass ratio as a function of the dust-to-stellar mass ratio in neutral gas measured in 30kpc apertures, and applying a JINGLE-like mass selection.
+    section: Dust Scaling Relations (ISM Selection)
     show_on_webpage: true
   observational_data:
     - filename: GalaxyHItoStellarFractionDusttoStellarRatio/DeLooze20_composite_median.hdf5
 
-hi_stellar_fraction_o_abundance:
+hi_stellar_fraction_cold_dense_dust_to_metal_ratio:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.jingle_galaxy_selection_30kpc"
+  comment: "$M_{\\ast} > 10^{8} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_100_kpc"
+    quantity: "derived_quantities.cold_dense_dust_to_metal_ratio_30_kpc"
+    units: "dimensionless"
+    start: 1e-3
+    end: 5
+    log: true
+  y:
+    quantity: "derived_quantities.hi_to_stellar_mass_30_kpc"
+    units: "dimensionless"
+    start: 3e-2
+    end: 5
+    log: true
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 15
+    start:
+      value: 1e-3
+      units: "dimensionless"
+    end:
+      value: 5
+      units: "dimensionless"
+  metadata:
+    title: HI-to-stellar mass ratio vs dust-to-metal ratio in cold, dense gas
+    caption: HI to stellar mass ratio as a function of the dust-to-metal ratio in cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$) measured in 30kpc apertures, and applying a JINGLE-like mass selection.
+    section: Dust Scaling Relations (ISM Selection)
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyHItoStellarFractionDusttoMetalRatio/DeLooze20_composite_median.hdf5
+
+hi_stellar_fraction_o_abundance_ism:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.jingle_galaxy_selection_30kpc"
+  comment: "$M_{\\ast} > 10^{8} M_{\\odot}$"
+  x:
+    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
     units: "dimensionless"
     start: 6.8
     end: 9.2
     log: false
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
+    quantity: "derived_quantities.hi_to_stellar_mass_30_kpc"
     units: "dimensionless"
     start: 3e-2
     end: 5
@@ -97,8 +100,8 @@ hi_stellar_fraction_o_abundance:
       units: "dimensionless"
   metadata:
     title: HI-to-stellar mass ratio vs Oxygen abundance
-    caption: HI to stellar mass ratio as a function of the gas-phase Oxygen abundance measured in 100 kpc apertures
-    section: Dust Scaling Relations
+    caption: HI to stellar mass ratio as a function of the gas-phase Oxygen abundance measured in 30 kpc apertures, and applying a JINGLE-like mass selection.
+    section: Dust Scaling Relations (ISM Selection)
     show_on_webpage: true
   observational_data:
     - filename: GalaxyHItoStellarFractionMetallicity/DeLooze20_composite_median.hdf5

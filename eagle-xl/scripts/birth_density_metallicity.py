@@ -93,6 +93,7 @@ if __name__ == "__main__":
                 "n_pivot": "EAGLEFeedback:SNII_energy_fraction_n_0_H_p_cm3",
             }.items()
         }
+        mode = str(used_parameters["EAGLEFeedback:SNII_energy_fraction_function"])
 
         # Now need to make background grid of f_E.
         birth_density_grid, metal_mass_fraction_grid = np.meshgrid(
@@ -103,27 +104,66 @@ if __name__ == "__main__":
             ),
         )
 
-        f_E_grid = (
-            parameters["f_E,max"]
-            - (parameters["f_E,max"] - parameters["f_E,min"])
-            / (
-                1
+        if mode == "EAGLE":
+
+            f_E_grid = parameters["f_E,max"] - (
+                parameters["f_E,max"] - parameters["f_E,min"]
+            ) / (
+                1.0
                 + np.exp(
                     -np.log10(metal_mass_fraction_grid / parameters["Z_pivot"])
                     / parameters["s_Z"]
                 )
-            )
-        ) * (
-            parameters["f_E,max,n"]
-            - (parameters["f_E,max,n"] - 1)
-            / (
-                1
-                + np.exp(
+                * np.exp(
                     np.log10(birth_density_grid / parameters["n_pivot"])
                     / parameters["s_n"]
                 )
             )
-        )
+
+        elif mode == "Separable":
+
+            f_E_grid = parameters["f_E,max"] - (
+                parameters["f_E,max"] - parameters["f_E,min"]
+            ) / (
+                (
+                    1.0
+                    + np.exp(
+                        -np.log10(metal_mass_fraction_grid / parameters["Z_pivot"])
+                        / parameters["s_Z"]
+                    )
+                )
+                * (
+                    1.0
+                    + np.exp(
+                        np.log10(birth_density_grid / parameters["n_pivot"])
+                        / parameters["s_n"]
+                    )
+                )
+            )
+
+        else:  # mode == 'Independent'
+
+            f_E_grid = (
+                parameters["f_E,max"]
+                - (parameters["f_E,max"] - parameters["f_E,min"])
+                / (
+                    1
+                    + np.exp(
+                        -np.log10(metal_mass_fraction_grid / parameters["Z_pivot"])
+                        / parameters["s_Z"]
+                    )
+                )
+            ) * (
+                parameters["f_E,max,n"]
+                - (parameters["f_E,max,n"] - 1)
+                / (
+                    1
+                    + np.exp(
+                        np.log10(birth_density_grid / parameters["n_pivot"])
+                        / parameters["s_n"]
+                    )
+                )
+            )
 
         # Begin plotting
 

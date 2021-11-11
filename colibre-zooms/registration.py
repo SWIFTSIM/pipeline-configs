@@ -104,7 +104,9 @@ def register_global_mask(self, catalogue):
     low_interloper_halos = m_bg < 0.1 * mfof
 
     setattr(
-        self, f"low_interloper_halos", low_interloper_halos,
+        self,
+        f"low_interloper_halos",
+        low_interloper_halos,
     )
 
 
@@ -345,6 +347,70 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                 f"star_fe_abundance_avglog_{floor}_{aperture_size}_kpc",
                 Fe_abundance,
             )
+
+    return
+
+
+def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
+
+    # Ratio of solar abundancies (Asplund et al. 2009)
+    X_O_to_X_Fe_solar = 4.44
+    X_Mg_to_X_Fe_solar = 0.55
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+
+        # Oxygen mass
+        M_O = getattr(
+            catalogue.element_masses_in_stars,
+            f"oxygen_mass_{aperture_size}_kpc",
+        )
+
+        # Magnesium mass
+        M_Mg = getattr(
+            catalogue.element_masses_in_stars,
+            f"magnesium_mass_{aperture_size}_kpc",
+        )
+
+        # Iron mass
+        M_Fe = getattr(
+            catalogue.element_masses_in_stars,
+            f"iron_mass_{aperture_size}_kpc",
+        )
+
+        # Avoid zeroes
+        mask_Mg = np.logical_and(M_Fe > 0.0 * M_Fe.units, M_Mg > 0.0 * M_Mg.units)
+        mask_O = np.logical_and(M_Fe > 0.0 * M_Fe.units, M_O > 0.0 * M_O.units)
+
+        # Floor value for the field below
+        floor_value = -5
+
+        Mg_over_Fe = floor_value * np.ones_like(M_Fe)
+        Mg_over_Fe[mask_Mg] = np.log10(M_Mg[mask_Mg] / M_Fe[mask_Mg]) - np.log10(
+            X_Mg_to_X_Fe_solar
+        )
+        O_over_Fe = floor_value * np.ones_like(M_Fe)
+        O_over_Fe[mask_O] = np.log10(M_O[mask_O] / M_Fe[mask_O]) - np.log10(
+            X_O_to_X_Fe_solar
+        )
+
+        # Convert to units used in observations
+        Mg_over_Fe = unyt.unyt_array(Mg_over_Fe, "dimensionless")
+        Mg_over_Fe.name = f"[Mg/Fe]$_*$ ({aperture_size} kpc)"
+        O_over_Fe = unyt.unyt_array(O_over_Fe, "dimensionless")
+        O_over_Fe.name = f"[O/Fe]$_*$ ({aperture_size} kpc)"
+
+        # Register the field
+        setattr(
+            self,
+            f"star_magnesium_over_iron_{aperture_size}_kpc",
+            Mg_over_Fe,
+        )
+        setattr(
+            self,
+            f"star_oxygen_over_iron_{aperture_size}_kpc",
+            O_over_Fe,
+        )
 
     return
 
@@ -594,7 +660,9 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
 
         # Finally, register all the above fields
         setattr(
-            self, f"gas_neutral_H_mass_{aperture_size}_kpc", neutral_H_mass,
+            self,
+            f"gas_neutral_H_mass_{aperture_size}_kpc",
+            neutral_H_mass,
         )
 
         setattr(
@@ -774,6 +842,7 @@ def register_stellar_birth_densities(self, catalogue):
         pass
 
     return
+
 
 def register_los_star_veldisp(self, catalogue):
     for aperture_size in [10, 30]:

@@ -4,7 +4,7 @@ stellar_mass_black_hole_mass_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "black_hole_masses.max"
@@ -16,7 +16,7 @@ stellar_mass_black_hole_mass_30:
     log: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e13
@@ -31,14 +31,13 @@ stellar_mass_black_hole_mass_30:
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
 
-
-stellar_mass_black_hole_mass_100:
+stellar_mass_black_hole_mass_50:
   type: "2dhistogram"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   y:
     quantity: "black_hole_masses.max"
@@ -50,10 +49,43 @@ stellar_mass_black_hole_mass_100:
     log: true
     number_of_bins: 25
     start:
-      value: 1e7
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass)
+    caption: SMBHM relation for the 50 kpc stellar mass aperture.
+    section: Black Holes
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+
+stellar_mass_black_hole_mass_100:
+  type: "2dhistogram"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e8
+    end: 1e13
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    start:
+      value: 1e8
+      units: Solar_Mass
+    end:
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (100 kpc Stellar Mass)
@@ -71,8 +103,8 @@ halo_mass_black_hole_mass:
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
-    start: 1e11
-    end: 1e15
+    start: 1e10
+    end: 7e15
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
@@ -83,10 +115,10 @@ halo_mass_black_hole_mass:
     log: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e10
       units: Solar_Mass
     end:
-      value: 1e14
+      value: 7e15
       units: Solar_Mass
   metadata:
     title: Halo Mass-Black Hole Mass relation
@@ -101,7 +133,7 @@ stellar_veldisp_black_hole_mass_10:
     quantity: "apertures.veldisp_star_10_kpc"
     units: km/s
     start: 50
-    end: 1e3
+    end: 3e3
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
@@ -115,7 +147,7 @@ stellar_veldisp_black_hole_mass_10:
       value: 1e0
       units: km/s
     end:
-      value: 1e3
+      value: 3e3
       units: km/s
   metadata:
     title: Stellar Velocity Dispersion-Black Hole Mass relation (10 kpc)
@@ -131,7 +163,7 @@ stellar_veldisp_black_hole_mass_30:
     quantity: "apertures.veldisp_star_30_kpc"
     units: km/s
     start: 50
-    end: 1e3
+    end: 3e3
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass

@@ -4,20 +4,20 @@ stellar_mass_ages_30:
   y:
     quantity: "stellar_age.tage_star"
     units: yr
-    start: 1e9
+    start: 1e8
     end: 3e10
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e7
-    end: 1e12
+    start: 1e8
+    end: 1e13
   median:
     plot: true
     log: true
     number_of_bins: 25
     adaptive: true
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -40,7 +40,7 @@ stellar_mass_ages_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   median:
     plot: true
@@ -48,10 +48,10 @@ stellar_mass_ages_100:
     number_of_bins: 25
     adaptive: true
     start:
-      value: 1e7
+      value: 1e8
       units: solar_mass
     end:
-      value: 1e12
+      value: 1e13
       units: solar_mass
   metadata:
     title: "Stellar mass - Stellar age relation (100 kpc aperture)"

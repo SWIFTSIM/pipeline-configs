@@ -12,7 +12,7 @@ stellar_mass_gas_sf_metallicity_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   median:
     plot: true
@@ -48,14 +48,14 @@ stellar_mass_gas_sf_metallicity_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   median:
     plot: true
     log: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -80,14 +80,14 @@ stellar_mass_star_metallicity_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   median:
     plot: true
     log: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13
@@ -111,14 +111,14 @@ stellar_mass_star_metallicity_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: solar_mass
-    start: 1e9
+    start: 1e8
     end: 1e13
   median:
     plot: true
     log: true
     number_of_bins: 25
     start:
-      value: 1e9
+      value: 1e8
       units: solar_mass
     end:
       value: 1e13

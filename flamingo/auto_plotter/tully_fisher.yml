@@ -10,7 +10,7 @@ tully_fisher_100:
     quantity: "velocities.vmax"
     units: km/s
     start: 20
-    end: 700
+    end: 1400
   median:
     plot: true
     log: true
@@ -41,7 +41,7 @@ tully_fisher_30:
     quantity: "velocities.vmax"
     units: km/s
     start: 20
-    end: 700
+    end: 1400
   median:
     plot: true
     log: true

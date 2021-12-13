@@ -49,6 +49,7 @@ gas_fraction_500:
   median:
     plot: true
     log: true
+    min_num_points_highlight: 0
     adaptive: true
     number_of_bins: 20
     start:
@@ -115,7 +116,7 @@ gas_mass_500:
     quantity: "spherical_overdensities.mass_gas_500_rhocrit"
     units: Solar_Mass
     start: 3e9
-    end: 1e14
+    end: 5e14
   median:
     plot: true
     log: true

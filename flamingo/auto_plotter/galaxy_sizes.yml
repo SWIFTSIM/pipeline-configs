@@ -4,8 +4,8 @@ stellar_mass_galaxy_size_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "apertures.rhalfmass_star_100_kpc"
     units: kpc
@@ -16,10 +16,10 @@ stellar_mass_galaxy_size_100:
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Galaxy Size relation (100 kpc aperture)
@@ -35,8 +35,8 @@ stellar_mass_galaxy_size_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "apertures.rhalfmass_star_30_kpc"
     units: kpc
@@ -47,10 +47,10 @@ stellar_mass_galaxy_size_30:
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Galaxy Size relation (30 kpc aperture)
@@ -67,8 +67,8 @@ stellar_mass_projected_galaxy_size_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
     units: kpc
@@ -79,10 +79,10 @@ stellar_mass_projected_galaxy_size_100:
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
@@ -99,8 +99,8 @@ stellar_mass_projected_galaxy_size_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
     units: kpc
@@ -111,10 +111,10 @@ stellar_mass_projected_galaxy_size_30:
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
@@ -135,22 +135,22 @@ stellar_mass_projected_galaxy_size_active_only_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
     units: kpc
     start: 1e-1
-    end: 3e1
+    end: 2e2
   median:
     plot: true
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
@@ -170,8 +170,8 @@ stellar_mass_projected_galaxy_size_active_only_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
     units: kpc
@@ -182,10 +182,10 @@ stellar_mass_projected_galaxy_size_active_only_30:
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
@@ -206,22 +206,22 @@ stellar_mass_projected_galaxy_size_passive_only_100:
   x:
     quantity: "apertures.mass_star_100_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
     units: kpc
     start: 1e-1
-    end: 3e1
+    end: 2e2
   median:
     plot: true
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (100 kpc aperture)
@@ -241,8 +241,8 @@ stellar_mass_projected_galaxy_size_passive_only_30:
   x:
     quantity: "apertures.mass_star_30_kpc"
     units: Solar_Mass
-    start: 1e6
-    end: 1e12
+    start: 1e8
+    end: 1e13
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
     units: kpc
@@ -253,10 +253,10 @@ stellar_mass_projected_galaxy_size_passive_only_30:
     log: true
     number_of_bins: 30
     start:
-      value: 1e6
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e13
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)

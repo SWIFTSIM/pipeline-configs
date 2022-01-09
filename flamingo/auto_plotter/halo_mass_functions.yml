@@ -1,5 +1,6 @@
 halo_mass_function:
   type: "massfunction"
+  select_structure_type: 10
   legend_loc: "lower left"
   number_of_bins: 25
   x:
@@ -21,6 +22,7 @@ halo_mass_function:
 
 halo_mass_function_adaptive:
   type: "adaptivemassfunction"
+  select_structure_type: 10  
   legend_loc: "lower left"
   number_of_bins: 25
   x:

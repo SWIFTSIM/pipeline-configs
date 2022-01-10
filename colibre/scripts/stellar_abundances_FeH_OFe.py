@@ -90,7 +90,6 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
-    simulation_lines.append(ax.plot(xm, ym, color=dots.get_color(), zorder=1000)[0])
     simulation_lines.append(
         ax.plot(
             xm,

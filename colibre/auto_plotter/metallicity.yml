@@ -615,7 +615,7 @@ stellar_mass_star_mg_over_fe_100:
     quantity: "derived_quantities.star_magnesium_over_iron_100_kpc"
     units: "dimensionless"
     start: -0.2
-    end: 0.4
+    end: 0.7
     log: false
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -637,7 +637,8 @@ stellar_mass_star_mg_over_fe_100:
     title: 'Stellar mass - [Mg/Fe]$_*$ relation (100 kpc aperture)'
     section: Stellar Metallicity
     caption: '[Mg/Fe] versus stellar mass, both computed in 100-kpc apertures. The values of [Mg/Fe] are obtained by computing the (log10 of) ratio between the total Magnesium mass in stars and total Iron mass in stars, and then normalising it by the corresponding solar abundances. The solar abundances are taken from Asplund et al. (2009). All haloes are plotted, including subhaloes.'
-
+  observational_data:
+    - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data.hdf5
 
 stellar_mass_star_o_over_fe_100:
   type: "scatter"
@@ -645,8 +646,8 @@ stellar_mass_star_o_over_fe_100:
   y:
     quantity: "derived_quantities.star_oxygen_over_iron_100_kpc"
     units: "dimensionless"
-    start: 0.0
-    end: 0.5
+    start: -0.2
+    end: 0.7
     log: false
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -668,4 +669,5 @@ stellar_mass_star_o_over_fe_100:
     title: 'Stellar mass - [O/Fe]$_*$ relation (100 kpc aperture)'
     section: Stellar Metallicity
     caption: '[O/Fe] versus stellar mass, both computed in 100-kpc apertures. The values of [O/Fe] are obtained by computing the (log10 of) ratio between the total Oxygen mass in stars and total Iron mass in stars, and then normalising it by the corresponding solar abundances. The solar abundances are taken from Asplund et al. (2009). All haloes are plotted, including subhaloes.'
-
+  observational_data:
+    - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data.hdf5

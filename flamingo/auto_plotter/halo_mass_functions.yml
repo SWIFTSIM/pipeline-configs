@@ -2,7 +2,7 @@ halo_mass_function:
   type: "massfunction"
   select_structure_type: 10
   legend_loc: "lower left"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
@@ -14,7 +14,7 @@ halo_mass_function:
     end: 1e1
   metadata:
     title: "Halo Mass Function ($M_{200, crit}$)"
-    caption: Halo masses are masses within the over-density radius enclosing 200x the critical density.
+    caption: Halo masses are masses within the over-density radius enclosing 200x the critical density, using 0.2 dex fixed bin-widths (centrals only).
     section: Halo Mass Function
   observational_data:
     - filename: HaloMassFunction/Tinker2008.hdf5
@@ -24,7 +24,7 @@ halo_mass_function_adaptive:
   type: "adaptivemassfunction"
   select_structure_type: 10  
   legend_loc: "lower left"
-  number_of_bins: 25
+  number_of_bins: 30
   x:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
@@ -36,7 +36,7 @@ halo_mass_function_adaptive:
     end: 1e1
   metadata:
     title: "Halo Mass Function ($M_{200, crit}$)"
-    caption: Halo masses are masses within the over-density radius enclosing 200x the critical density, using adaptive binning.
+    caption: Halo masses are masses within the over-density radius enclosing 200x the critical density, using adaptive binning (centrals only).
     section: Halo Mass Function
   observational_data:
     - filename: HaloMassFunction/Tinker2008.hdf5

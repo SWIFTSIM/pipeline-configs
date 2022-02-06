@@ -9,7 +9,7 @@ from swiftsimio import load
 from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
-max_temperature_bounds = [1e5, 5e10]  # in K
+max_temperature_bounds = [1e5, 1e12]  # in K
 redshift_bounds = [-1.5, 12]  # dimensionless
 bins = 128
 

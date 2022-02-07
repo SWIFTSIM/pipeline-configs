@@ -28,7 +28,8 @@ This file calculates:
 """
 
 # Define aperture size in kpc
-aperture_sizes = [30, 100]
+aperture_sizes_30_100_kpc = {30, 100}
+aperture_sizes_30_50_100_kpc = {30, 50, 100}
 
 # Solar metal mass fraction used in Plöckinger S. & Schaye J. (2020)
 solar_metal_mass_fraction = 0.0134
@@ -844,6 +845,35 @@ def register_stellar_birth_densities(self, catalogue):
     return
 
 
+def register_gas_fraction(self, catalogue):
+
+    Omega_m = catalogue.units.cosmology.Om0
+    Omega_b = catalogue.units.cosmology.Ob0
+
+    M_500 = catalogue.spherical_overdensities.mass_500_rhocrit
+    M_500_gas = catalogue.spherical_overdensities.mass_gas_500_rhocrit
+    M_500_star = catalogue.spherical_overdensities.mass_star_500_rhocrit
+    M_500_baryon = M_500_gas + M_500_star
+
+    f_b_500 = (M_500_baryon / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_b_500.name = name
+
+    f_gas_500 = (M_500_gas / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_gas_500.name = name
+
+    f_star_500 = (M_500_star / M_500) / (Omega_b / Omega_m)
+    name = "$f_{\\rm star, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_star_500.name = name
+
+    setattr(self, "baryon_fraction_true_R500", f_b_500)
+    setattr(self, "gas_fraction_true_R500", f_gas_500)
+    setattr(self, "star_fraction_true_R500", f_star_500)
+
+    return
+
+
 def register_los_star_veldisp(self, catalogue):
     for aperture_size in [10, 30]:
         veldisp = getattr(catalogue.apertures, f"veldisp_star_{aperture_size}_kpc")
@@ -855,21 +885,30 @@ def register_los_star_veldisp(self, catalogue):
 
 
 # Register derived fields
-register_spesific_star_formation_rates(self, catalogue, aperture_sizes)
-register_star_metallicities(self, catalogue, aperture_sizes, solar_metal_mass_fraction)
-register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes)
-register_dust(self, catalogue, aperture_sizes)
-register_oxygen_to_hydrogen(self, catalogue, aperture_sizes)
-register_cold_dense_gas_metallicity(
-    self, catalogue, aperture_sizes, solar_metal_mass_fraction, twelve_plus_log_OH_solar
+register_spesific_star_formation_rates(self, catalogue, aperture_sizes_30_100_kpc)
+register_star_metallicities(
+    self, catalogue, aperture_sizes_30_100_kpc, solar_metal_mass_fraction
 )
-register_iron_to_hydrogen(self, catalogue, aperture_sizes, solar_fe_abundance)
-register_hi_masses(self, catalogue, aperture_sizes)
-register_h2_masses(self, catalogue, aperture_sizes)
-register_dust_to_hi_ratio(self, catalogue, aperture_sizes)
-register_cold_gas_mass_ratios(self, catalogue, aperture_sizes)
-register_species_fractions(self, catalogue, aperture_sizes)
+register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_dust(self, catalogue, aperture_sizes_30_100_kpc)
+register_oxygen_to_hydrogen(self, catalogue, aperture_sizes_30_100_kpc)
+register_cold_dense_gas_metallicity(
+    self,
+    catalogue,
+    aperture_sizes_30_100_kpc,
+    solar_metal_mass_fraction,
+    twelve_plus_log_OH_solar,
+)
+register_iron_to_hydrogen(
+    self, catalogue, aperture_sizes_30_100_kpc, solar_fe_abundance
+)
+register_hi_masses(self, catalogue, aperture_sizes_30_100_kpc)
+register_h2_masses(self, catalogue, aperture_sizes_30_100_kpc)
+register_dust_to_hi_ratio(self, catalogue, aperture_sizes_30_100_kpc)
+register_cold_gas_mass_ratios(self, catalogue, aperture_sizes_30_100_kpc)
+register_species_fractions(self, catalogue, aperture_sizes_30_100_kpc)
 register_stellar_birth_densities(self, catalogue)
 register_global_mask(self, catalogue)
 register_los_star_veldisp(self, catalogue)
-register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes)
+register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_100_kpc)
+register_gas_fraction(self, catalogue)

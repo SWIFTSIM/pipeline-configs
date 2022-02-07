@@ -11,7 +11,7 @@ from unyt import mh
 from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
-density_bounds = [0.01, 10 ** 6.5]  # in nh/cm^3
+density_bounds = [0.01, 10 ** 7.0]  # in nh/cm^3
 redshift_bounds = [-1.5, 12]  # dimensionless
 bins = 128
 

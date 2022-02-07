@@ -86,7 +86,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 birth_density_bins = unyt.unyt_array(
-    np.logspace(-2, 6.5, number_of_bins), units="1/cm**3"
+    np.logspace(-2, 7, number_of_bins), units="1/cm**3"
 )
 log_birth_density_bin_width = np.log10(birth_density_bins[1].value) - np.log10(
     birth_density_bins[0].value
@@ -134,25 +134,17 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         T_K=SNII_heating_temperature, M_gas=M_gas.value, N_ngb=N_ngb_target, X_H=X_H
     )
 
+    # Total number of stars formed
+    Num_of_stars_total = len(birth_redshifts)
+
     for redshift, ax in ax_dict.items():
         data = birth_densities_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=birth_density_bins)
-
-        # Total number of stars formed
-        Num_of_obj = np.sum(H)
-
-        # Check to avoid division by zero
-        if Num_of_obj:
-            y_points = H / log_birth_density_bin_width / Num_of_obj
-        else:
-            y_points = np.zeros_like(H)
+        y_points = H / log_birth_density_bin_width / Num_of_stars_total
 
         ax.plot(
-            birth_density_centers,
-            y_points,
-            label=name,
-            color=f"C{color}",
+            birth_density_centers, y_points, label=name, color=f"C{color}",
         )
 
         # Add the median stellar birth-density line
@@ -166,11 +158,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
         # Add the DV&S2012 line
         ax.axvline(
-            n_crit,
-            color=f"C{color}",
-            linestyle="dotted",
-            zorder=-10,
-            alpha=0.5,
+            n_crit, color=f"C{color}", linestyle="dotted", zorder=-10, alpha=0.5,
         )
 
 axes[0].legend(loc="upper right", markerfirst=False)

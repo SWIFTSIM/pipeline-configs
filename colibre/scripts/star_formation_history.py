@@ -135,8 +135,36 @@ for index, observation in enumerate(observational_data):
         )
     observation_labels.append(observation.description)
 
+# Add radio data
+radio_data = load_observations(
+    [
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Novak2017.hdf5",
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Gruppioni2020.hdf5",
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Enia2022.hdf5",
+    ]
+)
 
-# Add Berhoozi data
+index = len(observational_data)
+for rdata in radio_data:
+    observation_lines.append(
+        ax.errorbar(
+            rdata.x.value,
+            rdata.y.value,
+            xerr=rdata.x_scatter.value,
+            yerr=rdata.y_scatter.value,
+            label=rdata.citation,
+            linestyle="none",
+            marker="o",
+            elinewidth=0.5,
+            markeredgecolor="none",
+            markersize=2,
+            zorder=index,
+        )
+    )
+    observation_labels.append(rdata.citation)
+    index += 1
+
+# Add Behroozi data
 Behroozi2019 = load_observations(
     [
         f"{path_to_obs_data}/data/StarFormationRateHistory/Behroozi2019_true.hdf5",

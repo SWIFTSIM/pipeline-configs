@@ -136,7 +136,7 @@ for index, observation in enumerate(observational_data):
     observation_labels.append(observation.description)
 
 # Add radio data
-radio_data = load_observations(
+radio_data_sample = load_observations(
     [
         f"{path_to_obs_data}/data/StarFormationRateHistory/Novak2017.hdf5",
         f"{path_to_obs_data}/data/StarFormationRateHistory/Gruppioni2020.hdf5",
@@ -144,25 +144,24 @@ radio_data = load_observations(
     ]
 )
 
-index = len(observational_data)
-for rdata in radio_data:
+for radio_data, color in zip(radio_data_sample, ["maroon", "goldenrod", "slategrey"]):
     observation_lines.append(
         ax.errorbar(
-            rdata.x.value,
-            rdata.y.value,
-            xerr=rdata.x_scatter.value,
-            yerr=rdata.y_scatter.value,
-            label=rdata.citation,
+            radio_data.x.value,
+            radio_data.y.value,
+            xerr=radio_data.x_scatter.value,
+            yerr=radio_data.y_scatter.value,
+            label=radio_data.citation,
             linestyle="none",
             marker="o",
+            color=color,
             elinewidth=0.5,
             markeredgecolor="none",
             markersize=2,
-            zorder=index,
+            zorder=-10,
         )
     )
-    observation_labels.append(rdata.citation)
-    index += 1
+    observation_labels.append(radio_data.citation)
 
 # Add Behroozi data
 Behroozi2019 = load_observations(

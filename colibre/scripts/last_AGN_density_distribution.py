@@ -87,7 +87,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 AGN_density_bins = unyt.unyt_array(
-    np.logspace(-5, 6.5, number_of_bins), units="1/cm**3"
+    np.logspace(-5.0, 7.0, number_of_bins), units="1/cm**3"
 )
 log_AGN_density_bin_width = np.log10(AGN_density_bins[1].value) - np.log10(
     AGN_density_bins[0].value
@@ -179,7 +179,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         y_points = H / log_AGN_density_bin_width / Num_of_heated_parts_total
 
         ax.plot(
-            AGN_density_centers, y_points, label=name, color=f"C{color}",
+            AGN_density_centers,
+            y_points,
+            label=name,
+            color=f"C{color}",
         )
         ax.axvline(
             np.median(data),
@@ -191,7 +194,11 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
         # Add the DV&S2012 line
         ax.axvline(
-            n_crit, color=f"C{color}", linestyle="dotted", zorder=-10, alpha=0.5,
+            n_crit,
+            color=f"C{color}",
+            linestyle="dotted",
+            zorder=-10,
+            alpha=0.5,
         )
 
 axes[0].legend(loc="upper right", markerfirst=False)

@@ -10,7 +10,7 @@ from unyt import mh, cm, unyt_array
 from matplotlib.colors import Normalize
 
 # Set the limits of the figure.
-density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
+density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
 temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
 dustfracs_bounds = [-5, -1]  # dimensionless (dust mass / gas mass)
 min_dustfracs = dustfracs_bounds[0]
@@ -84,7 +84,11 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -205,7 +209,9 @@ def make_single_image(
         axis.set_ylim(*temperature_bounds)
 
     fig.colorbar(
-        mappable, ax=ax.ravel().tolist(), label="Mean (Logarithmic) Dust Mass Fraction",
+        mappable,
+        ax=ax.ravel().tolist(),
+        label="Mean (Logarithmic) Dust Mass Fraction",
     )
 
     fig.savefig(f"{output_path}/{prefix_T}density_temperature_dust.png")

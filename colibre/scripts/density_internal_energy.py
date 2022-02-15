@@ -11,8 +11,8 @@ from unyt import mh, cm, s, km
 from matplotlib.colors import LogNorm
 
 # Constants; these could be put in the parameter file but are rarely changed.
-density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
-internal_energy_bounds = [10 ** (-4), 10 ** 6]  # in
+density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
+internal_energy_bounds = [10 ** (-4), 10 ** 8]  # in
 bins = 256
 
 
@@ -62,7 +62,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

@@ -11,7 +11,7 @@ from unyt import mh, cm, unyt_array
 from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
-density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
+density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
 temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
 specfracs_bounds = [1e-2, 1]  # dimensionless
 min_specfracs = specfracs_bounds[0]
@@ -92,7 +92,11 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

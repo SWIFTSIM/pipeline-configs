@@ -6,20 +6,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import glob
 
-import swiftsimio as sw
 from swiftsimio import load
 import h5py as h5
 
 from unyt import mh, cm
-from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
-from matplotlib.animation import FuncAnimation
-from matplotlib.cm import get_cmap
 from scipy.interpolate import interpn
-from scipy.stats import binned_statistic as bs1d
 
 # Set the limits of the figure.
-density_bounds = [1e-3, 1e3]  # in nh/cm^3
-temperature_bounds = [10 ** (0), 10 ** (9.5)]  # in K
+density_bounds = [10 ** (-5), 10 ** (6.0)]  # nh/cm^3
 dustfracs_bounds = [-4, -1]  # In metal mass fraction
 min_dustfracs = 10 ** dustfracs_bounds[0]
 bins = 64
@@ -128,7 +122,6 @@ def get_data(filename, tables, prefix_rho, prefix_T):
 def make_hist(
     filename,
     density_bounds,
-    temperature_bounds,
     bins,
     tables,
     prefix_rho="",
@@ -143,9 +136,6 @@ def make_hist(
 
     density_bins = np.logspace(
         np.log10(density_bounds[0]), np.log10(density_bounds[1]), bins
-    )
-    temperature_bins = np.logspace(
-        np.log10(temperature_bounds[0]), np.log10(temperature_bounds[1]), bins
     )
 
     ret_tuple = get_data(filename, tables, prefix_rho, prefix_T)
@@ -202,7 +192,11 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -232,7 +226,6 @@ def make_single_image(
     names,
     number_of_simulations,
     density_bounds,
-    temperature_bounds,
     bins,
     output_path,
     prop_type,
@@ -263,7 +256,6 @@ def make_single_image(
         hh2, hhi, hhii, hd2z, hdi2z, d = make_hist(
             filename,
             density_bounds,
-            temperature_bounds,
             bins,
             tables,
             prefix_rho,
@@ -275,14 +267,12 @@ def make_single_image(
         hist_d2z.append(hd2z)
         hist_di2z.append(hdi2z)
 
-    ncols = 20
-    collist = []
     binmids = np.log10(d)[:-1] + 0.5 * np.diff(np.log10(d))
 
     for hist_h2, hist_hi, hist_hii, hist_d2z, hist_di2z, name, axis in zip(
         hist_h2, hist_hi, hist_hii, hist_d2z, hist_di2z, names, ax.flat
     ):
-        # mappable = axis.pcolormesh(d, T, np.log10(hist), cmap=cmap, norm=norm)
+
         axis.plot(binmids, np.clip(hist_h2, 0, 1), label="molecular")
         axis.plot(binmids, np.clip(hist_hi, 0, 1), label="atomic")
         axis.plot(binmids, np.clip(hist_hii, 0, 1), label="ionised")
@@ -292,6 +282,7 @@ def make_single_image(
         axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
         axis.legend(frameon=False, loc=6)
         axis.set_ylim(0, 1.1)
+        axis.set_xlim(np.log10(density_bounds[0]), np.log10(density_bounds[1]))
         axis2 = axis.twinx()
         axis2.plot(binmids, hist_d2z, c="C5", label="Model dust")
         axis2.plot(binmids, hist_di2z, c="C5", ls="--", label="Table dust")
@@ -306,7 +297,7 @@ if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
     arguments = ScriptArgumentParser(
-        description="Basic density-temperature figure.",
+        description="Hydrogen species figure.",
         additional_arguments={
             "quantity_type": "hydro",
             "cooling_tables": "UV_dust1_CR1_G1_shield1.hdf5",
@@ -327,7 +318,6 @@ if __name__ == "__main__":
         names=arguments.name_list,
         number_of_simulations=arguments.number_of_inputs,
         density_bounds=density_bounds,
-        temperature_bounds=temperature_bounds,
         bins=bins,
         output_path=arguments.output_directory,
         prop_type=arguments.quantity_type,

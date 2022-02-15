@@ -161,7 +161,7 @@ for radio_data, color in zip(radio_data_sample, ["maroon", "goldenrod", "slategr
             zorder=-10,
         )
     )
-    observation_labels.append(radio_data.citation)
+    observation_labels.append(f"{radio_data.citation} [radio]")
 
 # Add Behroozi data
 Behroozi2019 = load_observations(

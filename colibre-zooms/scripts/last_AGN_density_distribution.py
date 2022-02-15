@@ -87,7 +87,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 AGN_density_bins = unyt.unyt_array(
-    np.logspace(-5, 6.5, number_of_bins), units="1/cm**3"
+    np.logspace(-5.0, 7.0, number_of_bins), units="1/cm**3"
 )
 log_AGN_density_bin_width = np.log10(AGN_density_bins[1].value) - np.log10(
     AGN_density_bins[0].value
@@ -164,6 +164,9 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         T_K=AGN_heating_temperature, M_gas=M_gas.value, N_ngb=N_ngb_target, X_H=X_H
     )
 
+    # Total number of objects received AGN energy
+    Num_of_heated_parts_total = len(gas_AGN_redshifts) + len(stars_AGN_redshifts)
+
     for redshift, ax in ax_dict.items():
         data = np.concatenate(
             [
@@ -173,15 +176,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
 
         H, _ = np.histogram(data, bins=AGN_density_bins)
-
-        # Total number AGN-heated gas particles
-        Num_of_obj = np.sum(H)
-
-        # Check to avoid division by zero
-        if Num_of_obj:
-            y_points = H / log_AGN_density_bin_width / Num_of_obj
-        else:
-            y_points = np.zeros_like(H)
+        y_points = H / log_AGN_density_bin_width / Num_of_heated_parts_total
 
         ax.plot(
             AGN_density_centers,

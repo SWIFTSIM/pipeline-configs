@@ -423,6 +423,11 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                 f"Stellar $10^{{\\rm [Fe/H]}}$ ({floor_label}, {aperture_size} kpc)"
             )
 
+            log_Fe_over_H_times_star_mass = getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_Fe_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc",
+            )
+
             # Register the field
             setattr(
                 self,
@@ -430,6 +435,39 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                 Fe_abundance,
             )
 
+            
+            if floor == 'low':
+                try:
+                    log_Fe_over_H_times_star_mass = getattr(
+                        catalogue.log_element_ratios_times_masses,
+                        f"log_SNIaFe_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc",
+                    )                
+                    Fe_over_H[mask] = pow(
+                    10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
+                    )
+                    # Convert to units used in observations
+                    Fe_abundance = unyt.unyt_array(
+                        Fe_over_H / fe_solar_abundance, "dimensionless"
+                    )
+
+                    
+                    Fe_abundance.name = (
+                        f"Stellar $10^{{\\rm [Fe/H]}}$ ({floor_label}, {aperture_size} kpc)"
+                    )
+                    setattr(
+                        self,
+                        f"star_fe_snia_abundance_avglog_{floor}_{aperture_size}_kpc",
+                        Fe_abundance,
+                    )
+                    print(np.isnan(self.star_fe_snia_abundance_avglog_low_30_kpc).any())
+                    print(np.isnan(self.star_fe_abundance_avglog_low_30_kpc).any())
+                except AttributeError:
+                    # else clip values to floor
+                    setattr(
+                        self,
+                        f"star_fe_snia_abundance_avglog_{floor}_{aperture_size}_kpc",
+                        unyt.unyt_array(np.zeros_like(star_mass)-4., "dimensionless"),
+                    ) 
     return
 
 

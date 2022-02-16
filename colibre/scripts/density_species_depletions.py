@@ -61,19 +61,26 @@ def get_data(filename, prefix_rho, prefix_T):
     """
 
     data = load(filename)
-    fe_balance = float(data.metadata.parameters['DustEvolution:silicate_fe_grain_fraction'])
     pairing = int(data.metadata.parameters['DustEvolution:pair_to_cooling'])
-    
-    mol_O = 6 * A['Oxygen']
-    mol_Mg = (2 - 2*fe_balance) * A['Magnesium']
-    mol_Si = 2 * A['Silicon']
-    mol_Fe = 2 * fe_balance * A['Iron'] 
-    mol_tot = mol_O + mol_Mg + mol_Si + mol_Fe
 
+    if int(data.metadata.parameters['DustEvolution:silicate_fe_grain_fraction']) != -1:
+        fe_balance = float(data.metadata.parameters['DustEvolution:silicate_fe_grain_fraction'])
+        mol_O = 6 * A['Oxygen']
+        mol_Mg = (2 - 2*fe_balance) * A['Magnesium']
+        mol_Si = 2 * A['Silicon']
+        mol_Fe = 2 * fe_balance * A['Iron'] 
+    else:
+        mol_O = float(data.metadata.parameters['DustEvolution:silicate_molecule_subscript_oxygen']) * A['Oxygen']
+        mol_Mg = float(data.metadata.parameters['DustEvolution:silicate_molecule_subscript_magnesium']) * A['Magnesium']
+        mol_Si = float(data.metadata.parameters['DustEvolution:silicate_molecule_subscript_silicon']) * A['Silicon']
+        mol_Fe = float(data.metadata.parameters['DustEvolution:silicate_molecule_subscript_iron']) * A['Iron']
+        
+    mol_tot = mol_O + mol_Mg + mol_Si + mol_Fe
     compdict['Silicates'] = {'Oxygen': mol_O/mol_tot,
                              'Magnesium': mol_Mg/mol_tot,
                              'Silicon': mol_Si/mol_tot,
                              'Iron': mol_Fe/mol_tot}
+    
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
     ).to(cm ** -3)

@@ -1,5 +1,4 @@
 # Example configuration file for a COLIBRE-like simulation
-
 # Location of your other .yml files that are passed to the
 # velociraptor auto plotter (these describe your scaling)
 # relation figures. Also required is the registration file
@@ -10,7 +9,7 @@ auto_plotter_registration: registration.py
 
 # Location of the 'observational data' repository and its compiled
 # contents.
-observational_data_directory: ../observational_data
+observational_data_directory: ../../observational_data
 
 # Style sheet to be used throughout with plotting
 matplotlib_stylesheet: mnras.mplstyle
@@ -294,3 +293,45 @@ scripts:
     output_file: stellar_abundances_OH_Fe_snia_fraction.png
     section: Stellar Metallicity
     title: 'Fraction of Fe from SNIa vs [O/H]'
+  - filename: scripts/stellar_abundances_GALAH_comparison.py
+    caption: Element enrichment [X/Fe] as a function of Iron abundance [Fe/H]. Contours constructed from histogram of star counts in GALAH DR3 data (Buder+21), using a log scale with a minimum star count of 10. All recommended flags are applied to GALAH data to selsct included stars (SN, FE/H and X/Fe quality flags). 
+    output_file: stellar_abundances_GALAH_FeH_CFe.png
+    section: GALAH enrichment comparison
+    title: Carbon
+    additional_arguments:
+      enrichment_element: C
+
+  - filename: scripts/stellar_abundances_GALAH_comparison.py
+    caption: Element enrichment [X/Fe] as a function of Iron abundance [Fe/H]. Contours constructed from histogram of star counts in GALAH DR3 data (Buder+21), using a log scale with a minimum star count of 10. All recommended flags are applied to GALAH data to selsct included stars (SN, FE/H and X/Fe quality flags). 
+    output_file: stellar_abundances_GALAH_FeH_OFe.png
+    section: GALAH enrichment comparison
+    title: Oxygen
+    additional_arguments:
+      enrichment_element: O
+
+  - filename: scripts/stellar_abundances_GALAH_comparison.py
+    caption: Element enrichment [X/Fe] as a function of Iron abundance [Fe/H]. Contours constructed from histogram of star counts in GALAH DR3 data (Buder+21), using a log scale with a minimum star count of 10. All recommended flags are applied to GALAH data to selsct included stars (SN, FE/H and X/Fe quality flags). 
+    output_file: stellar_abundances_GALAH_FeH_MgFe.png
+    section: GALAH enrichment comparison
+    title: Magnesium
+    additional_arguments:
+      enrichment_element: Mg
+  - filename: scripts/stellar_abundances_GALAH_comparison.py
+    caption: Element enrichment [X/Fe] as a function of Iron abundance [Fe/H]. Contours constructed from histogram of star counts in GALAH DR3 data (Buder+21), using a log scale with a minimum star count of 10. All recommended flags are applied to GALAH data to selsct included stars (SN, FE/H and X/Fe quality flags). 
+    output_file: stellar_abundances_GALAH_FeH_SiFe.png
+    section: GALAH enrichment comparison
+    title: Silicon
+    additional_arguments:
+      enrichment_element: Si
+  - filename: scripts/stellar_abundances_GALAH_comparison.py
+    caption: Element enrichment [X/Fe] as a function of Iron abundance [Fe/H]. Contours constructed from histogram of star counts in GALAH DR3 data (Buder+21), using a log scale with a minimum star count of 10. All recommended flags are applied to GALAH data to selsct included stars (SN, FE/H and X/Fe quality flags). 
+    output_file: stellar_abundances_GALAH_FeH_EuFe.png
+    section: GALAH enrichment comparison
+    title: Europium
+    additional_arguments:
+      enrichment_element: Eu
+  - filename: scripts/stellar_abundances_GALAH_comparison_OC.py
+    caption: Element enrichment [O/C] as a function of Iron abundance [Fe/H]. Contours constructed from histogram of star counts in GALAH DR3 data (Buder+21), using a log scale with a minimum star count of 10. All recommended flags are applied to GALAH data to select included stars (SN, Fe/H and X/Fe quality flags). 
+    output_file: stellar_abundances_GALAH_FeH_OC.png
+    section: GALAH enrichment comparison
+    title: Oxygen to Carbon

@@ -25,11 +25,11 @@ def get_data(filename):
     data = load(filename)
 
     try:
-        number_density = (data.gas.subgrid_physical_densities / mh).to(cm ** -3)
+        number_density = (data.gas.subgrid_physical_densities / mh).to(cm**-3)
         temperature = data.gas.subgrid_temperatures.to_physical().to("K")
     except:
         # No sub-grid quantities present. Still make the figure, but use non-subgrid.
-        number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
+        number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
         temperature = data.gas.temperatures.to_physical().to("K")
 
     return number_density.value, temperature.value
@@ -69,7 +69,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -147,4 +151,3 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
     )
-

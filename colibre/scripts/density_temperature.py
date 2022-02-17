@@ -24,7 +24,7 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
+    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
     temperature = data.gas.temperatures.to_physical().to("K")
 
     return number_density.value, temperature.value

@@ -85,7 +85,7 @@ def make_single_image(filenames, names, h_bounds, number_of_simulations, output_
         )
 
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
-        bins = 10 ** bins
+        bins = 10**bins
 
         (line,) = ax.plot(bins, h, label=name)
 

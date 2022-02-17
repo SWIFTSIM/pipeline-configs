@@ -41,7 +41,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     data = load(filename)
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
-    ).to(cm ** -3)
+    ).to(cm**-3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
     masses = data.gas.masses.to_physical().to("Msun")
 
@@ -64,7 +64,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
         with h5.File(tables, "r") as table_file:
             lrho = np.log10(
                 (data.gas.subgrid_physical_densities.to_physical() / mh)
-                .to(cm ** -3)
+                .to(cm**-3)
                 .value
             )
             lT = np.log10((data.gas.subgrid_temperatures).to_physical().to("K").value)

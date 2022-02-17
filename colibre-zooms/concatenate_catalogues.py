@@ -72,9 +72,7 @@ def concatenate_catalogues(paths: List[str], filename: str):
         with h5.File(path, "r") as data:
 
             # Append 'path' to keep record
-            concatenated_data["ConcatenatedFiles"].attrs.create(
-                path, ""
-            )
+            concatenated_data["ConcatenatedFiles"].attrs.create(path, "")
 
             # Copy global attributes
             if count == 1:

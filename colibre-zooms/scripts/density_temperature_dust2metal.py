@@ -29,7 +29,7 @@ def get_data(filename, prefix_rho, prefix_T):
 
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
-    ).to(cm ** -3)
+    ).to(cm**-3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
     masses = data.gas.masses.to_physical().to("Msun")
     Z = data.gas.metal_mass_fractions

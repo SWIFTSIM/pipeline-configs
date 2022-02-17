@@ -51,7 +51,8 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
                 snapshot.gas.smoothed_metal_mass_fractions.value, bins=metallicity_bins
             )[0],
             "Stars": np.histogram(
-                snapshot.stars.smoothed_metal_mass_fractions.value, bins=metallicity_bins
+                snapshot.stars.smoothed_metal_mass_fractions.value,
+                bins=metallicity_bins,
             )[0],
         }
         smoothed = True

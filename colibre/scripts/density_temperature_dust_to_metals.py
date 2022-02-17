@@ -12,7 +12,7 @@ from matplotlib.colors import LogNorm
 
 # Constants; these could be put in the parameter file but are rarely changed.
 density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
-temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
+temperature_bounds = [10**0.0, 10**9.5]  # in K
 dtm_bounds = [1e-3, 1e-1]
 min_metallicity = 1e-8
 min_dmf = 1e-10
@@ -27,7 +27,7 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
+    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
     temperature = data.gas.temperatures.to_physical().to("K")
 
     metallicity = data.gas.metal_mass_fractions

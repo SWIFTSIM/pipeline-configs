@@ -12,9 +12,10 @@ from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
 
 # Constants; these could be put in the parameter file but are rarely changed.
-density_bounds = [10**(-9.5), 1e4]  # in nh/cm^3
-internal_energy_bounds = [10 ** (0), 10 ** (8)]  # in 
+density_bounds = [10 ** (-9.5), 1e4]  # in nh/cm^3
+internal_energy_bounds = [10 ** (0), 10 ** (8)]  # in
 bins = 256
+
 
 def get_data(filename):
     """
@@ -22,7 +23,7 @@ def get_data(filename):
     """
 
     data = load(filename)
-    
+
     number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
     internal_energy = (data.gas.internal_energies.to_physical()).to(km**2 / s**2)
 
@@ -62,7 +63,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -116,6 +121,7 @@ def make_single_image(
 
     return
 
+
 if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
@@ -139,4 +145,3 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
     )
-

@@ -12,7 +12,7 @@ from unyt import mh, cm, unyt_array
 from matplotlib.colors import Normalize
 
 # Constants; these could be put in the parameter file but are rarely changed.
-density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
+density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
 temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
 sf_mass_fraction_bounds = [-2.5, 0]  # log mass fraction of star-forming gas
 min_sf_mass_fraction = 1e-6  # Minimal mass fraction of star-forming gas

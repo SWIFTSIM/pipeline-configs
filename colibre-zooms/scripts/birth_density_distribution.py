@@ -5,6 +5,7 @@ Plots the birth density distribution.
 import matplotlib.pyplot as plt
 import numpy as np
 import unyt
+import traceback
 
 from unyt import mh
 
@@ -122,17 +123,42 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         "$z > 3$": birth_densities[birth_redshifts > 3],
     }
 
-    # Compute the critical density from DV&S2012
-    SNII_heating_temperature = float(
-        snapshot.metadata.parameters["COLIBREFeedback:SNII_delta_T_K"].decode("utf-8")
-    )  # in K
-    N_ngb_target = snapshot.metadata.hydro_scheme["Kernel target N_ngb"][0]
-    X_H = snapshot.metadata.hydro_scheme["Hydrogen mass fraction"][0]
-    M_gas = snapshot.metadata.initial_mass_table.gas.to("Msun")  # in Solar Masses
+    # Compute the critical density from DV&S201
+    try:
+        SNII_heating_temperature_min = float(
+            snapshot.metadata.parameters["COLIBREFeedback:SNII_delta_T_K_min"].decode(
+                "utf-8"
+            )
+        )  # in K
+        SNII_heating_temperature_max = float(
+            snapshot.metadata.parameters["COLIBREFeedback:SNII_delta_T_K_max"].decode(
+                "utf-8"
+            )
+        )  # in K
+        N_ngb_target = snapshot.metadata.hydro_scheme["Kernel target N_ngb"][0]
+        X_H = snapshot.metadata.hydro_scheme["Hydrogen mass fraction"][0]
+        M_gas = snapshot.metadata.initial_mass_table.gas.to("Msun")  # in Solar Masses
 
-    n_crit = critical_density_DVS2012(
-        T_K=SNII_heating_temperature, M_gas=M_gas.value, N_ngb=N_ngb_target, X_H=X_H
-    )
+        # Critical density corresponding to minimum heating temperature
+        n_crit_min = critical_density_DVS2012(
+            T_K=SNII_heating_temperature_min,
+            M_gas=M_gas.value,
+            N_ngb=N_ngb_target,
+            X_H=X_H,
+        )
+        # Critical density corresponding to maximum heating temperature
+        n_crit_max = critical_density_DVS2012(
+            T_K=SNII_heating_temperature_max,
+            M_gas=M_gas.value,
+            N_ngb=N_ngb_target,
+            X_H=X_H,
+        )
+
+    # Cannot find argument(s)
+    except KeyError:
+        print(traceback.format_exc())
+        # Default value
+        n_crit_min, n_crit_max = -1.0, -1.0
 
     # Total number of stars formed
     Num_of_stars_total = len(birth_redshifts)
@@ -144,7 +170,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         y_points = H / log_birth_density_bin_width / Num_of_stars_total
 
         ax.plot(
-            birth_density_centers, y_points, label=name, color=f"C{color}",
+            birth_density_centers,
+            y_points,
+            label=name,
+            color=f"C{color}",
         )
 
         # Add the median stellar birth-density line
@@ -156,10 +185,16 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             alpha=0.5,
         )
 
-        # Add the DV&S2012 line
-        ax.axvline(
-            n_crit, color=f"C{color}", linestyle="dotted", zorder=-10, alpha=0.5,
-        )
+        # Add the DV&S2012 lines corresponding to min and max heating temperatures
+        for n_crit in [n_crit_min, n_crit_max]:
+            if n_crit > 0.0:
+                ax.axvline(
+                    n_crit,
+                    color=f"C{color}",
+                    linestyle="dotted",
+                    zorder=-10,
+                    alpha=0.5,
+                )
 
 axes[0].legend(loc="upper right", markerfirst=False)
 axes[2].set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")

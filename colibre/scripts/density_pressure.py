@@ -12,7 +12,7 @@ from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
 
 # Constants; these could be put in the parameter file but are rarely changed.
-density_bounds = [10 ** (-9.5), 1e6]  # in nh/cm^3
+density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
 pressure_bounds = [10 ** (-8.0), 10 ** 8.0]  # in K/cm^3
 bins = 256
 
@@ -64,7 +64,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

@@ -16,7 +16,7 @@ from matplotlib.colors import LogNorm, Normalize
 number_of_bins = 128
 
 birth_density_bins = unyt.unyt_array(
-    np.logspace(-3, 5, number_of_bins), units=1 / cm ** 3
+    np.logspace(-3, 5, number_of_bins), units=1 / cm**3
 )
 metal_mass_fraction_bins = unyt.unyt_array(
     np.logspace(-6, 0, number_of_bins), units="dimensionless"
@@ -35,7 +35,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -131,7 +135,7 @@ if __name__ == "__main__":
             metal_mass_fractions = snapshot.stars.metal_mass_fractions.value
 
         H, _, _ = np.histogram2d(
-            (snapshot.stars.birth_densities / mh).to(1 / cm ** 3).value,
+            (snapshot.stars.birth_densities / mh).to(1 / cm**3).value,
             metal_mass_fractions,
             bins=[birth_density_bins.value, metal_mass_fraction_bins.value],
         )

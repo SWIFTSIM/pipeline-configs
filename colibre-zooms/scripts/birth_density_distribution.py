@@ -14,7 +14,7 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 
 
 def critical_density_DVS2012(
-    T_K: float = 10.0 ** 7.5,
+    T_K: float = 10.0**7.5,
     M_gas: float = 7.0e4,
     N_ngb: float = 48.0,
     X_H: float = 0.752,
@@ -58,7 +58,7 @@ def critical_density_DVS2012(
     # Critical density
     n_Hc = (
         31.0
-        * np.power(T_K / 10.0 ** 7.5, 3.0 / 2.0)
+        * np.power(T_K / 10.0**7.5, 3.0 / 2.0)
         * np.power(f_t / 10.0, -3.0 / 2.0)
         * np.power(M_gas / 7.0e4, -1.0 / 2.0)
         * np.power(N_ngb / 48.0, -1.0 / 2.0)

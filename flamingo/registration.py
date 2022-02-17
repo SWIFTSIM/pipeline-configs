@@ -215,6 +215,7 @@ for aperture_size in aperture_sizes:
 
     setattr(self, f"stellar_mass_eddington_{aperture_size}_kpc", stellar_mass_with_bias)
 
+
 def register_star_magnitudes(self, catalogue, aperture_sizes):
 
     bands = ["i", "g", "r", "H", "u", "J", "Y", "K", "z", "Z"]
@@ -239,5 +240,6 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
                 pass
 
     return
+
 
 register_star_magnitudes(self, catalogue, aperture_sizes)

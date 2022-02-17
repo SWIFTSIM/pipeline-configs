@@ -32,7 +32,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 birth_density_bins = unyt.unyt_array(
-    np.logspace(-3, 5, number_of_bins), units=1 / cm ** 3
+    np.logspace(-3, 5, number_of_bins), units=1 / cm**3
 )
 log_birth_density_bin_width = np.log10(birth_density_bins[1].value) - np.log10(
     birth_density_bins[0].value

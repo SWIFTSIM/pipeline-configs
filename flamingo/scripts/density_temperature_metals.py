@@ -26,7 +26,7 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
+    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
     temperature = data.gas.temperatures.to_physical().to("K")
 
     metallicity = data.gas.metal_mass_fractions
@@ -77,7 +77,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -164,4 +168,3 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
     )
-

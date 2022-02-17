@@ -43,7 +43,7 @@ def make_single_image(filenames, names, T_bounds, number_of_simulations, output_
             np.log10(T_max), range=np.log10(T_bounds), bins=250, density=True
         )
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
-        bins = 10 ** bins
+        bins = 10**bins
         ax.plot(bins, h, label=name)
 
     ax.legend()

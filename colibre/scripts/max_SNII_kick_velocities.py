@@ -61,7 +61,7 @@ def make_single_image(
             np.log10(v_kick_max), range=np.log10(v_kick_bounds), bins=250, density=True
         )
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
-        bins = 10 ** bins
+        bins = 10**bins
         ax.plot(bins, h, label=name)
 
     ax.legend()

@@ -114,7 +114,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         y_points = H / log_SNII_v_kick_bin_width / Num_of_kicked_parts_total
 
         ax.plot(
-            SNII_v_kick_centres, y_points, label=name, color=f"C{color}",
+            SNII_v_kick_centres,
+            y_points,
+            label=name,
+            color=f"C{color}",
         )
         ax.axvline(
             np.median(data),

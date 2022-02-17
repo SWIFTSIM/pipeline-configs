@@ -13,7 +13,7 @@ from matplotlib.animation import FuncAnimation
 
 # Constants; these could be put in the parameter file but are rarely changed.
 density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
-pressure_bounds = [10 ** (-8.0), 10 ** 8.0]  # in K/cm^3
+pressure_bounds = [10 ** (-8.0), 10**8.0]  # in K/cm^3
 bins = 256
 
 
@@ -24,8 +24,8 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
-    pressure = (data.gas.pressures.to_physical() / kb).to(K * cm ** -3)
+    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
+    pressure = (data.gas.pressures.to_physical() / kb).to(K * cm**-3)
 
     return number_density.value, pressure.value
 

@@ -16,6 +16,7 @@ density_bounds = [10 ** (-9.5), 1e4]  # in nh/cm^3
 pressure_bounds = [10 ** (-5), 10 ** (10)]  # in K/cm^3
 bins = 256
 
+
 def get_data(filename):
     """
     Grabs the data (P in Kelvin / cm^3 and density in mh / cm^3).
@@ -23,8 +24,8 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
-    pressure = (data.gas.pressures.to_physical() / kb).to(K * cm ** -3)
+    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
+    pressure = (data.gas.pressures.to_physical() / kb).to(K * cm**-3)
 
     return number_density.value, pressure.value
 
@@ -63,7 +64,11 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -88,6 +93,7 @@ def make_single_image(filename, density_bounds, pressure_bounds, bins, output_pa
     """
     Makes a single plot of rho-P
     """
+
 
 def make_single_image(
     filenames,
@@ -146,4 +152,3 @@ if __name__ == "__main__":
         bins=bins,
         output_path=arguments.output_directory,
     )
-

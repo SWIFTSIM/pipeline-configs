@@ -219,7 +219,7 @@ def concatenate_snapshots(
                                         f"{field} '{data[group][field].shape}'!!!"
                                     )
 
-                                # Chunks = True and max shape = None enable resize 
+                                # Chunks = True and max shape = None enable resize
                                 # method
                                 concatenated_data[group].create_dataset(
                                     field,
@@ -241,7 +241,7 @@ def concatenate_snapshots(
                                 # special care...
                                 if field == "NamedColumns":
                                     print("Processing 'NamedColumns'...")
-                                    
+
                                     for sub_field in data[group][field].keys():
                                         concatenated_data[group][field].create_dataset(
                                             sub_field,
@@ -328,16 +328,17 @@ def concatenate_snapshots(
         try:
             concatenated_data["Header"].attrs["RunName"] = name
         except AttributeError:
-            print("Can't find attribute 'RunName' in 'Header'. Creating"
-                  "one...")
+            print("Can't find attribute 'RunName' in 'Header'. Creating" "one...")
             concatenated_data["Header"].attrs.create("RunName", name)
 
     if "Parameters" in groups:
         try:
             concatenated_data["Parameters"].attrs["MetaData:run_name"] = name
         except AttributeError:
-            print("Can't find attribute 'MetaData:run_name' in 'Parameters'. Creating"
-                  "one...")
+            print(
+                "Can't find attribute 'MetaData:run_name' in 'Parameters'. Creating"
+                "one..."
+            )
             concatenated_data["Parameters"].attrs.create("MetaData:run_name", name)
 
     concatenated_data.close()

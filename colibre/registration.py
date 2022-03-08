@@ -1014,7 +1014,6 @@ register_star_metallicities(
     self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction
 )
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
-register_dust(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_oxygen_to_hydrogen(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_cold_dense_gas_metallicity(
     self,
@@ -1036,3 +1035,4 @@ register_los_star_veldisp(self, catalogue)
 register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_gas_fraction(self, catalogue)
 register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitude)
+register_dust(self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction, twelve_plus_log_OH_solar)

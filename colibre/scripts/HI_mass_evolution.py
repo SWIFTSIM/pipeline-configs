@@ -60,6 +60,7 @@ for snapshot_filename, stats_filename, name in zip(
     redshift = data.z
     HI_mass = data.gas_hi_mass.to("Msun")
     HI_mass_density = HI_mass / box_volume
+    HI_mass_density *= 1.0 / 0.76  # Apply Helium correction
 
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(ax.plot(scale_factor, HI_mass_density, zorder=10000)[0])
@@ -68,19 +69,29 @@ for snapshot_filename, stats_filename, name in zip(
 # Observational data plotting
 
 zgrid = np.linspace(0, 4, 50)
+agrid = pow(1 + zgrid, -1)
 
 P20_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
     "/data/CosmicHIAbundance/raw/Peroux2020_OmegaHI.txt",
     usecols=[1, 2],
 )
-P20eq13 = lambda z, a, b: a * rho_crit0 * (1 + z) ** b
+P20eq13 = lambda z, a, b: a * rho_crit0 * (1.0 + z) ** b
 P20_rhoHI = P20eq13(zgrid, *P20_data[0])
 P20_rhoHI_lo = P20eq13(zgrid, *P20_data[1])
 P20_rhoHI_hi = P20eq13(zgrid, *P20_data[2])
+
+# Cosmology correction (Schaye 2001)
+P20_rhoHI *= sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + comso.Ol)
+P20_rhoHI /= sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_lo *= sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + comso.Ol)
+P20_rhoHI_lo /= sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_hi *= sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + comso.Ol)
+P20_rhoHI_hi /= sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+
 simulation_lines.append(
     ax.fill_between(
-        pow(1 + zgrid, -1),
+        agrid,
         P20_rhoHI_lo,
         P20_rhoHI_hi,
         alpha=0.2,
@@ -88,29 +99,29 @@ simulation_lines.append(
         label="Peroux & Howk (2020) Fit",
     )
 )
-simulation_lines.append(ax.plot(pow(1 + zgrid, -1), P20_rhoHI, color="C2"))
+simulation_lines.append(ax.plot(agrid, P20_rhoHI, color="C2"))
 
 
-W20_data = np.genfromtxt(
-    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-    "/data/CosmicHIAbundance/raw/Walter2020_rhoHI.txt",
-    usecols=[1, 2, 3],
-)
-W20eq2 = lambda z, a, b, c: (a * np.tanh(1 + z - b) + c)
-W20_rhoHI = W20eq2(zgrid, *W20_data[0])
-W20_rhoHI_lo = W20eq2(zgrid, *W20_data[1])
-W20_rhoHI_hi = W20eq2(zgrid, *W20_data[2])
-simulation_lines.append(
-    ax.fill_between(
-        pow(1 + zgrid, -1),
-        W20_rhoHI_lo,
-        W20_rhoHI_hi,
-        alpha=0.2,
-        color="C3",
-        label="Walter et al. (2020) Fit",
-    )
-)
-simulation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoHI, color="C3"))
+# W20_data = np.genfromtxt(
+#     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+#     "/data/CosmicHIAbundance/raw/Walter2020_rhoHI.txt",
+#     usecols=[1, 2, 3],
+# )
+# W20eq2 = lambda z, a, b, c: (a * np.tanh(1 + z - b) + c)
+# W20_rhoHI = W20eq2(zgrid, *W20_data[0])
+# W20_rhoHI_lo = W20eq2(zgrid, *W20_data[1])
+# W20_rhoHI_hi = W20eq2(zgrid, *W20_data[2])
+# simulation_lines.append(
+#     ax.fill_between(
+#         pow(1 + zgrid, -1),
+#         W20_rhoHI_lo,
+#         W20_rhoHI_hi,
+#         alpha=0.2,
+#         color="C3",
+#         label="Walter et al. (2020) Fit",
+#     )
+# )
+# simulation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoHI, color="C3"))
 
 
 observational_data = glob.glob(

@@ -329,8 +329,8 @@
         </td>
     </tr>
     <tr>
-        <td>Black Hole Merger Threshold Type</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:merger_threshold_type") }}</td>
+      <td>Black Hole Merger Threshold Type</td>
+      <td>{{ data.metadata.parameters.get("COLIBREAGN:merger_threshold_type", "".encode()).decode("utf-8") }}</td>
     </tr>
     <tr>
         <td>Black Hole Merger Max Distance Ratio</td>

@@ -180,11 +180,17 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
             dust_mass_total_cd = dust_mass_graphite_cd + dust_mass_silicates_cd
             dust_mass_total_neutral = dust_mass_graphite + dust_mass_silicates
             
-            
         # In case run without dust
         except AttributeError:
             dust_mass_total = unyt.unyt_array(np.zeros_like(metal_frac), units="Msun")
 
+
+        dust_mass_total_hi.name = f"$M_{{\\rm dust,HI}}$ ({aperture_size} kpc)"
+        dust_mass_total_h2.name = f"$M_{{\\rm dust,H2}}$ ({aperture_size} kpc)"
+        dust_mass_total_cd.name = f"$M_{{\\rm dust,CD}}$ ({aperture_size} kpc)"
+        dust_mass_total_neutral.name = f"$M_{{\\rm dust,Neut.}}$ ({aperture_size} kpc)"
+
+            
         # Fetch gas masses
         gas_mass = getattr(catalogue.apertures, f"mass_gas_{aperture_size}_kpc")
         atomic_mass  = getattr(catalogue.gas_hydrogen_species_masses,
@@ -214,7 +220,7 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
         metal_frac_cd_fromO = pow(10, ((logOH_abundance_times_cd/atomic_mass)+12) - twelve_plus_log_OH_solar) * Z_sun
         # Add label to the dust mass field
         dust_mass_total.name = f"$M_{{\\rm dust}}$ ({aperture_size} kpc)"
-
+        
         # Compute dust to gas fraction
         dust_to_gas = dust_mass_total / gas_mass
         dust_to_gas_hi = dust_mass_total_hi / atomic_mass

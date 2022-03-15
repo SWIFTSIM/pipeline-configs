@@ -27,8 +27,8 @@ jobs:
 
       # Installs required Python modules
       - name: Install Python modules
-        run: python3 -m pip install black==21.12b0
-
+        run: python3 -m pip install black==22.1.0
+        
       # Runs the formatting script
       - name: Formatting
         run: bash format.sh --check

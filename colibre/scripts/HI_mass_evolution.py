@@ -159,7 +159,7 @@ ax.tick_params(axis="x", which="minor", bottom=False)
 ax.set_xlim(1.02, 0.07)
 ax.set_ylim(5e6, 1e10)
 
-observation_legend = ax.legend(markerfirst=True, loc="lower left")
+observation_legend = ax.legend(markerfirst=True, loc="upper left")
 
 ax.add_artist(observation_legend)
 

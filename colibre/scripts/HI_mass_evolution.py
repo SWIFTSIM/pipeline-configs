@@ -82,12 +82,12 @@ P20_rhoHI_lo = P20eq13(zgrid, *P20_data[1])
 P20_rhoHI_hi = P20eq13(zgrid, *P20_data[2])
 
 # Cosmology correction (Schaye 2001)
-P20_rhoHI *= comso.h ** -1 * sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + comso.Ode0)
-P20_rhoHI /= 0.7 ** -1 * sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
-P20_rhoHI_lo *= comso.h ** -1 * sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + comso.Ode0)
-P20_rhoHI_lo /= 0.7 ** -1 * sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
-P20_rhoHI_hi *= comso.h ** -1 * sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + comso.Ode0)
-P20_rhoHI_hi /= 0.7 ** -1 * sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_lo *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI_lo /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_hi *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI_hi /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
 
 simulation_lines.append(
     ax.fill_between(

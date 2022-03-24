@@ -1,5 +1,5 @@
 """
-Plots dead time fraction v.s. step size
+Plots dead time fraction v.s. cosmic scale factor
 """
 
 import matplotlib.pyplot as plt
@@ -22,11 +22,11 @@ plt.style.use(arguments.stylesheet_location)
 
 fig, ax = plt.subplots()
 
-color_index = 0
-for run_name, run_directory in zip(run_names, run_directories):
+for color_index, (run_name, run_directory) in enumerate(
+    zip(run_names, run_directories)
+):
 
     color = f"C{color_index}"
-    color_index += 1
 
     timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
     timesteps_filename = timesteps_glob[0]
@@ -47,7 +47,7 @@ for run_name, run_directory in zip(run_names, run_directories):
         data = np.genfromtxt(
             timesteps_filename,
             skip_footer=5,
-            loose=True,
+            loose=False,
             invalid_raise=True,
             usecols=(2, 12, 14),
             dtype=[
@@ -56,7 +56,7 @@ for run_name, run_directory in zip(run_names, run_directories):
                 ("deadtime", "f4"),
             ],
         )
-    except:
+    except (FileNotFoundError, ValueError):
         ax.plot([], [], "-", color=color, label=f"{run_name} - no deadtime data")
         continue
 

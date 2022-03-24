@@ -27,11 +27,11 @@ snii_thermal_feedback_density_halo_mass_max_all:
     caption: Includes all haloes, including subhaloes.
     section: Feedback Densities
 
-snii_thermal_feedback_density_stellar_mass_max_all_100:
+snii_thermal_feedback_density_stellar_mass_max_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e4
     end: 1e12

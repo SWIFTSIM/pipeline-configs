@@ -169,6 +169,16 @@
     <p>{{ data.metadata.parameters.get("CHIMESCooling:colibre_table_filebase", "".encode()).decode("utf-8") }}</p>
 {% else %}
     <p>{{ data.metadata.parameters.get("COLIBRECooling:filebase_cool", "".encode()).decode("utf-8") }}</p>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>H Reionization redshift</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBRECooling:H_reion_z") }}</td>
+    </tr>
+</table>
 {% endif %}
 {% else %}
 <p>Disabled</p>

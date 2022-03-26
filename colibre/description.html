@@ -165,6 +165,11 @@
 <h4>Gas Cooling</h4>
 {% if data.metadata.subgrid_scheme.get("Cooling Model", False) %}
 <p>{{ data.metadata.subgrid_scheme["Cooling Model"].decode("utf-8") }}</p>
+{% if 'CHIMES' in data.metadata.subgrid_scheme["Cooling Model"].decode("utf-8") %}
+    <p>{{ data.metadata.parameters.get("CHIMESCooling:colibre_table_filebase", "".encode()).decode("utf-8") }}</p>
+{% else %}
+    <p>{{ data.metadata.parameters.get("COLIBRECooling:filebase_cool", "".encode()).decode("utf-8") }}</p>
+{% endif %}
 {% else %}
 <p>Disabled</p>
 {% endif %}

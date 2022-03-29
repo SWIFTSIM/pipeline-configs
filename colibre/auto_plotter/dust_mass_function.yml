@@ -3,7 +3,7 @@ dust_mass_function:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.total_dust_masses_100_kpc"
+    quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
     start: 1e4
     end: 1e10
@@ -14,7 +14,7 @@ dust_mass_function:
   metadata:
     section: Dust Mass Functions
     title: Dust Mass Function
-    caption: 100 kpc aperture Galaxy Dust Mass Function, showing all galaxies with a fixed bin-width of 0.2 dex.
+    caption: 50 kpc aperture Galaxy Dust Mass Function, showing all galaxies with a fixed bin-width of 0.2 dex.
   observational_data:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
@@ -25,7 +25,7 @@ adaptive_dust_mass_function:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.total_dust_masses_100_kpc"
+    quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
     start: 1e4
     end: 1e10
@@ -36,7 +36,7 @@ adaptive_dust_mass_function:
   metadata:
     section: Dust Mass Functions
     title: Dust Mass Function
-    caption: 100 kpc aperture Galaxy Dust Mass Function, showing all galaxies with an adaptive bin-width.
+    caption: 50 kpc aperture Galaxy Dust Mass Function, showing all galaxies with an adaptive bin-width.
   observational_data:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5

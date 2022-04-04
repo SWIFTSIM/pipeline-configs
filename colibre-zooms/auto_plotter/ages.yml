@@ -30,7 +30,7 @@ stellar_mass_ages_30:
   observational_data:
     - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5
 
-stellar_mass_ages_100:
+stellar_mass_ages_50:
   type: "scatter"
   legend_loc: "lower right"
   y:
@@ -39,7 +39,7 @@ stellar_mass_ages_100:
     start: 1e8
     end: 3e10
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
     start: 1e7
     end: 1e12
@@ -55,8 +55,8 @@ stellar_mass_ages_100:
       value: 1e12
       units: solar_mass
   metadata:
-    title: "Stellar mass - Stellar age relation (100 kpc aperture)"
+    title: "Stellar mass - Stellar age relation (50 kpc aperture)"
     section: Ages
-    caption: Median age of stars within the 100 kpc 3D aperture of each galaxy.
+    caption: Median age of stars within the 50 kpc 3D aperture of each galaxy.
   observational_data:
     - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5

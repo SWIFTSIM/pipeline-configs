@@ -30,16 +30,16 @@ stellar_mass_sfr_30:
   observational_data:
     - filename: GalaxyStellarMassStarFormationRate/Davies2016_z0p1.hdf5
 
-stellar_mass_sfr_100:
+stellar_mass_sfr_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "apertures.sfr_gas_100_kpc"
+    quantity: "apertures.sfr_gas_50_kpc"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -55,23 +55,23 @@ stellar_mass_sfr_100:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Star Formation Rate (100 kpc aperture)
+    title: Stellar Mass-Star Formation Rate (50 kpc aperture)
     caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassStarFormationRate/Davies2016_z0p1.hdf5
 
-stellar_mass_specific_sfr_all_100:
+stellar_mass_specific_sfr_all_50:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
     units: 1 / gigayear
     start: 0.5e-3
     end: 3e0
@@ -87,7 +87,7 @@ stellar_mass_specific_sfr_all_100:
       value: 1e12
       units: solar_mass
   metadata:
-    title: Specific Star Formation Rate - Stellar Mass (100 kpc aperture)
+    title: Specific Star Formation Rate - Stellar Mass (50 kpc aperture)
     caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
     section: Star Formation Rates
   observational_data:
@@ -127,19 +127,19 @@ stellar_mass_specific_sfr_all_30:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
 
-stellar_mass_specific_sfr_active_100:
+stellar_mass_specific_sfr_active_50:
   type: "scatter"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.is_active_50_kpc"
   comment: "Active only"
   comment_loc: "lower right"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
     units: 1 / gigayear
     start: 0.5e-2
     end: 3e0
@@ -155,7 +155,7 @@ stellar_mass_specific_sfr_active_100:
       value: 1e12
       units: solar_mass
   metadata:
-    title: Specific Star Formation Rate - Stellar Mass (100 kpc aperture, active only)
+    title: Specific Star Formation Rate - Stellar Mass (50 kpc aperture, active only)
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
     section: Star Formation Rates
   observational_data:
@@ -231,9 +231,9 @@ halo_mass_specific_sfr_30:
     section: Star Formation Rates
     show_on_webpage: false
 
-halo_mass_specific_sfr_100:
+halo_mass_specific_sfr_50:
   type: "scatter"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.is_active_50_kpc"
   comment: "Active only"
   comment_loc: "lower right"
   legend_loc: "lower left"
@@ -243,7 +243,7 @@ halo_mass_specific_sfr_100:
     start: 1e8
     end: 1e13
   y:
-    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
     units: 1 / gigayear
     start: 0.5e-2
     end: 3e0
@@ -259,7 +259,7 @@ halo_mass_specific_sfr_100:
       value: 1e13
       units: solar_mass
   metadata:
-    title: Specific Star Formation Rate (100 kpc aperture) - Halo Mass
+    title: Specific Star Formation Rate (50 kpc aperture) - Halo Mass
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
     section: Star Formation Rates
     show_on_webpage: false
@@ -297,9 +297,9 @@ halo_mass_sfr_30_halo_mass:
     section: Star Formation Rates
     show_on_webpage: false
 
-halo_mass_sfr_100_halo_mass:
+halo_mass_sfr_50_halo_mass:
   type: "scatter"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.is_active_50_kpc"
   comment: "Active only"
   comment_loc: "lower right"
   legend_loc: "lower left"
@@ -309,7 +309,7 @@ halo_mass_sfr_100_halo_mass:
     start: 1e8
     end: 1e13
   y:
-    quantity: "derived_quantities.sfr_halo_mass_100_kpc"
+    quantity: "derived_quantities.sfr_halo_mass_50_kpc"
     units: 1 / gigayear
     start: 0.5e-5
     end: 1e-2
@@ -325,7 +325,7 @@ halo_mass_sfr_100_halo_mass:
       value: 1e13
       units: solar_mass
   metadata:
-    title: Star Formation Rate divided by Halo Mass (100 kpc aperture) - Halo Mass
+    title: Star Formation Rate divided by Halo Mass (50 kpc aperture) - Halo Mass
     caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line
     section: Star Formation Rates
     show_on_webpage: false
@@ -368,18 +368,18 @@ stellar_mass_passive_fraction_30:
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019.hdf5
 
-stellar_mass_passive_fraction_100:
+stellar_mass_passive_fraction_50:
   type: "scatter"
   legend_loc: "lower left"
   redshift_loc: "upper center"
   min_num_points_highlight: 0
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.is_passive_100_kpc"
+    quantity: "derived_quantities.is_passive_50_kpc"
     units: "dimensionless"
     log: false
     start: 0
@@ -397,7 +397,7 @@ stellar_mass_passive_fraction_100:
       value: 1e12
       units: solar_mass
   metadata:
-    title: Passive Fraction - Stellar Mass (100 kpc aperture)
+    title: Passive Fraction - Stellar Mass (50 kpc aperture)
     caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr.
     section: Star Formation Rates
   observational_data:
@@ -445,7 +445,7 @@ stellar_mass_passive_fraction_centrals_30:
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019_centrals.hdf5
 
-stellar_mass_passive_fraction_centrals_100:
+stellar_mass_passive_fraction_centrals_50:
   type: "scatter"
   select_structure_type: 10
   comment: "Centrals only"
@@ -453,12 +453,12 @@ stellar_mass_passive_fraction_centrals_100:
   redshift_loc: "upper center"
   min_num_points_highlight: 0
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.is_passive_100_kpc"
+    quantity: "derived_quantities.is_passive_50_kpc"
     units: "dimensionless"
     log: false
     start: 0
@@ -476,7 +476,7 @@ stellar_mass_passive_fraction_centrals_100:
       value: 1e12
       units: solar_mass
   metadata:
-    title: Passive Fraction - Stellar Mass (100 kpc aperture, centrals)
+    title: Passive Fraction - Stellar Mass (50 kpc aperture, centrals)
     caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. This figure shows only the central galaxies (structure type 10).
     section: Star Formation Rates
   observational_data:
@@ -484,12 +484,12 @@ stellar_mass_passive_fraction_centrals_100:
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019_centrals.hdf5
 
-star_formation_rate_function_100:
+star_formation_rate_function_50:
   type: "massfunction"
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
+    quantity: "apertures.sfr_gas_50_kpc"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -498,8 +498,8 @@ star_formation_rate_function_100:
     start: 1e-5
     end: 0.316 # (1e-0.5)
   metadata:
-    title: Star Formation Rate Function (100 kpc aperture)
-    caption: 100 kpc aperture galaxy star formation rate function, showing all galaxies with a fixed bin-width of 0.2 dex.
+    title: Star Formation Rate Function (50 kpc aperture)
+    caption: 50 kpc aperture galaxy star formation rate function, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Star Formation Rates
   observational_data:
     - filename: StarFormationRateFunction/Bell2007.hdf5
@@ -525,12 +525,12 @@ star_formation_rate_function_30:
   observational_data:
     - filename: StarFormationRateFunction/Bell2007.hdf5
 
-adaptive_star_formation_rate_function_100:
+adaptive_star_formation_rate_function_50:
   type: "adaptivemassfunction"
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
+    quantity: "apertures.sfr_gas_50_kpc"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -539,8 +539,8 @@ adaptive_star_formation_rate_function_100:
     start: 1e-5
     end: 0.316 # (1e-0.5)
   metadata:
-    title: Star Formation Rate Function (100 kpc aperture)
-    caption: 100 kpc aperture galaxy star formation rate function, showing all galaxies with an adaptive bin-width.
+    title: Star Formation Rate Function (50 kpc aperture)
+    caption: 50 kpc aperture galaxy star formation rate function, showing all galaxies with an adaptive bin-width.
     section: Star Formation Rates
   observational_data:
     - filename: StarFormationRateFunction/Bell2007.hdf5

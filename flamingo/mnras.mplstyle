@@ -30,6 +30,8 @@ hist.bins: auto
 # Ticks inside plots; more space devoted to plot.
 xtick.direction: in
 ytick.direction: in
+xtick.top: True
+ytick.right: True
 
 # Setup Durham Colours
 axes.prop_cycle: cycler('color', ['00AEFF','FF8C40', 'CC4314', '5766B3', '68246D', '55E18E', 'A646FF'])

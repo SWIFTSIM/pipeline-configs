@@ -161,3 +161,8 @@ scripts:
     title: Step size vs deadtime fraction
     section: Run Performance
     output_file: stepsize_deadtime.png
+  - filename: scripts/deadtime_evolution.py
+    caption: Evolution of the dead time fraction as a function of scale factor. The dashed line represents the average dead time over the entire run.
+    title: Dead time fraction vs scale factor
+    section: Run Performance
+    output_file: deadtime_evolution.png

@@ -25,6 +25,8 @@ This file calculates:
     + LOS stellar velocity dispersions (10, 30 kpc) (los_veldisp_star_{x}_kpc)
         The LOS velocity dispersion, obtained by multiplying the 3D velocity
         dispersion with 1/sqrt(3).
+    + mass_star_with_scatter_50_kpc
+        Stellar mass with an additional 0.3 dex log-normal scatter.
 """
 
 # Define aperture size in kpc
@@ -38,6 +40,9 @@ twelve_plus_log_OH_solar = 8.69
 
 # Solar Fe abundance (from Wiersma et al 2009a)
 solar_fe_abundance = 2.82e-5
+
+# Additional scatter in stellar mass (in dex)
+stellar_mass_scatter_amplitude = 0.3
 
 
 def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
@@ -883,6 +888,21 @@ def register_los_star_veldisp(self, catalogue):
     return
 
 
+def register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitude):
+
+    stellar_mass = catalogue.apertures.mass_star_50_kpc
+    stellar_mass_with_scatter = unyt.unyt_array(
+        np.random.lognormal(
+            np.log(stellar_mass.value), stellar_mass_scatter_amplitude * np.log(10.0)
+        ),
+        units=stellar_mass.units,
+    )
+    stellar_mass_with_scatter.name = f"Stellar mass with additional {stellar_mass_scatter_amplitude:.1f} dex log-normal scatter (50 kpc)"
+    setattr(self, f"mass_star_with_scatter_50_kpc", stellar_mass_with_scatter)
+
+    return
+
+
 # Register derived fields
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_star_metallicities(
@@ -911,3 +931,4 @@ register_global_mask(self, catalogue)
 register_los_star_veldisp(self, catalogue)
 register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_gas_fraction(self, catalogue)
+register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitude)

@@ -138,7 +138,7 @@ stellar_mass_specific_sfr_50:
   comment: "Active only"
   comment_loc: "lower right"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
     start: 1e8
     end: 1e13

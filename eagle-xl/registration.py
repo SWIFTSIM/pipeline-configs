@@ -413,11 +413,11 @@ def register_species_fractions(self, catalogue, aperture_sizes):
             # to be added for each.
 
             self.xgass_galaxy_selection = np.logical_and(
-                M_star > unyt.unyt_quantity(10**9, "Solar_Mass"),
+                M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
                 M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
             )
             self.xcoldgass_galaxy_selection = np.logical_and(
-                M_star > unyt.unyt_quantity(10**9, "Solar_Mass"),
+                M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
                 M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
             )
 

@@ -28,11 +28,7 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number,
-        horizontal_number,
-        squeeze=True,
-        sharex=True,
-        sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -58,10 +54,10 @@ def bin_individual_data(data: SWIFTDataset):
     mask = f_E_fractions > 0.0
 
     f_E_fractions = f_E_fractions[mask]
-    birth_densities = (data.stars.birth_densities[mask] / mh).to(1 / cm**3).value
+    birth_densities = (data.stars.birth_densities[mask] / mh).to(1 / cm ** 3).value
 
     birth_density_bins = unyt.unyt_array(
-        np.logspace(-3, 5, number_of_bins), units=1 / cm**3
+        np.logspace(-3, 5, number_of_bins), units=1 / cm ** 3
     )
     feedback_energy_fraction_bins = unyt.unyt_array(
         np.logspace(-2, 1, number_of_bins), units="dimensionless"

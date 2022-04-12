@@ -41,8 +41,8 @@ def read_obs_data(path="observational_data"):
     )
     lgrho = lgrho + log10(0.6) + hcorr
     obs1_a = 1.0 / (1.0 + z)
-    obs1_rho = 10**lgrho
-    obs1_rho_err = array([obs1_rho - 10**lgrho_down, 10**lgrho_up - obs1_rho])
+    obs1_rho = 10 ** lgrho
+    obs1_rho_err = array([obs1_rho - 10 ** lgrho_down, 10 ** lgrho_up - obs1_rho])
 
     # output.append(
     #    ObservationalData(
@@ -106,7 +106,7 @@ def read_obs_data(path="observational_data"):
     z, rhostar, err_m, err_p = loadtxt(f"{path}/sfr_cucciati2011.dat", unpack=True)
     rhostar = rhostar - 2.0 * log10(0.7) + 2.0 * log10(0.6777)
     obs5_a = 1.0 / (1 + z)
-    obs5_rho = 10**rhostar / 1.65
+    obs5_rho = 10 ** rhostar / 1.65
     obs5_rho_err = 10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65
     obs5_rho_err[0] = -obs5_rho_err[0] + obs5_rho
     obs5_rho_err[1] = -obs5_rho + obs5_rho_err[1]
@@ -121,7 +121,7 @@ def read_obs_data(path="observational_data"):
     z, rhostar, err_m, err_p = loadtxt(f"{path}/sfr_magnelli2013.dat", unpack=True)
     obs6_a = 1.0 / (1 + z)
     obs6_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs6_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -137,7 +137,7 @@ def read_obs_data(path="observational_data"):
     z, rhostar, err_m, err_p = loadtxt(f"{path}/sfr_gruppioni2013.dat", unpack=True)
     obs7_a = 1.0 / (1 + z)
     obs7_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs7_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -167,7 +167,7 @@ def read_obs_data(path="observational_data"):
     z, rhostar, err_m, err_p = loadtxt(f"{path}/sfr_schenker2013.dat", unpack=True)
     obs9_a = 1.0 / (1 + z)
     obs9_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs9_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -183,7 +183,7 @@ def read_obs_data(path="observational_data"):
     z, rhostar, err_p, err_m = loadtxt(f"{path}/sfr_bouwens2015_dust.dat", unpack=True)
     obs10_a = 1.0 / (1 + z)
     obs10_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs10_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -203,7 +203,7 @@ def read_obs_data(path="observational_data"):
     )
     obs11_a = 1.0 / (1 + z)
     obs11_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs11_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -221,7 +221,7 @@ def read_obs_data(path="observational_data"):
     z, rhostar, err_p, err_m = loadtxt(f"{path}/sfr_oesch2018.dat", unpack=True)
     obs12_a = 1.0 / (1 + z)
     obs12_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs12_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -239,7 +239,7 @@ def read_obs_data(path="observational_data"):
     )
     obs13_a = 1.0 / (1 + z)
     obs13_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs13_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -259,7 +259,7 @@ def read_obs_data(path="observational_data"):
     )
     obs14_a = 1.0 / (1 + z)
     obs14_rho = (
-        10**rhostar / 1.65 * 0.6777 / 0.7
+        10 ** rhostar / 1.65 * 0.6777 / 0.7
     )  # convert to Chabrier IMF from Salpeter
     obs14_rho_err = (
         10 ** array([rhostar + (err_m), rhostar + err_p]) / 1.65 * 0.6777 / 0.7
@@ -294,7 +294,7 @@ def read_obs_data(path="observational_data"):
 
     output.append(
         ObservationalData(
-            eagle_data[:, 0], eagle_data[:, 2] / (25**3), None, "EAGLE-25 REF"
+            eagle_data[:, 0], eagle_data[:, 2] / (25 ** 3), None, "EAGLE-25 REF"
         )
     )
 

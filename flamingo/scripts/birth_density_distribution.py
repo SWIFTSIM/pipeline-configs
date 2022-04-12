@@ -32,7 +32,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 birth_density_bins = unyt.unyt_array(
-    np.logspace(-3, 5, number_of_bins), units=1 / cm**3
+    np.logspace(-3, 5, number_of_bins), units=1 / cm ** 3
 )
 log_birth_density_bin_width = np.log10(birth_density_bins[1].value) - np.log10(
     birth_density_bins[0].value
@@ -45,11 +45,7 @@ birth_density_centers = 0.5 * (birth_density_bins[1:] + birth_density_bins[:-1])
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {
-    "$z < 1$": axes[0],
-    "$1 < z < 3$": axes[1],
-    "$z > 3$": axes[2],
-}
+ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.loglog()

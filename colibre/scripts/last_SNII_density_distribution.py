@@ -14,7 +14,7 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 
 
 def critical_density_DVS2012(
-    T_K: float = 10.0**7.5,
+    T_K: float = 10.0 ** 7.5,
     M_gas: float = 7.0e4,
     N_ngb: float = 48.0,
     X_H: float = 0.752,
@@ -58,7 +58,7 @@ def critical_density_DVS2012(
     # Critical density
     n_Hc = (
         31.0
-        * np.power(T_K / 10.0**7.5, 3.0 / 2.0)
+        * np.power(T_K / 10.0 ** 7.5, 3.0 / 2.0)
         * np.power(f_t / 10.0, -3.0 / 2.0)
         * np.power(M_gas / 7.0e4, -1.0 / 2.0)
         * np.power(N_ngb / 48.0, -1.0 / 2.0)
@@ -101,11 +101,7 @@ SNII_density_centers = 0.5 * (SNII_density_bins[1:] + SNII_density_bins[:-1])
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {
-    "$z < 1$": axes[0],
-    "$1 < z < 3$": axes[1],
-    "$z > 3$": axes[2],
-}
+ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.loglog()
@@ -217,12 +213,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         H, _ = np.histogram(data, bins=SNII_density_bins)
         y_points = H / log_SNII_density_bin_width / Num_of_heated_parts_total
 
-        ax.plot(
-            SNII_density_centers,
-            y_points,
-            label=name,
-            color=f"C{color}",
-        )
+        ax.plot(SNII_density_centers, y_points, label=name, color=f"C{color}")
         ax.axvline(
             np.median(data),
             color=f"C{color}",
@@ -235,11 +226,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         for n_crit in [n_crit_min, n_crit_max]:
             if n_crit > 0.0:
                 ax.axvline(
-                    n_crit,
-                    color=f"C{color}",
-                    linestyle="dotted",
-                    zorder=-10,
-                    alpha=0.5,
+                    n_crit, color=f"C{color}", linestyle="dotted", zorder=-10, alpha=0.5
                 )
 
 axes[0].legend(loc="upper right", markerfirst=False)

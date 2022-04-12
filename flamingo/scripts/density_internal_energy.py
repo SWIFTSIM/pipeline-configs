@@ -24,8 +24,8 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
-    internal_energy = (data.gas.internal_energies.to_physical()).to(km**2 / s**2)
+    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
+    internal_energy = (data.gas.internal_energies.to_physical()).to(km ** 2 / s ** 2)
 
     return number_density.value, internal_energy.value
 
@@ -63,11 +63,7 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number,
-        horizontal_number,
-        squeeze=True,
-        sharex=True,
-        sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

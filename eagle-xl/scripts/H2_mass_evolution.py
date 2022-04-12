@@ -75,7 +75,7 @@ S17_Omega_H2 = pow(10.0, S17_data[:, 1])
 simulation_lines.append(
     ax.errorbar(
         S17_expansion_factor,
-        S17_Omega_H2 * S17_expansion_factor**0,
+        S17_Omega_H2 * S17_expansion_factor ** 0,
         0,
         ls="none",
         marker="o",
@@ -94,8 +94,8 @@ D20_Omega_H2_hi = 1e7 * D20_data[:, 3]
 simulation_lines.append(
     ax.errorbar(
         D20_expansion_factor,
-        D20_Omega_H2 * D20_expansion_factor**0,
-        [D20_Omega_H2_lo, D20_Omega_H2_hi] * D20_expansion_factor**0,
+        D20_Omega_H2 * D20_expansion_factor ** 0,
+        [D20_Omega_H2_lo, D20_Omega_H2_hi] * D20_expansion_factor ** 0,
         ls="none",
         marker="o",
         label="Decarli et. al (2020)",

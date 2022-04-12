@@ -14,7 +14,7 @@ from swiftsimio import load
 
 from load_sfh_data import read_obs_data
 
-sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc**3)
+sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc ** 3)
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 

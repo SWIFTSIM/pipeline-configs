@@ -37,11 +37,7 @@ SNII_v_kick_centres = 0.5 * (SNII_v_kick_bins[1:] + SNII_v_kick_bins[:-1])
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {
-    "$z < 1$": axes[0],
-    "$1 < z < 3$": axes[1],
-    "$z > 3$": axes[2],
-}
+ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.loglog()
@@ -113,12 +109,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         H, _ = np.histogram(data, bins=SNII_v_kick_bins)
         y_points = H / log_SNII_v_kick_bin_width / Num_of_kicked_parts_total
 
-        ax.plot(
-            SNII_v_kick_centres,
-            y_points,
-            label=name,
-            color=f"C{color}",
-        )
+        ax.plot(SNII_v_kick_centres, y_points, label=name, color=f"C{color}")
         ax.axvline(
             np.median(data),
             color=f"C{color}",

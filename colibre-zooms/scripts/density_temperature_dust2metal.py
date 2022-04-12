@@ -29,7 +29,7 @@ def get_data(filename, prefix_rho, prefix_T):
 
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
-    ).to(cm**-3)
+    ).to(cm ** -3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
     masses = data.gas.masses.to_physical().to("Msun")
     Z = data.gas.metal_mass_fractions
@@ -91,11 +91,7 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number,
-        horizontal_number,
-        squeeze=True,
-        sharex=True,
-        sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

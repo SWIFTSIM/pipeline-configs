@@ -11,7 +11,7 @@ from unyt import mh
 from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
-density_bounds = [0.01, 10**7.0]  # in nh/cm^3
+density_bounds = [0.01, 10 ** 7.0]  # in nh/cm^3
 metal_mass_fraction_bounds = [1e-4, 0.5]  # dimensionless
 bins = 128
 
@@ -75,11 +75,7 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number,
-        horizontal_number,
-        squeeze=True,
-        sharex=True,
-        sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

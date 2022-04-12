@@ -204,20 +204,17 @@ def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
 
         # Oxygen mass
         M_O = getattr(
-            catalogue.element_masses_in_stars,
-            f"oxygen_mass_{aperture_size}_kpc",
+            catalogue.element_masses_in_stars, f"oxygen_mass_{aperture_size}_kpc"
         )
 
         # Magnesium mass
         M_Mg = getattr(
-            catalogue.element_masses_in_stars,
-            f"magnesium_mass_{aperture_size}_kpc",
+            catalogue.element_masses_in_stars, f"magnesium_mass_{aperture_size}_kpc"
         )
 
         # Iron mass
         M_Fe = getattr(
-            catalogue.element_masses_in_stars,
-            f"iron_mass_{aperture_size}_kpc",
+            catalogue.element_masses_in_stars, f"iron_mass_{aperture_size}_kpc"
         )
 
         # Avoid zeroes
@@ -243,16 +240,8 @@ def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
         O_over_Fe.name = f"[O/Fe]$_*$ ({aperture_size} kpc)"
 
         # Register the field
-        setattr(
-            self,
-            f"star_magnesium_over_iron_{aperture_size}_kpc",
-            Mg_over_Fe,
-        )
-        setattr(
-            self,
-            f"star_oxygen_over_iron_{aperture_size}_kpc",
-            O_over_Fe,
-        )
+        setattr(self, f"star_magnesium_over_iron_{aperture_size}_kpc", Mg_over_Fe)
+        setattr(self, f"star_oxygen_over_iron_{aperture_size}_kpc", O_over_Fe)
 
     return
 
@@ -644,11 +633,7 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
         sf_to_stellar_fraction.name = f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
 
         # Finally, register all the above fields
-        setattr(
-            self,
-            f"gas_neutral_H_mass_{aperture_size}_kpc",
-            neutral_H_mass,
-        )
+        setattr(self, f"gas_neutral_H_mass_{aperture_size}_kpc", neutral_H_mass)
 
         setattr(
             self,
@@ -730,11 +715,11 @@ def register_species_fractions(self, catalogue, aperture_sizes):
         # to be added for each.
 
         self.xgass_galaxy_selection = np.logical_and(
-            M_star > unyt.unyt_quantity(10**9, "Solar_Mass"),
+            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
             M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
         )
         self.xcoldgass_galaxy_selection = np.logical_and(
-            M_star > unyt.unyt_quantity(10**9, "Solar_Mass"),
+            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
             M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
         )
 

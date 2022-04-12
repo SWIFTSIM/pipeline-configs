@@ -18,7 +18,7 @@ from load_sfh_data import read_obs_data
 from astropy.cosmology import z_at_value
 from astropy.units import Gyr
 
-sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc**3)
+sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc ** 3)
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 

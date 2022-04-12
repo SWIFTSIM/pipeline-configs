@@ -50,11 +50,7 @@ for color_index, (run_name, run_directory) in enumerate(
             loose=False,
             invalid_raise=True,
             usecols=(2, 12, 14),
-            dtype=[
-                ("a", "f4"),
-                ("wallclock", "f4"),
-                ("deadtime", "f4"),
-            ],
+            dtype=[("a", "f4"), ("wallclock", "f4"), ("deadtime", "f4")],
         )
     except (FileNotFoundError, ValueError):
         ax.plot([], [], "-", color=color, label=f"{run_name} - no deadtime data")

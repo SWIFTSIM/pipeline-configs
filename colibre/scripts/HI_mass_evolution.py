@@ -60,7 +60,6 @@ for snapshot_filename, stats_filename, name in zip(
     redshift = data.z
     HI_mass = data.gas_hi_mass.to("Msun")
     HI_mass_density = HI_mass / box_volume
-    HI_mass_density *= 1.0 / 0.76  # Apply Helium correction
 
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(ax.plot(scale_factor, HI_mass_density, zorder=10000)[0])
@@ -88,6 +87,11 @@ P20_rhoHI_lo *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.O
 P20_rhoHI_lo /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
 P20_rhoHI_hi *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
 P20_rhoHI_hi /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+
+# convert from neutral gas density (H+He) to HI (only H) mass density
+P20_rhoHI *= 0.76
+P20_rhoHI_lo *= 0.76
+P20_rhoHI_hi *= 0.76
 
 simulation_lines.append(
     ax.fill_between(

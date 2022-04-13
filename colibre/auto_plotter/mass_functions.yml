@@ -231,8 +231,8 @@ stellar_mass_function_with_scatter_50:
     start: 1e-6
     end: 1e0
   metadata:
-    title: Stellar Mass Function (50 kpc aperture)
-    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex, with an additional 0.3 log-normal scatter in the stellar mass.
+    title: Stellar Mass Function (50 kpc aperture, with scatter)
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex, with an additional 0.3 dex log-normal scatter in the stellar mass.
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
@@ -257,7 +257,7 @@ adaptive_stellar_mass_function_with_scatter_50:
     start: 1e-6
     end: 1e0
   metadata:
-    title: Stellar Mass Function (50 kpc aperture, adaptive)
+    title: Stellar Mass Function (50 kpc aperture, adaptive, with scatter)
     caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width, with an additional 0.3 dex log-normal scatter in the stellar mass.
     section: Stellar Mass Function
   observational_data:

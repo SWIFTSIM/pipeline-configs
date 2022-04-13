@@ -878,7 +878,7 @@ def register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitud
         ),
         units=stellar_mass.units,
     )
-    stellar_mass_with_scatter.name = f"Stellar mass with additional {stellar_mass_scatter_amplitude:.1f} dex log-normal scatter (50 kpc)"
+    stellar_mass_with_scatter.name = f"Stellar mass $M_*$ with {stellar_mass_scatter_amplitude:.1f} dex scatter (50 kpc)"
     setattr(self, f"mass_star_with_scatter_50_kpc", stellar_mass_with_scatter)
 
     return

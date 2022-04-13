@@ -125,6 +125,10 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_erg", "erg") }}</td>
     </tr>
     <tr>
+        <td>SNIa Energy</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNIa_energy_erg", "erg") }}</td>
+    </tr>
+    <tr>
         <td>\(f_{\rm E, min}\)</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_min") }}</td>
     </tr>
@@ -141,8 +145,46 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_v_km_p_s", "km/s") }}</td>
     </tr>
     <tr>
-        <td>SNII \(\Delta T\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K", "K") }}</td>
+        <td>SNII var-dT pivot temperature \(\Delta T_{\rm pivot}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K_pivot", "K") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa var-dT pivot temperature \(\Delta T_{\rm pivot}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNIa_delta_T_K_pivot", "K") }}</td>
+    </tr>
+    <tr>
+        <td>SNII var-dT pivot density \(n_{\rm H, pivot}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_n_0_H_p_cm3") }}
+            cm\(^{-3}\)</td>
+    </tr>
+    <tr>
+        <td>SNIa var-dT pivot density \(n_{\rm H, pivot}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNIa_delta_T_n_0_H_p_cm3") }}
+            cm\(^{-3}\)</td>
+    </tr>
+    <tr>
+        <td>SNII var-dT min temperature \(\Delta T_{\rm min}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K_min", "K") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa var-dT min temperature \(\Delta T_{\rm min}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNIa_delta_T_K_min", "K") }}</td>
+    </tr>
+    <tr>
+        <td>SNII var-dT max temperature \(\Delta T_{\rm max}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_K_max", "K") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa var-dT max temperature \(\Delta T_{\rm max}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNIa_delta_T_K_max", "K") }}</td>
+    </tr>
+    <tr>
+        <td>SNII var-dT slope</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_delta_T_slope") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa var-dT slope</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNIa_delta_T_slope") }}</td>
     </tr>
     <tr>
         <td>Use Stellar Winds</td>
@@ -296,7 +338,7 @@
     </tr>
     <tr>
         <td>Minimal Gas Mass For Nibbling</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_gas_mass_for_nibbling", "Msun") }}</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:min_gas_mass_for_nibbling_Msun", "Msun") }}</td>
     </tr>
     <tr>
         <td>Minimum BH time-step</td>
@@ -331,7 +373,7 @@
     </tr>
     <tr>
         <td>Black Hole Merger Threshold Type</td>
-        <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:merger_threshold_type") }}</td>
+        <td>{{ data.metadata.parameters.get("COLIBREAGN:merger_threshold_type", "".encode()).decode("utf-8") }}</td>
     </tr>
     <tr>
         <td>Black Hole Merger Max Distance Ratio</td>

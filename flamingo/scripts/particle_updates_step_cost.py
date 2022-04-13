@@ -12,8 +12,8 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 from glob import glob
 
 # Set the limits of the figure.
-update_bounds = unyt.unyt_array([1, 10.0**10.0], units="dimensionless")
-wallclock_bounds = unyt.unyt_array([1, 10.0**6.0], units="ms")
+update_bounds = unyt.unyt_array([1, 10.0 ** 10.0], units="dimensionless")
+wallclock_bounds = unyt.unyt_array([1, 10.0 ** 6.0], units="ms")
 bins = 512
 
 

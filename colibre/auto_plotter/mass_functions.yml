@@ -110,12 +110,12 @@ adaptive_stellar_mass_function_passive_only_30:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
 
-stellar_mass_function_100:
+stellar_mass_function_50:
   type: "massfunction"
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -124,8 +124,8 @@ stellar_mass_function_100:
     start: 1e-6
     end: 1e0
   metadata:
-    title: Stellar Mass Function (100 kpc aperture)
-    caption: 100 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex.
+    title: Stellar Mass Function (50 kpc aperture)
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
@@ -136,12 +136,12 @@ stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
 
-adaptive_stellar_mass_function_100:
+adaptive_stellar_mass_function_50:
   type: "adaptivemassfunction"
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -150,8 +150,8 @@ adaptive_stellar_mass_function_100:
     start: 1e-6
     end: 1e0
   metadata:
-    title: Stellar Mass Function (100 kpc aperture, adaptive)
-    caption: 100 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
+    title: Stellar Mass Function (50 kpc aperture, adaptive)
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
     section: Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
@@ -162,7 +162,7 @@ adaptive_stellar_mass_function_100:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
 
-adaptive_stellar_mass_function_passive_only_100:
+adaptive_stellar_mass_function_passive_only_50:
   type: "massfunction"
   number_of_bins: 30
   legend_loc: "lower left"
@@ -170,7 +170,7 @@ adaptive_stellar_mass_function_passive_only_100:
   comment_loc: "lower right"
   selection_mask: "derived_quantities.is_passive_30_kpc"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -179,7 +179,7 @@ adaptive_stellar_mass_function_passive_only_100:
     start: 1e-6
     end: 1e0
   metadata:
-    title: Stellar Mass Function (100 kpc aperture)
+    title: Stellar Mass Function (50 kpc aperture)
     caption: Only for passive galaxies, using an adaptive bin width.
     section: Stellar Mass Function
   observational_data:
@@ -190,7 +190,7 @@ adaptive_stellar_mass_function_passive_only_100:
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
 
-adaptive_stellar_mass_function_active_only_100:
+adaptive_stellar_mass_function_active_only_50:
   type: "adaptivemassfunction"
   number_of_bins: 30
   legend_loc: "lower left"
@@ -198,7 +198,7 @@ adaptive_stellar_mass_function_active_only_100:
   comment_loc: "lower right"
   selection_mask: "derived_quantities.is_active_30_kpc"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -207,7 +207,7 @@ adaptive_stellar_mass_function_active_only_100:
     start: 1e-6
     end: 1e0
   metadata:
-    title: Stellar Mass Function (100 kpc aperture)
+    title: Stellar Mass Function (50 kpc aperture)
     caption: Only for active galaxies, using an adaptive bin width.
     section: Stellar Mass Function
   observational_data:
@@ -216,3 +216,55 @@ adaptive_stellar_mass_function_active_only_100:
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+
+stellar_mass_function_with_scatter_50:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 30
+  x:
+    quantity: "derived_quantities.mass_star_with_scatter_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e0
+  metadata:
+    title: Stellar Mass Function (50 kpc aperture, with scatter)
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex, with an additional 0.3 dex log-normal scatter in the stellar mass.
+    section: Stellar Mass Function
+  observational_data:
+    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+    - filename: GalaxyStellarMassFunction/Driver2021.hdf5
+
+adaptive_stellar_mass_function_with_scatter_50:
+  type: "adaptivemassfunction"
+  legend_loc: "lower left"
+  number_of_bins: 30
+  x:
+    quantity: "derived_quantities.mass_star_with_scatter_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e0
+  metadata:
+    title: Stellar Mass Function (50 kpc aperture, adaptive, with scatter)
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width, with an additional 0.3 dex log-normal scatter in the stellar mass.
+    section: Stellar Mass Function
+  observational_data:
+    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+    - filename: GalaxyStellarMassFunction/Driver2021.hdf5

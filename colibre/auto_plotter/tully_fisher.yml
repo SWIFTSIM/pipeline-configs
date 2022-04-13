@@ -1,8 +1,8 @@
-tully_fisher_100:
+tully_fisher_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -23,7 +23,7 @@ tully_fisher_100:
       value: 1e12
       units: solar_mass
   metadata:
-    title: Tully-Fisher (stellar mass, 100 kpc)
+    title: Tully-Fisher (stellar mass, 50 kpc)
     caption: The Tully-Fisher relation based on stellar mass.
     section: Tully-Fisher
   observational_data:
@@ -55,7 +55,7 @@ tully_fisher_30:
       value: 1e12
       units: solar_mass
   metadata:
-    title: Tully-Fisher (stellar mass, 100 kpc)
+    title: Tully-Fisher (stellar mass, 50 kpc)
     caption: The Tully-Fisher relation based on stellar mass.
     section: Tully-Fisher
     show_on_webpage: false

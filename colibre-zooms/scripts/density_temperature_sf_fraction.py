@@ -13,7 +13,7 @@ from matplotlib.colors import Normalize
 
 # Constants; these could be put in the parameter file but are rarely changed.
 density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
-temperature_bounds = [10**0.0, 10**9.5]  # in K
+temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
 sf_mass_fraction_bounds = [-2.5, 0]  # log mass fraction of star-forming gas
 min_sf_mass_fraction = 1e-6  # Minimal mass fraction of star-forming gas
 bins = 256
@@ -27,7 +27,7 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm**-3)
+    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
     temperature = data.gas.temperatures.to_physical().to("K")
     mass = data.gas.masses.to("Msun")
     sfr = data.gas.star_formation_rates.to("Msun/yr")
@@ -89,11 +89,7 @@ def setup_axes(number_of_simulations: int):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number,
-        horizontal_number,
-        squeeze=True,
-        sharex=True,
-        sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -197,9 +193,7 @@ def make_single_image(
         axis.set_ylim(*temperature_bounds)
 
     fig.colorbar(
-        mappable,
-        ax=ax.ravel().tolist(),
-        label="log Mass Fraction of Star-Forming Gas",
+        mappable, ax=ax.ravel().tolist(), label="log Mass Fraction of Star-Forming Gas"
     )
 
     fig.savefig(f"{output_path}/density_temperature_sf_fraction.png")

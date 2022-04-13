@@ -1,15 +1,15 @@
 oxygen_abundance_v_dust_to_gas:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.is_active_50_kpc"
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_100_kpc"
+    quantity: "derived_quantities.gas_o_abundance_avglog_low_50_kpc"
     units: "dimensionless"
     start: 6.8
     end: 9.2
     log: false
   y:
-    quantity: "derived_quantities.dust_to_gas_ratio_100_kpc"
+    quantity: "derived_quantities.dust_to_gas_ratio_50_kpc"
     units: "dimensionless"
     start: 1e-7
     end: 0.01
@@ -31,7 +31,7 @@ oxygen_abundance_v_dust_to_gas:
       value: 1
       units: "dimensionless"
   metadata:
-    title:  Oxygen abundance vs dust-to-gas ratio (100 kpc aperture)
+    title:  Oxygen abundance vs dust-to-gas ratio (50 kpc aperture)
     caption: Dust-to-gas mass ratio as a function of oxygen number density abundance.
     section: Dust Depletion Relations
     show_on_webpage: true

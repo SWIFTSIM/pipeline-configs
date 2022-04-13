@@ -58,60 +58,60 @@ stellar_mass_cumulative_histogram_passive_only_30:
     section: Histograms
     show_on_webpage: false
 
-stellar_mass_cumulative_histogram_100:
+stellar_mass_cumulative_histogram_50:
   type: "cumulative_histogram"
   reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
   metadata:
-    title: Stellar Mass Histogram (100 kpc aperture)
+    title: Stellar Mass Histogram (50 kpc aperture)
     caption: Cumulative histogram of stellar masses using the same bins as the mass function.
     section: Histograms
 
-stellar_mass_cumulative_histogram_active_only_100:
+stellar_mass_cumulative_histogram_active_only_50:
   type: "cumulative_histogram"
   reverse_cumsum: true
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.is_active_50_kpc"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
   metadata:
-    title: Stellar Mass Histogram (100 kpc aperture, active)
+    title: Stellar Mass Histogram (50 kpc aperture, active)
     caption: Only for active galaxies.
     section: Histograms
 
-stellar_mass_cumulative_histogram_passive_only_100:
+stellar_mass_cumulative_histogram_passive_only_50:
   type: "cumulative_histogram"
   reverse_cumsum: true
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_passive_100_kpc"
+  selection_mask: "derived_quantities.is_passive_50_kpc"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
   metadata:
-    title: Stellar Mass Histogram (100 kpc aperture, passive)
+    title: Stellar Mass Histogram (50 kpc aperture, passive)
     caption: Only for passive galaxies.
     section: Histograms
 
@@ -150,20 +150,20 @@ star_formation_rate_cumulative_histogram_30:
     section: Histograms
     show_on_webpage: false
 
-star_formation_rate_cumulative_histogram_100:
+star_formation_rate_cumulative_histogram_50:
   type: "cumulative_histogram"
   reverse_cumsum: true
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
+    quantity: "apertures.sfr_gas_50_kpc"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
   histogram:
     scatter: "none"
   metadata:
-    title: Star Formation Rate Histogram (100 kpc aperture)
+    title: Star Formation Rate Histogram (50 kpc aperture)
     caption: Cumulative histogram of star formation rates using the same bins as the star formation rates function.
     section: Histograms
 
@@ -241,59 +241,59 @@ stellar_mass_histogram_passive_only_30:
     section: Histograms
     show_on_webpage: false
 
-stellar_mass_histogram_100:
+stellar_mass_histogram_50:
   type: "histogram"
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
   metadata:
-    title: Stellar Mass Histogram (100 kpc aperture)
+    title: Stellar Mass Histogram (50 kpc aperture)
     caption: Histogram of stellar masses using the same bins as the mass function.
     section: Histograms
     show_on_webpage: false
 
-stellar_mass_histogram_active_only_100:
+stellar_mass_histogram_active_only_50:
   type: "histogram"
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "derived_quantities.is_active_50_kpc"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
   metadata:
-    title: Stellar Mass Histogram (100 kpc aperture, active)
+    title: Stellar Mass Histogram (50 kpc aperture, active)
     caption: Only for active galaxies.
     section: Histograms
     show_on_webpage: false
 
-stellar_mass_histogram_passive_only_100:
+stellar_mass_histogram_passive_only_50:
   type: "histogram"
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_passive_100_kpc"
+  selection_mask: "derived_quantities.is_passive_50_kpc"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   histogram:
     scatter: "none"
   metadata:
-    title: Stellar Mass Histogram (100 kpc aperture, passive)
+    title: Stellar Mass Histogram (50 kpc aperture, passive)
     caption: Only for passive galaxies.
     section: Histograms
     show_on_webpage: false
@@ -332,19 +332,19 @@ star_formation_rate_histogram_30:
     section: Histograms
     show_on_webpage: false
 
-star_formation_rate_histogram_100:
+star_formation_rate_histogram_50:
   type: "histogram"
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.sfr_gas_100_kpc"
+    quantity: "apertures.sfr_gas_50_kpc"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
   histogram:
     scatter: "none"
   metadata:
-    title: Star Formation Rate Histogram (100 kpc aperture)
+    title: Star Formation Rate Histogram (50 kpc aperture)
     caption: Histogram of star formation rates using the same bins as the star formation rates function.
     section: Histograms
     show_on_webpage: false

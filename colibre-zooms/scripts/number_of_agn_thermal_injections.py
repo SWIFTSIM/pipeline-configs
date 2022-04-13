@@ -49,7 +49,7 @@ def make_single_image(filenames, names, N_bounds, number_of_simulations, output_
             np.log10(N_agn_events), range=np.log10(N_bounds), bins=250, density=False
         )
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
-        bins = 10**bins
+        bins = 10 ** bins
 
         # The cumsum is done from right to left (along the X axis)
         ax.plot(bins, np.cumsum(h[::-1])[::-1], label=name)

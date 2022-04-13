@@ -25,10 +25,11 @@ This file calculates:
     + LOS stellar velocity dispersions (10, 30 kpc) (los_veldisp_star_{x}_kpc)
         The LOS velocity dispersion, obtained by multiplying the 3D velocity
         dispersion with 1/sqrt(3).
+    + mass_star_with_scatter_50_kpc
+        Stellar mass with an additional 0.3 dex log-normal scatter.
 """
 
 # Define aperture size in kpc
-aperture_sizes_30_100_kpc = {30, 100}
 aperture_sizes_30_50_100_kpc = {30, 50, 100}
 
 # Solar metal mass fraction used in Plöckinger S. & Schaye J. (2020)
@@ -39,6 +40,9 @@ twelve_plus_log_OH_solar = 8.69
 
 # Solar Fe abundance (from Wiersma et al 2009a)
 solar_fe_abundance = 2.82e-5
+
+# Additional scatter in stellar mass (in dex)
+stellar_mass_scatter_amplitude = 0.3
 
 
 def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
@@ -205,20 +209,17 @@ def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
 
         # Oxygen mass
         M_O = getattr(
-            catalogue.element_masses_in_stars,
-            f"oxygen_mass_{aperture_size}_kpc",
+            catalogue.element_masses_in_stars, f"oxygen_mass_{aperture_size}_kpc"
         )
 
         # Magnesium mass
         M_Mg = getattr(
-            catalogue.element_masses_in_stars,
-            f"magnesium_mass_{aperture_size}_kpc",
+            catalogue.element_masses_in_stars, f"magnesium_mass_{aperture_size}_kpc"
         )
 
         # Iron mass
         M_Fe = getattr(
-            catalogue.element_masses_in_stars,
-            f"iron_mass_{aperture_size}_kpc",
+            catalogue.element_masses_in_stars, f"iron_mass_{aperture_size}_kpc"
         )
 
         # Avoid zeroes
@@ -244,16 +245,8 @@ def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
         O_over_Fe.name = f"[O/Fe]$_*$ ({aperture_size} kpc)"
 
         # Register the field
-        setattr(
-            self,
-            f"star_magnesium_over_iron_{aperture_size}_kpc",
-            Mg_over_Fe,
-        )
-        setattr(
-            self,
-            f"star_oxygen_over_iron_{aperture_size}_kpc",
-            O_over_Fe,
-        )
+        setattr(self, f"star_magnesium_over_iron_{aperture_size}_kpc", Mg_over_Fe)
+        setattr(self, f"star_oxygen_over_iron_{aperture_size}_kpc", O_over_Fe)
 
     return
 
@@ -645,11 +638,7 @@ def register_cold_gas_mass_ratios(self, catalogue, aperture_sizes):
         sf_to_stellar_fraction.name = f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
 
         # Finally, register all the above fields
-        setattr(
-            self,
-            f"gas_neutral_H_mass_{aperture_size}_kpc",
-            neutral_H_mass,
-        )
+        setattr(self, f"gas_neutral_H_mass_{aperture_size}_kpc", neutral_H_mass)
 
         setattr(
             self,
@@ -731,11 +720,11 @@ def register_species_fractions(self, catalogue, aperture_sizes):
         # to be added for each.
 
         self.xgass_galaxy_selection = np.logical_and(
-            M_star > unyt.unyt_quantity(10**9, "Solar_Mass"),
+            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
             M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
         )
         self.xcoldgass_galaxy_selection = np.logical_and(
-            M_star > unyt.unyt_quantity(10**9, "Solar_Mass"),
+            M_star > unyt.unyt_quantity(10 ** 9, "Solar_Mass"),
             M_star < unyt.unyt_quantity(10 ** (11.5), "Solar_Mass"),
         )
 
@@ -869,30 +858,46 @@ def register_los_star_veldisp(self, catalogue):
     return
 
 
+def register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitude):
+
+    stellar_mass = catalogue.apertures.mass_star_50_kpc
+    stellar_mass_with_scatter = unyt.unyt_array(
+        np.random.lognormal(
+            np.log(stellar_mass.value), stellar_mass_scatter_amplitude * np.log(10.0)
+        ),
+        units=stellar_mass.units,
+    )
+    stellar_mass_with_scatter.name = f"Stellar mass $M_*$ with {stellar_mass_scatter_amplitude:.1f} dex scatter (50 kpc)"
+    setattr(self, f"mass_star_with_scatter_50_kpc", stellar_mass_with_scatter)
+
+    return
+
+
 # Register derived fields
-register_spesific_star_formation_rates(self, catalogue, aperture_sizes_30_100_kpc)
+register_spesific_star_formation_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_star_metallicities(
-    self, catalogue, aperture_sizes_30_100_kpc, solar_metal_mass_fraction
+    self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction
 )
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
-register_dust(self, catalogue, aperture_sizes_30_100_kpc)
-register_oxygen_to_hydrogen(self, catalogue, aperture_sizes_30_100_kpc)
+register_dust(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_oxygen_to_hydrogen(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_cold_dense_gas_metallicity(
     self,
     catalogue,
-    aperture_sizes_30_100_kpc,
+    aperture_sizes_30_50_100_kpc,
     solar_metal_mass_fraction,
     twelve_plus_log_OH_solar,
 )
 register_iron_to_hydrogen(
-    self, catalogue, aperture_sizes_30_100_kpc, solar_fe_abundance
+    self, catalogue, aperture_sizes_30_50_100_kpc, solar_fe_abundance
 )
-register_hi_masses(self, catalogue, aperture_sizes_30_100_kpc)
-register_h2_masses(self, catalogue, aperture_sizes_30_100_kpc)
-register_dust_to_hi_ratio(self, catalogue, aperture_sizes_30_100_kpc)
-register_cold_gas_mass_ratios(self, catalogue, aperture_sizes_30_100_kpc)
-register_species_fractions(self, catalogue, aperture_sizes_30_100_kpc)
+register_hi_masses(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_h2_masses(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_dust_to_hi_ratio(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_cold_gas_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_species_fractions(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_stellar_birth_densities(self, catalogue)
 register_los_star_veldisp(self, catalogue)
-register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_100_kpc)
+register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_gas_fraction(self, catalogue)
+register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitude)

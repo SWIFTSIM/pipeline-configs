@@ -12,7 +12,7 @@ from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 density_bounds = [10 ** (-9.5), 1e7]  # in nh/cm^3
-temperature_bounds = [10**0.0, 10**9.5]  # in K
+temperature_bounds = [10 ** 0.0, 10 ** 9.5]  # in K
 specfracs_bounds = [1e-2, 1]  # dimensionless
 min_specfracs = specfracs_bounds[0]
 bins = 256
@@ -27,7 +27,7 @@ def get_data(filename, prefix_rho, prefix_T, species):
 
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
-    ).to(cm**-3)
+    ).to(cm ** -3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
     masses = data.gas.masses.to_physical().to("Msun")
     hfrac = data.gas.element_mass_fractions.hydrogen.to_physical()
@@ -92,11 +92,7 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number,
-        horizontal_number,
-        squeeze=True,
-        sharex=True,
-        sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

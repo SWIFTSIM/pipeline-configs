@@ -41,7 +41,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     data = load(filename)
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
-    ).to(cm**-3)
+    ).to(cm ** -3)
     temperature = getattr(data.gas, f"{prefix_T}temperatures").to_physical().to("K")
     masses = data.gas.masses.to_physical().to("Msun")
 
@@ -64,7 +64,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
         with h5.File(tables, "r") as table_file:
             lrho = np.log10(
                 (data.gas.subgrid_physical_densities.to_physical() / mh)
-                .to(cm**-3)
+                .to(cm ** -3)
                 .value
             )
             lT = np.log10((data.gas.subgrid_temperatures).to_physical().to("K").value)
@@ -119,14 +119,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     return out_tuple
 
 
-def make_hist(
-    filename,
-    density_bounds,
-    bins,
-    tables,
-    prefix_rho="",
-    prefix_T="",
-):
+def make_hist(filename, density_bounds, bins, tables, prefix_rho="", prefix_T=""):
     """
     Makes the histogram for filename with bounds as lower, higher
     for the bins and "bins" the number of bins along each dimension.
@@ -192,11 +185,7 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number,
-        horizontal_number,
-        squeeze=True,
-        sharex=True,
-        sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -254,12 +243,7 @@ def make_single_image(
 
     for filename in filenames:
         hh2, hhi, hhii, hd2z, hdi2z, d = make_hist(
-            filename,
-            density_bounds,
-            bins,
-            tables,
-            prefix_rho,
-            prefix_T,
+            filename, density_bounds, bins, tables, prefix_rho, prefix_T
         )
         hist_h2.append(hh2)
         hist_hi.append(hhi)

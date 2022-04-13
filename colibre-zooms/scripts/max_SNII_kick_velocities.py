@@ -32,12 +32,7 @@ def get_data(filename):
     gas_SNII_v_kick_max = gas_SNII_v_kick_max[gas_SNII_kicked]
 
     # All kicks (contained in gas + stars info)
-    v_kick_max_all = np.concatenate(
-        [
-            stars_SNII_v_kick_max,
-            gas_SNII_v_kick_max,
-        ]
-    )
+    v_kick_max_all = np.concatenate([stars_SNII_v_kick_max, gas_SNII_v_kick_max])
 
     return v_kick_max_all
 
@@ -61,7 +56,7 @@ def make_single_image(
             np.log10(v_kick_max), range=np.log10(v_kick_bounds), bins=250, density=True
         )
         bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
-        bins = 10**bins
+        bins = 10 ** bins
         ax.plot(bins, h, label=name)
 
     ax.legend()

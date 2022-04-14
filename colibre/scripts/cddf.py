@@ -50,6 +50,11 @@ def plot_cddf(snapshot_filenames, names, output_path):
             HI_numdens.flatten(), bins=np.logspace(12.0, 23.0, 100), density=True
         )
 
+        # convert from d/dN to d/dlogN
+        cddf *= (bin_edges[1:] - bin_edges[:-1]) / (
+            np.log10(bin_edges[1:]) - np.log10(bin_edges[:-1])
+        )
+
         # convert bin edges to bin centres
         bin_centres = 10.0 ** (
             0.5 * (np.log10(bin_edges[1:]) + np.log10(bin_edges[:-1]))

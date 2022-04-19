@@ -1,18 +1,19 @@
 import swiftsimio as sw
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.colors import LogNorm
 from swiftsimio.visualisation.projection import project_gas
+from velociraptor.observations import load_observation
 
-from unyt import Mpc, g, cm, Msun, mp
+from unyt import Mpc, g, cm, mp
 
-from astropy.cosmology import Planck13, z_at_value
+from astropy.cosmology import z_at_value
 import astropy.units as u
 
-from matplotlib.lines import Line2D
+import glob
+import os
 
 
-def plot_cddf(snapshot_filenames, names, output_path):
+def plot_cddf(snapshot_filenames, names, output_path, observational_data):
     simulation_lines = []
     simulation_labels = []
 
@@ -27,6 +28,7 @@ def plot_cddf(snapshot_filenames, names, output_path):
 
         # compute an appropriate number of pixels to use
         num_pix = int(4000.0 * (boxsize / (12.5 * Mpc)))
+        print(f"Using {num_pix}^2 pixels for CDDF projection")
 
         # create the HI mass fraction dataset
         data.gas.HI_mass_fraction = (
@@ -83,6 +85,18 @@ def plot_cddf(snapshot_filenames, names, output_path):
 
         simulation_labels.append(f"{name} ($z = {z:.1f}$)")
 
+    for index, observation in enumerate(observational_data):
+        obs = load_observation(observation)
+        obs.plot_on_axes(ax)
+
+    observation_legend = ax.legend(markerfirst=True, loc="lower left")
+
+    ax.add_artist(observation_legend)
+
+    simulation_legend = ax.legend(
+        simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
+    )
+
     ax.set_xlabel("$N(HI)$")
     ax.set_ylabel("$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$")
 
@@ -105,4 +119,13 @@ if __name__ == "__main__":
 
     plt.style.use(arguments.stylesheet_location)
 
-    plot_cddf(snapshot_filenames, arguments.name_list, arguments.output_directory)
+    observational_data = glob.glob(
+        f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/ColumnDensityDistributionFunction/*.hdf5"
+    )
+
+    plot_cddf(
+        snapshot_filenames,
+        arguments.name_list,
+        arguments.output_directory,
+        observational_data,
+    )

@@ -10,7 +10,6 @@ from astropy.cosmology import z_at_value
 import astropy.units as u
 
 import glob
-import os
 
 
 def plot_cddf(snapshot_filenames, names, output_path, observational_data):
@@ -28,7 +27,6 @@ def plot_cddf(snapshot_filenames, names, output_path, observational_data):
 
         # compute an appropriate number of pixels to use
         num_pix = int(4000.0 * (boxsize / (12.5 * Mpc)))
-        print(f"Using {num_pix}^2 pixels for CDDF projection")
 
         # create the HI mass fraction dataset
         data.gas.HI_mass_fraction = (
@@ -73,6 +71,7 @@ def plot_cddf(snapshot_filenames, names, output_path, observational_data):
             )
             - z
         )
+        # correct the CDDF for line of sight sampling effects
         dX = (
             (data.metadata.cosmology.H0 / data.metadata.cosmology.H(z))
             * dz

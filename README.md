@@ -11,7 +11,7 @@ observational data, which is performed using the submodule:
 ```bash
 git submodule update --init --recursive
 cd observational_data
-bash convert.sh
+./convert.py [--nproc <NUMBER OF PARALLEL PROCESSES>]
 cd ..
 ```
 

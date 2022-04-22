@@ -170,7 +170,7 @@ a_ticks = 1.0 / (redshift_ticks + 1.0)
 
 ax.set_xticks(a_ticks)
 ax.set_xticklabels(redshift_labels)
-ax.tick_params(axis="x", which="minor", bottom=False)
+ax.tick_params(axis="x", which="minor", bottom=False, top=False)
 
 ax.set_xlim(1.02, 0.07)
 ax.set_ylim(5e6, 1e10)

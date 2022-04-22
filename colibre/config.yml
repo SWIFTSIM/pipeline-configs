@@ -285,3 +285,9 @@ scripts:
     output_file: stellar_abundances_OH_Fe_snia_fraction.png
     section: Stellar Metallicity
     title: 'Fraction of Fe from SNIa vs [O/H]'
+  - filename: scripts/column_density_distribution_function.py
+    caption: 'The column density distribution function of neutral hydrogen computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
+    output_file: column_density_distribution_function.png
+    section: Column Densities
+    additional_arguments:
+      parallel: True

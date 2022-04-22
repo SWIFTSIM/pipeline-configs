@@ -12,7 +12,9 @@ import astropy.units as u
 import glob
 
 
-def plot_cddf(snapshot_filenames, names, output_path, observational_data):
+def plot_cddf(
+    snapshot_filenames, names, output_path, observational_data, parallel=True
+):
     simulation_lines = []
     simulation_labels = []
 
@@ -38,7 +40,7 @@ def plot_cddf(snapshot_filenames, names, output_path, observational_data):
             data,
             resolution=num_pix,
             project="HI_mass_fraction",
-            parallel=True,
+            parallel=parallel,
             backend="subsampled",
         )
         HI_numdens = HI_map.to(g * cm ** -2) / mp
@@ -99,14 +101,15 @@ def plot_cddf(snapshot_filenames, names, output_path, observational_data):
     ax.set_xlabel("$N$(HI)")
     ax.set_ylabel("$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$")
 
-    fig.savefig(f"{output_path}/cddf.png")
+    fig.savefig(f"{output_path}/column_density_distribution_function.png")
 
 
 if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
     arguments = ScriptArgumentParser(
-        description="Column density distribution function plot."
+        description="Column density distribution function plot.",
+        additional_arguments={"parallel": True},
     )
 
     snapshot_filenames = [
@@ -127,4 +130,5 @@ if __name__ == "__main__":
         arguments.name_list,
         arguments.output_directory,
         observational_data,
+        arguments.parallel,
     )

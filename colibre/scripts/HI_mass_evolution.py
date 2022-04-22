@@ -67,6 +67,9 @@ for snapshot_filename, stats_filename, name in zip(
 
 # Observational data plotting
 
+observation_lines = []
+observation_labels = []
+
 zgrid = np.linspace(0, 4, 50)
 agrid = pow(1 + zgrid, -1)
 
@@ -97,17 +100,16 @@ P20_rhoHI *= 0.76
 P20_rhoHI_lo *= 0.76
 P20_rhoHI_hi *= 0.76
 
-simulation_lines.append(
-    ax.fill_between(
-        agrid,
-        P20_rhoHI_lo,
-        P20_rhoHI_hi,
-        alpha=0.2,
-        color="C2",
-        label="Peroux & Howk (2020) Fit",
-    )
+ax.fill_between(
+    agrid,
+    P20_rhoHI_lo,
+    P20_rhoHI_hi,
+    alpha=0.2,
+    color="C2",
+    label="Peroux & Howk (2020) Fit",
 )
-simulation_lines.append(ax.plot(agrid, P20_rhoHI, color="C2"))
+observation_lines.append(ax.plot(agrid, P20_rhoHI, color="C2")[0])
+observation_labels.append("Peroux & Howk (2020) Fit")
 
 
 W20_data = np.genfromtxt(
@@ -135,17 +137,16 @@ W20_rhoHI *= 0.76
 W20_rhoHI_lo *= 0.76
 W20_rhoHI_hi *= 0.76
 
-simulation_lines.append(
-    ax.fill_between(
-        pow(1 + zgrid, -1),
-        W20_rhoHI_lo,
-        W20_rhoHI_hi,
-        alpha=0.2,
-        color="C3",
-        label="Walter et al. (2020) Fit",
-    )
+ax.fill_between(
+    pow(1 + zgrid, -1),
+    W20_rhoHI_lo,
+    W20_rhoHI_hi,
+    alpha=0.2,
+    color="C3",
+    label="Walter et al. (2020) Fit",
 )
-simulation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoHI, color="C3"))
+observation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoHI, color="C3")[0])
+observation_labels.append("Walter et al. (2020) Fit")
 
 
 ax.set_xlabel("Redshift $z$")
@@ -177,7 +178,11 @@ ax.set_ylim(5e6, 1e10)
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="lower right"
 )
+observation_legend = ax.legend(
+    observation_lines, observation_labels, markerfirst=True, loc="upper left"
+)
 
 ax.add_artist(simulation_legend)
+ax.add_artist(observation_legend)
 
 fig.savefig(f"{output_path}/HI_mass_evolution.png")

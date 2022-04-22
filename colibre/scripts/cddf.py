@@ -96,7 +96,7 @@ def plot_cddf(snapshot_filenames, names, output_path, observational_data):
         simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
     )
 
-    ax.set_xlabel("$N(HI)$")
+    ax.set_xlabel("$N$(HI)")
     ax.set_ylabel("$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$")
 
     fig.savefig(f"{output_path}/cddf.png")

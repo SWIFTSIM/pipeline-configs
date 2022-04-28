@@ -10,7 +10,7 @@ gas_HI_mass_function:
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 1.
   metadata:
     title: HI Mass Function
     caption: HIMF, showing all galaxies with a fixed bin-width of 0.2 dex (HI masses 50 kpc).
@@ -32,7 +32,7 @@ adaptive_gas_HI_mass_function:
   y:
     units: 1/Mpc**3
     start: 1e-6
-    end: 0.316 # (1e-0.5)
+    end: 1.
   metadata:
     title: HI Mass Function
     caption: HIMF, showing all galaxies with an adaptive bin-width (HI masses 50 kpc).

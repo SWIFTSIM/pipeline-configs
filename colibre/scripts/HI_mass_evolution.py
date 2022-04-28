@@ -67,28 +67,49 @@ for snapshot_filename, stats_filename, name in zip(
 
 # Observational data plotting
 
+observation_lines = []
+observation_labels = []
+
 zgrid = np.linspace(0, 4, 50)
+agrid = pow(1 + zgrid, -1)
 
 P20_data = np.genfromtxt(
     f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
     "/data/CosmicHIAbundance/raw/Peroux2020_OmegaHI.txt",
     usecols=[1, 2],
 )
-P20eq13 = lambda z, a, b: a * rho_crit0 * (1 + z) ** b
+P20eq13 = lambda z, a, b: a * rho_crit0 * (1.0 + z) ** b
 P20_rhoHI = P20eq13(zgrid, *P20_data[0])
 P20_rhoHI_lo = P20eq13(zgrid, *P20_data[1])
 P20_rhoHI_hi = P20eq13(zgrid, *P20_data[2])
-simulation_lines.append(
-    ax.fill_between(
-        pow(1 + zgrid, -1),
-        P20_rhoHI_lo,
-        P20_rhoHI_hi,
-        alpha=0.2,
-        color="C2",
-        label="Peroux & Howk (2020) Fit",
-    )
+
+# Cosmology correction (Schaye, 2001, ApJ 559, 507)
+# This correction derives from the fact that the measurements have been homogenised
+# assuming a cosmology with h=0.7, Omega_M = 0.3 and Omega_Lambda = 0.7
+# This affects the conversion from redshift distances into actual co-moving distances:
+# Delta(X) ~ H_0/H(z) = [Omega_Lambda + Omega_M * (1+z)^3]^(-1/2)
+P20_rhoHI *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_lo *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI_lo /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_hi *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI_hi /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+
+# convert from neutral gas density (H+He) to HI (only H) mass density
+P20_rhoHI *= 0.76
+P20_rhoHI_lo *= 0.76
+P20_rhoHI_hi *= 0.76
+
+ax.fill_between(
+    agrid,
+    P20_rhoHI_lo,
+    P20_rhoHI_hi,
+    alpha=0.2,
+    color="C2",
+    label="Peroux & Howk (2020) Fit",
 )
-simulation_lines.append(ax.plot(pow(1 + zgrid, -1), P20_rhoHI, color="C2"))
+observation_lines.append(ax.plot(agrid, P20_rhoHI, color="C2")[0])
+observation_labels.append("Peroux & Howk (2020) Fit")
 
 
 W20_data = np.genfromtxt(
@@ -100,27 +121,33 @@ W20eq2 = lambda z, a, b, c: (a * np.tanh(1 + z - b) + c)
 W20_rhoHI = W20eq2(zgrid, *W20_data[0])
 W20_rhoHI_lo = W20eq2(zgrid, *W20_data[1])
 W20_rhoHI_hi = W20eq2(zgrid, *W20_data[2])
-simulation_lines.append(
-    ax.fill_between(
-        pow(1 + zgrid, -1),
-        W20_rhoHI_lo,
-        W20_rhoHI_hi,
-        alpha=0.2,
-        color="C3",
-        label="Walter et al. (2020) Fit",
-    )
+
+# Cosmology correction
+# The assumed cosmology in Walter et al. (2020) has
+# h=0.7, Omega_M = 0.31, Omega_Lambda = 0.69
+W20_rhoHI *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+W20_rhoHI /= 0.7 ** -1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
+W20_rhoHI_lo *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+W20_rhoHI_lo /= 0.7 ** -1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
+W20_rhoHI_hi *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+W20_rhoHI_hi /= 0.7 ** -1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
+
+# convert from neutral gas density (H+He) to HI (only H) mass density
+W20_rhoHI *= 0.76
+W20_rhoHI_lo *= 0.76
+W20_rhoHI_hi *= 0.76
+
+ax.fill_between(
+    pow(1 + zgrid, -1),
+    W20_rhoHI_lo,
+    W20_rhoHI_hi,
+    alpha=0.2,
+    color="C3",
+    label="Walter et al. (2020) Fit",
 )
-simulation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoHI, color="C3"))
+observation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoHI, color="C3")[0])
+observation_labels.append("Walter et al. (2020) Fit")
 
-
-observational_data = glob.glob(
-    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/StellarMassDensity/*.hdf5"
-)
-
-
-# for index, observation in enumerate(observational_data):
-#    obs = load_observation(observation)
-#    obs.plot_on_axes(ax)
 
 ax.set_xlabel("Redshift $z$")
 ax.set_ylabel(r"Atomic Gas Cosmic Density $\rho_{\rm HI} [{\rm M_\odot \; cMpc^{-3}}]$")
@@ -143,19 +170,19 @@ a_ticks = 1.0 / (redshift_ticks + 1.0)
 
 ax.set_xticks(a_ticks)
 ax.set_xticklabels(redshift_labels)
-ax.tick_params(axis="x", which="minor", bottom=False)
+ax.tick_params(axis="x", which="minor", bottom=False, top=False)
 
 ax.set_xlim(1.02, 0.07)
 ax.set_ylim(5e6, 1e10)
 
-observation_legend = ax.legend(markerfirst=True, loc="lower left")
-
-ax.add_artist(observation_legend)
-
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="lower right"
 )
+observation_legend = ax.legend(
+    observation_lines, observation_labels, markerfirst=True, loc="upper left"
+)
 
 ax.add_artist(simulation_legend)
+ax.add_artist(observation_legend)
 
 fig.savefig(f"{output_path}/HI_mass_evolution.png")

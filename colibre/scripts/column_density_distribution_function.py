@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from swiftsimio.visualisation.projection import project_gas
 from velociraptor.observations import load_observation
 
-from unyt import Mpc, g, cm, mp
+import unyt
 
 from astropy.cosmology import z_at_value
 import astropy.units as u
@@ -13,7 +13,12 @@ import glob
 
 
 def plot_cddf(
-    snapshot_filenames, names, output_path, observational_data, parallel=True
+    snapshot_filenames,
+    names,
+    output_path,
+    observational_data,
+    box_chunks=1,
+    parallel=True,
 ):
     simulation_lines = []
     simulation_labels = []
@@ -28,7 +33,7 @@ def plot_cddf(
         boxsize = data.metadata.boxsize[0]
 
         # compute an appropriate number of pixels to use
-        num_pix = int(4000.0 * (boxsize / (12.5 * Mpc)))
+        num_pix = int(4000.0 * (boxsize / (12.5 * unyt.Mpc)))
 
         # create the HI mass fraction dataset
         data.gas.HI_mass_fraction = (
@@ -36,14 +41,29 @@ def plot_cddf(
             * data.gas.element_mass_fractions.hydrogen
             * data.gas.species_fractions.HI
         )
-        HI_map = project_gas(
-            data,
-            resolution=num_pix,
-            project="HI_mass_fraction",
-            parallel=parallel,
-            backend="subsampled",
-        )
-        HI_numdens = HI_map.to(g * cm ** -2) / mp
+        HI_map = unyt.unyt_array([], units="g/cm**2")
+        for i in range(box_chunks):
+            this_HI_map = (
+                project_gas(
+                    data,
+                    resolution=num_pix,
+                    project="HI_mass_fraction",
+                    parallel=parallel,
+                    backend="subsampled",
+                    region=[
+                        0.0 * boxsize,
+                        boxsize,
+                        0.0 * boxsize,
+                        boxsize,
+                        (1.0 / box_chunks) * i * boxsize,
+                        (1.0 / box_chunks) * (i + 1) * boxsize,
+                    ],
+                )
+                .to("g/cm**2")
+                .flatten()
+            )
+            HI_map = unyt.array.uconcatenate((HI_map, this_HI_map))
+        HI_numdens = HI_map.to("g/cm**2") / unyt.mp
         # convert from comoving to physical number densities
         HI_numdens *= (1.0 + z) ** 2
 
@@ -67,7 +87,7 @@ def plot_cddf(
         dz = np.abs(
             z_at_value(
                 data.metadata.cosmology.comoving_distance,
-                dist + data.metadata.boxsize[0].to("Mpc").value * u.Mpc,
+                dist + boxsize.to("Mpc").value / box_chunks * u.Mpc,
                 zmin=z,
                 zmax=z + 0.5,
             )
@@ -101,7 +121,9 @@ def plot_cddf(
     ax.set_xlabel("$N$(HI)")
     ax.set_ylabel("$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$")
 
-    fig.savefig(f"{output_path}/column_density_distribution_function.png")
+    fig.savefig(
+        f"{output_path}/column_density_distribution_function_chunk{box_chunks}.png"
+    )
 
 
 if __name__ == "__main__":
@@ -109,7 +131,7 @@ if __name__ == "__main__":
 
     arguments = ScriptArgumentParser(
         description="Column density distribution function plot.",
-        additional_arguments={"parallel": True},
+        additional_arguments={"box_chunks": 1, "parallel": True},
     )
 
     snapshot_filenames = [
@@ -130,5 +152,6 @@ if __name__ == "__main__":
         arguments.name_list,
         arguments.output_directory,
         observational_data,
-        arguments.parallel,
+        int(arguments.box_chunks),
+        bool(arguments.parallel),
     )

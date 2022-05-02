@@ -19,7 +19,7 @@ def plot_cddf(
     observational_data,
     box_chunks=[1, 2, 1, 2],
     x_ranges=[(1.0e12, 1.0e23), (1.0e12, 1.0e23), (1.0e19, 1.0e23), (1.0e19, 1.0e23)],
-    y_ranges=[(1.0e-5, 1.0e3), (1.0e-5, 1.0e3), (1.0e-5, 3.0e1), (1.0e-5, 3.0e1)],
+    y_ranges=[(1.0e-5, 1.0e4), (1.0e-5, 1.0e4), (1.0e-5, 3.0e1), (1.0e-5, 3.0e1)],
     figure_names=[
         "column_density_distribution_function_chunk1_full_range",
         "column_density_distribution_function_chunk2_full_range",

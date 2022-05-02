@@ -17,15 +17,42 @@ def plot_cddf(
     names,
     output_path,
     observational_data,
-    box_chunks=1,
+    box_chunks=[1, 2, 1, 2],
+    x_ranges=[(1.0e12, 1.0e23), (1.0e12, 1.0e23), (1.0e19, 1.0e23), (1.0e19, 1.0e23)],
+    y_ranges=[(1.0e-5, 1.0e3), (1.0e-5, 1.0e3), (1.0e-5, 3.0e1), (1.0e-5, 3.0e1)],
+    figure_names=[
+        "column_density_distribution_function_chunk1_full_range",
+        "column_density_distribution_function_chunk2_full_range",
+        "column_density_distribution_function_chunk1_reduced_range",
+        "column_density_distribution_function_chunk2_reduced_range",
+    ],
     parallel=True,
 ):
-    simulation_lines = []
-    simulation_labels = []
 
-    fig, ax = plt.subplots()
+    # set up bins in column density space. These are always the same.
+    bin_edges = np.logspace(12.0, 23.0, 100)
+    bin_centres = 10.0 ** (0.5 * (np.log10(bin_edges[1:]) + np.log10(bin_edges[:-1])))
 
+    # determine the number of chunks to use to produce the maps
+    # maps for smaller numbers of chunks are obtained by summing together maps
+    max_N_chunk = np.max(box_chunks)
+
+    # we (currently) only allow chunk numbers that are multiples of each other
+    # there is no real need to do this, but it makes things a bit easier
+    for N_chunk in np.unique(box_chunks):
+        if not max_N_chunk % N_chunk == 0:
+            raise AttributeError("Incompatible number of chunks found in list!")
+
+    # we will store all the CDDF curves for all simulations in a large
+    # dictionary
+    # this way, we do not need to keep all the maps in memory until we make the
+    # plot(s)
+    cddf_data = {}
     for snapshot_filename, name in zip(snapshot_filenames, names):
+
+        # the different CDDFs for different numbers of chunks are stored in a
+        # dictionary as well
+        cddf_data[snapshot_filename] = {}
 
         # load the data
         data = sw.load(snapshot_filename)
@@ -35,15 +62,19 @@ def plot_cddf(
         # compute an appropriate number of pixels to use
         num_pix = int(4000.0 * (boxsize / (12.5 * unyt.Mpc)))
 
-        # create the HI mass fraction dataset
+        # generate the HI mass fraction dataset
         data.gas.HI_mass_fraction = (
             data.gas.masses
             * data.gas.element_mass_fractions.hydrogen
             * data.gas.species_fractions.HI
         )
-        HI_map = unyt.unyt_array([], units="g/cm**2")
-        for i in range(box_chunks):
-            this_HI_map = (
+
+        # create an empty array to store the different maps for all the chunks
+        HI_maps = np.zeros((max_N_chunk, num_pix, num_pix))
+        for ichunk in range(max_N_chunk):
+            # generate the map for this chunk and immediately convert from
+            # mass column density to number column density
+            HI_map = (
                 project_gas(
                     data,
                     resolution=num_pix,
@@ -55,75 +86,103 @@ def plot_cddf(
                         boxsize,
                         0.0 * boxsize,
                         boxsize,
-                        (1.0 / box_chunks) * i * boxsize,
-                        (1.0 / box_chunks) * (i + 1) * boxsize,
+                        (1.0 / max_N_chunk) * ichunk * boxsize,
+                        (1.0 / max_N_chunk) * (ichunk + 1) * boxsize,
                     ],
                 )
-                .to("g/cm**2")
-                .flatten()
+                / unyt.mp
             )
-            HI_map = unyt.array.uconcatenate((HI_map, this_HI_map))
-        HI_numdens = HI_map.to("g/cm**2") / unyt.mp
-        # convert from comoving to physical number densities
-        HI_numdens *= (1.0 + z) ** 2
+            # make sure the map has the right units:
+            HI_map = HI_map.to("cm**(-2)")
+            # (also taking into account the a^-2 cosmology factor)
+            HI_map *= (1.0 + z) ** 2
+            # store the map in the array, this drops the units (which is fine)
+            HI_maps[ichunk] = HI_map
 
-        # compute the histogram (density=True makes it a PDF)
-        cddf, bin_edges = np.histogram(
-            HI_numdens.flatten(), bins=np.logspace(12.0, 23.0, 100), density=True
-        )
-
-        # convert from d/dN to d/dlogN
-        cddf *= (bin_edges[1:] - bin_edges[:-1]) / (
-            np.log10(bin_edges[1:]) - np.log10(bin_edges[:-1])
-        )
-
-        # convert bin edges to bin centres
-        bin_centres = 10.0 ** (
-            0.5 * (np.log10(bin_edges[1:]) + np.log10(bin_edges[:-1]))
-        )
-
-        # figure out the box size in redshift space
-        dist = data.metadata.cosmology.comoving_distance(z)
-        dz = np.abs(
-            z_at_value(
-                data.metadata.cosmology.comoving_distance,
-                dist + boxsize.to("Mpc").value / box_chunks * u.Mpc,
-                zmin=z,
-                zmax=z + 0.5,
+        # now combine maps appropriately to generate the different CDDFs
+        for N_chunk in np.unique(box_chunks):
+            # convert the 3D array to a 4D array, where the first dimension
+            # is the number of chunks we want and the second dimension is
+            # automatically chosen by NumPy to accommodate this
+            # then sum over this second dimension to convert back to a 3D array,
+            # now containing the correct number of chunks.
+            # finally flatten that array into a collection of individual sightlines
+            # for which we can compute the CDDF
+            HI_map = (
+                HI_maps.reshape((N_chunk, -1, num_pix, num_pix)).sum(axis=1).flatten()
             )
-            - z
+
+            # compute the histogram (density=True makes it a PDF)
+            cddf, _ = np.histogram(HI_map, bins=bin_edges, density=True)
+
+            # convert from d/dN to d/dlogN
+            cddf *= (bin_edges[1:] - bin_edges[:-1]) / (
+                np.log10(bin_edges[1:]) - np.log10(bin_edges[:-1])
+            )
+
+            # figure out the box size in redshift space
+            # note that this depends on the number of chunks, since more
+            # chunks means a shorter z axis
+            dist = data.metadata.cosmology.comoving_distance(z)
+            dz = np.abs(
+                z_at_value(
+                    data.metadata.cosmology.comoving_distance,
+                    dist + boxsize.to("Mpc").value / N_chunk * u.Mpc,
+                    zmin=z,
+                    zmax=z + 0.5,
+                )
+                - z
+            )
+            # correct the CDDF for line of sight sampling effects
+            dX = (
+                (data.metadata.cosmology.H0 / data.metadata.cosmology.H(z))
+                * dz
+                * (1 + z) ** 2
+            )
+            cddf /= dX.value
+
+            # store the CDDF in the dictionary
+            cddf_data[snapshot_filename][N_chunk] = cddf
+
+    # we have all the data, now create all the plots
+    for N_chunk, x_range, y_range, figure_name in zip(
+        box_chunks, x_ranges, y_ranges, figure_names
+    ):
+
+        simulation_lines = []
+        simulation_labels = []
+
+        fig, ax = plt.subplots()
+
+        for snapshot_filename, name in zip(snapshot_filenames, names):
+
+            simulation_lines.append(
+                ax.loglog(bin_centres, cddf_data[snapshot_filename][N_chunk], lw=2)[0]
+            )
+
+            simulation_labels.append(f"{name} ($z = {z:.1f}$)")
+
+        for index, observation in enumerate(observational_data):
+            obs = load_observation(observation)
+            obs.plot_on_axes(ax)
+
+        observation_legend = ax.legend(markerfirst=True, loc="lower left")
+
+        ax.add_artist(observation_legend)
+
+        simulation_legend = ax.legend(
+            simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
         )
-        # correct the CDDF for line of sight sampling effects
-        dX = (
-            (data.metadata.cosmology.H0 / data.metadata.cosmology.H(z))
-            * dz
-            * (1 + z) ** 2
+
+        ax.set_xlim(*x_range)
+        ax.set_ylim(*y_range)
+
+        ax.set_xlabel("$N$(HI)")
+        ax.set_ylabel(
+            "$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$"
         )
 
-        cddf /= dX.value
-
-        simulation_lines.append(ax.loglog(bin_centres, cddf, lw=2)[0])
-
-        simulation_labels.append(f"{name} ($z = {z:.1f}$)")
-
-    for index, observation in enumerate(observational_data):
-        obs = load_observation(observation)
-        obs.plot_on_axes(ax)
-
-    observation_legend = ax.legend(markerfirst=True, loc="lower left")
-
-    ax.add_artist(observation_legend)
-
-    simulation_legend = ax.legend(
-        simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
-    )
-
-    ax.set_xlabel("$N$(HI)")
-    ax.set_ylabel("$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$")
-
-    fig.savefig(
-        f"{output_path}/column_density_distribution_function_chunk{box_chunks}.png"
-    )
+        fig.savefig(f"{output_path}/{figure_name}.png")
 
 
 if __name__ == "__main__":
@@ -131,7 +190,7 @@ if __name__ == "__main__":
 
     arguments = ScriptArgumentParser(
         description="Column density distribution function plot.",
-        additional_arguments={"box_chunks": 1, "parallel": True},
+        additional_arguments={"parallel": True},
     )
 
     snapshot_filenames = [
@@ -152,6 +211,5 @@ if __name__ == "__main__":
         arguments.name_list,
         arguments.output_directory,
         observational_data,
-        int(arguments.box_chunks),
-        bool(arguments.parallel),
+        parallel=arguments.parallel,
     )

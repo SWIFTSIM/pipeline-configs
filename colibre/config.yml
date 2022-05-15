@@ -298,22 +298,3 @@ scripts:
     output_file: stellar_abundances_OH_Fe_snia_fraction.png
     section: Stellar Metallicity
     title: 'Fraction of Fe from SNIa vs [O/H]'
-  - filename: scripts/column_density_distribution_function.py
-    title:
-      - Column Density Distribution Function (full box, full range)
-      - Column Density Distribution Function (half box, full range)
-      - Column Density Distribution Function (full box, reduced range)
-      - Column Density Distribution Function (half box, reduced range)
-    caption:
-      - 'The column density distribution function of neutral hydrogen computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of neutral hydrogen computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of neutral hydrogen computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of neutral hydrogen computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
-    output_file:
-      - column_density_distribution_function_chunk1_full_range.png
-      - column_density_distribution_function_chunk2_full_range.png
-      - column_density_distribution_function_chunk1_reduced_range.png
-      - column_density_distribution_function_chunk2_reduced_range.png
-    section: Column Densities
-    additional_arguments:
-      parallel: True

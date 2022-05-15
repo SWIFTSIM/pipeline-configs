@@ -73,7 +73,6 @@ hi_stellar_fraction_cold_dense_dust_to_metal_ratio:
 hi_stellar_fraction_o_abundance_ism:
   type: "scatter"
   legend_loc: "upper right"
-
   selection_mask: "derived_quantities.jingle_galaxy_selection_50kpc"
   comment: "$M_{\\ast} > 10^{8} M_{\\odot}$"
   x:

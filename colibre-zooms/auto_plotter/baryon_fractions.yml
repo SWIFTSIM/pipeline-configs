@@ -68,6 +68,7 @@ gas_fraction_500:
     - filename: HaloMassGasFractions/Vikhlinin2006.hdf5
     - filename: HaloMassGasFractions/Eckert2016.hdf5
     - filename: HaloMassGasFractions/Lovisari2015.hdf5
+    - filename: HaloMassGasFractions/HSE-FLAMINGO.hdf5
 
 star_fraction_500:
   type: "2dhistogram"

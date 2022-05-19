@@ -329,8 +329,6 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
         dust_to_metals_neutral = dust_to_gas_neutral / metal_frac_neutral_fromO
         dust_to_metals_cd = dust_to_gas_cd / metal_frac_gas  # metal_frac_cd_fromO
 
-        # print (dust_mass_total, dust_mass_total, gas_mass, dust_to_gas, metal_frac.max(), np.nanmax(dust_to_metals))
-
         dust_to_metals.name = f"$\\mathcal{{DTM}}$ ({aperture_size} kpc)"
         dust_to_metals_hi.name = (
             f"$\\mathcal{{DTM}}$ (atomic phase, {aperture_size} kpc)"
@@ -699,8 +697,6 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                         f"star_fe_snia_abundance_avglog_{floor}_{aperture_size}_kpc",
                         Fe_abundance,
                     )
-                    print(np.isnan(self.star_fe_snia_abundance_avglog_low_30_kpc).any())
-                    print(np.isnan(self.star_fe_abundance_avglog_low_30_kpc).any())
                 except AttributeError:
                     # else clip values to floor
                     setattr(

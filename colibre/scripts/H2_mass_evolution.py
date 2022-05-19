@@ -222,7 +222,7 @@ observation_legend = ax.legend(markerfirst=True, loc="lower left")
 ax.add_artist(observation_legend)
 
 simulation_legend = ax.legend(
-    simulation_lines, simulation_labels, markerfirst=False, loc="center right"
+    simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
 )
 
 ax.add_artist(simulation_legend)

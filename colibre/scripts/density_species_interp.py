@@ -57,12 +57,11 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     # Dust Mass Fractions
     dfracs = np.zeros(data.gas.masses.shape)
     dsfrac_dict = {}
-    for d in data.metadata.named_columns['DustMassFractions']:
+    for d in data.metadata.named_columns["DustMassFractions"]:
         dfrac = getattr(data.gas.dust_mass_fractions, d)
-        dsfrac_dict[d] = dfrac.astype("float64")  
+        dsfrac_dict[d] = dfrac.astype("float64")
         dfracs += dfrac
-        
-        
+
     if glob.glob(tables):
         with h5.File(tables, "r") as table_file:
             lrho = np.log10(
@@ -168,10 +167,10 @@ def make_hist(filename, density_bounds, bins, tables, prefix_rho="", prefix_T=""
     # construct dictinary of arrays for individual dust species
     Hds = {}
     for k in DSdict.keys():
-        Hds[k], _ = np.histogram(nH, bins=density_bins, weights= DSdict[k]* Mg)
+        Hds[k], _ = np.histogram(nH, bins=density_bins, weights=DSdict[k] * Mg)
         Hds[k][mask] = None
         Hds[k] = np.ma.array((Hds[k] / H_Z).T, mask=mask.T)
-    
+
     out_tuple = (
         np.ma.array((Hh2 / H_h).T, mask=mask.T),
         np.ma.array((Hhi / H_h).T, mask=mask.T),
@@ -253,15 +252,10 @@ def make_single_image(
     hist_d2z = []
     hist_di2z = []
     hists_hds2Z = []
-    
+
     for filename in filenames:
         hh2, hhi, hhii, hd2z, hdi2z, hds2Z_dict, d = make_hist(
-            filename,
-            density_bounds,
-            bins,
-            tables,
-            prefix_rho,
-            prefix_T,
+            filename, density_bounds, bins, tables, prefix_rho, prefix_T,
         )
         hist_h2.append(hh2)
         hist_hi.append(hhi)
@@ -269,7 +263,7 @@ def make_single_image(
         hist_d2z.append(hd2z)
         hist_di2z.append(hdi2z)
         hists_hds2Z.append(hds2Z_dict)
-        
+
     ncols = 20
     collist = []
     binmids = np.log10(d)[:-1] + 0.5 * np.diff(np.log10(d))
@@ -291,10 +285,16 @@ def make_single_image(
         axis2 = axis.twinx()
         axis2.plot(binmids, hist_d2z, c="C5", label="Model dust")
         axis2.plot(binmids, hist_di2z, c="C5", ls="--", label="Table dust")
-        dotcount= 0
+        dotcount = 0
         for k in hists_hds2Z.keys():
-            axis2.plot(binmids, hists_hds2Z[k], c="C6", lw = 0.5*(len(hists_hds2Z.keys())-dotcount),
-                       ls=':', label=k)
+            axis2.plot(
+                binmids,
+                hists_hds2Z[k],
+                c="C6",
+                lw=0.5 * (len(hists_hds2Z.keys()) - dotcount),
+                ls=":",
+                label=k,
+            )
             dotcount += 1
             print(dotcount)
         axis2.legend(frameon=False, loc=(0.02, 0.7))

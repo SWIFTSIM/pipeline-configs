@@ -190,10 +190,12 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
                 catalogue.dust_masses, f"cold_dense_graphite_mass_{aperture_size}_kpc"
             )
             dust_mass_large_grain_cd = getattr(
-                catalogue.dust_masses, f"cold_dense_large_grain_mass_{aperture_size}_kpc"
+                catalogue.dust_masses,
+                f"cold_dense_large_grain_mass_{aperture_size}_kpc",
             )
             dust_mass_small_grain_cd = getattr(
-                catalogue.dust_masses, f"cold_dense_small_grain_mass_{aperture_size}_kpc"
+                catalogue.dust_masses,
+                f"cold_dense_small_grain_mass_{aperture_size}_kpc",
             )
             # All dust mass
             dust_mass_total = dust_mass_graphite + dust_mass_silicates
@@ -209,7 +211,6 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
         except AttributeError:
             dust_mass_total = unyt.unyt_array(np.zeros_like(metal_frac), units="Msun")
 
-
         dust_mass_total_hi.name = f"$M_{{\\rm dust,HI}}$ ({aperture_size} kpc)"
         dust_mass_total_h2.name = f"$M_{{\\rm dust,H2}}$ ({aperture_size} kpc)"
         dust_mass_total_cd.name = f"$M_{{\\rm dust,CD}}$ ({aperture_size} kpc)"
@@ -221,63 +222,129 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
 
         # Fetch gas masses
         gas_mass = getattr(catalogue.apertures, f"mass_gas_{aperture_size}_kpc")
-        atomic_mass  = getattr(catalogue.gas_hydrogen_species_masses,
-                                 f"HI_mass_{aperture_size}_kpc")
-        molecular_mass = getattr(catalogue.gas_hydrogen_species_masses,
-                                 f"H2_mass_{aperture_size}_kpc")
+        atomic_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"HI_mass_{aperture_size}_kpc"
+        )
+        molecular_mass = getattr(
+            catalogue.gas_hydrogen_species_masses, f"H2_mass_{aperture_size}_kpc"
+        )
         neutral_mass = atomic_mass + molecular_mass
-        colddense_mass = getattr(catalogue.cold_dense_gas_properties,
-                                 f"cold_dense_gas_mass_{aperture_size}_kpc")
+        colddense_mass = getattr(
+            catalogue.cold_dense_gas_properties,
+            f"cold_dense_gas_mass_{aperture_size}_kpc",
+        )
 
         # Metal mass fractions of the gas
 
-        linOH_abundance_times_mgas = getattr(catalogue.lin_element_ratios_times_masses,
-                                            f"lin_O_over_H_total_times_gas_mass_100_kpc")
+        linOH_abundance_times_mgas = getattr(
+            catalogue.lin_element_ratios_times_masses,
+            f"lin_O_over_H_total_times_gas_mass_100_kpc",
+        )
 
-        logOH_abundance_times_mhi = getattr(catalogue.log_element_ratios_times_masses,
-                                            f"log_O_over_H_atomic_times_gas_mass_lowfloor_{aperture_size}_kpc")/0.7
-        logOH_abundance_times_mh2 = getattr(catalogue.log_element_ratios_times_masses,
-                                            f"log_O_over_H_molecular_times_gas_mass_lowfloor_{aperture_size}_kpc")/0.7
-        logOH_abundance_times_cd = getattr(catalogue.log_element_ratios_times_masses,
-                                            f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc")/0.7
+        logOH_abundance_times_mhi = (
+            getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_O_over_H_atomic_times_gas_mass_lowfloor_{aperture_size}_kpc",
+            )
+            / 0.7
+        )
+        logOH_abundance_times_mh2 = (
+            getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_O_over_H_molecular_times_gas_mass_lowfloor_{aperture_size}_kpc",
+            )
+            / 0.7
+        )
+        logOH_abundance_times_cd = (
+            getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc",
+            )
+            / 0.7
+        )
 
-        metal_frac_gas = pow(10, np.log10(linOH_abundance_times_mgas/colddense_mass)+12 - twelve_plus_log_OH_solar) * Z_sun
-        metal_frac_hi_fromO = pow(10, ((logOH_abundance_times_mhi/atomic_mass)+12) - twelve_plus_log_OH_solar) * Z_sun
-        metal_frac_h2_fromO = pow(10, ((logOH_abundance_times_mh2/molecular_mass)+12) - twelve_plus_log_OH_solar) * Z_sun
-        metal_frac_neutral_fromO = ((metal_frac_hi_fromO*atomic_mass) + (metal_frac_h2_fromO*molecular_mass))/neutral_mass
-        metal_frac_cd_fromO = pow(10, ((logOH_abundance_times_cd/atomic_mass)+12) - twelve_plus_log_OH_solar) * Z_sun
+        metal_frac_gas = (
+            pow(
+                10,
+                np.log10(linOH_abundance_times_mgas / colddense_mass)
+                + 12
+                - twelve_plus_log_OH_solar,
+            )
+            * Z_sun
+        )
+        metal_frac_hi_fromO = (
+            pow(
+                10,
+                ((logOH_abundance_times_mhi / atomic_mass) + 12)
+                - twelve_plus_log_OH_solar,
+            )
+            * Z_sun
+        )
+        metal_frac_h2_fromO = (
+            pow(
+                10,
+                ((logOH_abundance_times_mh2 / molecular_mass) + 12)
+                - twelve_plus_log_OH_solar,
+            )
+            * Z_sun
+        )
+        metal_frac_neutral_fromO = (
+            (metal_frac_hi_fromO * atomic_mass) + (metal_frac_h2_fromO * molecular_mass)
+        ) / neutral_mass
+        metal_frac_cd_fromO = (
+            pow(
+                10,
+                ((logOH_abundance_times_cd / atomic_mass) + 12)
+                - twelve_plus_log_OH_solar,
+            )
+            * Z_sun
+        )
         # Add label to the dust mass field
         dust_mass_total.name = f"$M_{{\\rm dust}}$ ({aperture_size} kpc)"
-        
+
         # Compute dust to gas fraction
         dust_to_gas = dust_mass_total / gas_mass
         dust_to_gas_hi = dust_mass_total_hi / atomic_mass
         dust_to_gas_h2 = dust_mass_total_h2 / molecular_mass
-        dust_to_gas_neutral = (dust_mass_total_hi+dust_mass_total_h2) / neutral_mass
+        dust_to_gas_neutral = (dust_mass_total_hi + dust_mass_total_h2) / neutral_mass
         dust_to_gas_cd = dust_mass_total_cd / colddense_mass
-        
+
         # Label for the dust-fraction derived field
         dust_to_gas.name = f"$\\mathcal{{DTG}}$ ({aperture_size} kpc)"
         dust_to_gas_hi.name = f"$\\mathcal{{DTG}}$ (atomic phase, {aperture_size} kpc)"
-        dust_to_gas_h2.name = f"$\\mathcal{{DTG}}$ (molecular phase, {aperture_size} kpc)"
-        dust_to_gas_neutral.name = f"$\\mathcal{{DTG}}$ (neutral phase, {aperture_size} kpc)"
-        dust_to_gas_cd.name = f"$\\mathcal{{DTG}}$ (cold, dense phase, {aperture_size} kpc)"
-        
+        dust_to_gas_h2.name = (
+            f"$\\mathcal{{DTG}}$ (molecular phase, {aperture_size} kpc)"
+        )
+        dust_to_gas_neutral.name = (
+            f"$\\mathcal{{DTG}}$ (neutral phase, {aperture_size} kpc)"
+        )
+        dust_to_gas_cd.name = (
+            f"$\\mathcal{{DTG}}$ (cold, dense phase, {aperture_size} kpc)"
+        )
+
         # Compute to metal ratio
         dust_to_metals = dust_to_gas / metal_frac
         dust_to_metals_hi = dust_to_gas_hi / metal_frac_hi_fromO
         dust_to_metals_h2 = dust_to_gas_h2 / metal_frac_h2_fromO
         dust_to_metals_neutral = dust_to_gas_neutral / metal_frac_neutral_fromO
-        dust_to_metals_cd = dust_to_gas_cd / metal_frac_gas #metal_frac_cd_fromO
+        dust_to_metals_cd = dust_to_gas_cd / metal_frac_gas  # metal_frac_cd_fromO
 
         # print (dust_mass_total, dust_mass_total, gas_mass, dust_to_gas, metal_frac.max(), np.nanmax(dust_to_metals))
-        
+
         dust_to_metals.name = f"$\\mathcal{{DTM}}$ ({aperture_size} kpc)"
-        dust_to_metals_hi.name = f"$\\mathcal{{DTM}}$ (atomic phase, {aperture_size} kpc)"
-        dust_to_metals_h2.name = f"$\\mathcal{{DTM}}$ (molecular phase, {aperture_size} kpc)"
-        dust_to_metals_neutral.name = f"$\\mathcal{{DTM}}$ (neutral phase, {aperture_size} kpc)"
-        dust_to_metals_cd.name = f"$\\mathcal{{DTM}}$ (cold, dense phase, {aperture_size} kpc)"
-                
+        dust_to_metals_hi.name = (
+            f"$\\mathcal{{DTM}}$ (atomic phase, {aperture_size} kpc)"
+        )
+        dust_to_metals_h2.name = (
+            f"$\\mathcal{{DTM}}$ (molecular phase, {aperture_size} kpc)"
+        )
+        dust_to_metals_neutral.name = (
+            f"$\\mathcal{{DTM}}$ (neutral phase, {aperture_size} kpc)"
+        )
+        dust_to_metals_cd.name = (
+            f"$\\mathcal{{DTM}}$ (cold, dense phase, {aperture_size} kpc)"
+        )
+
         # Compute dust to stellar ratio
         mass_star = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
         dust_to_stars = dust_mass_total / mass_star
@@ -285,60 +352,132 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
         dust_to_stars_h2 = dust_mass_total_h2 / mass_star
         dust_to_stars_neutral = dust_mass_total_neutral / mass_star
         dust_to_stars_cd = dust_mass_total_cd / mass_star
-        
+
         dust_to_stars.name = f"$M_{{\\rm dust}}/M_*$ ({aperture_size} kpc)"
-        dust_to_stars_hi.name = f"$M_{{\\rm dust}}/M_*$ (atomic phase, {aperture_size} kpc)"
-        dust_to_stars_h2.name = f"$M_{{\\rm dust}}/M_*$ (molecular phase, {aperture_size} kpc)"
-        dust_to_stars_neutral.name = f"$M_{{\\rm dust}}/M_*$ (neutral phase, {aperture_size} kpc)"
-        dust_to_stars_cd.name = f"$M_{{\\rm dust}}/M_*$ (cold, dense phase, {aperture_size} kpc)"
-
-        setattr(self, f"jingle_galaxy_selection_{aperture_size}kpc",
-                    mass_star > unyt.unyt_quantity(10 ** 8, "Solar_Mass"),
+        dust_to_stars_hi.name = (
+            f"$M_{{\\rm dust}}/M_*$ (atomic phase, {aperture_size} kpc)"
+        )
+        dust_to_stars_h2.name = (
+            f"$M_{{\\rm dust}}/M_*$ (molecular phase, {aperture_size} kpc)"
+        )
+        dust_to_stars_neutral.name = (
+            f"$M_{{\\rm dust}}/M_*$ (neutral phase, {aperture_size} kpc)"
+        )
+        dust_to_stars_cd.name = (
+            f"$M_{{\\rm dust}}/M_*$ (cold, dense phase, {aperture_size} kpc)"
         )
 
-        setattr(self, f"has_sizes_{aperture_size}kpc",
-                np.logical_and(dust_mass_large_grain > 0, dust_mass_small_grain > 0),
-        )
-        setattr(self, f"has_sizes_h2_{aperture_size}kpc",
-                np.logical_and(dust_mass_large_grain_h2 > 0, dust_mass_small_grain_h2 > 0),
-        )
-        setattr(self, f"has_sizes_cd_{aperture_size}kpc",
-                np.logical_and(dust_mass_large_grain_cd > 0, dust_mass_small_grain_cd > 0),
+        setattr(
+            self,
+            f"jingle_galaxy_selection_{aperture_size}kpc",
+            mass_star > unyt.unyt_quantity(10 ** 8, "Solar_Mass"),
         )
 
-        setattr(self, f"jingle_galaxy_selection_{aperture_size}kpc",
-                    mass_star > unyt.unyt_quantity(10 ** 8, "Solar_Mass"),
+        setattr(
+            self,
+            f"has_sizes_{aperture_size}kpc",
+            np.logical_and(dust_mass_large_grain > 0, dust_mass_small_grain > 0),
         )
-        
+        setattr(
+            self,
+            f"has_sizes_h2_{aperture_size}kpc",
+            np.logical_and(dust_mass_large_grain_h2 > 0, dust_mass_small_grain_h2 > 0),
+        )
+        setattr(
+            self,
+            f"has_sizes_cd_{aperture_size}kpc",
+            np.logical_and(dust_mass_large_grain_cd > 0, dust_mass_small_grain_cd > 0),
+        )
+
+        setattr(
+            self,
+            f"jingle_galaxy_selection_{aperture_size}kpc",
+            mass_star > unyt.unyt_quantity(10 ** 8, "Solar_Mass"),
+        )
+
         # Register derived fields with dust
         setattr(self, f"total_dust_masses_{aperture_size}_kpc", dust_mass_total)
         setattr(self, f"dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals)
         setattr(self, f"dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas)
         setattr(self, f"dust_to_stellar_ratio_{aperture_size}_kpc", dust_to_stars)
         setattr(self, f"dust_small_to_large_ratio_{aperture_size}_kpc", small_to_large)
-        
-        setattr(self, f"total_atomic_dust_masses_{aperture_size}_kpc", dust_mass_total_hi)
-        setattr(self, f"atomic_dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals_hi)
+
+        setattr(
+            self, f"total_atomic_dust_masses_{aperture_size}_kpc", dust_mass_total_hi
+        )
+        setattr(
+            self, f"atomic_dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals_hi
+        )
         setattr(self, f"atomic_dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas_hi)
-        setattr(self, f"atomic_dust_to_stellar_ratio_{aperture_size}_kpc", dust_to_stars_hi)
+        setattr(
+            self, f"atomic_dust_to_stellar_ratio_{aperture_size}_kpc", dust_to_stars_hi
+        )
 
-        setattr(self, f"total_molecular_dust_masses_{aperture_size}_kpc", dust_mass_total_h2)
-        setattr(self, f"molecular_dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals_h2)
-        setattr(self, f"molecular_dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas_h2)
-        setattr(self, f"molecular_dust_to_stellar_ratio_{aperture_size}_kpc", dust_to_stars_h2)
-        setattr(self, f"molecular_dust_small_to_large_ratio_{aperture_size}_kpc", small_to_large_h2)
+        setattr(
+            self, f"total_molecular_dust_masses_{aperture_size}_kpc", dust_mass_total_h2
+        )
+        setattr(
+            self,
+            f"molecular_dust_to_metal_ratio_{aperture_size}_kpc",
+            dust_to_metals_h2,
+        )
+        setattr(
+            self, f"molecular_dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas_h2
+        )
+        setattr(
+            self,
+            f"molecular_dust_to_stellar_ratio_{aperture_size}_kpc",
+            dust_to_stars_h2,
+        )
+        setattr(
+            self,
+            f"molecular_dust_small_to_large_ratio_{aperture_size}_kpc",
+            small_to_large_h2,
+        )
 
-        setattr(self, f"total_neutral_dust_masses_{aperture_size}_kpc", dust_mass_total_neutral)
-        setattr(self, f"neutral_dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals_neutral)
-        setattr(self, f"neutral_dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas_neutral)
-        setattr(self, f"neutral_dust_to_stellar_ratio_{aperture_size}_kpc", dust_to_stars_neutral)
+        setattr(
+            self,
+            f"total_neutral_dust_masses_{aperture_size}_kpc",
+            dust_mass_total_neutral,
+        )
+        setattr(
+            self,
+            f"neutral_dust_to_metal_ratio_{aperture_size}_kpc",
+            dust_to_metals_neutral,
+        )
+        setattr(
+            self, f"neutral_dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas_neutral
+        )
+        setattr(
+            self,
+            f"neutral_dust_to_stellar_ratio_{aperture_size}_kpc",
+            dust_to_stars_neutral,
+        )
 
-        setattr(self, f"total_cold_dense_dust_masses_{aperture_size}_kpc", dust_mass_total_cd)
-        setattr(self, f"cold_dense_dust_to_metal_ratio_{aperture_size}_kpc", dust_to_metals_cd)
-        setattr(self, f"cold_dense_dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas_cd)
-        setattr(self, f"cold_dense_dust_to_stellar_ratio_{aperture_size}_kpc", dust_to_stars_cd)
-        setattr(self, f"cold_dense_dust_small_to_large_ratio_{aperture_size}_kpc", small_to_large_cd)
-        
+        setattr(
+            self,
+            f"total_cold_dense_dust_masses_{aperture_size}_kpc",
+            dust_mass_total_cd,
+        )
+        setattr(
+            self,
+            f"cold_dense_dust_to_metal_ratio_{aperture_size}_kpc",
+            dust_to_metals_cd,
+        )
+        setattr(
+            self, f"cold_dense_dust_to_gas_ratio_{aperture_size}_kpc", dust_to_gas_cd
+        )
+        setattr(
+            self,
+            f"cold_dense_dust_to_stellar_ratio_{aperture_size}_kpc",
+            dust_to_stars_cd,
+        )
+        setattr(
+            self,
+            f"cold_dense_dust_small_to_large_ratio_{aperture_size}_kpc",
+            small_to_large_cd,
+        )
+
     return
 
 
@@ -540,25 +679,21 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                 Fe_abundance,
             )
 
-            
-            if floor == 'low':
+            if floor == "low":
                 try:
                     log_Fe_over_H_times_star_mass = getattr(
                         catalogue.log_element_ratios_times_masses,
                         f"log_SNIaFe_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc",
-                    )                
+                    )
                     Fe_over_H[mask] = pow(
-                    10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
+                        10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
                     )
                     # Convert to units used in observations
                     Fe_abundance = unyt.unyt_array(
                         Fe_over_H / fe_solar_abundance, "dimensionless"
                     )
 
-                    
-                    Fe_abundance.name = (
-                        f"Stellar $10^{{\\rm [Fe/H]}}$ ({floor_label}, {aperture_size} kpc)"
-                    )
+                    Fe_abundance.name = f"Stellar $10^{{\\rm [Fe/H]}}$ ({floor_label}, {aperture_size} kpc)"
                     setattr(
                         self,
                         f"star_fe_snia_abundance_avglog_{floor}_{aperture_size}_kpc",
@@ -571,8 +706,10 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                     setattr(
                         self,
                         f"star_fe_snia_abundance_avglog_{floor}_{aperture_size}_kpc",
-                        unyt.unyt_array(np.zeros_like(star_mass)-4., "dimensionless"),
-                    ) 
+                        unyt.unyt_array(
+                            np.zeros_like(star_mass) - 4.0, "dimensionless"
+                        ),
+                    )
     return
 
 
@@ -635,6 +772,7 @@ def register_hi_masses(self, catalogue, aperture_sizes):
         setattr(self, f"gas_HI_mass_{aperture_size}_kpc", HI_mass)
 
     return
+
 
 def register_dust_to_hi_ratio(self, catalogue, aperture_sizes):
 
@@ -1081,4 +1219,10 @@ register_los_star_veldisp(self, catalogue)
 register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_gas_fraction(self, catalogue)
 register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitude)
-register_dust(self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction, twelve_plus_log_OH_solar)
+register_dust(
+    self,
+    catalogue,
+    aperture_sizes_30_50_100_kpc,
+    solar_metal_mass_fraction,
+    twelve_plus_log_OH_solar,
+)

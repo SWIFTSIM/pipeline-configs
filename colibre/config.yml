@@ -4,7 +4,7 @@
 # relation figures. Also required is the registration file
 # in the case where you have non-catalogue properties
 # used in the autoplotter.
-auto_plotter_directory: auto_clear
+auto_plotter_directory: auto_plotter
 auto_plotter_registration: registration.py
 
 # Location of the 'observational data' repository and its compiled

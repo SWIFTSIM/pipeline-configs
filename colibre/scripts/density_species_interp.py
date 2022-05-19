@@ -255,7 +255,7 @@ def make_single_image(
 
     for filename in filenames:
         hh2, hhi, hhii, hd2z, hdi2z, hds2Z_dict, d = make_hist(
-            filename, density_bounds, bins, tables, prefix_rho, prefix_T,
+            filename, density_bounds, bins, tables, prefix_rho, prefix_T
         )
         hist_h2.append(hh2)
         hist_hi.append(hhi)

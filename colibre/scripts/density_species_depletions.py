@@ -177,7 +177,7 @@ def get_data(filename, prefix_rho, prefix_T):
 
 
 def make_hist(
-    filename, density_bounds, temperature_bounds, bins, prefix_rho="", prefix_T="",
+    filename, density_bounds, temperature_bounds, bins, prefix_rho="", prefix_T=""
 ):
     """
     Makes the histogram for filename with bounds as lower, higher
@@ -254,7 +254,7 @@ def setup_axes(number_of_simulations: int, prop_type="hydro"):
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax
@@ -312,7 +312,7 @@ def make_single_image(
 
     for filename in filenames:
         hh2, hhi, hhii, hd2z, hds2Z_dict, d = make_hist(
-            filename, density_bounds, temperature_bounds, bins, prefix_rho, prefix_T,
+            filename, density_bounds, temperature_bounds, bins, prefix_rho, prefix_T
         )
         hist_h2.append(hh2)
         hist_hi.append(hhi)

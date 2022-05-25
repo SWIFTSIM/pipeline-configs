@@ -20,7 +20,6 @@ stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
@@ -47,7 +46,6 @@ adaptive_stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
@@ -131,7 +129,6 @@ stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
@@ -157,7 +154,6 @@ adaptive_stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
     - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5

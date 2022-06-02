@@ -72,7 +72,7 @@ def get_data(filename, prefix_rho, prefix_T):
             data.metadata.parameters["DustEvolution:silicate_fe_grain_fraction"]
         )
         # for backward compatibility for simulations run with a previous dust model
-        # using a fixed Si2O6 group for silicates with a variable Fe-Mg balance. 
+        # using a fixed Si2O6 group for silicates with a variable Fe-Mg balance.
         mol_O = 6 * A["Oxygen"]
         mol_Mg = (2 - 2 * fe_balance) * A["Magnesium"]
         mol_Si = 2 * A["Silicon"]

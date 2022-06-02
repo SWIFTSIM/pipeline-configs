@@ -26,7 +26,7 @@ stellar_mass_v_size_ratio:
       units: Solar_Mass
   metadata:
     title: Stellar mass vs Small-to-Large Ratio
-    caption: The dust mass ratio of small to large grains in all gas averaged of 50 kpc in galaxies. Compared to values derived from observation by Relano et al 2020.
+    caption: The dust mass ratio of small to large grains in all gas aggregated over a 50kpc radius aperture in galaxies. Compared to values derived from observation by Relano et al 2020.
     section: Dust Grain Size Data Comparison
     show_on_webpage: true
   observational_data:
@@ -61,113 +61,7 @@ stellar_mass_v_molecular_size_ratio:
       units: Solar_Mass
   metadata:
     title: Stellar mass vs Small-to-Large Ratio (H2 only)
-    caption: The dust mass ratio of small to large grains in all gas averaged of 50 kpc in galaxies. Compared to values derived from observation by Relano et al 2020.
-    section: Dust Grain Size Data Comparison
-    show_on_webpage: true
-  observational_data:
-    - filename: GalaxyStellarMassGrainSizeRatio/Relano2020_Data_DGS.hdf5
-    - filename: GalaxyStellarMassGrainSizeRatio/Relano2020_Data_KINGFISH.hdf5
-
-stellar_mass_v_molecular_size_ratio:
-  type: "scatter"
-  legend_loc: "lower right"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 3e7
-    end: 3e12
-    log: true
-  y:
-    quantity: "derived_quantities.molecular_dust_small_to_large_ratio_50_kpc"
-    units: dimensionless
-    start: 0.1
-    end: 10
-    log: true
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 15
-    start:
-      value: 3e7
-      units: Solar_Mass
-    end:
-      value: 3e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar mass vs Small-to-Large Ratio (H2 only)
-    caption: The dust mass ratio of small to large grains in all gas averaged of 50 kpc in galaxies. Compared to values derived from observation by Relano et al 2020.
-    section: Dust Grain Size Data Comparison
-    show_on_webpage: true
-  observational_data:
-    - filename: GalaxyStellarMassGrainSizeRatio/Relano2020_Data_DGS.hdf5
-    - filename: GalaxyStellarMassGrainSizeRatio/Relano2020_Data_KINGFISH.hdf5
-
-stellar_mass_v_molecular_size_ratio:
-  type: "scatter"
-  legend_loc: "lower right"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 3e7
-    end: 3e12
-    log: true
-  y:
-    quantity: "derived_quantities.molecular_dust_small_to_large_ratio_50_kpc"
-    units: dimensionless
-    start: 0.1
-    end: 10
-    log: true
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 15
-    start:
-      value: 3e7
-      units: Solar_Mass
-    end:
-      value: 3e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar mass vs Small-to-Large Ratio (H2 only)
-    caption: The dust mass ratio of small to large grains in all gas averaged of 50 kpc in galaxies. Compared to values derived from observation by Relano et al 2020.
-    section: Dust Grain Size Data Comparison
-    show_on_webpage: true
-  observational_data:
-    - filename: GalaxyStellarMassGrainSizeRatio/Relano2020_Data_DGS.hdf5
-    - filename: GalaxyStellarMassGrainSizeRatio/Relano2020_Data_KINGFISH.hdf5
-
-
-stellar_mass_v_colddense_size_ratio:
-  type: "scatter"
-  legend_loc: "lower right"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 3e7
-    end: 3e12
-    log: true
-  y:
-    quantity: "derived_quantities.cold_dense_dust_small_to_large_ratio_50_kpc"
-    units: dimensionless
-    start: 0.1
-    end: 10
-    log: true
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 15
-    start:
-      value: 3e7
-      units: Solar_Mass
-    end:
-      value: 3e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar mass vs Small-to-Large Ratio (H2 only)
-    caption: The dust mass ratio of small to large grains in all gas averaged of 50 kpc in galaxies. Compared to values derived from observation by Relano et al 2020.
+    caption: The dust mass ratio of small to large grains in all gas aggregated over a 50kpc radius aperture in galaxies. Compared to values derived from observation by Relano et al 2020.
     section: Dust Grain Size Data Comparison
     show_on_webpage: true
   observational_data:

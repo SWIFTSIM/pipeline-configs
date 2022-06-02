@@ -241,26 +241,17 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
             f"lin_O_over_H_total_times_gas_mass_100_kpc",
         )
 
-        logOH_abundance_times_mhi = (
-            getattr(
-                catalogue.log_element_ratios_times_masses,
-                f"log_O_over_H_atomic_times_gas_mass_lowfloor_{aperture_size}_kpc",
-            )
-            / 0.7
+        logOH_abundance_times_mhi = getattr(
+            catalogue.log_element_ratios_times_masses,
+            f"log_O_over_H_atomic_times_gas_mass_lowfloor_{aperture_size}_kpc",
         )
-        logOH_abundance_times_mh2 = (
-            getattr(
-                catalogue.log_element_ratios_times_masses,
-                f"log_O_over_H_molecular_times_gas_mass_lowfloor_{aperture_size}_kpc",
-            )
-            / 0.7
+        logOH_abundance_times_mh2 = getattr(
+            catalogue.log_element_ratios_times_masses,
+            f"log_O_over_H_molecular_times_gas_mass_lowfloor_{aperture_size}_kpc",
         )
-        logOH_abundance_times_cd = (
-            getattr(
-                catalogue.log_element_ratios_times_masses,
-                f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc",
-            )
-            / 0.7
+        logOH_abundance_times_cd = getattr(
+            catalogue.log_element_ratios_times_masses,
+            f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc",
         )
 
         metal_frac_gas = (

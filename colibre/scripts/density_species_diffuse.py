@@ -71,6 +71,8 @@ def get_data(filename, prefix_rho, prefix_T):
         fe_balance = float(
             data.metadata.parameters["DustEvolution:silicate_fe_grain_fraction"]
         )
+        # for backward compatibility for simulations run with a previous dust model
+        # using a fixed Si2O6 group for silicates with a variable Fe-Mg balance. 
         mol_O = 6 * A["Oxygen"]
         mol_Mg = (2 - 2 * fe_balance) * A["Magnesium"]
         mol_Si = 2 * A["Silicon"]
@@ -223,7 +225,7 @@ def make_hist(
     H_Z[mask] = 1.0
     H_norm[mask] = 1.0
 
-    # construct dictinary of arrays for individual dust species
+    # construct dictionary of arrays for individual dust species
 
     Hds = {}
     for k in DSdict.keys():

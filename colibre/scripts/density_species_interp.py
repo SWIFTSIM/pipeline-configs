@@ -164,7 +164,7 @@ def make_hist(filename, density_bounds, bins, tables, prefix_rho="", prefix_T=""
     H_Z[mask] = 1.0
     H_norm[mask] = 1.0
 
-    # construct dictinary of arrays for individual dust species
+    # construct dictionary of arrays for individual dust species
     Hds = {}
     for k in DSdict.keys():
         Hds[k], _ = np.histogram(nH, bins=density_bins, weights=DSdict[k] * Mg)

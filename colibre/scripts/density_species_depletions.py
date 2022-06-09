@@ -222,7 +222,7 @@ def make_hist(
     H_Z[mask] = 1.0
     H_norm[mask] = 1.0
 
-    # construct dictinary of arrays for individual dust species
+    # construct dictionary of arrays for individual dust species
 
     Hds = {}
     for k in DSdict.keys():

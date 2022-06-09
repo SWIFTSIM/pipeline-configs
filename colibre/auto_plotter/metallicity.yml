@@ -555,7 +555,41 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
+    - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
+    
+stellar_mass_star_fe_snia_over_h_mol_lofloor_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  comment: "MoL w. [F/H]=-4 floor"
+  y:
+    quantity: "derived_quantities.star_fe_snia_abundance_avglog_low_50_kpc"
+    units: "dimensionless"
+    start: 1e-2
+    end: 1e1
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: 'Stellar mass - [Fe$_{\rm SNIa}$/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
+    section: Stellar Metallicity
+    caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$, where only Fe from SNIa is included. The floor value is set to [Fe/H]=-4. All haloes are plotted, including subhaloes.'
+  observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
+
 
 stellar_mass_star_fe_over_h_mol_hifloor_50:
   type: "scatter"

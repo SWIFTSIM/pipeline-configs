@@ -1,0 +1,143 @@
+stellar_mass_v_dust_mass:
+  type: "scatter"
+  legend_loc: "lower right"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 3e7
+    end: 3e12
+    log: true
+  y:
+    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e9
+    log: true
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 15
+    start:
+      value: 3e7
+      units: Solar_Mass
+    end:
+      value: 3e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar mass vs Dust Mass
+    caption: Gas-phase dust mass as a function of stellar mass, high redshift data individual galaxies from ALESS ALMA SMG survey (Da Cunha et al 2015). Data redshifts are photometric.
+    section: Dust Mass Data Comparison
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyStellarMassDustMass/Bianchi2018_Data_noerr.hdf5
+    - filename: GalaxyStellarMassDustMass/DaCunha2015_z002p000.hdf5
+    - filename: GalaxyStellarMassDustMass/DaCunha2015_z003p000.hdf5
+    - filename: GalaxyStellarMassDustMass/DaCunha2015_z004p000.hdf5
+    - filename: GalaxyStellarMassDustMass/DaCunha2015_z005p000.hdf5
+    - filename: GalaxyStellarMassDustMass/DaCunha2015_z006p000.hdf5
+
+star_formation_rate_v_dust_mass:
+  type: "scatter"
+  legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "apertures.sfr_gas_50_kpc"
+    units: Solar_Mass / year
+    start: 1e-3
+    end: 1e2
+    log: true
+  y:
+    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e9
+    log: true
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 15
+    start:
+      value: 1e-3
+      units: Solar_Mass / year
+    end:
+      value: 1e2
+      units: Solar_Mass / year
+  metadata:
+    title: Star formation rate vs Dust Mass
+    caption: Gas-phase dust mass as a function of SFR, comparing to local Dustpedia galaxies with properties derived using the CIGALE SED fitting code (Bianchi et al 2018)
+    section: Dust Mass Data Comparison
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyStarFormationRateDustMass/Bianchi2018_Data_noerr.hdf5
+
+neutral_mass_v_dust_mass:
+  type: "scatter"
+  legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "derived_quantities.gas_neutral_H_mass_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e11
+    log: true
+  y:
+    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e9
+    log: true
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 15
+    start:
+      value: 1e6
+      units: Solar_Mass 
+    end:
+      value: 1e11
+      units: Solar_Mass
+  metadata:
+    title: Neutral Gas Mass vs Dust Mass
+    caption: Gas-phase dust mass as a function of SFR, comparing to local Dustpedia galaxies with properties derived using the CIGALE SED fitting code (Bianchi et al 2018)
+    section: Dust Mass Data Comparison
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyNeutralMassDustMass/DeVis2019_Data_noerr.hdf5
+
+molecular_mass_v_dust_mass:
+  type: "scatter"
+  legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_100_kpc"
+  x:
+    quantity: "gas_hydrogen_species_masses.H2_mass_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e11
+    log: true
+  y:
+    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e9
+    log: true
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 15
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e11
+      units: Solar_Mass
+  metadata:
+    title: Molecular Gas Mass vs Dust Mass
+    caption: Gas-phase dust mass as a function of SFR, comparing to local Dustpedia galaxies with properties derived using the CIGALE SED fitting code (Bianchi et al 2018)
+    section: Dust Mass Data Comparison
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyH2MassDustMass/DeVis2019_Data_noerr.hdf5

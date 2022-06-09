@@ -1,5 +1,4 @@
 # Example configuration file for a COLIBRE-like simulation
-
 # Location of your other .yml files that are passed to the
 # velociraptor auto plotter (these describe your scaling)
 # relation figures. Also required is the registration file
@@ -244,6 +243,20 @@ scripts:
     title: Hydrogen Phase Fractions
     additional_arguments:
       cooling_tables: /cosma7/data/dp004/wmfw23/colibre_dust/coolingtables/UV_dust1_CR1_G1_shield1.hdf5
+      quantity_type: hydro
+  - filename: scripts/density_species_depletions.py
+    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function of gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+    output_file: density_vs_species_fraction_depletions.png
+    section: Hydrogen Phases
+    title: Hydrogen Phase Fractions (Depletion Fraction)
+    additional_arguments:
+      quantity_type: hydro
+  - filename: scripts/density_species_diffuse.py
+    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function of gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+    output_file: density_vs_species_fraction_diffuse.png
+    section: Hydrogen Phases
+    title: Hydrogen Phase Fractions (Diffuse Fraction)
+    additional_arguments:
       quantity_type: hydro
   - filename: scripts/last_SNII_kick_velocity_distribution.py
     caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity.

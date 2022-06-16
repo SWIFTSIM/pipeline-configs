@@ -29,6 +29,7 @@ stellar_mass_galaxy_size_100:
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Trujillo2020.hdf5
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
 
 stellar_mass_galaxy_size_30:
   type: "scatter"
@@ -62,7 +63,8 @@ stellar_mass_galaxy_size_30:
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Trujillo2020.hdf5
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
-
+    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
+      
 stellar_mass_projected_galaxy_size_100:
   type: "scatter"
   legend_loc: "upper left"

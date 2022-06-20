@@ -93,6 +93,7 @@ stellar_mass_specific_sfr_all_50:
   observational_data:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_AllGalaxies.hdf5
 
 stellar_mass_specific_sfr_all_30:
   type: "scatter"
@@ -161,6 +162,7 @@ stellar_mass_specific_sfr_active_50:
   observational_data:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_StarForming.hdf5
 
 stellar_mass_specific_sfr_active_30:
   type: "scatter"
@@ -367,6 +369,7 @@ stellar_mass_passive_fraction_30:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/FIREbox.hdf5
 
 stellar_mass_passive_fraction_50:
   type: "scatter"
@@ -404,6 +407,7 @@ stellar_mass_passive_fraction_50:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/FIREbox.hdf5
 
 stellar_mass_with_scatter_passive_fraction_50:
   type: "scatter"
@@ -441,6 +445,7 @@ stellar_mass_with_scatter_passive_fraction_50:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/FIREbox.hdf5
 
 stellar_mass_passive_fraction_centrals_30:
   type: "scatter"
@@ -481,6 +486,7 @@ stellar_mass_passive_fraction_centrals_30:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019_centrals.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/FIREbox.hdf5
 
 stellar_mass_passive_fraction_centrals_50:
   type: "scatter"
@@ -520,3 +526,4 @@ stellar_mass_passive_fraction_centrals_50:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019_centrals.hdf5
+    - filename: GalaxyStellarMassPassiveFraction/FIREbox.hdf5

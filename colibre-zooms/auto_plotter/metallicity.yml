@@ -35,6 +35,7 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_fromz_lom_50:
   type: "scatter"
@@ -73,6 +74,7 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_30:
   type: "scatter"
@@ -111,6 +113,7 @@ stellar_mass_gas_sf_metallicity_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_50:
   type: "scatter"
@@ -149,6 +152,7 @@ stellar_mass_gas_sf_metallicity_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_30:
   type: "scatter"
@@ -187,6 +191,7 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_50:
   type: "scatter"
@@ -225,6 +230,7 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   type: "scatter"
@@ -263,6 +269,7 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
   type: "scatter"
@@ -301,6 +308,7 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   type: "scatter"
@@ -339,6 +347,7 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_50:
   type: "scatter"
@@ -377,6 +386,7 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_30:
   type: "scatter"
@@ -415,6 +425,7 @@ stellar_mass_gas_sf_metallicity_lom_allgals_30:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_50:
   type: "scatter"
@@ -453,6 +464,7 @@ stellar_mass_gas_sf_metallicity_lom_allgals_50:
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
 
 
 stellar_mass_star_metallicity_50:
@@ -488,6 +500,7 @@ stellar_mass_star_metallicity_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
 
 stellar_mass_star_metallicity_30:
   type: "scatter"
@@ -522,6 +535,7 @@ stellar_mass_star_metallicity_30:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
 
 stellar_mass_star_fe_over_h_mol_lofloor_50:
   type: "scatter"
@@ -555,7 +569,43 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
+    - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
+    
+stellar_mass_star_fe_snia_over_h_mol_lofloor_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  comment: "MoL w. [F/H]=-4 floor"
+  y:
+    quantity: "derived_quantities.star_fe_snia_abundance_avglog_low_50_kpc"
+    units: "dimensionless"
+    start: 1e-2
+    end: 1e1
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: 'Stellar mass - [Fe$_{\rm SNIa}$/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
+    section: Stellar Metallicity
+    caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$, where only Fe from SNIa is included. The floor value is set to [Fe/H]=-4. All haloes are plotted, including subhaloes.'
+  observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
+
 
 stellar_mass_star_fe_over_h_mol_hifloor_50:
   type: "scatter"
@@ -590,6 +640,7 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
 
 stellar_mass_star_fe_over_h_lom_50:
   type: "scatter"
@@ -624,6 +675,7 @@ stellar_mass_star_fe_over_h_lom_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
 
 
 stellar_mass_star_mg_over_fe_50:

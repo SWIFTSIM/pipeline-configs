@@ -232,6 +232,7 @@ h2_frac_func_stellar_mass:
     - filename: GalaxyH2Fractions/Grossi2016_Data.hdf5
     - filename: GalaxyH2Fractions/Lisenfeld2016_Data.hdf5
     - filename: GalaxyH2Fractions/Gratier2010_Data.hdf5
+    - filename: GalaxyH2Fractions/FIREbox.hdf5
 
 hi_frac_func_stellar_mass:
   type: "scatter"
@@ -267,6 +268,7 @@ hi_frac_func_stellar_mass:
     - filename: GalaxyHIFractions/Oh2015_Data.hdf5
     - filename: GalaxyHIFractions/Lisenfeld2016_Data.hdf5
     - filename: GalaxyHIFractions/Gratier2010_Data.hdf5
+    - filename: GalaxyHIFractions/FIREbox.hdf5
 
 cold_gas_frac_func_ssfr:
   type: "scatter"

@@ -7,8 +7,6 @@ import unyt
 
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
-import glob
 
 from unyt import unyt_quantity
 
@@ -16,7 +14,7 @@ from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
-from velociraptor.observations import load_observation
+from velociraptor.observations import load_observations
 
 arguments = ScriptArgumentParser(
     description="Creates a molecular gas mass density evolution plot, with added observational data."
@@ -75,7 +73,7 @@ S17_Omega_H2 = pow(10.0, S17_data[:, 1])
 simulation_lines.append(
     ax.errorbar(
         S17_expansion_factor,
-        S17_Omega_H2 * S17_expansion_factor ** 0,
+        S17_Omega_H2 * S17_expansion_factor**0,
         0,
         ls="none",
         marker="o",
@@ -94,8 +92,8 @@ D20_Omega_H2_hi = 1e7 * D20_data[:, 3]
 simulation_lines.append(
     ax.errorbar(
         D20_expansion_factor,
-        D20_Omega_H2 * D20_expansion_factor ** 0,
-        [D20_Omega_H2_lo, D20_Omega_H2_hi] * D20_expansion_factor ** 0,
+        D20_Omega_H2 * D20_expansion_factor**0,
+        [D20_Omega_H2_lo, D20_Omega_H2_hi] * D20_expansion_factor**0,
         ls="none",
         marker="o",
         label="Decarli et. al (2020)",
@@ -182,14 +180,23 @@ simulation_lines.append(
 )
 simulation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoH2, color="C6"))
 
-
-# observational_data = glob.glob(
-#    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/StellarMassDensity/*.hdf5"
-# )
-
-# for index, observation in enumerate(observational_data):
-#    obs = load_observation(observation)
-#    obs.plot_on_axes(ax)
+Firebox2022 = load_observations(
+    [
+        f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+        "/data/CosmicH2Abundance/FIREbox.hdf5"
+    ]
+)[0]
+simulation_lines.append(
+    ax.plot(
+        Firebox2022.x.value,
+        Firebox2022.y.value,
+        color="black",
+        label=Firebox2022.citation,
+        zorder=-10000,
+        dashes=(1.5, 1),
+        alpha=0.7,
+    )[0]
+)
 
 ax.set_xlabel("Redshift $z$")
 ax.set_ylabel(r"Molecular Gas Density $\rho_{\rm H2} [{\rm M_\odot \; cMpc^{-3}}]$")

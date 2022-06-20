@@ -86,12 +86,12 @@ P20_rhoHI_hi = P20eq13(zgrid, *P20_data[2])
 # assuming a cosmology with h=0.7, Omega_M = 0.3 and Omega_Lambda = 0.7
 # This affects the conversion from redshift distances into actual co-moving distances:
 # Delta(X) ~ H_0/H(z) = [Omega_Lambda + Omega_M * (1+z)^3]^(-1/2)
-P20_rhoHI *= cosmo.h**-1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
-P20_rhoHI /= 0.7**-1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
-P20_rhoHI_lo *= cosmo.h**-1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
-P20_rhoHI_lo /= 0.7**-1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
-P20_rhoHI_hi *= cosmo.h**-1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
-P20_rhoHI_hi /= 0.7**-1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_lo *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI_lo /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
+P20_rhoHI_hi *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+P20_rhoHI_hi /= 0.7 ** -1 * np.sqrt(0.3 * (1.0 + zgrid) ** 3 + 0.7)
 
 # convert from neutral gas density (H+He) to HI (only H) mass density
 P20_rhoHI *= 0.76
@@ -123,12 +123,12 @@ W20_rhoHI_hi = W20eq2(zgrid, *W20_data[2])
 # Cosmology correction
 # The assumed cosmology in Walter et al. (2020) has
 # h=0.7, Omega_M = 0.31, Omega_Lambda = 0.69
-W20_rhoHI *= cosmo.h**-1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
-W20_rhoHI /= 0.7**-1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
-W20_rhoHI_lo *= cosmo.h**-1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
-W20_rhoHI_lo /= 0.7**-1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
-W20_rhoHI_hi *= cosmo.h**-1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
-W20_rhoHI_hi /= 0.7**-1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
+W20_rhoHI *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+W20_rhoHI /= 0.7 ** -1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
+W20_rhoHI_lo *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+W20_rhoHI_lo /= 0.7 ** -1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
+W20_rhoHI_hi *= cosmo.h ** -1 * np.sqrt(cosmo.Om0 * (1.0 + zgrid) ** 3 + cosmo.Ode0)
+W20_rhoHI_hi /= 0.7 ** -1 * np.sqrt(0.31 * (1.0 + zgrid) ** 3 + 0.69)
 
 # convert from neutral gas density (H+He) to HI (only H) mass density
 W20_rhoHI *= 0.76

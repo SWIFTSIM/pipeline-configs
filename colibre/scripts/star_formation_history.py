@@ -16,7 +16,7 @@ from velociraptor.observations import load_observations
 from astropy.cosmology import z_at_value
 from astropy.units import Gyr
 
-sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc**3)
+sfr_output_units = unyt.msun / (unyt.year * unyt.Mpc ** 3)
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
@@ -186,9 +186,7 @@ for Behroozi_data, color in zip(Behroozi2019, ["lime", "coral"]):
     observation_labels.append(Behroozi_data.citation)
 
 Firebox2022 = load_observations(
-    [
-        f"{path_to_obs_data}/data/StarFormationRateHistory/FIREbox.hdf5",
-    ]
+    [f"{path_to_obs_data}/data/StarFormationRateHistory/FIREbox.hdf5"]
 )[0]
 observation_lines.append(
     ax.plot(

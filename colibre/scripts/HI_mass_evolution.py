@@ -7,8 +7,6 @@ import unyt
 
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
-import glob
 
 from unyt import unyt_quantity
 
@@ -16,7 +14,7 @@ from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
-from velociraptor.observations import load_observation
+from velociraptor.observations import load_observations
 
 arguments = ScriptArgumentParser(
     description="Creates a atomic gas mass density evolution plot, with added observational data."
@@ -148,6 +146,23 @@ ax.fill_between(
 observation_lines.append(ax.plot(pow(1 + zgrid, -1), W20_rhoHI, color="C3")[0])
 observation_labels.append("Walter et al. (2020) Fit")
 
+Firebox2022 = load_observations(
+    [
+        f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+        "/data/CosmicHIAbundance/FIREbox.hdf5"
+    ]
+)[0]
+observation_lines.append(
+    ax.plot(
+        Firebox2022.x.value,
+        Firebox2022.y.value,
+        color="black",
+        zorder=-10000,
+        dashes=(1.5, 1),
+        alpha=0.7,
+    )[0]
+)
+observation_labels.append(Firebox2022.citation)
 
 ax.set_xlabel("Redshift $z$")
 ax.set_ylabel(r"Atomic Gas Cosmic Density $\rho_{\rm HI} [{\rm M_\odot \; cMpc^{-3}}]$")

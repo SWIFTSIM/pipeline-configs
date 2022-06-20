@@ -185,6 +185,21 @@ for Behroozi_data, color in zip(Behroozi2019, ["lime", "coral"]):
     )
     observation_labels.append(Behroozi_data.citation)
 
+Firebox2022 = load_observations(
+    [f"{path_to_obs_data}/data/StarFormationRateHistory/FIREbox.hdf5"]
+)[0]
+observation_lines.append(
+    ax.plot(
+        Firebox2022.x.value,
+        Firebox2022.y.value,
+        color="black",
+        label=Firebox2022.citation,
+        zorder=-10000,
+        dashes=(1.5, 1),
+        alpha=0.7,
+    )[0]
+)
+observation_labels.append(Firebox2022.citation)
 
 redshift_ticks = np.array([0.0, 0.2, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 50.0, 100.0])
 redshift_labels = [

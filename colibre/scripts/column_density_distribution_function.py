@@ -47,8 +47,6 @@ def plot_cddf(
     # dictionary
     # this way, we do not need to keep all the maps in memory until we make the
     # plot(s)
-
-    '''
     cddf_data = {}
     for snapshot_filename, name in zip(snapshot_filenames, names):
 
@@ -146,7 +144,6 @@ def plot_cddf(
             # store the CDDF in the dictionary
             cddf_data[snapshot_filename][N_chunk] = cddf
 
-    '''
     # we have all the data, now create all the plots
     for N_chunk, x_range, y_range, figure_name in zip(
         box_chunks, x_ranges, y_ranges, figure_names
@@ -157,17 +154,15 @@ def plot_cddf(
 
         fig, ax = plt.subplots()
 
-        #for snapshot_filename, name in zip(snapshot_filenames, names):
+        for snapshot_filename, name in zip(snapshot_filenames, names):
 
-        #    simulation_lines.append(
-        #        ax.loglog(bin_centres, cddf_data[snapshot_filename][N_chunk], lw=2)[0]
-        #    )
+            simulation_lines.append(
+                ax.loglog(bin_centres, cddf_data[snapshot_filename][N_chunk], lw=2)[0]
+            )
 
-        #    simulation_labels.append(f"{name} ($z = {z:.1f}$)")
+            simulation_labels.append(f"{name} ($z = {z:.1f}$)")
 
         for index, observation in enumerate(observational_data):
-
-            print(observation)
             obs = load_observation(observation)
             obs.plot_on_axes(ax)
 
@@ -179,9 +174,6 @@ def plot_cddf(
             simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
         )
 
-        ax.set_xscale("log")
-        ax.set_yscale("log")
-
         ax.set_xlim(*x_range)
         ax.set_ylim(*y_range)
 
@@ -190,7 +182,6 @@ def plot_cddf(
             "$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$"
         )
 
-        print("saving")
         fig.savefig(f"{output_path}/{figure_name}.png")
 
 

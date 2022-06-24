@@ -116,6 +116,7 @@ stellar_mass_function_50:
   type: "massfunction"
   legend_loc: "lower left"
   number_of_bins: 30
+  box_size_correction: correction.yml
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass

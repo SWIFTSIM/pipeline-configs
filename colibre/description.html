@@ -202,6 +202,42 @@
         <td>Use HII Regions</td>
         <td>{{ data.metadata.parameters | get_if_present_int("COLIBREFeedback:with_HIIRegions") }}</td>
     </tr>
+    <tr>
+        <td>SNII yield factor H</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Hydrogen") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor He</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Helium") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor C</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Carbon") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor N</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Nitrogen") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor O</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Oxygen") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor Ne</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Neon") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor Mg</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Magnesium") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor Si</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Silicon") }}</td>
+    </tr>
+    <tr>
+        <td>SNII yield factor Fe</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_yield_factor_Iron") }}</td>
+    </tr>
 </table>
 
 <h4>Gas Cooling</h4>

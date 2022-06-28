@@ -10,6 +10,7 @@ from astropy.cosmology import z_at_value
 import astropy.units as u
 
 import glob
+import yaml
 
 
 def plot_cddf(
@@ -144,6 +145,10 @@ def plot_cddf(
             # store the CDDF in the dictionary
             cddf_data[snapshot_filename][N_chunk] = cddf
 
+    metadata = {}
+    for snapshot_filename in snapshot_filenames:
+        metadata[snapshot_filename] = {}
+
     # we have all the data, now create all the plots
     for N_chunk, x_range, y_range, figure_name in zip(
         box_chunks, x_ranges, y_ranges, figure_names
@@ -161,6 +166,17 @@ def plot_cddf(
             )
 
             simulation_labels.append(f"{name} ($z = {z:.1f}$)")
+            metadata[snapshot_filename][figure_name] = {
+                "lines": {
+                    "mean": {
+                        "centers": bin_centres.tolist(),
+                        "bins": bin_edges.tolist(),
+                        "centers_units": "cm**(-2)",
+                        "values": cddf_data[snapshot_filename][N_chunk].tolist(),
+                        "values_units": "dimensionless",
+                    }
+                }
+            }
 
         for index, observation in enumerate(observational_data):
             obs = load_observation(observation)
@@ -183,6 +199,10 @@ def plot_cddf(
         )
 
         fig.savefig(f"{output_path}/{figure_name}.png")
+
+    for snapshot_filename in metadata:
+        with open(f"{snapshot_filename[:-5]}_cddf.yml", "w") as handle:
+            yaml.safe_dump(metadata[snapshot_filename], handle)
 
 
 if __name__ == "__main__":

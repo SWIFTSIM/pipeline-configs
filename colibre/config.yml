@@ -317,3 +317,8 @@ scripts:
     section: Column Densities
     additional_arguments:
       parallel: True
+  - filename: scripts/cosmic_SNIa_rate.py
+    title: 'Cosmic SNIa rate'
+    caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
+    section: Stellar Feedback Rate
+    output_file: SNIa_rate_history.png

@@ -320,5 +320,5 @@ scripts:
   - filename: scripts/cosmic_SNIa_rate.py
     title: 'Cosmic SNIa rate'
     caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
-    section: Stellar Feedback Rate
+    section: SNIa Rate
     output_file: SNIa_rate_history.png

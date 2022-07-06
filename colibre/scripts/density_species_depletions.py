@@ -67,7 +67,10 @@ def get_data(filename, prefix_rho, prefix_T):
     data = load(filename)
     pairing = int(data.metadata.parameters["DustEvolution:pair_to_cooling"])
 
-    if int(data.metadata.parameters["DustEvolution:silicate_fe_grain_fraction"]) != -1:
+    if (
+        float(data.metadata.parameters["DustEvolution:silicate_fe_grain_fraction"])
+        != -1.0
+    ):
         fe_balance = float(
             data.metadata.parameters["DustEvolution:silicate_fe_grain_fraction"]
         )
@@ -141,7 +144,9 @@ def get_data(filename, prefix_rho, prefix_T):
         for k in compdict.keys():
             if k in d:
                 for el in compdict[k].keys():
-                    elfrac = compdict[k][el] * getattr(data.gas.dust_mass_fractions, d)
+                    elfrac = compdict[k][el] * getattr(
+                        data.gas.dust_mass_fractions, d.lower()
+                    )
                     if el in dsfrac_dict:
                         # print(f"Add Grain: {d} Element {el} Elfrac : {elfrac}")
                         dsfrac_dict[el] += elfrac.astype("float64")
@@ -149,7 +154,7 @@ def get_data(filename, prefix_rho, prefix_T):
                         # print(f"Make Grain: {d} Element {el} Elfrac : {elfrac}")
                         dsfrac_dict[el] = elfrac.astype("float64")
 
-        dfrac = getattr(data.gas.dust_mass_fractions, d)
+        dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
         dfracs += dfrac
 
     elfrac_dict = {}

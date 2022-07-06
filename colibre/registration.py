@@ -235,7 +235,46 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
 
         # In case run without dust
         except AttributeError:
+            dust_mass_large_grain = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_large_grain_h2 = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_large_grain_cd = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_small_grain = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_small_grain_h2 = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_small_grain_cd = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
             dust_mass_total = unyt.unyt_array(np.zeros_like(metal_frac), units="Msun")
+            dust_mass_total_hi = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_total_h2 = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_total_cd = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            dust_mass_total_neutral = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            small_to_large = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="dimensionless"
+            )
+            small_to_large_h2 = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="dimensionless"
+            )
+            small_to_large_cd = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="dimensionless"
+            )
 
         dust_mass_total_hi.name = f"$M_{{\\rm dust,HI}}$ ({aperture_size} kpc)"
         dust_mass_total_h2.name = f"$M_{{\\rm dust,H2}}$ ({aperture_size} kpc)"
@@ -262,23 +301,37 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
 
         # Metal mass fractions of the gas
 
-        linOH_abundance_times_mgas = getattr(
-            catalogue.lin_element_ratios_times_masses,
-            f"lin_O_over_H_total_times_gas_mass_100_kpc",
-        )
+        try:
+            linOH_abundance_times_mgas = getattr(
+                catalogue.lin_element_ratios_times_masses,
+                f"lin_O_over_H_total_times_gas_mass_100_kpc",
+            )
 
-        logOH_abundance_times_mhi = getattr(
-            catalogue.log_element_ratios_times_masses,
-            f"log_O_over_H_atomic_times_gas_mass_lowfloor_{aperture_size}_kpc",
-        )
-        logOH_abundance_times_mh2 = getattr(
-            catalogue.log_element_ratios_times_masses,
-            f"log_O_over_H_molecular_times_gas_mass_lowfloor_{aperture_size}_kpc",
-        )
-        logOH_abundance_times_cd = getattr(
-            catalogue.log_element_ratios_times_masses,
-            f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc",
-        )
+            logOH_abundance_times_mhi = getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_O_over_H_atomic_times_gas_mass_lowfloor_{aperture_size}_kpc",
+            )
+            logOH_abundance_times_mh2 = getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_O_over_H_molecular_times_gas_mass_lowfloor_{aperture_size}_kpc",
+            )
+            logOH_abundance_times_cd = getattr(
+                catalogue.log_element_ratios_times_masses,
+                f"log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc",
+            )
+        except AttributeError:
+            logOH_abundance_times_mgas = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            logOH_abundance_times_mhi = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            logOH_abundance_times_mh2 = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
+            logOH_abundance_times_cd = unyt.unyt_array(
+                np.zeros_like(metal_frac), units="Msun"
+            )
 
         metal_frac_gas = (
             pow(

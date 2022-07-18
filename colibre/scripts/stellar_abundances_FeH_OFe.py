@@ -13,7 +13,6 @@ from velociraptor.observations import load_observations
 from velociraptor.observations import ObservationalData
 
 
-
 def read_data(data):
     """
     Grabs the data
@@ -99,7 +98,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
             xm,
             ym,
             lw=2,
-            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha = False),
+            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha=False),
             zorder=1000,
             path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
         )[0]
@@ -117,7 +116,7 @@ observational_data = [
     f"{path_to_obs_data}/data/StellarAbundances/ZhangZao05_data.hdf5",
     f"{path_to_obs_data}/data/StellarAbundances/Letarte07_data.hdf5",
     f"{path_to_obs_data}/data/StellarAbundances/Sbordone07_data.hdf5",
-    f"{path_to_obs_data}/data/StellarAbundances/Koch08_data.hdf5"
+    f"{path_to_obs_data}/data/StellarAbundances/Koch08_data.hdf5",
 ]
 
 for obs in load_observations(observational_data):

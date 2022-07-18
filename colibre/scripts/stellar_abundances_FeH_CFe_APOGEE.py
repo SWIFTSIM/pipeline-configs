@@ -12,6 +12,7 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor.observations import load_observations
 from unyt import unyt_array
 
+
 def read_data(data):
     """
     Grabs the data
@@ -97,7 +98,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
             xm,
             ym,
             lw=2,
-            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha = False),
+            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha=False),
             zorder=1000,
             path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
         )[0]
@@ -135,9 +136,9 @@ grid_max = np.log10(np.ceil(h.max()))
 levels = np.arange(grid_min, grid_max, binsize)
 levels = 10 ** levels
 
-contour = plt.contour(xbins, ybins, z,
-                      levels=levels, linewidths=0.5,
-                      cmap='winter', zorder=100)
+contour = plt.contour(
+    xbins, ybins, z, levels=levels, linewidths=0.5, cmap="winter", zorder=100
+)
 
 ax.set_xlabel("[Fe/H]")
 ax.set_ylabel("[C/Fe]")
@@ -145,7 +146,7 @@ ax.set_ylabel("[C/Fe]")
 ax.set_ylim(-1.5, 1.5)
 ax.set_xlim(-4.0, 2.0)
 
-ax.annotate('APOGEE data',(-3.8,1.3))
+ax.annotate("APOGEE data", (-3.8, 1.3))
 
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="lower left"

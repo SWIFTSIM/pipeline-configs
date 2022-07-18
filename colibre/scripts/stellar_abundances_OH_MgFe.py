@@ -101,7 +101,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
             xm,
             ym,
             lw=2,
-            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha = False),
+            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha=False),
             zorder=1000,
             path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
         )[0]
@@ -110,7 +110,9 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
 # We select APOGEE data file
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-observational_data = f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_OHMGFE.hdf5"
+observational_data = (
+    f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_OHMGFE.hdf5"
+)
 x = unyt_array.from_hdf5(observational_data, dataset_name="values", group_name="x")
 y = unyt_array.from_hdf5(observational_data, dataset_name="values", group_name="y")
 
@@ -139,9 +141,9 @@ grid_max = np.log10(np.ceil(h.max()))
 levels = np.arange(grid_min, grid_max, binsize)
 levels = 10 ** levels
 
-contour = plt.contour(xbins, ybins, z,
-                      levels=levels, linewidths=0.5,
-                      cmap='winter', zorder=100)
+contour = plt.contour(
+    xbins, ybins, z, levels=levels, linewidths=0.5, cmap="winter", zorder=100
+)
 
 ax.set_xlabel("[O/H]")
 ax.set_ylabel("[Mg/Fe]")
@@ -149,7 +151,7 @@ ax.set_ylabel("[Mg/Fe]")
 ax.set_ylim(-1.5, 1.5)
 ax.set_xlim(-4.0, 2.0)
 
-ax.annotate('APOGEE data',(-3.8,1.3))
+ax.annotate("APOGEE data", (-3.8, 1.3))
 
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="lower left"

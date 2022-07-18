@@ -12,6 +12,7 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor.observations import load_observations
 import h5py
 
+
 def read_data(data):
     """
     Grabs the data
@@ -97,7 +98,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
             xm,
             ym,
             lw=2,
-            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha = False),
+            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha=False),
             zorder=1000,
             path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
         )[0]
@@ -108,15 +109,19 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
 observational_data = f"{path_to_obs_data}/data/StellarAbundances/Buder21_data.hdf5"
 
-GALAH_data = h5py.File(observational_data, 'r')
+GALAH_data = h5py.File(observational_data, "r")
 galah_edges = np.array(GALAH_data["abundance_bin_edges"])
 obs_plane = np.array(GALAH_data["Mg_enrichment_vs_Fe_abundance"]).T
 obs_plane[obs_plane < 10] = None
 
-contour = plt.contour(np.log10(obs_plane), origin='lower',
-                      extent=[galah_edges[0], galah_edges[-1],
-                              galah_edges[0], galah_edges[-1]],
-                      zorder=100, cmap='winter', linewidths=0.5)
+contour = plt.contour(
+    np.log10(obs_plane),
+    origin="lower",
+    extent=[galah_edges[0], galah_edges[-1], galah_edges[0], galah_edges[-1]],
+    zorder=100,
+    cmap="winter",
+    linewidths=0.5,
+)
 
 ax.set_xlabel("[Fe/H]")
 ax.set_ylabel("[O/Fe]")
@@ -124,7 +129,7 @@ ax.set_ylabel("[O/Fe]")
 ax.set_ylim(-1.5, 1.5)
 ax.set_xlim(-4.0, 2.0)
 
-ax.annotate('GALAH data',(-3.8,1.3))
+ax.annotate("GALAH data", (-3.8, 1.3))
 
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="lower left"

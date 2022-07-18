@@ -93,12 +93,11 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
     simulation_lines.append(
-
         ax.plot(
             xm,
             ym,
             lw=2,
-            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha = False),
+            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha=False),
             zorder=1000,
             path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
         )[0]

@@ -1,5 +1,5 @@
 """
-Plots the stellar abundances ([O/H] vs [Mg/Fe]) for a given snapshot
+Plots the stellar abundances ([Fe/H] vs [O/Fe]) for a given snapshot
 """
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
@@ -21,36 +21,33 @@ def read_data(data):
     mH_in_cgs = unyt.mh
     mFe_in_cgs = 55.845 * unyt.mp
     mO_in_cgs = 15.999 * unyt.mp
-    mMg_in_cgs = 24.305 * unyt.mp
 
     # Asplund et al. (2009)
     Fe_H_Sun_Asplund = 7.5
-    Mg_H_Sun_Asplund = 7.6
     O_H_Sun_Asplund = 8.69
 
-    Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
-    O_H_Sun = O_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mO_in_cgs)
+    O_Fe_Sun = O_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mO_in_cgs)
+    Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
 
-    magnesium = data.stars.element_mass_fractions.magnesium
-    iron = data.stars.element_mass_fractions.iron
     oxygen = data.stars.element_mass_fractions.oxygen
+    iron = data.stars.element_mass_fractions.iron
     hydrogen = data.stars.element_mass_fractions.hydrogen
 
-    O_H = np.log10(oxygen / hydrogen) - O_H_Sun
-    Mg_Fe = np.log10(magnesium / iron) - Mg_Fe_Sun
+    Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
+    O_Fe = np.log10(oxygen / iron) - O_Fe_Sun
 
-    O_H[oxygen == 0] = -4  # set lower limit
-    O_H[O_H < -4] = -4  # set lower limit
+    Fe_H[iron == 0] = -4  # set lower limit
+    Fe_H[Fe_H < -4] = -4  # set lower limit
 
-    Mg_Fe[iron == 0] = -2  # set lower limit
-    Mg_Fe[magnesium == 0] = -2  # set lower limit
-    Mg_Fe[Mg_Fe < -2] = -2  # set lower limit
+    O_Fe[iron == 0] = -2  # set lower limit
+    O_Fe[oxygen == 0] = -2  # set lower limit
+    O_Fe[O_Fe < -2] = -2  # set lower limit
 
-    return O_H, Mg_Fe
+    return Fe_H, O_Fe
 
 
 arguments = ScriptArgumentParser(
-    description="Creates an [Fe/H] - [Mg/Fe] plot for stars."
+    description="Creates an [Fe/H] - [O/Fe] plot for stars."
 )
 
 snapshot_filenames = [
@@ -74,11 +71,11 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     data = load(snapshot_filename)
     redshift = data.metadata.z
 
-    O_H, Mg_Fe = read_data(data)
+    Fe_H, O_Fe = read_data(data)
 
-    # Bins along the X axis (O_H) to plot the median line
+    # Bins along the X axis (Fe_H) to plot the median line
     bins = np.arange(-4.1, 1, 0.2)
-    ind = np.digitize(O_H, bins)
+    ind = np.digitize(Fe_H, bins)
 
     xm, ym, ym1, ym2 = [], [], [], []
     Min_N_points_per_bin = 11
@@ -87,10 +84,10 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
         in_bin_idx = ind == i
         N_data_points_per_bin = np.sum(in_bin_idx)
         if N_data_points_per_bin >= Min_N_points_per_bin:
-            xm.append(np.median(O_H[in_bin_idx]))
-            ym.append(np.median(Mg_Fe[in_bin_idx]))
-            ym1.append(np.percentile(Mg_Fe[in_bin_idx], 16))
-            ym2.append(np.percentile(Mg_Fe[in_bin_idx], 84))
+            xm.append(np.median(Fe_H[in_bin_idx]))
+            ym.append(np.median(O_Fe[in_bin_idx]))
+            ym1.append(np.percentile(O_Fe[in_bin_idx], 16))
+            ym2.append(np.percentile(O_Fe[in_bin_idx], 84))
 
     fill_element = ax.fill_between(xm, ym1, ym2, alpha=0.2)
 
@@ -108,16 +105,17 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     )
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
 
-# We select APOGEE data file
+# We select APOGEE data file containing FeH-MgFe.
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-observational_data = f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_OHMGFE.hdf5"
+observational_data = f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_O.hdf5"
 x = unyt_array.from_hdf5(observational_data, dataset_name="values", group_name="x")
 y = unyt_array.from_hdf5(observational_data, dataset_name="values", group_name="y")
 
+
 xmin = -3
-xmax = 2
+xmax = 1
 ymin = -1
-ymax = 2
+ymax = 1
 
 ngridx = 100
 ngridy = 50
@@ -143,8 +141,8 @@ contour = plt.contour(xbins, ybins, z,
                       levels=levels, linewidths=0.5,
                       cmap='winter', zorder=100)
 
-ax.set_xlabel("[O/H]")
-ax.set_ylabel("[Mg/Fe]")
+ax.set_xlabel("[Fe/H]")
+ax.set_ylabel("[O/Fe]")
 
 ax.set_ylim(-1.5, 1.5)
 ax.set_xlim(-4.0, 2.0)
@@ -157,4 +155,4 @@ simulation_legend = ax.legend(
 
 ax.add_artist(simulation_legend)
 
-plt.savefig(f"{output_path}/stellar_abundances_OH_MgFe.png")
+plt.savefig(f"{output_path}/stellar_abundances_FeH_OFe_APOGEE.png")

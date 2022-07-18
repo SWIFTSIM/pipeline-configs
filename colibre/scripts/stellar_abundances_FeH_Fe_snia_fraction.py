@@ -3,6 +3,7 @@ Plots [Fe/H] vs mass fraction of Fe from SNIa
 """
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
+import matplotlib.colors as mc
 import numpy as np
 import swiftsimio
 import unyt
@@ -31,8 +32,8 @@ def read_data(data: swiftsimio.SWIFTDataset) -> Tuple[np.ndarray, np.ndarray]:
     Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
     Fe_snia_fraction = iron_snia / iron
 
-    Fe_H[iron == 0] = -7  # set lower limit
-    Fe_H[Fe_H < -7] = -7  # set lower limit
+    Fe_H[iron == 0] = -4  # set lower limit
+    Fe_H[Fe_H < -4] = -4  # set lower limit
 
     return Fe_H, Fe_snia_fraction
 
@@ -64,14 +65,11 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
     Fe_H, Fe_snia_fr = read_data(snapshot_data)
 
-    # low zorder, as we want these points to be in the background
-    dots = ax.plot(Fe_H, Fe_snia_fr, ".", markersize=0.2, alpha=0.2, zorder=-99)[0]
-
     # Bins along the X axis (Fe_H) to plot the median line
-    bins = np.arange(-7.2, 1, 0.2)
+    bins = np.arange(-4.1, 1, 0.2)
     ind = np.digitize(Fe_H, bins)
 
-    xm, ym = [], []
+    xm, ym, ym1, ym2 = [], [], [], []
     Min_N_points_per_bin = 11
 
     for i in range(1, len(bins)):
@@ -80,6 +78,10 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
         if N_data_points_per_bin >= Min_N_points_per_bin:
             xm.append(np.median(Fe_H[in_bin_idx]))
             ym.append(np.median(Fe_snia_fr[in_bin_idx]))
+            ym1.append(np.percentile(Fe_snia_fr[in_bin_idx], 16))
+            ym2.append(np.percentile(Fe_snia_fr[in_bin_idx], 84))
+
+    fill_element = ax.fill_between(xm, ym1, ym2, alpha=0.2)
 
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
@@ -88,7 +90,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
             xm,
             ym,
             lw=2,
-            color=dots.get_color(),
+            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha = False),
             zorder=1000,
             path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
         )[0]
@@ -99,7 +101,7 @@ ax.set_xlabel("[Fe/H]")
 ax.set_ylabel("Fe (SNIa) / Fe (Total)")
 
 ax.set_ylim(3e-3, 3.0)
-ax.set_xlim(-7.2, 2.0)
+ax.set_xlim(-4.0, 2.0)
 ax.set_yscale("log")
 
 simulation_legend = ax.legend(

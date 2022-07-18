@@ -3,12 +3,15 @@ Plots the stellar abundances ([Fe/H] vs [O/Fe]) for a given snapshot
 """
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
+import matplotlib.colors as mc
 import numpy as np
 import unyt
 import glob
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor.observations import load_observations
+from velociraptor.observations import ObservationalData
+
 
 
 def read_data(data):
@@ -34,8 +37,8 @@ def read_data(data):
     Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
     O_Fe = np.log10(oxygen / iron) - O_Fe_Sun
 
-    Fe_H[iron == 0] = -7  # set lower limit
-    Fe_H[Fe_H < -7] = -7  # set lower limit
+    Fe_H[iron == 0] = -4  # set lower limit
+    Fe_H[Fe_H < -4] = -4  # set lower limit
 
     O_Fe[iron == 0] = -2  # set lower limit
     O_Fe[oxygen == 0] = -2  # set lower limit
@@ -71,14 +74,11 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
     Fe_H, O_Fe = read_data(data)
 
-    # low zorder, as we want these points to be in the background
-    dots = ax.plot(Fe_H, O_Fe, ".", markersize=0.2, alpha=0.2, zorder=-99)[0]
-
     # Bins along the X axis (Fe_H) to plot the median line
-    bins = np.arange(-7.2, 1, 0.2)
+    bins = np.arange(-4.1, 1, 0.2)
     ind = np.digitize(Fe_H, bins)
 
-    xm, ym = [], []
+    xm, ym, ym1, ym2 = [], [], [], []
     Min_N_points_per_bin = 11
 
     for i in range(1, len(bins)):
@@ -87,6 +87,10 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
         if N_data_points_per_bin >= Min_N_points_per_bin:
             xm.append(np.median(Fe_H[in_bin_idx]))
             ym.append(np.median(O_Fe[in_bin_idx]))
+            ym1.append(np.percentile(O_Fe[in_bin_idx], 16))
+            ym2.append(np.percentile(O_Fe[in_bin_idx], 84))
+
+    fill_element = ax.fill_between(xm, ym1, ym2, alpha=0.2)
 
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
@@ -95,31 +99,42 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
             xm,
             ym,
             lw=2,
-            color=dots.get_color(),
+            color=mc.to_hex(fill_element.get_facecolor()[0], keep_alpha = False),
             zorder=1000,
             path_effects=[pe.Stroke(linewidth=4, foreground="white"), pe.Normal()],
         )[0]
     )
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
 
-# We select all files except the Tolstoy* ones containing FeH-MgFe.
+# We select files for MW satellites data FeH-OFe.
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-observational_data = glob.glob(f"{path_to_obs_data}/data/StellarAbundances/[!T]*.hdf5")
+observational_data = [
+    f"{path_to_obs_data}/data/StellarAbundances/Israelian98_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/Mishenina00_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/Bai04_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/Cayrel04_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/Geisler05_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/ZhangZao05_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/Letarte07_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/Sbordone07_data.hdf5",
+    f"{path_to_obs_data}/data/StellarAbundances/Koch08_data.hdf5"
+]
+
 for obs in load_observations(observational_data):
     obs.plot_on_axes(ax)
 
 ax.set_xlabel("[Fe/H]")
 ax.set_ylabel("[O/Fe]")
 
-ax.set_ylim(-2.0, 3.0)
-ax.set_xlim(-7.2, 2.0)
+ax.set_ylim(-1.5, 1.5)
+ax.set_xlim(-4.0, 2.0)
 
-observation_legend = ax.legend(markerfirst=True, loc="upper left")
+observation_legend = ax.legend(markerfirst=True, loc="lower left")
 
 ax.add_artist(observation_legend)
 
 simulation_legend = ax.legend(
-    simulation_lines, simulation_labels, markerfirst=False, loc="lower left"
+    simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
 )
 
 ax.add_artist(simulation_legend)

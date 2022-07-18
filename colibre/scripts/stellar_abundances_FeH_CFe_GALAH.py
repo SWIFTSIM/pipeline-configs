@@ -1,5 +1,5 @@
 """
-Plots the stellar abundances ([Fe/H] vs [Mg/Fe]) for a given snapshot
+Plots the stellar abundances ([Fe/H] vs [C/Fe]) for a given snapshot
 """
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
@@ -10,6 +10,7 @@ import glob
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor.observations import load_observations
+import h5py
 
 
 def read_data(data):
@@ -19,34 +20,34 @@ def read_data(data):
 
     mH_in_cgs = unyt.mh
     mFe_in_cgs = 55.845 * unyt.mp
-    mMg_in_cgs = 24.305 * unyt.mp
+    mC_in_cgs = 12.0107 * unyt.mp
 
     # Asplund et al. (2009)
     Fe_H_Sun_Asplund = 7.5
-    Mg_H_Sun_Asplund = 7.6
+    C_H_Sun_Asplund = 8.43
 
-    Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
+    C_Fe_Sun = C_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mC_in_cgs)
     Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
 
-    magnesium = data.stars.element_mass_fractions.magnesium
+    carbon = data.stars.element_mass_fractions.carbon
     iron = data.stars.element_mass_fractions.iron
     hydrogen = data.stars.element_mass_fractions.hydrogen
 
     Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
-    Mg_Fe = np.log10(magnesium / iron) - Mg_Fe_Sun
+    C_Fe = np.log10(carbon / iron) - C_Fe_Sun
 
     Fe_H[iron == 0] = -4  # set lower limit
     Fe_H[Fe_H < -4] = -4  # set lower limit
 
-    Mg_Fe[iron == 0] = -2  # set lower limit
-    Mg_Fe[magnesium == 0] = -2  # set lower limit
-    Mg_Fe[Mg_Fe < -2] = -2  # set lower limit
+    C_Fe[iron == 0] = -2  # set lower limit
+    C_Fe[carbon == 0] = -2  # set lower limit
+    C_Fe[C_Fe < -2] = -2  # set lower limit
 
-    return Fe_H, Mg_Fe
+    return Fe_H, C_Fe
 
 
 arguments = ScriptArgumentParser(
-    description="Creates an [Fe/H] - [Mg/Fe] plot for stars."
+    description="Creates an [Fe/H] - [C/Fe] plot for stars."
 )
 
 snapshot_filenames = [
@@ -70,7 +71,7 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     data = load(snapshot_filename)
     redshift = data.metadata.z
 
-    Fe_H, Mg_Fe = read_data(data)
+    Fe_H, C_Fe = read_data(data)
 
     # Bins along the X axis (Fe_H) to plot the median line
     bins = np.arange(-4.1, 1, 0.2)
@@ -84,16 +85,15 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
         N_data_points_per_bin = np.sum(in_bin_idx)
         if N_data_points_per_bin >= Min_N_points_per_bin:
             xm.append(np.median(Fe_H[in_bin_idx]))
-            ym.append(np.median(Mg_Fe[in_bin_idx]))
-            ym1.append(np.percentile(Mg_Fe[in_bin_idx], 16))
-            ym2.append(np.percentile(Mg_Fe[in_bin_idx], 84))
+            ym.append(np.median(C_Fe[in_bin_idx]))
+            ym1.append(np.percentile(C_Fe[in_bin_idx], 16))
+            ym2.append(np.percentile(C_Fe[in_bin_idx], 84))
 
     fill_element = ax.fill_between(xm, ym1, ym2, alpha=0.2)
 
     # high zorder, as we want the simulation lines to be on top of everything else
     # we steal the color of the dots to make sure the line has the same color
     simulation_lines.append(
-
         ax.plot(
             xm,
             ym,
@@ -105,24 +105,27 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
     )
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
 
-# We select all Tolstoy* files containing FeH-MgFe.
+# We select all GALAH file containing FeH-MgFe.
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
-observational_data = glob.glob(
-    f"{path_to_obs_data}/data/StellarAbundances/Tolstoy*.hdf5"
-)
+observational_data = f"{path_to_obs_data}/data/StellarAbundances/Buder21_data.hdf5"
 
-for obs in load_observations(observational_data):
-    obs.plot_on_axes(ax)
+GALAH_data = h5py.File(observational_data, 'r')
+galah_edges = np.array(GALAH_data["abundance_bin_edges"])
+obs_plane = np.array(GALAH_data["C_enrichment_vs_Fe_abundance"]).T
+obs_plane[obs_plane < 10] = None
+
+contour = plt.contour(np.log10(obs_plane), origin='lower',
+                      extent=[galah_edges[0], galah_edges[-1],
+                              galah_edges[0], galah_edges[-1]],
+                      zorder=100, cmap='winter', linewidths=0.5)
 
 ax.set_xlabel("[Fe/H]")
-ax.set_ylabel("[Mg/Fe]")
+ax.set_ylabel("[C/Fe]")
 
-ax.set_ylim(-1.5, 2.0)
-ax.set_xlim(-4, 2.0)
+ax.set_ylim(-1.5, 1.5)
+ax.set_xlim(-4.0, 2.0)
 
-observation_legend = ax.legend(markerfirst=True, loc="upper left")
-
-ax.add_artist(observation_legend)
+ax.annotate('GALAH data',(-3.8,1.3))
 
 simulation_legend = ax.legend(
     simulation_lines, simulation_labels, markerfirst=False, loc="lower left"
@@ -130,4 +133,4 @@ simulation_legend = ax.legend(
 
 ax.add_artist(simulation_legend)
 
-plt.savefig(f"{output_path}/stellar_abundances_FeH_MgFe.png")
+plt.savefig(f"{output_path}/stellar_abundances_FeH_CFe_GALAH.png")

@@ -11,7 +11,7 @@ from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor.observations import load_observations
 from unyt import unyt_array
-
+from scipy import stats
 
 def read_data(data):
     """
@@ -75,20 +75,19 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
     # Bins along the X axis (Fe_H) to plot the median line
     bins = np.arange(-4.1, 1, 0.2)
-    ind = np.digitize(Fe_H, bins)
-
-    xm, ym, ym1, ym2 = [], [], [], []
     Min_N_points_per_bin = 11
 
-    for i in range(1, len(bins)):
-        in_bin_idx = ind == i
-        N_data_points_per_bin = np.sum(in_bin_idx)
-        if N_data_points_per_bin >= Min_N_points_per_bin:
-            xm.append(np.median(Fe_H[in_bin_idx]))
-            ym.append(np.median(N_Fe[in_bin_idx]))
-            ym1.append(np.percentile(N_Fe[in_bin_idx], 16))
-            ym2.append(np.percentile(N_Fe[in_bin_idx], 84))
-
+    xm = 0.5 * (bins[1:] + bins[:-1])
+    ym, _, _ = stats.binned_statistic(Fe_H, N_Fe, statistic="median", bins=bins)
+    ym1, _, _ = stats.binned_statistic(Fe_H, N_Fe, statistic=lambda x: np.percentile(x, 16.), bins=bins)
+    ym2, _, _ = stats.binned_statistic(Fe_H, N_Fe, statistic=lambda x: np.percentile(x, 84.), bins=bins)
+    counts, _, _ = stats.binned_statistic(Fe_H, N_Fe, statistic="count", bins=bins)
+    mask = counts >= Min_N_points_per_bin
+    xm = xm[mask]
+    ym = ym[mask]
+    ym1 = ym1[mask]
+    ym2 = ym2[mask]
+    
     fill_element = ax.fill_between(xm, ym1, ym2, alpha=0.2)
 
     # high zorder, as we want the simulation lines to be on top of everything else

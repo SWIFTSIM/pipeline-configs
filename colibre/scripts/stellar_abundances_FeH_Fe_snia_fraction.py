@@ -12,6 +12,7 @@ from swiftpipeline.argumentparser import ScriptArgumentParser
 from typing import Tuple
 from scipy import stats
 
+
 def read_data(data: swiftsimio.SWIFTDataset) -> Tuple[np.ndarray, np.ndarray]:
     """
     Grabs the data
@@ -71,15 +72,21 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
     xm = 0.5 * (bins[1:] + bins[:-1])
     ym, _, _ = stats.binned_statistic(Fe_H, Fe_snia_fr, statistic="median", bins=bins)
-    ym1, _, _ = stats.binned_statistic(Fe_H, Fe_snia_fr, statistic=lambda x: np.percentile(x, 16.), bins=bins)
-    ym2, _, _ = stats.binned_statistic(Fe_H, Fe_snia_fr, statistic=lambda x: np.percentile(x, 84.), bins=bins)
-    counts, _, _ = stats.binned_statistic(Fe_H, Fe_snia_fr, statistic="count", bins=bins)
+    ym1, _, _ = stats.binned_statistic(
+        Fe_H, Fe_snia_fr, statistic=lambda x: np.percentile(x, 16.0), bins=bins
+    )
+    ym2, _, _ = stats.binned_statistic(
+        Fe_H, Fe_snia_fr, statistic=lambda x: np.percentile(x, 84.0), bins=bins
+    )
+    counts, _, _ = stats.binned_statistic(
+        Fe_H, Fe_snia_fr, statistic="count", bins=bins
+    )
     mask = counts >= Min_N_points_per_bin
     xm = xm[mask]
     ym = ym[mask]
     ym1 = ym1[mask]
     ym2 = ym2[mask]
-    
+
     fill_element = ax.fill_between(xm, ym1, ym2, alpha=0.2)
 
     # high zorder, as we want the simulation lines to be on top of everything else

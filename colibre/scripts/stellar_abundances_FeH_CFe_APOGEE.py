@@ -13,6 +13,7 @@ from velociraptor.observations import load_observations
 from unyt import unyt_array
 from scipy import stats
 
+
 def read_data(data):
     """
     Grabs the data
@@ -79,8 +80,12 @@ for snapshot_filename, name in zip(snapshot_filenames, names):
 
     xm = 0.5 * (bins[1:] + bins[:-1])
     ym, _, _ = stats.binned_statistic(Fe_H, C_Fe, statistic="median", bins=bins)
-    ym1, _, _ = stats.binned_statistic(Fe_H, C_Fe, statistic=lambda x: np.percentile(x, 16.), bins=bins)
-    ym2, _, _ = stats.binned_statistic(Fe_H, C_Fe, statistic=lambda x: np.percentile(x, 84.), bins=bins)
+    ym1, _, _ = stats.binned_statistic(
+        Fe_H, C_Fe, statistic=lambda x: np.percentile(x, 16.0), bins=bins
+    )
+    ym2, _, _ = stats.binned_statistic(
+        Fe_H, C_Fe, statistic=lambda x: np.percentile(x, 84.0), bins=bins
+    )
     counts, _, _ = stats.binned_statistic(Fe_H, C_Fe, statistic="count", bins=bins)
     mask = counts >= Min_N_points_per_bin
     xm = xm[mask]

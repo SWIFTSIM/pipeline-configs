@@ -268,71 +268,119 @@ scripts:
     output_file: SNII_maximal_kick_velocities.png
     section: Feedback kick velocities
     title: Maximal SNII kick velocity
-  - filename: scripts/stellar_abundances_FeH_CFe_GALAH.py
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [C/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [C/H]Sun = 8.43. The median [C/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the GALAH survey (Buder et al. 2021). Contours use a log scale with 0.04 bin size and a minimum star count of 10. All recommended flags are applied to GALAH data to select stars (SN, FE/H and X/Fe quality flags).'
     output_file: stellar_abundances_FeH_CFe_GALAH.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [C/Fe]'
-  - filename: scripts/stellar_abundances_FeH_CFe_APOGEE.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: C_Fe
+      dataset: GALAH
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [C/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [C/H]Sun = 8.43. The median [C/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018). Contours use a log scale with 0.04 bin size and a minimum star count of 10.' 
     output_file: stellar_abundances_FeH_CFe_APOGEE.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [C/Fe]'
-  - filename: scripts/stellar_abundances_FeH_NFe_APOGEE.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: C_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [N/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [N/H]Sun = 7.83. The median [N/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018). Contours use a log scale with 0.04 bin size and a minimum star count of 10.' 
     output_file: stellar_abundances_FeH_NFe_APOGEE.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [N/Fe]'
-  - filename: scripts/stellar_abundances_FeH_OFe_GALAH.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: N_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the GALAH survey (Buder et al. 2021). Contours use a log scale with 0.04 bin size and a minimum star count of 10. All recommended flags are applied to GALAH data to select stars (SN, FE/H and X/Fe quality flags).'
     output_file: stellar_abundances_FeH_OFe_GALAH.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [O/Fe]'
-  - filename: scripts/stellar_abundances_FeH_OFe_APOGEE.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: O_Fe
+      dataset: GALAH
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018). Contours use a log scale with 0.04 bin size and a minimum star count of 10.' 
     output_file: stellar_abundances_FeH_OFe_APOGEE.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [O/Fe]'
-  - filename: scripts/stellar_abundances_FeH_OFe.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: O_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the works of Mishenina+99, Israelian+98, Cayrel+04, Bai+04, Zhang+05, Koch+08. Most of these works assume Grevesser & Anders (1989) values for solar metallicity, their were corrected  to Asplund+09. Additional data includes Fornax (Letarte+07), Carina (Kock+05), Sculptor (Geisler+05) and  Sagittarious (Sbordone+07).'
     output_file: stellar_abundances_FeH_OFe.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [O/Fe]'
-  - filename: scripts/stellar_abundances_FeH_MgFe_GALAH.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: O_Fe
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the GALAH survey (Buder et al. 2021). Contours use a log scale with 0.04 bin size and a minimum star count of 10. All recommended flags are applied to GALAH data to select stars (SN, FE/H and X/Fe quality flags).'
     output_file: stellar_abundances_FeH_MgFe_GALAH.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [Mg/Fe]'
-  - filename: scripts/stellar_abundances_FeH_MgFe_APOGEE.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: Mg_Fe
+      dataset: GALAH
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018). Contours use a log scale with 0.04 bin size and a minimum star count of 10.' 
     output_file: stellar_abundances_FeH_MgFe_APOGEE.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [Mg/Fe]'
-  - filename: scripts/stellar_abundances_FeH_MgFe.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: Mg_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09.'
     output_file: stellar_abundances_FeH_MgFe.png
     section: Stellar Metal Abundances
     title: '[Fe/H] vs [Mg/Fe]'
-  - filename: scripts/stellar_abundances_OH_OFe.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: Mg_Fe
+  - filename: scripts/stellar_abundances.py
     caption: '[O/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018). Contours use a log scale with 0.04 bin size and a minimum star count of 10.' 
-    output_file: stellar_abundances_OH_OFe.png
+    output_file: stellar_abundances_OH_OFe_APOGEE.png
     section: Stellar Metal Abundances
     title: '[O/H] vs [O/Fe]'
-  - filename: scripts/stellar_abundances_OH_MgFe.py
+    additional_arguments:
+      xvar: O_H
+      yvar: O_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
     caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018). Contours use a log scale with 0.04 bin size and a minimum star count of 10.' 
-    output_file: stellar_abundances_OH_MgFe.png
+    output_file: stellar_abundances_OH_MgFe_APOGEE.png
     section: Stellar Metal Abundances
     title: '[O/H] vs [Mg/Fe]'
-  - filename: scripts/stellar_abundances_FeH_Fe_snia_fraction.py
+    additional_arguments:
+      xvar: O_H
+      yvar: Mg_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
     caption: 'The mass fraction of Fe from SNIa vs [Fe/H] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5. The median SNIa Fe fraction vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
     output_file: stellar_abundances_FeH_Fe_snia_fraction.png
     section: Stellar Metal Abundances
     title: 'Fraction of Fe from SNIa vs [Fe/H]'
-  - filename: scripts/stellar_abundances_OH_Fe_snia_fraction.py
+    additional_arguments:
+      xvar: Fe_H
+      yvar: Fe_SNIa_fraction
+  - filename: scripts/stellar_abundances.py
     caption: 'The mass fraction of Fe from SNIa vs [O/H] using Asplund et al. (2009) values for [O/H]Sun = 8.69. The median SNIa Fe fraction vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
     output_file: stellar_abundances_OH_Fe_snia_fraction.png
     section: Stellar Metal Abundances
     title: 'Fraction of Fe from SNIa vs [O/H]'
+    additional_arguments:
+      xvar: O_H
+      yvar: Fe_SNIa_fraction
   - filename: scripts/column_density_distribution_function.py
     title:
       - Column Density Distribution Function (full box, full range)

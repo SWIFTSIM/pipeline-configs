@@ -4,13 +4,13 @@ stellar_mass_v_dust_mass:
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
-    start: 3e7
+    start: 1e7
     end: 3e12
     log: true
   y:
     quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e9
     log: true
   median:
@@ -19,7 +19,7 @@ stellar_mass_v_dust_mass:
     adaptive: true
     number_of_bins: 15
     start:
-      value: 3e7
+      value: 1e7
       units: Solar_Mass
     end:
       value: 3e12
@@ -50,7 +50,7 @@ star_formation_rate_v_dust_mass:
   y:
     quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e9
     log: true
   median:
@@ -85,7 +85,7 @@ neutral_mass_v_dust_mass:
   y:
     quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e9
     log: true
   median:
@@ -120,7 +120,7 @@ molecular_mass_v_dust_mass:
   y:
     quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e9
     log: true
   median:

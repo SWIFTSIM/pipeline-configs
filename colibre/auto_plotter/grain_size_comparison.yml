@@ -4,7 +4,7 @@ stellar_mass_v_size_ratio:
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
-    start: 3e7
+    start: 1e7
     end: 3e12
     log: true
   y:
@@ -19,7 +19,7 @@ stellar_mass_v_size_ratio:
     adaptive: true
     number_of_bins: 15
     start:
-      value: 3e7
+      value: 1e7
       units: Solar_Mass
     end:
       value: 3e12
@@ -39,7 +39,7 @@ stellar_mass_v_molecular_size_ratio:
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
-    start: 3e7
+    start: 1e7
     end: 3e12
     log: true
   y:
@@ -54,7 +54,7 @@ stellar_mass_v_molecular_size_ratio:
     adaptive: true
     number_of_bins: 15
     start:
-      value: 3e7
+      value: 1e7
       units: Solar_Mass
     end:
       value: 3e12

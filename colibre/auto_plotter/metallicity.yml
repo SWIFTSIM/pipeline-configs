@@ -690,7 +690,7 @@ stellar_mass_star_mg_over_fe_50:
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
-    start: 1e8
+    start: 1e7
     end: 1e12
   median:
     plot: true
@@ -698,7 +698,7 @@ stellar_mass_star_mg_over_fe_50:
     adaptive: true
     number_of_bins: 20
     start:
-      value: 1e8
+      value: 1e7
       units: solar_mass
     end:
       value: 1e12
@@ -722,7 +722,7 @@ stellar_mass_star_o_over_fe_50:
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
-    start: 1e8
+    start: 1e7
     end: 1e12
   median:
     plot: true
@@ -730,7 +730,7 @@ stellar_mass_star_o_over_fe_50:
     adaptive: true
     number_of_bins: 20
     start:
-      value: 1e8
+      value: 1e7
       units: solar_mass
     end:
       value: 1e12

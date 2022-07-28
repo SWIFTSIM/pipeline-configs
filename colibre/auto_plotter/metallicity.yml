@@ -684,13 +684,13 @@ stellar_mass_star_mg_over_fe_50:
   y:
     quantity: "derived_quantities.star_magnesium_over_iron_50_kpc"
     units: "dimensionless"
-    start: -0.2
-    end: 0.7
+    start: -0.7
+    end: 0.5
     log: false
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
-    start: 1e8
+    start: 1e7
     end: 1e12
   median:
     plot: true
@@ -698,7 +698,7 @@ stellar_mass_star_mg_over_fe_50:
     adaptive: true
     number_of_bins: 20
     start:
-      value: 1e8
+      value: 1e7
       units: solar_mass
     end:
       value: 1e12
@@ -708,7 +708,7 @@ stellar_mass_star_mg_over_fe_50:
     section: Stellar Metallicity
     caption: '[Mg/Fe] versus stellar mass, both computed in 50-kpc apertures. The values of [Mg/Fe] are obtained by computing the (log10 of) ratio between the total Magnesium mass in stars and total Iron mass in stars, and then normalising it by the corresponding solar abundances. The solar abundances are taken from Asplund et al. (2009). All haloes are plotted, including subhaloes.'
   observational_data:
-    - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data.hdf5
+    - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data_MgFe.hdf5
 
 stellar_mass_star_o_over_fe_50:
   type: "scatter"
@@ -722,7 +722,7 @@ stellar_mass_star_o_over_fe_50:
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: solar_mass
-    start: 1e8
+    start: 1e7
     end: 1e12
   median:
     plot: true
@@ -730,7 +730,7 @@ stellar_mass_star_o_over_fe_50:
     adaptive: true
     number_of_bins: 20
     start:
-      value: 1e8
+      value: 1e7
       units: solar_mass
     end:
       value: 1e12
@@ -740,4 +740,4 @@ stellar_mass_star_o_over_fe_50:
     section: Stellar Metallicity
     caption: '[O/Fe] versus stellar mass, both computed in 50-kpc apertures. The values of [O/Fe] are obtained by computing the (log10 of) ratio between the total Oxygen mass in stars and total Iron mass in stars, and then normalising it by the corresponding solar abundances. The solar abundances are taken from Asplund et al. (2009). All haloes are plotted, including subhaloes.'
   observational_data:
-    - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data.hdf5
+    - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data_OFe.hdf5

@@ -5,7 +5,7 @@ dust_mass_function:
   x:
     quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e10
   y:
     units: 1/Mpc**3
@@ -27,7 +27,7 @@ adaptive_dust_mass_function:
   x:
     quantity: "derived_quantities.total_dust_masses_50_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e10
   y:
     units: 1/Mpc**3
@@ -49,7 +49,7 @@ dust_mass_function_molecular:
   x:
     quantity: "derived_quantities.total_molecular_dust_masses_30_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e10
   y:
     units: 1/Mpc**3
@@ -71,7 +71,7 @@ dust_mass_function_neutral:
   x:
     quantity: "derived_quantities.total_neutral_dust_masses_30_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e10
   y:
     units: 1/Mpc**3
@@ -93,7 +93,7 @@ dust_mass_function_cold_dense:
   x:
     quantity: "derived_quantities.total_cold_dense_dust_masses_30_kpc"
     units: Solar_Mass
-    start: 1e4
+    start: 1e3
     end: 1e10
   y:
     units: 1/Mpc**3

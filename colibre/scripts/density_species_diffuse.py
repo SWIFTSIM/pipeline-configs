@@ -163,8 +163,8 @@ def get_data(filename, prefix_rho, prefix_T):
         elfrac_dict[el] = getattr(data.gas.element_mass_fractions, el.lower()).astype(
             "float64"
         )
-        if pairing and (el in dsfrac_dict):
-            elfrac_dict[el] += dsfrac_dict[el]
+        # if pairing and (el in dsfrac_dict):
+        #     elfrac_dict[el] += dsfrac_dict[el]
 
     # casting to float64 to avoid arcane np.histogram bug(?)
     out_tuple = (

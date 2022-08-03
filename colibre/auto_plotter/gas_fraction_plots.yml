@@ -222,6 +222,9 @@ h2_frac_func_stellar_mass:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison

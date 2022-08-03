@@ -24,6 +24,14 @@ stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z0p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z0p3.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z0p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z1p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z1p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z2p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z2p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z3p0.hdf5
 
 adaptive_stellar_mass_function_30:
   type: "adaptivemassfunction"
@@ -51,6 +59,14 @@ adaptive_stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z0p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z0p3.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z0p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z1p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z1p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z2p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z2p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc_z3p0.hdf5
 
 adaptive_stellar_mass_function_active_only_30:
   type: "adaptivemassfunction"
@@ -137,6 +153,14 @@ stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z0p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z0p3.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z0p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z1p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z1p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z2p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z2p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z3p0.hdf5
 
 adaptive_stellar_mass_function_50:
   type: "adaptivemassfunction"
@@ -163,6 +187,14 @@ adaptive_stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z0p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z0p3.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z0p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z1p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z1p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z2p0.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z2p5.hdf5
+    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc_z3p0.hdf5
 
 adaptive_stellar_mass_function_50_box_size_correction:
   type: "adaptivemassfunction"

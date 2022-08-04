@@ -491,6 +491,9 @@ stellar_mass_star_metallicity_50:
     end:
       value: 1e12
       units: solar_mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: "Stellar mass - Star metallicity relation (50 kpc aperture)"
     caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
@@ -526,6 +529,9 @@ stellar_mass_star_metallicity_30:
     end:
       value: 1e12
       units: solar_mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: "Stellar mass - Star metallicity relation (30 kpc aperture)"
     caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
@@ -562,6 +568,9 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
     end:
       value: 1e12
       units: solar_mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: 'Stellar mass - [Fe/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
     section: Stellar Metallicity
@@ -597,6 +606,9 @@ stellar_mass_star_fe_snia_over_h_mol_lofloor_50:
     end:
       value: 1e12
       units: solar_mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: 'Stellar mass - [Fe$_{\rm SNIa}$/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
     section: Stellar Metallicity
@@ -632,6 +644,9 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
     end:
       value: 1e12
       units: solar_mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: 'Stellar mass - [Fe/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
     section: Stellar Metallicity
@@ -667,6 +682,9 @@ stellar_mass_star_fe_over_h_lom_50:
     end:
       value: 1e12
       units: solar_mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: 'Stellar mass - [Fe/H]$_*$ relation (50 kpc aperture)'
     section: Stellar Metallicity

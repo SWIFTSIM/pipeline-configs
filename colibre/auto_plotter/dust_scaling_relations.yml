@@ -10,9 +10,7 @@ hi_stellar_fraction_neutral_dust_to_stellar_ratio:
     end: 1e-2
     log: true
   y:
-
     quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
-
     units: "dimensionless"
     start: 3e-2
     end: 5
@@ -27,6 +25,9 @@ hi_stellar_fraction_neutral_dust_to_stellar_ratio:
       units: "dimensionless"
     end:
       value: 1e-2
+      units: "dimensionless"
+    lower:
+      value: 1.e-10
       units: "dimensionless"
   metadata:
     title: HI-to-stellar mass ratio vs dust-to-stellar mass ratio in neutral gas.
@@ -64,6 +65,9 @@ hi_stellar_fraction_cold_dense_dust_to_metal_ratio:
     end:
       value: 5
       units: "dimensionless"
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: HI-to-stellar mass ratio vs dust-to-metal ratio in cold, dense gas
     caption: HI to stellar mass ratio as a function of the dust-to-metal ratio in cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$) measured in 50kpc apertures, and applying a JINGLE-like mass selection.
@@ -99,6 +103,9 @@ hi_stellar_fraction_o_abundance_ism:
       units: "dimensionless"
     end:
       value: 9.2
+      units: "dimensionless"
+    lower:
+      value: 1.e-10
       units: "dimensionless"
   metadata:
     title: HI-to-stellar mass ratio vs Oxygen abundance

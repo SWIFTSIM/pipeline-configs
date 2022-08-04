@@ -24,6 +24,9 @@ h2_frac_func_stellar_mass_xgass_selection:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
@@ -58,6 +61,9 @@ h2_frac_func_ssfr:
     end:
       value: 1e4
       units: 1 / gigayear
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: sSFR-H$_2$ Fraction
     section: Cold Gas Data Comparison
@@ -91,6 +97,9 @@ h2_frac_func_stellar_surface_density_xgass_selection:
     end:
       value: 1e11
       units: "Solar_Mass / (kpc**2)"
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: Stellar Mass Surface Density-H$_2$ Fraction
     section: Cold Gas Data Comparison
@@ -124,6 +133,9 @@ hi_frac_func_stellar_mass_xgass_selection:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: Stellar Mass-HI Fraction
     section: Cold Gas Data Comparison
@@ -158,6 +170,9 @@ hi_frac_func_ssfr:
     end:
       value: 1e4
       units: 1 / gigayear
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: sSFR-HI Fraction
     section: Cold Gas Data Comparison
@@ -191,6 +206,9 @@ hi_frac_func_stellar_surface_density:
     end:
       value: 1e11
       units: "Solar_Mass / (kpc**2)"
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: Stellar Mass Surface Density-HI Fraction
     section: Cold Gas Data Comparison
@@ -261,6 +279,9 @@ hi_frac_func_stellar_mass:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: Stellar Mass-HI Fraction
     section: Cold Gas Data Comparison
@@ -299,6 +320,9 @@ cold_gas_frac_func_ssfr:
     end:
       value: 6e1
       units: 1 / gigayear
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: sSFR-Cold gas Fraction
     section: Cold Gas Data Comparison
@@ -330,6 +354,9 @@ h2_to_neutral_gas_frac_func_stellar_mass:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: Stellar Mass-Cold gas Fraction
     section: Cold Gas Data Comparison
@@ -366,6 +393,9 @@ h2_to_neutral_gas_frac_func_ssfr:
     end:
       value: 6e1
       units: 1 / gigayear
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
   metadata:
     title: sSFR-Neutral Fraction
     section: Cold Gas Data Comparison

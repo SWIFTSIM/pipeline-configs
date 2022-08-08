@@ -9,7 +9,7 @@ auto_plotter_registration: registration.py
 
 # Location of the 'observational data' repository and its compiled
 # contents.
-observational_data_directory: ../observational_data
+observational_data_directory: ../../observational_data
 
 # Style sheet to be used throughout with plotting
 matplotlib_stylesheet: mnras.mplstyle

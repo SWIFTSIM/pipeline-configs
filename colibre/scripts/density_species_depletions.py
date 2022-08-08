@@ -80,7 +80,14 @@ def get_data(filename, prefix_rho, prefix_T):
         mol_Mg = (2 - 2 * fe_balance) * A["Magnesium"]
         mol_Si = 2 * A["Silicon"]
         mol_Fe = 2 * fe_balance * A["Iron"]
-    else:
+        mol_tot = mol_O + mol_Mg + mol_Si + mol_Fe
+        compdict["Silicates"] = {
+            "Oxygen": mol_O / mol_tot,
+            "Magnesium": mol_Mg / mol_tot,
+            "Silicon": mol_Si / mol_tot,
+            "Iron": mol_Fe / mol_tot,
+        }
+    elif (len(data.metadata.named_columns["DustMassFractions"]) == 4):
         mol_O = (
             float(
                 data.metadata.parameters[
@@ -113,14 +120,39 @@ def get_data(filename, prefix_rho, prefix_T):
             )
             * A["Iron"]
         )
-
-    mol_tot = mol_O + mol_Mg + mol_Si + mol_Fe
-    compdict["Silicates"] = {
-        "Oxygen": mol_O / mol_tot,
-        "Magnesium": mol_Mg / mol_tot,
-        "Silicon": mol_Si / mol_tot,
-        "Iron": mol_Fe / mol_tot,
-    }
+        mol_tot = mol_O + mol_Mg + mol_Si + mol_Fe
+        compdict["Silicates"] = {
+            "Oxygen": mol_O / mol_tot,
+            "Magnesium": mol_Mg / mol_tot,
+            "Silicon": mol_Si / mol_tot,
+            "Iron": mol_Fe / mol_tot,
+        }
+    else:
+        mol_O = (
+            float(data.metadata.parameters["DustEvolution:silicate_molecule_subscript_oxygen"])
+            * A["Oxygen"]
+        )
+        mol_Si = (
+            float(data.metadata.parameters[
+                "DustEvolution:silicate_molecule_subscript_silicon"
+            ])
+            * A["Silicon"]
+        )
+        mol_Fe = 2 * A["Iron"]
+        mol_Mg = 2 * A["Magnesium"]
+        
+        mgmol_tot = mol_O + mol_Mg + mol_Si
+        compdict["MgSilicates"] = {
+            "Oxygen": mol_O / mgmol_tot,
+            "Magnesium": mol_Mg / mgmol_tot,
+            "Silicon": mol_Si / mgmol_tot,
+        }
+        femol_tot = mol_O + mol_Fe + mol_Si
+        compdict["FeSilicates"] = {
+            "Oxygen": mol_O / femol_tot,
+            "Iron": mol_Fe / femol_tot,
+            "Silicon": mol_Si / femol_tot,
+        }
 
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
@@ -143,9 +175,11 @@ def get_data(filename, prefix_rho, prefix_T):
     for d in data.metadata.named_columns["DustMassFractions"]:
         for k in compdict.keys():
             if k in d:
+                print (k, d)
                 for el in compdict[k].keys():
+                    print(el)
                     elfrac = compdict[k][el] * getattr(
-                        data.gas.dust_mass_fractions, d.lower()
+                        data.gas.dust_mass_fractions, d
                     )
                     if el in dsfrac_dict:
                         # print(f"Add Grain: {d} Element {el} Elfrac : {elfrac}")
@@ -154,7 +188,7 @@ def get_data(filename, prefix_rho, prefix_T):
                         # print(f"Make Grain: {d} Element {el} Elfrac : {elfrac}")
                         dsfrac_dict[el] = elfrac.astype("float64")
 
-        dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
+        dfrac = getattr(data.gas.dust_mass_fractions, d)
         dfracs += dfrac
 
     elfrac_dict = {}

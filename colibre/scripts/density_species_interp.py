@@ -58,7 +58,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     dfracs = np.zeros(data.gas.masses.shape)
     dsfrac_dict = {}
     for d in data.metadata.named_columns["DustMassFractions"]:
-        dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
+        dfrac = getattr(data.gas.dust_mass_fractions, d)
         dsfrac_dict[d] = dfrac.astype("float64")
         dfracs += dfrac
 
@@ -284,7 +284,7 @@ def make_single_image(
         axis.set_xlim(np.log10(density_bounds[0]), np.log10(density_bounds[1]))
         axis2 = axis.twinx()
         axis2.plot(binmids, hist_d2z, c="C5", label="Model dust")
-        axis2.plot(binmids, hist_di2z, c="C5", ls="--", label="Table dust")
+        # axis2.plot(binmids, hist_di2z, c="C5", ls="--", label="Table dust")
         dotcount = 0
         for k in hists_hds2Z.keys():
             axis2.plot(

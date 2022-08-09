@@ -164,6 +164,33 @@ adaptive_stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/Driver2021.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
 
+adaptive_stellar_mass_function_50_box_size_correction:
+  type: "adaptivemassfunction"
+  legend_loc: "lower left"
+  number_of_bins: 30
+  box_size_correction: box_size_correction_25_to_50.yml
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e0
+  metadata:
+    title: Stellar Mass Function (50 kpc aperture, adaptive, 25->50 Mpc box size correction)
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. The data have been corrected to a box size of 50 Mpc, assuming the original simulation used a 25 Mpc box.
+    section: Stellar Mass Function
+  observational_data:
+    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+    - filename: GalaxyStellarMassFunction/Driver2021.hdf5
+    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+
 adaptive_stellar_mass_function_passive_only_50:
   type: "massfunction"
   number_of_bins: 30

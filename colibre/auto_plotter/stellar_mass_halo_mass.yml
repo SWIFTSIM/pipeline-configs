@@ -24,6 +24,9 @@ stellar_mass_halo_mass_M200_centrals_ratio_100:
     end:
       value: 1e15
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, $M_{200,crit}$, centrals only)
     caption: Includes only central haloes.
@@ -59,6 +62,9 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_100:
     end:
       value: 1e15
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, $M_{\rm BN98}$, centrals only)
     caption: Includes only central haloes.
@@ -95,6 +101,9 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_50:
     end:
       value: 1e15
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 50 kpc aperture, $M_{\rm BN98}$, centrals only)
     caption: Includes only central haloes.
@@ -131,6 +140,9 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_30:
     end:
       value: 1e15
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, $M_{\rm BN98}$, centrals only)
     caption: Includes only central haloes.
@@ -167,6 +179,9 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, $M_{200,crit}$, centrals only, stellar x-axis)
     caption: Includes only central haloes.
@@ -202,6 +217,9 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 100 kpc aperture, $M_{\rm BN98}$, centrals only, stellar x-axis)
     caption: Includes only central haloes.
@@ -237,6 +255,9 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_50:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 50 kpc aperture, $M_{\rm BN98}$, centrals only, stellar x-axis)
     caption: Includes only central haloes.
@@ -272,6 +293,9 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_30:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, $M_{\rm BN98}$, centrals only, stellar x-axis)
     caption: Includes only central haloes.
@@ -443,6 +467,9 @@ stellar_mass_halo_mass_M200_centrals_ratio_30:
     end:
       value: 1e13
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, $M_{200,crit}$, centrals only)
     caption: Includes only central haloes.
@@ -479,6 +506,9 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
     end:
       value: 1e12
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: Stellar Mass-Halo Mass relation (ratio, 30 kpc aperture, $M_{200,crit}$, centrals only, stellar x-axis)
     caption: Includes only central haloes.

@@ -24,6 +24,9 @@ stellar_mass_v_size_ratio:
     end:
       value: 3e12
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: dimensionless
   metadata:
     title: Stellar mass vs Small-to-Large Ratio
     caption: The dust mass ratio of small to large grains in all gas aggregated over a 50kpc radius aperture in galaxies. Compared to values derived from observation by Relano et al 2020.
@@ -59,6 +62,9 @@ stellar_mass_v_molecular_size_ratio:
     end:
       value: 3e12
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: dimensionless
   metadata:
     title: Stellar mass vs Small-to-Large Ratio (H2 only)
     caption: The dust mass ratio of small to large grains in all gas aggregated over a 50kpc radius aperture in galaxies. Compared to values derived from observation by Relano et al 2020.

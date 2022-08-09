@@ -31,7 +31,9 @@ plt.style.use(arguments.stylesheet_location)
 data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
-metallicity_bins = np.logspace(-10, 0, number_of_bins)
+logZmin = -10.0
+logZmax = 0.0
+metallicity_bins = np.logspace(logZmin, logZmax, number_of_bins)
 metallicity_bin_centers = 0.5 * (metallicity_bins[1:] + metallicity_bins[:-1])
 log_metallicity_bin_width = np.log10(metallicity_bins[1]) - np.log10(
     metallicity_bins[0]
@@ -46,31 +48,26 @@ ax.loglog()
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
     try:
-        metallicities = {
-            "Gas": np.histogram(
-                snapshot.gas.smoothed_metal_mass_fractions.value, bins=metallicity_bins
-            )[0],
-            "Stars": np.histogram(
-                snapshot.stars.smoothed_metal_mass_fractions.value,
-                bins=metallicity_bins,
-            )[0],
-        }
+        Zgas = snapshot.gas.smoothed_metal_mass_fractions.value
+        Zstar = snapshot.stars.smoothed_metal_mass_fractions.value
         smoothed = True
     except AttributeError:
-        metallicities = {
-            "Gas": np.histogram(
-                snapshot.gas.metal_mass_fractions.value, bins=metallicity_bins
-            )[0],
-            "Stars": np.histogram(
-                snapshot.stars.metal_mass_fractions.value, bins=metallicity_bins
-            )[0],
-        }
+        Zgas = snapshot.gas.metal_mass_fractions.value
+        Zstar = snapshot.stars.metal_mass_fractions.value
         smoothed = False
+
+    gas_fraction = 100.0 * (Zgas >= 10.0 ** logZmin).sum() / Zgas.shape[0]
+    star_fraction = 100.0 * (Zstar >= 10.0 ** logZmin).sum() / Zstar.shape[0]
+
+    metallicities = {
+        "Gas": np.histogram(Zgas, bins=metallicity_bins)[0],
+        "Stars": np.histogram(Zstar, bins=metallicity_bins)[0],
+    }
 
     ax.plot(
         metallicity_bin_centers,
         metallicities["Gas"] / log_metallicity_bin_width,
-        label=name,
+        label=f"{name} (gas: {gas_fraction:.1f}%, stars: {star_fraction:.1f}%)",
         color=f"C{color}",
         linestyle="solid",
     )

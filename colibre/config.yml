@@ -83,7 +83,7 @@ scripts:
     section: Cold Gas Evolution
     title: Molecular Gas Mass Evolution
   - filename: scripts/metallicity_distribution.py
-    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars. If present, dashed line represents the entropy floor (equation of state).
+    caption: Metal mass fraction distribution shown for each simulation; solid lines show gas metallicity and dashed lines show the same for the stars. If present, dashed line represents the entropy floor (equation of state). The percentages in between brackets indicate what fraction of the particles is above the lower limit and hence included in the distribution.
     output_file: metallicity_distribution.png
     section: Metal Mass Fractions
     title: Metal Mass Fraction Distribution

@@ -31,7 +31,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 birth_pressure_bins = unyt.unyt_array(
-    np.logspace(1, 7, number_of_bins), units="K/cm**3"
+    np.logspace(1.0, 8.0, number_of_bins), units="K/cm**3"
 )
 log_birth_pressure_bin_width = np.log10(birth_pressure_bins[1].value) - np.log10(
     birth_pressure_bins[0].value

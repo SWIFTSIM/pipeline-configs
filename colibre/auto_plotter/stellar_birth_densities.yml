@@ -25,7 +25,7 @@ stellar_birth_density_halo_mass_average_of_log_all:
   metadata:
     title: Average of log Stellar Birth Density-Halo Mass relation
     caption: Includes all haloes, including subhaloes.
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties
     show_on_webpage: false
 
 stellar_birth_density_halo_mass_max_all:
@@ -55,7 +55,7 @@ stellar_birth_density_halo_mass_max_all:
   metadata:
     title: Maximal Stellar Birth Density-Halo Mass relation
     caption: Includes all haloes, including subhaloes.
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties
     show_on_webpage: false
 
 stellar_birth_density_stellar_mass_average_of_log_all_50:
@@ -85,7 +85,7 @@ stellar_birth_density_stellar_mass_average_of_log_all_50:
   metadata:
     title: Average of log Stellar Birth Density-Stellar Mass relation
     caption: Includes all haloes, including subhaloes.
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties
 
 stellar_birth_density_stellar_mass_max_all_50:
   type: "scatter"
@@ -114,4 +114,4 @@ stellar_birth_density_stellar_mass_max_all_50:
   metadata:
     title: Maximal Stellar Birth Density-Stellar Mass relation
     caption: Includes all haloes, including subhaloes.
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties

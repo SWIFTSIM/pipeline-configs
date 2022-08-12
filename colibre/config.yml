@@ -90,22 +90,27 @@ scripts:
   - filename: scripts/birth_density_distribution.py
     caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for SN min and max heating temperatures with $f_t=10$.
     title: Stellar Birth Densities
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties
     output_file: birth_density_distribution.png
+  - filename: scripts/birth_pressure_distribution.py
+    caption: Distributions of stellar birth pressures, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-pressures.
+    title: Stellar Birth Pressures
+    section: Stellar Birth Properties
+    output_file: birth_pressure_distribution.png
   - filename: scripts/birth_density_metallicity.py
     caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin.
     title: Stellar Birth Densities-Metallicity
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties
     output_file: birth_density_metallicity.png
   - filename: scripts/birth_density_redshift.py
     caption: Stellar birth densities vs birth redshift diagram. The pixel colour indicates the number of stellar particles in the pixel.
     title: Stellar Birth Densities-Birth Redshift
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties
     output_file: birth_density_redshift.png
   - filename: scripts/birth_metallicity_redshift.py
     caption: Stellar metallicity vs birth redshift diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth redshift, particles with metallicities lower than the smallest value along the X axis are placed in the lowest-metallicity bin.
     title: Stellar Metallicity-Birth Redshift
-    section: Stellar Birth Densities
+    section: Stellar Birth Properties
     output_file: metallicity_redshift.png
   - filename: scripts/last_SNII_density_distribution.py
     caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for SN min and max heating temperatures with $f_t=10$.

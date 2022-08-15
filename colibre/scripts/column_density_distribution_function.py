@@ -201,7 +201,7 @@ def plot_cddf(
         fig.savefig(f"{output_path}/{figure_name}.png")
 
     for snapshot_filename in metadata:
-        with open(f"{snapshot_filename.rstrip('.hdf5')}_cddf.yml", "w") as handle:
+        with open(f"{snapshot_filename.removesuffix('.hdf5')}_cddf.yml", "w") as handle:
             yaml.safe_dump(metadata[snapshot_filename], handle)
 
 

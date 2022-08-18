@@ -108,7 +108,16 @@ def make_single_image(
 
     for hist, name, axis in zip(hists, names, ax.flat):
         mappable = axis.pcolormesh(d, z, hist, norm=LogNorm(vmin=1, vmax=vmax))
-        axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        axis.text(
+            0.025,
+            0.975,
+            name,
+            ha="left",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=5,
+            in_layout=False,
+        )
 
     fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Number of stellar particles")
 

@@ -186,7 +186,16 @@ def make_single_image(
                 vmin=sf_mass_fraction_bounds[0], vmax=sf_mass_fraction_bounds[1]
             ),
         )
-        axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        axis.text(
+            0.025,
+            0.975,
+            name,
+            ha="left",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=5,
+            in_layout=False,
+        )
         metadata = load(filename).metadata
         plot_eos(metadata, axis)
         axis.set_xlim(*density_bounds)

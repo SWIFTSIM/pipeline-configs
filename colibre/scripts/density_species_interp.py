@@ -278,7 +278,16 @@ def make_single_image(
         axis.plot(
             binmids, hist_h2 + hist_hi + hist_hii, color="0.7", label="total", ls=":"
         )
-        axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        axis.text(
+            0.025,
+            0.975,
+            name,
+            ha="left",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=5,
+            in_layout=False,
+        )
         axis.legend(frameon=False, loc=6)
         axis.set_ylim(0, 1.1)
         axis.set_xlim(np.log10(density_bounds[0]), np.log10(density_bounds[1]))

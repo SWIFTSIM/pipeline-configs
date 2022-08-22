@@ -42,9 +42,11 @@ for aperture_size in aperture_sizes:
     star_formation_rate = getattr(catalogue.apertures, f"sfr_gas_{aperture_size}_kpc")
 
     ssfr = np.ones(len(star_formation_rate)) * marginal_ssfr
+    # be aware of units here! unyt array assignment does not check units!
     ssfr[good_stellar_mass] = (
         star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
-    )
+    ).to(marginal_ssfr.units)
+    print(ssfr)
 
     # Name (label) of the derived field
     ssfr.name = f"Specific SFR ({aperture_size} kpc)"
@@ -79,10 +81,15 @@ minimal_twelve_plus_log_OH = 7.5
 
 for aperture_size in aperture_sizes:
     try:
-        metal_mass_fraction_star = (
-            getattr(catalogue.apertures, f"zmet_star_{aperture_size}_kpc")
-            / solar_metal_mass_fraction
+        metal_mass_fraction_star = getattr(
+            catalogue.apertures, f"zmet_star_{aperture_size}_kpc"
         )
+        # SOAP catalogues store the total metal mass rather than the mass fraction, convert it here
+        if metal_mass_fraction_star.units.same_dimensions_as(unyt.Msun.units):
+            metal_mass_fraction_star /= getattr(
+                catalogue.apertures, f"mass_star_{aperture_size}_kpc"
+            )
+        metal_mass_fraction_star /= solar_metal_mass_fraction
         metal_mass_fraction_star.name = f"Star Metallicity $Z_*$ rel. to $Z_\\odot={solar_metal_mass_fraction}$ ({aperture_size} kpc)"
         setattr(
             self,
@@ -93,10 +100,15 @@ for aperture_size in aperture_sizes:
         pass
 
     try:
-        metal_mass_fraction_gas = (
-            getattr(catalogue.apertures, f"zmet_gas_sf_{aperture_size}_kpc")
-            / solar_metal_mass_fraction
+        metal_mass_fraction_gas = getattr(
+            catalogue.apertures, f"zmet_gas_sf_{aperture_size}_kpc"
         )
+        # SOAP catalogues store the total metal mass rather than the mass fraction, convert it here
+        if metal_mass_fraction_gas.units.same_dimensions_as(unyt.Msun.units):
+            metal_mass_fraction_gas /= getattr(
+                catalogue.apertures, f"mass_gas_sf_{aperture_size}_kpc"
+            )
+        metal_mass_fraction_gas /= solar_metal_mass_fraction
 
         # Handle scenario where metallicity is zero, as we are bounded
         # by approx 1e-2 metal mass fraction anyway:

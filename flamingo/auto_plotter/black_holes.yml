@@ -25,7 +25,7 @@ stellar_mass_black_hole_mass_30:
     title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass)
     caption: SMBHM relation for the 30 kpc stellar mass aperture. 
     section: Black Holes
-    show_on_webpage: true
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
@@ -91,6 +91,7 @@ stellar_mass_black_hole_mass_100:
     title: Stellar Mass-Black Hole Mass relation (100 kpc Stellar Mass)
     caption: SMBHM relation. Note that the stellar velocity dispersion is measured in observations in a fixed 1 kpc aperture
     section: Black Holes
+    show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
@@ -183,6 +184,6 @@ stellar_veldisp_black_hole_mass_30:
     title: Stellar Velocity Dispersion-Black Hole Mass relation (30 kpc)
     caption: Note that the stellar velocity dispersion is measured in observations in a fixed 1 kpc aperture
     section: Black Holes
-    show_on_webpage: true
+    show_on_webpage: false
   observational_data:
     - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5

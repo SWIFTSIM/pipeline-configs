@@ -58,22 +58,21 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     stars_SNII_v_kick_last = stars_SNII_v_kick_last
     gas_SNII_v_kick_last = gas_SNII_v_kick_last
 
-    data = np.concatenate((stars_SNII_v_kick_last[stars_SNII_v_kick_last > -1],gas_SNII_v_kick_last[gas_SNII_v_kick_last > -1]))    
+    data = np.concatenate(
+        (
+            stars_SNII_v_kick_last[stars_SNII_v_kick_last > -1],
+            gas_SNII_v_kick_last[gas_SNII_v_kick_last > -1],
+        )
+    )
 
     Num_of_kicked_parts_total = len(data)
 
     H, _ = np.histogram(data, bins=SNII_v_kick_bins)
     y_points = H / log_SNII_v_kick_bin_width / Num_of_kicked_parts_total
 
-    ax.plot(
-         SNII_v_kick_centres, y_points, label=name, color=f"C{color}",
-    )
+    ax.plot(SNII_v_kick_centres, y_points, label=name, color=f"C{color}")
     ax.axvline(
-            np.median(data),
-            color=f"C{color}",
-            linestyle="dashed",
-            zorder=-10,
-            alpha=0.5,
+        np.median(data), color=f"C{color}", linestyle="dashed", zorder=-10, alpha=0.5
     )
 
 axes.legend(loc="upper right", markerfirst=False)

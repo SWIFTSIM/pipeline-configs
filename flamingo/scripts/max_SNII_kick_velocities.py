@@ -32,12 +32,7 @@ def get_data(filename):
     gas_SNII_v_kick_max = gas_SNII_v_kick_max[gas_SNII_kicked]
 
     # All kicks (contained in gas + stars info)
-    v_kick_max_all = np.concatenate(
-        [
-            stars_SNII_v_kick_max,
-            gas_SNII_v_kick_max,
-        ]
-    )
+    v_kick_max_all = np.concatenate([stars_SNII_v_kick_max, gas_SNII_v_kick_max])
 
     return v_kick_max_all
 

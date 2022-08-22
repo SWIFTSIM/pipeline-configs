@@ -166,3 +166,7 @@ scripts:
     title: Dead time fraction vs scale factor
     section: Run Performance
     output_file: deadtime_evolution.png
+
+special_modes:
+  - name: eddington_mass_bias
+    script: special_modes/apply_eddington_mass_bias.py

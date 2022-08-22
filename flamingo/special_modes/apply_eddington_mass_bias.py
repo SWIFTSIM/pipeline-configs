@@ -14,4 +14,3 @@ for aperture_size in aperture_sizes:
     stellar_mass_with_bias.name = f"Stellar Mass $M_*$ ({aperture_size} kpc)"
 
     setattr(self, f"mass_star_{aperture_size}_kpc", stellar_mass_with_bias)
-

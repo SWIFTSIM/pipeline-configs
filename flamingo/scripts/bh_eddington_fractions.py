@@ -7,13 +7,10 @@ from swiftsimio import load
 from unyt import mh, cm, Gyr
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
-import glob
-from velociraptor.observations import load_observation
-from pylab import rcParams
 
 # Set the limits of the figure.
 mass_bounds = [1e5, 3e10]
-value_bounds = [0, 1.02]
+value_bounds = [1e-7, 1e1]
 bins = 25
 def_value = -1.0
 
@@ -23,9 +20,9 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    values = np.absolute(data.black_holes.spins.value)
+    values = data.black_holes.eddington_fractions
 
-    return masses.value, values
+    return masses, values
 
 
 def calculate_medians(filename, mass_bounds, value_bounds, bins):
@@ -80,26 +77,22 @@ def calculate_medians(filename, mass_bounds, value_bounds, bins):
 
 
 def make_single_image(
-    filenames,
-    names,
-    mass_bounds,
-    value_bounds,
-    number_of_simulations,
-    output_path,
-    observational_data,
+    filenames, names, mass_bounds, value_bounds, number_of_simulations, output_path
 ):
 
     fig, ax = plt.subplots()
 
     ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\odot$]")
-    ax.set_ylabel(r"Black Hole Spins (magnitude) $\vert a\vert$")
+    ax.set_ylabel(
+        "Black Hole Eddington Fraction $\dot{m}=\dot{M}_{\\rm BH}/\dot{M}_{\\rm Edd}$"
+    )
     ax.set_xscale("log")
+    ax.set_yscale("log")
 
     for filename, name in zip(filenames, names):
         masses_most_massive, values_most_massive, masses_rest, values_rest, mass_bins, medians, percentile_10s, percentile_90s = calculate_medians(
             filename, mass_bounds, value_bounds, bins
         )
-        mask = medians > 0
         fill_plot, = ax.plot(mass_bins, medians, label=name)
         ax.fill_between(
             mass_bins,
@@ -121,17 +114,20 @@ def make_single_image(
                 alpha=0.5,
                 facecolor=fill_plot.get_color(),
             )
-
-    rcParams.update({"lines.markersize": 5})
-    for index, observation in enumerate(observational_data):
-        obs = load_observation(observation)
-        obs.plot_on_axes(ax)
+        ax.plot(
+            [1e-10, 1e11],
+            [0.01, 0.01],
+            color="black",
+            linestyle=":",
+            linewidth=0.75,
+            label="$\dot{m}=0.01$",
+        )
 
     ax.legend()
     ax.set_xlim(*mass_bounds)
     ax.set_ylim(*value_bounds)
 
-    fig.savefig(f"{output_path}/black_hole_spins.png")
+    fig.savefig(f"{output_path}/black_hole_eddington_fractions.png")
 
     return
 
@@ -139,7 +135,9 @@ def make_single_image(
 if __name__ == "__main__":
     from swiftpipeline.argumentparser import ScriptArgumentParser
 
-    arguments = ScriptArgumentParser(description="Spin - BH mass relation")
+    arguments = ScriptArgumentParser(
+        description="Eddington fraction - BH mass relation"
+    )
 
     snapshot_filenames = [
         f"{directory}/{snapshot}"
@@ -150,10 +148,6 @@ if __name__ == "__main__":
 
     plt.style.use(arguments.stylesheet_location)
 
-    obs_data = glob.glob(
-        f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/BlackHoleSpinBlackHoleMass/*.hdf5"
-    )
-
     make_single_image(
         filenames=snapshot_filenames,
         names=arguments.name_list,
@@ -161,5 +155,4 @@ if __name__ == "__main__":
         value_bounds=value_bounds,
         number_of_simulations=arguments.number_of_inputs,
         output_path=arguments.output_directory,
-        observational_data=obs_data,
     )

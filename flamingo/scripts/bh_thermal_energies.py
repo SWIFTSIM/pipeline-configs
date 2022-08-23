@@ -20,7 +20,7 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    values = data.black_holes.agntotal_injected_energies.to("erg")
+    values = data.black_holes.agntotal_injected_energies.astype(np.float64).to("erg")
 
     return masses, values
 

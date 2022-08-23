@@ -186,3 +186,55 @@ stellar_veldisp_black_hole_mass_30:
     show_on_webpage: true
   observational_data:
     - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
+    
+black_hole_mass_function:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 20
+  x:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 3e10
+  y:
+    units: 1/Mpc**3
+    start: 1e-8
+    end: 1e-1
+  metadata:
+    title: Black Hole Mass Function
+    caption: The mass function of black holes (active and non-active).
+    section: Black Holes
+    show_on_webpage: true
+  observational_data:
+    - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
+    - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
+    - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
+    - filename: BlackHoleMassFunction/Shankar2009_Data.hdf5
+    - filename: BlackHoleMassFunction/Vika2009_Data.hdf5
+    - filename: BlackHoleMassFunction/Caramete2010_Data.hdf5
+    
+black_hole_mass_function_adaptive:
+  type: "adaptivemassfunction"
+  legend_loc: "lower left"
+  number_of_bins: 20
+  x:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 3e10
+  y:
+    units: 1/Mpc**3
+    start: 1e-8
+    end: 1e-1
+  metadata:
+    title: Black Hole Mass Function (adaptive)
+    caption: The mass function of black holes (active and non-active), using adaptive binning.
+    section: Black Holes
+    show_on_webpage: true
+  observational_data:
+    - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
+    - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
+    - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
+    - filename: BlackHoleMassFunction/Shankar2009_Data.hdf5
+    - filename: BlackHoleMassFunction/Vika2009_Data.hdf5
+    - filename: BlackHoleMassFunction/Caramete2010_Data.hdf5

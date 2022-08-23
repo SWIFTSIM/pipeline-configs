@@ -176,11 +176,6 @@ scripts:
     output_file: black_hole_thermal_heatings.png
     section: Black Holes - Radiation
     title: Black Hole AGN Heating Events - Mass Relation
-  - filename: scripts/bh_mass_function.py
-    caption: The black hole mass function. This includes active and non-active black holes.
-    output_file: black_hole_mass_function.png
-    section: Black Holes
-    title: Black Hole Mass Function
   - filename: scripts/bh_radio_luminosity_functions.py
     caption: The AGN radio luminosity function, as determined from jet powers using an empirical relation between radio luminosity and jet power.
     output_file: AGN_radio_luminosity_function.png

@@ -20,8 +20,7 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    values = data.black_holes.injected_jet_energies.to("erg")
-    print(np.amax(values))
+    values = data.black_holes.injected_jet_energies.astype(np.float64).to("erg")
 
     if np.size(values) == 0:
         values = np.zeros(np.size(masses))

@@ -37,9 +37,6 @@ SNII_v_kick_centres = 0.5 * (SNII_v_kick_bins[1:] + SNII_v_kick_bins[:-1])
 fig, axes = plt.subplots(1, 1, sharex=True, sharey=True)
 
 ax_dict = {"$z > 0$": axes}
-#    "$1 < z < 3$": axes[1],
-#    "$z > 3$": axes[2],
-
 
 for label, ax in ax_dict.items():
     ax.loglog()

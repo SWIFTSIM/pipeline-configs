@@ -3,6 +3,9 @@ This special mode overides all stellar masses to include Eddington bias.
 The bias is added using the description by Behroozi (2019)
 """
 
+import numpy as np
+import unyt
+
 aperture_sizes = [30, 50, 100]
 
 for aperture_size in aperture_sizes:

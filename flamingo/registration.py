@@ -46,7 +46,6 @@ for aperture_size in aperture_sizes:
     ssfr[good_stellar_mass] = (
         star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
     ).to(marginal_ssfr.units)
-    print(ssfr)
 
     # Name (label) of the derived field
     ssfr.name = f"Specific SFR ({aperture_size} kpc)"

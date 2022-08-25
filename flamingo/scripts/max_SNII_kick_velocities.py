@@ -21,7 +21,9 @@ def get_data(filename):
     # We need to select only only gas but also stars because sparts were gas at some
     # point in the past and hence could be kicked.
     try:
-        stars_SNII_v_kick_max = (data.stars.maximal_sniikinetic_feedbackvkick).to("km/s")
+        stars_SNII_v_kick_max = (data.stars.maximal_sniikinetic_feedbackvkick).to(
+            "km/s"
+        )
         gas_SNII_v_kick_max = (data.gas.maximal_sniikinetic_feedbackvkick).to("km/s")
     except AttributeError:
         print("No tracer data")

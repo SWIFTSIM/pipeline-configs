@@ -53,9 +53,8 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             SNII_v_kick_bins.units
         )
     except AttributeError:
-       	print("No tracer data")
-       	continue
-
+        print("No tracer data")
+        continue
 
     stars_SNII_v_kick_last = stars_SNII_v_kick_last
     gas_SNII_v_kick_last = gas_SNII_v_kick_last

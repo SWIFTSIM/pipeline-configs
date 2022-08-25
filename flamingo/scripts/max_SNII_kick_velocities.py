@@ -20,8 +20,12 @@ def get_data(filename):
 
     # We need to select only only gas but also stars because sparts were gas at some
     # point in the past and hence could be kicked.
-    stars_SNII_v_kick_max = (data.stars.maximal_sniikinetic_feedbackvkick).to("km/s")
-    gas_SNII_v_kick_max = (data.gas.maximal_sniikinetic_feedbackvkick).to("km/s")
+    try:
+        stars_SNII_v_kick_max = (data.stars.maximal_sniikinetic_feedbackvkick).to("km/s")
+        gas_SNII_v_kick_max = (data.gas.maximal_sniikinetic_feedbackvkick).to("km/s")
+    except AttributeError:
+        print("No tracer data")
+        return np.ones(10)
 
     # Limit only to those gas/stellar particles that were in fact kicked by SNII
     stars_SNII_kicked = stars_SNII_v_kick_max > 0.0

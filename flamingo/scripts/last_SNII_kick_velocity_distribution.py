@@ -44,13 +44,18 @@ for label, ax in ax_dict.items():
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    stars_SNII_v_kick_last = (snapshot.stars.last_sniikinetic_feedbackvkick).to(
-        SNII_v_kick_bins.units
-    )
+    try:
+        stars_SNII_v_kick_last = (snapshot.stars.last_sniikinetic_feedbackvkick).to(
+            SNII_v_kick_bins.units
+        )
 
-    gas_SNII_v_kick_last = (snapshot.gas.last_sniikinetic_feedbackvkick).to(
-        SNII_v_kick_bins.units
-    )
+        gas_SNII_v_kick_last = (snapshot.gas.last_sniikinetic_feedbackvkick).to(
+            SNII_v_kick_bins.units
+        )
+    except AttributeError:
+       	print("No tracer data")
+       	continue
+
 
     stars_SNII_v_kick_last = stars_SNII_v_kick_last
     gas_SNII_v_kick_last = gas_SNII_v_kick_last

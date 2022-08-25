@@ -203,19 +203,6 @@ for aperture_size in aperture_sizes:
     setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
 
 
-# Add eddington bias to stellar masses, according to Behroozi (2019)
-
-for aperture_size in aperture_sizes:
-    stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-    bias_std = np.min(np.array([0.07 + 0.071 * catalogue.z, 0.3]))
-    bias_factors = 10 ** (np.random.normal(0, bias_std, len(stellar_mass)))
-
-    stellar_mass_with_bias = unyt.unyt_array(stellar_mass * bias_factors)
-    stellar_mass_with_bias.name = f"Stellar Mass $M_*$ ({aperture_size} kpc)"
-
-    setattr(self, f"stellar_mass_eddington_{aperture_size}_kpc", stellar_mass_with_bias)
-
-
 def register_star_magnitudes(self, catalogue, aperture_sizes):
 
     bands = ["i", "g", "r", "H", "u", "J", "Y", "K", "z", "Z"]
@@ -243,3 +230,15 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
 
 
 register_star_magnitudes(self, catalogue, aperture_sizes)
+
+# Add eddington bias to stellar masses, according to Behroozi (2019)
+
+for aperture_size in aperture_sizes:
+    stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+    bias_std = np.min(np.array([0.07 + 0.071 * catalogue.z, 0.3]))
+    bias_factors = 10 ** (np.random.normal(0, bias_std, len(stellar_mass)))
+
+    stellar_mass_with_bias = unyt.unyt_array(stellar_mass * bias_factors)
+    stellar_mass_with_bias.name = f"Stellar Mass $M_*$ ({aperture_size} kpc)"
+
+    setattr(self, f"stellar_mass_eddington_{aperture_size}_kpc", stellar_mass_with_bias)

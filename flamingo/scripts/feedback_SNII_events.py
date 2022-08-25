@@ -21,7 +21,12 @@ def get_data(filename):
 
     data = load(filename)
 
-    gas_N_SNII = data.gas.heated_by_sniifeedback
+    try:
+        gas_N_SNII = data.gas.heated_by_sniifeedback
+
+    except AttributeError:
+        print("No tracer data")
+        return np.ones(10)
 
     return gas_N_SNII
 

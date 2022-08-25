@@ -166,3 +166,17 @@ scripts:
     title: Dead time fraction vs scale factor
     section: Run Performance
     output_file: deadtime_evolution.png
+  - filename: scripts/last_SNII_kick_velocity_distribution.py
+    caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity.
+    output_file: SNII_last_kick_velocity_distribution.png
+    section: Feedback kick velocities
+    title: Kick velocity distribution at last SNII
+  - filename: scripts/max_SNII_kick_velocities.py
+    caption: Maximal SNII kick velocities by experienced by particles in SNII kinetic feedback throughout the entire simulation.
+    output_file: SNII_maximal_kick_velocities.png
+    section: Feedback kick velocities
+    title: Maximal SNII kick velocity
+
+special_modes:
+  - name: eddington_mass_bias
+    script: special_modes/apply_eddington_mass_bias.py

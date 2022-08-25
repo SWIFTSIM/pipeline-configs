@@ -51,6 +51,7 @@ def setup_axes(number_of_simulations: int):
 
 def bin_individual_data(data: SWIFTDataset):
     f_E_fractions = data.stars.feedback_energy_fractions.value
+
     mask = f_E_fractions > 0.0
 
     f_E_fractions = f_E_fractions[mask]
@@ -93,36 +94,50 @@ if __name__ == "__main__":
 
     # Do this first so we can ensure that we have correct vmin, vmax:
     histograms = []
+    vmax = None
     for snapshot in data:
-        H, density_edges, f_E_edges = bin_individual_data(snapshot)
-        histograms.append(H)
+        try:
+            H, density_edges, f_E_edges = bin_individual_data(snapshot)
+            histograms.append(H)
+            if vmax is None:
+                vmax = H.max()
+            else:
+                vmax = max(vmax, H.max())
+        except AttributeError:
+            histograms.append(None)
 
-    vmax = max([H.max() for H in histograms])
-
+    mappable = None
     for ax, name, snapshot, H in zip(axes.flat, arguments.name_list, data, histograms):
-        mappable = ax.pcolormesh(
-            density_edges, f_E_edges, H.T, norm=LogNorm(vmin=1, vmax=vmax, clip=True)
-        )
-        f_E_fractions = snapshot.stars.feedback_energy_fractions.value
-        f_E_fractions = f_E_fractions[f_E_fractions > 0.0]
+        if H is not None:
+            mappable = ax.pcolormesh(
+                density_edges,
+                f_E_edges,
+                H.T,
+                norm=LogNorm(vmin=1, vmax=vmax, clip=True),
+            )
+            f_E_fractions = snapshot.stars.feedback_energy_fractions.value
+            f_E_fractions = f_E_fractions[f_E_fractions > 0.0]
 
-        ax.text(
-            0.025,
-            0.025,
-            "\n".join(
-                [
-                    "$f_E$ values:",
-                    f"Min: {np.min(f_E_fractions):3.3f}",
-                    f"Max: {np.max(f_E_fractions):3.3f}",
-                    f"Mean: {np.mean(f_E_fractions):3.3f}",
-                    f"Median: {np.median(f_E_fractions):3.3f}",
-                ]
-            ),
-            transform=ax.transAxes,
-            ha="left",
-            va="bottom",
-        )
+            ax.text(
+                0.025,
+                0.025,
+                "\n".join(
+                    [
+                        "$f_E$ values:",
+                        f"Min: {np.min(f_E_fractions):3.3f}",
+                        f"Max: {np.max(f_E_fractions):3.3f}",
+                        f"Mean: {np.mean(f_E_fractions):3.3f}",
+                        f"Median: {np.median(f_E_fractions):3.3f}",
+                    ]
+                ),
+                transform=ax.transAxes,
+                ha="left",
+                va="bottom",
+            )
+        else:
+            ax.text(0.5, 0.5, "No tracer data", transform=ax.transAxes, ha="center")
 
-    fig.colorbar(mappable, label="Number of particles")
+    if mappable is not None:
+        fig.colorbar(mappable, label="Number of particles")
 
     fig.savefig(f"{arguments.output_directory}/birth_density_f_E.png")

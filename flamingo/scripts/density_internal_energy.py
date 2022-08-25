@@ -24,8 +24,16 @@ def get_data(filename):
 
     data = load(filename)
 
-    number_density = (data.gas.densities.to_physical() / mh).to(cm ** -3)
-    internal_energy = (data.gas.internal_energies.to_physical()).to(km ** 2 / s ** 2)
+    mass_density = data.gas.densities.to_physical()
+    number_density = (mass_density / mh).to(cm ** -3)
+    try:
+        internal_energy = (data.gas.internal_energies.to_physical()).to(
+            km ** 2 / s ** 2
+        )
+    except AttributeError:
+        # we do not have internal energies; compute them from the density and pressure
+        pressure = data.gas.pressures.to_physical()
+        internal_energy = (1.5 * pressure / mass_density).to(km ** 2 / s ** 2)
 
     return number_density.value, internal_energy.value
 

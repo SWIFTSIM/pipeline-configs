@@ -101,7 +101,16 @@ def make_single_image(
         # Indicate gas mass resolution of the run
         axis.plot([m_gas, m_gas], [mass_bounds[0], mass_bounds[1]], "k--", lw=0.2)
         axis.scatter(m_dyn, m_sub, s=1)
-        axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        axis.text(
+            0.025,
+            0.975,
+            name,
+            ha="left",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=5,
+            in_layout=False,
+        )
 
     fig.savefig(f"{output_path}/bh_masses.png")
 

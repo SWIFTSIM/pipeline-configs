@@ -208,7 +208,16 @@ def make_single_image(
 
     for filename, hist, name, axis in zip(filenames, hists, names, ax.flat):
         mappable = axis.pcolormesh(d, T, hist, norm=LogNorm(vmin=1e-2, vmax=1e0))
-        axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        axis.text(
+            0.025,
+            0.975,
+            name,
+            ha="left",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=5,
+            in_layout=False,
+        )
         metadata = load(filename).metadata
         plot_eos(metadata, axis)
         axis.set_xlim(*density_bounds)

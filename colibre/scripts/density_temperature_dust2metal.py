@@ -158,7 +158,16 @@ def make_single_image(
         mappable = axis.pcolormesh(
             d, T, hist, norm=LogNorm(vmin=DTMs_bounds[0], vmax=DTMs_bounds[1])
         )
-        axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        axis.text(
+            0.025,
+            0.975,
+            name,
+            ha="left",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=5,
+            in_layout=False,
+        )
 
     fig.colorbar(mappable, ax=ax.ravel().tolist(), label="Dust to Metal Ratio")
 

@@ -346,7 +346,16 @@ def make_single_image(
             lw=0.25,
             zorder=0,
         )
-        axis.text(0.025, 0.975, name, ha="left", va="top", transform=axis.transAxes)
+        axis.text(
+            0.025,
+            0.975,
+            name,
+            ha="left",
+            va="top",
+            transform=axis.transAxes,
+            fontsize=5,
+            in_layout=False,
+        )
         axis.legend(frameon=False, loc=6)
         axis.set_ylim(0, 1.1)
         axis2 = axis.twinx()

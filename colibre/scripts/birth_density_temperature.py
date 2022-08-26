@@ -1,5 +1,5 @@
 """
-Makes a stellar-birth-density vs. metallicity 2D plot. Uses the swiftsimio library.
+Makes a stellar-birth-density vs. temperature 2D plot. Uses the swiftsimio library.
 """
 
 import matplotlib.pyplot as plt
@@ -12,7 +12,7 @@ from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 density_bounds = [0.01, 10 ** 7.0]  # in nh/cm^3
-temperature_bounds = [10.0, 2.0e4]  # in K
+temperature_bounds = [10.0, 10 ** 4.5]  # in K
 bins = 128
 
 

@@ -1,5 +1,5 @@
 """
-Plots the birth pressure distribution.
+Plots the birth temperature distribution.
 """
 
 import matplotlib.pyplot as plt
@@ -7,7 +7,6 @@ import numpy as np
 import unyt
 import traceback
 
-from unyt import mh
 
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
@@ -31,7 +30,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 birth_temperature_bins = unyt.unyt_array(
-    np.logspace(1.0, 4.1, number_of_bins), units="K"
+    np.logspace(1.0, 4.5, number_of_bins), units="K"
 )
 log_birth_temperature_bin_width = np.log10(birth_temperature_bins[1].value) - np.log10(
     birth_temperature_bins[0].value
@@ -56,7 +55,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     birth_temperatures = snapshot.stars.birth_temperatures.to("K")
     birth_redshifts = 1 / snapshot.stars.birth_scale_factors.value - 1
 
-    # Segment birth pressures into redshift bins
+    # Segment birth temperatures into redshift bins
     birth_temperature_by_redshift = {
         "$z < 1$": birth_temperatures[birth_redshifts < 1],
         "$1 < z < 3$": birth_temperatures[
@@ -76,7 +75,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
         ax.plot(birth_temperature_centers, y_points, label=name, color=f"C{color}")
 
-        # Add the median stellar birth-pressure line
+        # Add the median stellar birth-temperature line
         ax.axvline(
             np.median(data),
             color=f"C{color}",

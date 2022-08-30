@@ -94,6 +94,7 @@ stellar_mass_specific_sfr_all_50:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_AllGalaxies.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
 stellar_mass_specific_sfr_all_30:
   type: "scatter"
@@ -127,6 +128,7 @@ stellar_mass_specific_sfr_all_30:
   observational_data:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
 stellar_mass_specific_sfr_active_50:
   type: "scatter"
@@ -163,6 +165,7 @@ stellar_mass_specific_sfr_active_50:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_StarForming.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
 stellar_mass_specific_sfr_active_30:
   type: "scatter"
@@ -199,6 +202,7 @@ stellar_mass_specific_sfr_active_30:
   observational_data:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
 halo_mass_specific_sfr_30:
   type: "scatter"

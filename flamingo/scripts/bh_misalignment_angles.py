@@ -20,7 +20,7 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    
+
     try:
         values = np.arccos(data.black_holes.cos_accretion_disk_angle) / np.pi * 180
     except:

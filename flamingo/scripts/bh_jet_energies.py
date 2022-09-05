@@ -25,7 +25,7 @@ def get_data(filename):
         values = data.black_holes.injected_jet_energies.astype(np.float64).to("erg")
     except:
         values = np.zeros(np.size(masses))
-        
+
     return masses, values
 
 

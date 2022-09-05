@@ -24,16 +24,18 @@ def get_data(filename):
 
     try:
         jet_effs = data.black_holes.jet_efficiencies
-        accr_rates = data.black_holes.accretion_rates.astype(np.float64).to(unyt.kg / unyt.s)
+        accr_rates = data.black_holes.accretion_rates.astype(np.float64).to(
+            unyt.kg / unyt.s
+        )
         values = jet_effs * (speed_of_light ** 2) * accr_rates
         values = values.to(unyt.erg / unyt.s)
-        
+
         # Make sure to take only black holes with a non-zero jet power (efficiency)
         masses = masses[jet_effs > 1e-6]
         values = values[jet_effs > 1e-6]
     except:
         values = np.zeros(np.size(masses))
-    
+
     return masses, values
 
 

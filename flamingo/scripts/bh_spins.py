@@ -23,7 +23,7 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    
+
     try:
         values = np.absolute(data.black_holes.spins.value)
     except:

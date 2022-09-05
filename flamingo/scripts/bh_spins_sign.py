@@ -20,7 +20,7 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    
+
     try:
         values = np.sign(data.black_holes.spins.value)
         values[values < 0] = 0

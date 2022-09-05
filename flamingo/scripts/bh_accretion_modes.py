@@ -4,6 +4,7 @@ import scipy.stats as stats
 
 from swiftsimio import load
 
+import unyt
 from unyt import mh, cm, Gyr
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
@@ -20,9 +21,13 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    accretion_modes = data.black_holes.accretion_modes
+    
+    try:
+        values = data.black_holes.accretion_modes
+    except:
+        values = unyt.unyt_array(-2*np.ones(masses.shape), dtype=np.float64, units=unyt.dimensionless)
 
-    return masses, accretion_modes
+    return masses, values
 
 
 def calculate_medians(filename, mass_bounds, value_bounds, bins):

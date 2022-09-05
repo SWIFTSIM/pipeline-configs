@@ -4,6 +4,7 @@ import scipy.stats as stats
 
 from swiftsimio import load
 
+import unyt
 from unyt import mh, cm, Gyr
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
@@ -24,7 +25,7 @@ def get_data(filename):
     try:
         values = data.black_holes.injected_jet_energies.astype(np.float64).to("erg")
     except:
-        values = np.zeros(np.size(masses))
+        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units="erg")
 
     return masses, values
 

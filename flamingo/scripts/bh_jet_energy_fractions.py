@@ -4,6 +4,7 @@ import scipy.stats as stats
 
 from swiftsimio import load
 
+import unyt
 from unyt import mh, cm, Gyr
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
@@ -26,7 +27,7 @@ def get_data(filename):
         lum_energies = data.black_holes.agntotal_injected_energies
         values = jet_energies / (jet_energies + lum_energies)
     except:
-        values = np.zeros(np.size(masses))
+        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless)
 
     return masses, values
 

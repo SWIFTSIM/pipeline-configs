@@ -37,8 +37,8 @@ def get_data(filename):
         )
         values = radio_luminosities * unyt.Watt / unyt.Hertz
     except:
-        values = np.zeros(np.size(masses))
-
+        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.Watt/unyt.Hertz)
+        
     return values
 
 

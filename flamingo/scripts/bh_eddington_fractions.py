@@ -4,6 +4,7 @@ import scipy.stats as stats
 
 from swiftsimio import load
 
+import unyt
 from unyt import mh, cm, Gyr
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
@@ -20,7 +21,11 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    values = data.black_holes.eddington_fractions
+    
+    try:
+        values = data.black_holes.eddington_fractions
+    except:
+        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless)
 
     return masses, values
 

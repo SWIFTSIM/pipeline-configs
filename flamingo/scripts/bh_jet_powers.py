@@ -21,30 +21,33 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    jet_effs = data.black_holes.jet_efficiencies
-    accr_rates = data.black_holes.accretion_rates.convert_to_units(unyt.kg / unyt.s)
-    values = jet_effs * speed_of_light ** 2 * accr_rates
-    values = values.convert_to_units(unyt.erg / unyt.s)
 
-    if np.size(values) == 0:
+    try:
+        jet_effs = data.black_holes.jet_efficiencies
+        accr_rates = data.black_holes.accretion_rates.astype(np.float64).to(unyt.kg / unyt.s)
+        values = jet_effs * (speed_of_light ** 2) * accr_rates
+        values = values.to(unyt.erg / unyt.s)
+        
+        # Make sure to take only black holes with a non-zero jet power (efficiency)
+        masses = masses[jet_effs > 1e-6]
+        values = values[jet_effs > 1e-6]
+    except:
         values = np.zeros(np.size(masses))
-        # Make sure to take only black holes with a non-zero jet power
-        return masses[jet_effs > 1e-6], values[jet_effs > 1e-6]
-    else:
-        return masses, values
+    
+    return masses, values
 
 
 def calculate_medians(filename, mass_bounds, value_bounds, bins):
 
     masses, values = get_data(filename)
 
-    masses_10th_most_massive = np.sort(masses)[-7]
+    masses_3rd_most_massive = np.sort(masses)[-3]
 
     mass_bins = np.logspace(np.log10(mass_bounds[0]), np.log10(mass_bounds[1]), bins)
     bin_width = (np.log10(mass_bounds[1]) - np.log10(mass_bounds[0])) / bins
 
     threshold_mass = 10 ** (
-        np.log10(mass_bins[mass_bins < masses_10th_most_massive][-1]) + bin_width * 0.5
+        np.log10(mass_bins[mass_bins < masses_3rd_most_massive][-1]) + bin_width * 0.5
     )
     mass_bins = mass_bins[mass_bins < threshold_mass]
 

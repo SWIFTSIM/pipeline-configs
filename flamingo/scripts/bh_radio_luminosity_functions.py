@@ -24,14 +24,18 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    jet_effs = data.black_holes.jet_efficiencies
-    accr_rates = data.black_holes.accretion_rates.convert_to_units(unyt.kg / unyt.s)
-    jet_powers = jet_effs * speed_of_light ** 2 * accr_rates
+    
+    try:
+        jet_effs = data.black_holes.jet_efficiencies
+        accr_rates = data.black_holes.accretion_rates.to(unyt.kg / unyt.s)
+        jet_powers = jet_effs * speed_of_light ** 2 * accr_rates
 
-    # Convert from kinetic jet power to radio luminosity using relation from Heckmann & Best (2014)
-    f_cav = 4
-    radio_luminosities = 1e25 * (jet_powers / unyt.Watt / 7e35 / f_cav) ** (1 / 0.68)
-    values = radio_luminosities * unyt.Watt / unyt.Hertz
+        # Convert from kinetic jet power to radio luminosity using relation from Heckmann & Best (2014)
+        f_cav = 4
+        radio_luminosities = 1e25 * (jet_powers / unyt.Watt / 7e35 / f_cav) ** (1 / 0.68)
+        values = radio_luminosities * unyt.Watt / unyt.Hertz
+    except: 
+        values = np.zeros(np.size(masses))
 
     return values
 

@@ -20,11 +20,12 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    values = data.black_holes.injected_jet_energies.astype(np.float64).to("erg")
 
-    if np.size(values) == 0:
+    try:
+        values = data.black_holes.injected_jet_energies.astype(np.float64).to("erg")
+    except:
         values = np.zeros(np.size(masses))
-
+        
     return masses, values
 
 
@@ -32,13 +33,13 @@ def calculate_medians(filename, mass_bounds, value_bounds, bins):
 
     masses, values = get_data(filename)
 
-    masses_10th_most_massive = np.sort(masses)[-7]
+    masses_3rd_most_massive = np.sort(masses)[-3]
 
     mass_bins = np.logspace(np.log10(mass_bounds[0]), np.log10(mass_bounds[1]), bins)
     bin_width = (np.log10(mass_bounds[1]) - np.log10(mass_bounds[0])) / bins
 
     threshold_mass = 10 ** (
-        np.log10(mass_bins[mass_bins < masses_10th_most_massive][-1]) + bin_width * 0.5
+        np.log10(mass_bins[mass_bins < masses_3rd_most_massive][-1]) + bin_width * 0.5
     )
     mass_bins = mass_bins[mass_bins < threshold_mass]
 

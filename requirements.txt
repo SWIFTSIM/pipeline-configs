@@ -1,2 +1,2 @@
-swiftpipeline>=0.3.3
+swiftpipeline>=0.3.4
 scipy

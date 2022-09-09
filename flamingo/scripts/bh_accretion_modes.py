@@ -21,11 +21,13 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    
+
     try:
         values = data.black_holes.accretion_modes
     except:
-        values = unyt.unyt_array(-2*np.ones(masses.shape), dtype=np.float64, units=unyt.dimensionless)
+        values = unyt.unyt_array(
+            -2 * np.ones(masses.shape), dtype=np.float64, units=unyt.dimensionless
+        )
 
     return masses, values
 

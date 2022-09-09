@@ -21,7 +21,7 @@ def get_data(filename):
     data = load(filename)
 
     masses = data.black_holes.subgrid_masses.to("Msun")
-    
+
     try:
         rad_effs = data.black_holes.radiative_efficiencies
         accr_rates = data.black_holes.accretion_rates.astype(np.float64).to(
@@ -34,7 +34,9 @@ def get_data(filename):
         masses = masses[rad_effs > 1e-6]
         values = values[rad_effs > 1e-6]
     except:
-        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.erg/unyt.s)
+        values = unyt.unyt_array(
+            np.zeros(masses.shape), dtype=np.float64, units=unyt.erg / unyt.s
+        )
 
     return masses, values
 

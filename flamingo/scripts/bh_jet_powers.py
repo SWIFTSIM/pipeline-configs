@@ -34,8 +34,9 @@ def get_data(filename):
         masses = masses[jet_effs > 1e-6]
         values = values[jet_effs > 1e-6]
     except:
-        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.erg/unyt.s)
-
+        values = unyt.unyt_array(
+            np.zeros(masses.shape), dtype=np.float64, units=unyt.erg / unyt.s
+        )
 
     return masses, values
 

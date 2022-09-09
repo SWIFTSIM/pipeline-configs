@@ -25,7 +25,9 @@ def get_data(filename):
     try:
         values = np.arccos(data.black_holes.cos_accretion_disk_angle) / np.pi * 180
     except:
-        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless)
+        values = unyt.unyt_array(
+            np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless
+        )
 
     return masses, values
 

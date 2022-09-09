@@ -26,7 +26,9 @@ def get_data(filename):
         values = np.sign(data.black_holes.spins.value)
         values[values < 0] = 0
     except:
-        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless)
+        values = unyt.unyt_array(
+            np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless
+        )
 
     return masses, values
 

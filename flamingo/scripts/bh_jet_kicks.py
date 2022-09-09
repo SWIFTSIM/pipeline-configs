@@ -25,7 +25,9 @@ def get_data(filename):
     try:
         values = data.black_holes.number_of_jet_particles_launched
     except:
-        values = unyt.unyt_array(np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless)
+        values = unyt.unyt_array(
+            np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless
+        )
 
     return masses, values
 

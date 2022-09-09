@@ -91,7 +91,8 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
         # Mask for galaxies above 10^10 Msun
         is_bigger_than_1e10 = unyt.unyt_array(
-            (stellar_mass > 1e10).astype(float), units="dimensionless"
+            (stellar_mass > unyt.unyt_quantity(1e10, units="Msun")).astype(float),
+            units="dimensionless",
         )
         is_active.name = "Stellar mass larger than 10^10 Msun"
 

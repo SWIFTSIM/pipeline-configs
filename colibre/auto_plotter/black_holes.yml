@@ -190,3 +190,75 @@ stellar_mass_stellar_veldisp_10:
     caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor.
     section: Black Holes
     show_on_webpage: true
+
+ssfr_rate_black_hole_mass_30:
+  type: "scatter"
+  legend_loc: "upper right"
+  select_structure_type: 10
+  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_30_kpc"
+  comment: "Centrals only, $M_* > 10^{10}\Msun$"
+  redshift_loc: "lower left"
+  x:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  y:
+    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    units: 1 / gigayear
+    start: 0.5e-4
+    end: 3e0
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e11
+      units: Solar_Mass
+  metadata:
+    title: Black Hole Mass - sSFR relation (30 kpc sSFR)
+    caption: Black Hole Mass - sSFR mass relation for galaxies with stellar mass $>10^{10}$ solar masses.
+    section: Black Holes
+    show_on_webpage: false
+  observational_data:
+    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017.hdf5
+
+ssfr_rate_black_hole_mass_50:
+  type: "scatter"
+  legend_loc: "upper right"
+  select_structure_type: 10
+  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
+  comment: "Centrals only, $M_* > 10^{10}\Msun$"
+  redshift_loc: "lower left"
+  x:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  y:
+    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    units: 1 / gigayear
+    start: 0.5e-4
+    end: 3e0
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e11
+      units: Solar_Mass
+  metadata:
+    title: Black Hole Mass - sSFR relation (50 kpc sSFR)
+    caption: Black Hole Mass - sSFR mass relation for galaxies with stellar mass $>10^{10}$ solar masses.
+    section: Black Holes
+    show_on_webpage: true
+  observational_data:
+    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017.hdf5

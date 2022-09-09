@@ -27,6 +27,8 @@ This file calculates:
         dispersion with 1/sqrt(3).
     + mass_star_with_scatter_50_kpc
         Stellar mass with an additional 0.3 dex log-normal scatter.
+    + stellar_mass_is_bigger_than_1e10_msun (30, 50, 100 kpc)
+        Is the stellar mass larger than 1e10 Msun in the given aperture
 """
 
 # Define aperture size in kpc
@@ -87,6 +89,12 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         )
         is_active.name = "Active Fraction"
 
+        # Mask for galaxies above 10^10 Msun
+        is_bigger_than_1e10 = unyt.unyt_array(
+            (stellar_mass > 1e10).astype(float), units="dimensionless"
+        )
+        is_active.name = "Stellar mass larger than 10^10 Msun"
+
         # Get the specific star formation rate (per halo mass instead of stellar mass)
         sfr_M200 = star_formation_rate / halo_mass
         sfr_M200.name = "Star formation rate divided by halo mass"
@@ -96,6 +104,11 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         setattr(self, f"is_passive_{aperture_size}_kpc", is_passive)
         setattr(self, f"is_active_{aperture_size}_kpc", is_active)
         setattr(self, f"sfr_halo_mass_{aperture_size}_kpc", sfr_M200)
+        setattr(
+            self,
+            f"stellar_mass_is_bigger_than_1e10_msun_{aperture_size}_kpc",
+            is_bigger_than_1e10,
+        )
 
     return
 

@@ -101,6 +101,86 @@ scripts:
     output_file: bh_masses.png
     section: Black Holes
     title: Black Hole Dynanmical and Subgrid Masses
+  - filename: scripts/bh_spins.py
+    caption: The relation between black hole spin magnitude and subgrid mass.
+    output_file: black_hole_spins.png
+    section: Black Holes - Spins
+    title: Black Hole Spin - Mass Relation
+  - filename: scripts/bh_spins_active.py
+    caption: The relation between black hole spin magnitude and subgrid mass. Only active black holes (i.e. in the thin disk regime, with an Eddington fraction roughly above 0.01) are included.
+    output_file: black_hole_spins_active.png
+    section: Black Holes - Spins
+    title: Black Hole Spin - Mass Relation (Active)
+  - filename: scripts/bh_spins_sign.py
+    caption: The relation between black hole spin sign and subgrid mass. Positive spin indicates prograde accretion, while negative spin indicates retrograde accretion.
+    output_file: black_hole_spin_signs.png
+    section: Black Holes - Spins
+    title: Black Hole Spin Sign - Mass Relation
+  - filename: scripts/bh_accretion_modes.py
+    caption: The fraction of black holes in the thin disk accretion mode (with the rest in the thick disk state) as a function of black hole subgrid mass.
+    output_file: black_hole_accretion_modes.png
+    section: Black Holes - Growth
+    title: Black Hole Accretion Mode - Mass Relation
+  - filename: scripts/bh_eddington_fractions.py
+    caption: The relation between black hole Eddington fraction and subgrid mass.
+    output_file: black_hole_eddington_fractions.png
+    section: Black Holes - Growth
+    title: Black Hole Eddington Fraction - Mass Relation
+  - filename: scripts/bh_misalignment_angles.py
+    caption: The relation between misalignment angle of black holes and subgrid mass. The misalignment angle is measured using the angular momentum direction of the gas in the BH smoothing kernel, and the direction of the spin vector.
+    output_file: black_hole_misalignment_angles.png
+    section: Black Holes - Spins
+    title: Black Hole Misalignment Angle - Mass Relation
+  - filename: scripts/bh_merger_mass_fractions.py
+    caption: The fraction of subgrid mass growth through mergers versus subgrid mass.
+    output_file: black_hole_merger_mass_fractions.png
+    section: Black Holes - Growth
+    title: Black Hole Merger Mass Fractions - Mass Relation
+  - filename: scripts/bh_jet_powers.py
+    caption: The (instantaneous) jet power versus subgrid mass.
+    output_file: black_hole_jet_powers.png
+    section: Black Holes - Jets
+    title: Black Hole Jet Power - Mass Relation
+  - filename: scripts/bh_luminosities.py
+    caption: The (instantaneous and bolometric) AGN luminosity versus subgrid mass. Note that this does not include the coupling efficiency factor, i.e. this is not the thermal heating rate.
+    output_file: black_hole_luminosities.png
+    section: Black Holes - Radiation
+    title: Black Hole Luminosity - Mass Relation
+  - filename: scripts/bh_jet_energies.py
+    caption: The total jet injected energies (over the BH lifetime) versus subgrid mass.
+    output_file: black_hole_jet_energies.png
+    section: Black Holes - Jets
+    title: Black Hole Jet Energy - Mass Relation
+  - filename: scripts/bh_jet_energy_fractions.py
+    caption: The fraction of total AGN energy launched into jets (over the BH lifetime), as opposed to the energy associated with AGN thermal feedback, versus subgrid mass.
+    output_file: black_hole_jet_energy_fractions.png
+    section: Black Holes - Jets
+    title: Black Hole Jet Energy Fractions - Mass Relation
+  - filename: scripts/bh_thermal_energies.py
+    caption: The total AGN injected thermal energies (over the BH lifetime) versus subgrid mass.
+    output_file: black_hole_thermal_energies.png
+    section: Black Holes - Radiation
+    title: Black Hole Thermal Energy - Mass Relation
+  - filename: scripts/bh_jet_kicks.py
+    caption: The total number of particles launched by AGN jets (over the BH lifetime) versus subgrid mass.
+    output_file: black_hole_jet_kicks.png
+    section: Black Holes - Jets
+    title: Black Hole Jet Kicks - Mass Relation
+  - filename: scripts/bh_jet_kick_fractions.py
+    caption: The fraction of AGN particles launched by AGN jets (over the BH lifetime), as opposed to heated by thermal feedback, versus subgrid mass.
+    output_file: black_hole_jet_kick_fractions.png
+    section: Black Holes - Jets
+    title: Black Hole Jet Kick Fractions - Mass Relation
+  - filename: scripts/bh_thermal_heatings.py
+    caption: The total number of particles heated by AGN thermal feedback (over the BH lifetime) versus subgrid mass.
+    output_file: black_hole_thermal_heatings.png
+    section: Black Holes - Radiation
+    title: Black Hole AGN Heating Events - Mass Relation
+  - filename: scripts/bh_radio_luminosity_functions.py
+    caption: The AGN radio luminosity function, as determined from jet powers using an empirical relation between radio luminosity and jet power.
+    output_file: AGN_radio_luminosity_function.png
+    section: Black Holes - Jets
+    title: Black Hole AGN Radio Luminosity Function
   - filename: scripts/gas_masses.py
     caption: Gas Particle Masses with the threshold for splitting indicated by the vertical dashed line.
     output_file: gas_masses.png

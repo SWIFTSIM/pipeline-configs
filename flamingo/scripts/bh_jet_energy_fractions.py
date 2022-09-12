@@ -8,12 +8,14 @@ import unyt
 from unyt import mh, cm, Gyr
 from matplotlib.colors import LogNorm
 from matplotlib.animation import FuncAnimation
+from matplotlib import rcParams
 
 # Set the limits of the figure.
 mass_bounds = [1e5, 3e10]
 value_bounds = [0, 1]
 bins = 25
 def_value = -1.0
+plot_scatter = False
 
 
 def get_data(filename):
@@ -26,6 +28,10 @@ def get_data(filename):
         jet_energies = data.black_holes.injected_jet_energies
         lum_energies = data.black_holes.agntotal_injected_energies
         values = jet_energies / (jet_energies + lum_energies)
+
+        # Take only those BHs that have either done some heating or jet feedback, otherwise the fraction is undefined.
+        masses = masses[(jet_energies + lum_energies) > 0]
+        values = values[(jet_energies + lum_energies) > 0]
     except:
         values = unyt.unyt_array(
             np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless
@@ -112,16 +118,24 @@ def make_single_image(
         scatter_plot = ax.scatter(
             masses_most_massive, values_most_massive, facecolor=fill_plot.get_color()
         )
-        if number_of_simulations == 1:
-            ax.scatter(
-                masses_rest,
-                values_rest,
-                s=0.75,
-                edgecolors="none",
-                marker="o",
-                alpha=0.5,
-                facecolor=fill_plot.get_color(),
+        if number_of_simulations == 1 and plot_scatter == True:
+
+            kwargs = dict(
+                edgecolor="none", zorder=-100, facecolor=fill_plot.get_color()
             )
+
+            # Need to "intelligently" size the markers
+            kwargs["s"] = (
+                rcParams["lines.markersize"]
+                * (6.0 - 5.0 * np.tanh(0.75 * np.log10(masses_rest.size) - 3.0))
+                / 11.0
+            )
+
+            kwargs["alpha"] = (
+                5.5 - 4.5 * np.tanh(0.75 * np.log10(masses_rest.size) - 3.0)
+            ) / 10.0
+
+            ax.scatter(masses_rest, values_rest, **kwargs)
 
     ax.legend()
     ax.set_xlim(*mass_bounds)

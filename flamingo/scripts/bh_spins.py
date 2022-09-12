@@ -11,12 +11,14 @@ from matplotlib.animation import FuncAnimation
 import glob
 from velociraptor.observations import load_observation
 from pylab import rcParams
+from matplotlib import rcParams
 
 # Set the limits of the figure.
 mass_bounds = [1e5, 3e10]
 value_bounds = [0, 1.02]
 bins = 25
 def_value = -1.0
+plot_scatter = False
 
 
 def get_data(filename):
@@ -118,18 +120,25 @@ def make_single_image(
         scatter_plot = ax.scatter(
             masses_most_massive, values_most_massive, facecolor=fill_plot.get_color()
         )
-        if number_of_simulations == 1:
-            ax.scatter(
-                masses_rest,
-                values_rest,
-                s=0.75,
-                edgecolors="none",
-                marker="o",
-                alpha=0.5,
-                facecolor=fill_plot.get_color(),
+        if number_of_simulations == 1 and plot_scatter == True:
+
+            kwargs = dict(
+                edgecolor="none", zorder=-100, facecolor=fill_plot.get_color()
             )
 
-    rcParams.update({"lines.markersize": 5})
+            # Need to "intelligently" size the markers
+            kwargs["s"] = (
+                rcParams["lines.markersize"]
+                * (6.0 - 5.0 * np.tanh(0.75 * np.log10(masses_rest.size) - 3.0))
+                / 11.0
+            )
+
+            kwargs["alpha"] = (
+                5.5 - 4.5 * np.tanh(0.75 * np.log10(masses_rest.size) - 3.0)
+            ) / 10.0
+
+            ax.scatter(masses_rest, values_rest, **kwargs)
+
     for index, observation in enumerate(observational_data):
         obs = load_observation(observation)
         obs.plot_on_axes(ax)

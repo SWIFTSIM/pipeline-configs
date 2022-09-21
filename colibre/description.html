@@ -136,6 +136,15 @@
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_max") }}</td>
     </tr>
     <tr>
+        <td>\(\sigma_{\rm P}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_sigma_P") }}</td>
+    </tr>
+    <tr>
+        <td>\(P_{\rm E,pivot} / k_{\rm B}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_P_0_K_p_cm3") }}
+        K cm\(^{-3}\) </td>
+    </tr>
+    <tr>
         <td>\(n_{\rm Z}\)</td>
         <td>{{ data.metadata.parameters | get_if_present_float("COLIBREFeedback:SNII_energy_fraction_n_Z") }}</td>
     </tr>

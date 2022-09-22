@@ -97,6 +97,11 @@ scripts:
     title: Stellar Birth Pressures
     section: Stellar Birth Properties
     output_file: birth_pressure_distribution.png
+  - filename: scripts/snii_energy_fraction_distribution.py
+    caption: Distributions of SNII energy fractions, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median SNII energy fraction.
+    title: SNII Energy Fraction
+    section: Stellar Birth Properties
+    output_file: snii_energy_fraction_distribution.png
   - filename: scripts/birth_temperature_distribution.py
     caption: Distributions of stellar birth temperatures, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-temperatures.
     title: Stellar Birth Temperatures

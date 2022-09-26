@@ -1,0 +1,185 @@
+stellar_mass_snia_rates_50:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "aperatures.sniarates_total_star_50_kpc"
+    units: "1/year"
+    start: 1e-8
+    end: 1e-1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate relation (50 kpc aperture)
+    caption: Uses a 50 kpc 3D aperture.
+    section: SNIa Rate
+
+stellar_mass_snia_rates_50:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    units: "1/year/Solar_Mass"
+    start: 1e-8
+    end: 1e-1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate per stellar mass relation (50 kpc aperture)
+    caption: Uses a 50 kpc 3D aperture.
+    section: SNIa Rate
+
+stellar_mass_snia_rates_30:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "aperatures.sniarates_total_star_30_kpc"
+    units: "1/year"
+    start: 1e-8
+    end: 1e-1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate relation (50 kpc aperture)
+    caption: Uses a 30 kpc 3D aperture.
+    section: SNIa Rate
+
+stellar_mass_snia_rates_30:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "derived_quantities.snia_rate_per_stellar_mass_30_kpc"
+    units: "1/year/Solar_Mass"
+    start: 1e-8
+    end: 1e-1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate per stellar mass relation (30 kpc aperture)
+    caption: Uses a 30 kpc 3D aperture.
+    section: SNIa Rate
+
+stellar_mass_snia_rates_100:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "aperatures.sniarates_total_star_100_kpc"
+    units: "1/year"
+    start: 1e-8
+    end: 1e-1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate relation (100 kpc aperture)
+    caption: Uses a 30 kpc 3D aperture.
+    section: SNIa Rate
+
+stellar_mass_snia_rates_100:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_100_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "derived_quantities.snia_rate_per_stellar_mass_100_kpc"
+    units: "1/year/Solar_Mass"
+    start: 1e-8
+    end: 1e-1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate per stellar mass relation (100 kpc aperture)
+    caption: Uses a 30 kpc 3D aperture.
+    section: SNIa Rate

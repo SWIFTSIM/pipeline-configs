@@ -1277,11 +1277,11 @@ def register_SNIa_rates(self, catalogue, aperture_sizes):
     # Loop over apertures
     for aperture_size in aperture_sizes:
 
-        # Get stellar mass
+        # Get stellar mass and SNIa rate
         stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
         SNIa_rate = getattr(catalogue.snia_rates, f"snia_rates_{aperture_size}_kpc")
-        print("SUCCESS!!")
 
+        # calculate the SNIa rate per stellar mass
         SNIa_rate_per_stellar_mass = SNIa_rate / stellar_mass
 
         # Name (label) of the derived field

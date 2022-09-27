@@ -1285,10 +1285,17 @@ def register_SNIa_rates(self, catalogue, aperture_sizes):
         SNIa_rate_per_stellar_mass = SNIa_rate / stellar_mass
 
         # Name (label) of the derived field
-        SNIa_rate_per_stellar_mass.name = f"SNIa rate / $M_\\star$ ({aperture_size} kpc)"
-        setattr(self, f"snia_rate_per_stellar_mass_{aperture_size}_kpc", SNIa_rate_per_stellar_mass)
+        SNIa_rate_per_stellar_mass.name = (
+            f"SNIa rate / $M_\\star$ ({aperture_size} kpc)"
+        )
+        setattr(
+            self,
+            f"snia_rate_per_stellar_mass_{aperture_size}_kpc",
+            SNIa_rate_per_stellar_mass,
+        )
 
     return
+
 
 # Register derived fields
 register_SNIa_rates(self, catalogue, aperture_sizes_30_50_100_kpc)

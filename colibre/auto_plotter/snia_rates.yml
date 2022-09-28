@@ -1,7 +1,5 @@
 stellar_mass_snia_rates_50:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_50_kpc"
@@ -31,8 +29,6 @@ stellar_mass_snia_rates_50:
 
 stellar_mass_snia_rates_per_stellar_mass_50:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_50_kpc"
@@ -62,8 +58,6 @@ stellar_mass_snia_rates_per_stellar_mass_50:
 
 star_formation_rates_snia_rates_per_stellar_mass_50:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "apertures.sfr_gas_50_kpc"
@@ -93,8 +87,6 @@ star_formation_rates_snia_rates_per_stellar_mass_50:
 
 specific_star_formation_rates_snia_rates_per_stellar_mass_50:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "derived_quantities.specific_sfr_gas_50_kpc"
@@ -124,8 +116,6 @@ specific_star_formation_rates_snia_rates_per_stellar_mass_50:
 
 stellar_mass_snia_rates_30:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_30_kpc"
@@ -156,8 +146,6 @@ stellar_mass_snia_rates_30:
 
 stellar_mass_snia_rates_per_stellar_mass_30:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_30_kpc"
@@ -188,8 +176,6 @@ stellar_mass_snia_rates_per_stellar_mass_30:
 
 stellar_mass_snia_rates_100:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"

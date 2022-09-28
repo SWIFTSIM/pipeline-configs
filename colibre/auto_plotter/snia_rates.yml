@@ -152,6 +152,7 @@ stellar_mass_snia_rates_30:
     title: Stellar Mass-SNIa rate relation (50 kpc aperture)
     caption: Uses a 30 kpc 3D aperture.
     section: SNIa Rate
+    show_on_webpage: false
 
 stellar_mass_snia_rates_per_stellar_mass_30:
   type: "scatter"
@@ -183,6 +184,7 @@ stellar_mass_snia_rates_per_stellar_mass_30:
     title: Stellar Mass-SNIa rate per stellar mass relation (30 kpc aperture)
     caption: Uses a 30 kpc 3D aperture.
     section: SNIa Rate
+    show_on_webpage: false
 
 stellar_mass_snia_rates_100:
   type: "scatter"
@@ -214,11 +216,10 @@ stellar_mass_snia_rates_100:
     title: Stellar Mass-SNIa rate relation (100 kpc aperture)
     caption: Uses a 30 kpc 3D aperture.
     section: SNIa Rate
+    show_on_webpage: false
 
 stellar_mass_snia_rates_per_stellar_mass_100:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -245,3 +246,4 @@ stellar_mass_snia_rates_per_stellar_mass_100:
     title: Stellar Mass-SNIa rate per stellar mass relation (100 kpc aperture)
     caption: Uses a 30 kpc 3D aperture.
     section: SNIa Rate
+    show_on_webpage: false

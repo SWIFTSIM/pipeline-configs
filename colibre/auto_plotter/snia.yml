@@ -98,7 +98,7 @@ specific_star_formation_rates_snia_rates_per_stellar_mass_50:
   legend_loc: "upper left"
   x:
     quantity: "derived_quantities.specific_sfr_gas_50_kpc"
-    units: "1/(1e9*year)"
+    units: "1/gigayear"
     start: 1e-3
     end: 1e1
   y:
@@ -113,10 +113,10 @@ specific_star_formation_rates_snia_rates_per_stellar_mass_50:
     number_of_bins: 30
     start:
       value: 1e-3
-      units: "1/(1e9*year)" 
+      units: "1/gigayear"
     end:
       value: 1e1
-      units: "1/(1e9*year)" 
+      units: "1/gigayear"
   metadata:
     title: sSFR-SNIa rate per stellar mass relation (50 kpc aperture)
     caption: Uses a 50 kpc 3D aperture.

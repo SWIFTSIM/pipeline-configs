@@ -1272,7 +1272,33 @@ def register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitud
     return
 
 
+def register_SNIa_rates(self, catalogue, aperture_sizes):
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+
+        # Get stellar mass and SNIa rate
+        stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+        SNIa_rate = getattr(catalogue.snia_rates, f"snia_rates_{aperture_size}_kpc")
+
+        # calculate the SNIa rate per stellar mass
+        SNIa_rate_per_stellar_mass = SNIa_rate / stellar_mass
+
+        # Name (label) of the derived field
+        SNIa_rate_per_stellar_mass.name = (
+            f"SNIa rate / $M_\\star$ ({aperture_size} kpc)"
+        )
+        setattr(
+            self,
+            f"snia_rate_per_stellar_mass_{aperture_size}_kpc",
+            SNIa_rate_per_stellar_mass,
+        )
+
+    return
+
+
 # Register derived fields
+register_SNIa_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_star_metallicities(
     self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction

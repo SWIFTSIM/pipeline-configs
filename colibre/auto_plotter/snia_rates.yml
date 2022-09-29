@@ -123,6 +123,7 @@ gas_metallicity_snia_rates_per_stellar_mass_active_only_50:
   x:
     quantity: "derived_quantities.gas_o_abundance_fromz_avglin_50_kpc"
     units: dimensionless 
+    log: false
     start: 8.2 
     end: 9.5 
   y:

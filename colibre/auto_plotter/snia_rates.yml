@@ -26,7 +26,10 @@ stellar_mass_snia_rates_50:
     title: Stellar Mass-SNIa rate relation (50 kpc aperture)
     caption: Uses a 50 kpc 3D aperture.
     section: SNIa Rate
+  observational_data_bracket_width: 10.0
   observational_data:
+    - filename: GalaxyStellarMassSNIaRate/Kistler2014.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2017.hdf5
     - filename: GalaxyStellarMassSNIaRate/Wiseman2021.hdf5
 
 stellar_mass_snia_rates_active_only_50:
@@ -62,6 +65,7 @@ stellar_mass_snia_rates_active_only_50:
     section: SNIa Rate
   observational_data:
     - filename: GalaxyStellarMassSNIaRate/Smith2012_active.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2017_active.hdf5
 
 stellar_mass_snia_rates_passive_only_50:
   type: "scatter"
@@ -96,6 +100,7 @@ stellar_mass_snia_rates_passive_only_50:
     section: SNIa Rate
   observational_data:
     - filename: GalaxyStellarMassSNIaRate/Smith2012_passive.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2017_passive.hdf5
 
 stellar_mass_snia_rates_per_stellar_mass_50:
   type: "scatter"
@@ -125,6 +130,7 @@ stellar_mass_snia_rates_per_stellar_mass_50:
     title: Stellar Mass-SNIa rate per stellar mass relation (50 kpc aperture)
     caption: Uses a 50 kpc 3D aperture.
     section: SNIa Rate
+  observational_data_bracket_width: 10.0
   observational_data:
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Kistler2014.hdf5
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2015.hdf5

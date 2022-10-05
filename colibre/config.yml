@@ -167,6 +167,31 @@ scripts:
     output_file: bh_masses.png
     section: Black Holes
     title: Black Hole Dynanmical and Subgrid Masses
+  - filename: scripts/bh_eddington_fractions.py
+    caption: The relation between black hole Eddington fraction and subgrid mass.
+    output_file: black_hole_eddington_fractions.png
+    section: Black Holes - Growth
+    title: Black Hole Eddington Fraction - Mass Relation
+  - filename: scripts/bh_merger_mass_fractions.py
+    caption: The fraction of subgrid mass growth through mergers versus subgrid mass.
+    output_file: black_hole_merger_mass_fractions.png
+    section: Black Holes - Growth
+    title: Black Hole Merger Mass Fractions - Mass Relation
+  - filename: scripts/bh_luminosities.py
+    caption: The (instantaneous and bolometric) AGN luminosity versus subgrid mass. Note that this does not include the coupling efficiency factor, i.e. this is not the thermal heating rate.
+    output_file: black_hole_luminosities.png
+    section: Black Holes - Radiation
+    title: Black Hole Luminosity - Mass Relation
+  - filename: scripts/bh_thermal_energies.py
+    caption: The total AGN injected thermal energies (over the BH lifetime) versus subgrid mass.
+    output_file: black_hole_thermal_energies.png
+    section: Black Holes - Radiation
+    title: Black Hole Thermal Energy - Mass Relation
+  - filename: scripts/bh_thermal_heatings.py
+    caption: The total number of particles heated by AGN thermal feedback (over the BH lifetime) versus subgrid mass.
+    output_file: black_hole_thermal_heatings.png
+    section: Black Holes - Radiation
+    title: Black Hole AGN Heating Events - Mass Relation
   - filename: scripts/gas_masses.py
     caption: Gas Particle Masses with the threshold for splitting indicated by the vertical dashed line.
     output_file: gas_masses.png

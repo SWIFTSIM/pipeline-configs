@@ -33,13 +33,15 @@ aperture_sizes = [30, 50, 100]
 marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
 
 for aperture_size in aperture_sizes:
-    halo_mass = catalogue.masses.mass_200crit
+    halo_mass = catalogue.get_quantity("masses.mass_200crit")
 
-    stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
     # Need to mask out zeros, otherwise we get RuntimeWarnings
     good_stellar_mass = stellar_mass > unyt.unyt_quantity(0.0, stellar_mass.units)
 
-    star_formation_rate = getattr(catalogue.apertures, f"sfr_gas_{aperture_size}_kpc")
+    star_formation_rate = catalogue.get_quantity(
+        f"apertures.sfr_gas_{aperture_size}_kpc"
+    )
 
     ssfr = np.ones(len(star_formation_rate)) * marginal_ssfr
     ssfr[good_stellar_mass] = (
@@ -80,7 +82,7 @@ minimal_twelve_plus_log_OH = 7.5
 for aperture_size in aperture_sizes:
     try:
         metal_mass_fraction_star = (
-            getattr(catalogue.apertures, f"zmet_star_{aperture_size}_kpc")
+            catalogue.get_quantity(f"apertures.zmet_star_{aperture_size}_kpc")
             / solar_metal_mass_fraction
         )
         metal_mass_fraction_star.name = f"Star Metallicity $Z_*$ rel. to $Z_\\odot={solar_metal_mass_fraction}$ ({aperture_size} kpc)"
@@ -94,7 +96,7 @@ for aperture_size in aperture_sizes:
 
     try:
         metal_mass_fraction_gas = (
-            getattr(catalogue.apertures, f"zmet_gas_sf_{aperture_size}_kpc")
+            catalogue.get_quantity(f"apertures.zmet_gas_sf_{aperture_size}_kpc")
             / solar_metal_mass_fraction
         )
 
@@ -122,8 +124,8 @@ for aperture_size in aperture_sizes:
 # Now stellar mass - halo mass relation
 
 for aperture_size in aperture_sizes:
-    stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
-    halo_mass = catalogue.masses.mass_200crit
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
+    halo_mass = catalogue.get_quantity("masses.mass_200crit")
 
     smhm = stellar_mass / halo_mass
     name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
@@ -160,7 +162,7 @@ try:
 except AttributeError:
     # We did not produce these quantities, let's make an array of ones.
     ones = unyt.unyt_array(
-        np.ones(np.size(catalogue.masses.mass_200crit)), "dimensionless"
+        np.ones(np.size(catalogue.get_quantity("masses.mass_200crit"))), "dimensionless"
     )
     setattr(
         self,
@@ -188,15 +190,15 @@ except AttributeError:
     )
 
 for aperture_size in aperture_sizes:
-    stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
 
-    halo_M200crit = catalogue.masses.mass_200crit
+    halo_M200crit = catalogue.get_quantity("masses.mass_200crit")
     smhm = stellar_mass / halo_mass
     name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
     smhm.name = name
     setattr(self, f"stellar_mass_to_halo_mass_200crit_{aperture_size}_kpc", smhm)
 
-    halo_MBN98 = catalogue.masses.mass_bn98
+    halo_MBN98 = catalogue.get_quantity("masses.mass_bn98")
     smhm = stellar_mass / halo_MBN98
     name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
     smhm.name = name
@@ -205,16 +207,15 @@ for aperture_size in aperture_sizes:
 
 def register_star_magnitudes(self, catalogue, aperture_sizes):
 
-    bands = ["i", "g", "r", "H", "u", "J", "Y", "K", "z", "Z"]
+    bands = ["i", "g", "r", "H", "u", "J", "Y", "K", "z"]
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
         for band in bands:
             try:
 
-                L_AB = getattr(
-                    catalogue.stellar_luminosities,
-                    f"{band}_luminosity_{aperture_size}_kpc",
+                L_AB = catalogue.get_quantity(
+                    f"stellar_luminosities.{band}_luminosity_{aperture_size}_kpc"
                 )
                 m_AB = np.copy(L_AB)
                 mask = L_AB > 0.0
@@ -234,7 +235,7 @@ register_star_magnitudes(self, catalogue, aperture_sizes)
 # Add eddington bias to stellar masses, according to Behroozi (2019)
 
 for aperture_size in aperture_sizes:
-    stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
     bias_std = np.min(np.array([0.07 + 0.071 * catalogue.z, 0.3]))
     bias_factors = 10 ** (np.random.normal(0, bias_std, len(stellar_mass)))
 

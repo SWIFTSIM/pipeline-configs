@@ -99,14 +99,15 @@ def make_single_image(
         if number_of_simulations == 1 and plot_scatter:
             scatter_x_against_y(ax, masses, values)
         ax.scatter(additional_x.value, additional_y.value, color=fill_plot.get_color())
-        ax.plot(
-            [1e-10, 1e11],
-            [0.01, 0.01],
-            color="black",
-            linestyle=":",
-            linewidth=0.75,
-            label="$\dot{m}=0.01$",
-        )
+
+    ax.plot(
+        [1e-10, 1e11],
+        [0.01, 0.01],
+        color="black",
+        linestyle=":",
+        linewidth=0.75,
+        label="$\dot{m}=0.01$",
+    )
 
     ax.legend()
     ax.set_xlim(*mass_bounds)

@@ -36,21 +36,17 @@ def get_data(filename):
     masses = data.black_holes.subgrid_masses.to("Msun")
 
     try:
-        values = data.black_holes.eddin222gton_fractions
-        print("found edd fractions")
+        values = data.black_holes.eddington_fractions
 
-    # Compute eddington fractions yourself if they are not stored in the snapshot
+    # Compute Eddington fractions yourself if they are not stored in the snapshot
     except AttributeError:
-        print(" not found edd fractions")
         acc_rates = data.black_holes.accretion_rates
 
         # Jet model
         try:
-            rad_effs = data.black_holes.radiative_2efficiencies
-            print("rad eff found")
+            rad_effs = data.black_holes.radiative_efficiencies
         # Purely thermal AGN feedback
         except AttributeError:
-            print("rad eff  not found")
             rad_effs = unyt.unyt_array(
                 float(
                     data.metadata.parameters["COLIBREAGN:radiative_efficiency"].decode(

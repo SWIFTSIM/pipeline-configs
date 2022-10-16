@@ -2,16 +2,31 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from swiftsimio import load
+from velociraptor.autoplotter.objects import VelociraptorLine
 from velociraptor.tools.lines import binned_median_line
 from velociraptor.autoplotter.plot import scatter_x_against_y
 
 import unyt
+from unyt import G, c, sigma_thompson, mp
 
 # Set the limits of the figure.
 mass_bounds = [1e3, 3e10]  # Msun
 value_bounds = [1e-7, 1e1]  # dimensionless
 bins = 25
 plot_scatter = True
+
+
+def compute_eddington_fractions(
+    acc_rates: unyt.unyt_array,
+    bh_masses: unyt.unyt_array,
+    radiative_efficiencies: unyt.unyt_array,
+) -> unyt.unyt_array:
+
+    eddington_rates = (
+        4.0 * np.pi * G * bh_masses * mp / (radiative_efficiencies * c * sigma_thompson)
+    )
+    eddington_fractions = acc_rates / eddington_rates
+    return eddington_fractions
 
 
 def get_data(filename):
@@ -21,10 +36,33 @@ def get_data(filename):
     masses = data.black_holes.subgrid_masses.to("Msun")
 
     try:
-        values = data.black_holes.eddington_fractions
+        values = data.black_holes.eddin222gton_fractions
+        print("found edd fractions")
+
+    # Compute eddington fractions yourself if they are not stored in the snapshot
     except AttributeError:
-        values = unyt.unyt_array(
-            np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless
+        print(" not found edd fractions")
+        acc_rates = data.black_holes.accretion_rates
+
+        # Jet model
+        try:
+            rad_effs = data.black_holes.radiative_2efficiencies
+            print("rad eff found")
+        # Purely thermal AGN feedback
+        except AttributeError:
+            print("rad eff  not found")
+            rad_effs = unyt.unyt_array(
+                float(
+                    data.metadata.parameters["COLIBREAGN:radiative_efficiency"].decode(
+                        "utf-8"
+                    )
+                )
+                * np.ones_like(masses),
+                "dimensionless",
+            )
+
+        values = compute_eddington_fractions(
+            acc_rates=acc_rates, bh_masses=masses, radiative_efficiencies=rad_effs
         )
 
     return masses, values

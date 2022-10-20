@@ -116,6 +116,9 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     # Total number of stars formed
     Num_of_stars_total = len(birth_redshifts)
 
+    # Average energy fraction (computed among all star particles)
+    average_energy_fraction = np.mean(energy_fractions)
+
     for redshift, ax in ax_dict.items():
         data = energy_fraction_by_redshift[redshift]
 
@@ -129,6 +132,14 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             np.median(data),
             color=f"C{color}",
             linestyle="dashed",
+            zorder=-10,
+            alpha=0.5,
+        )
+
+        ax.axvline(
+            average_energy_fraction,
+            color=f"C{color}",
+            linestyle="dotted",
             zorder=-10,
             alpha=0.5,
         )

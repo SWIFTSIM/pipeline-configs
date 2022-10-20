@@ -96,6 +96,18 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         )
         is_bigger_than_1e10.name = "Stellar mass larger than 10^10 Msun"
 
+        # Mask for galaxies above 10^10 Msun
+        is_bigger_than_1e10_active = unyt.unyt_array(
+            (
+                (stellar_mass > unyt.unyt_quantity(1e10, units="Msun"))
+                & (ssfr > 1.01 * marginal_ssfr)
+            ).astype(float),
+            units="dimensionless",
+        )
+        is_bigger_than_1e10_active.name = (
+            "Stellar mass larger than 10^10 Msun and active"
+        )
+
         # Mask for galaxies above 5* 10^10 Msun
         is_bigger_than_5e10 = unyt.unyt_array(
             (stellar_mass > unyt.unyt_quantity(5e10, units="Msun")).astype(float),
@@ -105,10 +117,15 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
         # Mask for galaxies above 5 * 10^10 Msun
         is_bigger_than_5e10_active = unyt.unyt_array(
-            ((stellar_mass > unyt.unyt_quantity(5e10, units="Msun")) & (ssfr > 1.01 * marginal_ssfr)).astype(float),
+            (
+                (stellar_mass > unyt.unyt_quantity(5e10, units="Msun"))
+                & (ssfr > 1.01 * marginal_ssfr)
+            ).astype(float),
             units="dimensionless",
         )
-        is_bigger_than_5e10_active.name = "Stellar mass larger than 5 $\\times$ 10^10 Msun and active"
+        is_bigger_than_5e10_active.name = (
+            "Stellar mass larger than 5 $\\times$ 10^10 Msun and active"
+        )
 
         # Get the specific star formation rate (per halo mass instead of stellar mass)
         sfr_M200 = star_formation_rate / halo_mass
@@ -123,6 +140,11 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
             self,
             f"stellar_mass_is_bigger_than_1e10_msun_{aperture_size}_kpc",
             is_bigger_than_1e10,
+        )
+        setattr(
+            self,
+            f"stellar_mass_is_bigger_than_1e10_msun_active_{aperture_size}_kpc",
+            is_bigger_than_1e10_active,
         )
         setattr(
             self,

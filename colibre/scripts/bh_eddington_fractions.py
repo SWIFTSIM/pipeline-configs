@@ -2,16 +2,31 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from swiftsimio import load
+from velociraptor.autoplotter.objects import VelociraptorLine
 from velociraptor.tools.lines import binned_median_line
 from velociraptor.autoplotter.plot import scatter_x_against_y
 
 import unyt
+from unyt import G, c, sigma_thompson, mp
 
 # Set the limits of the figure.
 mass_bounds = [1e3, 3e10]  # Msun
 value_bounds = [1e-7, 1e1]  # dimensionless
 bins = 25
 plot_scatter = True
+
+
+def compute_eddington_fractions(
+    acc_rates: unyt.unyt_array,
+    bh_masses: unyt.unyt_array,
+    radiative_efficiencies: unyt.unyt_array,
+) -> unyt.unyt_array:
+
+    eddington_rates = (
+        4.0 * np.pi * G * bh_masses * mp / (radiative_efficiencies * c * sigma_thompson)
+    )
+    eddington_fractions = acc_rates / eddington_rates
+    return eddington_fractions
 
 
 def get_data(filename):
@@ -22,9 +37,28 @@ def get_data(filename):
 
     try:
         values = data.black_holes.eddington_fractions
+
+    # Compute Eddington fractions yourself if they are not stored in the snapshot
     except AttributeError:
-        values = unyt.unyt_array(
-            np.zeros(masses.shape), dtype=np.float64, units=unyt.dimensionless
+        acc_rates = data.black_holes.accretion_rates
+
+        # Jet model
+        try:
+            rad_effs = data.black_holes.radiative_efficiencies
+        # Purely thermal AGN feedback
+        except AttributeError:
+            rad_effs = unyt.unyt_array(
+                float(
+                    data.metadata.parameters["COLIBREAGN:radiative_efficiency"].decode(
+                        "utf-8"
+                    )
+                )
+                * np.ones_like(masses),
+                "dimensionless",
+            )
+
+        values = compute_eddington_fractions(
+            acc_rates=acc_rates, bh_masses=masses, radiative_efficiencies=rad_effs
         )
 
     return masses, values
@@ -65,14 +99,15 @@ def make_single_image(
         if number_of_simulations == 1 and plot_scatter:
             scatter_x_against_y(ax, masses, values)
         ax.scatter(additional_x.value, additional_y.value, color=fill_plot.get_color())
-        ax.plot(
-            [1e-10, 1e11],
-            [0.01, 0.01],
-            color="black",
-            linestyle=":",
-            linewidth=0.75,
-            label="$\dot{m}=0.01$",
-        )
+
+    ax.plot(
+        [1e-10, 1e11],
+        [0.01, 0.01],
+        color="black",
+        linestyle=":",
+        linewidth=0.75,
+        label="$\dot{m}=0.01$",
+    )
 
     ax.legend()
     ax.set_xlim(*mass_bounds)

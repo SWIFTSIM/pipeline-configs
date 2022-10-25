@@ -225,7 +225,8 @@ ssfr_rate_black_hole_mass_30:
     section: Black Holes
     show_on_webpage: false
   observational_data:
-    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017.hdf5
+    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_without_upper_limits.hdf5
+    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_only_upper_limits.hdf5
 
 ssfr_rate_black_hole_mass_50:
   type: "scatter"
@@ -261,7 +262,8 @@ ssfr_rate_black_hole_mass_50:
     section: Black Holes
     show_on_webpage: true
   observational_data:
-    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017.hdf5
+    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_without_upper_limits.hdf5
+    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_only_upper_limits.hdf5
 
 black_hole_mass_function:
   type: "massfunction"

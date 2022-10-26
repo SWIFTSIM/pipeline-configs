@@ -79,13 +79,13 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
         # Mask for the passive objects
         is_passive = unyt.unyt_array(
-            (ssfr < 1.01 * marginal_ssfr).astype(float), units="dimensionless"
+            (ssfr < (1.01 * marginal_ssfr).to(ssfr.units)).astype(float), units="dimensionless"
         )
         is_passive.name = "Passive Fraction"
 
         # Mask for the active objects
         is_active = unyt.unyt_array(
-            (ssfr > 1.01 * marginal_ssfr).astype(float), units="dimensionless"
+            (ssfr > (1.01 * marginal_ssfr).to(ssfr.units)).astype(float), units="dimensionless"
         )
         is_active.name = "Active Fraction"
 
@@ -99,8 +99,8 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         # Mask for galaxies above 10^10 Msun
         is_bigger_than_1e10_active = unyt.unyt_array(
             (
-                (stellar_mass > unyt.unyt_quantity(1e10, units="Msun"))
-                & (ssfr > 1.01 * marginal_ssfr)
+                (stellar_mass > (1e10*unyt.Msun).to(stellar_mass.units))
+                & (ssfr > (1.01 * marginal_ssfr).to(ssfr.units))
             ).astype(float),
             units="dimensionless",
         )
@@ -110,7 +110,7 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
         # Mask for galaxies above 5* 10^10 Msun
         is_bigger_than_5e10 = unyt.unyt_array(
-            (stellar_mass > unyt.unyt_quantity(5e10, units="Msun")).astype(float),
+            (stellar_mass > (5e10*unyt.Msun).to(stellar_mass.units)).astype(float),
             units="dimensionless",
         )
         is_bigger_than_5e10.name = "Stellar mass larger than 5 $\\times$ 10^10 Msun"
@@ -118,8 +118,8 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         # Mask for galaxies above 5 * 10^10 Msun
         is_bigger_than_5e10_active = unyt.unyt_array(
             (
-                (stellar_mass > unyt.unyt_quantity(5e10, units="Msun"))
-                & (ssfr > 1.01 * marginal_ssfr)
+                (stellar_mass > (5e10*unyt.Msun).to(stellar_mass.units))
+                & (ssfr > (1.01 * marginal_ssfr).to(ssfr.units))
             ).astype(float),
             units="dimensionless",
         )

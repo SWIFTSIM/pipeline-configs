@@ -29,6 +29,7 @@ stellar_mass_snia_rates_50:
   observational_data_bracket_width: 10.0
   observational_data:
     - filename: GalaxyStellarMassSNIaRate/Kistler2014.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2015.hdf5
     - filename: GalaxyStellarMassSNIaRate/Graur2017.hdf5
     - filename: GalaxyStellarMassSNIaRate/Wiseman2021.hdf5
 
@@ -65,6 +66,7 @@ stellar_mass_snia_rates_active_only_50:
     section: SNIa Rate
   observational_data:
     - filename: GalaxyStellarMassSNIaRate/Smith2012_active.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2015_active.hdf5
     - filename: GalaxyStellarMassSNIaRate/Graur2017_active.hdf5
 
 stellar_mass_snia_rates_passive_only_50:
@@ -100,6 +102,7 @@ stellar_mass_snia_rates_passive_only_50:
     section: SNIa Rate
   observational_data:
     - filename: GalaxyStellarMassSNIaRate/Smith2012_passive.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2015_passive.hdf5
     - filename: GalaxyStellarMassSNIaRate/Graur2017_passive.hdf5
 
 stellar_mass_snia_rates_per_stellar_mass_50:
@@ -170,7 +173,7 @@ stellar_mass_snia_rates_per_stellar_mass_active_only_50:
     section: SNIa Rate
   observational_data:
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Smith2012_active.hdf5
-    - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2015_SF.hdf5
+    - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2015_active.hdf5
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2017_active.hdf5
 
 stellar_mass_snia_rates_per_stellar_mass_passive_only_50:

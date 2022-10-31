@@ -57,7 +57,6 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     # Dust Mass Fractions
     dfracs = np.zeros(data.gas.masses.shape)
     dsfrac_dict = {}
-    print(dir(data.gas.dust_mass_fractions))
     for d in data.metadata.named_columns["DustMassFractions"]:
         try:
             dfrac = getattr(data.gas.dust_mass_fractions, d.lower())

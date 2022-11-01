@@ -144,9 +144,14 @@ def get_data(filename, prefix_rho, prefix_T):
         for k in compdict.keys():
             if k in d:
                 for el in compdict[k].keys():
-                    elfrac = compdict[k][el] * getattr(
-                        data.gas.dust_mass_fractions, d.lower()
-                    )
+                    try:
+                        elfrac = compdict[k][el] * getattr(
+                            data.gas.dust_mass_fractions, d.lower()
+                        )
+                    except AttributeError:
+                        elfrac = compdict[k][el] * getattr(
+                            data.gas.dust_mass_fractions, d
+                        )
                     if el in dsfrac_dict:
                         # print(f"Add Grain: {d} Element {el} Elfrac : {elfrac}")
                         dsfrac_dict[el] += elfrac.astype("float64")
@@ -154,7 +159,10 @@ def get_data(filename, prefix_rho, prefix_T):
                         # print(f"Make Grain: {d} Element {el} Elfrac : {elfrac}")
                         dsfrac_dict[el] = elfrac.astype("float64")
 
-        dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
+        try:
+            dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
+        except AttributeError:
+            dfrac = getattr(data.gas.dust_mass_fractions, d)
         dfracs += dfrac
 
     elfrac_dict = {}

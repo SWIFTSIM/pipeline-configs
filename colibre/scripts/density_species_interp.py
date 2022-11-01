@@ -58,7 +58,10 @@ def get_data(filename, tables, prefix_rho, prefix_T):
     dfracs = np.zeros(data.gas.masses.shape)
     dsfrac_dict = {}
     for d in data.metadata.named_columns["DustMassFractions"]:
-        dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
+        try:
+            dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
+        except AttributeError:
+            dfrac = getattr(data.gas.dust_mass_fractions, d)
         dsfrac_dict[d] = dfrac.astype("float64")
         dfracs += dfrac
 

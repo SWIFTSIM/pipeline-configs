@@ -10,8 +10,8 @@ from velociraptor.autoplotter.objects import VelociraptorLine
 from velociraptor.tools.mass_functions import create_adaptive_mass_function
 
 # Set the limits of the figure.
-x_bounds = [1e40, 1e50]  # erg/s
-value_bounds = [1e-11, 0.5]  # Mpc^-3 dex^-1
+x_bounds = [1e39, 1e50]  # erg/s
+value_bounds = [1e-11, 1e0]  # Mpc^-3 dex^-1
 
 
 def get_data(data: SWIFTDataset) -> unyt.unyt_array:

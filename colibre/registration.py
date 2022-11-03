@@ -44,6 +44,25 @@ solar_fe_abundance = 2.82e-5
 # Additional scatter in stellar mass (in dex)
 stellar_mass_scatter_amplitude = 0.3
 
+def register_resolution_dependent_masks(self, catalogue, aperture_sizes):
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+
+        # Get stellar mass
+        npart_star = getattr(catalogue.apertures, f"npart_star_{aperture_size}_kpc")
+
+        # identify halos with > 200 star particles
+        is_resolved = unyt.unyt_array(
+            (npart_star > 200).astype(float),
+            units="dimensionless"
+        )
+        
+        is_resolved.name = "> 200 star particles"
+        
+        # Register derived fields with specific star formation rates
+        setattr(self, f"is_resolved_{aperture_size}_kpc", is_resolved)
+
+
 
 def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
@@ -58,6 +77,7 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
 
         # Get stellar mass
         stellar_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
+        
         # Need to mask out zeros, otherwise we get RuntimeWarnings
         good_stellar_mass = stellar_mass > unyt.unyt_quantity(0.0, stellar_mass.units)
 
@@ -85,8 +105,16 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         is_active = unyt.unyt_array(
             (ssfr > 1.01 * marginal_ssfr).astype(float), units="dimensionless"
         )
-        is_active.name = "Active Fraction"
 
+        is_active_and_resolved = unyt.unyt_array(
+            np.logical_and((ssfr > 1.01 * marginal_ssfr).astype(float),
+                getattr(self, f"is_resolved_{aperture_size}_kpc")
+                            ), units="dimensionless"
+        )
+
+        is_active.name = "Active Fraction"
+        is_active_and_resolved.name = "Active and Resolved Fraction"
+        
         # Get the specific star formation rate (per halo mass instead of stellar mass)
         sfr_M200 = star_formation_rate / halo_mass
         sfr_M200.name = "Star formation rate divided by halo mass"
@@ -95,6 +123,7 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         setattr(self, f"specific_sfr_gas_{aperture_size}_kpc", ssfr)
         setattr(self, f"is_passive_{aperture_size}_kpc", is_passive)
         setattr(self, f"is_active_{aperture_size}_kpc", is_active)
+        setattr(self, f"is_active_and_resolved_{aperture_size}_kpc", is_active_and_resolved)
         setattr(self, f"sfr_halo_mass_{aperture_size}_kpc", sfr_M200)
 
     return
@@ -1257,8 +1286,8 @@ def register_stellar_mass_scatter(self, catalogue, stellar_mass_scatter_amplitud
 
     return
 
-
 # Register derived fields
+register_resolution_dependent_masks(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_spesific_star_formation_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_star_metallicities(
     self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction

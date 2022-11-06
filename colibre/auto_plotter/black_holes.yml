@@ -316,3 +316,141 @@ black_hole_mass_function_adaptive:
     - filename: BlackHoleMassFunction/Shankar2009_Data.hdf5
     - filename: BlackHoleMassFunction/Vika2009_Data.hdf5
     - filename: BlackHoleMassFunction/Caramete2010_Data.hdf5
+
+stellar_mass_black_hole_mass_30:
+  type: "scatter"
+  comment: "Passive only"
+  comment_loc: "lower right"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_passive_30_kpc"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e3
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for passive galaxies.
+    caption: SMBHM relation for the 30 kpc stellar mass aperture. 
+    section: Black Holes
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
+
+stellar_mass_black_hole_mass_50:
+  type: "scatter"
+  comment: "Passive only"
+  comment_loc: "lower right"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_passive_50_kpc"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e3
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for passive galaxies.
+    caption: SMBHM relation for the 50 kpc stellar mass aperture. 
+    section: Black Holes
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
+
+stellar_mass_black_hole_mass_30:
+  type: "scatter"
+  comment: "Active only"
+  comment_loc: "lower right"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_30_kpc"
+  x:
+    quantity: "apertures.mass_star_30_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e3
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for active galaxies.
+    caption: SMBHM relation for the 30 kpc stellar mass aperture. 
+    section: Black Holes
+    show_on_webpage: false
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5
+
+stellar_mass_black_hole_mass_50:
+  type: "scatter"
+  comment: "Active only"
+  comment_loc: "lower right"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_50_kpc"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e3
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for active galaxies.
+    caption: SMBHM relation for the 50 kpc stellar mass aperture. 
+    section: Black Holes
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5

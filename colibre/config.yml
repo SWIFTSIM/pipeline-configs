@@ -187,6 +187,11 @@ scripts:
     output_file: black_hole_thermal_energies.png
     section: Black Holes - Radiation
     title: Black Hole Thermal Energy - Mass Relation
+  - filename: scripts/bh_bolometric_luminosity_functions.py
+    caption: The AGN bolometric luminosity function calculated from the accretion rates and radiative efficiencies. The observational data is inferred from different bands using correction factors.
+    output_file: AGN_bolometric_luminosity_function.png
+    section: Black Holes - Radiation
+    title: Black Hole AGN Bolometric Luminosity Function
   - filename: scripts/bh_thermal_heatings.py
     caption: The total number of particles heated by AGN thermal feedback (over the BH lifetime) versus subgrid mass.
     output_file: black_hole_thermal_heatings.png

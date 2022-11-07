@@ -28,8 +28,9 @@ stellar_mass_black_hole_mass_30:
     section: Black Holes
     show_on_webpage: false
   observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Graham2022_ESS0.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Graham2022_E.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Graham2022_S.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
 
 stellar_mass_black_hole_mass_50:
@@ -61,8 +62,9 @@ stellar_mass_black_hole_mass_50:
     caption: SMBHM relation. Note that the stellar velocity dispersion is measured in observations in a fixed 1 kpc aperture
     section: Black Holes
   observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_ETG.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Sahu2019_LTG.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Graham2022_ESS0.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Graham2022_E.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Graham2022_S.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
 
 stellar_mass_black_hole_mass_passive_30:

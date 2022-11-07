@@ -317,7 +317,7 @@ black_hole_mass_function_adaptive:
     - filename: BlackHoleMassFunction/Vika2009_Data.hdf5
     - filename: BlackHoleMassFunction/Caramete2010_Data.hdf5
 
-stellar_mass_black_hole_mass_30:
+stellar_mass_black_hole_mass_passive_30:
   type: "scatter"
   comment: "Passive only"
   comment_loc: "lower right"
@@ -346,13 +346,13 @@ stellar_mass_black_hole_mass_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for passive galaxies.
-    caption: SMBHM relation for the 30 kpc stellar mass aperture. 
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive galaxies (threshold is 0.01 / Gyr sSFR) are included.
     section: Black Holes
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
 
-stellar_mass_black_hole_mass_50:
+stellar_mass_black_hole_mass_passive_50:
   type: "scatter"
   comment: "Passive only"
   comment_loc: "lower right"
@@ -381,12 +381,12 @@ stellar_mass_black_hole_mass_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for passive galaxies.
-    caption: SMBHM relation for the 50 kpc stellar mass aperture. 
+    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only passive galaxies (threshold is 0.01 / Gyr sSFR) are included.
     section: Black Holes
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
 
-stellar_mass_black_hole_mass_30:
+stellar_mass_black_hole_mass_active_30:
   type: "scatter"
   comment: "Active only"
   comment_loc: "lower right"
@@ -415,13 +415,13 @@ stellar_mass_black_hole_mass_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for active galaxies.
-    caption: SMBHM relation for the 30 kpc stellar mass aperture. 
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only active galaxies (threshold is 0.01 / Gyr sSFR) are included.
     section: Black Holes
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5
 
-stellar_mass_black_hole_mass_50:
+stellar_mass_black_hole_mass_active_50:
   type: "scatter"
   comment: "Active only"
   comment_loc: "lower right"
@@ -450,7 +450,7 @@ stellar_mass_black_hole_mass_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for active galaxies.
-    caption: SMBHM relation for the 50 kpc stellar mass aperture. 
+    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only active galaxies (threshold is 0.01 / Gyr sSFR) are included.
     section: Black Holes
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5

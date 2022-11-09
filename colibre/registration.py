@@ -47,7 +47,7 @@ solar_fe_abundance = 2.82e-5
 stellar_mass_scatter_amplitude = 0.3
 
 
-def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
+def register_specific_star_formation_rates(self, catalogue, aperture_sizes):
 
     # Lowest sSFR below which the galaxy is considered passive
     marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
@@ -71,12 +71,10 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         )
 
         # Compute specific star formation rate using the "good" stellar mass
-        ssfr = unyt.unyt_array(
-            np.zeros(len(star_formation_rate)), units=star_formation_rate.units
-        )
+        ssfr = unyt.unyt_array(np.zeros(len(star_formation_rate)), units=1 / unyt.year)
         ssfr[good_stellar_mass] = (
             star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
-        )
+        ).to(ssfr.units)
 
         # Name (label) of the derived field
         ssfr.name = f"Specific SFR ({aperture_size} kpc)"
@@ -1350,7 +1348,7 @@ def register_SNIa_rates(self, catalogue, aperture_sizes):
 
 # Register derived fields
 register_SNIa_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
-register_spesific_star_formation_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_specific_star_formation_rates(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_star_metallicities(
     self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction
 )

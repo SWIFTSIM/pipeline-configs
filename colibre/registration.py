@@ -71,7 +71,9 @@ def register_spesific_star_formation_rates(self, catalogue, aperture_sizes):
         )
 
         # Compute specific star formation rate using the "good" stellar mass
-        ssfr = unyt.unyt_array(np.zeros(len(star_formation_rate)), units=1 / unyt.year)
+        ssfr = unyt.unyt_array(
+            np.zeros(len(star_formation_rate)), units=star_formation_rate.units
+        )
         ssfr[good_stellar_mass] = (
             star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
         )

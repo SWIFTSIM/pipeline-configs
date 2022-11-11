@@ -1450,9 +1450,16 @@ def register_stellar_birth_densities(self, catalogue):
         average_log_n_b = catalogue.get_quantity("stellar_birth_densities.logaverage")
         stellar_mass = catalogue.get_quantity("apertures.mass_star_100_kpc")
 
-        exp_average_log_n_b = unyt.unyt_array(
-            np.exp(average_log_n_b), units=average_log_n_b.units
-        )
+        if catalogue.catalogue_type == "VR":
+            exp_average_log_n_b = unyt.unyt_array(
+                np.exp(average_log_n_b), units=average_log_n_b.units
+            )
+        elif catalogue.catalogue_type == "SOAP":
+            # If we encounter overflow, that is a good hint that we are reading a SOAP
+            # catalogue that already contains the right values
+            exp_average_log_n_b = average_log_n_b
+        else:
+            raise RuntimeError(f"Unknown catalogue type: {catalogue.catalogue_type}!")
 
         # Ensure haloes with zero stellar mass have zero stellar birth densities
         no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)

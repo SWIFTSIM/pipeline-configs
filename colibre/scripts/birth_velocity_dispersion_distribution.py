@@ -30,7 +30,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 256
 
 birth_velocity_dispersion_bins = unyt.unyt_array(
-    np.logspace(1.0, 3.5, number_of_bins), units="km**2/s**2"
+    np.logspace(0.25, 5.25, number_of_bins), units="km**2/s**2"
 )
 log_birth_velocity_dispersion_bin_width = np.log10(
     birth_velocity_dispersion_bins[1].value
@@ -57,7 +57,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     )
     birth_redshifts = 1 / snapshot.stars.birth_scale_factors.value - 1
 
-    # Segment birth temperatures into redshift bins
+    # Segment birth velocity dispersions into redshift bins
     birth_velocity_dispersion_by_redshift = {
         "$z < 1$": birth_velocity_dispersions[birth_redshifts < 1],
         "$1 < z < 3$": birth_velocity_dispersions[
@@ -79,7 +79,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             birth_velocity_dispersion_centers, y_points, label=name, color=f"C{color}"
         )
 
-        # Add the median stellar birth-temperature line
+        # Add the median stellar birth-velocity dispersion line
         ax.axvline(
             np.median(data),
             color=f"C{color}",

@@ -94,7 +94,9 @@ def read_data(data, xvar, yvar):
         Mg_Fe[Mg_Fe < -2] = -2  # set lower limit
         yval = Mg_Fe
     elif yvar == "Fe_SNIa_fraction":
-        Fe_snia_fraction = iron_snia / iron
+        Fe_snia_fraction = unyt_array(np.zeros_like(iron), "dimensionless")
+        mask = iron > 0.0
+        Fe_snia_fraction[mask] = iron_snia[mask] / iron[mask]
         yval = Fe_snia_fraction
     else:
         raise AttributeError(f"Unknown y variable: {yvar}!")

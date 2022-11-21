@@ -107,6 +107,11 @@ scripts:
     title: Stellar Birth Temperatures
     section: Stellar Birth Properties
     output_file: birth_temperature_distribution.png
+  - filename: scripts/birth_velocity_dispersion_distribution.py
+    caption: Distributions of stellar birth velocity dispersions, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth velocity dispersions.
+    title: Stellar Birth Velocity Dispersions
+    section: Stellar Birth Properties
+    output_file: birth_velocity_dispersion_distribution.png
   - filename: scripts/birth_density_metallicity.py
     caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin.
     title: Stellar Birth Densities-Metallicity

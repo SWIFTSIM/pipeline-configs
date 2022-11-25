@@ -705,7 +705,7 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
   metadata:
     title: 'Stellar mass - [Fe/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
     section: Stellar Metallicity
-    caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. Only star particles with abundance ratios larger than [Fe/H]>-4 are considered. All haloes are plotted, including subhaloes.'
+    caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. The floor value is set to [Fe/H]=-3. All haloes are plotted, including subhaloes.'
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5

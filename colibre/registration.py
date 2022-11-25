@@ -753,6 +753,12 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
             catalogue.lin_element_ratios_times_masses,
             f"lin_Fe_over_H_times_star_mass_{aperture_size}_kpc",
         )
+        # Fetch linear Fe (from SNIa) over H times stellar mass computed in apertures. The
+        # mass ratio between Fe and H has already been accounted for.
+        lin_FeSNIa_over_H_times_star_mass = getattr(
+            catalogue.lin_element_ratios_times_masses,
+            f"lin_FeSNIa_over_H_times_star_mass_{aperture_size}_kpc",
+        )
         # Fetch stellar mass in apertures
         star_mass = getattr(catalogue.apertures, f"mass_star_{aperture_size}_kpc")
 
@@ -767,6 +773,18 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
 
         # Register the field
         setattr(self, f"star_fe_abundance_avglin_{aperture_size}_kpc", Fe_abundance)
+
+        # Compute stellar-mass weighted Fe over H
+        FeSNIa_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+        # Avoid division by zero
+        mask = star_mass > 0.0 * star_mass.units
+        FeSNIa_over_H[mask] = lin_FeSNIa_over_H_times_star_mass[mask] / star_mass[mask]
+        # Convert to units used in observations
+        FeSNIa_abundance = unyt.unyt_array(FeSNIa_over_H / fe_solar_abundance, "dimensionless")
+        FeSNIa_abundance.name = f"Stellar $10^{{\\rm [Fe(SNIa)/H]}}$ ({aperture_size} kpc)"
+
+        # Register the field
+        setattr(self, f"star_fe_snia_abundance_avglin_{aperture_size}_kpc", FeSNIa_abundance)
 
         # register average-of-log Fe-abundances (high and low particle floors)
         for floor, floor_label in zip(

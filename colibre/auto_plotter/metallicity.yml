@@ -683,7 +683,7 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
 stellar_mass_star_fe_over_h_mol_hifloor_50:
   type: "scatter"
   legend_loc: "upper left"
-  comment: "MoL w. [F/H]=-4 floor"
+  comment: "MoL w. [F/H]=-3 floor"
   y:
     quantity: "derived_quantities.star_fe_abundance_avglog_high_50_kpc"
     units: "dimensionless"

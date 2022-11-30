@@ -478,7 +478,6 @@ stellar_mass_gas_sf_metallicity_lom_allgals_50:
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
 
-
 stellar_mass_star_metallicity_50:
   type: "scatter"
   legend_loc: "upper left"
@@ -515,8 +514,9 @@ stellar_mass_star_metallicity_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 stellar_mass_star_metallicity_30:
   type: "scatter"
@@ -554,8 +554,9 @@ stellar_mass_star_metallicity_30:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 stellar_mass_star_fe_over_h_lom_50:
   type: "scatter"
@@ -593,8 +594,9 @@ stellar_mass_star_fe_over_h_lom_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 stellar_mass_star_fe_snia_over_h_lom_50:
   type: "scatter"
@@ -631,8 +633,10 @@ stellar_mass_star_fe_snia_over_h_lom_50:
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
+
 
 stellar_mass_star_fe_over_h_mol_lofloor_50:
   type: "scatter"
@@ -670,9 +674,11 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
-    
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
+
 
 stellar_mass_star_fe_over_h_mol_hifloor_50:
   type: "scatter"
@@ -710,8 +716,10 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5 
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
 
 
 stellar_mass_star_mg_over_fe_50:

@@ -780,11 +780,17 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
         mask = star_mass > 0.0 * star_mass.units
         FeSNIa_over_H[mask] = lin_FeSNIa_over_H_times_star_mass[mask] / star_mass[mask]
         # Convert to units used in observations
-        FeSNIa_abundance = unyt.unyt_array(FeSNIa_over_H / fe_solar_abundance, "dimensionless")
-        FeSNIa_abundance.name = f"Stellar $10^{{\\rm [Fe(SNIa)/H]}}$ ({aperture_size} kpc)"
+        FeSNIa_abundance = unyt.unyt_array(
+            FeSNIa_over_H / fe_solar_abundance, "dimensionless"
+        )
+        FeSNIa_abundance.name = (
+            f"Stellar $10^{{\\rm [Fe(SNIa)/H]}}$ ({aperture_size} kpc)"
+        )
 
         # Register the field
-        setattr(self, f"star_fe_snia_abundance_avglin_{aperture_size}_kpc", FeSNIa_abundance)
+        setattr(
+            self, f"star_fe_snia_abundance_avglin_{aperture_size}_kpc", FeSNIa_abundance
+        )
 
         # register average-of-log Fe-abundances (high and low particle floors)
         for floor, floor_label in zip(

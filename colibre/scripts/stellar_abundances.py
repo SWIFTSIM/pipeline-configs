@@ -25,14 +25,13 @@ def read_data(data, xvar, yvar):
     mO_in_cgs = 15.999 * unyt.mp
     mMg_in_cgs = 24.305 * unyt.mp
     mFe_in_cgs = 55.845 * unyt.mp
-    
+
     mSi_in_cgs = 28.0855 * unyt.mp
     mEu_in_cgs = 151.964 * unyt.mp
     mBa_in_cgs = 137.327 * unyt.mp
     mSr_in_cgs = 87.62 * unyt.mp
     mN_in_cgs = 14.0067 * unyt.mp
     mNe_in_cgs = 20.1797 * unyt.mp
-
 
     # Asplund et al. (2009)
     C_H_Sun_Asplund = 8.43
@@ -54,13 +53,12 @@ def read_data(data, xvar, yvar):
     N_Fe_Sun = N_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mN_in_cgs)
     O_Fe_Sun = O_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mO_in_cgs)
     Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
-    
+
     Si_Fe_Sun = Si_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSi_in_cgs)
     Eu_Fe_Sun = Eu_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mEu_in_cgs)
     Ba_Fe_Sun = Ba_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mBa_in_cgs)
     Sr_Fe_Sun = Sr_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSr_in_cgs)
     Ne_Fe_Sun = Ne_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mNe_in_cgs)
-
 
     hydrogen = data.stars.element_mass_fractions.hydrogen
     iron = data.stars.element_mass_fractions.iron
@@ -87,7 +85,6 @@ def read_data(data, xvar, yvar):
         barium = data.stars.element_mass_fractions.barium
     if yvar == "Sr_Fe":
         strontium = data.stars.element_mass_fractions.strontium
-
 
     if xvar == "O_H":
         O_H = np.log10(oxygen / hydrogen) - O_H_Sun

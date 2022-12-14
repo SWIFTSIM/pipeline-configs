@@ -71,9 +71,12 @@ if __name__ == "__main__":
     )
     nHmid = 0.5 * (nHbin[1:] + nHbin[:-1])
 
-    labels = [("C0", "all gas")]
-    for iZ, (Zmin, Zmax) in enumerate(Zbounds):
-        labels.append((f"C{iZ+1}", f"$Z \\in [{Zmin},{Zmax}]\\times Z_\\odot$"))
+    line_properties = {"colors": ["C0"], "labels": ["all gas"]}
+    for iZ, (Zmin, Zmax) in enumerate(Zbounds, start=1):
+        line_properties["colors"].append(f"C{iZ}")
+        line_properties["labels"].append(
+            f"$Z \\in [{Zmin},{Zmax}]\\times \\rm Z_\\odot$"
+        )
 
     for isnap, (snapshot, name) in enumerate(
         zip(snapshot_filenames, arguments.name_list)
@@ -86,24 +89,37 @@ if __name__ == "__main__":
 
         with unyt.matplotlib_support:
             Tmed, _, _ = stats.binned_statistic(nH, T, statistic="median", bins=nHbin)
-            label = labels[0][1] if (isnap == 0 and nlabel_per_plot >= 0) else None
-            ax[isnap].loglog(nHmid, Tmed, label=label, color=labels[0][0])
+            label = (
+                line_properties["labels"][0]
+                if (isnap == 0 and nlabel_per_plot >= 0)
+                else None
+            )
+            ax[isnap].loglog(
+                nHmid, Tmed, label=label, color=line_properties["colors"][0]
+            )
 
             for iZ, (Zmin, Zmax) in enumerate(Zbounds):
-                mask = (metal_mass_fraction >= Zmin * solar_metal_mass_fraction) & (
-                    metal_mass_fraction < Zmax * solar_metal_mass_fraction
+                mask = np.logical_and(
+                    metal_mass_fraction >= Zmin * solar_metal_mass_fraction,
+                    metal_mass_fraction < Zmax * solar_metal_mass_fraction,
                 )
                 if mask.sum() > 0:
                     Tmed, _, _ = stats.binned_statistic(
                         nH[mask], T[mask], statistic="mean", bins=nHbin
                     )
-                    label = None
-                    if (
-                        isnap * nlabel_per_plot <= iZ + 1
-                        and (isnap + 1) * nlabel_per_plot > iZ + 1
-                    ):
-                        label = labels[iZ + 1][1]
-                    ax[isnap].loglog(nHmid, Tmed, label=label, color=labels[iZ + 1][0])
+                    label = (
+                        line_properties["labels"][iZ + 1]
+                        if isnap * nlabel_per_plot
+                        <= iZ + 1
+                        < (isnap + 1) * nlabel_per_plot
+                        else None
+                    )
+                    ax[isnap].loglog(
+                        nHmid,
+                        Tmed,
+                        label=label,
+                        color=line_properties["colors"][iZ + 1],
+                    )
 
             ax[isnap].text(
                 0.025,
@@ -120,8 +136,8 @@ if __name__ == "__main__":
         for a in ax:
             a.legend(loc="best")
     else:
-        handles = []
-        for c, l in labels:
-            handles.append(matplotlib.lines.Line2D([], [], color=c))
-        ax[-1].legend(handles, [label for _, label in labels])
+        handles = [
+            matplotlib.lines.Line2D([], [], color=c) for c in line_properties["colors"]
+        ]
+        ax[-1].legend(handles, line_properties["labels"])
     pl.savefig(f"{arguments.output_directory}/median_temperature_density.png")

@@ -98,7 +98,7 @@ if __name__ == "__main__":
                 nHmid, Tmed, label=label, color=line_properties["colors"][0]
             )
 
-            for iZ, (Zmin, Zmax) in enumerate(Zbounds):
+            for iZ, (Zmin, Zmax) in enumerate(Zbounds, start=1):
                 mask = np.logical_and(
                     metal_mass_fraction >= Zmin * solar_metal_mass_fraction,
                     metal_mass_fraction < Zmax * solar_metal_mass_fraction,
@@ -108,17 +108,12 @@ if __name__ == "__main__":
                         nH[mask], T[mask], statistic="mean", bins=nHbin
                     )
                     label = (
-                        line_properties["labels"][iZ + 1]
-                        if isnap * nlabel_per_plot
-                        <= iZ + 1
-                        < (isnap + 1) * nlabel_per_plot
+                        line_properties["labels"][iZ]
+                        if isnap * nlabel_per_plot <= iZ < (isnap + 1) * nlabel_per_plot
                         else None
                     )
                     ax[isnap].loglog(
-                        nHmid,
-                        Tmed,
-                        label=label,
-                        color=line_properties["colors"][iZ + 1],
+                        nHmid, Tmed, label=label, color=line_properties["colors"][iZ]
                     )
 
             ax[isnap].text(

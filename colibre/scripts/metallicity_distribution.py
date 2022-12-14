@@ -61,7 +61,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
     metallicities = {
         "Gas": np.histogram(Zgas, bins=metallicity_bins)[0] / Zgas.shape[0],
-        "Stars": np.histogram(Zstar, bins=metallicity_bins)[0] / Zgas.shape[0],
+        "Stars": np.histogram(Zstar, bins=metallicity_bins)[0] / Zstar.shape[0],
     }
 
     ax.plot(

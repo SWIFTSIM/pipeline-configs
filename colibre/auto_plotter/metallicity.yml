@@ -507,7 +507,7 @@ stellar_mass_star_metallicity_50:
       units: "dimensionless"
   metadata:
     title: "Stellar mass - Star metallicity relation (50 kpc aperture)"
-    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
+    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126). The Yates+ data from MaNGA corresponds to mass-weighted stellar metallicity within 3 arcsec for star-forming galaxies at 𝑧 = 0.
     section: Stellar Metallicity
     show_on_webpage: true
   observational_data:
@@ -517,6 +517,8 @@ stellar_mass_star_metallicity_50:
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Yates2021_Data.hdf5
+
 
 stellar_mass_star_metallicity_30:
   type: "scatter"
@@ -557,6 +559,7 @@ stellar_mass_star_metallicity_30:
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Yates2021_Data.hdf5
 
 
 stellar_mass_star_fe_over_h_lom_50:
@@ -599,6 +602,8 @@ stellar_mass_star_fe_over_h_lom_50:
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Yates2021_Data.hdf5
+
 
 stellar_mass_star_fe_snia_over_h_lom_50:
   type: "scatter"

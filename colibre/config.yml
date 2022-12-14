@@ -323,7 +323,6 @@ scripts:
     output_file: SNII_maximal_kick_velocities.png
     section: Feedback kick velocities
     title: Maximal SNII kick velocity
-scripts:
   - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [C/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [C/H]Sun = 8.43. The median [C/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the GALAH survey (Buder et al. 2021). Contours use a log scale with 0.04 bin size and a minimum star count of 10. All recommended flags are applied to GALAH data to select stars (SN, FE/H and X/Fe quality flags).'
     output_file: stellar_abundances_FeH_CFe_GALAH.png

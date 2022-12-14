@@ -514,7 +514,6 @@ stellar_mass_star_metallicity_50:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
@@ -555,10 +554,10 @@ stellar_mass_star_metallicity_30:
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
+
 
 stellar_mass_star_fe_over_h_lom_50:
   type: "scatter"
@@ -593,13 +592,13 @@ stellar_mass_star_fe_over_h_lom_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of [Fe/H]$_*$. All haloes are plotted, including subhaloes.'
   observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 stellar_mass_star_fe_snia_over_h_lom_50:
   type: "scatter"
@@ -634,13 +633,13 @@ stellar_mass_star_fe_snia_over_h_lom_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of [Fe/H]$_*$, where only Fe from SNIa is included. All haloes are plotted, including subhaloes.'
   observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 
 stellar_mass_star_fe_over_h_mol_lofloor_50:
@@ -676,13 +675,13 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. The floor value is set to [Fe/H]=-4. All haloes are plotted, including subhaloes.'
   observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 
 stellar_mass_star_fe_over_h_mol_hifloor_50:
@@ -718,13 +717,13 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. The floor value is set to [Fe/H]=-3. All haloes are plotted, including subhaloes.'
   observational_data:
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 
 stellar_mass_star_mg_over_fe_50:

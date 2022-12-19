@@ -105,7 +105,7 @@ if __name__ == "__main__":
                 )
                 if mask.sum() > 0:
                     Tmed, _, _ = stats.binned_statistic(
-                        nH[mask], T[mask], statistic="mean", bins=nHbin
+                        nH[mask], T[mask], statistic="median", bins=nHbin
                     )
                     label = (
                         line_properties["labels"][iZ]

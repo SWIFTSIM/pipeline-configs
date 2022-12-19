@@ -271,6 +271,26 @@
 <p>{{ data.metadata.subgrid_scheme["Cooling Model"].decode("utf-8") }}</p>
 {% if 'CHIMES' in data.metadata.subgrid_scheme["Cooling Model"].decode("utf-8") %}
     <p>{{ data.metadata.parameters.get("CHIMESCooling:colibre_table_filebase", "".encode()).decode("utf-8") }}</p>
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Maximum Value of Gas-Dust Boost</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("CHIMESCooling:max_dust_boost_factor") }}</td>
+    </tr>
+    <tr>
+        <td>Min Density in Gas-Dust Boost \(n_{\rm min}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("CHIMESCooling:dust_boost_nH_min_cgs") }}
+        cm\(^{-3}\) </td>
+    </tr>
+    <tr>
+        <td>Max Density in Gas-Dust Boost \(n_{\rm max}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("CHIMESCooling:dust_boost_nH_max_cgs") }}
+        cm\(^{-3}\) </td>
+    </tr>
+</table>
 {% else %}
     <p>{{ data.metadata.parameters.get("COLIBRECooling:filebase_cool", "".encode()).decode("utf-8") }}</p>
 <table>
@@ -304,8 +324,22 @@
         <td>{{ data.metadata.parameters | get_if_present_int("DustEvolution:pair_to_cooling") }}</td>
     </tr>
     <tr>
+        <td>Clumping Factor Mode</td>
+        <td>{{ data.metadata.parameters.get("DustEvolution:clumping_factor_mode", "".encode()).decode("utf-8") }}</td>
+    </tr>
+    <tr>
         <td>Clumping Factor</td>
         <td>{{ data.metadata.parameters | get_if_present_float("DustEvolution:clumping_factor") }}</td>
+    </tr>
+    <tr>
+        <td>Min Density in Clumping Factor \(n_{\rm min}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("DustEvolution:clumping_factor_nH_min_cgs") }}
+        cm\(^{-3}\) </td>
+    </tr>
+    <tr>
+        <td>Max Density in Clumping Factor \(n_{\rm max}\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("DustEvolution:clumping_factor_nH_max_cgs") }}
+        cm\(^{-3}\) </td>
     </tr>
 </table>
 

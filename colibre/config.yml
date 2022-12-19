@@ -62,6 +62,11 @@ scripts:
     output_file: density_pressure.png
     section: Density-Temperature
     title: Density-Pressure
+  - filename: scripts/median_temperature_density.py
+    caption: Median temperature as a function of density for all gas and for gas in selected metallicity ranges.
+    output_file: median_temperature_density.png
+    section: Density-Temperature
+    title: Density-Median Temperature
   - filename: scripts/star_formation_history.py
     caption: Star formation density history plotted directly from the SFR.txt file produced by SWIFT.
     output_file: star_formation_history.png

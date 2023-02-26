@@ -212,7 +212,7 @@ halo_mass_black_hole_mass:
     quantity: "masses.mass_200crit"
     units: Solar_Mass
     start: 1e8
-    end: 1e13
+    end: 1e15
   y:
     quantity: "black_hole_masses.max"
     units: Solar_Mass
@@ -222,12 +222,12 @@ halo_mass_black_hole_mass:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
       value: 1e8
       units: Solar_Mass
     end:
-      value: 1e13
+      value: 1e15
       units: Solar_Mass
   metadata:
     title: Halo Mass-Black Hole Mass relation

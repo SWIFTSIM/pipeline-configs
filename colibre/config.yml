@@ -506,5 +506,10 @@ scripts:
   - filename: scripts/cosmic_SNIa_rate.py
     title: 'Cosmic SNIa rate'
     caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
-    section: SNIa Rate
+    section: SN Rate (cosmic)
     output_file: SNIa_rate_history.png
+  - filename: scripts/cosmic_CC_SN_rate.py
+    title: 'Cosmic CC SN rate'
+    caption: CC SN rate history plotted directly from the SNII.txt file produced by SWIFT.
+    section: SN Rate (cosmic)
+    output_file: CC_SN_rate_history.png

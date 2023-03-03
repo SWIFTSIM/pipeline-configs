@@ -11,7 +11,7 @@ from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
-from velociraptor.observations import load_observation
+from velociraptor.observations import load_observations
 
 arguments = ScriptArgumentParser(
     description="Creates a dust mass density evolution plot, with added observational data."

@@ -4,7 +4,6 @@ Plots the dust mass density evolution.
 
 import matplotlib.pyplot as plt
 import numpy as np
-import sys
 import glob
 
 

@@ -58,14 +58,13 @@ for snapshot_filename, stats_filename, name in zip(
     simulation_labels.append(name)
 
 # Observational data plotting
-
-observational_data = glob.glob(
-    f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}/data/DustMassDensity/*.hdf5"
+path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
+observational_data = load_observations(
+    sorted(glob.glob(f"{path_to_obs_data}/data/DustMassDensity/*.hdf5"))
 )
 
-for index, observation in enumerate(observational_data):
-    obs = load_observation(observation)
-    obs.plot_on_axes(ax)
+for obs_data in observational_data:
+    obs_data.plot_on_axes(ax)
 
 ax.set_xlabel("Redshift $z$")
 ax.set_ylabel(r"Dust Mass Density $\rho_*$ [M$_\odot$ Mpc$^{-3}$]")

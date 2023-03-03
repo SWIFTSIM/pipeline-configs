@@ -1,9 +1,6 @@
 """
 Plots the dust mass density evolution.
 """
-import matplotlib
-
-import unyt
 
 import matplotlib.pyplot as plt
 import numpy as np

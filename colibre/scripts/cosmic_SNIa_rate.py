@@ -93,6 +93,7 @@ for obs_data in observational_data:
             markeredgecolor="none",
             markersize=2,
             zorder=-10,
+            capsize=1.0,
         )
     )
     observation_labels.append(f"{obs_data.citation}")
@@ -117,7 +118,7 @@ ax.set_xticks(a_ticks)
 ax.set_xticklabels(redshift_labels)
 
 observation_legend = ax.legend(
-    observation_lines, observation_labels, markerfirst=True, loc="center right"
+    observation_lines, observation_labels, markerfirst=True, loc="lower right", fontsize="xx-small", ncol=2
 )
 
 simulation_legend = ax.legend(
@@ -159,3 +160,8 @@ ax.set_ylabel(
 ax2.set_xlabel("Cosmic time [Gyr]")
 
 fig.savefig(f"{output_path}/SNIa_rate_history.png")
+
+ax.set_xlim(1.02, 0.33)
+ax2.set_xlim(1.02, 0.33)
+
+fig.savefig(f"{output_path}/SNIa_rate_history_zoom.png")

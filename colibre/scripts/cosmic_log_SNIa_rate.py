@@ -1,5 +1,5 @@
 """
-Plots the cosmic CCSN rate history.
+Plots the cosmic SNIa rate history.
 """
 import unyt
 
@@ -17,7 +17,7 @@ from astropy.units import Gyr
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a CC SN rate history plot, with added observational data."
+    description="Creates a SNIa rate history plot, with added observational data."
 )
 
 snapshot_filenames = [
@@ -25,7 +25,7 @@ snapshot_filenames = [
     for directory, snapshot in zip(arguments.directory_list, arguments.snapshot_list)
 ]
 
-CCSN_filenames = [f"{directory}/SNII.txt" for directory in arguments.directory_list]
+SNIa_filenames = [f"{directory}/SNIa.txt" for directory in arguments.directory_list]
 
 names = arguments.name_list
 output_path = arguments.output_directory
@@ -41,15 +41,15 @@ ax.semilogx()
 
 log_multiplicative_factor = 4
 multiplicative_factor = 10 ** log_multiplicative_factor
-CC_SN_rate_output_units = 1.0 / (unyt.yr * unyt.Mpc ** 3)
+SNIa_rate_output_units = 1.0 / (unyt.yr * unyt.Mpc ** 3)
 
-for idx, (snapshot_filename, CCSN_filename, name) in enumerate(
-    zip(snapshot_filenames, CCSN_filenames, names)
+for idx, (snapshot_filename, SNIa_filename, name) in enumerate(
+    zip(snapshot_filenames, SNIa_filenames, names)
 ):
     data = np.loadtxt(
-        CCSN_filename,
+        SNIa_filename,
         usecols=(4, 6, 11),
-        dtype=[("a", np.float32), ("z", np.float32), ("CC SN rate", np.float32)],
+        dtype=[("a", np.float32), ("z", np.float32), ("SNIa rate", np.float32)],
     )
 
     snapshot = load(snapshot_filename)
@@ -59,15 +59,15 @@ for idx, (snapshot_filename, CCSN_filename, name) in enumerate(
         cosmology = snapshot.metadata.cosmology
 
     units = snapshot.units
-    CC_SN_rate_units = 1.0 / (units.time * units.length ** 3)
+    SNIa_rate_units = 1.0 / (units.time * units.length ** 3)
 
     # a, Redshift, SFR
     scale_factor = data["a"]
-    CC_SN_rate = (data["CC SN rate"] * CC_SN_rate_units).to(CC_SN_rate_output_units)
+    SNIa_rate = (data["SNIa rate"] * SNIa_rate_units).to(SNIa_rate_output_units)
 
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(
-        ax.plot(scale_factor, CC_SN_rate.value * multiplicative_factor, zorder=10000)[0]
+        ax.plot(scale_factor, SNIa_rate.value * multiplicative_factor, zorder=10000)[0]
     )
     simulation_labels.append(name)
 
@@ -77,7 +77,7 @@ observation_labels = []
 
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
 observational_data = load_observations(
-    sorted(glob.glob(f"{path_to_obs_data}/data/CosmicCCSNRate/*.hdf5"))
+    sorted(glob.glob(f"{path_to_obs_data}/data/CosmicSNIaRate/*.hdf5"))
 )
 
 for obs_data in observational_data:
@@ -93,6 +93,7 @@ for obs_data in observational_data:
             markeredgecolor="none",
             markersize=2,
             zorder=-10,
+            capsize=1.0,
         )
     )
     observation_labels.append(f"{obs_data.citation}")
@@ -117,7 +118,7 @@ ax.set_xticks(a_ticks)
 ax.set_xticklabels(redshift_labels)
 
 observation_legend = ax.legend(
-    observation_lines, observation_labels, markerfirst=True, loc="center right", fontsize="xx-small"
+    observation_lines, observation_labels, markerfirst=True, loc="lower right", fontsize="xx-small", ncol=2
 )
 
 simulation_legend = ax.legend(
@@ -129,6 +130,7 @@ ax.add_artist(observation_legend)
 # Create second X-axis (to plot cosmic time alongside redshift)
 ax2 = ax.twiny()
 ax2.set_xscale("log")
+ax.set_yscale("log")
 
 # Cosmic-time ticks (in Gyr) along the second X-axis
 t_ticks = np.array([0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, cosmology.age(1.0e-5).value])
@@ -148,15 +150,14 @@ ax2.set_xticklabels(["$%2.1f$" % t_tick for t_tick in t_ticks])
 ax.tick_params(axis="x", which="minor", bottom=False)
 ax2.tick_params(axis="x", which="minor", top=False)
 
-ax.set_ylim(0.0, 26.0)
+ax.set_ylim(3e-2, 2.0)
 ax.set_xlim(1.02, 0.07)
 ax2.set_xlim(1.02, 0.07)
 
 ax.set_xlabel("Redshift $z$")
 ax.set_ylabel(
-    f"CC SN rate [$10^{{-{log_multiplicative_factor}}}$ yr$^{{-1}}$ cMpc$^{{-3}}$]"
+    f"SNIa rate [$10^{{-{log_multiplicative_factor}}}$ yr$^{{-1}}$ cMpc$^{{-3}}$]"
 )
 ax2.set_xlabel("Cosmic time [Gyr]")
 
-fig.savefig(f"{output_path}/CC_SN_rate_history.png")
-
+fig.savefig(f"{output_path}/log_SNIa_rate_history.png")

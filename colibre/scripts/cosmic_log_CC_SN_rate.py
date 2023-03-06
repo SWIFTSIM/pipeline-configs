@@ -129,6 +129,7 @@ ax.add_artist(observation_legend)
 # Create second X-axis (to plot cosmic time alongside redshift)
 ax2 = ax.twiny()
 ax2.set_xscale("log")
+ax.set_yscale("log")
 
 # Cosmic-time ticks (in Gyr) along the second X-axis
 t_ticks = np.array([0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, cosmology.age(1.0e-5).value])
@@ -148,7 +149,7 @@ ax2.set_xticklabels(["$%2.1f$" % t_tick for t_tick in t_ticks])
 ax.tick_params(axis="x", which="minor", bottom=False)
 ax2.tick_params(axis="x", which="minor", top=False)
 
-ax.set_ylim(0.0, 26.0)
+ax.set_ylim(1e-1, 3e1)
 ax.set_xlim(1.02, 0.07)
 ax2.set_xlim(1.02, 0.07)
 
@@ -158,5 +159,5 @@ ax.set_ylabel(
 )
 ax2.set_xlabel("Cosmic time [Gyr]")
 
-fig.savefig(f"{output_path}/CC_SN_rate_history.png")
+fig.savefig(f"{output_path}/log_CC_SN_rate_history.png")
 

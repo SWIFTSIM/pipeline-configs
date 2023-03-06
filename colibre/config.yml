@@ -511,5 +511,5 @@ scripts:
   - filename: scripts/dust_mass_evolution.py
     caption: Evolution of the dust mass density plotted directly from the statistics.txt file produced by SWIFT.
     output_file: dust_mass_evolution.png
-    section: Star Formation History
+    section: Dust Evolution
     title: Dust Mass Density Evolution

@@ -61,13 +61,16 @@ for idx, (snapshot_filename, r_process_filename, name) in enumerate(
     units = snapshot.units
     r_process_rate_units = 1.0 / (units.time * units.length ** 3)
 
-    dt = (data["t2"] - data["t1"]) * 1e5
+    volume = snapshot.metadata.boxsize[0] * snapshot.metadata.boxsize[1]* snapshot.metadata.boxsize[2]
+    volume.convert_to_units("Mpc**3")
+
+    dt = (data["t2"] - data["t1"]) 
 
     # a, Redshift, SFR
     scale_factor = data["a"]
-    NSM_rate = (data["NSM"] /dt * r_process_rate_units).to(r_process_rate_output_units)
-    CEJSN_rate = (data["CEJSN"]/dt * r_process_rate_units).to(r_process_rate_output_units)
-    collapsar_rate = (data["collapsar"]/dt * r_process_rate_units).to(r_process_rate_output_units)
+    NSM_rate = (data["NSM"]/volume.value /dt * r_process_rate_units).to(r_process_rate_output_units)
+    CEJSN_rate = (data["CEJSN"]/volume.value/dt * r_process_rate_units).to(r_process_rate_output_units)
+    collapsar_rate = (data["collapsar"]/volume.value/dt * r_process_rate_units).to(r_process_rate_output_units)
 
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(

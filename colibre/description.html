@@ -379,6 +379,99 @@
     </tr>
 </table>
 
+<h4>SNIa DTD</h4>
+{% if data.metadata.parameters.get("SNIaDTD:normalization_timescale_Gyr", False) %}
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    {% if data.metadata.parameters.get("SNIaDTD:SNIa_efficiency_gauss_p_Msun", False) %}
+    <tr>
+        <td>Model</td>
+        <td>Gaussian</td>
+    </tr>
+    <tr>
+        <td>SNIa efficiency per Msun (Gaussian part)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_efficiency_gauss_p_Msun") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa efficiency per Msun (constant part)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_efficiency_const_p_Msun") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa delay time</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_delay_time_Gyr") }} Gyr</td>
+    </tr>
+    <tr>
+        <td>Normalisation time scale (constant part)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:normalization_timescale_Gyr") }} Gyr</td>
+    </tr>
+    <tr>
+        <td>Characteristic time of the Guassian</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:characteristic_time_Gyr") }} Gyr</td>
+    </tr>
+    <tr>
+        <td>Standard deviation time of the Guassian</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:STD_characteristic_time_Gyr") }} Gyr</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td>Model</td>
+        <td>Power law</td>
+    </tr>
+    <tr>
+        <td>SNIa efficiency per Msun</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_efficiency_p_Msun") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa delay time</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_delay_time_Gyr") }} Gyr</td>
+    </tr>
+    <tr>
+        <td>Normalisation time scale</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:normalization_timescale_Gyr") }} Gyr</td>
+    </tr>
+    <tr>
+        <td>power law slope</td>
+        {% if data.metadata.parameters.get("SNIaDTD:power_law_slope", False) %}
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:power_law_slope") }}</td>
+        {% else %}
+        <td>1.0</td>
+        {% endif %}
+    </tr>
+    {% endif %}
+</table>
+
+{% else %}
+{% if data.metadata.parameters.get("SNIaDTD:SNIa_timescale_Gyr", False) %}
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Model</td>
+        <td>exponential</td>
+    </tr>
+    <tr>
+        <td>SNIa efficiency per Msun</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_efficiency_p_Msun") }}</td>
+    </tr>
+    <tr>
+        <td>SNIa delay time</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_delay_time_Gyr") }} Gyr</td>
+    </tr>
+    <tr>
+        <td>exponential delay time</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:SNIa_timescale_Gyr") }} Gyr</td>
+    </tr>
+</table>
+{% else %}
+<p>DTD not found</p>
+{% endif %}
+{% endif %}
+
 <h4>AGN feedback</h4>
 {% if data.metadata.parameters.get("COLIBREAGN:AGN_delta_T_K", False) %}
 <table>

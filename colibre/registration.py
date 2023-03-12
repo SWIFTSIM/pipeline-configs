@@ -34,7 +34,7 @@ This file calculates:
 # Define aperture size in kpc
 aperture_sizes_30_50_100_kpc = {30, 50, 100}
 
-# Solar metal mass fraction used in Plöckinger S. & Schaye J. (2020)
+# Solar metal mass fraction used in Ploeckinger S. & Schaye J. (2020)
 solar_metal_mass_fraction = 0.0134
 
 # Solar value for O/H

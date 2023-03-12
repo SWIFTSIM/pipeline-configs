@@ -905,9 +905,8 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
         )
         # Fetch linear Fe (from SNIa) over H times stellar mass computed in apertures. The
         # mass ratio between Fe and H has already been accounted for.
-        lin_FeSNIa_over_H_times_star_mass = getattr(
-            catalogue.lin_element_ratios_times_masses,
-            f"lin_FeSNIa_over_H_times_star_mass_{aperture_size}_kpc",
+        lin_FeSNIa_over_H_times_star_mass = catalogue.get_quantity(
+            f"lin_element_ratios_times_masses.lin_FeSNIa_over_H_times_star_mass_{aperture_size}_kpc"
         )
         # Fetch stellar mass in apertures
         star_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")

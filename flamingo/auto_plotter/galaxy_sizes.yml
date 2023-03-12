@@ -26,7 +26,7 @@ stellar_mass_galaxy_size_50:
     caption: Uses a 50 kpc 3D aperture.
     section: Galaxy Sizes
   observational_data:
-    - filename: GalaxyStellarMassGalaxySize/Trujillo2020.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Trujillo2020HalfMass.hdf5
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
 

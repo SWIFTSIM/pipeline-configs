@@ -26,12 +26,25 @@ def read_data(data, xvar, yvar):
     mMg_in_cgs = 24.305 * unyt.mp
     mFe_in_cgs = 55.845 * unyt.mp
 
+    mSi_in_cgs = 28.0855 * unyt.mp
+    mEu_in_cgs = 151.964 * unyt.mp
+    mBa_in_cgs = 137.327 * unyt.mp
+    mSr_in_cgs = 87.62 * unyt.mp
+    mN_in_cgs = 14.0067 * unyt.mp
+    mNe_in_cgs = 20.1797 * unyt.mp
+
     # Asplund et al. (2009)
     C_H_Sun_Asplund = 8.43
     N_H_Sun_Asplund = 7.83
     O_H_Sun_Asplund = 8.69
     Mg_H_Sun_Asplund = 7.6
     Fe_H_Sun_Asplund = 7.5
+
+    Si_H_Sun_Asplund = 7.51
+    Eu_H_Sun_Asplund = 0.52
+    Ba_H_Sun_Asplund = 2.18
+    Sr_H_Sun_Asplund = 2.87
+    Ne_H_Sun_Asplund = 7.93
 
     O_H_Sun = O_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mO_in_cgs)
     Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
@@ -40,6 +53,12 @@ def read_data(data, xvar, yvar):
     N_Fe_Sun = N_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mN_in_cgs)
     O_Fe_Sun = O_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mO_in_cgs)
     Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
+
+    Si_Fe_Sun = Si_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSi_in_cgs)
+    Eu_Fe_Sun = Eu_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mEu_in_cgs)
+    Ba_Fe_Sun = Ba_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mBa_in_cgs)
+    Sr_Fe_Sun = Sr_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSr_in_cgs)
+    Ne_Fe_Sun = Ne_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mNe_in_cgs)
 
     hydrogen = data.stars.element_mass_fractions.hydrogen
     iron = data.stars.element_mass_fractions.iron
@@ -55,6 +74,17 @@ def read_data(data, xvar, yvar):
         magnesium = data.stars.element_mass_fractions.magnesium
     if yvar == "Fe_SNIa_fraction":
         iron_snia = data.stars.iron_mass_fractions_from_snia
+
+    if yvar == "Si_Fe":
+        silicon = data.stars.element_mass_fractions.silicon
+    if yvar == "Ne_Fe":
+        neon = data.stars.element_mass_fractions.neon
+    if yvar == "Eu_Fe":
+        europium = data.stars.element_mass_fractions.europium
+    if yvar == "Ba_Fe":
+        barium = data.stars.element_mass_fractions.barium
+    if yvar == "Sr_Fe":
+        strontium = data.stars.element_mass_fractions.strontium
 
     if xvar == "O_H":
         O_H = np.log10(oxygen / hydrogen) - O_H_Sun
@@ -93,6 +123,36 @@ def read_data(data, xvar, yvar):
         Mg_Fe[magnesium == 0] = -2  # set lower limit
         Mg_Fe[Mg_Fe < -2] = -2  # set lower limit
         yval = Mg_Fe
+    elif yvar == "Si_Fe":
+        Si_Fe = np.log10(silicon / iron) - Si_Fe_Sun
+        Si_Fe[iron == 0] = -2  # set lower limit
+        Si_Fe[silicon == 0] = -2  # set lower limit
+        Si_Fe[Si_Fe < -2] = -2  # set lower limit
+        yval = Si_Fe
+    elif yvar == "Ne_Fe":
+        Ne_Fe = np.log10(neon / iron) - Ne_Fe_Sun
+        Ne_Fe[iron == 0] = -2  # set lower limit
+        Ne_Fe[neon == 0] = -2  # set lower limit
+        Ne_Fe[Ne_Fe < -2] = -2  # set lower limit
+        yval = Ne_Fe
+    elif yvar == "Eu_Fe":
+        Eu_Fe = np.log10(europium / iron) - Eu_Fe_Sun
+        Eu_Fe[iron == 0] = -2  # set lower limit
+        Eu_Fe[europium == 0] = -2  # set lower limit
+        Eu_Fe[Eu_Fe < -2] = -2  # set lower limit
+        yval = Eu_Fe
+    elif yvar == "Ba_Fe":
+        Ba_Fe = np.log10(barium / iron) - Ba_Fe_Sun
+        Ba_Fe[iron == 0] = -2  # set lower limit
+        Ba_Fe[barium == 0] = -2  # set lower limit
+        Ba_Fe[Ba_Fe < -2] = -2  # set lower limit
+        yval = Ba_Fe
+    elif yvar == "Sr_Fe":
+        Sr_Fe = np.log10(strontium / iron) - Sr_Fe_Sun
+        Sr_Fe[iron == 0] = -2  # set lower limit
+        Sr_Fe[strontium == 0] = -2  # set lower limit
+        Sr_Fe[Sr_Fe < -2] = -2  # set lower limit
+        yval = Sr_Fe
     elif yvar == "Fe_SNIa_fraction":
         Fe_snia_fraction = unyt_array(np.zeros_like(iron), "dimensionless")
         mask = iron > 0.0
@@ -256,6 +316,12 @@ elif dataset == "GALAH":
         obs_plane = np.array(GALAH_data["O_enrichment_vs_Fe_abundance"]).T
     elif yvar == "Mg_Fe":
         obs_plane = np.array(GALAH_data["Mg_enrichment_vs_Fe_abundance"]).T
+    elif yvar == "Si_Fe":
+        obs_plane = np.array(GALAH_data["Si_enrichment_vs_Fe_abundance"]).T
+    elif yvar == "Ba_Fe":
+        obs_plane = np.array(GALAH_data["Ba_enrichment_vs_Fe_abundance"]).T
+    elif yvar == "Eu_Fe":
+        obs_plane = np.array(GALAH_data["Eu_enrichment_vs_Fe_abundance"]).T
     obs_plane[obs_plane < 10] = None
 
     contour = plt.contour(
@@ -301,6 +367,11 @@ ylabels = {
     "N_Fe": "[N/Fe]",
     "O_Fe": "[O/Fe]",
     "Mg_Fe": "[Mg/Fe]",
+    "Si_Fe": "[Si/Fe]",
+    "Ne_Fe": "[Ne/Fe]",
+    "Sr_Fe": "[Sr/Fe]",
+    "Ba_Fe": "[Ba/Fe]",
+    "Eu_Fe": "[Eu/Fe]",
     "Fe_SNIa_fraction": "Fe (SNIa) / Fe (Total)",
 }
 ax.set_xlabel(xlabels[xvar])
@@ -312,6 +383,11 @@ ylims = {
     "N_Fe": (-1.5, 1.5),
     "O_Fe": (-1.5, 1.5),
     "Mg_Fe": (-1.5, 2.0),
+    "Si_Fe": (-1.5, 2.0),
+    "Ba_Fe": (-1.5, 2.0),
+    "Sr_Fe": (-1.5, 2.0),
+    "Eu_Fe": (-1.5, 2.0),
+    "Ne_Fe": (-1.5, 2.0),
     "Fe_SNIa_fraction": (3.0e-3, 3.0),
 }
 ax.set_ylim(*ylims[yvar])

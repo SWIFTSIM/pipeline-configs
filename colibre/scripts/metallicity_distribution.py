@@ -59,14 +59,14 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     gas_fraction = 100.0 * (Zgas >= 10.0 ** logZmin).sum() / Zgas.shape[0]
     star_fraction = 100.0 * (Zstar >= 10.0 ** logZmin).sum() / Zstar.shape[0]
 
-    metallicities = {
-        "Gas": np.histogram(Zgas, bins=metallicity_bins)[0],
-        "Stars": np.histogram(Zstar, bins=metallicity_bins)[0],
+    fraction_of_particles = {
+        "Gas": np.histogram(Zgas, bins=metallicity_bins)[0] / Zgas.shape[0],
+        "Stars": np.histogram(Zstar, bins=metallicity_bins)[0] / Zstar.shape[0],
     }
 
     ax.plot(
         metallicity_bin_centers,
-        metallicities["Gas"] / log_metallicity_bin_width,
+        fraction_of_particles["Gas"] / log_metallicity_bin_width,
         label=f"{name} (gas: {gas_fraction:.1f}%, stars: {star_fraction:.1f}%)",
         color=f"C{color}",
         linestyle="solid",
@@ -74,7 +74,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
     ax.plot(
         metallicity_bin_centers,
-        metallicities["Stars"] / log_metallicity_bin_width,
+        fraction_of_particles["Stars"] / log_metallicity_bin_width,
         color=f"C{color}",
         linestyle="dashed",
     )
@@ -91,6 +91,6 @@ custom_lines = [
 ax.legend(custom_lines, ["Gas", "Stars"], markerfirst=True, loc="upper left")
 ax.add_artist(simulation_legend)
 ax.set_xlabel(f"{'Smoothed ' if smoothed else ''}Metal Mass Fractions $Z$ []")
-ax.set_ylabel("Number of Particles / d$\\log Z$")
+ax.set_ylabel("Fraction of Particles / d$\\log Z$")
 
 fig.savefig(f"{output_path}/metallicity_distribution.png")

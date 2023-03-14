@@ -1,110 +1,3 @@
-stellar_mass_snia_rates_50:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "snia_rates.snia_rates_50_kpc"
-    units: "1/year"
-    start: 3e-8
-    end: 1e-1
-  mean:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-SNIa rate relation (50 kpc aperture)
-    caption: Uses a 50 kpc 3D aperture.
-    section: SNIa Rate (Stellar Mass)
-  observational_data_bracket_width: 10.0
-  observational_data:
-    - filename: GalaxyStellarMassSNIaRate/Kistler2014.hdf5
-    - filename: GalaxyStellarMassSNIaRate/Graur2015.hdf5
-    - filename: GalaxyStellarMassSNIaRate/Graur2017.hdf5
-    - filename: GalaxyStellarMassSNIaRate/Wiseman2021.hdf5
-
-stellar_mass_snia_rates_active_only_50:
-  type: "scatter"
-  comment: "Active only"
-  comment_loc: "lower left"
-  legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "snia_rates.snia_rates_50_kpc"
-    units: "1/year"
-    start: 3e-8
-    end: 1e-1
-  mean:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-SNIa rate relation (active only, 50 kpc aperture)
-    caption: Uses a 50 kpc 3D aperture and only active galaxies.
-    section: SNIa Rate (Stellar Mass)
-  observational_data:
-    - filename: GalaxyStellarMassSNIaRate/Smith2012_active.hdf5
-    - filename: GalaxyStellarMassSNIaRate/Graur2015_active.hdf5
-    - filename: GalaxyStellarMassSNIaRate/Graur2017_active.hdf5
-
-stellar_mass_snia_rates_passive_only_50:
-  type: "scatter"
-  comment: "Passive only"
-  comment_loc: "lower left"
-  legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_passive_50_kpc"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "snia_rates.snia_rates_50_kpc"
-    units: "1/year"
-    start: 3e-8
-    end: 1e-1
-  mean:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-SNIa rate relation (passive only, 50 kpc aperture)
-    caption: Uses a 50 kpc 3D aperture and only passive galaxies.
-    section: SNIa Rate (Stellar Mass)
-  observational_data:
-    - filename: GalaxyStellarMassSNIaRate/Smith2012_passive.hdf5
-    - filename: GalaxyStellarMassSNIaRate/Graur2015_passive.hdf5
-    - filename: GalaxyStellarMassSNIaRate/Graur2017_passive.hdf5
-
 stellar_mass_snia_rates_per_stellar_mass_50:
   type: "scatter"
   legend_loc: "upper left"
@@ -212,6 +105,113 @@ stellar_mass_snia_rates_per_stellar_mass_passive_only_50:
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2015_passive.hdf5
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2017_passive.hdf5
 
+stellar_mass_snia_rates_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "snia_rates.snia_rates_50_kpc"
+    units: "1/year"
+    start: 3e-8
+    end: 1e-1
+  mean:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate relation (50 kpc aperture)
+    caption: Uses a 50 kpc 3D aperture.
+    section: SNIa Rate (Stellar Mass)
+  observational_data_bracket_width: 10.0
+  observational_data:
+    - filename: GalaxyStellarMassSNIaRate/Kistler2014.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2015.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2017.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Wiseman2021.hdf5
+
+stellar_mass_snia_rates_active_only_50:
+  type: "scatter"
+  comment: "Active only"
+  comment_loc: "lower left"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_50_kpc"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "snia_rates.snia_rates_50_kpc"
+    units: "1/year"
+    start: 3e-8
+    end: 1e-1
+  mean:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate relation (active only, 50 kpc aperture)
+    caption: Uses a 50 kpc 3D aperture and only active galaxies.
+    section: SNIa Rate (Stellar Mass)
+  observational_data:
+    - filename: GalaxyStellarMassSNIaRate/Smith2012_active.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2015_active.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2017_active.hdf5
+
+stellar_mass_snia_rates_passive_only_50:
+  type: "scatter"
+  comment: "Passive only"
+  comment_loc: "lower left"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_passive_50_kpc"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "snia_rates.snia_rates_50_kpc"
+    units: "1/year"
+    start: 3e-8
+    end: 1e-1
+  mean:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-SNIa rate relation (passive only, 50 kpc aperture)
+    caption: Uses a 50 kpc 3D aperture and only passive galaxies.
+    section: SNIa Rate (Stellar Mass)
+  observational_data:
+    - filename: GalaxyStellarMassSNIaRate/Smith2012_passive.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2015_passive.hdf5
+    - filename: GalaxyStellarMassSNIaRate/Graur2017_passive.hdf5
+
 gas_metallicity_snia_rates_per_stellar_mass_active_only_50:
   comment: "$M_\\star > 10^{10}$ $M_\\odot$ and active only"
   comment_loc: "lower left"
@@ -282,6 +282,41 @@ gas_metallicity_snia_rates_per_stellar_mass_active_only_50_Mstar5e10:
   observational_data:
     - filename: GalaxyGasMetallicitySNIaRatePerStellarMass/Graur2017.hdf5
 
+star_formation_rates_snia_rates_50:
+  comment: "$M_\\star > 10^{10}$ $M_\\odot$"
+  comment_loc: "lower left"
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
+  x:
+    quantity: "apertures.sfr_gas_50_kpc"
+    units: "Solar_Mass/year"
+    start: 1e-3
+    end: 1e2
+  y:
+    quantity: "snia_rates.snia_rates_50_kpc"
+    units: "1/year"
+    start: 1e-6
+    end: 1e-1
+  mean:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e-3
+      units: "Solar_Mass/year"
+    end:
+      value: 1e2
+      units: "Solar_Mass/year"
+  metadata:
+    title: SFR-SNIa rate relation (50 kpc aperture)
+    caption: Uses a 50 kpc 3D aperture, only select galaxies with a stellar mass above 1e10 Msun.
+    section: SNIa Rate (SFR and sSFR)
+  observational_data:
+    - filename: StarFormationRateSNIaRate/Sullivan2006.hdf5
+    - filename: StarFormationRateSNIaRate/Smith2012.hdf5
+
 star_formation_rates_snia_rates_per_stellar_mass_50:
   comment: "$M_\\star > 10^{10}$ $M_\\odot$"
   comment_loc: "lower left"
@@ -317,17 +352,17 @@ star_formation_rates_snia_rates_per_stellar_mass_50:
     - filename: StarFormationRateSNIaRatePerStellarMass/Graur2015.hdf5
     - filename: StarFormationRateSNIaRatePerStellarMass/Graur2017.hdf5
 
-star_formation_rates_snia_rates_per_stellar_mass_50_Mstar5e10:
-  comment: "$M_\\star > 5 \\times 10^{10}$ $M_\\odot$"
+specific_star_formation_rates_snia_rates_per_stellar_mass_50:
+  comment: "$M_\\star > 10^{10}$ $M_\\odot$"
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_5e10_msun_50_kpc"
+  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
-    units: "Solar_Mass/year"
+    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    units: "1/gigayear"
     start: 1e-3
-    end: 1e2
+    end: 1e1
   y:
     quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
     units: "1/year/Solar_Mass"
@@ -339,53 +374,21 @@ star_formation_rates_snia_rates_per_stellar_mass_50_Mstar5e10:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e-3
-      units: "Solar_Mass/year"
+      value: 1e-4
+      units: "1/gigayear"
     end:
-      value: 1e2
-      units: "Solar_Mass/year"
+      value: 1e1
+      units: "1/gigayear"
   metadata:
-    title: SFR-SNIa rate per stellar mass relation (50 kpc aperture)
-    caption: Uses a 50 kpc 3D aperture, only select galaxies with a stellar mass above 5e10 Msun.
-    section: SNIa Rate (SFR and sSFR)
-  observational_data:
-    - filename: StarFormationRateSNIaRatePerStellarMass/Graur2015.hdf5
-    - filename: StarFormationRateSNIaRatePerStellarMass/Graur2017.hdf5
-
-star_formation_rates_snia_rates_50:
-  comment: "$M_\\star > 10^{10}$ $M_\\odot$"
-  comment_loc: "lower left"
-  type: "scatter"
-  legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
-  x:
-    quantity: "apertures.sfr_gas_50_kpc"
-    units: "Solar_Mass/year"
-    start: 1e-3
-    end: 1e2
-  y:
-    quantity: "snia_rates.snia_rates_50_kpc"
-    units: "1/year"
-    start: 1e-6
-    end: 1e-1
-  mean:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e-3
-      units: "Solar_Mass/year"
-    end:
-      value: 1e2
-      units: "Solar_Mass/year"
-  metadata:
-    title: SFR-SNIa rate relation (50 kpc aperture)
+    title: sSFR-SNIa rate per stellar mass relation (50 kpc aperture)
     caption: Uses a 50 kpc 3D aperture, only select galaxies with a stellar mass above 1e10 Msun.
     section: SNIa Rate (SFR and sSFR)
   observational_data:
-    - filename: StarFormationRateSNIaRate/Sullivan2006.hdf5
-    - filename: StarFormationRateSNIaRate/Smith2012.hdf5
+    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Mannucci2005.hdf5
+    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Sullivan2006.hdf5
+    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Smith2012.hdf5
+    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Graur2015.hdf5
+    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Graur2017.hdf5
 
 star_formation_rates_snia_rates_50_Mstar5e10:
   comment: "$M_\\star > 5 \\times 10^{10}$ $M_\\odot$"
@@ -422,17 +425,17 @@ star_formation_rates_snia_rates_50_Mstar5e10:
     - filename: StarFormationRateSNIaRate/Sullivan2006.hdf5
     - filename: StarFormationRateSNIaRate/Smith2012.hdf5
 
-specific_star_formation_rates_snia_rates_per_stellar_mass_50:
-  comment: "$M_\\star > 10^{10}$ $M_\\odot$"
+star_formation_rates_snia_rates_per_stellar_mass_50_Mstar5e10:
+  comment: "$M_\\star > 5 \\times 10^{10}$ $M_\\odot$"
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
+  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_5e10_msun_50_kpc"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
-    units: "1/gigayear"
+    quantity: "apertures.sfr_gas_50_kpc"
+    units: "Solar_Mass/year"
     start: 1e-3
-    end: 1e1
+    end: 1e2
   y:
     quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
     units: "1/year/Solar_Mass"
@@ -445,20 +448,17 @@ specific_star_formation_rates_snia_rates_per_stellar_mass_50:
     number_of_bins: 30
     start:
       value: 1e-3
-      units: "1/gigayear"
+      units: "Solar_Mass/year"
     end:
-      value: 1e1
-      units: "1/gigayear"
+      value: 1e2
+      units: "Solar_Mass/year"
   metadata:
-    title: sSFR-SNIa rate per stellar mass relation (50 kpc aperture)
-    caption: Uses a 50 kpc 3D aperture, only select galaxies with a stellar mass above 1e10 Msun.
+    title: SFR-SNIa rate per stellar mass relation (50 kpc aperture)
+    caption: Uses a 50 kpc 3D aperture, only select galaxies with a stellar mass above 5e10 Msun.
     section: SNIa Rate (SFR and sSFR)
   observational_data:
-    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Mannucci2005.hdf5
-    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Sullivan2006.hdf5
-    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Smith2012.hdf5
-    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Graur2015.hdf5
-    - filename: SpecificStarFormationRateSNIaRatePerStellarMass/Graur2017.hdf5
+    - filename: StarFormationRateSNIaRatePerStellarMass/Graur2015.hdf5
+    - filename: StarFormationRateSNIaRatePerStellarMass/Graur2017.hdf5
 
 specific_star_formation_rates_snia_rates_per_stellar_mass_50_Mstar5e10:
   comment: "$M_\\star > 5 \\times 10^{10}$ $M_\\odot$"
@@ -482,7 +482,7 @@ specific_star_formation_rates_snia_rates_per_stellar_mass_50_Mstar5e10:
     adaptive: true
     number_of_bins: 30
     start:
-      value: 1e-3
+      value: 1e-4
       units: "1/gigayear"
     end:
       value: 1e1

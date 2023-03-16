@@ -74,7 +74,7 @@ for idx, (snapshot_filename, r_process_filename, name) in enumerate(
 
     # High z-order as we always want these to be on top of the observations
     simulation_lines.append(
-        ax.plot(scale_factor, collapsar_rate.value * multiplicative_factor, zorder=10000, linestyle="-.")[0]
+        ax.plot(scale_factor, collapsar_rate.value * multiplicative_factor, zorder=10000)[0]
     )
     simulation_labels.append(name)
 

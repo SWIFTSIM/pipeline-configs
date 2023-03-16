@@ -20,6 +20,66 @@ description_template: description.html
 
 # Location and description of additional figures
 scripts:
+  - filename: scripts/cosmic_log_SNIa_rate_CSFH_based.py
+    title: 'Cosmic SNIa rate'
+    caption: SNIa rate history calculated from the SFR.txt file produced by SWIFT.
+    section: SN Rate (cosmic - CSFH based)
+    output_file: log_SNIa_rate_history_based_on_CSFH.png 
+  - filename: scripts/cosmic_SNIa_rate_CSFH_based.py
+    title: 'Cosmic SNIa rate'
+    caption: SNIa rate history calculated from the SFR.txt file produced by SWIFT.
+    section: SN Rate (cosmic - CSFH based)
+    output_file: SNIa_rate_history_based_on_CSFH.png 
+  - filename: scripts/cosmic_log_CC_SN_rate_CSFH_based.py
+    title: 'Cosmic CC SN rate'
+    caption: CC SN rate history calculated from the SFR.txt file produced by SWIFT.
+    section: SN Rate (cosmic - CSFH based)
+    output_file: log_CC_SN_rate_history_based_on_CSFH.png 
+  - filename: scripts/cosmic_CC_SN_rate_CSFH_based.py
+    title: 'Cosmic CC SN rate'
+    caption: CC SN rate history calculated from the SFR.txt file produced by SWIFT.
+    section: SN Rate (cosmic - CSFH based)
+    output_file: CC_SN_rate_history_based_on_CSFH.png 
+  - filename: scripts/cosmic_SNIa_over_CC_SN_rate_CSFH_based.py
+    title: 'Cosmic SNIa rate / CC SN rate'
+    caption: SNIa rate over CC SN rate history calculated from the SFR.txt file produced by SWIFT.
+    section: SN Rate (cosmic - CSFH based)
+    output_file: SNIa_over_CC_rate_history_based_on_CSFH.png 
+  - filename: scripts/cosmic_SNIa_rate.py
+    title: 'Cosmic SNIa rate'
+    caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
+    section: SN Rate (cosmic - stochastic)
+    output_file: SNIa_rate_history.png
+  - filename: scripts/cosmic_log_SNIa_rate.py
+    title: 'Cosmic SNIa rate'
+    caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
+    section: SN Rate (cosmic - stochastic)
+    output_file: log_SNIa_rate_history.png
+  - filename: scripts/cosmic_CC_SN_rate.py
+    title: 'Cosmic CC SN rate'
+    caption: CC SN rate history plotted directly from the SNII.txt file produced by SWIFT.
+    section: SN Rate (cosmic - stochastic)
+    output_file: CC_SN_rate_history.png
+  - filename: scripts/cosmic_log_CC_SN_rate.py
+    title: 'Cosmic CC SN rate'
+    caption: CC SN rate history plotted directly from the SNII.txt file produced by SWIFT.
+    section: SN Rate (cosmic - stochastic)
+    output_file: log_CC_SN_rate_history.png
+  - filename: scripts/cosmic_log_NSM_rate.py
+    title: 'Cosmic NS-NS merger rate'
+    caption: NS-NS merger rate or short GRB rate plotted directly from the r_processes.txt file produced by SWIFT.
+    section: SN Rate (cosmic - stochastic)
+    output_file: log_NSM_rate_history.png 
+  - filename: scripts/cosmic_log_CEJSN_rate.py
+    title: 'Cosmic common-envelop jets SN rate'
+    caption: Common-envelop (CE) jets SN rate plotted directly from the r_processes.txt file produced by SWIFT.
+    section: SN Rate (cosmic - stochastic)
+    output_file: log_CEJSN_rate_history.png
+  - filename: scripts/cosmic_log_collapsar_rate.py
+    title: 'Cosmic collapsar rate'
+    caption: Collapsar rate plotted directly from the r_processes.txt file produced by SWIFT.
+    section: SN Rate (cosmic - stochastic)
+    output_file: log_collapsar_rate_history.png
   - filename: scripts/density_temperature.py
     caption: Density-temperature diagram. If present, dashed line represents the entropy floor (equation of state).
     output_file: density_temperature.png
@@ -503,13 +563,3 @@ scripts:
     section: Column Densities
     additional_arguments:
       parallel: True
-  - filename: scripts/cosmic_SNIa_rate.py
-    title: 'Cosmic SNIa rate'
-    caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
-    section: SN Rate (cosmic)
-    output_file: SNIa_rate_history.png
-  - filename: scripts/cosmic_CC_SN_rate.py
-    title: 'Cosmic CC SN rate'
-    caption: CC SN rate history plotted directly from the SNII.txt file produced by SWIFT.
-    section: SN Rate (cosmic)
-    output_file: CC_SN_rate_history.png

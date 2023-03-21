@@ -31,6 +31,8 @@ stellar_mass_snia_rates_per_stellar_mass_50:
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Kistler2014.hdf5
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2015.hdf5
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Graur2017.hdf5
+    - filename: GalaxyStellarMassSNIaRatePerStellarMass/Brown2019_vol_limited.hdf5
+    - filename: GalaxyStellarMassSNIaRatePerStellarMass/Brown2019_full.hdf5
     - filename: GalaxyStellarMassSNIaRatePerStellarMass/Wiseman2021.hdf5
 
 stellar_mass_snia_rates_per_stellar_mass_active_only_50:

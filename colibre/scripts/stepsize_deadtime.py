@@ -27,7 +27,7 @@ for run_name, run_directory in zip(run_names, run_directories):
     color = f"C{color_index}"
     color_index += 1
 
-    timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
+    timesteps_glob = glob(f"{run_directory}/timesteps*.txt")
     timesteps_filename = timesteps_glob[0]
 
     # extract the number of ranks from the file

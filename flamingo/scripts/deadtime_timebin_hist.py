@@ -22,7 +22,7 @@ fig, ax = plt.subplots()
 
 for run_name, run_directory in zip(run_names, run_directories):
 
-    timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
+    timesteps_glob = glob(f"{run_directory}/timesteps*.txt")
     timesteps_filename = timesteps_glob[0]
 
     try:

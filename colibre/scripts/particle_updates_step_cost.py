@@ -144,8 +144,7 @@ if __name__ == "__main__":
     )
 
     timestep_filenames = [
-        glob(f"{directory}/timesteps_*.txt")[0]
-        for directory in arguments.directory_list
+        glob(f"{directory}/timesteps*.txt")[0] for directory in arguments.directory_list
     ]
 
     plt.style.use(arguments.stylesheet_location)

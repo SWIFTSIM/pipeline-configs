@@ -28,7 +28,7 @@ for color_index, (run_name, run_directory) in enumerate(
 
     color = f"C{color_index}"
 
-    timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
+    timesteps_glob = glob(f"{run_directory}/timesteps*.txt")
     timesteps_filename = timesteps_glob[0]
 
     # extract the number of ranks from the file

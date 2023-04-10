@@ -28,7 +28,7 @@ for run_name, run_directory, snapshot_name in zip(
     run_names, run_directories, snapshot_names
 ):
 
-    timesteps_glob = glob(f"{run_directory}/timesteps_*.txt")
+    timesteps_glob = glob(f"{run_directory}/timesteps*.txt")
     timesteps_filename = timesteps_glob[0]
     snapshot_filename = f"{run_directory}/{snapshot_name}"
 

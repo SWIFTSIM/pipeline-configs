@@ -852,3 +852,123 @@ sigma_sf_to_sf_plus_stellar_fraction_50:
     caption: All galaxies are included in the median line. Fraction is SF gas mass over SF gas mass + Stellar mass in a 50 kpc aperture.
     section: Cold Gas Fractions (Surface Density)
     show_on_webpage: false
+    
+stellar_mass_HI_mass_50:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-HI Gas Mass Relation (50 kpc aperture)
+    caption: All galaxies are included in the median line. Both stellar and HI masses were computed in 50 kpc apertures.
+    section: Cold Gas Masses
+    show_on_webpage: True
+    
+stellar_mass_H2_mass_50:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-H$_2$ Gas Mass Relation (50 kpc aperture)
+    caption: All galaxies are included in the median line. H$_2$ mass was corrected for Helium. Both stellar and H$_2$ masses were computed in 50 kpc apertures.
+    section: Cold Gas Masses
+    show_on_webpage: True
+    
+halo_mass_HI_mass_50:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e7
+    end: 1e15
+  y:
+    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 40
+    start:
+      value: 1e7
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: Halo Mass-HI Gas Mass Relation (50 kpc aperture)
+    caption: All galaxies are included in the median line. HI mass was computed in 50 kpc apertures.
+    section: Cold Gas Masses
+    show_on_webpage: True
+    
+halo_mass_H2_mass_50:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e7
+    end: 1e15
+  y:
+    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 40
+    start:
+      value: 1e7
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: Halo Mass-H$_2$ Gas Mass Relation (50 kpc aperture)
+    caption: All galaxies are included in the median line. H$_2$ mass was corrected for Helium. H$_2$ mass was computed in 50 kpc apertures.
+    section: Cold Gas Masses
+    show_on_webpage: True

@@ -91,8 +91,7 @@ stellar_mass_specific_sfr_all_50:
     caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
     section: Star Formation Rates
   observational_data:
-    - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
-    - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_AllGalaxies.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_AllGalaxies.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
@@ -126,8 +125,8 @@ stellar_mass_specific_sfr_all_30:
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
-    - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
-    - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_AllGalaxies.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_AllGalaxies.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
 stellar_mass_specific_sfr_active_50:
@@ -202,6 +201,7 @@ stellar_mass_specific_sfr_active_30:
   observational_data:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
 halo_mass_specific_sfr_30:

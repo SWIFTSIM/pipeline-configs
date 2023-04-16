@@ -145,7 +145,7 @@ extra_data_sample = load_observations(
 )
 
 for extra_data, color, wavrange in zip(
-    extra_data_sample, ["maroon", "goldenrod", "slategrey"], ["radio", "IR", "radio"]
+    extra_data_sample, ["maroon", "goldenrod", "slategrey"], ["radio", "FIR", "radio"]
 ):
     observation_lines.append(
         ax.errorbar(

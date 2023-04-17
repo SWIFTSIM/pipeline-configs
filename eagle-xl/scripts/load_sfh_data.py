@@ -118,7 +118,7 @@ def read_obs_data(path="observational_data"):
     )
 
     # sfr observational data from Magnelli 2013
-    z, rhostar, err_m, err_p = loadtxt(f"{path}/sfr_magnelli2013.dat", unpack=True)
+    z, rhostar, err_p, err_m = loadtxt(f"{path}/sfr_magnelli2013.dat", unpack=True)
     obs6_a = 1.0 / (1 + z)
     obs6_rho = (
         10 ** rhostar / 1.65 * 0.6777 / 0.7
@@ -134,7 +134,7 @@ def read_obs_data(path="observational_data"):
     )
 
     # sfr observational data from Gruppioni 2013
-    z, rhostar, err_m, err_p = loadtxt(f"{path}/sfr_gruppioni2013.dat", unpack=True)
+    z, rhostar, err_p, err_m = loadtxt(f"{path}/sfr_gruppioni2013.dat", unpack=True)
     obs7_a = 1.0 / (1 + z)
     obs7_rho = (
         10 ** rhostar / 1.65 * 0.6777 / 0.7
@@ -164,7 +164,7 @@ def read_obs_data(path="observational_data"):
     )
 
     # sfr observational data from Schenker 2013
-    z, rhostar, err_m, err_p = loadtxt(f"{path}/sfr_schenker2013.dat", unpack=True)
+    z, rhostar, err_p, err_m = loadtxt(f"{path}/sfr_schenker2013.dat", unpack=True)
     obs9_a = 1.0 / (1 + z)
     obs9_rho = (
         10 ** rhostar / 1.65 * 0.6777 / 0.7

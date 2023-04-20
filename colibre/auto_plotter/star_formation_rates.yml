@@ -165,6 +165,7 @@ stellar_mass_specific_sfr_active_50:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Davies2016.hdf5
 
 stellar_mass_specific_sfr_active_30:
   type: "scatter"
@@ -203,6 +204,7 @@ stellar_mass_specific_sfr_active_30:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_StarForming.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
+    - filename: GalaxyStellarMassSpecificStarFormationRate/Davies2016.hdf5
 
 halo_mass_specific_sfr_30:
   type: "scatter"
@@ -551,6 +553,7 @@ star_formation_rate_function_50:
     section: Star Formation Rates
   observational_data:
     - filename: StarFormationRateFunction/Bell2007.hdf5
+    - filename: StarFormationRateFunction/Bollo2023.hdf5
 
 star_formation_rate_function_30:
   type: "massfunction"
@@ -572,6 +575,7 @@ star_formation_rate_function_30:
     show_on_webpage: false
   observational_data:
     - filename: StarFormationRateFunction/Bell2007.hdf5
+    - filename: StarFormationRateFunction/Bollo2023.hdf5
 
 adaptive_star_formation_rate_function_50:
   type: "adaptivemassfunction"
@@ -592,6 +596,7 @@ adaptive_star_formation_rate_function_50:
     section: Star Formation Rates
   observational_data:
     - filename: StarFormationRateFunction/Bell2007.hdf5
+    - filename: StarFormationRateFunction/Bollo2023.hdf5
 
 adaptive_star_formation_rate_function_30:
   type: "adaptivemassfunction"
@@ -613,4 +618,5 @@ adaptive_star_formation_rate_function_30:
     show_on_webpage: false
   observational_data:
     - filename: StarFormationRateFunction/Bell2007.hdf5
+    - filename: StarFormationRateFunction/Bollo2023.hdf5
 

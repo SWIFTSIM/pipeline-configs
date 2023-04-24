@@ -17,17 +17,6 @@ from matplotlib.cm import get_cmap
 from scipy.interpolate import interpn
 from scipy.stats import binned_statistic as bs1d
 
-compdict = {"Graphite": {"Carbon": 1.0}}
-
-# atomic weights of silicate elements
-A = {
-    "Oxygen": 15.9994,
-    "Carbon": 12.0107,
-    "Magnesium": 24.305,
-    "Silicon": 28.0855,
-    "Iron": 55.845,
-}
-
 # PLoeckinger+20 solar neighbourhood depletion fractions:
 mw_depletions = {
     "Carbon": 0.34385,
@@ -67,60 +56,6 @@ def get_data(filename, prefix_rho, prefix_T):
     data = load(filename)
     pairing = int(data.metadata.parameters["DustEvolution:pair_to_cooling"])
 
-    if (
-        float(data.metadata.parameters["DustEvolution:silicate_fe_grain_fraction"])
-        != -1.0
-    ):
-        fe_balance = float(
-            data.metadata.parameters["DustEvolution:silicate_fe_grain_fraction"]
-        )
-        # for backward compatibility for simulations run with a previous dust model
-        # using a fixed Si2O6 group for silicates with a variable Fe-Mg balance.
-        mol_O = 6 * A["Oxygen"]
-        mol_Mg = (2 - 2 * fe_balance) * A["Magnesium"]
-        mol_Si = 2 * A["Silicon"]
-        mol_Fe = 2 * fe_balance * A["Iron"]
-    else:
-        mol_O = (
-            float(
-                data.metadata.parameters[
-                    "DustEvolution:silicate_molecule_subscript_oxygen"
-                ]
-            )
-            * A["Oxygen"]
-        )
-        mol_Mg = (
-            float(
-                data.metadata.parameters[
-                    "DustEvolution:silicate_molecule_subscript_magnesium"
-                ]
-            )
-            * A["Magnesium"]
-        )
-        mol_Si = (
-            float(
-                data.metadata.parameters[
-                    "DustEvolution:silicate_molecule_subscript_silicon"
-                ]
-            )
-            * A["Silicon"]
-        )
-        mol_Fe = (
-            float(
-                data.metadata.parameters[
-                    "DustEvolution:silicate_molecule_subscript_iron"
-                ]
-            )
-            * A["Iron"]
-        )
-
-    mol_tot = mol_O + mol_Mg + mol_Si + mol_Fe
-    compdict["Silicates"] = {
-        "Oxygen": mol_O / mol_tot,
-        "Magnesium": mol_Mg / mol_tot,
-        "Silicon": mol_Si / mol_tot,
-        "Iron": mol_Fe / mol_tot,
-    }
     number_density = (
         getattr(data.gas, f"{prefix_rho}densities").to_physical() / mh
     ).to(cm ** -3)
@@ -139,33 +74,26 @@ def get_data(filename, prefix_rho, prefix_T):
     # Dust Mass Fractions
     dfracs = np.zeros(data.gas.masses.shape)
     dsfrac_dict = {}
+
     for d in data.metadata.named_columns["DustMassFractions"]:
-        for k in compdict.keys():
-            if k in d:
-                for el in compdict[k].keys():
-                    try:
-                        elfrac = np.clip(
-                            compdict[k][el]
-                            * getattr(data.gas.dust_mass_fractions, d.lower()),
-                            1e-10,
-                            1,
-                        )
-                    except AttributeError:
-                        elfrac = np.clip(
-                            compdict[k][el] * getattr(data.gas.dust_mass_fractions, d),
-                            1e-10,
-                            1,
-                        )
-                    if el in dsfrac_dict:
-                        # print(f"Add Grain: {d} Element {el} Elfrac : {(masses*elfrac).sum() / masses.sum()}")
-                        dsfrac_dict[el] += elfrac.astype("float64")
-                    else:
-                        # print(f"Make Grain: {d} Element {el} Elfrac : {(masses*elfrac).sum() / masses.sum()}")
-                        dsfrac_dict[el] = elfrac.astype("float64")
-        try:
-            dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
-        except AttributeError:
-            dfrac = getattr(data.gas.dust_mass_fractions, d)
+        for el in data.metadata.named_columns["ElementMassFractions"]:
+            coeff = getattr(
+                data.metadata.grain_to_element_mapping, f"{d.lower()}_to_{el.lower()}"
+            )
+            if not coeff:
+                continue
+            try:
+                dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
+            except AttributeError:
+                dfrac = getattr(data.gas.dust_mass_fractions, d)
+            elfrac = np.clip(dfrac * coeff, 1e-10, 1)
+
+            if el in dsfrac_dict:
+                # print(f"Add Grain: {d} Element {el} Elfrac : {elfrac}")
+                dsfrac_dict[el] += elfrac.astype("float64")
+            else:
+                # print(f"Make Grain: {d} Element {el} Elfrac : {elfrac}")
+                dsfrac_dict[el] = elfrac.astype("float64")
         dfracs += dfrac
 
     elfrac_dict = {}

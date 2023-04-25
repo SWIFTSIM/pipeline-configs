@@ -141,18 +141,21 @@ extra_data_sample = load_observations(
         f"{path_to_obs_data}/data/StarFormationRateHistory/Novak2017.hdf5",
         f"{path_to_obs_data}/data/StarFormationRateHistory/Gruppioni2020.hdf5",
         f"{path_to_obs_data}/data/StarFormationRateHistory/Enia2022.hdf5",
+        f"{path_to_obs_data}/data/StarFormationRateHistory/Khusanova2021.hdf5",
     ]
 )
 
 for extra_data, color, wavrange in zip(
-    extra_data_sample, ["maroon", "goldenrod", "slategrey"], ["radio", "FIR", "radio"]
+    extra_data_sample,
+    ["maroon", "goldenrod", "slategrey", "violet"],
+    ["radio", "FIR", "radio", "FIR"],
 ):
     observation_lines.append(
         ax.errorbar(
             extra_data.x.value,
             extra_data.y.value,
-            xerr=extra_data.x_scatter.value,
-            yerr=extra_data.y_scatter.value,
+            xerr=None if extra_data.x_scatter is None else extra_data.x_scatter.value,
+            yerr=None if extra_data.y_scatter is None else extra_data.y_scatter.value,
             label=extra_data.citation,
             linestyle="none",
             marker="o",

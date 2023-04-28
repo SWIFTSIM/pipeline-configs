@@ -251,7 +251,7 @@ ax.set_xlim(1.02, 0.07)
 ax2.set_xlim(1.02, 0.07)
 
 ax.set_xlabel("Redshift $z$")
-ax.set_ylabel(f"SNIa rate / CC SN rate")
+ax.set_ylabel("SNIa rate / CC SN rate")
 ax2.set_xlabel("Cosmic time [Gyr]")
 
 fig.savefig(f"{output_path}/SNIa_over_CC_rate_history_based_on_CSFH.png")

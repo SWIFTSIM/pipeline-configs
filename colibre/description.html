@@ -433,7 +433,7 @@
         <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:normalization_timescale_Gyr") }} Gyr</td>
     </tr>
     <tr>
-        <td>power law slope</td>
+        <td>Power law slope</td>
         {% if data.metadata.parameters.get("SNIaDTD:power_law_slope", False) %}
         <td>{{ data.metadata.parameters | get_if_present_float("SNIaDTD:power_law_slope") }}</td>
         {% else %}

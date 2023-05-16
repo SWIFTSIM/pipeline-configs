@@ -69,7 +69,8 @@ stellar_mass_black_hole_mass_50:
 
 stellar_mass_black_hole_mass_passive_30:
   type: "scatter"
-  comment: "Passive only"
+  select_structure_type: 10
+  comment: "Passive centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_passive_30_kpc"
@@ -95,8 +96,8 @@ stellar_mass_black_hole_mass_passive_30:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for passive galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive galaxies (threshold is 0.01 / Gyr sSFR) are included.
+    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for passive central galaxies.
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (threshold is 0.01 / Gyr sSFR) central galaxies are included.
     section: Black Holes
     show_on_webpage: false
   observational_data:
@@ -104,7 +105,8 @@ stellar_mass_black_hole_mass_passive_30:
 
 stellar_mass_black_hole_mass_passive_50:
   type: "scatter"
-  comment: "Passive only"
+  select_structure_type: 10
+  comment: "Passive centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_passive_50_kpc"
@@ -130,15 +132,16 @@ stellar_mass_black_hole_mass_passive_50:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for passive galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only passive galaxies (threshold is 0.01 / Gyr sSFR) are included.
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for passive central galaxies.
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (threshold is 0.01 / Gyr sSFR) central galaxies are included.
     section: Black Holes
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
 
 stellar_mass_black_hole_mass_active_30:
   type: "scatter"
-  comment: "Active only"
+  select_structure_type: 10
+  comment: "Active centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_active_30_kpc"
@@ -164,8 +167,8 @@ stellar_mass_black_hole_mass_active_30:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for active galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only active galaxies (threshold is 0.01 / Gyr sSFR) are included.
+    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for active central galaxies.
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only active (threshold is 0.01 / Gyr sSFR) central galaxies are included.
     section: Black Holes
     show_on_webpage: false
   observational_data:
@@ -173,7 +176,8 @@ stellar_mass_black_hole_mass_active_30:
 
 stellar_mass_black_hole_mass_active_50:
   type: "scatter"
-  comment: "Active only"
+  select_structure_type: 10
+  comment: "Active centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.is_active_50_kpc"
@@ -199,8 +203,8 @@ stellar_mass_black_hole_mass_active_50:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for active galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only active galaxies (threshold is 0.01 / Gyr sSFR) are included.
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for active central galaxies.
+    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only active (threshold is 0.01 / Gyr sSFR) central galaxies are included.
     section: Black Holes
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5
@@ -261,9 +265,10 @@ stellar_veldisp_black_hole_mass_10:
       units: km/s
   metadata:
     title: LOS Stellar Velocity Dispersion-Black Hole Mass relation (10 kpc)
-    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor. Note that the stellar velocity dispersion in observations is measured in a fixed 1 kpc aperture.
+    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor. The stellar velocity dispersion from Sahu et al. (2016) was measured using a fixed 1 kpc aperture, while that from Saglia et al. (2016) was measured using the half-light radius aperture.
     section: Black Holes
   observational_data:
+    - filename: StellarVelocityDispersionBlackHoleMass/Saglia2016.hdf5
     - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
 
 
@@ -293,10 +298,11 @@ stellar_veldisp_black_hole_mass_30:
       units: km/s
   metadata:
     title: LOS Stellar Velocity Dispersion-Black Hole Mass relation (30 kpc)
-    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor. Note that the stellar velocity dispersion in observations is measured in a fixed 1 kpc aperture.
+    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor. The stellar velocity dispersion from Sahu et al. (2016) was measured using a fixed 1 kpc aperture, while that from Saglia et al. (2016) was measured using the half-light radius aperture.
     section: Black Holes
     show_on_webpage: false
   observational_data:
+    - filename: StellarVelocityDispersionBlackHoleMass/Saglia2016.hdf5
     - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
 
 stellar_mass_stellar_veldisp_10:

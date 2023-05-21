@@ -216,12 +216,12 @@ scripts:
     caption: Gas Particle Comoving Smoothing Lengths with the minimal smoothing length indicated by the vertical dashed line.
     output_file: gas_smoothing_lengths.png
     section: Histograms
-    title: Gas Particle Minimal Smoothing Lengths
+    title: Gas Particle Smoothing Lengths
   - filename: scripts/gas_minimal_smoothing_lengths.py
     caption: Gas Particle Comoving Minimal Smoothing Lengths reached during the simulation, split by redshifts at which these minimal smoothing lengths were reached. The lowest minimal smoothing length that is allowed to be reached in the simulation is indicated by the vertical dashed line.
     output_file: gas_minimal_smoothing_lengths.png
     section: Histograms
-    title: Gas Particle Smoothing Lengths
+    title: Gas Particle Minimal Smoothing Lengths
   - filename: scripts/number_of_agn_thermal_injections.py
     caption: The cumulative number of black holes (summed from right to left) with a given total number of thermal energy injections (less than or equal to the number of particles heated) the black hole has had throughout the simulation.
     output_file: num_agn_thermal_injections.png

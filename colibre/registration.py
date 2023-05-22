@@ -33,6 +33,7 @@ This file calculates:
 
 # Define aperture size in kpc
 aperture_sizes_30_50_100_kpc = {30, 50, 100}
+aperture_sizes_10_30_50_100_kpc = {10, 30, 50, 100}
 
 # Solar metal mass fraction used in Ploeckinger S. & Schaye J. (2020)
 solar_metal_mass_fraction = 0.0134
@@ -251,6 +252,31 @@ def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
         )
         smhm.name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
         setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
+
+    return
+
+
+def register_projected_stellar_masses(self, catalogue, aperture_sizes):
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+
+        # Get the stellar mass in the aperture of a given size, and calculate
+        # an average over the three axes
+        stellar_mass = (
+            catalogue.get_quantity(
+                f"projected_apertures.projected_1_mass_star_{aperture_size}_kpc"
+            )
+            + catalogue.get_quantity(
+                f"projected_apertures.projected_2_mass_star_{aperture_size}_kpc"
+            )
+            + catalogue.get_quantity(
+                f"projected_apertures.projected_3_mass_star_{aperture_size}_kpc"
+            )
+        ) / 3
+
+        stellar_mass.name = f"$M_*$ (2D, {aperture_size} kpc)"
+        setattr(self, f"projected_stellar_mass_{aperture_size}_kpc", stellar_mass)
 
     return
 
@@ -1606,6 +1632,7 @@ register_star_metallicities(
     self, catalogue, aperture_sizes_30_50_100_kpc, solar_metal_mass_fraction
 )
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_projected_stellar_masses(self, catalogue, aperture_sizes_10_30_50_100_kpc)
 register_oxygen_to_hydrogen(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_cold_dense_gas_metallicity(
     self,

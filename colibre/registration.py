@@ -255,6 +255,7 @@ def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
 
     return
 
+
 def register_projected_stellar_masses(self, catalogue, aperture_sizes):
 
     # Loop over apertures
@@ -262,14 +263,18 @@ def register_projected_stellar_masses(self, catalogue, aperture_sizes):
 
         # Get the stellar mass in the aperture of a given size, and calculate
         # an average over the three axes
-        stellar_mass = (catalogue.get_quantity(
-            f"projected_apertures.projected_1_mass_star_{aperture_size}_kpc"
-        ) + catalogue.get_quantity(
-            f"projected_apertures.projected_2_mass_star_{aperture_size}_kpc"
-        ) + catalogue.get_quantity(
-            f"projected_apertures.projected_3_mass_star_{aperture_size}_kpc"
-        )) / 3 
-        
+        stellar_mass = (
+            catalogue.get_quantity(
+                f"projected_apertures.projected_1_mass_star_{aperture_size}_kpc"
+            )
+            + catalogue.get_quantity(
+                f"projected_apertures.projected_2_mass_star_{aperture_size}_kpc"
+            )
+            + catalogue.get_quantity(
+                f"projected_apertures.projected_3_mass_star_{aperture_size}_kpc"
+            )
+        ) / 3
+
         stellar_mass.name = f"$M_*$ (2D, {aperture_size} kpc)"
         setattr(self, f"projected_stellar_mass_{aperture_size}_kpc", stellar_mass)
 

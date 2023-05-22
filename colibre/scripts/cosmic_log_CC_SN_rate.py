@@ -1,5 +1,5 @@
 """
-Plots the cosmic CCSN rate history.
+Plots the cosmic log CCSN rate history.
 """
 import unyt
 

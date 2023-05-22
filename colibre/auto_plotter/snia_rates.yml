@@ -348,7 +348,7 @@ star_formation_rates_snia_rates_per_stellar_mass_50:
       units: "Solar_Mass/year"
   metadata:
     title: SFR-SNIa rate per stellar mass relation (50 kpc aperture)
-    caption: Uses a 50 kpc 3D aperture, only select galaxies with a stellar mass above 1e10 Msun.
+    caption: Uses a 50 kpc 3D aperture, only select galaxies with a stellar mass above $10^{10} \mathrm{M_\odot}$.
     section: SNIa Rate (SFR and sSFR)
   observational_data:
     - filename: StarFormationRateSNIaRatePerStellarMass/Graur2015.hdf5

@@ -33,7 +33,7 @@ def CC_SN_DTD(t, t_min, t_max):
     return value
 
 arguments = ScriptArgumentParser(
-    description="Creates a star formation history plot, with added observational data."
+    description="Creates a CC SN history plot, with added observational data."
 )
 
 snapshot_filenames = [

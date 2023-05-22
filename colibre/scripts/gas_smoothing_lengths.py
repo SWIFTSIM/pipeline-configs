@@ -93,7 +93,6 @@ def make_single_image(filenames, names, h_bounds, number_of_simulations, output_
         ax.axvline(x=h_min, color=line.get_color(), ls="--", lw=0.2)
 
     ax.legend()
-    ax.set_xlim(*h_bounds)
 
     fig.savefig(f"{output_path}/gas_smoothing_lengths.png")
 

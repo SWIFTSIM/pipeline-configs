@@ -105,7 +105,7 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
         have_normalization_timescale = True
 
     exponential_decay = snapshot.metadata.parameters.get("SNIaDTD:SNIa_timescale_Gyr", None)
-    if exponential_decay == None:
+    if exponential_decay is None:
         have_exponential_decay = False
     else:
         have_exponential_decay = True 

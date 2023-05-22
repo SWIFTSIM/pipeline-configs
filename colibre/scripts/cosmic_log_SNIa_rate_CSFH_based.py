@@ -115,7 +115,7 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
         have_normalization_timescale = True
 
     exponential_decay = snapshot.metadata.parameters.get("SNIaDTD:SNIa_timescale_Gyr", None)
-    if exponential_decay == None:
+    if exponential_decay is None:
         have_exponential_decay = False
     else:
         have_exponential_decay = True 
@@ -129,14 +129,14 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
         Gaussian_SNIa_efficiency = float(Gaussian_SNIa_efficiency) / unyt.Msun
 
     power_law_slope = snapshot.metadata.parameters.get("SNIaDTD:power_law_slope", None) 
-    if power_law_slope == None:
+    if power_law_slope is None:
         have_slope = False 
     else:
         have_slope = True 
         power_law_slope = float(power_law_slope)
 
     power_law_slope_short_time = snapshot.metadata.parameters.get("SNIaDTD:power_law_slope_short_time", None)
-    if power_law_slope_short_time == None:
+    if power_law_slope_short_time is None:
         have_broken_slope = False
     else:
         have_broken_slope = True
@@ -155,7 +155,7 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
 
     delay_time = float(snapshot.metadata.parameters.get("SNIaDTD:SNIa_delay_time_Gyr", False) ) * unyt.Gyr
 
-    if used_DTD == "power-law" or used_DTD == "exponential" or used_DTD == "power-law-beta-one":
+    if used_DTD in ["power-law", "exponential", "power-law-beta-one"]:
         SNIa_efficiency = float(snapshot.metadata.parameters.get("SNIaDTD:SNIa_efficiency_p_Msun", False) ) / unyt.Msun
     elif used_DTD == "Gaussian":
         Gaussian_SNIa_efficiency = float(snapshot.metadata.parameters.get("SNIaDTD:SNIa_efficiency_gauss_p_Msun", False)) / unyt.Msun

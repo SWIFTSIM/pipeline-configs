@@ -1,5 +1,5 @@
 """
-Plots the cosmic SNIa rate history.
+Plots the cosmic log SNIa rate history.
 """
 import unyt
 

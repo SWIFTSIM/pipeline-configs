@@ -119,7 +119,7 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
         Gaussian_SNIa_efficiency = float(Gaussian_SNIa_efficiency) / unyt.Msun
 
     power_law_slope = snapshot.metadata.parameters.get("SNIaDTD:power_law_slope", None) 
-    if power_law_slope == None:
+    if power_law_slope is None:
         have_slope = False 
     else:
         have_slope = True 

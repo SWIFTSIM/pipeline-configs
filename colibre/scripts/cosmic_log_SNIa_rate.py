@@ -17,7 +17,7 @@ from astropy.units import Gyr
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a SNIa rate history plot, with added observational data."
+    description="Creates a log SNIa rate history plot, with added observational data."
 )
 
 snapshot_filenames = [

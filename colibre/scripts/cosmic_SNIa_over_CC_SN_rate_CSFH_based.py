@@ -98,7 +98,7 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
 
     # find out which DTD model we are currently using in the code
     normalization_timescale = snapshot.metadata.parameters.get("SNIaDTD:normalization_timescale_Gyr", None)
-    if normalization_timescale == None:
+    if normalization_timescale is None:
         have_normalization_timescale = False
     else:
         normalization_timescale = float(normalization_timescale) * unyt.Gyr

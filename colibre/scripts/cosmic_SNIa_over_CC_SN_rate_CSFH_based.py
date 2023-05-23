@@ -1,6 +1,5 @@
 """
-Plots the star formation history. Modified version of the script in the
-github.com/swiftsim/swiftsimio-examples repository.
+Plots the cosmic SNIa rate over the core-collapse SNe rate based on the star formation history. 
 """
 import unyt
 

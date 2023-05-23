@@ -1,6 +1,5 @@
 """
-Plots the star formation history. Modified version of the script in the
-github.com/swiftsim/swiftsimio-examples repository.
+Plots the cosmic SNIa rate history based on the star formation history and use a logged y-axis.
 """
 import unyt
 
@@ -194,8 +193,6 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
         time_consider = times[times < times_desired[i]]
         time_since_formation = times_desired[i] - time_consider
         dM_consider = dM[times < times_desired[i]]
-        #SNIa_rate_individual = 1.6e-3 * exponential_law_DTD(time_since_formation, 2.0, 0.04) * dM_consider
-        #SNIa_rate_individual = 1.6e-3 * power_law_beta_one_DTD(time_since_formation, 0.04, 13.6) * dM_consider
         if used_DTD == "power-law":
             SNIa_rate_individual = SNIa_efficiency * power_law_DTD(time_since_formation, delay_time, normalization_timescale,power_law_slope) * dM_consider
         elif used_DTD == "power-law-beta-one":

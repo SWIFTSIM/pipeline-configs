@@ -59,7 +59,7 @@ def Gaussian_law_DTD(t, t_delay, tmean, tsigma):
     return value
 
 arguments = ScriptArgumentParser(
-    description="Creates a star formation history plot, with added observational data."
+    description="Creates a cosmic SNIa rate history plot based on the star formation history, with added observational data."
 )
 
 snapshot_filenames = [
@@ -105,7 +105,7 @@ for idx, (snapshot_filename, sfr_filename, name) in enumerate(
         exponential_decay = float(exponential_decay) * unyt.Gyr
 
     Gaussian_SNIa_efficiency = snapshot.metadata.parameters.get("SNIaDTD:SNIa_efficiency_gauss_p_Msun", None)
-    if Gaussian_SNIa_efficiency == None:
+    if Gaussian_SNIa_efficiency is None:
         have_Gaussian = False
     else:
         have_Gaussian = True

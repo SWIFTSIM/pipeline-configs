@@ -160,8 +160,3 @@ ax.set_ylabel(
 ax2.set_xlabel("Cosmic time [Gyr]")
 
 fig.savefig(f"{output_path}/SNIa_rate_history.png")
-
-ax.set_xlim(1.02, 0.33)
-ax2.set_xlim(1.02, 0.33)
-
-fig.savefig(f"{output_path}/SNIa_rate_history_zoom.png")

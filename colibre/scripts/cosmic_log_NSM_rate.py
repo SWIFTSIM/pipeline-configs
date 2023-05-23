@@ -1,5 +1,5 @@
 """
-Plots the cosmic r_process rate history.
+Plots the cosmic neutron star merger rate history based on the chemical enrichment logger.
 """
 import unyt
 
@@ -17,7 +17,7 @@ from astropy.units import Gyr
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
 arguments = ScriptArgumentParser(
-    description="Creates a r-process rate history plot, with added observational data."
+    description="Creates a neutral star merger rate history plot, with added observational data."
 )
 
 snapshot_filenames = [

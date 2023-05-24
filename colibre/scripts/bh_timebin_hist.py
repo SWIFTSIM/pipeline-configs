@@ -9,6 +9,7 @@ import unyt
 bin_edges = 0.5 + np.arange(27, 63)
 bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
 
+
 def get_data(run_directory: str, snapshot_name: str):
 
     # Load snapshot

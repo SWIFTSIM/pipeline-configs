@@ -9,17 +9,13 @@ import unyt
 bin_edges = 0.5 + np.arange(27, 63)
 bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
 
-
 def get_data(run_directory: str, snapshot_name: str):
-
-    print(run_directory)
 
     # Load snapshot
     data = load(f"{run_directory}/{snapshot_name}")
 
     # Load file with time-steps
     timesteps_glob = glob(f"{run_directory}/timesteps*.txt")
-    print(timesteps_glob[0])
     timesteps_filename = timesteps_glob[0]
     timesteps_data = np.genfromtxt(
         timesteps_filename,

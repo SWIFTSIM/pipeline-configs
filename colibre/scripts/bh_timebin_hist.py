@@ -117,7 +117,7 @@ def make_single_image(
 
     custom_lines = [
         Line2D([0], [0], color="black", linestyle="solid"),
-        Line2D([0], [0], color="black", dashes=(1.5, 1.5)),
+        Line2D([0], [0], color="black", dashes=(2, 1)),
         Line2D([0], [0], color="black", dashes=(0.5, 0.5)),
     ]
     ax.legend(

@@ -1,5 +1,5 @@
 """
-Makes a histogram of the gas minimal smoothing lengths divided by minimum allowed gravitational softening and
+Makes a histogram of the gas minimal smoothing lengths normalized by gravitational softening and
 split by redshifts. Uses the swiftsimio library.
 """
 
@@ -74,9 +74,8 @@ def get_data(filename):
 
 def make_single_image(filenames, names, output_path):
     """
-    Makes a single histogram of the gas particle minimal smoothing lengths (plotted in units of minimum allowed
-    gravitational softening length at the redshift at which a given gas particle's minimal smoothing length was
-    reached.)
+    Makes a single histogram of the gas particle minimal smoothing lengths (plotted in units of gravitational softening
+    length at the redshift at which a given gas particle's minimal smoothing length was reached.)
     """
 
     # Begin plotting
@@ -116,12 +115,12 @@ def make_single_image(filenames, names, output_path):
 
             ax.plot(hmin_centers, y_points, label=name, color=f"C{color}")
 
-            # Add vertical line showing lowest possible hmin to softening ratio
+            # Add vertical line showing the lowest possible hmin to softening ratio
             ax.axvline(x=hmin_to_softening_ratio, color=f"C{color}", ls="--", lw=0.2)
 
     axes[0].legend(loc="upper right", markerfirst=False)
     axes[2].set_xlabel(
-        "Minimal Smoothing length over softening $h_{\\rm min}/\\varepsilon_{\\rm soft,min}$"
+        "Minimal Smoothing length over softening $h_{\\rm min}/\\varepsilon_{\\rm soft}$"
     )
     axes[1].set_ylabel(
         "$N_{\\rm bin}$ / d$\\log (h_{\\rm min}/\\varepsilon_{\\rm soft,min}$) / $N_{\\rm total}$"

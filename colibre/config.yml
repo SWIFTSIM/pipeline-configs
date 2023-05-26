@@ -218,7 +218,7 @@ scripts:
     section: Histograms
     title: Gas Particle Smoothing Lengths
   - filename: scripts/gas_minimal_smoothing_lengths.py
-    caption: Gas Particle Comoving Minimal Smoothing Lengths reached during the simulation, split by redshifts at which these minimal smoothing lengths were reached and normalised by the minimum allowed gravitational softening length (at the corresponding redshift). The minimal allowed ratio between smoothing length and gravitational softening length is indicated by the vertical dashed line.
+    caption: Gas Particle Comoving Minimal Smoothing Lengths reached during the simulation, split by redshifts at which these minimal smoothing lengths were reached and normalised by the gravitational softening length (at the corresponding redshift). The minimal allowed ratio between smoothing length and gravitational softening length is indicated by the vertical dashed line.
     output_file: gas_minimal_smoothing_lengths.png
     section: Histograms
     title: Gas Particle Minimal Smoothing Lengths

@@ -7,6 +7,7 @@ from glob import glob
 from swiftsimio import load
 import unyt
 
+# Choose appropriate bin limits for the time-step histogram
 bin_edges = np.logspace(np.log10(50e-3), np.log10(50e7), 41)  # kyr
 bins = 10 ** (0.5 * (np.log10(bin_edges[1:]) + np.log10(bin_edges[:-1])))
 
@@ -16,7 +17,22 @@ def get_data(run_directory: str, snapshot_name: str):
     # Load snapshot
     data = load(f"{run_directory}/{snapshot_name}")
 
-    # Load file with time-steps
+    # Swift snapshots contain particle time-step bins, but we want to plot particle time-steps. This means
+    # that we need to relate time-bins and time-steps. This can be done through the timesteps* file, which contains
+    # such a relation. Note that the relation between the time-step size and time-bin number is different at different
+    # redshifts, so we need to account for this too. Fortunately, the timesteps* file provides the relation we need
+    # at all redshifts of the simulation.
+
+    # More precisely, in the timesteps* file, each row corresponds to a different redshift and each rows has
+    # the information on what are the minimum time-step bin and the minimum time-step size at this given redshift.
+    # The time-steps and time-step bins are related as follows:
+    #
+    # Time-step (time-bin) = minimum time-step * 2 ^ (time-bin - minimum time-bin).
+    #
+    # By making use of this relation and the timesteps* file, we can map any time-bin to any time-step at any redshift.
+    # At a fixed time-bin, the time-step size is a smooth function of redshift. This allows us to load the time-step vs.
+    # time-bin relation from the timesteps* file and perform interpolation over redshifts.
+
     timesteps_glob = glob(f"{run_directory}/timesteps*.txt")
     timesteps_filename = timesteps_glob[0]
     timesteps_data = np.genfromtxt(

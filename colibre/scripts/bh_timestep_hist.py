@@ -112,22 +112,33 @@ def make_single_image(
             directory, snapshot_name
         )
 
-        bin_bh_timesteps, _ = np.histogram(bh_timesteps, bins=bin_edges, density=True)
+        bin_bh_timesteps, _ = np.histogram(bh_timesteps, bins=bin_edges, density=False)
         bin_bh_minimal_timesteps, _ = np.histogram(
-            bh_minimal_timesteps, bins=bin_edges, density=True
+            bh_minimal_timesteps, bins=bin_edges, density=False
         )
+
         bin_bh_accr_limited_timesteps, _ = np.histogram(
-            bh_accr_limited_timesteps, bins=bin_edges, density=True
+            bh_accr_limited_timesteps, bins=bin_edges, density=False
         )
 
         (line1,) = ax.plot(
-            bins, bin_bh_timesteps, label=name, color=f"C{color}", ls="solid"
+            bins,
+            bin_bh_timesteps / np.sum(bin_bh_timesteps),
+            label=name,
+            color=f"C{color}",
+            ls="solid",
         )
         (line2,) = ax.plot(
-            bins, bin_bh_minimal_timesteps, color=f"C{color}", dashes=(2, 1)
+            bins,
+            bin_bh_minimal_timesteps / np.sum(bin_bh_minimal_timesteps),
+            color=f"C{color}",
+            dashes=(2, 1),
         )
         (line3,) = ax.plot(
-            bins, bin_bh_accr_limited_timesteps, color=f"C{color}", dashes=(0.5, 0.5)
+            bins,
+            bin_bh_accr_limited_timesteps / np.sum(bin_bh_accr_limited_timesteps),
+            color=f"C{color}",
+            dashes=(0.5, 0.5),
         )
         ax.axvline(
             bh_accr_minimum_allowed_timestep, color=f"C{color}", dashes=(3, 1, 1, 1)

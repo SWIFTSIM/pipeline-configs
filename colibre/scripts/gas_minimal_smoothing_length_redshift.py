@@ -69,7 +69,14 @@ def get_data(filename):
         softening_plummer_equivalent * h_min_ratio.value * eps_b_phys_max / gamma
     )
 
-    return hmin_gas, hmin_redshifts, hmin_comoving, hmin_phys_max
+    return (
+        hmin_gas,
+        hmin_redshifts,
+        hmin_comoving,
+        hmin_phys_max,
+        eps_b_comov,
+        eps_b_phys_max,
+    )
 
 
 def make_hist(filename, hmin_bounds, redshift_bounds, bins):
@@ -83,13 +90,23 @@ def make_hist(filename, hmin_bounds, redshift_bounds, bins):
     hmin_bins = np.logspace(np.log10(hmin_bounds[0]), np.log10(hmin_bounds[1]), bins)
     redshift_bins = np.linspace(redshift_bounds[0], redshift_bounds[1], bins)
 
-    hmin_gas, hmin_redshifts, hmin_comoving, hmin_phys_max = get_data(filename)
+    hmin_gas, hmin_redshifts, hmin_comoving, hmin_phys_max, soft_comoving, soft_phys_max = get_data(
+        filename
+    )
 
     H, hmin_edges, redshift_edges = np.histogram2d(
         hmin_gas, hmin_redshifts, bins=[hmin_bins, redshift_bins]
     )
 
-    return H.T, hmin_edges, redshift_edges, hmin_comoving, hmin_phys_max
+    return (
+        H.T,
+        hmin_edges,
+        redshift_edges,
+        hmin_comoving,
+        hmin_phys_max,
+        soft_comoving,
+        soft_phys_max,
+    )
 
 
 def setup_axes(number_of_simulations: int):
@@ -144,7 +161,7 @@ def make_single_image(
     hists = []
 
     for filename in filenames:
-        hist, hmin_gas, z, hmin_comoving, hmin_phys_max = make_hist(
+        hist, hmin_gas, z, hmin_comoving, hmin_phys_max, soft_comoving, soft_phys_max, = make_hist(
             filename, hmin_bounds, redshift_bounds, bins
         )
         hists.append(hist)
@@ -155,8 +172,20 @@ def make_single_image(
         mappable = axis.pcolormesh(hmin_gas, z, hist, norm=LogNorm(vmin=1, vmax=vmax))
 
         redshifts = np.linspace(0, redshift_bounds[1], 64)
-        hmin_constraint = np.minimum(hmin_comoving, hmin_phys_max * (1.0 + redshifts))
-        axis.plot(hmin_constraint, redshifts, zorder=10000, color="k", dashes=(3, 3))
+
+        allowed_hmin_evolution = np.minimum(
+            hmin_comoving, hmin_phys_max * (1.0 + redshifts)
+        )
+        softening_evolution = np.minimum(
+            soft_comoving, soft_phys_max * (1.0 + redshifts)
+        )
+
+        axis.plot(
+            allowed_hmin_evolution, redshifts, zorder=10000, color="k", dashes=(4, 2)
+        )
+        axis.plot(
+            softening_evolution, redshifts, zorder=10000, color="k", dashes=(1.5, 1.5)
+        )
 
         axis.text(
             0.025,

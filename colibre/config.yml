@@ -223,7 +223,7 @@ scripts:
     section: Histograms
     title: Gas Particle Minimal Smoothing Lengths
   - filename: scripts/gas_minimal_smoothing_length_redshift.py
-    caption: Gas Particle Comoving Minimal Smoothing Lengths versus Redshifts at which these minimal smoothing lengths were reached. The black dashed curve indicates the minimum allowed smoothing length at a given redshift.
+    caption: Gas Particle Comoving Minimal Smoothing Lengths versus Redshifts at which these minimal smoothing lengths were reached. The black dashed and black dotted curves indicate, respectively, the minimum allowed smoothing length and gravitational softening length at a given redshift.
     output_file: gas_hmin_redshift.png
     section: Histograms
     title: Gas Particle Minimal Smoothing Lengths vs. Redshift

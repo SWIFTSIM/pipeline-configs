@@ -218,10 +218,15 @@ scripts:
     section: Histograms
     title: Gas Particle Smoothing Lengths
   - filename: scripts/gas_minimal_smoothing_lengths.py
-    caption: Gas Particle Comoving Minimal Smoothing Lengths reached during the simulation, split by redshifts at which these minimal smoothing lengths were reached. The lowest minimal smoothing length that is allowed to be reached in the simulation is indicated by the vertical dashed line.
+    caption: Gas Particle Comoving Minimal Smoothing Lengths reached during the simulation, split by redshifts at which these minimal smoothing lengths were reached and normalised by the gravitational softening length (at the corresponding redshift). The minimal allowed ratio between smoothing length and gravitational softening length is indicated by the vertical dashed line. The normalisation by the softening includes the factor of 3 to convert from the Plummer-equivalent softening length, which is specified in the parameter file. The normalisation also accounts for the factor of $\gamma_{\rm kernel} \approx 2$, which relates the smoothing length to the extent of an SPH kernel.
     output_file: gas_minimal_smoothing_lengths.png
     section: Histograms
     title: Gas Particle Minimal Smoothing Lengths
+  - filename: scripts/gas_minimal_smoothing_length_redshift.py
+    caption: Gas Particle Comoving Minimal Smoothing Lengths versus Redshifts at which these minimal smoothing lengths were reached. The black dashed and black dotted curves indicate, respectively, the minimum allowed smoothing length and gravitational softening length at a given redshift.
+    output_file: gas_hmin_redshift.png
+    section: Histograms
+    title: Gas Particle Minimal Smoothing Lengths vs. Redshift
   - filename: scripts/number_of_agn_thermal_injections.py
     caption: The cumulative number of black holes (summed from right to left) with a given total number of thermal energy injections (less than or equal to the number of particles heated) the black hole has had throughout the simulation.
     output_file: num_agn_thermal_injections.png

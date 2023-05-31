@@ -123,7 +123,7 @@ def make_single_image(filenames, names, output_path):
         "Minimal Smoothing length over softening $h_{\\rm min}/\\varepsilon_{\\rm soft}$"
     )
     axes[1].set_ylabel(
-        "$N_{\\rm bin}$ / d$\\log (h_{\\rm min}/\\varepsilon_{\\rm soft,min}$) / $N_{\\rm total}$"
+        "$N_{\\rm bin}$ / d$\\log (h_{\\rm min}/\\varepsilon_{\\rm soft}$) / $N_{\\rm total}$"
     )
 
     fig.savefig(f"{output_path}/gas_minimal_smoothing_lengths.png")

@@ -37,6 +37,8 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_fromz_lom_50:
   type: "scatter"
@@ -77,6 +79,8 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_30:
   type: "scatter"
@@ -117,6 +121,8 @@ stellar_mass_gas_sf_metallicity_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_50:
   type: "scatter"
@@ -157,6 +163,8 @@ stellar_mass_gas_sf_metallicity_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_30:
   type: "scatter"
@@ -197,6 +205,8 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_50:
   type: "scatter"
@@ -237,6 +247,8 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   type: "scatter"
@@ -277,6 +289,8 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
   type: "scatter"
@@ -317,6 +331,8 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   type: "scatter"
@@ -357,6 +373,8 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_50:
   type: "scatter"
@@ -397,6 +415,8 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_30:
   type: "scatter"

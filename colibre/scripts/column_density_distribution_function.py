@@ -182,6 +182,7 @@ def plot_cddf(
                 }
             }
 
+        # At the moment, we only have comparison data for HI
         if species == "HI":
             for index, observation in enumerate(observational_data):
                 obs = load_observation(observation)
@@ -205,7 +206,9 @@ def plot_cddf(
         fig.savefig(f"{output_path}/{figure_name}_{species}.png")
 
     for snapshot_filename in metadata:
-        with open(f"{snapshot_filename.removesuffix('.hdf5')}_cddf.yml", "w") as handle:
+        with open(
+            f"{snapshot_filename.removesuffix('.hdf5')}_cddf_{species}.yml", "w"
+        ) as handle:
             yaml.safe_dump(metadata[snapshot_filename], handle)
 
 
@@ -214,7 +217,7 @@ if __name__ == "__main__":
 
     arguments = ScriptArgumentParser(
         description="Column density distribution function plot.",
-        additional_arguments={"parallel": True},
+        additional_arguments={"parallel": True, "element": None, "species": None},
     )
 
     snapshot_filenames = [

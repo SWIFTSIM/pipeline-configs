@@ -18,6 +18,8 @@ def plot_cddf(
     names,
     output_path,
     observational_data,
+    element,
+    species,
     box_chunks=[1, 2, 1, 2],
     x_ranges=[(1.0e12, 1.0e23), (1.0e12, 1.0e23), (1.0e19, 1.0e23), (1.0e19, 1.0e23)],
     y_ranges=[(1.0e-5, 1.0e4), (1.0e-5, 1.0e4), (1.0e-5, 3.0e1), (1.0e-5, 3.0e1)],
@@ -64,22 +66,22 @@ def plot_cddf(
         num_pix = int(4000.0 * (boxsize / (12.5 * unyt.Mpc)))
 
         # generate the HI mass fraction dataset
-        data.gas.HI_mass_fraction = (
+        data.gas.species_mass_fraction = (
             data.gas.masses
-            * data.gas.element_mass_fractions.hydrogen
-            * data.gas.species_fractions.HI
+            * getattr(data.gas.element_mass_fractions, element)
+            * getattr(data.gas.species_fractions, species)
         )
 
         # create an empty array to store the different maps for all the chunks
-        HI_maps = np.zeros((max_N_chunk, num_pix, num_pix))
+        species_maps = np.zeros((max_N_chunk, num_pix, num_pix))
         for ichunk in range(max_N_chunk):
             # generate the map for this chunk and immediately convert from
             # mass column density to number column density
-            HI_map = (
+            species_map = (
                 project_gas(
                     data,
                     resolution=num_pix,
-                    project="HI_mass_fraction",
+                    project="species_mass_fraction",
                     parallel=parallel,
                     backend="subsampled",
                     region=[
@@ -94,11 +96,11 @@ def plot_cddf(
                 / unyt.mp
             )
             # make sure the map has the right units:
-            HI_map = HI_map.to("cm**(-2)")
+            species_map = species_map.to("cm**(-2)")
             # (also taking into account the a^-2 cosmology factor)
-            HI_map *= (1.0 + z) ** 2
+            species_map *= (1.0 + z) ** 2
             # store the map in the array, this drops the units (which is fine)
-            HI_maps[ichunk] = HI_map
+            species_maps[ichunk] = species_map
 
         # now combine maps appropriately to generate the different CDDFs
         for N_chunk in np.unique(box_chunks):
@@ -109,12 +111,14 @@ def plot_cddf(
             # now containing the correct number of chunks.
             # finally flatten that array into a collection of individual sightlines
             # for which we can compute the CDDF
-            HI_map = (
-                HI_maps.reshape((N_chunk, -1, num_pix, num_pix)).sum(axis=1).flatten()
+            species_map = (
+                species_maps.reshape((N_chunk, -1, num_pix, num_pix))
+                .sum(axis=1)
+                .flatten()
             )
 
             # compute the histogram (density=True makes it a PDF)
-            cddf, _ = np.histogram(HI_map, bins=bin_edges, density=True)
+            cddf, _ = np.histogram(species_map, bins=bin_edges, density=True)
 
             # convert from d/dN to d/dlogN
             cddf *= (bin_edges[1:] - bin_edges[:-1]) / (
@@ -178,13 +182,14 @@ def plot_cddf(
                 }
             }
 
-        for index, observation in enumerate(observational_data):
-            obs = load_observation(observation)
-            obs.plot_on_axes(ax)
+        # At the moment, we only have comparison data for HI
+        if species == "HI":
+            for index, observation in enumerate(observational_data):
+                obs = load_observation(observation)
+                obs.plot_on_axes(ax)
 
-        observation_legend = ax.legend(markerfirst=True, loc="lower left")
-
-        ax.add_artist(observation_legend)
+            observation_legend = ax.legend(markerfirst=True, loc="lower left")
+            ax.add_artist(observation_legend)
 
         simulation_legend = ax.legend(
             simulation_lines, simulation_labels, markerfirst=False, loc="upper right"
@@ -193,15 +198,17 @@ def plot_cddf(
         ax.set_xlim(*x_range)
         ax.set_ylim(*y_range)
 
-        ax.set_xlabel("$N$(HI)")
+        ax.set_xlabel(f"$N$({species})")
         ax.set_ylabel(
             "$\\log_{{10}} \\partial^2 n / \\partial \\log_{{10}} N \\partial X$"
         )
 
-        fig.savefig(f"{output_path}/{figure_name}.png")
+        fig.savefig(f"{output_path}/{figure_name}_{species}.png")
 
     for snapshot_filename in metadata:
-        with open(f"{snapshot_filename.removesuffix('.hdf5')}_cddf.yml", "w") as handle:
+        with open(
+            f"{snapshot_filename.removesuffix('.hdf5')}_cddf_{species}.yml", "w"
+        ) as handle:
             yaml.safe_dump(metadata[snapshot_filename], handle)
 
 
@@ -210,7 +217,7 @@ if __name__ == "__main__":
 
     arguments = ScriptArgumentParser(
         description="Column density distribution function plot.",
-        additional_arguments={"parallel": True},
+        additional_arguments={"parallel": True, "element": None, "species": None},
     )
 
     snapshot_filenames = [
@@ -231,5 +238,7 @@ if __name__ == "__main__":
         arguments.name_list,
         arguments.output_directory,
         observational_data,
+        element=arguments.element,
+        species=arguments.species,
         parallel=arguments.parallel,
     )

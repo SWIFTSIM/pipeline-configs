@@ -161,7 +161,7 @@ stellar_mass_projected_galaxy_size_active_only_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (50 kpc aperture)
-    caption: Only shows active galaxies defined based on their sSFRs.
+    caption: Only shows active galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
     section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/VanDerWel_blue.hdf5
@@ -197,7 +197,7 @@ stellar_mass_projected_galaxy_size_active_only_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
-    caption: Only shows active galaxies defined based on their sSFRs.
+    caption: Only shows active galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
     section: Sizes
     show_on_webpage: false
   observational_data:
@@ -234,7 +234,7 @@ stellar_mass_projected_galaxy_size_passive_only_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (50 kpc aperture)
-    caption: Only shows passive galaxies defined based on their sSFRs.
+    caption: Only shows passive galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
     section: Sizes
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/VanDerWel_red.hdf5
@@ -270,7 +270,7 @@ stellar_mass_projected_galaxy_size_passive_only_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
-    caption: Only shows passive galaxies defined based on their sSFRs.
+    caption: Only shows passive galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
     section: Sizes
     show_on_webpage: false
   observational_data:

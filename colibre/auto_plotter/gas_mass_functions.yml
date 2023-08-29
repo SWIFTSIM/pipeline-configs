@@ -60,7 +60,7 @@ gas_H2_mass_function:
     caption: H$_2$ MF, showing all galaxies with a fixed bin-width of 0.2 dex. H$_2$ mass corrected for Helium (uses H$_2$ masses in 50 kpc apertures)
     section: Gas Mass Function
   observational_data:
-    - filename: GalaxyH2MassFunction/Fletcher2020.hdf5
+    - filename: GalaxyH2MassFunction/Fletcher2021.hdf5
 
 adaptive_gas_H2_mass_function:
   type: "adaptivemassfunction"
@@ -80,4 +80,4 @@ adaptive_gas_H2_mass_function:
     caption: H$_2$ MF, showing all galaxies with an adaptive bin-width. H$_2$ mass corrected for Helium (uses H$_2$ masses in 50 kpc apertures)
     section: Gas Mass Function
   observational_data:
-    - filename: GalaxyH2MassFunction/Fletcher2020.hdf5
+    - filename: GalaxyH2MassFunction/Fletcher2021.hdf5

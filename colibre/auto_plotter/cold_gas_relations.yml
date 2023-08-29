@@ -28,7 +28,7 @@ stellar_mass_molecular_to_neutral_fraction_30:
       units: "dimensionless"
   metadata:
     title: Stellar Mass-Molecular to Neutral Gas Fraction (30 kpc aperture)
-    caption: All galaxies are included in the median line. Gas fraction is H$_2$ mass over HI + H$_2$ mass in a 30 kpc aperture.
+    caption: Only active galaxies are included in the median line. Gas fraction is H$_2$ mass over HI + H$_2$ mass in a 30 kpc aperture.
     section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
 
@@ -164,129 +164,6 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_50:
     section: Cold Gas Relations (Stellar Mass)
     show_on_webpage: false
 
-stellar_mass_H2_mass_30:
-  type: "scatter"
-  legend_loc: "lower right"
-  x:
-    quantity: "apertures.mass_star_30_kpc"
-    units: Solar_Mass
-    start: 1e5
-    end: 1e12
-  y:
-    quantity: "derived_quantities.gas_H2_mass_30_kpc"
-    units: "Solar_Mass"
-    start: 1e5
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 35
-    start:
-      value: 1e5
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-H$_2$ Gas Mass (30 kpc aperture)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations (Stellar Mass)
-    show_on_webpage: false
-
-stellar_mass_H2_mass_50:
-  type: "scatter"
-  legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 1e5
-    end: 1e12
-  y:
-    quantity: "derived_quantities.gas_H2_mass_50_kpc"
-    units: "Solar_Mass"
-    start: 1e5
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 35
-    start:
-      value: 1e5
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-H$_2$ Gas Mass (50 kpc aperture)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations (Stellar Mass)
-    show_on_webpage: false
-
-stellar_mass_HI_mass_30:
-  type: "scatter"
-  legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
-  x:
-    quantity: "apertures.mass_star_30_kpc"
-    units: Solar_Mass
-    start: 1e5
-    end: 1e12
-  y:
-    quantity: "derived_quantities.gas_HI_mass_30_kpc"
-    units: "Solar_Mass"
-    start: 1e5
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 35
-    start:
-      value: 1e5
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-HI Gas Mass (30 kpc aperture)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations (Stellar Mass)
-    show_on_webpage: false
-
-stellar_mass_HI_mass_50:
-  type: "scatter"
-  legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: Solar_Mass
-    start: 1e5
-    end: 1e12
-  y:
-    quantity: "derived_quantities.gas_HI_mass_50_kpc"
-    units: "Solar_Mass"
-    start: 1e5
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 35
-    start:
-      value: 1e5
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-HI Gas Mass (50 kpc aperture)
-    caption: All galaxies are included in the median line.
-    section: Cold Gas Relations (Stellar Mass)
-    show_on_webpage: false
-
 H2_mass_star_formation_rate_30:
   type: "scatter"
   legend_loc: "lower right"
@@ -314,7 +191,7 @@ H2_mass_star_formation_rate_30:
       units: Solar_Mass
   metadata:
     title: H$_2$ Gas Mass - Star Formation Rate (30 kpc aperture)
-    caption: All galaxies are included in the median line.
+    caption: Only active galaxies are included in the median line.
     section: Cold Gas Relations (Gas Mass)
     show_on_webpage: false
 
@@ -345,7 +222,7 @@ H2_mass_star_formation_rate_50:
       units: Solar_Mass
   metadata:
     title: H$_2$ Gas Mass - Star Formation Rate (50 kpc)
-    caption: All galaxies are included in the median line.
+    caption: Only active galaxies are included in the median line.
     section: Cold Gas Relations (Gas Mass)
     show_on_webpage: false
 
@@ -414,7 +291,7 @@ stellar_mass_HI_to_neutral_H_fraction_50:
       units: "dimensionless"
   metadata:
     title: Stellar Mass-HI to Neutral Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is HI mass over HI + H$_2$ mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is HI mass over HI + H$_2$ mass in a 50 kpc aperture.
     section: Cold Gas Fractions (Stellar Mass)
 
 stellar_mass_H2_to_neutral_H_fraction_50:
@@ -447,7 +324,7 @@ stellar_mass_H2_to_neutral_H_fraction_50:
       units: "dimensionless"
   metadata:
     title: Stellar Mass-H$_2$ to Neutral Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is H$_2$ mass over HI + H$_2$ mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is H$_2$ mass over HI + H$_2$ mass in a 50 kpc aperture.
     section: Cold Gas Fractions (Stellar Mass)
 
 stellar_mass_sf_to_sf_plus_stellar_fraction_50:
@@ -513,7 +390,7 @@ stellar_mass_neutral_H_to_sf_fraction_50:
       units: "dimensionless"
   metadata:
     title: Stellar Mass-Neutral to SF Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is HI + H$_2$ gas mass over SF gas in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is HI + H$_2$ gas mass over SF gas in a 50 kpc aperture.
     section: Cold Gas Fractions (Stellar Mass)
     show_on_webpage: false
 
@@ -547,7 +424,7 @@ stellar_mass_HI_to_sf_fraction_50:
       units: "dimensionless"
   metadata:
     title: Stellar Mass-HI to SF Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is HI gas mass over SF gas in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is HI gas mass over SF gas in a 50 kpc aperture.
     section: Cold Gas Fractions (Stellar Mass)
     show_on_webpage: false
 
@@ -581,7 +458,7 @@ stellar_mass_H2_to_sf_fraction_50:
       units: "dimensionless"
   metadata:
     title: Stellar Mass-H$_2$ to SF Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is H$_2$ gas mass over SF gas in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is H$_2$ gas mass over SF gas in a 50 kpc aperture.
     section: Cold Gas Fractions (Stellar Mass)
 
 sfr_neutral_to_stellar_mass_50_kpc_50:
@@ -614,7 +491,7 @@ sfr_neutral_to_stellar_mass_50_kpc_50:
       units: "dimensionless"
   metadata:
     title: sSFR-Neutral Gas to SF Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is HI + H$_2$ mass over stellar mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is HI + H$_2$ mass over stellar mass in a 50 kpc aperture.
     section: Cold Gas Fractions (sSFR)
 
 sfr_hi_to_stellar_mass_50_kpc_50:
@@ -647,7 +524,7 @@ sfr_hi_to_stellar_mass_50_kpc_50:
       units: "dimensionless"
   metadata:
     title: sSFR-HI Gas to SF Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is HI mass over stellar mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is HI mass over stellar mass in a 50 kpc aperture.
     section: Cold Gas Fractions (sSFR)
 
 sfr_h2_to_stellar_mass_50_kpc_50:
@@ -680,7 +557,7 @@ sfr_h2_to_stellar_mass_50_kpc_50:
       units: "dimensionless"
   metadata:
     title: sSFR-H$_2$ Gas to SF Gas Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is H$_2$ mass over stellar mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is H$_2$ mass over stellar mass in a 50 kpc aperture.
     section: Cold Gas Fractions (sSFR)
 
 
@@ -714,7 +591,7 @@ sfr_sf_to_stellar_fraction_kpc_50:
       units: "dimensionless"
   metadata:
     title: sSFR-SF Gas to Stellar Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is SF gas mass over stellar mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is SF gas mass over stellar mass in a 50 kpc aperture.
     section: Cold Gas Fractions (sSFR)
     show_on_webpage: false
 
@@ -782,7 +659,7 @@ sigma_hi_to_neutral_H_fraction_50:
       units: "dimensionless"
   metadata:
     title: Surface Density-HI Gas to Neutral Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is HI gas mass over neutral gas mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is HI gas mass over neutral gas mass in a 50 kpc aperture.
     section: Cold Gas Fractions (Surface Density)
     show_on_webpage: false
 
@@ -816,7 +693,7 @@ sigma_h2_to_neutral_H_fraction_50:
       units: "dimensionless"
   metadata:
     title: Surface Density-H$_2$ Gas to Neutral Fraction (50 kpc aperture)
-    caption: All galaxies are included in the median line. Fraction is H$_2$ gas mass over neutral gas mass in a 50 kpc aperture.
+    caption: Only active galaxies are included in the median line. Fraction is H$_2$ gas mass over neutral gas mass in a 50 kpc aperture.
     section: Cold Gas Fractions (Surface Density)
     show_on_webpage: false
 
@@ -882,6 +759,39 @@ stellar_mass_HI_mass_50:
     caption: All galaxies are included in the median line. Both stellar and HI masses were computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
+
+stellar_mass_HI_mass_active_only_50:
+  type: "scatter"
+  legend_loc: "lower right"
+  selection_mask: "derived_quantities.is_active_50_kpc"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-HI Gas Mass Relation (50 kpc aperture)
+    caption: Only active galaxies are included in the median line. Both stellar and HI masses were computed in 50 kpc apertures.
+    section: Cold Gas Masses
+    show_on_webpage: True
+  observational_data:
+    - filename: GalaxyStellarMassHIMass/Chowdhury2022.hdf5
     
 stellar_mass_H2_mass_50:
   type: "scatter"
@@ -910,6 +820,37 @@ stellar_mass_H2_mass_50:
   metadata:
     title: Stellar Mass-H$_2$ Gas Mass Relation (50 kpc aperture)
     caption: All galaxies are included in the median line. H$_2$ mass was corrected for Helium. Both stellar and H$_2$ masses were computed in 50 kpc apertures.
+    section: Cold Gas Masses
+    show_on_webpage: True
+
+stellar_mass_H2_mass_active_only_50:
+  type: "scatter"
+  legend_loc: "upper right"
+  selection_mask: "derived_quantities.is_active_50_kpc"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-H$_2$ Gas Mass Relation (50 kpc aperture)
+    caption: Only active galaxies are included in the median line. H$_2$ mass was corrected for Helium. Both stellar and H$_2$ masses were computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
     
@@ -942,7 +883,7 @@ halo_mass_HI_mass_50:
     caption: All galaxies are included in the median line. HI mass was computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
-    
+
 halo_mass_H2_mass_50:
   type: "scatter"
   legend_loc: "upper right"

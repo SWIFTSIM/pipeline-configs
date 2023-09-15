@@ -274,9 +274,22 @@ if dataset == "APOGEE":
         ymax = 2
     else:
         raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
-    obs_data = load_observations([observational_data])[0]
-    x = obs_data.x
-    y = obs_data.y
+
+    # obs_data = load_observations([observational_data])[0]
+    # x = obs_data.x
+    # y = obs_data.y
+    obs_data = h5py.File(observational_data, "r")
+    x = obs_data['x'][:]
+    y = obs_data['y'][:]
+    GalR = obs_data['GalR'][:]
+    Galz = obs_data['Galz'][:]
+
+    # Radial cuts
+    cut = (GalR < 9) & (np.abs(Galz) < 2)
+    selection = np.where(cut)[0]
+    x = x[selection]
+    y = y[selection]
+    w = 1/GalR[selection]
 
     ngridx = 100
     ngridy = 50
@@ -286,7 +299,7 @@ if dataset == "APOGEE":
     yi = np.linspace(ymin, ymax, ngridy)
 
     # Create a histogram
-    h, xedges, yedges = np.histogram2d(x.value, y.value, bins=(xi, yi))
+    h, xedges, yedges = np.histogram2d(x, y, bins=(xi, yi), weights=w)
     xbins = 0.5 * (xedges[1:] + xedges[:-1])
     ybins = 0.5 * (yedges[1:] + yedges[:-1])
 

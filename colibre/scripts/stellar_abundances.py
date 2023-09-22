@@ -13,6 +13,38 @@ from unyt import unyt_array
 from scipy import stats
 import h5py
 
+def make_hist(x, y, cut, xi, yi):
+
+    selection = np.where(cut)[0]
+
+    # Create a histogram
+    h, xedges, yedges = np.histogram2d(x[selection], y[selection], bins=(xi, yi), normed=True)
+
+    return h, xedges, yedges
+
+def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
+
+    distance_cut = (R >= 0) & (R < 3) & (np.abs(z) >= 1) & (np.abs(z) < 2)
+    h_1, _, _ = make_hist(x, y, distance_cut)
+
+    distance_cut = (R >= 3) & (R < 6) & (np.abs(z) >= 1) & (np.abs(z) < 2)
+    h_2, _, _ = make_hist(x, y, distance_cut)
+
+    distance_cut = (R >= 6) & (R < 9) & (np.abs(z) >= 1) & (np.abs(z) < 2)
+    h_3, _, _ = make_hist(x, y, distance_cut)
+
+    distance_cut = (R >= 0) & (R < 3) & (np.abs(z) >= 0) & (np.abs(z) < 1)
+    h_4, _, _ = make_hist(x, y, distance_cut)
+
+    distance_cut = (R >= 3) & (R < 6) & (np.abs(z) >= 0) & (np.abs(z) < 1)
+    h_5, _, _ = make_hist(x, y, distance_cut)
+
+    distance_cut = (R >= 6) & (R < 9) & (np.abs(z) >= 0) & (np.abs(z) < 1)
+    h_6, xedges, yedges = make_hist(x, y, distance_cut)
+
+    h = h_1 + h_2 + h_3 + h_4 + h_5 + h_6
+
+    return h, xedges, yedges
 
 def read_data(data, xvar, yvar):
     """
@@ -275,21 +307,12 @@ if dataset == "APOGEE":
     else:
         raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
 
-    # obs_data = load_observations([observational_data])[0]
-    # x = obs_data.x
-    # y = obs_data.y
+    # Reading APOGEE data
     obs_data = h5py.File(observational_data, "r")
     x = obs_data['x'][:]
     y = obs_data['y'][:]
-    GalR = obs_data['GalR'][:]
-    Galz = obs_data['Galz'][:]
-
-    # Radial cuts
-    cut = (GalR < 9) & (np.abs(Galz) < 2)
-    selection = np.where(cut)[0]
-    x = x[selection]
-    y = y[selection]
-    w = 1/GalR[selection]
+    GalR = obs_data['GalR'][:] # in kpc units
+    Galz = obs_data['Galz'][:] # in kpc units
 
     ngridx = 100
     ngridy = 50
@@ -298,8 +321,11 @@ if dataset == "APOGEE":
     xi = np.linspace(xmin, xmax, ngridx)
     yi = np.linspace(ymin, ymax, ngridy)
 
-    # Create a histogram
-    h, xedges, yedges = np.histogram2d(x, y, bins=(xi, yi), weights=w)
+    # We apply radial & azimuthal cuts, and combine the stellar distributions
+    # to give less weight to stars in the solar vicinity. We create a histogram
+    # for each distance cut and then combine them
+    h, xedges, yedges = make_stellar_abundance_distribution(x, y, GalR, Galz, xi, yi)
+
     xbins = 0.5 * (xedges[1:] + xedges[:-1])
     ybins = 0.5 * (yedges[1:] + yedges[:-1])
 

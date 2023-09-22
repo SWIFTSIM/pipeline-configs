@@ -29,22 +29,22 @@ def make_hist(x, y, cut, xi, yi):
 def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
 
     distance_cut = (R >= 0) & (R < 3) & (np.abs(z) >= 1) & (np.abs(z) < 2)
-    h_1, _, _ = make_hist(x, y, distance_cut)
+    h_1, _, _ = make_hist(x, y, distance_cut, xi, yi)
 
     distance_cut = (R >= 3) & (R < 6) & (np.abs(z) >= 1) & (np.abs(z) < 2)
-    h_2, _, _ = make_hist(x, y, distance_cut)
+    h_2, _, _ = make_hist(x, y, distance_cut, xi, yi)
 
     distance_cut = (R >= 6) & (R < 9) & (np.abs(z) >= 1) & (np.abs(z) < 2)
-    h_3, _, _ = make_hist(x, y, distance_cut)
+    h_3, _, _ = make_hist(x, y, distance_cut, xi, yi)
 
     distance_cut = (R >= 0) & (R < 3) & (np.abs(z) >= 0) & (np.abs(z) < 1)
-    h_4, _, _ = make_hist(x, y, distance_cut)
+    h_4, _, _ = make_hist(x, y, distance_cut, xi, yi)
 
     distance_cut = (R >= 3) & (R < 6) & (np.abs(z) >= 0) & (np.abs(z) < 1)
-    h_5, _, _ = make_hist(x, y, distance_cut)
+    h_5, _, _ = make_hist(x, y, distance_cut, xi, yi)
 
     distance_cut = (R >= 6) & (R < 9) & (np.abs(z) >= 0) & (np.abs(z) < 1)
-    h_6, xedges, yedges = make_hist(x, y, distance_cut)
+    h_6, xedges, yedges = make_hist(x, y, distance_cut, xi, yi)
 
     h = h_1 + h_2 + h_3 + h_4 + h_5 + h_6
 

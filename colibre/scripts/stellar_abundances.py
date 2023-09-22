@@ -13,14 +13,18 @@ from unyt import unyt_array
 from scipy import stats
 import h5py
 
+
 def make_hist(x, y, cut, xi, yi):
 
     selection = np.where(cut)[0]
 
     # Create a histogram
-    h, xedges, yedges = np.histogram2d(x[selection], y[selection], bins=(xi, yi), normed=True)
+    h, xedges, yedges = np.histogram2d(
+        x[selection], y[selection], bins=(xi, yi), normed=True
+    )
 
     return h, xedges, yedges
+
 
 def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
 
@@ -45,6 +49,7 @@ def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
     h = h_1 + h_2 + h_3 + h_4 + h_5 + h_6
 
     return h, xedges, yedges
+
 
 def read_data(data, xvar, yvar):
     """
@@ -309,10 +314,10 @@ if dataset == "APOGEE":
 
     # Reading APOGEE data
     obs_data = h5py.File(observational_data, "r")
-    x = obs_data['x'][:]
-    y = obs_data['y'][:]
-    GalR = obs_data['GalR'][:] # in kpc units
-    Galz = obs_data['Galz'][:] # in kpc units
+    x = obs_data["x"][:]
+    y = obs_data["y"][:]
+    GalR = obs_data["GalR"][:]  # in kpc units
+    Galz = obs_data["Galz"][:]  # in kpc units
 
     ngridx = 100
     ngridy = 50

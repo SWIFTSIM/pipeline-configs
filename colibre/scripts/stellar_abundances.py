@@ -30,13 +30,13 @@ def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
 
     # Galactocentric radius (R) in kpc units
     # Galactocentric azimuthal distance (z) in kpc units
-    h = np.zeros((len(xi)-1, len(yi)-1))
+    h = np.zeros((len(xi) - 1, len(yi) - 1))
 
     # We apply masks to select stars in R & z bins
     for Ri in range(0, 9, 3):
         for zi in range(0, 2, 1):
-            mask_R = (R >= Ri) & (R < Ri+3)
-            mask_z = (np.abs(z) >= zi) & (np.abs(z) < zi+1)
+            mask_R = (R >= Ri) & (R < Ri + 3)
+            mask_z = (np.abs(z) >= zi) & (np.abs(z) < zi + 1)
             distance_cut = np.logical_and(mask_R, mask_z)
 
             hist, xedges, yedges = make_hist(x, y, distance_cut, xi, yi)
@@ -317,7 +317,6 @@ if dataset == "APOGEE":
         GalR = obs_data["GalR"][:]  # in kpc units
         Galz = obs_data["Galz"][:]  # in kpc units
 
-
     ngridx = 100
     ngridy = 50
 
@@ -346,7 +345,7 @@ if dataset == "APOGEE":
     )
 
     ax.annotate("APOGEE data", (-3.8, -1.3))
-    
+
 elif dataset == "GALAH":
     observational_data = (
         f"{path_to_obs_data}/data/StellarAbundances/raw/Buder21_data.hdf5"

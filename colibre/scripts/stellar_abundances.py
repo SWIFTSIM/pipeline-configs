@@ -28,25 +28,23 @@ def make_hist(x, y, cut, xi, yi):
 
 def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
 
-    distance_cut = (R >= 0) & (R < 3) & (np.abs(z) >= 1) & (np.abs(z) < 2)
-    h_1, _, _ = make_hist(x, y, distance_cut, xi, yi)
+    # Galactocentric radius (R) in kpc units
+    # Galactocentric azimuthal distance (z) in kpc units
+    h = np.zeros((len(xi)-1, len(yi)-1))
 
-    distance_cut = (R >= 3) & (R < 6) & (np.abs(z) >= 1) & (np.abs(z) < 2)
-    h_2, _, _ = make_hist(x, y, distance_cut, xi, yi)
+    # We apply masks to select stars in R & z bins
+    for Ri in range(0, 9, 3):
+        for zi in range(0, 2, 1):
+            mask_R = (R >= Ri) & (R < Ri+3)
+            mask_z = (np.abs(z) >= zi) & (np.abs(z) < zi+1)
+            distance_cut = np.logical_and(mask_R, mask_z)
 
-    distance_cut = (R >= 6) & (R < 9) & (np.abs(z) >= 1) & (np.abs(z) < 2)
-    h_3, _, _ = make_hist(x, y, distance_cut, xi, yi)
+            hist, xedges, yedges = make_hist(x, y, distance_cut, xi, yi)
 
-    distance_cut = (R >= 0) & (R < 3) & (np.abs(z) >= 0) & (np.abs(z) < 1)
-    h_4, _, _ = make_hist(x, y, distance_cut, xi, yi)
-
-    distance_cut = (R >= 3) & (R < 6) & (np.abs(z) >= 0) & (np.abs(z) < 1)
-    h_5, _, _ = make_hist(x, y, distance_cut, xi, yi)
-
-    distance_cut = (R >= 6) & (R < 9) & (np.abs(z) >= 0) & (np.abs(z) < 1)
-    h_6, xedges, yedges = make_hist(x, y, distance_cut, xi, yi)
-
-    h = h_1 + h_2 + h_3 + h_4 + h_5 + h_6
+            # We combine (add) the 6 histograms to give less weight to stars in the solar vicinity.
+            # In this manner all stars in the radial/azimuthal bins contribute with equal weight to
+            # the final stellar distribution
+            h += hist
 
     return h, xedges, yedges
 
@@ -313,11 +311,12 @@ if dataset == "APOGEE":
         raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
 
     # Reading APOGEE data
-    obs_data = h5py.File(observational_data, "r")
-    x = obs_data["x"][:]
-    y = obs_data["y"][:]
-    GalR = obs_data["GalR"][:]  # in kpc units
-    Galz = obs_data["Galz"][:]  # in kpc units
+    with h5py.File(observational_data, "r") as obs_data:
+        x = obs_data["x"][:]
+        y = obs_data["y"][:]
+        GalR = obs_data["GalR"][:]  # in kpc units
+        Galz = obs_data["Galz"][:]  # in kpc units
+
 
     ngridx = 100
     ngridy = 50
@@ -347,6 +346,7 @@ if dataset == "APOGEE":
     )
 
     ax.annotate("APOGEE data", (-3.8, -1.3))
+    
 elif dataset == "GALAH":
     observational_data = (
         f"{path_to_obs_data}/data/StellarAbundances/raw/Buder21_data.hdf5"

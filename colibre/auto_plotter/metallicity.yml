@@ -37,8 +37,6 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_fromz_lom_50:
   type: "scatter"
@@ -79,8 +77,6 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_30:
   type: "scatter"
@@ -121,8 +117,6 @@ stellar_mass_gas_sf_metallicity_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_50:
   type: "scatter"
@@ -163,8 +157,6 @@ stellar_mass_gas_sf_metallicity_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_30:
   type: "scatter"
@@ -205,8 +197,6 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_50:
   type: "scatter"
@@ -247,8 +237,6 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   type: "scatter"
@@ -289,8 +277,6 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
   type: "scatter"
@@ -331,8 +317,6 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   type: "scatter"
@@ -373,8 +357,6 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_50:
   type: "scatter"
@@ -415,8 +397,6 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_30:
   type: "scatter"
@@ -527,7 +507,7 @@ stellar_mass_star_metallicity_50:
       units: "dimensionless"
   metadata:
     title: "Stellar mass - Star metallicity relation (50 kpc aperture)"
-    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0134). The Yates+ data from MaNGA corresponds to mass-weighted stellar metallicity within 3 arcsec for star-forming galaxies at $z=0$.
+    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
     section: Stellar Metallicity
     show_on_webpage: true
   observational_data:
@@ -538,8 +518,6 @@ stellar_mass_star_metallicity_50:
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Yates2021_Data.hdf5
-
 
 stellar_mass_star_metallicity_30:
   type: "scatter"
@@ -570,7 +548,7 @@ stellar_mass_star_metallicity_30:
       units: "dimensionless"
   metadata:
     title: "Stellar mass - Star metallicity relation (30 kpc aperture)"
-    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0134). The Yates+ data from MaNGA corresponds to mass-weighted stellar metallicity within 3 arcsec for star-forming galaxies at $z=0$.
+    caption: Average stellar metallicity measured in the same aperture as the stellar mass. Gallazzi data is corrected from their choice of solar metallicity (0.02) to ours (0.0126).
     section: Stellar Metallicity
     show_on_webpage: false
   observational_data:
@@ -581,8 +559,6 @@ stellar_mass_star_metallicity_30:
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Yates2021_Data.hdf5
-
 
 stellar_mass_star_fe_over_h_lom_50:
   type: "scatter"
@@ -617,15 +593,13 @@ stellar_mass_star_fe_over_h_lom_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of [Fe/H]$_*$. All haloes are plotted, including subhaloes.'
   observational_data:
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Yates2021_Data.hdf5
-
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 stellar_mass_star_fe_snia_over_h_lom_50:
   type: "scatter"
@@ -660,13 +634,13 @@ stellar_mass_star_fe_snia_over_h_lom_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of [Fe/H]$_*$, where only Fe from SNIa is included. All haloes are plotted, including subhaloes.'
   observational_data:
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 
 stellar_mass_star_fe_over_h_mol_lofloor_50:
@@ -702,13 +676,13 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. The floor value is set to [Fe/H]=-4. All haloes are plotted, including subhaloes.'
   observational_data:
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 
 stellar_mass_star_fe_over_h_mol_hifloor_50:
@@ -744,13 +718,13 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
     section: Stellar Metallicity
     caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. The floor value is set to [Fe/H]=-3. All haloes are plotted, including subhaloes.'
   observational_data:
-    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
-    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Gallazzi2005_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kirby2013_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Strom2022_FeH.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
+    - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
 
 
 stellar_mass_star_mg_over_fe_50:
@@ -784,35 +758,6 @@ stellar_mass_star_mg_over_fe_50:
     caption: '[Mg/Fe] versus stellar mass, both computed in 50-kpc apertures. The values of [Mg/Fe] are obtained by computing the (log10 of) ratio between the total Magnesium mass in stars and total Iron mass in stars, and then normalising it by the corresponding solar abundances. The solar abundances are taken from Asplund et al. (2009). All haloes are plotted, including subhaloes.'
   observational_data:
     - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data_MgFe.hdf5
+    - filename: GalaxyStellarMassAlphatoIron/RomeroGomez2023_ATLAS3D_Data_MgFe.hdf5
+    - filename: GalaxyStellarMassAlphatoIron/RomeroGomez2023_SphDwarfsLG_Data_MgFe.hdf5
 
-stellar_mass_star_o_over_fe_50:
-  type: "scatter"
-  legend_loc: "lower left"
-  y:
-    quantity: "derived_quantities.star_oxygen_over_iron_50_kpc"
-    units: "dimensionless"
-    start: -0.2
-    end: 0.7
-    log: false
-  x:
-    quantity: "apertures.mass_star_50_kpc"
-    units: solar_mass
-    start: 1e7
-    end: 1e12
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 20
-    start:
-      value: 1e7
-      units: solar_mass
-    end:
-      value: 1e12
-      units: solar_mass
-  metadata:
-    title: 'Stellar mass - [O/Fe]$_*$ relation (50 kpc aperture)'
-    section: Stellar Metallicity
-    caption: '[O/Fe] versus stellar mass, both computed in 50-kpc apertures. The values of [O/Fe] are obtained by computing the (log10 of) ratio between the total Oxygen mass in stars and total Iron mass in stars, and then normalising it by the corresponding solar abundances. The solar abundances are taken from Asplund et al. (2009). All haloes are plotted, including subhaloes.'
-  observational_data:
-    - filename: GalaxyStellarMassAlphatoIron/Gallazzi2021_Data_OFe.hdf5

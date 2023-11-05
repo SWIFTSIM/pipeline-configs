@@ -844,6 +844,7 @@ def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
 
     return
 
+
 def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
     # Loop over aperture average-of-linear N/O-abundances
     for aperture_size in aperture_sizes:
@@ -860,9 +861,7 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
         # )
 
         # Compute gas-mass weighted O over H
-        log_N_over_O = unyt.unyt_array(
-            np.zeros_like(gas_mass), "dimensionless"
-        )
+        log_N_over_O = unyt.unyt_array(np.zeros_like(gas_mass), "dimensionless")
         # log_N_over_O = unyt.unyt_array(
         #     np.zeros_like(gas_cold_dense_mass), "dimensionless"
         # )
@@ -873,13 +872,13 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
             log_N_over_O_times_gas_mass[mask] / gas_mass[mask]
         )
 
-        log_N_over_O.name = f"Diffuse gas $\\log_{{10}}({{\\rm N/O}})$ ({aperture_size} kpc)"
+        log_N_over_O.name = (
+            f"Diffuse gas $\\log_{{10}}({{\\rm N/O}})$ ({aperture_size} kpc)"
+        )
 
         # Register the field
         setattr(
-            self,
-            f"gas_n_over_o_abundance_avglin_{aperture_size}_kpc",
-            log_N_over_O,
+            self, f"gas_n_over_o_abundance_avglin_{aperture_size}_kpc", log_N_over_O
         )
         # setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
 
@@ -892,7 +891,7 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
         ):
             # Fetch N over O times gas mass computed in apertures.
             log_N_over_O_times_gas_mass = catalogue.get_quantity(
-                f"log_element_ratios_times_masses.log_N_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc",
+                f"log_element_ratios_times_masses.log_N_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc"
             )
 
             # Fetch gas mass in apertures
@@ -902,14 +901,10 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
             gas_mass = catalogue.get_quantity(f"apertures.mass_gas_{aperture_size}_kpc")
 
             # Compute gas-mass weighted O over H
-            log_N_over_O = unyt.unyt_array(
-                np.zeros_like(gas_mass), "dimensionless"
-            )
+            log_N_over_O = unyt.unyt_array(np.zeros_like(gas_mass), "dimensionless")
             # Avoid division by zero
             mask = gas_mass > 0.0 * gas_mass.units
-            log_N_over_O[mask] = (
-                log_N_over_O_times_gas_mass[mask] / gas_mass[mask]
-            )
+            log_N_over_O[mask] = log_N_over_O_times_gas_mass[mask] / gas_mass[mask]
 
             # Convert to units used in observations
             N_abundance = unyt.unyt_array(log_N_over_O, "dimensionless")
@@ -917,10 +912,13 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
 
             # Register the field
             setattr(
-                self, f"gas_n_over_o_abundance_avglog_{floor}_{aperture_size}_kpc", N_abundance
+                self,
+                f"gas_n_over_o_abundance_avglog_{floor}_{aperture_size}_kpc",
+                N_abundance,
             )
 
     return
+
 
 def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
     # Loop over aperture average-of-linear C/O-abundances
@@ -939,22 +937,20 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
         # )
 
         # Compute gas-mass weighted O over H
-        log_C_over_O = unyt.unyt_array(
-            np.zeros_like(gas_mass), "dimensionless"
-        )
+        log_C_over_O = unyt.unyt_array(np.zeros_like(gas_mass), "dimensionless")
         # Avoid division by zero
         mask = gas_mass > 0.0 * gas_mass.units
         log_C_over_O[mask] = np.log10(
             log_C_over_O_times_gas_mass[mask] / gas_mass[mask]
         )
 
-        log_C_over_O.name = f"Diffuse gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
+        log_C_over_O.name = (
+            f"Diffuse gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
+        )
 
         # Register the field
         setattr(
-            self,
-            f"gas_c_over_o_abundance_avglin_{aperture_size}_kpc",
-            log_C_over_O,
+            self, f"gas_c_over_o_abundance_avglin_{aperture_size}_kpc", log_C_over_O
         )
         # setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
 
@@ -967,7 +963,7 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
         ):
             # Fetch N over O times gas mass computed in apertures.
             log_C_over_O_times_gas_mass = catalogue.get_quantity(
-                f"log_element_ratios_times_masses.log_C_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc",
+                f"log_element_ratios_times_masses.log_C_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc"
             )
 
             # Fetch gas mass in apertures
@@ -977,14 +973,10 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
             # )
 
             # Compute gas-mass weighted O over H
-            log_C_over_O = unyt.unyt_array(
-                np.zeros_like(gas_mass), "dimensionless"
-            )
+            log_C_over_O = unyt.unyt_array(np.zeros_like(gas_mass), "dimensionless")
             # Avoid division by zero
             mask = gas_mass > 0.0 * gas_mass.units
-            log_C_over_O[mask] = (
-                log_C_over_O_times_gas_mass[mask] / gas_mass[mask]
-            )
+            log_C_over_O[mask] = log_C_over_O_times_gas_mass[mask] / gas_mass[mask]
 
             # Convert to units used in observations
             C_abundance = unyt.unyt_array(log_C_over_O, "dimensionless")
@@ -992,7 +984,9 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
 
             # Register the field
             setattr(
-                self, f"gas_c_over_o_abundance_avglog_{floor}_{aperture_size}_kpc", C_abundance
+                self,
+                f"gas_c_over_o_abundance_avglog_{floor}_{aperture_size}_kpc",
+                C_abundance,
             )
 
     return

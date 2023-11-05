@@ -726,8 +726,8 @@ gas_metallicity_gas_carbon_over_oxygen_lom_50_kpc:
     quantity: "derived_quantities.gas_c_over_o_abundance_avglin_50_kpc"
     log: false
     units: "dimensionless"
-    start: -3
-    end: 0.5
+    start: -2
+    end: 1
   x:
     quantity: "derived_quantities.gas_o_abundance_avglin_50_kpc"
     log: false
@@ -762,8 +762,8 @@ gas_metallicity_gas_carbon_over_oxygen_lofloor_50_kpc:
     quantity: "derived_quantities.gas_c_over_o_abundance_avglog_low_50_kpc"
     log: false
     units: "dimensionless"
-    start: -3
-    end: 0.5
+    start: -2
+    end: 1
   x:
     quantity: "derived_quantities.gas_o_abundance_avglog_low_50_kpc"
     log: false
@@ -798,8 +798,8 @@ gas_metallicity_gas_carbon_over_oxygen_hifloor_50_kpc:
     quantity: "derived_quantities.gas_c_over_o_abundance_avglog_high_50_kpc"
     log: false
     units: "dimensionless"
-    start: -3
-    end: 0.5
+    start: -2
+    end: 1
   x:
     quantity: "derived_quantities.gas_o_abundance_avglog_high_50_kpc"
     log: false

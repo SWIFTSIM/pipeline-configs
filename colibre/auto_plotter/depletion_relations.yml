@@ -36,11 +36,7 @@ oxygen_abundance_v_neutral_dust_to_gas:
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p250.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p750.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z001p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z005p000.hdf5
+    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5
 
 oxygen_abundance_v_neutral_dust_to_gas:
   type: "scatter"
@@ -80,11 +76,7 @@ oxygen_abundance_v_neutral_dust_to_gas:
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p250.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p750.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z001p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z005p000.hdf5
+    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5
 
 oxygen_abundance_fromz_v_neutral_dust_to_gas:
   type: "scatter"
@@ -124,11 +116,7 @@ oxygen_abundance_fromz_v_neutral_dust_to_gas:
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p250.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p750.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z001p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z005p000.hdf5
+    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5
 
 
 oxygen_abundance_v_neutral_dust_to_gas:
@@ -169,11 +157,7 @@ oxygen_abundance_v_neutral_dust_to_gas:
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p250.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z000p750.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z001p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou23_z005p000.hdf5  
+    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5  
 
 oxygen_abundance_v_neutral_dust_to_metal:
   type: "scatter"
@@ -214,15 +198,8 @@ oxygen_abundance_v_neutral_dust_to_metal:
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z001p149.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z003p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z004p650.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z000p250.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z000p750.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z001p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z005p000.hdf5  
+    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020.hdf5
+    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou2023.hdf5  
 
 oxygen_abundance_Fromz_v_neutral_dust_to_metal:
   type: "scatter"
@@ -263,12 +240,5 @@ oxygen_abundance_Fromz_v_neutral_dust_to_metal:
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z001p149.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z003p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020_z004p650.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z000p250.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z000p750.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z001p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z002p500.hdf5
-    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou23_z005p000.hdf5  
+    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020.hdf5
+    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou2023.hdf5  

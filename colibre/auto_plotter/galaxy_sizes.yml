@@ -98,6 +98,38 @@ stellar_mass_projected_galaxy_size_50:
     - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
 
+stellar_mass_projected_galaxy_size_calibration_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "projected_apertures.projected_1_rhalfmass_star_50_kpc"
+    units: kpc
+    start: 1e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-(Projected) Galaxy Size relation (50 kpc aperture, calibration)
+    caption: Uses stellar sizes calculated from a projected distribution within a 50 kpc aperture. The comparison data is used for calibration.
+    section: Sizes
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Hardwick2022_halfmass.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Vernon.hdf5
+
 stellar_mass_projected_galaxy_size_30:
   type: "scatter"
   legend_loc: "upper left"

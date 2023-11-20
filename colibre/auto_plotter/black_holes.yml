@@ -67,6 +67,39 @@ stellar_mass_black_hole_mass_50:
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
 
+stellar_mass_black_hole_mass_binned_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "black_hole_masses.max"
+    units: Solar_Mass
+    start: 1e3
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass)
+    caption: SMBHM relation. The binned observational data are obtained by combining BH mass measurements for galaxies of different morphologies (Graham 2023) and passive vs. active galaxies (Terrazas et al. 2017) with dependencies on stellar mass of morphological types (Moffett et al. 2016, from the GAMA survey) and quenched fractions (Gilbank et al. 2010, SDSS).
+    section: Black Holes
+  observational_data:
+    - filename: GalaxyStellarMassBlackHoleMassBinned/Terrazas2017_binned.hdf5
+    - filename: GalaxyStellarMassBlackHoleMassBinned/Graham2023_binned.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+
 stellar_mass_black_hole_mass_passive_30:
   type: "scatter"
   select_structure_type: 10

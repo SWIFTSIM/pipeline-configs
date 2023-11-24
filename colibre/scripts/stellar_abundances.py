@@ -20,7 +20,7 @@ def make_hist(x, y, cut, xi, yi):
 
     # Create a histogram
     h, xedges, yedges = np.histogram2d(
-        x[selection], y[selection], bins=(xi, yi), normed=True
+        x[selection], y[selection], bins=(xi, yi), density=True
     )
 
     return h, xedges, yedges

@@ -851,8 +851,7 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
 
         # Fetch N over O times gas mass computed in apertures. The
         # mass ratio between N and O has already been accounted for.
-        # Note that here we are calling the diffuse quantities, for
-        # total quantities (diffuse + dust) call "lin_N_over_O_total_times_ .."
+        # Note that here we are calling the diffuse quantities
         log_N_over_O_times_gas_mass = catalogue.get_quantity(
             f"lin_element_ratios_times_masses.lin_N_over_O_times_gas_mass_{aperture_size}_kpc"
         )
@@ -875,7 +874,7 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
         )
 
         log_N_over_O.name = (
-            f"Diffuse gas $\\log_{{10}}({{\\rm N/O}})$ ({aperture_size} kpc)"
+            f"Diffuse Gas $\\log_{{10}}({{\\rm N/O}})$ ({aperture_size} kpc)"
         )
 
         # Register the field
@@ -902,7 +901,7 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
                 f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
             )
 
-            # Compute gas-mass weighted O over H
+            # Compute gas-mass weighted N over O
             log_N_over_O = unyt.unyt_array(
                 np.zeros_like(gas_cold_dense_mass), "dimensionless"
             )
@@ -914,7 +913,7 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
 
             # Convert to units used in observations
             N_abundance = unyt.unyt_array(log_N_over_O, "dimensionless")
-            N_abundance.name = f"Diffuse gas $\\log_{{10}}({{\\rm N/O}})$ ({floor_label}, {aperture_size} kpc)"
+            N_abundance.name = f"Diffuse Gas $\\log_{{10}}({{\\rm N/O}})$ ({floor_label}, {aperture_size} kpc)"
 
             # Register the field
             setattr(
@@ -955,7 +954,7 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
         )
 
         log_C_over_O.name = (
-            f"Diffuse gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
+            f"Diffuse Gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
         )
 
         # Register the field
@@ -994,7 +993,7 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
 
             # Convert to units used in observations
             C_abundance = unyt.unyt_array(log_C_over_O, "dimensionless")
-            C_abundance.name = f"Diffuse gas $\\log_{{10}}({{\\rm C/O}})$ ({floor_label}, {aperture_size} kpc)"
+            C_abundance.name = f"Diffuse Gas $\\log_{{10}}({{\\rm C/O}})$ ({floor_label}, {aperture_size} kpc)"
 
             # Register the field
             setattr(

@@ -526,7 +526,7 @@ stellar_mass_gas_nitrogen_over_oxygen_lom_50_kpc:
       value: 1e12
       units: solar_mass
   metadata:
-    title: "Stellar mass - Gas Diffuse Nitrogen over Oxygen relation (log-of-mean, 50 kpc aperture)"
+    title: "Stellar mass - Gas Diffuse Nitrogen over Oxygen relation (log-of-mean, 50 kpc aperture, cold, dense gas only)"
     caption: Shown for galaxies with cold, dense gas. No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses diffused element mass fractions, meaning that it does not include metals that are present in dust. This figure shows the log-of-mean, which means it first calculates the mass weighted average of N/O for each galaxy and then calculates the log.
     section: Gas Metallicity
     show_on_webpage: true
@@ -632,7 +632,7 @@ gas_metallicity_gas_nitrogen_over_oxygen_lom_50_kpc:
       value: 10
       units: "dimensionless"
   metadata:
-    title: "Diffuse Gas metallicity - Diffuse Gas Nitrogen over Oxygen relation (log-of-mean, 50 kpc aperture)"
+    title: "Diffuse Gas metallicity - Diffuse Gas Nitrogen over Oxygen relation (log-of-mean, 50 kpc aperture, Only dense gas)"
     caption: Shown for galaxies with cold, dense gas. Metallicity is represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles with a [O/H]=-3 floor for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
     section: Gas Metallicity
     show_on_webpage: true
@@ -640,6 +640,7 @@ gas_metallicity_gas_nitrogen_over_oxygen_lom_50_kpc:
     - filename: GalaxyStellarMassGasMetallicity/HaydenPawson_2022b.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Nicholls_2017b.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Berg_2020.hdf5
+
 
 gas_metallicity_gas_nitrogen_over_oxygen_lofloor_50_kpc:
   type: "scatter"
@@ -746,7 +747,7 @@ gas_metallicity_gas_carbon_over_oxygen_lom_50_kpc:
       value: 10
       units: "dimensionless"
   metadata:
-    title: "Diffuse Gas metallicity - Diffuse Gas Carbon over Oxygen relation (log-of-mean, 50 kpc aperture)"
+    title: "Diffuse Gas metallicity - Diffuse Gas Carbon over Oxygen relation (log-of-mean, 50 kpc aperture, only cold dense gas)"
     caption: Only shown for galaxies with cold, dense gas. Metallicity is represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses depleted gas metallicity, i.e. it does not include metals that are present in dust.
     section: Gas Metallicity
     show_on_webpage: true

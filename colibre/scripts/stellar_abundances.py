@@ -87,6 +87,7 @@ def read_data(data, xvar, yvar):
     C_Fe_Sun = C_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mC_in_cgs)
     N_Fe_Sun = N_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mN_in_cgs)
     O_Fe_Sun = O_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mO_in_cgs)
+    N_O_Sun = N_H_Sun_Asplund - O_H_Sun_Asplund - np.log10(mO_in_cgs / mN_in_cgs)
     Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
 
     Si_Fe_Sun = Si_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSi_in_cgs)
@@ -100,11 +101,13 @@ def read_data(data, xvar, yvar):
 
     if xvar == "O_H" or yvar == "O_Fe":
         oxygen = data.stars.element_mass_fractions.oxygen
-
     if yvar == "C_Fe":
         carbon = data.stars.element_mass_fractions.carbon
     if yvar == "N_Fe":
         nitrogen = data.stars.element_mass_fractions.nitrogen
+    if yvar == "N_O":
+        nitrogen = data.stars.element_mass_fractions.nitrogen
+        oxygen = data.stars.element_mass_fractions.oxygen
     if yvar == "Mg_Fe":
         magnesium = data.stars.element_mass_fractions.magnesium
     if yvar == "Fe_SNIa_fraction":
@@ -146,6 +149,12 @@ def read_data(data, xvar, yvar):
         N_Fe[nitrogen == 0] = -2  # set lower limit
         N_Fe[N_Fe < -2] = -2  # set lower limit
         yval = N_Fe
+    elif yvar == "N_O":
+        N_O = np.log10(nitrogen / oxygen) - N_O_Sun
+        N_O[oxygen == 0] = -2  # set lower limit
+        N_O[nitrogen == 0] = -2  # set lower limit
+        N_O[N_O < -2] = -2  # set lower limit
+        yval = N_O
     elif yvar == "O_Fe":
         O_Fe = np.log10(oxygen / iron) - O_Fe_Sun
         O_Fe[iron == 0] = -2  # set lower limit
@@ -278,6 +287,10 @@ if dataset == "APOGEE":
             observational_data = (
                 f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_N.hdf5"
             )
+        elif yvar == "N_O":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_NO.hdf5"
+            )
         elif yvar == "O_Fe":
             observational_data = (
                 f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_O.hdf5"
@@ -296,6 +309,10 @@ if dataset == "APOGEE":
         if yvar == "O_Fe":
             observational_data = (
                 f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_OH.hdf5"
+            )
+        elif yvar == "N_O":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_NOOH.hdf5"
             )
         elif yvar == "Mg_Fe":
             observational_data = (
@@ -334,8 +351,8 @@ if dataset == "APOGEE":
 
     z = h.T
 
-    binsize = 0.25
-    grid_min = np.log10(10)
+    binsize = 0.2
+    grid_min = np.log10(1) # Note that the histograms have been normalized. Therefore this **does not** indicate a minimum of 1 star per bin!
     grid_max = np.log10(np.ceil(h.max()))
     levels = np.arange(grid_min, grid_max, binsize)
     levels = 10 ** levels
@@ -345,6 +362,31 @@ if dataset == "APOGEE":
     )
 
     ax.annotate("APOGEE data", (-3.8, -1.3))
+
+
+    if (xvar == "Fe_H") & (yvar == "O_Fe"):
+            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_OFe_FeH.hdf5",
+                                  f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_OFe_FeH.hdf5"]
+
+    elif (xvar == "Fe_H") & (yvar == "C_Fe"):
+            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_CFe_FeH.hdf5"]
+
+    elif (xvar == "Fe_H") & (yvar == "N_Fe"):
+            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_NFe_FeH.hdf5",
+                                  f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NFe_FeH.hdf5"]
+
+    elif (xvar == "Fe_H") & (yvar == "N_O"):
+            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NO_FeH.hdf5"]
+
+    else:
+            observational_data = None
+
+    if not observational_data is None:
+        for obs in load_observations(observational_data):
+            obs.plot_on_axes(ax)
+        observation_legend = ax.legend(markerfirst=True, loc="lower left")
+        ax.add_artist(observation_legend)
+
 
 elif dataset == "GALAH":
     observational_data = (
@@ -408,6 +450,7 @@ xlabels = {"Fe_H": "[Fe/H]", "O_H": "[O/H]"}
 ylabels = {
     "C_Fe": "[C/Fe]",
     "N_Fe": "[N/Fe]",
+    "N_O": "[N/O]",
     "O_Fe": "[O/Fe]",
     "Mg_Fe": "[Mg/Fe]",
     "Si_Fe": "[Si/Fe]",
@@ -424,6 +467,7 @@ ax.set_xlim(-4.0, 2.0)
 ylims = {
     "C_Fe": (-1.5, 1.5),
     "N_Fe": (-1.5, 1.5),
+    "N_O": (-1.5, 1.5),
     "O_Fe": (-1.5, 1.5),
     "Mg_Fe": (-1.5, 2.0),
     "Si_Fe": (-1.5, 2.0),

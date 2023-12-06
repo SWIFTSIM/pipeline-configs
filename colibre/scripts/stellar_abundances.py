@@ -88,6 +88,7 @@ def read_data(data, xvar, yvar):
     N_Fe_Sun = N_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mN_in_cgs)
     O_Fe_Sun = O_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mO_in_cgs)
     N_O_Sun = N_H_Sun_Asplund - O_H_Sun_Asplund - np.log10(mO_in_cgs / mN_in_cgs)
+    C_O_Sun = C_H_Sun_Asplund - O_H_Sun_Asplund - np.log10(mO_in_cgs / mC_in_cgs)
     Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
 
     Si_Fe_Sun = Si_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSi_in_cgs)
@@ -108,11 +109,13 @@ def read_data(data, xvar, yvar):
     if yvar == "N_O":
         nitrogen = data.stars.element_mass_fractions.nitrogen
         oxygen = data.stars.element_mass_fractions.oxygen
+    if yvar == "C_O":
+        carbon = data.stars.element_mass_fractions.carbon
+        oxygen = data.stars.element_mass_fractions.oxygen
     if yvar == "Mg_Fe":
         magnesium = data.stars.element_mass_fractions.magnesium
     if yvar == "Fe_SNIa_fraction":
         iron_snia = data.stars.iron_mass_fractions_from_snia
-
     if yvar == "Si_Fe":
         silicon = data.stars.element_mass_fractions.silicon
     if yvar == "Ne_Fe":
@@ -155,6 +158,12 @@ def read_data(data, xvar, yvar):
         N_O[nitrogen == 0] = -2  # set lower limit
         N_O[N_O < -2] = -2  # set lower limit
         yval = N_O
+    elif yvar == "C_O":
+        C_O = np.log10(carbon / oxygen) - C_O_Sun
+        C_O[oxygen == 0] = -2  # set lower limit
+        C_O[carbon == 0] = -2  # set lower limit
+        C_O[C_O < -2] = -2  # set lower limit
+        yval = C_O
     elif yvar == "O_Fe":
         O_Fe = np.log10(oxygen / iron) - O_Fe_Sun
         O_Fe[iron == 0] = -2  # set lower limit
@@ -291,6 +300,10 @@ if dataset == "APOGEE":
             observational_data = (
                 f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_NO.hdf5"
             )
+        elif yvar == "C_O":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_CO.hdf5"
+            )
         elif yvar == "O_Fe":
             observational_data = (
                 f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_O.hdf5"
@@ -313,6 +326,10 @@ if dataset == "APOGEE":
         elif yvar == "N_O":
             observational_data = (
                 f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_NOOH.hdf5"
+            )
+        elif yvar == "C_O":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_COOH.hdf5"
             )
         elif yvar == "Mg_Fe":
             observational_data = (
@@ -451,6 +468,7 @@ ylabels = {
     "C_Fe": "[C/Fe]",
     "N_Fe": "[N/Fe]",
     "N_O": "[N/O]",
+    "C_O": "[C/O]",
     "O_Fe": "[O/Fe]",
     "Mg_Fe": "[Mg/Fe]",
     "Si_Fe": "[Si/Fe]",
@@ -468,6 +486,7 @@ ylims = {
     "C_Fe": (-1.5, 1.5),
     "N_Fe": (-1.5, 1.5),
     "N_O": (-1.5, 1.5),
+    "C_O": (-1.5, 1.5),
     "O_Fe": (-1.5, 1.5),
     "Mg_Fe": (-1.5, 2.0),
     "Si_Fe": (-1.5, 2.0),

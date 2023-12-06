@@ -963,6 +963,40 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
         )
         setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
 
+    for aperture_size in aperture_sizes:
+
+        # Fetch C over O times gas mass computed in apertures. The
+        # mass ratio between N and O has already been accounted for.
+        # Note that here we are calling the total quantities
+        log_C_over_O_times_gas_mass = catalogue.get_quantity(
+            f"lin_element_ratios_times_masses.lin_C_over_O_total_times_gas_mass_{aperture_size}_kpc"
+        )
+
+        # Fetch gas mass in apertures
+        gas_cold_dense_mass = catalogue.get_quantity(
+            f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
+        )
+
+        # Compute gas-mass weighted O over H
+        log_C_over_O = unyt.unyt_array(
+            np.zeros_like(gas_cold_dense_mass), "dimensionless"
+        )
+        # Avoid division by zero
+        mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+        log_C_over_O[mask] = np.log10(
+            log_C_over_O_times_gas_mass[mask] / gas_cold_dense_mass[mask]
+        )
+
+        log_C_over_O.name = (
+            f"Total (Dust + Diffuse) Gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
+        )
+
+        # Register the field
+        setattr(
+            self, f"gas_c_over_o_total_abundance_avglin_{aperture_size}_kpc", log_C_over_O
+        )
+        setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
+
     # Loop over aperture average-of-log C/O-abundances
     for aperture_size in aperture_sizes:
 

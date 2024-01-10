@@ -987,13 +987,13 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
             log_C_over_O_times_gas_mass[mask] / gas_cold_dense_mass[mask]
         )
 
-        log_C_over_O.name = (
-            f"Total (Dust + Diffuse) Gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
-        )
+        log_C_over_O.name = f"Total (Dust + Diffuse) Gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
 
         # Register the field
         setattr(
-            self, f"gas_c_over_o_total_abundance_avglin_{aperture_size}_kpc", log_C_over_O
+            self,
+            f"gas_c_over_o_total_abundance_avglin_{aperture_size}_kpc",
+            log_C_over_O,
         )
         setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
 

@@ -369,7 +369,9 @@ if dataset == "APOGEE":
     z = h.T
 
     binsize = 0.2
-    grid_min = np.log10(1) # Note that the histograms have been normalized. Therefore this **does not** indicate a minimum of 1 star per bin!
+    grid_min = np.log10(
+        1
+    )  # Note that the histograms have been normalized. Therefore this **does not** indicate a minimum of 1 star per bin!
     grid_max = np.log10(np.ceil(h.max()))
     levels = np.arange(grid_min, grid_max, binsize)
     levels = 10 ** levels
@@ -380,23 +382,30 @@ if dataset == "APOGEE":
 
     ax.annotate("APOGEE data", (-3.8, -1.3))
 
-
     if (xvar == "Fe_H") & (yvar == "O_Fe"):
-            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_OFe_FeH.hdf5",
-                                  f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_OFe_FeH.hdf5"]
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_OFe_FeH.hdf5",
+            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_OFe_FeH.hdf5",
+        ]
 
     elif (xvar == "Fe_H") & (yvar == "C_Fe"):
-            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_CFe_FeH.hdf5"]
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_CFe_FeH.hdf5"
+        ]
 
     elif (xvar == "Fe_H") & (yvar == "N_Fe"):
-            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_NFe_FeH.hdf5",
-                                  f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NFe_FeH.hdf5"]
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_NFe_FeH.hdf5",
+            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NFe_FeH.hdf5",
+        ]
 
     elif (xvar == "Fe_H") & (yvar == "N_O"):
-            observational_data = [f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NO_FeH.hdf5"]
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NO_FeH.hdf5"
+        ]
 
     else:
-            observational_data = None
+        observational_data = None
 
     if not observational_data is None:
         for obs in load_observations(observational_data):

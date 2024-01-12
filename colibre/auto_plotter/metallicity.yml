@@ -498,11 +498,47 @@ stellar_mass_gas_sf_metallicity_lom_allgals_50:
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
 
+
+stellar_mass_gas_nitrogen_over_total_oxygen_lom_50_kpc:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
+  comment: "All galaxies with cold dense gas, showing total (dust + diffuse) component, LoM."
+  y:
+    quantity: "derived_quantities.gas_n_over_o_abundance_total_avglin_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -3
+    end: 0.5
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Gas Total (Dust + Diffuse) Nitrogen over Oxygen relation (log-of-mean, 50 kpc aperture, cold, dense gas only)"
+    caption: Shown for galaxies with cold, dense gas. No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses total element mass fractions, meaning that it includes all metals (in dust and diffuse components). This figure shows the log-of-mean, which means it first calculates the mass weighted average of N/O for each galaxy and then calculates the log.
+    section: Gas Metallicity
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyStellarMassGasMetallicity/HaydenPawson_2022a.hdf5
+
 stellar_mass_gas_nitrogen_over_oxygen_lom_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, LoM, Diffuse"
+  comment: "All galaxies with cold dense gas, showing diffuse component, LoM."
   y:
     quantity: "derived_quantities.gas_n_over_o_abundance_avglin_50_kpc"
     log: false
@@ -537,7 +573,7 @@ stellar_mass_gas_nitrogen_over_oxygen_hifloor_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, High floor, Diffuse"
+  comment: "All galaxies with cold dense gas, showing diffuse component. High floor mask"
   y:
     quantity: "derived_quantities.gas_n_over_o_abundance_avglog_high_50_kpc"
     log: false
@@ -572,7 +608,7 @@ stellar_mass_gas_nitrogen_over_oxygen_lofloor_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, Low floor, Diffuse"
+  comment: "All galaxies with cold dense gas, showing diffuse component. Low floor mask"
   y:
     quantity: "derived_quantities.gas_n_over_o_abundance_avglog_low_50_kpc"
     log: false
@@ -603,11 +639,50 @@ stellar_mass_gas_nitrogen_over_oxygen_lofloor_50_kpc:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/HaydenPawson_2022a.hdf5
 
+gas_metallicity_gas_nitrogen_over_total_oxygen_lom_50_kpc:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
+  comment: "All galaxies with cold dense gas, showing total (dust + diffuse) component. LoM."
+  y:
+    quantity: "derived_quantities.gas_n_over_o_abundance_total_avglin_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -3
+    end: 0.5
+  x:
+    quantity: "derived_quantities.gas_o_abundance_total_avglin_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: 7
+    end: 10
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 7
+      units: "dimensionless"
+    end:
+      value: 10
+      units: "dimensionless"
+  metadata:
+    title: "Total Gas metallicity - Total Gas Nitrogen over Oxygen relation (log-of-mean, 50 kpc aperture, Only dense gas)"
+    caption: Shown for galaxies with cold, dense gas. Metallicity is represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles with a [O/H]=-3 floor for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses total gas metallicity, i.e. it also includes metals that are present in dust.
+    section: Gas Metallicity
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyStellarMassGasMetallicity/HaydenPawson_2022b.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Nicholls_2017b.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Berg_2020.hdf5
+
+
 gas_metallicity_gas_nitrogen_over_oxygen_lom_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, LoM, Diffuse"
+  comment: "All galaxies with cold dense gas, showing diffuse component. LoM."
   y:
     quantity: "derived_quantities.gas_n_over_o_abundance_avglin_50_kpc"
     log: false
@@ -646,7 +721,7 @@ gas_metallicity_gas_nitrogen_over_oxygen_lofloor_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, LoM, Diffuse"
+  comment: "All galaxies with cold dense gas, showing diffuse component. LoM."
   y:
     quantity: "derived_quantities.gas_n_over_o_abundance_avglog_low_50_kpc"
     log: false
@@ -684,7 +759,7 @@ gas_metallicity_gas_nitrogen_over_oxygen_hifloor_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, LoM, Diffuse"
+  comment: "All galaxies with cold dense gas, showing diffuse component. High floor mask."
   y:
     quantity: "derived_quantities.gas_n_over_o_abundance_avglog_high_50_kpc"
     log: false
@@ -722,7 +797,7 @@ gas_metallicity_gas_carbon_over_oxygen_lom_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, LoM, Diffuse"
+  comment: "All galaxies with cold dense gas, showing diffuse component. LoM."
   y:
     quantity: "derived_quantities.gas_c_over_o_abundance_avglin_50_kpc"
     log: false
@@ -758,15 +833,15 @@ gas_metallicity_gas_carbon_over_oxygen_total_lom_50_kpc:
   type: "scatter"
   legend_loc: "upper left"
   selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
-  comment: "All galaxies, LoM, Total (Dust + Diffuse)"
+  comment: "All galaxies with cold dense gas, showing total (dust + diffuse). LoM."
   y:
-    quantity: "derived_quantities.gas_c_over_o_total_abundance_avglin_50_kpc"
+    quantity: "derived_quantities.gas_c_over_o_abundance_total_avglin_50_kpc"
     log: false
     units: "dimensionless"
     start: -2
     end: 1
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglin_50_kpc"
+    quantity: "derived_quantities.gas_o_abundance_total_avglin_50_kpc"
     log: false
     units: "dimensionless"
     start: 7
@@ -783,8 +858,8 @@ gas_metallicity_gas_carbon_over_oxygen_total_lom_50_kpc:
       value: 10
       units: "dimensionless"
   metadata:
-    title: "Diffuse Gas metallicity - (Dust + Diffuse) Gas Carbon over Oxygen relation (log-of-mean, 50 kpc aperture, only cold dense gas)"
-    caption: Only shown for galaxies with cold, dense gas. Metallicity is represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses total gas metallicity for C/O, i.e. it includes metals that are present in dust.
+    title: "Total Gas metallicity - Total (Dust + Diffuse) Gas Carbon over Oxygen relation (log-of-mean, 50 kpc aperture, only cold dense gas)"
+    caption: Only shown for galaxies with cold, dense gas. Metallicity is represented by 12 + $\log_{10}$ O/H (where $\log_{10}$ O/H is averaged between gas particles for diffuse O) of the cold, dense gas ($T < 10^{4.5}\;{\rm K}$,  $n_{\rm H} > 0.1 \; {\rm cm^{-3}}$). No minimum metallicity is imposed. All haloes are plotted, including subhaloes. This uses total gas metallicity, i.e. it includes metals that are present in dust.
     section: Gas Metallicity
     show_on_webpage: true
   observational_data:
@@ -906,9 +981,9 @@ stellar_mass_star_fe_over_h_lom_50:
       value: 1.e-10
       units: "dimensionless"
   metadata:
-    title: 'Stellar mass - [Fe/H]$_*$ relation (50 kpc aperture)'
+    title: 'Stellar mass - (Fe/H)$_*$ relation (50 kpc aperture)'
     section: Stellar Metallicity
-    caption: 'Computed as the mass-weighted average of [Fe/H]$_*$. All haloes are plotted, including subhaloes.'
+    caption: 'Computed as the mass-weighted average of (Fe/H)$_*$, and normalised by solar values. All haloes are plotted, including subhaloes.'
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
@@ -949,9 +1024,9 @@ stellar_mass_star_fe_snia_over_h_lom_50:
       value: 1.e-10
       units: "dimensionless"
   metadata:
-    title: 'Stellar mass - [Fe$_{\rm SNIa}$/H]$_*$ relation (50 kpc aperture)'
+    title: 'Stellar mass - (Fe$_{\rm SNIa}$/H)$_*$ relation (50 kpc aperture)'
     section: Stellar Metallicity
-    caption: 'Computed as the mass-weighted average of [Fe/H]$_*$, where only Fe from SNIa is included. All haloes are plotted, including subhaloes.'
+    caption: 'Computed as the mass-weighted average of (Fe/H)$_*$, and normalised by solar values. Note that only Fe from SNIa is included. All haloes are plotted, including subhaloes.'
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
@@ -993,7 +1068,7 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
   metadata:
     title: 'Stellar mass - [Fe/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
     section: Stellar Metallicity
-    caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. The floor value is set to [Fe/H]=-4. All haloes are plotted, including subhaloes.'
+    caption: 'Computed as the mass-weighted average of log(Fe/H)$_*$, with a floor value set to [Fe/H]=-4. All haloes are plotted, including subhaloes.'
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5
@@ -1035,7 +1110,7 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
   metadata:
     title: 'Stellar mass - [Fe/H]$_*$ relation (mean-of-log, 50 kpc aperture)'
     section: Stellar Metallicity
-    caption: 'Computed as the mass-weighted average of log [Fe/H]$_*$. The floor value is set to [Fe/H]=-3. All haloes are plotted, including subhaloes.'
+    caption: 'Computed as the mass-weighted average of log(Fe/H)$_*$, with a floor value set to [Fe/H]=-3. All haloes are plotted, including subhaloes.'
   observational_data:
     - filename: GalaxyStellarMassStellarMetallicity/Zahid2017_Data.hdf5
     - filename: GalaxyStellarMassStellarMetallicity/Kudritzki2016_Data.hdf5

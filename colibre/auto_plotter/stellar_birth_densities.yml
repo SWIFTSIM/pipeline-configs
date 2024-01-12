@@ -115,3 +115,90 @@ stellar_birth_density_stellar_mass_max_all_50:
     title: Maximal Stellar Birth Density-Stellar Mass relation
     caption: Includes all haloes, including subhaloes.
     section: Stellar Birth Properties
+
+stellar_birth_temperature_stellar_mass_min_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_temperatures.min"
+    units: "K"
+    start: 0.75e1
+    end: 0.75e5
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Minimal Stellar Birth Temperature-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+stellar_birth_temperature_stellar_mass_average_of_log_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "derived_quantities.average_of_log_stellar_birth_temperature"
+    units: "K"
+    start: 0.75e1
+    end: 0.75e5
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Average of log Stellar Birth Temperature-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+stellar_birth_temperature_stellar_mass_max_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_temperatures.max"
+    units: "K"
+    start: 0.75e1
+    end: 0.75e5
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Maximal Stellar Birth Temperature-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties

@@ -850,7 +850,7 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
     for aperture_size in aperture_sizes:
 
         for short_phase, long_phase in zip(
-                ["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]
+            ["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]
         ):
 
             # Fetch N over O times gas mass computed in apertures. The
@@ -882,10 +882,11 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
 
             # Register the field
             setattr(
-                self, f"gas_n_over_o_abundance{short_phase}_avglin_{aperture_size}_kpc", log_N_over_O
+                self,
+                f"gas_n_over_o_abundance{short_phase}_avglin_{aperture_size}_kpc",
+                log_N_over_O,
             )
             setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
-
 
         # register average-of-log O-abundances (high and low particle floors)
         for floor, floor_label in zip(
@@ -932,7 +933,7 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
     for aperture_size in aperture_sizes:
 
         for short_phase, long_phase in zip(
-                ["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]
+            ["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]
         ):
             # Fetch C over O times gas mass computed in apertures. The
             # mass ratio between N and O has already been accounted for.
@@ -961,10 +962,11 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
 
             # Register the field
             setattr(
-                self, f"gas_c_over_o_abundance{short_phase}_avglin_{aperture_size}_kpc", log_C_over_O
+                self,
+                f"gas_c_over_o_abundance{short_phase}_avglin_{aperture_size}_kpc",
+                log_C_over_O,
             )
             setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
-
 
         # register average-of-log O-abundances (high and low particle floors)
         for floor, floor_label in zip(
@@ -1119,9 +1121,7 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
         FeSNIa_abundance = unyt.unyt_array(
             FeSNIa_over_H / fe_solar_abundance, "dimensionless"
         )
-        FeSNIa_abundance.name = (
-            f"Stellar (Fe(SNIa)/H) ({aperture_size} kpc)"
-        )
+        FeSNIa_abundance.name = f"Stellar (Fe(SNIa)/H) ({aperture_size} kpc)"
 
         # Register the field
         setattr(

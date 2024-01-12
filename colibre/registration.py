@@ -1654,38 +1654,53 @@ def register_species_fractions(self, catalogue, aperture_sizes):
     return
 
 
-def register_stellar_birth_densities(self, catalogue):
+def register_stellar_birth_properties(self, catalogue):
 
-    try:
-        average_log_n_b = catalogue.get_quantity("stellar_birth_densities.logaverage")
-        stellar_mass = catalogue.get_quantity("apertures.mass_star_100_kpc")
+    for input_name, output_name in zip(
+        ["temperatures", "densities"], ["temperature", "density"]
+    ):
 
-        if catalogue.catalogue_type == "VR":
-            exp_average_log_n_b = unyt.unyt_array(
-                np.exp(average_log_n_b), units=average_log_n_b.units
+        try:
+            # average of log of stlelar birth property X
+            average_log_X = catalogue.get_quantity(
+                f"stellar_birth_{input_name}.logaverage"
             )
-        elif catalogue.catalogue_type == "SOAP":
-            # If we encounter overflow, that is a good hint that we are reading a SOAP
-            # catalogue that already contains the right values
-            exp_average_log_n_b = average_log_n_b
-        else:
-            raise RuntimeError(f"Unknown catalogue type: {catalogue.catalogue_type}!")
+            stellar_mass = catalogue.get_quantity("apertures.mass_star_50_kpc")
 
-        # Ensure haloes with zero stellar mass have zero stellar birth densities
-        no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
-        exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(
-            0.0, average_log_n_b.units
-        )
+            if catalogue.catalogue_type == "VR":
+                exp_average_log_X = unyt.unyt_array(
+                    np.exp(average_log_X), units=average_log_X.units
+                )
+            elif catalogue.catalogue_type == "SOAP":
+                # If we encounter overflow, that is a good hint that we are reading a SOAP
+                # catalogue that already contains the right values
+                exp_average_log_X = average_log_X
+            else:
+                raise RuntimeError(
+                    f"Unknown catalogue type: {catalogue.catalogue_type}!"
+                )
 
-        # Label of the derived field
-        exp_average_log_n_b.name = "Stellar Birth Density (average of log)"
+            # Ensure haloes with zero stellar mass have zero values of stellar birth property X
+            no_stellar_mass = stellar_mass <= unyt.unyt_quantity(
+                0.0, stellar_mass.units
+            )
+            exp_average_log_X[no_stellar_mass] = unyt.unyt_quantity(
+                0.0, average_log_X.units
+            )
 
-        # Register the derived field
-        setattr(self, "average_of_log_stellar_birth_density", exp_average_log_n_b)
+            # Label of the derived field
+            exp_average_log_X.name = (
+                f"Stellar Birth {output_name.capitalize()} (average of log)"
+            )
 
-    # In case stellar birth densities are not present in the catalogue
-    except AttributeError:
-        pass
+            # Register the derived field
+            setattr(
+                self, f"average_of_log_stellar_birth_{output_name}", exp_average_log_X
+            )
+
+        # In case this stellar birth property X is not present in the catalogue
+        except AttributeError:
+            pass
 
     return
 
@@ -1812,7 +1827,7 @@ register_h2_masses(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_dust_to_hi_ratio(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_cold_gas_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_species_fractions(self, catalogue, aperture_sizes_30_50_100_kpc)
-register_stellar_birth_densities(self, catalogue)
+register_stellar_birth_properties(self, catalogue)
 register_los_star_veldisp(self, catalogue)
 register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_gas_fraction(self, catalogue)

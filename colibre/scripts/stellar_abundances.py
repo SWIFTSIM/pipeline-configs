@@ -276,7 +276,16 @@ for isnap, (snapshot_filename, name) in enumerate(zip(snapshot_filenames, names)
     if yvar != "Fe_SNIa_fraction":
         mask = xval < -4
         ym = np.median(yval[mask])
-        ax.arrow(-3.6, ym, -0.2, 0, head_width=0.05, head_length=0.1, color=colour, zorder=1000)
+        ax.arrow(
+            -3.6,
+            ym,
+            -0.2,
+            0,
+            head_width=0.05,
+            head_length=0.1,
+            color=colour,
+            zorder=1000,
+        )
 
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
 if dataset == "APOGEE":

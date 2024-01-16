@@ -129,82 +129,69 @@ def read_data(data, xvar, yvar):
 
     if xvar == "O_H":
         O_H = np.log10(oxygen / hydrogen) - O_H_Sun
-        O_H[oxygen == 0] = -4  # set lower limit
-        O_H[O_H < -4] = -4  # set lower limit
+        O_H[oxygen == 0] = -10  # set lower limit
         xval = O_H
     elif xvar == "Fe_H":
         Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
-        Fe_H[iron == 0] = -4  # set lower limit
-        Fe_H[Fe_H < -4] = -4  # set lower limit
+        Fe_H[iron == 0] = -10  # set lower limit
         xval = Fe_H
     else:
         raise AttributeError(f"Unknown x variable: {xvar}!")
 
     if yvar == "C_Fe":
         C_Fe = np.log10(carbon / iron) - C_Fe_Sun
-        C_Fe[iron == 0] = -2  # set lower limit
-        C_Fe[carbon == 0] = -2  # set lower limit
-        C_Fe[C_Fe < -2] = -2  # set lower limit
+        C_Fe[iron == 0] = -10  # set lower limit
+        C_Fe[carbon == 0] = -10  # set lower limit
         yval = C_Fe
     elif yvar == "N_Fe":
         N_Fe = np.log10(nitrogen / iron) - N_Fe_Sun
-        N_Fe[iron == 0] = -2  # set lower limit
-        N_Fe[nitrogen == 0] = -2  # set lower limit
-        N_Fe[N_Fe < -2] = -2  # set lower limit
+        N_Fe[iron == 0] = -10  # set lower limit
+        N_Fe[nitrogen == 0] = -10  # set lower limit
         yval = N_Fe
     elif yvar == "N_O":
         N_O = np.log10(nitrogen / oxygen) - N_O_Sun
-        N_O[oxygen == 0] = -2  # set lower limit
-        N_O[nitrogen == 0] = -2  # set lower limit
-        N_O[N_O < -2] = -2  # set lower limit
+        N_O[oxygen == 0] = -10  # set lower limit
+        N_O[nitrogen == 0] = -10  # set lower limit
         yval = N_O
     elif yvar == "C_O":
         C_O = np.log10(carbon / oxygen) - C_O_Sun
-        C_O[oxygen == 0] = -2  # set lower limit
-        C_O[carbon == 0] = -2  # set lower limit
-        C_O[C_O < -2] = -2  # set lower limit
+        C_O[oxygen == 0] = -10  # set lower limit
+        C_O[carbon == 0] = -10  # set lower limit
         yval = C_O
     elif yvar == "O_Fe":
         O_Fe = np.log10(oxygen / iron) - O_Fe_Sun
-        O_Fe[iron == 0] = -2  # set lower limit
-        O_Fe[oxygen == 0] = -2  # set lower limit
-        O_Fe[O_Fe < -2] = -2  # set lower limit
+        O_Fe[iron == 0] = -10  # set lower limit
+        O_Fe[oxygen == 0] = -10  # set lower limit
         yval = O_Fe
     elif yvar == "Mg_Fe":
         Mg_Fe = np.log10(magnesium / iron) - Mg_Fe_Sun
-        Mg_Fe[iron == 0] = -2  # set lower limit
-        Mg_Fe[magnesium == 0] = -2  # set lower limit
-        Mg_Fe[Mg_Fe < -2] = -2  # set lower limit
+        Mg_Fe[iron == 0] = -10  # set lower limit
+        Mg_Fe[magnesium == 0] = -10  # set lower limit
         yval = Mg_Fe
     elif yvar == "Si_Fe":
         Si_Fe = np.log10(silicon / iron) - Si_Fe_Sun
-        Si_Fe[iron == 0] = -2  # set lower limit
-        Si_Fe[silicon == 0] = -2  # set lower limit
-        Si_Fe[Si_Fe < -2] = -2  # set lower limit
+        Si_Fe[iron == 0] = -10  # set lower limit
+        Si_Fe[silicon == 0] = -10  # set lower limit
         yval = Si_Fe
     elif yvar == "Ne_Fe":
         Ne_Fe = np.log10(neon / iron) - Ne_Fe_Sun
-        Ne_Fe[iron == 0] = -2  # set lower limit
-        Ne_Fe[neon == 0] = -2  # set lower limit
-        Ne_Fe[Ne_Fe < -2] = -2  # set lower limit
+        Ne_Fe[iron == 0] = -10  # set lower limit
+        Ne_Fe[neon == 0] = -10  # set lower limit
         yval = Ne_Fe
     elif yvar == "Eu_Fe":
         Eu_Fe = np.log10(europium / iron) - Eu_Fe_Sun
-        Eu_Fe[iron == 0] = -2  # set lower limit
-        Eu_Fe[europium == 0] = -2  # set lower limit
-        Eu_Fe[Eu_Fe < -2] = -2  # set lower limit
+        Eu_Fe[iron == 0] = -10  # set lower limit
+        Eu_Fe[europium == 0] = -10  # set lower limit
         yval = Eu_Fe
     elif yvar == "Ba_Fe":
         Ba_Fe = np.log10(barium / iron) - Ba_Fe_Sun
-        Ba_Fe[iron == 0] = -2  # set lower limit
-        Ba_Fe[barium == 0] = -2  # set lower limit
-        Ba_Fe[Ba_Fe < -2] = -2  # set lower limit
+        Ba_Fe[iron == 0] = -10  # set lower limit
+        Ba_Fe[barium == 0] = -10  # set lower limit
         yval = Ba_Fe
     elif yvar == "Sr_Fe":
         Sr_Fe = np.log10(strontium / iron) - Sr_Fe_Sun
-        Sr_Fe[iron == 0] = -2  # set lower limit
-        Sr_Fe[strontium == 0] = -2  # set lower limit
-        Sr_Fe[Sr_Fe < -2] = -2  # set lower limit
+        Sr_Fe[iron == 0] = -10  # set lower limit
+        Sr_Fe[strontium == 0] = -10  # set lower limit
         yval = Sr_Fe
     elif yvar == "Fe_SNIa_fraction":
         Fe_snia_fraction = unyt_array(np.zeros_like(iron), "dimensionless")
@@ -284,6 +271,21 @@ for isnap, (snapshot_filename, name) in enumerate(zip(snapshot_filenames, names)
         )[0]
     )
     simulation_labels.append(f"{name} ($z={redshift:.1f}$)")
+
+    # Let's add lower symbol indicating the median for [Fe/H]<-4:
+    if yvar != "Fe_SNIa_fraction":
+        mask = xval < -4
+        ym = np.median(yval[mask])
+        ax.arrow(
+            -3.6,
+            ym,
+            -0.2,
+            0,
+            head_width=0.05,
+            head_length=0.1,
+            color=colour,
+            zorder=1000,
+        )
 
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
 if dataset == "APOGEE":

@@ -20,8 +20,6 @@ This file calculates:
     + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
         Stellar Mass / Halo Mass (both mass_200crit and mass_bn98) for 30 and 100 kpc
         apertures.
-    + average of log of stellar birth densities (average_of_log_stellar_birth_density)
-        velociraptor outputs the log of the quantity we need, so we take exp(...) of it
     + LOS stellar velocity dispersions (10, 30 kpc) (los_veldisp_star_{x}_kpc)
         The LOS velocity dispersion, obtained by multiplying the 3D velocity
         dispersion with 1/sqrt(3).
@@ -1654,42 +1652,6 @@ def register_species_fractions(self, catalogue, aperture_sizes):
     return
 
 
-def register_stellar_birth_densities(self, catalogue):
-
-    try:
-        average_log_n_b = catalogue.get_quantity("stellar_birth_densities.logaverage")
-        stellar_mass = catalogue.get_quantity("apertures.mass_star_100_kpc")
-
-        if catalogue.catalogue_type == "VR":
-            exp_average_log_n_b = unyt.unyt_array(
-                np.exp(average_log_n_b), units=average_log_n_b.units
-            )
-        elif catalogue.catalogue_type == "SOAP":
-            # If we encounter overflow, that is a good hint that we are reading a SOAP
-            # catalogue that already contains the right values
-            exp_average_log_n_b = average_log_n_b
-        else:
-            raise RuntimeError(f"Unknown catalogue type: {catalogue.catalogue_type}!")
-
-        # Ensure haloes with zero stellar mass have zero stellar birth densities
-        no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
-        exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(
-            0.0, average_log_n_b.units
-        )
-
-        # Label of the derived field
-        exp_average_log_n_b.name = "Stellar Birth Density (average of log)"
-
-        # Register the derived field
-        setattr(self, "average_of_log_stellar_birth_density", exp_average_log_n_b)
-
-    # In case stellar birth densities are not present in the catalogue
-    except AttributeError:
-        pass
-
-    return
-
-
 def register_gas_fraction(self, catalogue):
 
     Omega_m = catalogue.units.cosmology.Om0
@@ -1812,7 +1774,6 @@ register_h2_masses(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_dust_to_hi_ratio(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_cold_gas_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_species_fractions(self, catalogue, aperture_sizes_30_50_100_kpc)
-register_stellar_birth_densities(self, catalogue)
 register_los_star_veldisp(self, catalogue)
 register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_gas_fraction(self, catalogue)

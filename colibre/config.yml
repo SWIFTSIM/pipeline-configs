@@ -118,7 +118,7 @@ scripts:
     section: Stellar Birth Properties
     output_file: birth_velocity_dispersion_distribution.png
   - filename: scripts/birth_density_metallicity.py
-    caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin.
+    caption: Stellar birth densities vs metallicity diagram. The pixel colour indicates the number of stellar particles in the pixel. At a given birth density, particles with metallicities lower than the smallest value along the Y axis are placed in the lowest-metallicity bin. MMF stands for metal mass fraction.
     title: Stellar Birth Densities-Metallicity
     section: Stellar Birth Properties
     output_file: birth_density_metallicity.png

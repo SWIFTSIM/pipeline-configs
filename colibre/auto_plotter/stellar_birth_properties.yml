@@ -53,7 +53,7 @@ stellar_birth_pressure_stellar_mass_median_all_50:
       units: Solar_Mass
   metadata:
     title: Median Stellar Birth Pressure-Stellar Mass relation
-    caption: Includes all haloes, including subhaloes.
+    caption: Includes all haloes, including subhaloes. The median is calculated based on the entire set of stellar particles within each (sub)halo.
     section: Stellar Birth Properties
 
 stellar_birth_pressure_stellar_mass_max_all_50:
@@ -142,7 +142,7 @@ stellar_birth_density_stellar_mass_median_all_50:
       units: Solar_Mass
   metadata:
     title: Median Stellar Birth Density-Stellar Mass relation
-    caption: Includes all haloes, including subhaloes.
+    caption: Includes all haloes, including subhaloes. The median is calculated based on the entire set of stellar particles within each (sub)halo.
     section: Stellar Birth Properties
 
 stellar_birth_density_stellar_mass_max_all_50:
@@ -229,7 +229,7 @@ stellar_birth_temperature_stellar_mass_median_all_50:
       units: Solar_Mass
   metadata:
     title: Median Stellar Birth Temperature-Stellar Mass relation
-    caption: Includes all haloes, including subhaloes.
+    caption: Includes all haloes, including subhaloes. The median is calculated based on the entire set of stellar particles within each (sub)halo.
     section: Stellar Birth Properties
 
 stellar_birth_temperature_stellar_mass_max_all_50:

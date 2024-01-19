@@ -1,64 +1,4 @@
-stellar_birth_density_halo_mass_average_of_log_all:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "masses.mass_200crit"
-    units: Solar_Mass
-    start: 1e8
-    end: 1e13
-  y:
-    quantity: "derived_quantities.average_of_log_stellar_birth_density"
-    units: "mh/cm**3"
-    start: 5e-2
-    end: 5e6
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 25
-    start:
-      value: 1e8
-      units: Solar_Mass
-    end:
-      value: 1e13
-      units: Solar_Mass
-  metadata:
-    title: Average of log Stellar Birth Density-Halo Mass relation
-    caption: Includes all haloes, including subhaloes.
-    section: Stellar Birth Properties
-    show_on_webpage: false
-
-stellar_birth_density_halo_mass_max_all:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "masses.mass_200crit"
-    units: Solar_Mass
-    start: 1e8
-    end: 1e13
-  y:
-    quantity: "stellar_birth_densities.max"
-    units: "mh/cm**3"
-    start: 5e-2
-    end: 5e6
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 25
-    start:
-      value: 1e8
-      units: Solar_Mass
-    end:
-      value: 1e13
-      units: Solar_Mass
-  metadata:
-    title: Maximal Stellar Birth Density-Halo Mass relation
-    caption: Includes all haloes, including subhaloes.
-    section: Stellar Birth Properties
-    show_on_webpage: false
-
-stellar_birth_density_stellar_mass_average_of_log_all_50:
+stellar_birth_pressure_stellar_mass_min_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
@@ -67,10 +7,10 @@ stellar_birth_density_stellar_mass_average_of_log_all_50:
     start: 1e4
     end: 1e12
   y:
-    quantity: "derived_quantities.average_of_log_stellar_birth_density"
-    units: "mh/cm**3"
+    quantity: "stellar_birth_pressures.min"
+    units: "K/cm**3"
     start: 5e-2
-    end: 5e6
+    end: 5e8
   median:
     plot: true
     log: true
@@ -83,7 +23,125 @@ stellar_birth_density_stellar_mass_average_of_log_all_50:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Average of log Stellar Birth Density-Stellar Mass relation
+    title: Minimal Stellar Birth Pressure-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+stellar_birth_pressure_stellar_mass_median_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_pressures.median"
+    units: "K/cm**3"
+    start: 5e-2
+    end: 5e8
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Median Stellar Birth Pressure-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+stellar_birth_pressure_stellar_mass_max_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_pressures.max"
+    units: "K/cm**3"
+    start: 5e-3
+    end: 5e8
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Maximal Stellar Birth Pressure-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+
+stellar_birth_density_stellar_mass_min_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_densities.min"
+    units: "mh/cm**3"
+    start: 5e-3
+    end: 5e7
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Minimal Stellar Birth Density-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+
+stellar_birth_density_stellar_mass_median_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_densities.median"
+    units: "mh/cm**3"
+    start: 5e-3
+    end: 5e7
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Median Stellar Birth Density-Stellar Mass relation
     caption: Includes all haloes, including subhaloes.
     section: Stellar Birth Properties
 
@@ -98,8 +156,8 @@ stellar_birth_density_stellar_mass_max_all_50:
   y:
     quantity: "stellar_birth_densities.max"
     units: "mh/cm**3"
-    start: 5e-2
-    end: 5e6
+    start: 5e-3
+    end: 5e7
   median:
     plot: true
     log: true
@@ -145,7 +203,7 @@ stellar_birth_temperature_stellar_mass_min_all_50:
     caption: Includes all haloes, including subhaloes.
     section: Stellar Birth Properties
 
-stellar_birth_temperature_stellar_mass_average_of_log_all_50:
+stellar_birth_temperature_stellar_mass_median_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
@@ -154,7 +212,7 @@ stellar_birth_temperature_stellar_mass_average_of_log_all_50:
     start: 1e4
     end: 1e12
   y:
-    quantity: "derived_quantities.average_of_log_stellar_birth_temperature"
+    quantity: "stellar_birth_temperatures.median"
     units: "K"
     start: 0.75e1
     end: 0.75e5
@@ -170,7 +228,7 @@ stellar_birth_temperature_stellar_mass_average_of_log_all_50:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Average of log Stellar Birth Temperature-Stellar Mass relation
+    title: Median Stellar Birth Temperature-Stellar Mass relation
     caption: Includes all haloes, including subhaloes.
     section: Stellar Birth Properties
 

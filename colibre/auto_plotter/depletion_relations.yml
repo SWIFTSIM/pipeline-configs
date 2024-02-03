@@ -1,46 +1,6 @@
 oxygen_abundance_v_neutral_dust_to_gas:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
-  x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_50_kpc"
-    units: "dimensionless"
-    start: 6.8
-    end: 9.7
-    log: false
-  y:
-    quantity: "derived_quantities.neutral_dust_to_gas_ratio_50_kpc"
-    units: "dimensionless"
-    start: 1e-7
-    end: 0.05
-  median:
-    plot: true
-    log: false
-    adaptive: true
-    number_of_bins: 15
-    start:
-      value: 7
-      units: "dimensionless"
-    end:
-      value: 10
-      units: "dimensionless"
-    lower:
-      value: 0
-      units: "dimensionless"
-    upper:
-      value: 1
-      units: "dimensionless"
-  metadata:
-    title:  Oxygen abundance vs dust-to-gas ratio in Neutral Gas (50 kpc aperture)
-    caption: Dust-to-gas mass ratio as a function of oxygen number density abundance in Neutral gas.
-    section: Dust Depletion Relations
-    show_on_webpage: true
-  observational_data:
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5
-
-oxygen_abundance_v_neutral_dust_to_gas:
-  type: "scatter"
-  legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_30_kpc"
   x:
     quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
@@ -72,7 +32,47 @@ oxygen_abundance_v_neutral_dust_to_gas:
       units: "dimensionless"
   metadata:
     title:  Oxygen abundance vs dust-to-gas ratio in Neutral Gas (30 kpc aperture)
-    caption: Dust-to-gas mass ratio as a function of oxygen number density abundance in Neutral gas.
+    caption: Dust-to-gas mass ratio as a function of oxygen number density abundance in Neutral gas. Only active galaxies are selected.
+    section: Dust Depletion Relations
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5
+
+oxygen_abundance_v_neutral_dust_to_gas_mstar_gtr_1e9:
+  type: "scatter"
+  legend_loc: "lower right"
+  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e9_msun_active_30_kpc"
+  x:
+    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
+    units: "dimensionless"
+    start: 6.8
+    end: 9.7
+    log: false
+  y:
+    quantity: "derived_quantities.neutral_dust_to_gas_ratio_30_kpc"
+    units: "dimensionless"
+    start: 1e-7
+    end: 0.05
+  median:
+    plot: true
+    log: false
+    adaptive: true
+    number_of_bins: 15
+    start:
+      value: 7
+      units: "dimensionless"
+    end:
+      value: 10
+      units: "dimensionless"
+    lower:
+      value: 0
+      units: "dimensionless"
+    upper:
+      value: 1
+      units: "dimensionless"
+  metadata:
+    title:  Oxygen abundance vs dust-to-gas ratio in Neutral Gas (30 kpc aperture)
+    caption: Dust-to-gas mass ratio as a function of oxygen number density abundance in Neutral gas. Only galaxies that are active and have $M_* > 10^9 \, \rm M_\odot$ are selected. 
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
@@ -112,52 +112,11 @@ oxygen_abundance_fromz_v_neutral_dust_to_gas:
       units: "dimensionless"
   metadata:
     title:  Oxygen abundance (from Z) vs dust-to-gas ratio in Neutral Gas (30 kpc aperture)
-    caption: Dust-to-gas mass ratio as a function of metallicity represented as an oxygen number density abundance for compatibility with observations.
+    caption: Dust-to-gas mass ratio as a function of metallicity represented as an oxygen number density abundance for compatibility with observations. Only active galaxies are selected.
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
     - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5
-
-
-oxygen_abundance_v_neutral_dust_to_gas:
-  type: "scatter"
-  legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
-  x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
-    units: "dimensionless"
-    start: 6.8
-    end: 9.7
-    log: false
-  y:
-    quantity: "derived_quantities.neutral_dust_to_gas_ratio_30_kpc"
-    units: "dimensionless"
-    start: 1e-7
-    end: 0.05
-  median:
-    plot: true
-    log: false
-    adaptive: true
-    number_of_bins: 15
-    start:
-      value: 7
-      units: "dimensionless"
-    end:
-      value: 10
-      units: "dimensionless"
-    lower:
-      value: 0
-      units: "dimensionless"
-    upper:
-      value: 1
-      units: "dimensionless"
-  metadata:
-    title:  Oxygen abundance vs dust-to-gas ratio in Neutral Gas (30 kpc aperture)
-    caption: Dust-to-gas mass ratio as a function of oxygen number density abundance in Neutral gas.
-    section: Dust Depletion Relations
-    show_on_webpage: true
-  observational_data:
-    - filename: GalaxyMetallicityDusttoGasRatio/Konstantopoulou2023.hdf5  
 
 oxygen_abundance_v_neutral_dust_to_metal:
   type: "scatter"
@@ -194,14 +153,56 @@ oxygen_abundance_v_neutral_dust_to_metal:
       units: "dimensionless"
   metadata:
     title:  Oxygen abundance vs dust-to-metal ratio in Neutral Gas (30 kpc aperture)
-    caption: Dust-to-metal mass ratio as a function of oxygen number density abundance in Neutral gas.
+    caption: Dust-to-metal mass ratio as a function of oxygen number density abundance in Neutral gas. Only active galaxies are selected.
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:
     - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020.hdf5
     - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou2023.hdf5  
 
-oxygen_abundance_Fromz_v_neutral_dust_to_metal:
+oxygen_abundance_v_neutral_dust_to_metal_mstar_gtr_1e9:
+  type: "scatter"
+  legend_loc: "lower right"
+  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e9_msun_active_30_kpc"
+  x:
+    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
+    units: "dimensionless"
+    start: 6.8
+    end: 9.7
+    log: false
+  y:
+    quantity: "derived_quantities.cold_dense_dust_to_metal_ratio_30_kpc"
+    units: "dimensionless"
+    start: 1e-3
+    end: 5
+    log: true
+  median:
+    plot: true
+    log: false
+    adaptive: true
+    number_of_bins: 15
+    start:
+      value: 7
+      units: "dimensionless"
+    end:
+      value: 10
+      units: "dimensionless"
+    lower:
+      value: 0
+      units: "dimensionless"
+    upper:
+      value: 1
+      units: "dimensionless"
+  metadata:
+    title:  Oxygen abundance vs dust-to-metal ratio in Neutral Gas (30 kpc aperture)
+    caption: Dust-to-metal mass ratio as a function of oxygen number density abundance in Neutral gas. Only galaxies that are active and have $M_* > 10^9 \, \rm M_\odot$ are selected.
+    section: Dust Depletion Relations
+    show_on_webpage: true
+  observational_data:
+    - filename: GalaxyMetallicityDusttoMetalRatio/Peroux2020.hdf5
+    - filename: GalaxyMetallicityDusttoMetalRatio/Konstantopoulou2023.hdf5  
+
+oxygen_abundance_fromz_v_neutral_dust_to_metal:
   type: "scatter"
   legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_30_kpc"
@@ -236,7 +237,7 @@ oxygen_abundance_Fromz_v_neutral_dust_to_metal:
       units: "dimensionless"
   metadata:
     title:  Oxygen abundance (from Z) vs dust-to-metal ratio in Neutral Gas (30 kpc aperture)
-    caption: Dust-to-metal mass ratio as a function of metallicity, converted into an oxygen number density abundance for compatability with observations.
+    caption: Dust-to-metal mass ratio as a function of metallicity, converted into an oxygen number density abundance for compatability with observations. Only active galaxies are selected.
     section: Dust Depletion Relations
     show_on_webpage: true
   observational_data:

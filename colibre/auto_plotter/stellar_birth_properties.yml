@@ -1,0 +1,262 @@
+stellar_birth_pressure_stellar_mass_min_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_pressures.min"
+    units: "K/cm**3"
+    start: 5e-2
+    end: 5e8
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Minimal Stellar Birth Pressure-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+stellar_birth_pressure_stellar_mass_median_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_pressures.median"
+    units: "K/cm**3"
+    start: 5e-2
+    end: 5e8
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Median Stellar Birth Pressure-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes. The median is calculated based on the entire set of stellar particles within each (sub)halo.
+    section: Stellar Birth Properties
+
+stellar_birth_pressure_stellar_mass_max_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_pressures.max"
+    units: "K/cm**3"
+    start: 5e-3
+    end: 5e8
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Maximal Stellar Birth Pressure-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+
+stellar_birth_density_stellar_mass_min_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_densities.min"
+    units: "mh/cm**3"
+    start: 5e-3
+    end: 5e7
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Minimal Stellar Birth Density-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+
+stellar_birth_density_stellar_mass_median_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_densities.median"
+    units: "mh/cm**3"
+    start: 5e-3
+    end: 5e7
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Median Stellar Birth Density-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes. The median is calculated based on the entire set of stellar particles within each (sub)halo.
+    section: Stellar Birth Properties
+
+stellar_birth_density_stellar_mass_max_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_densities.max"
+    units: "mh/cm**3"
+    start: 5e-3
+    end: 5e7
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Maximal Stellar Birth Density-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+stellar_birth_temperature_stellar_mass_min_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_temperatures.min"
+    units: "K"
+    start: 0.75e1
+    end: 0.75e5
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Minimal Stellar Birth Temperature-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties
+
+stellar_birth_temperature_stellar_mass_median_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_temperatures.median"
+    units: "K"
+    start: 0.75e1
+    end: 0.75e5
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Median Stellar Birth Temperature-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes. The median is calculated based on the entire set of stellar particles within each (sub)halo.
+    section: Stellar Birth Properties
+
+stellar_birth_temperature_stellar_mass_max_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "stellar_birth_temperatures.max"
+    units: "K"
+    start: 0.75e1
+    end: 0.75e5
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Maximal Stellar Birth Temperature-Stellar Mass relation
+    caption: Includes all haloes, including subhaloes.
+    section: Stellar Birth Properties

@@ -89,7 +89,7 @@ def setup_axes(number_of_simulations: int):
         axis.set_xlabel("$\\rho_B$ [$n_H$ cm$^{-3}$]")
 
     for axis in np.atleast_2d(ax).T[:][0]:
-        axis.set_ylabel("Smoothed MMF $Z$")
+        axis.set_ylabel("MMF $Z$")
 
     ax.flat[0].loglog()
 

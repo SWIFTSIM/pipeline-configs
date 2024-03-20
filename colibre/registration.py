@@ -20,8 +20,6 @@ This file calculates:
     + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
         Stellar Mass / Halo Mass (both mass_200crit and mass_bn98) for 30 and 100 kpc
         apertures.
-    + average of log of stellar birth densities (average_of_log_stellar_birth_density)
-        velociraptor outputs the log of the quantity we need, so we take exp(...) of it
     + LOS stellar velocity dispersions (10, 30 kpc) (los_veldisp_star_{x}_kpc)
         The LOS velocity dispersion, obtained by multiplying the 3D velocity
         dispersion with 1/sqrt(3).
@@ -845,10 +843,173 @@ def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
     return
 
 
+def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
+    # Loop over aperture average-of-linear N/O-abundances
+    for aperture_size in aperture_sizes:
+
+        for short_phase, long_phase in zip(
+            ["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]
+        ):
+
+            # Fetch N over O times gas mass computed in apertures. The
+            # mass ratio between N and O has already been accounted for.
+            log_N_over_O_times_gas_mass = catalogue.get_quantity(
+                f"lin_element_ratios_times_masses.lin_N_over_O{short_phase}_times_gas_mass_{aperture_size}_kpc"
+            )
+            # Fetch gas mass in apertures, here we are calling cold gas
+            # that is part of the ISM and that is considered in the calculation of
+            # lin_N_over_O_times_gas_mass
+            gas_cold_dense_mass = catalogue.get_quantity(
+                f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
+            )
+
+            # Compute gas-mass weighted O over H
+            log_N_over_O = unyt.unyt_array(
+                np.zeros_like(gas_cold_dense_mass), "dimensionless"
+            )
+
+            # Avoid division by zero
+            mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+            log_N_over_O[mask] = np.log10(
+                log_N_over_O_times_gas_mass[mask] / gas_cold_dense_mass[mask]
+            )
+
+            log_N_over_O.name = (
+                f"{long_phase} Gas $\\log_{{10}}({{\\rm N/O}})$ ({aperture_size} kpc)"
+            )
+
+            # Register the field
+            setattr(
+                self,
+                f"gas_n_over_o_abundance{short_phase}_avglin_{aperture_size}_kpc",
+                log_N_over_O,
+            )
+            setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
+
+        # register average-of-log O-abundances (high and low particle floors)
+        for floor, floor_label in zip(
+            ["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]
+        ):
+            # Fetch N over O times gas mass computed in apertures.
+            # Note that here we are calling the diffuse quantities
+            log_N_over_O_times_gas_mass = catalogue.get_quantity(
+                f"log_element_ratios_times_masses.log_N_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc"
+            )
+
+            # Fetch gas mass in apertures
+            gas_cold_dense_mass = catalogue.get_quantity(
+                f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
+            )
+
+            # Compute gas-mass weighted N over O
+            log_N_over_O = unyt.unyt_array(
+                np.zeros_like(gas_cold_dense_mass), "dimensionless"
+            )
+            # Avoid division by zero
+            mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+            log_N_over_O[mask] = (
+                log_N_over_O_times_gas_mass[mask] / gas_cold_dense_mass[mask]
+            )
+
+            # Convert to units used in observations
+            N_abundance = unyt.unyt_array(log_N_over_O, "dimensionless")
+            N_abundance.name = f"Diffuse Gas $\\log_{{10}}({{\\rm N/O}})$ ({floor_label}, {aperture_size} kpc)"
+
+            # Register the field
+            setattr(
+                self,
+                f"gas_n_over_o_abundance_avglog_{floor}_{aperture_size}_kpc",
+                N_abundance,
+            )
+            setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
+
+    return
+
+
+def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
+    # Loop over aperture average-of-linear C/O-abundances
+    for aperture_size in aperture_sizes:
+
+        for short_phase, long_phase in zip(
+            ["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]
+        ):
+            # Fetch C over O times gas mass computed in apertures. The
+            # mass ratio between N and O has already been accounted for.
+            log_C_over_O_times_gas_mass = catalogue.get_quantity(
+                f"lin_element_ratios_times_masses.lin_C_over_O{short_phase}_times_gas_mass_{aperture_size}_kpc"
+            )
+
+            # Fetch gas mass in apertures
+            gas_cold_dense_mass = catalogue.get_quantity(
+                f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
+            )
+
+            # Compute gas-mass weighted O over H
+            log_C_over_O = unyt.unyt_array(
+                np.zeros_like(gas_cold_dense_mass), "dimensionless"
+            )
+            # Avoid division by zero
+            mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+            log_C_over_O[mask] = np.log10(
+                log_C_over_O_times_gas_mass[mask] / gas_cold_dense_mass[mask]
+            )
+
+            log_C_over_O.name = (
+                f"{long_phase} Gas $\\log_{{10}}({{\\rm C/O}})$ ({aperture_size} kpc)"
+            )
+
+            # Register the field
+            setattr(
+                self,
+                f"gas_c_over_o_abundance{short_phase}_avglin_{aperture_size}_kpc",
+                log_C_over_O,
+            )
+            setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
+
+        # register average-of-log O-abundances (high and low particle floors)
+        for floor, floor_label in zip(
+            ["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]
+        ):
+            # Fetch C over O times gas mass computed in apertures.
+            # Note that here we are calling the diffuse quantities.
+            log_C_over_O_times_gas_mass = catalogue.get_quantity(
+                f"log_element_ratios_times_masses.log_C_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc"
+            )
+
+            # Fetch gas mass in apertures
+            gas_cold_dense_mass = catalogue.get_quantity(
+                f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
+            )
+
+            # Compute gas-mass weighted O over H
+            log_C_over_O = unyt.unyt_array(
+                np.zeros_like(gas_cold_dense_mass), "dimensionless"
+            )
+            # Avoid division by zero
+            mask = gas_cold_dense_mass > 0.0 * gas_cold_dense_mass.units
+            log_C_over_O[mask] = (
+                log_C_over_O_times_gas_mass[mask] / gas_cold_dense_mass[mask]
+            )
+
+            # Convert to units used in observations
+            C_abundance = unyt.unyt_array(log_C_over_O, "dimensionless")
+            C_abundance.name = f"Diffuse Gas $\\log_{{10}}({{\\rm C/O}})$ ({floor_label}, {aperture_size} kpc)"
+
+            # Register the field
+            setattr(
+                self,
+                f"gas_c_over_o_abundance_avglog_{floor}_{aperture_size}_kpc",
+                C_abundance,
+            )
+            setattr(self, f"has_cold_dense_gas_{aperture_size}_kpc", mask)
+
+    return
+
+
 def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
     # Loop over aperture average-of-linear O-abundances
     for aperture_size in aperture_sizes:
-        # register lnearly averaged O abundances
+        # register linearly averaged O abundances
         for short_phase, long_phase in zip(
             ["_total", ""], ["Total (Diffuse + Dust)", "Diffuse"]
         ):
@@ -944,7 +1105,7 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
         Fe_over_H[mask] = lin_Fe_over_H_times_star_mass[mask] / star_mass[mask]
         # Convert to units used in observations
         Fe_abundance = unyt.unyt_array(Fe_over_H / fe_solar_abundance, "dimensionless")
-        Fe_abundance.name = f"Stellar $10^{{\\rm [Fe/H]}}$ ({aperture_size} kpc)"
+        Fe_abundance.name = f"Stellar (Fe/H) ({aperture_size} kpc)"
 
         # Register the field
         setattr(self, f"star_fe_abundance_avglin_{aperture_size}_kpc", Fe_abundance)
@@ -958,9 +1119,7 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
         FeSNIa_abundance = unyt.unyt_array(
             FeSNIa_over_H / fe_solar_abundance, "dimensionless"
         )
-        FeSNIa_abundance.name = (
-            f"Stellar $10^{{\\rm [Fe(SNIa)/H]}}$ ({aperture_size} kpc)"
-        )
+        FeSNIa_abundance.name = f"Stellar (Fe(SNIa)/H) ({aperture_size} kpc)"
 
         # Register the field
         setattr(
@@ -1493,42 +1652,6 @@ def register_species_fractions(self, catalogue, aperture_sizes):
     return
 
 
-def register_stellar_birth_densities(self, catalogue):
-
-    try:
-        average_log_n_b = catalogue.get_quantity("stellar_birth_densities.logaverage")
-        stellar_mass = catalogue.get_quantity("apertures.mass_star_100_kpc")
-
-        if catalogue.catalogue_type == "VR":
-            exp_average_log_n_b = unyt.unyt_array(
-                np.exp(average_log_n_b), units=average_log_n_b.units
-            )
-        elif catalogue.catalogue_type == "SOAP":
-            # If we encounter overflow, that is a good hint that we are reading a SOAP
-            # catalogue that already contains the right values
-            exp_average_log_n_b = average_log_n_b
-        else:
-            raise RuntimeError(f"Unknown catalogue type: {catalogue.catalogue_type}!")
-
-        # Ensure haloes with zero stellar mass have zero stellar birth densities
-        no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
-        exp_average_log_n_b[no_stellar_mass] = unyt.unyt_quantity(
-            0.0, average_log_n_b.units
-        )
-
-        # Label of the derived field
-        exp_average_log_n_b.name = "Stellar Birth Density (average of log)"
-
-        # Register the derived field
-        setattr(self, "average_of_log_stellar_birth_density", exp_average_log_n_b)
-
-    # In case stellar birth densities are not present in the catalogue
-    except AttributeError:
-        pass
-
-    return
-
-
 def register_gas_fraction(self, catalogue):
 
     Omega_m = catalogue.units.cosmology.Om0
@@ -1634,6 +1757,8 @@ register_star_metallicities(
 register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_projected_stellar_masses(self, catalogue, aperture_sizes_10_30_50_100_kpc)
 register_oxygen_to_hydrogen(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_nitrogen_to_oxygen(self, catalogue, aperture_sizes_30_50_100_kpc)
+register_carbon_to_oxygen(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_cold_dense_gas_metallicity(
     self,
     catalogue,
@@ -1649,7 +1774,6 @@ register_h2_masses(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_dust_to_hi_ratio(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_cold_gas_mass_ratios(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_species_fractions(self, catalogue, aperture_sizes_30_50_100_kpc)
-register_stellar_birth_densities(self, catalogue)
 register_los_star_veldisp(self, catalogue)
 register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_gas_fraction(self, catalogue)

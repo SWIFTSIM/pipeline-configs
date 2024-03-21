@@ -27,6 +27,7 @@ stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 adaptive_stellar_mass_function_30:
   type: "adaptivemassfunction"
@@ -57,6 +58,7 @@ adaptive_stellar_mass_function_30:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 adaptive_stellar_mass_function_active_only_30:
   type: "adaptivemassfunction"
@@ -89,6 +91,7 @@ adaptive_stellar_mass_function_active_only_30:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 adaptive_stellar_mass_function_passive_only_30:
   type: "adaptivemassfunction"
@@ -122,6 +125,7 @@ adaptive_stellar_mass_function_passive_only_30:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 stellar_mass_function_50:
   type: "massfunction"
@@ -151,6 +155,7 @@ stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 stellar_mass_function_50_calibration:
   type: "massfunction"
@@ -202,6 +207,7 @@ adaptive_stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 adaptive_stellar_mass_function_50_calibration:
   type: "adaptivemassfunction"
@@ -254,6 +260,7 @@ adaptive_stellar_mass_function_50_box_size_correction:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 adaptive_stellar_mass_function_50_box_size_correction_calibration:
   type: "adaptivemassfunction"
@@ -310,6 +317,7 @@ adaptive_stellar_mass_function_passive_only_50:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 adaptive_stellar_mass_function_active_only_50:
   type: "adaptivemassfunction"
@@ -341,6 +349,7 @@ adaptive_stellar_mass_function_active_only_50:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 stellar_mass_function_with_scatter_50:
   type: "massfunction"
@@ -371,6 +380,7 @@ stellar_mass_function_with_scatter_50:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 stellar_mass_function_with_scatter_50_calibration:
   type: "massfunction"
@@ -423,6 +433,7 @@ adaptive_stellar_mass_function_with_scatter_50:
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
     - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
 adaptive_stellar_mass_function_with_scatter_50_calibration:
   type: "adaptivemassfunction"

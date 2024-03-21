@@ -15,7 +15,6 @@ from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
-from velociraptor.observations import load_observation
 from velociraptor.observations import load_observations
 
 arguments = ScriptArgumentParser(

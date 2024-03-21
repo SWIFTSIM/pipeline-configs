@@ -81,7 +81,7 @@ stellar_mass_sfr_active_50:
   median:
     plot: true
     log: true
-    adaptive: false
+    adaptive: true
     number_of_bins: 30
     start:
       value: 1e6
@@ -91,7 +91,7 @@ stellar_mass_sfr_active_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Star Formation Rate (50 kpc aperture) for active galaxies.
-    caption: Only active galaxies are included. SFRs from Koprowski+ are based on UV+IV, acive galaxies were identified based on UVJ colour-colour selection.
+    caption: Only active galaxies are included. SFRs from Koprowski+ are based on UV+IV; active galaxies in Koprowski+ were identified based on UVJ colour selection.
     section: Star Formation Rates
   observational_data:
     - filename: GalaxyStellarMassStarFormationRate/Koprowski2024_SF.hdf5

@@ -24,11 +24,12 @@ stellar_mass_sfr_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Star Formation Rate (30 kpc aperture)
-    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
+    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line. SFRs from Koprowski+ are based on UV+IR.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassStarFormationRate/Davies2016_z0p1.hdf5
+    - filename: GalaxyStellarMassStarFormationRate/Koprowski2024.hdf5
 
 stellar_mass_sfr_50:
   type: "scatter"
@@ -56,11 +57,44 @@ stellar_mass_sfr_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Star Formation Rate (50 kpc aperture)
-    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
+    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line. SFRs from Koprowski+ are based on UV+IR.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassStarFormationRate/Davies2016_z0p1.hdf5
+    - filename: GalaxyStellarMassStarFormationRate/Koprowski2024.hdf5
+
+stellar_mass_sfr_active_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  selection_mask: "derived_quantities.is_active_50_kpc"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.sfr_gas_50_kpc"
+    units: "Solar_Mass / year"
+    start: 1e-3
+    end: 1e3
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Star Formation Rate (50 kpc aperture) for active galaxies.
+    caption: Only active galaxies are included. SFRs from Koprowski+ are based on UV+IV; active galaxies in Koprowski+ were identified based on UVJ colour selection.
+    section: Star Formation Rates
+  observational_data:
+    - filename: GalaxyStellarMassStarFormationRate/Koprowski2024_SF.hdf5
 
 stellar_mass_specific_sfr_all_50:
   type: "scatter"

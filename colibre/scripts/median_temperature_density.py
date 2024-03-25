@@ -47,8 +47,10 @@ if __name__ == "__main__":
             nlabel % number_of_simulations > 0
         )
 
+    fig_w, fig_h = pl.figaspect(vertical_number/horizontal_number)
     fig, ax = pl.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
+        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True,
+        figsize=(fig_w, fig_h)
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

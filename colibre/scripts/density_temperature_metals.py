@@ -75,8 +75,14 @@ def setup_axes(number_of_simulations: int):
     # Ensure >= number_of_simulations plots in a grid
     vertical_number = int(np.ceil(number_of_simulations / horizontal_number))
 
+    fig_w, fig_h = plt.figaspect(vertical_number / horizontal_number)
     fig, ax = plt.subplots(
-        vertical_number, horizontal_number, squeeze=True, sharex=True, sharey=True
+        vertical_number,
+        horizontal_number,
+        squeeze=True,
+        sharex=True,
+        sharey=True,
+        figsize=(fig_w, fig_h),
     )
 
     ax = np.array([ax]) if number_of_simulations == 1 else ax

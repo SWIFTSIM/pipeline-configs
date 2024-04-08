@@ -104,7 +104,7 @@ stellar_mass_projected_galaxy_size_calibration_50:
   x:
     quantity: "apertures.mass_star_50_kpc"
     units: Solar_Mass
-    start: 1e6
+    start: 1e5
     end: 1e12
   y:
     quantity: "projected_apertures.projected_1_rhalfmass_star_50_kpc"
@@ -115,9 +115,9 @@ stellar_mass_projected_galaxy_size_calibration_50:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 30
+    number_of_bins: 35
     start:
-      value: 1e6
+      value: 1e5
       units: Solar_Mass
     end:
       value: 1e12
@@ -129,6 +129,7 @@ stellar_mass_projected_galaxy_size_calibration_50:
   observational_data:
     - filename: GalaxyStellarMassGalaxySize/Hardwick2022_halfmass.hdf5
     - filename: GalaxyStellarMassGalaxySize/Vernon.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Carlsten2021.hdf5
 
 stellar_mass_projected_galaxy_size_30:
   type: "scatter"

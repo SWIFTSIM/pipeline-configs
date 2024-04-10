@@ -381,6 +381,38 @@
 
 <h4>AGN feedback</h4>
 {% if data.metadata.parameters.get("COLIBREAGN:AGN_delta_T_K", False) %}
+    {% if data.metadata.parameters.get("COLIBREAGN:AGN_delta_T_floor_K", False) %}
+    <p>Parameters of the variable AGN \(\Delta T\) model</p>
+    <table>
+        <tr>
+            <th>\(\Delta T_{\rm min}\) </th>
+            <th>\(\Delta T_{\rm max}\)</th>
+            <th>\(\Delta T_{\rm pivot}\)</th>
+            <th>\(M_{\rm BH,pivot}\)</th>
+            <th>\(\rm Slope\)</th>
+        </tr>
+        <tr>
+            <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_delta_T_floor_K", "K") }}</td>
+            <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_delta_T_K", "K") }}</td>
+            <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_delta_T_K", "K") }}</td>
+            <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:delta_T_Mass_Msun", "Msun") }}</td>
+            <td>1.0</td>
+        </tr>
+    </table>
+    {% else %}
+    <p>Parameters of the constant AGN \(\Delta T\) model</p>
+    <table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>\(\Delta T\)</td>
+        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_delta_T_K", "K") }}</td>
+    </tr>
+    </table>
+    {% endif %}
+<p>Other AGN parameters</p>
 <table>
     <tr>
         <th>Parameter</th>
@@ -393,10 +425,6 @@
     <tr>
         <td>Use Deterministic Feedback</td>
         <td>{{ data.metadata.parameters | get_if_present_int("COLIBREAGN:AGN_use_deterministic_feedback") }}</td>
-    </tr>
-    <tr>
-        <td>\(\Delta T\)</td>
-        <td>{{ data.metadata.parameters | get_if_present_float("COLIBREAGN:AGN_delta_T_K", "K") }}</td>
     </tr>
     <tr>
         <td>Coupling efficiency</td>

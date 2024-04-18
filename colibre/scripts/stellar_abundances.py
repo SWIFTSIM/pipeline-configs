@@ -48,6 +48,77 @@ def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
 
     return h, xedges, yedges
 
+def plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax):
+
+    # Reading APOGEE data
+    with h5py.File(observational_data, "r") as obs_data:
+        x = obs_data["x"][:]
+        y = obs_data["y"][:]
+        GalR = obs_data["GalR"][:]  # in kpc units
+        Galz = obs_data["Galz"][:]  # in kpc units
+
+    ngridx = 100
+    ngridy = 50
+
+    # Create grid values first.
+    xi = np.linspace(xmin, xmax, ngridx)
+    yi = np.linspace(ymin, ymax, ngridy)
+
+    # We apply radial & azimuthal cuts, and combine the stellar distributions
+    # to give less weight to stars in the solar vicinity. We create a histogram
+    # for each distance cut and then combine them
+    h, xedges, yedges = make_stellar_abundance_distribution(x, y, GalR, Galz, xi, yi)
+
+    xbins = 0.5 * (xedges[1:] + xedges[:-1])
+    ybins = 0.5 * (yedges[1:] + yedges[:-1])
+
+    z = h.T
+
+    binsize = 0.2
+    grid_min = np.log10(
+        1
+    )  # Note that the histograms have been normalized. Therefore this **does not** indicate a minimum of 1 star per bin!
+    grid_max = np.log10(np.ceil(h.max()))
+    levels = np.arange(grid_min, grid_max, binsize)
+    levels = 10 ** levels
+
+    contour = plt.contour(
+        xbins, ybins, z, levels=levels, linewidths=0.5, cmap="winter", zorder=100
+    )
+
+    ax.annotate(catalog_name, (-3.8, -1.3))
+
+    if (xvar == "Fe_H") & (yvar == "O_Fe"):
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_OFe_FeH.hdf5",
+            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_OFe_FeH.hdf5",
+        ]
+
+    elif (xvar == "Fe_H") & (yvar == "C_Fe"):
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_CFe_FeH.hdf5"
+        ]
+
+    elif (xvar == "Fe_H") & (yvar == "N_Fe"):
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_NFe_FeH.hdf5",
+            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NFe_FeH.hdf5",
+        ]
+
+    elif (xvar == "Fe_H") & (yvar == "N_O"):
+        observational_data = [
+            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NO_FeH.hdf5"
+        ]
+
+    else:
+        observational_data = None
+
+    if not observational_data is None:
+        for obs in load_observations(observational_data):
+            obs.plot_on_axes(ax)
+        observation_legend = ax.legend(markerfirst=True, loc="lower left")
+        ax.add_artist(observation_legend)
+
 
 def read_data(data, xvar, yvar):
     """
@@ -83,6 +154,7 @@ def read_data(data, xvar, yvar):
 
     O_H_Sun = O_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mO_in_cgs)
     Fe_H_Sun = Fe_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mFe_in_cgs)
+    Mg_H_Sun = Mg_H_Sun_Asplund - 12.0 - np.log10(mH_in_cgs / mMg_in_cgs)
 
     C_Fe_Sun = C_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mC_in_cgs)
     N_Fe_Sun = N_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mN_in_cgs)
@@ -90,6 +162,9 @@ def read_data(data, xvar, yvar):
     N_O_Sun = N_H_Sun_Asplund - O_H_Sun_Asplund - np.log10(mO_in_cgs / mN_in_cgs)
     C_O_Sun = C_H_Sun_Asplund - O_H_Sun_Asplund - np.log10(mO_in_cgs / mC_in_cgs)
     Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
+    O_Mg_Sun = O_Fe_Sun - Mg_Fe_Sun
+    CN_Mg_Sun = 10**C_Fe_Sun + 10**N_Fe_Sun # (C+N)/Fe
+    CN_Mg_Sun = np.log10(CN_Mg_Sun) - Mg_Fe_Sun # [(C+N)/Fe] - [Mg/Fe] = [(C+N)/Mg]
 
     Si_Fe_Sun = Si_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSi_in_cgs)
     Eu_Fe_Sun = Eu_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mEu_in_cgs)
@@ -102,6 +177,8 @@ def read_data(data, xvar, yvar):
 
     if xvar == "O_H" or yvar == "O_Fe":
         oxygen = data.stars.element_mass_fractions.oxygen
+    if xvar == "Mg_H":
+        magnesium = data.stars.element_mass_fractions.magnesium
     if yvar == "C_Fe":
         carbon = data.stars.element_mass_fractions.carbon
     if yvar == "N_Fe":
@@ -112,7 +189,14 @@ def read_data(data, xvar, yvar):
     if yvar == "C_O":
         carbon = data.stars.element_mass_fractions.carbon
         oxygen = data.stars.element_mass_fractions.oxygen
-    if yvar == "Mg_Fe":
+    if yvar == "O_H":
+        oxygen = data.stars.element_mass_fractions.oxygen
+    if yvar == "CN_Mg":
+        carbon = data.stars.element_mass_fractions.carbon
+        nitrogen = data.stars.element_mass_fractions.nitrogen
+        magnesium = data.stars.element_mass_fractions.magnesium
+    if yvar == "Mg_Fe" or yvar == "O_Mg":
+        oxygen = data.stars.element_mass_fractions.oxygen
         magnesium = data.stars.element_mass_fractions.magnesium
     if yvar == "Fe_SNIa_fraction":
         iron_snia = data.stars.iron_mass_fractions_from_snia
@@ -135,6 +219,10 @@ def read_data(data, xvar, yvar):
         Fe_H = np.log10(iron / hydrogen) - Fe_H_Sun
         Fe_H[iron == 0] = -10  # set lower limit
         xval = Fe_H
+    elif xvar == "Mg_H":
+        Mg_H = np.log10(magnesium / hydrogen) - Mg_H_Sun
+        Mg_H[magnesium == 0] = -10   # set lower limit
+        xval = Mg_H
     else:
         raise AttributeError(f"Unknown x variable: {xvar}!")
 
@@ -168,6 +256,20 @@ def read_data(data, xvar, yvar):
         Mg_Fe[iron == 0] = -10  # set lower limit
         Mg_Fe[magnesium == 0] = -10  # set lower limit
         yval = Mg_Fe
+    elif yvar == "O_Mg":
+        O_Mg = np.log10(oxygen / magnesium) - O_Mg_Sun
+        O_Mg[magnesium == 0] = -10  # set lower limit
+        O_Mg[oxygen == 0] = -10  # set lower limit
+        yval = O_Mg
+    elif yvar == "O_H":
+        O_H = np.log10(oxygen / hydrogen) - O_H_Sun
+        O_H[oxygen == 0] = -10  # set lower limit
+        O_H[hydrogen == 0] = -10  # set lower limit
+        yval = O_H
+    elif yvar == "CN_Mg":
+        CN_MG = np.log10((carbon + nitrogen) / magnesium) - CN_Mg_Sun
+        CN_MG[magnesium == 0] = -10  # set lower limit
+        yval = CN_MG
     elif yvar == "Si_Fe":
         Si_Fe = np.log10(silicon / iron) - Si_Fe_Sun
         Si_Fe[iron == 0] = -10  # set lower limit
@@ -289,6 +391,7 @@ for isnap, (snapshot_filename, name) in enumerate(zip(snapshot_filenames, names)
 
 path_to_obs_data = f"{arguments.config.config_directory}/{arguments.config.observational_data_directory}"
 if dataset == "APOGEE":
+    catalog_name = "APOGEE data"
     if xvar == "Fe_H":
         if yvar == "C_Fe":
             observational_data = (
@@ -314,6 +417,10 @@ if dataset == "APOGEE":
             observational_data = (
                 f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_MG.hdf5"
             )
+        elif yvar == "O_Mg":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_OMGFE.hdf5"
+            )
         else:
             raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
         xmin = -3
@@ -335,7 +442,7 @@ if dataset == "APOGEE":
             )
         elif yvar == "Mg_Fe":
             observational_data = (
-                f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_OHMGFE.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/APOGEE_data_OHMG.hdf5"
             )
         else:
             raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
@@ -346,74 +453,96 @@ if dataset == "APOGEE":
     else:
         raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
 
-    # Reading APOGEE data
-    with h5py.File(observational_data, "r") as obs_data:
-        x = obs_data["x"][:]
-        y = obs_data["y"][:]
-        GalR = obs_data["GalR"][:]  # in kpc units
-        Galz = obs_data["Galz"][:]  # in kpc units
+    plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax)
 
-    ngridx = 100
-    ngridy = 50
-
-    # Create grid values first.
-    xi = np.linspace(xmin, xmax, ngridx)
-    yi = np.linspace(ymin, ymax, ngridy)
-
-    # We apply radial & azimuthal cuts, and combine the stellar distributions
-    # to give less weight to stars in the solar vicinity. We create a histogram
-    # for each distance cut and then combine them
-    h, xedges, yedges = make_stellar_abundance_distribution(x, y, GalR, Galz, xi, yi)
-
-    xbins = 0.5 * (xedges[1:] + xedges[:-1])
-    ybins = 0.5 * (yedges[1:] + yedges[:-1])
-
-    z = h.T
-
-    binsize = 0.2
-    grid_min = np.log10(
-        1
-    )  # Note that the histograms have been normalized. Therefore this **does not** indicate a minimum of 1 star per bin!
-    grid_max = np.log10(np.ceil(h.max()))
-    levels = np.arange(grid_min, grid_max, binsize)
-    levels = 10 ** levels
-
-    contour = plt.contour(
-        xbins, ybins, z, levels=levels, linewidths=0.5, cmap="winter", zorder=100
-    )
-
-    ax.annotate("APOGEE data", (-3.8, -1.3))
-
-    if (xvar == "Fe_H") & (yvar == "O_Fe"):
-        observational_data = [
-            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_OFe_FeH.hdf5",
-            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_OFe_FeH.hdf5",
-        ]
-
-    elif (xvar == "Fe_H") & (yvar == "C_Fe"):
-        observational_data = [
-            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_CFe_FeH.hdf5"
-        ]
-
-    elif (xvar == "Fe_H") & (yvar == "N_Fe"):
-        observational_data = [
-            f"{path_to_obs_data}/data/StellarAbundances/Cayrel_2004_NFe_FeH.hdf5",
-            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NFe_FeH.hdf5",
-        ]
-
-    elif (xvar == "Fe_H") & (yvar == "N_O"):
-        observational_data = [
-            f"{path_to_obs_data}/data/StellarAbundances/Israelian_2004_NO_FeH.hdf5"
-        ]
-
+elif dataset == '2process_APOGEE_ASPCAP':
+    catalog_name = "2-process APOGEE ASPCAP (corrected data)"
+    if xvar == "Mg_H":
+        if yvar == "O_Mg":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/"+dataset+"_MGHOMG.hdf5"
+            )
+        elif yvar == "CN_Mg":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/"+dataset+"_MGHCNMG.hdf5"
+            )
+        elif yvar == "O_H":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/"+dataset+"_MGHOH.hdf5"
+            )
+        else:
+            raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
+        xmin = -3
+        xmax = 2
+        ymin = -1
+        ymax = 2
+    elif xvar == "O_H":
+        if yvar == "Mg_Fe":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGFEOH.hdf5"
+            )
+        else:
+            raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
+        xmin = -3
+        xmax = 2
+        ymin = -1
+        ymax = 2
+    elif xvar == "Fe_H":
+        if yvar == "Mg_Fe":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGFE.hdf5"
+            )
+        elif yvar == "Si_Fe":
+            observational_data = (
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_SIFE.hdf5"
+            )
+        else:
+            raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
+        xmin = -3
+        xmax = 2
+        ymin = -1
+        ymax = 2
     else:
-        observational_data = None
+        raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
 
-    if not observational_data is None:
-        for obs in load_observations(observational_data):
-            obs.plot_on_axes(ax)
-        observation_legend = ax.legend(markerfirst=True, loc="lower left")
-        ax.add_artist(observation_legend)
+    plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax)
+
+elif dataset == '2process_APOGEE_BAWLAS':
+    catalog_name = "2-process APOGEE BAWLAS (corrected data)"
+    if xvar == "Mg_H":
+        if yvar == "O_Mg":
+            observational_data = (
+                    f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOMG.hdf5"
+            )
+        elif yvar == "CN_Mg":
+            observational_data = (
+                    f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHCNMG.hdf5"
+            )
+        elif yvar == "O_H":
+            observational_data = (
+                    f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOH.hdf5"
+            )
+        else:
+            raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
+        xmin = -3
+        xmax = 2
+        ymin = -1   
+        ymax = 2
+    elif xvar == "O_H":
+        if yvar == "Mg_Fe":
+            observational_data = (
+                   f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGFEOH.hdf5"
+            )
+        else:
+            raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
+        xmin = -3
+        xmax = 2
+        ymin = -1
+        ymax = 2
+    else:
+        raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
+
+    plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax)
 
 
 elif dataset == "GALAH":
@@ -446,6 +575,8 @@ elif dataset == "GALAH":
         linewidths=0.5,
     )
     ax.annotate("GALAH data", (-3.8, -1.3))
+
+    
 elif dataset is None:
     if xvar == "Fe_H" and yvar == "O_Fe":
         observational_data = [
@@ -474,13 +605,16 @@ elif dataset is None:
 else:
     raise AttributeError(f"Unknown dataset: {dataset}!")
 
-xlabels = {"Fe_H": "[Fe/H]", "O_H": "[O/H]"}
+xlabels = {"Fe_H": "[Fe/H]", "O_H": "[O/H]", "Mg_H": "[Mg/H]"}
 ylabels = {
     "C_Fe": "[C/Fe]",
     "N_Fe": "[N/Fe]",
     "N_O": "[N/O]",
     "C_O": "[C/O]",
     "O_Fe": "[O/Fe]",
+    "O_Mg": "[O/Mg]",
+    "O_H": "[O/H]",
+    "CN_Mg": "[(C+N)/Mg]",
     "Mg_Fe": "[Mg/Fe]",
     "Si_Fe": "[Si/Fe]",
     "Ne_Fe": "[Ne/Fe]",
@@ -499,6 +633,9 @@ ylims = {
     "N_O": (-1.5, 1.5),
     "C_O": (-1.5, 1.5),
     "O_Fe": (-1.5, 1.5),
+    "O_Mg": (-1.5, 1.5),
+    "O_H": (-1.5, 1.5),
+    "CN_Mg": (-1.5, 1.5),
     "Mg_Fe": (-1.5, 2.0),
     "Si_Fe": (-1.5, 2.0),
     "Ba_Fe": (-1.5, 2.0),
@@ -524,7 +661,7 @@ if yvar == "Fe_SNIa_fraction":
     output_file += "Fe_snia_fraction"
 else:
     output_file += yvar.replace("_", "")
-if dataset == "APOGEE" or dataset == "GALAH":
+if dataset == "APOGEE" or dataset == "GALAH" or dataset == "2process_APOGEE_BAWLAS" or dataset == "2process_APOGEE_ASPCAP":
     output_file += f"_{dataset}"
 output_file += ".png"
 plt.savefig(output_file)

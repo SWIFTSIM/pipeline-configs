@@ -48,7 +48,10 @@ def make_stellar_abundance_distribution(x, y, R, z, xi, yi):
 
     return h, xedges, yedges
 
-def plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax):
+
+def plot_APOGEE(
+    ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax
+):
 
     # Reading APOGEE data
     with h5py.File(observational_data, "r") as obs_data:
@@ -163,8 +166,8 @@ def read_data(data, xvar, yvar):
     C_O_Sun = C_H_Sun_Asplund - O_H_Sun_Asplund - np.log10(mO_in_cgs / mC_in_cgs)
     Mg_Fe_Sun = Mg_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mMg_in_cgs)
     O_Mg_Sun = O_Fe_Sun - Mg_Fe_Sun
-    CN_Mg_Sun = 10**C_Fe_Sun + 10**N_Fe_Sun # (C+N)/Fe
-    CN_Mg_Sun = np.log10(CN_Mg_Sun) - Mg_Fe_Sun # [(C+N)/Fe] - [Mg/Fe] = [(C+N)/Mg]
+    CN_Mg_Sun = 10 ** C_Fe_Sun + 10 ** N_Fe_Sun  # (C+N)/Fe
+    CN_Mg_Sun = np.log10(CN_Mg_Sun) - Mg_Fe_Sun  # [(C+N)/Fe] - [Mg/Fe] = [(C+N)/Mg]
 
     Si_Fe_Sun = Si_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mSi_in_cgs)
     Eu_Fe_Sun = Eu_H_Sun_Asplund - Fe_H_Sun_Asplund - np.log10(mFe_in_cgs / mEu_in_cgs)
@@ -221,7 +224,7 @@ def read_data(data, xvar, yvar):
         xval = Fe_H
     elif xvar == "Mg_H":
         Mg_H = np.log10(magnesium / hydrogen) - Mg_H_Sun
-        Mg_H[magnesium == 0] = -10   # set lower limit
+        Mg_H[magnesium == 0] = -10  # set lower limit
         xval = Mg_H
     else:
         raise AttributeError(f"Unknown x variable: {xvar}!")
@@ -453,22 +456,26 @@ if dataset == "APOGEE":
     else:
         raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
 
-    plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax)
+    plot_APOGEE(
+        ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax
+    )
 
-elif dataset == '2process_APOGEE_ASPCAP':
+elif dataset == "2process_APOGEE_ASPCAP":
     catalog_name = "2-process APOGEE ASPCAP (corrected data)"
     if xvar == "Mg_H":
         if yvar == "O_Mg":
             observational_data = (
-                f"{path_to_obs_data}/data/StellarAbundances/"+dataset+"_MGHOMG.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOMG.hdf5"
             )
         elif yvar == "CN_Mg":
             observational_data = (
-                f"{path_to_obs_data}/data/StellarAbundances/"+dataset+"_MGHCNMG.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/"
+                + dataset
+                + "_MGHCNMG.hdf5"
             )
         elif yvar == "O_H":
             observational_data = (
-                f"{path_to_obs_data}/data/StellarAbundances/"+dataset+"_MGHOH.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOH.hdf5"
             )
         else:
             raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
@@ -505,33 +512,37 @@ elif dataset == '2process_APOGEE_ASPCAP':
     else:
         raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
 
-    plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax)
+    plot_APOGEE(
+        ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax
+    )
 
-elif dataset == '2process_APOGEE_BAWLAS':
+elif dataset == "2process_APOGEE_BAWLAS":
     catalog_name = "2-process APOGEE BAWLAS (corrected data)"
     if xvar == "Mg_H":
         if yvar == "O_Mg":
             observational_data = (
-                    f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOMG.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOMG.hdf5"
             )
         elif yvar == "CN_Mg":
             observational_data = (
-                    f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHCNMG.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/"
+                + dataset
+                + "_MGHCNMG.hdf5"
             )
         elif yvar == "O_H":
             observational_data = (
-                    f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOH.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGHOH.hdf5"
             )
         else:
             raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
         xmin = -3
         xmax = 2
-        ymin = -1   
+        ymin = -1
         ymax = 2
     elif xvar == "O_H":
         if yvar == "Mg_Fe":
             observational_data = (
-                   f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGFEOH.hdf5"
+                f"{path_to_obs_data}/data/StellarAbundances/" + dataset + "_MGFEOH.hdf5"
             )
         else:
             raise AttributeError(f"No APOGEE dataset for y variable {yvar}!")
@@ -542,7 +553,9 @@ elif dataset == '2process_APOGEE_BAWLAS':
     else:
         raise AttributeError(f"No APOGEE dataset for x variable {xvar}!")
 
-    plot_APOGEE(ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax)
+    plot_APOGEE(
+        ax, observational_data, catalog_name, xvar, yvar, xmin, xmax, ymin, ymax
+    )
 
 
 elif dataset == "GALAH":
@@ -576,7 +589,7 @@ elif dataset == "GALAH":
     )
     ax.annotate("GALAH data", (-3.8, -1.3))
 
-    
+
 elif dataset is None:
     if xvar == "Fe_H" and yvar == "O_Fe":
         observational_data = [
@@ -661,7 +674,12 @@ if yvar == "Fe_SNIa_fraction":
     output_file += "Fe_snia_fraction"
 else:
     output_file += yvar.replace("_", "")
-if dataset == "APOGEE" or dataset == "GALAH" or dataset == "2process_APOGEE_BAWLAS" or dataset == "2process_APOGEE_ASPCAP":
+if (
+    dataset == "APOGEE"
+    or dataset == "GALAH"
+    or dataset == "2process_APOGEE_BAWLAS"
+    or dataset == "2process_APOGEE_ASPCAP"
+):
     output_file += f"_{dataset}"
 output_file += ".png"
 plt.savefig(output_file)

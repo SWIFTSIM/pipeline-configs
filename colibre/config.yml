@@ -459,6 +459,15 @@ scripts:
       yvar: Mg_Fe
       dataset: APOGEE
   - filename: scripts/stellar_abundances.py
+    caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [Fe/H] vs median [Mg/Fe] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the ASPCAP method to fit the APOGEE spectra. We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Mg/Fe] of gas with [Fe/H]<-4.'
+    output_file: stellar_abundances_FeH_MgFe_2process_APOGEE_ASPCAP.png
+    section: Stellar Metal Abundances
+    title: '[Fe/H] vs [Mg/Fe]'
+    additional_arguments:
+      xvar: Fe_H
+      yvar: Mg_Fe
+      dataset: 2process_APOGEE_ASPCAP
+  - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW, Carina, Fornax, Sculptor and Sagittarious corresponds to a data compilation presented by Tolstoy, Hill & Tosi (2009) and extracted by Rob Crain. Note solar metallicity of Grevesser & Anders (1989) was corrected to Asplund+09. The arrows at [Fe/H]=-4 indicate the median value of [Mg/Fe] of gas with [Fe/H]<-4.'
     output_file: stellar_abundances_FeH_MgFe.png
     section: Stellar Metal Abundances
@@ -466,6 +475,105 @@ scripts:
     additional_arguments:
       xvar: Fe_H
       yvar: Mg_Fe
+  - filename: scripts/stellar_abundances.py
+    caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [O/H] vs median [Mg/Fe] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the ASPCAP method to fit the APOGEE spectra. We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Mg/Fe] of gas with [O/H]<-4.'
+    output_file: stellar_abundances_OH_MgFe_2process_APOGEE_ASPCAP.png
+    section: Stellar Metal Abundances
+    title: '[O/H] vs [Mg/Fe]'
+    additional_arguments:
+      xvar: O_H
+      yvar: Mg_Fe
+      dataset: 2process_APOGEE_ASPCAP
+  - filename: scripts/stellar_abundances.py
+    caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [O/H] vs median [Mg/Fe] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the BACCHUS analysis to fit the APOGEE spectra (BAWLAS catalog, Hayes et al. 2022). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Mg/Fe] of gas with [O/H]<-4.'
+    output_file: stellar_abundances_OH_MgFe_2process_APOGEE_BAWLAS.png
+    section: Stellar Metal Abundances
+    title: '[O/H] vs [Mg/Fe]'
+    additional_arguments:
+      xvar: O_H
+      yvar: Mg_Fe
+      dataset: 2process_APOGEE_BAWLAS
+  - filename: scripts/stellar_abundances.py
+    caption: '[O/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018) and AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b). We create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows at [O/H]=-4 indicate the median value of [O/Fe] of gas with [O/H]<-4.'
+    output_file: stellar_abundances_OH_OFe_APOGEE.png
+    section: Stellar Metal Abundances
+    title: '[O/H] vs [O/Fe]'
+    additional_arguments:
+      xvar: O_H
+      yvar: O_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
+    caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018) and AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b). We create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows at [O/H]=-4 indicate the median value of [Mg/Fe] of gas with [O/H]<-4.'
+    output_file: stellar_abundances_OH_MgFe_APOGEE.png
+    section: Stellar Metal Abundances
+    title: '[O/H] vs [Mg/Fe]'
+    additional_arguments:
+      xvar: O_H
+      yvar: Mg_Fe
+      dataset: APOGEE
+  - filename: scripts/stellar_abundances.py
+    caption: '[Mg/H] vs [O/Mg] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/Mg] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the ASPCAP method to fit the APOGEE spectra. We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/Mg] of gas with [Mg/H]<-4.'
+    output_file: stellar_abundances_MgH_OMg_2process_APOGEE_ASPCAP.png
+    section: Stellar Metal Abundances
+    title: '[Mg/H] vs [O/Mg]'
+    additional_arguments:
+      xvar: Mg_H
+      yvar: O_Mg
+      dataset: 2process_APOGEE_ASPCAP
+  - filename: scripts/stellar_abundances.py
+    caption: '[Mg/H] vs [O/H] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/H] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the ASPCAP method to fit the APOGEE spectra. We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/H] of gas with [Mg/H]<-4.'
+    output_file: stellar_abundances_MgH_OH_2process_APOGEE_ASPCAP.png
+    section: Stellar Metal Abundances
+    title: '[Mg/H] vs [O/H]'
+    additional_arguments:
+      xvar: Mg_H
+      yvar: O_H
+      dataset: 2process_APOGEE_ASPCAP
+  - filename: scripts/stellar_abundances.py
+    caption: '[Mg/H] vs [(C+N)/Mg] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [Mg/H] vs median [(C+N)/Mg] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the ASPCAP method to fit the APOGEE spectra. We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [(C+N)/Mg] of gas with [Mg/H]<-4.'
+    output_file: stellar_abundances_MgH_CNMg_2process_APOGEE_ASPCAP.png
+    section: Stellar Metal Abundances
+    title: '[Mg/H] vs [(C+N)/Mg]'
+    additional_arguments:
+      xvar: Mg_H
+      yvar: CN_Mg
+      dataset: 2process_APOGEE_ASPCAP
+  - filename: scripts/stellar_abundances.py
+    caption: '[Mg/H] vs [O/Mg] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/Mg] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the BACCHUS analysis to fit the APOGEE spectra (BAWLAS catalog, Hayes et al. 2022). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/Mg] of gas with [Mg/H]<-4.'
+    output_file: stellar_abundances_MgH_OMg_2process_APOGEE_BAWLAS.png
+    section: Stellar Metal Abundances
+    title: '[Mg/H] vs [O/Mg]'
+    additional_arguments:
+      xvar: Mg_H
+      yvar: O_Mg
+      dataset: 2process_APOGEE_BAWLAS
+  - filename: scripts/stellar_abundances.py
+    caption: '[Mg/H] vs [O/H] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/H] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the BACCHUS analysis to fit the APOGEE spectra (BAWLAS catalog, Hayes et al. 2022). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/H] of gas with [Mg/H]<-4.'
+    output_file: stellar_abundances_MgH_OH_2process_APOGEE_BAWLAS.png
+    section: Stellar Metal Abundances
+    title: '[Mg/H] vs [O/H]'
+    additional_arguments:
+      xvar: Mg_H
+      yvar: O_H
+      dataset: 2process_APOGEE_BAWLAS
+  - filename: scripts/stellar_abundances.py
+    caption: '[Mg/H] vs [(C+N)/Mg] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [Mg/H] vs median [(C+N)/Mg] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the BACCHUS analysis to fit the APOGEE spectra (BAWLAS catalog, Hayes et al. 2022). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [(C+N)/Mg] of gas with [Mg/H]<-4.'
+    output_file: stellar_abundances_MgH_CNMg_2process_APOGEE_BAWLAS.png
+    section: Stellar Metal Abundances
+    title: '[Mg/H] vs [(C+N)/Mg]'
+    additional_arguments:
+      xvar: Mg_H
+      yvar: CN_Mg
+      dataset: 2process_APOGEE_BAWLAS
+  - filename: scripts/stellar_abundances.py
+    caption: '[Fe/H] vs [Si/Fe] using Asplund et al. (2009) values for [Si/H]Sun = 7.51. The median [Fe/H] vs median [Si/Fe] is indicated by the solid curve(s). The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024) and follows the ASPCAP method to fit the APOGEE spectra. We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Si/Fe] of gas with [Fe/H]<-4.'
+    output_file: stellar_abundances_FeH_SiFe_2process_APOGEE_ASPCAP.png
+    section: Stellar Metal Abundances
+    title: '[Fe/H] vs [Si/Fe]'
+    additional_arguments:
+      xvar: Fe_H
+      yvar: Si_Fe
+      dataset: 2process_APOGEE_ASPCAP
   - filename: scripts/stellar_abundances.py
     caption: '[Fe/H] vs [Si/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [Si/H]Sun = 7.51. The median [Si/Fe] vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the GALAH survey (Buder et al. 2021). Contours use a log scale with 0.04 bin size and a minimum star count of 10. All recommended flags are applied to GALAH data to select stars (SN, FE/H and X/Fe quality flags). The arrows at [Fe/H]=-4 indicate the median value of [Si/Fe] of gas with [Fe/H]<-4.'
     output_file: stellar_abundances_FeH_SiFe_GALAH.png
@@ -501,114 +609,6 @@ scripts:
       xvar: Fe_H
       yvar: Eu_Fe
       dataset: GALAH
-  - filename: scripts/stellar_abundances.py
-    caption: '[O/H] vs [O/Fe] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5 and [O/H]Sun = 8.69. The median [O/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018) and AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b). We create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows at [O/H]=-4 indicate the median value of [O/Fe] of gas with [O/H]<-4.'
-    output_file: stellar_abundances_OH_OFe_APOGEE.png
-    section: Stellar Metal Abundances
-    title: '[O/H] vs [O/Fe]'
-    additional_arguments:
-      xvar: O_H
-      yvar: O_Fe
-      dataset: APOGEE
-  - filename: scripts/stellar_abundances.py
-    caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/Fe] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018) and AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b). We create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows at [O/H]=-4 indicate the median value of [Mg/Fe] of gas with [O/H]<-4.'
-    output_file: stellar_abundances_OH_MgFe_APOGEE.png
-    section: Stellar Metal Abundances
-    title: '[O/H] vs [Mg/Fe]'
-    additional_arguments:
-      xvar: O_H
-      yvar: Mg_Fe
-      dataset: APOGEE
-  - filename: scripts/stellar_abundances.py
-    caption: '[Mg/H] vs [O/Mg] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/Mg] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/Mg] of gas with [Mg/H]<-4.'
-    output_file: stellar_abundances_MgH_OMg_2process_APOGEE_ASPCAP.png
-    section: Stellar Metal Abundances
-    title: '[Mg/H] vs [O/Mg]'
-    additional_arguments:
-      xvar: Mg_H
-      yvar: O_Mg
-      dataset: 2process_APOGEE_ASPCAP
-  - filename: scripts/stellar_abundances.py
-    caption: '[Fe/H] vs [Si/Fe] using Asplund et al. (2009) values for [Si/H]Sun = 7.51. The median [Fe/H] vs median [Si/Fe] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Si/Fe] of gas with [Fe/H]<-4.'
-    output_file: stellar_abundances_FeH_SiFe_2process_APOGEE_ASPCAP.png
-    section: Stellar Metal Abundances
-    title: '[Fe/H] vs [Si/Fe]'
-    additional_arguments:
-      xvar: Fe_H
-      yvar: Si_Fe
-      dataset: 2process_APOGEE_ASPCAP
-  - filename: scripts/stellar_abundances.py
-    caption: '[Mg/H] vs [O/H] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/H] of gas with [Mg/H]<-4.'
-    output_file: stellar_abundances_MgH_OH_2process_APOGEE_ASPCAP.png
-    section: Stellar Metal Abundances
-    title: '[Mg/H] vs [O/H]'
-    additional_arguments:
-      xvar: Mg_H
-      yvar: O_H
-      dataset: 2process_APOGEE_ASPCAP
-  - filename: scripts/stellar_abundances.py
-    caption: '[Mg/H] vs [(C+N)/Mg] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [Mg/H] vs median [(C+N)/Mg] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [(C+N)/Mg] of gas with [Mg/H]<-4.'
-    output_file: stellar_abundances_MgH_CNMg_2process_APOGEE_ASPCAP.png
-    section: Stellar Metal Abundances
-    title: '[Mg/H] vs [(C+N)/Mg]'
-    additional_arguments:
-      xvar: Mg_H
-      yvar: CN_Mg
-      dataset: 2process_APOGEE_ASPCAP
-  - filename: scripts/stellar_abundances.py
-    caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [O/H] vs median [Mg/Fe] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Mg/Fe] of gas with [O/H]<-4.'
-    output_file: stellar_abundances_OH_MgFe_2process_APOGEE_ASPCAP.png
-    section: Stellar Metal Abundances
-    title: '[O/H] vs [Mg/Fe]'
-    additional_arguments:
-      xvar: O_H
-      yvar: Mg_Fe
-      dataset: 2process_APOGEE_ASPCAP
-  - filename: scripts/stellar_abundances.py
-    caption: '[Fe/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [Fe/H] vs median [Mg/Fe] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Mg/Fe] of gas with [Fe/H]<-4.'
-    output_file: stellar_abundances_FeH_MgFe_2process_APOGEE_ASPCAP.png
-    section: Stellar Metal Abundances
-    title: '[Fe/H] vs [Mg/Fe]'
-    additional_arguments:
-      xvar: Fe_H
-      yvar: Mg_Fe
-      dataset: 2process_APOGEE_ASPCAP
-  - filename: scripts/stellar_abundances.py
-    caption: '[O/H] vs [Mg/Fe] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [O/H] vs median [Mg/Fe] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [Mg/Fe] of gas with [O/H]<-4.'
-    output_file: stellar_abundances_OH_MgFe_2process_APOGEE_BAWLAS.png
-    section: Stellar Metal Abundances
-    title: '[O/H] vs [Mg/Fe]'
-    additional_arguments:
-      xvar: O_H
-      yvar: Mg_Fe
-      dataset: 2process_APOGEE_BAWLAS
-  - filename: scripts/stellar_abundances.py
-    caption: '[Mg/H] vs [O/Mg] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/Mg] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/Mg] of gas with [Mg/H]<-4.'
-    output_file: stellar_abundances_MgH_OMg_2process_APOGEE_BAWLAS.png
-    section: Stellar Metal Abundances
-    title: '[Mg/H] vs [O/Mg]'
-    additional_arguments:
-      xvar: Mg_H
-      yvar: O_Mg
-      dataset: 2process_APOGEE_BAWLAS
-  - filename: scripts/stellar_abundances.py
-    caption: '[Mg/H] vs [O/H] using Asplund et al. (2009) values for [O/H]Sun = 8.69 and [Mg/H]Sun = 7.6. The median [Mg/H] vs median [O/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [O/H] of gas with [Mg/H]<-4.'
-    output_file: stellar_abundances_MgH_OH_2process_APOGEE_BAWLAS.png
-    section: Stellar Metal Abundances
-    title: '[Mg/H] vs [O/H]'
-    additional_arguments:
-      xvar: Mg_H
-      yvar: O_H
-      dataset: 2process_APOGEE_BAWLAS
-  - filename: scripts/stellar_abundances.py
-    caption: '[Mg/H] vs [(C+N)/Mg] using Asplund et al. (2009) values for [Mg/H]Sun = 7.6. The median [Mg/H] vs median [(C+N)/Mg] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles. The observational data for MW compiles the data from the APOGEE survey (Holtzman et al. 2018), which has been corrected by Sit et al. (2024). We also cross-match with the AstroNN added-value catalog (Leung, H.W. & Bovy, Jo 2019b) to create 6 stellar distributions by selecting stars from APOGEE based on galactocentric radial & azimuthal cuts, and combine them in order to derive a joint stellar abundance distribution that gives less weight to stars in the solar vicinity. The resulting contours use a log scale with 0.2 bin size. The arrows indicate the median value of [(C+N)/Mg] of gas with [Mg/H]<-4.'
-    output_file: stellar_abundances_MgH_CNMg_2process_APOGEE_BAWLAS.png
-    section: Stellar Metal Abundances
-    title: '[Mg/H] vs [(C+N)/Mg]'
-    additional_arguments:
-      xvar: Mg_H
-      yvar: CN_Mg
-      dataset: 2process_APOGEE_BAWLAS
   - filename: scripts/stellar_abundances.py
     caption: 'The mass fraction of Fe from SNIa vs [Fe/H] using Asplund et al. (2009) values for [Fe/H]Sun = 7.5. The median SNIa Fe fraction vs median [Fe/H] is indicated by the solid curve(s). The scatter points show abundances of individual stellar particles.'
     output_file: stellar_abundances_FeH_Fe_snia_fraction.png

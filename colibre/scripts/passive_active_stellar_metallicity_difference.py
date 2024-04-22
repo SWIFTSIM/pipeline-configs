@@ -109,4 +109,6 @@ ax.legend()
 ax.set_xlim(*mass_bounds)
 ax.set_ylim(*value_bounds)
 
-fig.savefig(f"{arguments.output_directory}/passive_active_stellar_metallicity_difference.png")
+fig.savefig(
+    f"{arguments.output_directory}/passive_active_stellar_metallicity_difference.png"
+)

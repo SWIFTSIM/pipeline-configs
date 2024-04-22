@@ -587,8 +587,8 @@ scripts:
     output_file: dust_mass_evolution.png
     section: Dust Evolution
     title: Dust Mass Density Evolution
-  - filename: scripts/passive_active_metallicity_difference.py
-    caption: The stellar metallicity difference between passive and active central galaxies. The passive (active) metallicity is given by the median metallicity of all galaxies in the mass bin which satisfy the definition of passive (active) from Lyu+23.
-    output_file: passive_active_metallicity_difference.png
+  - filename: scripts/passive_active_stellar_metallicity_difference.py
+    caption: The stellar metallicity difference between passive and active central galaxies. The passive (active) metallicity is given by the median metallicity of all galaxies in the mass bin which satisfy the definition of passive (active) galaxies from Lyu+23.
+    output_file: passive_active_stellar_metallicity_difference.png
     section: Stellar Metallicity
-    title: Metallicity Difference Passive vs Active
+    title: Stellar Metallicity Difference Passive vs. Active Galaxies

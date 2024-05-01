@@ -32,6 +32,9 @@ stellar_mass_black_hole_mass_30:
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_E.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Schramm2013.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Ding2020.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Tanaka2024.hdf5
 
 stellar_mass_black_hole_mass_50:
   type: "scatter"
@@ -66,6 +69,9 @@ stellar_mass_black_hole_mass_50:
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_E.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Schramm2013.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Ding2020.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Tanaka2024.hdf5
 
 stellar_mass_black_hole_mass_binned_50:
   type: "scatter"

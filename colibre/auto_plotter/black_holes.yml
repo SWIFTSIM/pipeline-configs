@@ -32,6 +32,9 @@ stellar_mass_black_hole_mass_30:
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_E.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Schramm2013.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Ding2020.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Tanaka2024.hdf5
 
 stellar_mass_black_hole_mass_50:
   type: "scatter"
@@ -66,6 +69,9 @@ stellar_mass_black_hole_mass_50:
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_E.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Schramm2013.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Ding2020.hdf5
+    - filename: GalaxyStellarMassBlackHoleMass/Tanaka2024.hdf5
 
 stellar_mass_black_hole_mass_binned_50:
   type: "scatter"
@@ -464,9 +470,11 @@ black_hole_mass_function:
     - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
     - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
     - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
-    - filename: BlackHoleMassFunction/Shankar2009_Data.hdf5
-    - filename: BlackHoleMassFunction/Vika2009_Data.hdf5
-    - filename: BlackHoleMassFunction/Caramete2010_Data.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_Mstar_observed.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_Mstar_unbiased.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_sigma_observed.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_sigma_unbiased.hdf5
+    - filename: BlackHoleMassFunction/Gallo2019_Data.hdf5
 
 black_hole_mass_function_adaptive:
   type: "adaptivemassfunction"
@@ -490,6 +498,8 @@ black_hole_mass_function_adaptive:
     - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
     - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
     - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
-    - filename: BlackHoleMassFunction/Shankar2009_Data.hdf5
-    - filename: BlackHoleMassFunction/Vika2009_Data.hdf5
-    - filename: BlackHoleMassFunction/Caramete2010_Data.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_Mstar_observed.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_Mstar_unbiased.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_sigma_observed.hdf5
+    - filename: BlackHoleMassFunction/Shankar2016_sigma_unbiased.hdf5
+    - filename: BlackHoleMassFunction/Gallo2019_Data.hdf5

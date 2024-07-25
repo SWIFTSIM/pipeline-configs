@@ -489,7 +489,7 @@ stellar_mass_with_scatter_passive_fraction_50:
 
 stellar_mass_passive_fraction_centrals_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "lower left"
   redshift_loc: "upper center"
@@ -530,7 +530,7 @@ stellar_mass_passive_fraction_centrals_30:
 
 stellar_mass_passive_fraction_centrals_50:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "lower left"
   redshift_loc: "upper center"

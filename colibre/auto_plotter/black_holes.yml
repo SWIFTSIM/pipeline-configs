@@ -108,7 +108,7 @@ stellar_mass_black_hole_mass_binned_50:
 
 stellar_mass_black_hole_mass_passive_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Passive centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
@@ -144,7 +144,7 @@ stellar_mass_black_hole_mass_passive_30:
 
 stellar_mass_black_hole_mass_passive_50:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Passive centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
@@ -179,7 +179,7 @@ stellar_mass_black_hole_mass_passive_50:
 
 stellar_mass_black_hole_mass_active_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Active centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
@@ -215,7 +215,7 @@ stellar_mass_black_hole_mass_active_30:
 
 stellar_mass_black_hole_mass_active_50:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Active centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
@@ -377,7 +377,7 @@ stellar_mass_stellar_veldisp_10:
 ssfr_rate_black_hole_mass_30:
   type: "scatter"
   legend_loc: "upper right"
-  select_structure_type: 10
+  select_structure_type: 1
   selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_30_kpc"
   comment: "Centrals only, $M_* > 10^{10}$ solar masses"
   redshift_loc: "lower left"
@@ -414,7 +414,7 @@ ssfr_rate_black_hole_mass_30:
 ssfr_rate_black_hole_mass_50:
   type: "scatter"
   legend_loc: "upper right"
-  select_structure_type: 10
+  select_structure_type: 1
   selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
   comment: "Centrals only, $M_* > 10^{10}$ solar masses"
   redshift_loc: "lower left"

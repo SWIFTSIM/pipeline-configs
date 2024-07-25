@@ -89,7 +89,7 @@ for color, (snp_filename, cat_filename, name) in enumerate(
     mask = star_mass > mass_bounds[0] * star_mass.units
     star_mass = star_mass[mask]
     birth_pressures = catalogue.get_quantity(
-        f"fofsubhaloproperties.medianstellarbirthpressure"
+        f"boundsubhalo.medianstellarbirthpressure"
     ).to("K/cm**3")[mask]
 
     try:

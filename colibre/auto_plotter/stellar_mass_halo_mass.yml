@@ -1,6 +1,6 @@
 stellar_mass_halo_mass_M200_centrals_ratio_100:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -38,7 +38,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_100:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_100:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -77,7 +77,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_100:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_50:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -116,7 +116,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_50:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -155,7 +155,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_30:
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -193,7 +193,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
       
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -231,7 +231,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_50:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -269,7 +269,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_50:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -372,7 +372,7 @@ stellar_mass_halo_mass_MBN98_all_100:
 
 stellar_mass_halo_mass_M200_centrals_100:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -408,7 +408,7 @@ stellar_mass_halo_mass_M200_centrals_100:
 
 stellar_mass_halo_mass_MBN98_centrals_100:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -443,7 +443,7 @@ stellar_mass_halo_mass_MBN98_centrals_100:
 
 stellar_mass_halo_mass_M200_centrals_ratio_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -482,7 +482,7 @@ stellar_mass_halo_mass_M200_centrals_ratio_30:
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -555,7 +555,7 @@ stellar_mass_halo_mass_M200_all_30:
 
 stellar_mass_halo_mass_M200_centrals_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -591,7 +591,7 @@ stellar_mass_halo_mass_M200_centrals_30:
 
 stellar_mass_halo_mass_M200_centrals_projected_10:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -627,7 +627,7 @@ stellar_mass_halo_mass_M200_centrals_projected_10:
 
 stellar_mass_halo_mass_M200_centrals_projected_30:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -665,7 +665,7 @@ stellar_mass_halo_mass_M200_centrals_projected_30:
     
 stellar_mass_halo_mass_M200_centrals_projected_50:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -703,7 +703,7 @@ stellar_mass_halo_mass_M200_centrals_projected_50:
     
 stellar_mass_halo_mass_M200_centrals_projected_100:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:

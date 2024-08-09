@@ -441,7 +441,7 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
 
         try:
             linOH_abundance_times_mgas = catalogue.get_quantity(
-                f"lin_element_ratios_times_masses.lin_O_over_H_total_times_gas_mass_100_kpc"
+                f"lin_element_ratios_times_masses.lin_O_over_H_total_times_gas_mass_{aperture_size}_kpc"
             )
 
             logOH_abundance_times_mhi = catalogue.get_quantity(

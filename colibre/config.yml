@@ -592,6 +592,11 @@ scripts:
     caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
     section: SNIa Rate
     output_file: SNIa_rate_history.png
+  - filename: scripts/dust_to_metal_ratio.py
+    caption: Ratio of dust to metal for cold dense gas.
+    output_file: dust_to_metal_ratio.png
+    section: Dust Depletion Relations
+    title: Dust to Metal Ratio
   - filename: scripts/dust_mass_evolution.py
     caption: Evolution of the dust mass density plotted directly from the statistics.txt file produced by SWIFT.
     output_file: dust_mass_evolution.png

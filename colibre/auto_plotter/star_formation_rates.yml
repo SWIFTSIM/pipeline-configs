@@ -163,6 +163,68 @@ stellar_mass_specific_sfr_all_30:
     - filename: GalaxyStellarMassSpecificStarFormationRate/FIREbox_AllGalaxies.hdf5
     - filename: GalaxyStellarMassSpecificStarFormationRate/Leja2022.hdf5
 
+stellar_mass_specific_sfr_centrals_50:
+  type: "scatter"
+  legend_loc: "lower left"
+  select_structure_type: 1
+  comment: "Centrals only"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    units: 1 / gigayear
+    start: 0.5e-3
+    end: 3e0
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: Specific Star Formation Rate - Stellar Mass (50 kpc aperture, centrals only)
+    caption: Only central galaxies are included in the median line.
+    section: Star Formation Rates
+
+stellar_mass_specific_sfr_satellites_50:
+  type: "scatter"
+  legend_loc: "lower left"
+  select_structure_type: 0
+  comment: "Satellites only"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    units: 1 / gigayear
+    start: 0.5e-3
+    end: 3e0
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: Specific Star Formation Rate - Stellar Mass (50 kpc aperture, satellites only)
+    caption: Only satellite galaxies are included in the median line.
+    section: Star Formation Rates
+
 stellar_mass_specific_sfr_active_50:
   type: "scatter"
   selection_mask: "derived_quantities.is_active_50_kpc"
@@ -567,6 +629,41 @@ stellar_mass_passive_fraction_centrals_50:
     - filename: GalaxyStellarMassPassiveFraction/Moustakas2013.hdf5
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019_centrals.hdf5
     - filename: GalaxyStellarMassPassiveFraction/FIREbox.hdf5
+
+stellar_mass_passive_fraction_satellites_50:
+  type: "scatter"
+  select_structure_type: 0
+  comment: "Satellites only"
+  legend_loc: "lower left"
+  redshift_loc: "upper center"
+  min_num_points_highlight: 0
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "derived_quantities.is_passive_50_kpc"
+    units: "dimensionless"
+    log: false
+    start: 0
+    end: 1
+  mean:
+    plot: true
+    log: true
+    scatter: "none"
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: Passive Fraction - Stellar Mass (50 kpc aperture, satellites)
+    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. This figure shows only satellite galaxies.
+    section: Star Formation Rates
 
 star_formation_rate_function_50:
   type: "massfunction"

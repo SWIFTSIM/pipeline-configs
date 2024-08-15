@@ -33,7 +33,6 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -84,7 +83,6 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -135,7 +133,6 @@ stellar_mass_gas_sf_metallicity_lom_30:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -186,7 +183,6 @@ stellar_mass_gas_sf_metallicity_lom_50:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -237,7 +233,6 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -288,7 +283,6 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -339,7 +333,6 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -390,7 +383,6 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -441,7 +433,6 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -492,7 +483,6 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -543,7 +533,6 @@ stellar_mass_gas_sf_metallicity_lom_allgals_30:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
@@ -592,7 +581,6 @@ stellar_mass_gas_sf_metallicity_lom_allgals_50:
   observational_data:
     - filename: GalaxyStellarMassGasMetallicity/Tremonti2004_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Zahid2014_Data.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5

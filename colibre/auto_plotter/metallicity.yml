@@ -47,6 +47,7 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_fromz_lom_50:
   type: "scatter"
@@ -97,6 +98,7 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_30:
   type: "scatter"
@@ -147,6 +149,7 @@ stellar_mass_gas_sf_metallicity_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_50:
   type: "scatter"
@@ -197,6 +200,7 @@ stellar_mass_gas_sf_metallicity_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_30:
   type: "scatter"
@@ -247,6 +251,7 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_50:
   type: "scatter"
@@ -297,6 +302,7 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   type: "scatter"
@@ -347,6 +353,7 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
   type: "scatter"
@@ -397,6 +404,7 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   type: "scatter"
@@ -447,6 +455,7 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_50:
   type: "scatter"
@@ -497,6 +506,7 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_30:
   type: "scatter"
@@ -545,6 +555,7 @@ stellar_mass_gas_sf_metallicity_lom_allgals_30:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_50:
   type: "scatter"
@@ -593,6 +604,7 @@ stellar_mass_gas_sf_metallicity_lom_allgals_50:
     - filename: GalaxyStellarMassGasMetallicity/Henry2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
 
 
 stellar_mass_gas_nitrogen_over_total_oxygen_lom_50_kpc:

@@ -35,7 +35,7 @@ def get_data(filename):
     # Select only star-forming gas
     only_star_forming_gas = sfr > 0.0 * sfr.units
 
-    return number_density.value, temperature.value, mass, only_star_forming_gas
+    return number_density.value, temperature.value, mass.value, only_star_forming_gas
 
 
 def make_hist(filename, density_bounds, temperature_bounds, bins):

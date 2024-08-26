@@ -148,12 +148,12 @@ scripts:
     section: Stellar Birth Properties
     output_file: birth_density_temperature.png
   - filename: scripts/last_SNII_density_distribution.py
-    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for SN min and max heating temperatures with $f_t=10$.
+    caption: Distributions of the gas densities recorded when the gas was last heated by SNII, split by redshift. The y axis shows the number of SNII-heated gas particles per bin divided by the bin width and by the total of SNII-heated gas particles. The dashed vertical lines show the median SNII gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for SN min and max heating temperatures with $f_t=10$. Star particles are not included.
     title: Density of the gas heated by SNII
     section: Feedback Densities
     output_file: SNII_density_distribution.png
   - filename: scripts/last_AGN_density_distribution.py
-    caption: Distributions of the gas densities recorded when the gas was last heated by AGN, split by redshift. The y axis shows the number of AGN-heated gas particles per bin divided by the bin width and by the total of AGN-heated gas particles. The dashed vertical lines show the median AGN gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for AGN heating temperature with $f_t=10$.
+    caption: Distributions of the gas densities recorded when the gas was last heated by AGN, split by redshift. The y axis shows the number of AGN-heated gas particles per bin divided by the bin width and by the total of AGN-heated gas particles. The dashed vertical lines show the median AGN gas-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for AGN heating temperature with $f_t=10$. Star particles not included.
     title: Density of the gas heated by AGN
     section: Feedback Densities
     output_file: AGN_density_distribution.png
@@ -277,11 +277,6 @@ scripts:
     title: Wall-clock time per time-bin
     section: Run Performance
     output_file: wallclock_timebin_hist.png
-  - filename: scripts/bh_timestep_hist.py
-    caption: Distributions of black-hole time-steps. The solid curve shows BH current time-steps. The dashed curve shows BH minimal time-steps reached during the simulation. The dotted curve shows accretion-limited time-steps of BHs. The dash-dotted and dashed vertical lines indicate, respectively, the BH minimum allowed time-step based on accretion rate and the age of the Universe.
-    title: Black-hole time-steps histogram
-    section: Run Performance
-    output_file: bh_timestep_hist.png
   - filename: scripts/deadtime_timebin_hist.py
     caption: Dead time fraction in each simulation time-bin.
     title: Deadtime fraction per time-bin
@@ -304,7 +299,6 @@ scripts:
     title: H$_2$
     additional_arguments:
       hydrogen_species: H2
-      quantity_type: subgrid
   - filename: scripts/density_temperature_species.py
     caption: Density-temperature diagram shaded by HI mass fraction. The fraction is computed as the HI mass contained in each cell over the mass of gas in that cell.
     output_file: subgrid_density_temperature_HI.png
@@ -312,7 +306,6 @@ scripts:
     title: HI
     additional_arguments:
       hydrogen_species: HI
-      quantity_type: subgrid
   - filename: scripts/density_temperature_species.py
     caption: Density-temperature diagram shaded by HII mass fraction. The fraction is computed as the HII mass contained in each cell over the mass of gas in that cell.
     output_file: subgrid_density_temperature_HII.png
@@ -320,7 +313,6 @@ scripts:
     title: HII
     additional_arguments:
       hydrogen_species: HII
-      quantity_type: subgrid
   - filename: scripts/density_species_interp.py
     caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function opf gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
     output_file: density_vs_species_fraction.png
@@ -344,7 +336,7 @@ scripts:
     additional_arguments:
       quantity_type: hydro
   - filename: scripts/last_SNII_kick_velocity_distribution.py
-    caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity.
+    caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity. Star particles are not included.
     output_file: SNII_last_kick_velocity_distribution.png
     section: Feedback kick velocities
     title: Kick velocity distribution at last SNII

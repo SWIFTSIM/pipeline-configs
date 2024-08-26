@@ -13,7 +13,6 @@ import h5py as h5
 from unyt import mh, cm
 from matplotlib.colors import LogNorm, ListedColormap, BoundaryNorm
 from matplotlib.animation import FuncAnimation
-from matplotlib.cm import get_cmap
 from scipy.interpolate import interpn
 from scipy.stats import binned_statistic as bs1d
 
@@ -88,15 +87,15 @@ def get_data(filename, prefix_rho, prefix_T):
 
             if el in dsfrac_dict:
                 # print(f"Add Grain: {d} Element {el} Elfrac : {elfrac}")
-                dsfrac_dict[el] += elfrac.astype("float64")
+                dsfrac_dict[el] += elfrac.value.astype("float64")
             else:
                 # print(f"Make Grain: {d} Element {el} Elfrac : {elfrac}")
-                dsfrac_dict[el] = elfrac.astype("float64")
+                dsfrac_dict[el] = elfrac.value.astype("float64")
         dfracs += dfrac
 
     elfrac_dict = {}
     for el in data.metadata.named_columns["ElementMassFractions"]:
-        elfrac_dict[el] = getattr(data.gas.element_mass_fractions, el.lower()).astype(
+        elfrac_dict[el] = getattr(data.gas.element_mass_fractions, el.lower()).value.astype(
             "float64"
         )
 
@@ -104,7 +103,7 @@ def get_data(filename, prefix_rho, prefix_T):
     out_tuple = (
         number_density.value.astype("float64"),
         temperature.value.astype("float64"),
-        dfracs.astype("float64"),
+        dfracs.value.astype("float64"),
         dsfrac_dict,
         elfrac_dict,
         masses.value.astype("float64"),

@@ -45,14 +45,6 @@ for label, ax in ax_dict.items():
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    stars_SNII_v_kick_last = (snapshot.stars.last_sniikinetic_feedbackvkick).to(
-        SNII_v_kick_bins.units
-    )
-
-    stars_SNII_redshifts = (
-        1 / snapshot.stars.last_sniikinetic_feedback_scale_factors.value - 1
-    )
-
     gas_SNII_v_kick_last = (snapshot.gas.last_sniikinetic_feedbackvkick).to(
         SNII_v_kick_bins.units
     )
@@ -61,25 +53,14 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         1 / snapshot.gas.last_sniikinetic_feedback_scale_factors.value - 1
     )
 
-    # Limit only to those gas / stellar particles that were in fact kicked by SNII
-    stars_SNII_kicked = stars_SNII_v_kick_last > 0.0
+    # Limit only to those gas particles that were in fact kicked by SNII
     gas_SNII_kicked = gas_SNII_v_kick_last > 0.0
 
     # Select only those parts that were kicked by SNII in the past
-    stars_SNII_v_kick_last = stars_SNII_v_kick_last[stars_SNII_kicked]
-    stars_SNII_redshifts = stars_SNII_redshifts[stars_SNII_kicked]
     gas_SNII_v_kick_last = gas_SNII_v_kick_last[gas_SNII_kicked]
     gas_SNII_redshifts = gas_SNII_redshifts[gas_SNII_kicked]
 
     # Segment SNII kick velocities into redshift bins
-    stars_SNII_v_kick_by_redshift = {
-        "$z < 1$": stars_SNII_v_kick_last[stars_SNII_redshifts < 1],
-        "$1 < z < 3$": stars_SNII_v_kick_last[
-            np.logical_and(stars_SNII_redshifts > 1, stars_SNII_redshifts < 3)
-        ],
-        "$z > 3$": stars_SNII_v_kick_last[stars_SNII_redshifts > 3],
-    }
-
     gas_SNII_v_kick_by_redshift = {
         "$z < 1$": gas_SNII_v_kick_last[gas_SNII_redshifts < 1],
         "$1 < z < 3$": gas_SNII_v_kick_last[
@@ -95,19 +76,11 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
     )  # in km/s
 
-    # Total number of objects received SNII kinetic energy
-    Num_of_kicked_parts_total = len(gas_SNII_redshifts) + len(stars_SNII_redshifts)
-
     for redshift, ax in ax_dict.items():
-        data = np.concatenate(
-            [
-                stars_SNII_v_kick_by_redshift[redshift],
-                gas_SNII_v_kick_by_redshift[redshift],
-            ]
-        )
+        data = gas_SNII_v_kick_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=SNII_v_kick_bins)
-        y_points = H / log_SNII_v_kick_bin_width / Num_of_kicked_parts_total
+        y_points = H / log_SNII_v_kick_bin_width / len(gas_SNII_redshifts)
 
         ax.plot(SNII_v_kick_centres, y_points, label=name, color=f"C{color}")
         ax.axvline(

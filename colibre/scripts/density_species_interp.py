@@ -62,7 +62,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
             dfrac = getattr(data.gas.dust_mass_fractions, d.lower())
         except AttributeError:
             dfrac = getattr(data.gas.dust_mass_fractions, d)
-        dsfrac_dict[d] = dfrac.astype("float64")
+        dsfrac_dict[d] = dfrac.value.astype("float64")
         dfracs += dfrac
 
     if glob.glob(tables):
@@ -112,7 +112,7 @@ def get_data(filename, tables, prefix_rho, prefix_T):
         number_density.value.astype("float64"),
         temperature.value.astype("float64"),
         difracs.astype("float64"),
-        dfracs.astype("float64"),
+        dfracs.value.astype("float64"),
         dsfrac_dict,
         masses.value.astype("float64"),
         molfrac.value.astype("float64"),

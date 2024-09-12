@@ -69,6 +69,8 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
     for redshift, ax in ax_dict.items():
         data = birth_temperature_by_redshift[redshift]
+        if data.shape[0] == 0:
+            continue
 
         H, _ = np.histogram(data, bins=birth_temperature_bins)
         y_points = H / log_birth_temperature_bin_width / Num_of_stars_total

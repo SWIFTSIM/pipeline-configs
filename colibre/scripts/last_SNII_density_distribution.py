@@ -117,11 +117,16 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         gas_SNII_redshifts = (
             1 / snapshot.gas.last_sniithermal_feedback_scale_factors.value - 1
         )
+        gas_SNIa_redshifts = (
+            1 / snapshot.gas.last_snia_thermal_feedback_scale_factors - 1
+        )
     except AttributeError:
         gas_SNII_redshifts = 1 / snapshot.gas.last_sniifeedback_scale_factors.value - 1
+        gas_SNIa_redshifts = 1 / snapshot.gas.last_sniafeedback_scale_factors.value - 1
 
     # Limit only to those gas/stellar particles that were in fact heated by SNII
     gas_SNII_heated = gas_SNII_redshifts >= 0.0
+    gas_SNII_heated = gas_SNII_redshifts < gas_SNIa_redshifts
 
     # Select only those parts that were heated by SNII in the past
     gas_SNII_densities = gas_SNII_densities[gas_SNII_heated]

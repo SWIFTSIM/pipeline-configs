@@ -19,9 +19,15 @@ def get_data(filename):
 
     data = load(filename)
 
+    parameters = data.metadata.parameters
+    try:
+        seed_mass = float(parameters["COLIBREAGN:subgrid_seed_mass_Msun"]) * unyt.Msun
+    except AttributeError:
+        seed_mass = float(parameters["SPINJETAGN:subgrid_seed_mass_Msun"]) * unyt.Msun
+
     masses = data.black_holes.subgrid_masses.to("Msun")
     accreted_masses = data.black_holes.total_accreted_masses.to("Msun")
-    values = 1.0 - accreted_masses / masses
+    values = 1.0 - (accreted_masses + seed_mass ) / masses
     values = values * unyt.dimensionless
 
     return masses, values

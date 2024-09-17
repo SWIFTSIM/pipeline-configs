@@ -97,9 +97,9 @@ def get_data(filename, prefix_rho, prefix_T):
 
     elfrac_dict = {}
     for el in data.metadata.named_columns["ElementMassFractions"]:
-        elfrac_dict[el] = getattr(data.gas.element_mass_fractions, el.lower()).value.astype(
-            "float64"
-        )
+        elfrac_dict[el] = getattr(
+            data.gas.element_mass_fractions, el.lower()
+        ).value.astype("float64")
 
     # casting to float64 to avoid arcane np.histogram bug(?)
     out_tuple = (

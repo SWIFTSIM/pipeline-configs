@@ -27,7 +27,7 @@ def get_data(filename):
 
     masses = data.black_holes.subgrid_masses.to("Msun")
     accreted_masses = data.black_holes.total_accreted_masses.to("Msun")
-    values = 1.0 - (accreted_masses + seed_mass ) / masses
+    values = 1.0 - (accreted_masses + seed_mass) / masses
     values = values * unyt.dimensionless
 
     return masses, values

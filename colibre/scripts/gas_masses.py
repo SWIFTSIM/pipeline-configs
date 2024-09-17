@@ -20,19 +20,23 @@ def get_data(filename):
     data = load(filename)
 
     mass_gas = data.gas.masses.to("1e5 * Msun").value
-    mass_split = unyt_quantity(
-        float(
-            data.metadata.parameters.get("SPH:particle_splitting_mass_threshold", 0.0)
-        ),
-        units=data.units.mass,
-    ).to("1e5 * Msun").value
+    mass_split = (
+        unyt_quantity(
+            float(
+                data.metadata.parameters.get(
+                    "SPH:particle_splitting_mass_threshold", 0.0
+                )
+            ),
+            units=data.units.mass,
+        )
+        .to("1e5 * Msun")
+        .value
+    )
 
     return mass_gas, mass_split
 
 
-def make_single_image(
-    filenames, names, number_of_simulations, output_path
-):
+def make_single_image(filenames, names, number_of_simulations, output_path):
     """
     Makes a single histogram of the gas particle masses.
     """
@@ -43,7 +47,7 @@ def make_single_image(
     ax.semilogy()
 
     # Calculate mass bounds
-    min_mass = float('inf')
+    min_mass = float("inf")
     max_mass = 0
     data = {}
     for filename, name in zip(filenames, names):

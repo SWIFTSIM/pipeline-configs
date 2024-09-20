@@ -1,0 +1,87 @@
+luminosity_r_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.vimf_magnitudes_r_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: r-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-corrected rest-frame luminosity function in the SDSS r-band, adjusted for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: FSPS-Adjusted Luminosities
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_r.hdf5
+    - filename: GalaxyLuminosityFunction/Loveday2012_r.hdf5
+
+luminosity_z_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.vimf_magnitudes_z_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: z-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-corrected rest-frame luminosity function in the SDSS z-band, adjusted for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: FSPS-Adjusted Luminosities
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
+    - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
+
+luminosity_fuv_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.vimf_magnitudes_fuv_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: FUV-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-corrected luminosity function in the GALEX FUV-band, adjusted for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: FSPS-Adjusted Luminosities
+  observational_data:
+    # - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
+    # - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
+
+  luminosity_fuv_neb_em_function_50: # will show 3 luminosity functions
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.vimf_magnitudes_fuv_ene_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: FUV-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-corrected luminosity function in the GALEX FUV-band, adjusted for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex. Shown for different nebular emission parameters.
+    section: FSPS-Adjusted Luminosities
+  observational_data:
+    # - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
+    # - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5

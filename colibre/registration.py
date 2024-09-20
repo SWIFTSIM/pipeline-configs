@@ -233,6 +233,30 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
 
     return
 
+def register_vimf_star_magnitudes(self, adjusted_catalogue, aperture_sizes):
+
+    bands = ["r", "z", "FUV", "FUV_ENE", "FUV_NNE"]
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+        for band in bands:
+            try:
+
+                L_AB = adjusted_catalogue.get_quantity(
+                    f"stellar_luminosities.{band}_luminosity_{aperture_size}_kpc"
+                )
+                m_AB = np.copy(L_AB)
+                mask = L_AB > 0.0
+                m_AB[mask] = -2.5 * np.log10(m_AB[mask])
+                m_AB = unyt.unyt_array(m_AB, units="dimensionless")
+                m_AB.name = f"{band}-band AB magnitudes ({aperture_size} kpc)"
+                setattr(self, f"vimf_magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
+
+            except AttributeError:
+                pass
+
+    return
+
 
 def register_stellar_to_halo_mass_ratios(self, catalogue, aperture_sizes):
 

@@ -42,6 +42,9 @@ twelve_plus_log_OH_solar = 8.69
 # Solar Fe abundance (from Wiersma et al 2009a)
 solar_fe_abundance = 2.82e-5
 
+# Solar Mg abundance (from Asplund et al 2009)
+solar_mg_abundance = 3.98e-5
+
 # Additional scatter in stellar mass (in dex)
 stellar_mass_scatter_amplitude = 0.3
 
@@ -1212,6 +1215,86 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                     )
     return
 
+def register_magnesium_to_hydrogen(self, catalogue, aperture_sizes, mg_solar_abundance):
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+
+        # Fetch stellar mass in apertures
+        star_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
+
+        # Try to load linear Mg over H times stellar mass computed in apertures. The
+        # mass ratio between Mg and H has already been accounted for.
+        # This property is not present in some SOAP catalogues, in which case we set zeros.
+        try:
+            lin_Mg_over_H_times_star_mass = catalogue.get_quantity(
+                f"lin_element_ratios_times_masses.lin_Mg_over_H_times_star_mass_{aperture_size}_kpc"
+            )
+        except AttributeError:
+            Mg_abundance = unyt.unyt_array(np.zeros(star_mass.shape[0]), "dimensionless")
+            setattr(self, f"star_mg_abundance_avglin_{aperture_size}_kpc", Mg_abundance)
+            for floor in ['low', 'high']:
+                setattr(
+                    self,
+                    f"star_mg_abundance_avglog_{floor}_{aperture_size}_kpc",
+                    Mg_abundance,
+                )
+            return
+
+        # Compute stellar-mass weighted Mg over H
+        Mg_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+        # Avoid division by zero
+        mask = star_mass > 0.0 * star_mass.units
+        Mg_over_H[mask] = lin_Mg_over_H_times_star_mass[mask] / star_mass[mask]
+        # Convert to units used in observations
+        Mg_abundance = unyt.unyt_array(Mg_over_H / mg_solar_abundance, "dimensionless")
+        Mg_abundance.name = f"Stellar (Mg/H) ({aperture_size} kpc)"
+
+        # Register the field
+        setattr(self, f"star_mg_abundance_avglin_{aperture_size}_kpc", Mg_abundance)
+
+        # register average-of-log Mg-abundances (high and low particle floors)
+        for floor, floor_label in zip(
+            ["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]
+        ):
+
+            # Fetch Mg over H times stellar mass computed in apertures. The
+            # mass ratio between Mg and H has already been accounted for.
+            log_Mg_over_H_times_star_mass = catalogue.get_quantity(
+                f"log_element_ratios_times_masses.log_Mg_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc"
+            )
+            # Fetch stellar mass in apertures
+            star_mass = catalogue.get_quantity(
+                f"apertures.mass_star_{aperture_size}_kpc"
+            )
+
+            # Compute stellar-mass weighted Mg over H
+            Mg_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+            # Avoid division by zero
+            mask = star_mass > 0.0 * star_mass.units
+            Mg_over_H[mask] = pow(
+                10.0, log_Mg_over_H_times_star_mass[mask] / star_mass[mask]
+            )
+            # Convert to units used in observations
+            Mg_abundance = unyt.unyt_array(
+                Mg_over_H / mg_solar_abundance, "dimensionless"
+            )
+            Mg_abundance.name = (
+                f"Stellar $10^{{\\rm [Mg/H]}}$ ({floor_label}, {aperture_size} kpc)"
+            )
+
+            log_Mg_over_H_times_star_mass = catalogue.get_quantity(
+                f"log_element_ratios_times_masses.log_Mg_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc"
+            )
+
+            # Register the field
+            setattr(
+                self,
+                f"star_mg_abundance_avglog_{floor}_{aperture_size}_kpc",
+                Mg_abundance,
+            )
+
+    return
+
 
 def register_cold_dense_gas_metallicity(
     self, catalogue, aperture_sizes, Z_sun, log_twelve_plus_logOH_solar
@@ -1783,6 +1866,9 @@ register_cold_dense_gas_metallicity(
 )
 register_iron_to_hydrogen(
     self, catalogue, aperture_sizes_30_50_100_kpc, solar_fe_abundance
+)
+register_magnesium_to_hydrogen(
+    self, catalogue, aperture_sizes_30_50_100_kpc, solar_mg_abundance
 )
 register_hi_masses(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_h2_masses(self, catalogue, aperture_sizes_30_50_100_kpc)

@@ -39,7 +39,7 @@ def make_single_image(
 
     fig, ax = plt.subplots()
 
-    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\odot$]")
+    ax.set_xlabel(r"Black Hole Subgrid Masses $M_{\rm sub}$ [M$_\odot$]")
     ax.set_ylabel(r"Fraction of Mass Grown Through Mergers")
     ax.set_xscale("log")
 

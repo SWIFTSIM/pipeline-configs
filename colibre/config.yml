@@ -599,3 +599,14 @@ scripts:
     output_file: passive_active_stellar_metallicity_difference.png
     section: Stellar Metallicity
     title: Stellar Metallicity Difference Passive vs. Active Galaxies
+  - filename: scripts/satellite_fraction.py
+    title:
+      - Satellite Fraction
+      - Satellite Fraction (Passive galaxies)
+    caption:
+      - 'The fraction of galaxies which are satellites as a function of their stellar mass'
+      - 'The fraction of passive galaxies which are satellites as a function of their stellar mass'
+    output_file:
+      - satellite_fraction.png
+      - satellite_fraction_passive.png
+    section: Satellite Fraction

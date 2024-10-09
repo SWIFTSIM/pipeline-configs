@@ -69,11 +69,11 @@ def setup_axes(mass_bounds, number_of_simulations: int):
 
     # Set all valid on bottom row to have the horizontal axis label.
     for axis in np.atleast_2d(ax)[:][-1]:
-        axis.set_xlabel("BH Dyn. Masses $M_{\\rm dyn}$ [M$_\odot$]")
+        axis.set_xlabel("BH Dyn. Masses $M_{\\rm dyn}$ [M$_\\odot$]")
         axis.set_xlim(mass_bounds)
 
     for axis in np.atleast_2d(ax).T[:][0]:
-        axis.set_ylabel("BH Sub. Masses $M_{\\rm sub}$ [M$_\odot$]")
+        axis.set_ylabel("BH Sub. Masses $M_{\\rm sub}$ [M$_\\odot$]")
         axis.set_ylim(mass_bounds)
 
     ax.flat[0].loglog()

@@ -31,7 +31,7 @@ def make_single_image(
 
     fig, ax = plt.subplots()
 
-    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\odot$]")
+    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\\odot$]")
     ax.set_ylabel("Number Of Particles Heated by AGN Feedback  $N_{\\rm th}$")
     ax.set_xscale("log")
     ax.set_yscale("log")

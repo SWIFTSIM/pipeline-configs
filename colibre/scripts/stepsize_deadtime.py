@@ -35,7 +35,7 @@ for run_name, run_directory in zip(run_names, run_directories):
     with open(timesteps_filename, "r") as file:
         header = file.readlines()[:10]
         for line in header:
-            match = re.findall("Number of MPI ranks: (\d+)", line)
+            match = re.findall(r"Number of MPI ranks: (\d+)", line)
             if len(match) > 0:
                 nrank = int(match[0])
                 break

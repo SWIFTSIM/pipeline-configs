@@ -294,21 +294,21 @@ scripts:
     output_file: deadtime_evolution.png
   - filename: scripts/density_temperature_species.py
     caption: Density-temperature diagram shaded by H$_2$ mass fraction. The fraction is computed as the H$_2$ mass contained in each cell over the mass of gas in that cell.
-    output_file: subgrid_density_temperature_H2.png
+    output_file: density_temperature_H2.png
     section: Hydrogen Phase Density-Temperature
     title: H$_2$
     additional_arguments:
       hydrogen_species: H2
   - filename: scripts/density_temperature_species.py
     caption: Density-temperature diagram shaded by HI mass fraction. The fraction is computed as the HI mass contained in each cell over the mass of gas in that cell.
-    output_file: subgrid_density_temperature_HI.png
+    output_file: density_temperature_HI.png
     section: Hydrogen Phase Density-Temperature
     title: HI
     additional_arguments:
       hydrogen_species: HI
   - filename: scripts/density_temperature_species.py
     caption: Density-temperature diagram shaded by HII mass fraction. The fraction is computed as the HII mass contained in each cell over the mass of gas in that cell.
-    output_file: subgrid_density_temperature_HII.png
+    output_file: density_temperature_HII.png
     section: Hydrogen Phase Density-Temperature
     title: HII
     additional_arguments:

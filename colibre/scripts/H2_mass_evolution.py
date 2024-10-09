@@ -135,7 +135,6 @@ simulation_lines.append(
         * rho_crit0,
         zorder=0,
         fmt="o",
-        marker="o",
         label="Peroux & Howk (2020)",
     )
 )
@@ -151,7 +150,6 @@ simulation_lines.append(
         np.row_stack([G21_data[:, 4], G21_data[:, 4]]) * 1e6,
         zorder=0,
         fmt="o",
-        marker="o",
         label="Garrat et al. (2021, rhos)",
     )
 )

@@ -15,6 +15,7 @@ import yaml
 
 def plot_cddf(
     snapshot_filenames,
+    simulation_directories,
     names,
     output_path,
     observational_data,
@@ -205,9 +206,10 @@ def plot_cddf(
 
         fig.savefig(f"{output_path}/{figure_name}_{species}.png")
 
-    for snapshot_filename in metadata:
+    for i, snapshot_filename in enumerate(metadata):
+        dirname = simulation_directories[i]
         with open(
-            f"{snapshot_filename.removesuffix('.hdf5')}_cddf_{species}.yml", "w"
+            f"{dirname}/data_cddf_{species}.yml", "w"
         ) as handle:
             yaml.safe_dump(metadata[snapshot_filename], handle)
 
@@ -235,6 +237,7 @@ if __name__ == "__main__":
 
     plot_cddf(
         snapshot_filenames,
+        arguments.directory_list,
         arguments.name_list,
         arguments.output_directory,
         observational_data,

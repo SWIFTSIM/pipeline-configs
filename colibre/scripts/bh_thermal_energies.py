@@ -30,7 +30,7 @@ def make_single_image(
 
     fig, ax = plt.subplots()
 
-    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\odot$]")
+    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\\odot$]")
     ax.set_ylabel(
         "Black Hole Injected Thermal AGN Energies $E_{\\rm th}$ $[{\\rm erg}]$"
     )

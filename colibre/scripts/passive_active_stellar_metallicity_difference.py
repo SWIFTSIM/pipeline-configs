@@ -28,9 +28,9 @@ solar_fe_abundance = 2.82e-5
 
 # Creating plot
 fig, ax = plt.subplots()
-ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\odot]$")
+ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\\odot]$")
 ax.set_ylabel(
-    "Stellar [Fe/H]$_{\mathrm{passive}}$ - Stellar [Fe/H]$_{\mathrm{active}}$"
+    r"Stellar [Fe/H]$_{\mathrm{passive}}$ - Stellar [Fe/H]$_{\mathrm{active}}$"
 )
 ax.set_xscale("log")
 

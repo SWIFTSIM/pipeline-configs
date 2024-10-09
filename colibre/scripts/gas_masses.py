@@ -42,7 +42,7 @@ def make_single_image(filenames, names, number_of_simulations, output_path):
     """
 
     fig, ax = plt.subplots()
-    ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^5$ M$_\odot$]")
+    ax.set_xlabel("Gas Particle Masses $M_{\\rm gas}$ [10$^5$ M$_\\odot$]")
     ax.set_ylabel("PDF [-]")
     ax.semilogy()
 

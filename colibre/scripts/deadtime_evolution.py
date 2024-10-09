@@ -37,10 +37,10 @@ for color_index, (run_name, run_directory) in enumerate(
     with open(timesteps_filename, "r") as file:
         header = file.readlines()[:10]
         for line in header:
-            match = re.findall("Number of MPI ranks: (\d+)", line)
+            match = re.findall(r"Number of MPI ranks: (\d+)", line)
             if len(match) > 0:
                 nrank = int(match[0])
-            match = re.findall("Number of threads: (\d+)", line)
+            match = re.findall(r"Number of threads: (\d+)", line)
             if len(match) > 0:
                 nthread = int(match[0])
     try:

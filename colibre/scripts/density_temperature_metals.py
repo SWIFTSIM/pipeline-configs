@@ -195,7 +195,7 @@ def make_single_image(
     fig.colorbar(
         mappable,
         ax=ax.ravel().tolist(),
-        label="Mean (Logarithmic) Metallicity $\log_{10} Z$ (min. $Z=10^{-8}$)",
+        label=r"Mean (Logarithmic) Metallicity $\log_{10} Z$ (min. $Z=10^{-8}$)",
     )
 
     fig.savefig(f"{output_path}/density_temperature_metals.png")

@@ -314,7 +314,6 @@ def make_single_image(
                 label=k,
             )
             dotcount += 1
-            print(dotcount)
         axis2.legend(frameon=False, loc=(0.02, 0.7))
         axis2.set_ylim(0, axis2.get_ylim()[1])
 

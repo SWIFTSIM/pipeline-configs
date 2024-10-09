@@ -74,7 +74,7 @@ stellar_mass_centers = 0.5 * (stellar_mass_bins[1:] + stellar_mass_bins[:-1])
 
 # Creating plot
 fig, ax = plt.subplots()
-ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\odot]$")
+ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\\odot]$")
 ax.set_ylabel("SNII Energy Fraction $f_{\\rm E}$ at Median Birth Pressure")
 ax.set_xscale("log")
 

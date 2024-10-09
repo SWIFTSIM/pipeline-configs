@@ -8,13 +8,17 @@ from velociraptor.observations import load_observations
 
 # Set variables for the figure
 mass_bounds = [1e8, 1e12]  # Msun
-value_bounds = [0, 0.5]    # dimensionless
+value_bounds = [0, 1]  # dimensionless
 n_mass_bins = 20
 min_points_bin = 5
 
-arguments = ScriptArgumentParser(
-    description="Satellite fraction"
-)
+# sSFR below which the galaxy is considered passive
+marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
+
+# Aperture to use
+aperture_size = 50
+
+arguments = ScriptArgumentParser(description="Satellite fraction")
 
 catalogue_filenames = [
     f"{directory}/{catalogue}"
@@ -23,14 +27,12 @@ catalogue_filenames = [
 
 plt.style.use(arguments.stylesheet_location)
 
-aperture_size = 50
-
 # Create a plot using all galaxies, and one using only passive galaxies
 for passive_only in [True, False]:
 
     # Creating plot
     fig, ax = plt.subplots()
-    ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\odot]$")
+    ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\\odot]$")
     ax.set_ylabel("Satellite fraction")
     ax.set_xscale("log")
 
@@ -44,27 +46,37 @@ for passive_only in [True, False]:
         z = catalogue.units.redshift
 
         # Load quantities, ignoring objects below lower mass limit
-        star_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
-        mask = star_mass > mass_bounds[0] * unyt.Msun
-        star_mass = star_mass[mask]
+        stellar_mass = catalogue.get_quantity(
+            f"apertures.mass_star_{aperture_size}_kpc"
+        )
+        mask = stellar_mass.to("Msun").value > mass_bounds[0]
+        stellar_mass = stellar_mass[mask]
+        is_central = (catalogue.get_quantity("inputhalos.iscentral") == 1)[mask]
+
+        # Determine which galaxies are passive
         sfr = catalogue.get_quantity(f"apertures.sfr_gas_{aperture_size}_kpc").to(
             "Msun/yr"
         )[mask]
-        is_central = (catalogue.get_quantity("inputhalos.iscentral") == 1)[mask]
-        is_passive = (catalogue.get_quantity(f"derived_quantities.is_passive_{aperture_size}_kpc") == 1)[mask]
+        ssfr = sfr / stellar_mass
+        is_passive = ssfr < marginal_ssfr
 
         # Calculate satellite fraction
         values = -1 * np.ones(n_mass_bins)
         for i_bin in range(n_mass_bins):
-            mask = (mass_bins[i_bin] < star_mass) & (star_mass <= mass_bins[i_bin + 1])
+            mask = (mass_bins[i_bin] < stellar_mass) & (
+                stellar_mass <= mass_bins[i_bin + 1]
+            )
             if passive_only:
                 mask &= is_passive
 
             if np.sum(mask) >= min_points_bin:
-                values[i_bin] = (1 - np.sum(is_central[mask])) / np.sum(mask)
+                values[i_bin] = 1 - (np.sum(is_central[mask]) / np.sum(mask))
 
         ax.plot(
-            centers[values != -1], values[values != -1], "-", label=f"{name} ($z={z:.1f})$"
+            centers[values != -1],
+            values[values != -1],
+            "-",
+            label=f"{name} ($z={z:.1f})$",
         )
 
     ax.legend()
@@ -74,6 +86,4 @@ for passive_only in [True, False]:
     fig_name = "satellite_fraction"
     if passive_only:
         fig_name += "_passive"
-    fig.savefig(
-        f"{arguments.output_directory}/{fig_name}.png"
-    )
+    fig.savefig(f"{arguments.output_directory}/{fig_name}.png")

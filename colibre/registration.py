@@ -1215,6 +1215,7 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                     )
     return
 
+
 def register_magnesium_to_hydrogen(self, catalogue, aperture_sizes, mg_solar_abundance):
     # Loop over apertures
     for aperture_size in aperture_sizes:
@@ -1230,9 +1231,11 @@ def register_magnesium_to_hydrogen(self, catalogue, aperture_sizes, mg_solar_abu
                 f"lin_element_ratios_times_masses.lin_Mg_over_H_times_star_mass_{aperture_size}_kpc"
             )
         except AttributeError:
-            Mg_abundance = unyt.unyt_array(np.zeros(star_mass.shape[0]), "dimensionless")
+            Mg_abundance = unyt.unyt_array(
+                np.zeros(star_mass.shape[0]), "dimensionless"
+            )
             setattr(self, f"star_mg_abundance_avglin_{aperture_size}_kpc", Mg_abundance)
-            for floor in ['low', 'high']:
+            for floor in ["low", "high"]:
                 setattr(
                     self,
                     f"star_mg_abundance_avglog_{floor}_{aperture_size}_kpc",

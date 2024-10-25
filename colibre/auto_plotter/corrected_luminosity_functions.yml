@@ -1,0 +1,153 @@
+corrected_luminosity_r_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.corrected_magnitudes_r_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: r-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-free rest-frame luminosity function in the SDSS r-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: Luminosity Function (IMF-corrected)
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_r.hdf5
+    - filename: GalaxyLuminosityFunction/Loveday2012_r.hdf5
+
+corrected_luminosity_u_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.corrected_magnitudes_u_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: u-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-corrected rest-frame luminosity function in the SDSS u-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: Luminosity Function (IMF-corrected)
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_u.hdf5
+    - filename: GalaxyLuminosityFunction/Loveday2012_u.hdf5
+
+corrected_luminosity_z_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.corrected_magnitudes_z_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: z-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-corrected rest-frame luminosity function in the SDSS z-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: Luminosity Function (IMF-corrected)
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
+    - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
+  
+corrected_luminosity_k_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.corrected_magnitudes_k_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: k-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-free rest-frame luminosity function in the VISTA k-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: Luminosity Function (IMF-corrected)
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
+    - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
+
+corrected_luminosity_fuv_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.corrected_magnitudes_fuv_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: FUV-band Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-free luminosity function in the GALEX FUV-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    section: Luminosity Function (IMF-corrected)
+  observational_data:
+    # - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
+    # - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
+
+corrected_luminosity_w_dust_r_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.corrected_magnitudes_with_dust_r_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: r-band Dust Corrected Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-corrected rest-frame luminosity function in the SDSS r-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex. Dust attenuation is based on the Trayford et al. (2015) galaxy-independent model.
+    section: Luminosity Function (IMF-corrected)
+  observational_data:
+    - filename: GalaxyLuminosityFunction/Driver2012_r.hdf5
+    - filename: GalaxyLuminosityFunction/Loveday2012_r.hdf5
+
+corrected_luminosity_w_dust_fuv_function_50:
+  type: "luminosityfunction"
+  legend_loc: "lower left"
+  number_of_bins: 25
+  x:
+    quantity: "derived_quantities.corrected_magnitudes_with_dust_fuv_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -25
+    end: -13.5
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 0.316 # (1e-0.5)
+  metadata:
+    title: FUV-band Dust Corrected Luminosity Function (50 kpc aperture)
+    caption: 50 kpc aperture dust-free luminosity function in the GALEX FUV-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex. Dust attenuation is based on the Trayford et al. (2015) galaxy-independent model.
+    section: Luminosity Function (IMF-corrected)
+  observational_data:
+    # - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
+    # - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5

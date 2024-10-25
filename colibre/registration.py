@@ -233,27 +233,44 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
 
     return
 
-def register_vimf_star_magnitudes(self, adjusted_catalogue, aperture_sizes):
+def register_corrected_star_magnitudes(self, catalogue, aperture_sizes):
 
-    bands = ["r", "z", "FUV", "FUV_ENE", "FUV_NNE"]
+    bands = ["r", "u", "z", "k", "FUV"]
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
         for band in bands:
             try:
 
-                L_AB = adjusted_catalogue.get_quantity(
-                    f"stellar_luminosities.{band}_luminosity_{aperture_size}_kpc"
+                L_AB = catalogue.get_quantity(
+                    f"corrected_stellar_luminosities.{band}_luminosity_{aperture_size}_kpc"
                 )
                 m_AB = np.copy(L_AB)
                 mask = L_AB > 0.0
                 m_AB[mask] = -2.5 * np.log10(m_AB[mask])
                 m_AB = unyt.unyt_array(m_AB, units="dimensionless")
                 m_AB.name = f"{band}-band AB magnitudes ({aperture_size} kpc)"
-                setattr(self, f"vimf_magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
+                setattr(self, f"corrected_magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
 
             except AttributeError:
                 pass
+
+    return
+
+def register_chabrier_masses(self, catalogue, aperture_sizes):
+
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+        try:
+            m_chab = catalogue.get_quantity(
+                f"masses.chabrier_stellar_mass_{aperture_size}_kpc"
+            )
+            m_chab = unyt.unyt_array(m_chab, units="Msun")
+            m_chab.name = f"Chabrier-IMF inferred stellar mass ({aperture_size} kpc)"
+            setattr(self, f"chabrier_stellar_masses_{aperture_size}_kpc", m_chab)
+
+        except AttributeError:
+            pass
 
     return
 
@@ -1825,3 +1842,5 @@ register_dust(
     twelve_plus_log_OH_solar,
 )
 register_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)
+
+register_corrected_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)

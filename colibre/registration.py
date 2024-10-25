@@ -235,7 +235,7 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
 
 def register_corrected_star_magnitudes(self, catalogue, aperture_sizes):
 
-    bands = ["r", "u", "z", "k", "FUV"]
+    bands = ["r", "u", "z", "K", "FUV"]
 
     # Loop over apertures
     for aperture_size in aperture_sizes:
@@ -263,7 +263,7 @@ def register_chabrier_masses(self, catalogue, aperture_sizes):
     for aperture_size in aperture_sizes:
         try:
             m_chab = catalogue.get_quantity(
-                f"masses.chabrier_stellar_mass_{aperture_size}_kpc"
+                f"masses.chabrier_stellar_masses_{aperture_size}_kpc"
             )
             m_chab = unyt.unyt_array(m_chab, units="Msun")
             m_chab.name = f"Chabrier-IMF inferred stellar mass ({aperture_size} kpc)"
@@ -1844,3 +1844,5 @@ register_dust(
 register_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)
 
 register_corrected_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)
+
+register_chabrier_masses(self, catalogue, aperture_sizes_30_50_100_kpc)

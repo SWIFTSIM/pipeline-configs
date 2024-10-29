@@ -14,13 +14,13 @@ corrected_stellar_mass_function_30:
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
     caption: 30 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with a fixed bin-width of 0.2 dex.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
@@ -45,13 +45,13 @@ adaptive_corrected_stellar_mass_function_30:
   metadata:
     title: Stellar Mass Function (30 kpc aperture, adaptive)
     caption: 30 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with an adaptive bin-width.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
@@ -79,13 +79,13 @@ adaptive_corrected_stellar_mass_function_active_only_30:
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
     caption: Only for active galaxies, using an adaptive bin width.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
     - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
@@ -112,14 +112,14 @@ adaptive_corrected_stellar_mass_function_passive_only_30:
   metadata:
     title: Stellar Mass Function (30 kpc aperture)
     caption: Only for passive galaxies, using an adaptive bin width.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
     show_on_webpage: false
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_passive.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
     - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
@@ -143,12 +143,12 @@ corrected_stellar_mass_function_50:
   metadata:
     title: Stellar Mass Function (50 kpc aperture)
     caption: 50 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with a fixed bin-width of 0.2 dex.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
@@ -173,7 +173,7 @@ corrected_stellar_mass_function_50_calibration:
   metadata:
     title: Stellar Mass Function (50 kpc aperture)
     caption: 50 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with a fixed bin-width of 0.2 dex. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
@@ -195,12 +195,12 @@ adaptive_corrected_stellar_mass_function_50:
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive)
     caption: 50 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with an adaptive bin-width.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
@@ -225,7 +225,7 @@ adaptive_corrected_stellar_mass_function_50_calibration:
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive)
     caption: 50 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with an adaptive bin-width. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
@@ -248,12 +248,12 @@ adaptive_corrected_stellar_mass_function_50_box_size_correction:
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive, 25->50 Mpc box size correction)
     caption: 50 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with an adaptive bin-width. The data have been corrected to a box size of 50 Mpc, assuming the original simulation used a 25 Mpc box.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
@@ -279,7 +279,7 @@ adaptive_corrected_stellar_mass_function_50_box_size_correction_calibration:
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive, 25->50 Mpc box size correction)
     caption: 50 kpc aperture GSMF with Chabrier IMF inferred masses, showing all galaxies with an adaptive bin-width. The data have been corrected to a box size of 50 Mpc, assuming the original simulation used a 25 Mpc box. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/Driver2022.hdf5
@@ -305,13 +305,13 @@ adaptive_corrected_stellar_mass_function_passive_only_50:
   metadata:
     title: Stellar Mass Function (50 kpc aperture)
     caption: Only for passive galaxies, using an adaptive bin width.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/Behroozi2019_passive.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
@@ -338,12 +338,12 @@ adaptive_corrected_stellar_mass_function_active_only_50:
   metadata:
     title: Stellar Mass Function (50 kpc aperture)
     caption: Only for active galaxies, using an adaptive bin width.
-    section: Stellar Mass Function (IMF-corrected)
+    section: vIMF Stellar Mass Function
   observational_data:
     - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
     - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
     - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+    # - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
     - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
     - filename: GalaxyStellarMassFunction/FIREbox.hdf5
     - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5

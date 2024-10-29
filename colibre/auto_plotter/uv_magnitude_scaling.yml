@@ -1,0 +1,93 @@
+uv_magnitude_stellar_mass_all_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    log: true
+    units: Solar_Mass
+    start: 1e4
+    end: 1e12
+  y:
+    quantity: "derived_quantities.corrected_magnitudes_FUV_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -10.5
+    end: -25
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: FUV Magnitude - Stellar Mass Relation
+    caption: 50 kpc aperture dust-free GALEX FUV-band magnitude vs stellar mass. Magnitudes have been corrected for the chosen IMF using FSPS. Includes all haloes, including subhaloes.
+    section: vIMF Diagnostic Plots
+
+# uv_magnitude_with_dust_stellar_mass_all_50:
+#   type: "scatter"
+#   legend_loc: "upper left"
+#   x:
+#     quantity: "apertures.mass_star_50_kpc"
+#     log: false
+#     units: Solar_Mass
+#     start: 1e4
+#     end: 1e12
+#   y:
+#     quantity: "derived_quantities.corrected_magnitudes_w_dust_FUV_band_50_kpc"
+#     log: false
+#     units: "dimensionless"
+#     start: -10.5
+#     end: -25
+#   median:
+#     plot: true
+#     log: true
+#     adaptive: true
+#     number_of_bins: 25
+#     start:
+#       value: 1e4
+#       units: Solar_Mass
+#     end:
+#       value: 1e12
+#       units: Solar_Mass
+#   metadata:
+#     title: FUV Magnitude - Stellar Mass Relation (Dust Attenuated)
+#     caption: 50 kpc aperture dust-attenuated GALEX FUV-band magnitude vs stellar mass. Magnitudes have been corrected for the chosen IMF using FSPS. Includes all haloes, including subhaloes.
+#     section: vIMF Diagnostic Plots
+
+uv_magnitude_halo_mass_all_50:
+  type: "scatter"
+  select_structure_type: 10
+  comment: "Centrals only"
+  legend_loc: "upper left"
+  x:
+    quantity: "masses.mass_200crit"
+    units: Solar_Mass
+    start: 1e8
+    end: 1e15
+  y:
+    quantity: "derived_quantities.corrected_magnitudes_FUV_band_50_kpc"
+    log: false
+    units: "dimensionless"
+    start: -10.5
+    end: -25
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 25
+    start:
+      value: 1e4
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: FUV Magnitude - Halo Mass Relation
+    caption: 50 kpc aperture dust-free GALEX FUV-band magnitude vs $M_{200,crit}$ halo mass. Magnitudes have been corrected for the chosen IMF using FSPS. Centrals only.
+    section: vIMF Diagnostic Plots

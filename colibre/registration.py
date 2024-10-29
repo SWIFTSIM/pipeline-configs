@@ -233,29 +233,35 @@ def register_star_magnitudes(self, catalogue, aperture_sizes):
 
     return
 
-def register_corrected_star_magnitudes(self, catalogue, aperture_sizes):
+def register_corrected_star_magnitudes(self, catalogue, aperture_sizes, add_dust = False):
 
     bands = ["r", "u", "z", "K", "FUV"]
 
+    if add_dust == True:
+        dust = "w_dust"
+    else:
+        dust = ""
+        
     # Loop over apertures
     for aperture_size in aperture_sizes:
         for band in bands:
             try:
 
                 L_AB = catalogue.get_quantity(
-                    f"corrected_stellar_luminosities.{band}_luminosity_{aperture_size}_kpc"
+                    f"corrected_stellar_luminosities{dust}.{band}_luminosity_{aperture_size}_kpc"
                 )
                 m_AB = np.copy(L_AB)
                 mask = L_AB > 0.0
                 m_AB[mask] = -2.5 * np.log10(m_AB[mask])
                 m_AB = unyt.unyt_array(m_AB, units="dimensionless")
                 m_AB.name = f"{band}-band AB magnitudes ({aperture_size} kpc)"
-                setattr(self, f"corrected_magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
+                setattr(self, f"corrected_magnitudes{dust}_{band}_band_{aperture_size}_kpc", m_AB)
 
             except AttributeError:
                 pass
 
     return
+
 
 def register_chabrier_masses(self, catalogue, aperture_sizes):
 
@@ -1844,5 +1850,7 @@ register_dust(
 register_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)
 
 register_corrected_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)
+
+# register_corrected_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc, add_dust = False)
 
 register_chabrier_masses(self, catalogue, aperture_sizes_30_50_100_kpc)

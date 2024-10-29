@@ -12,7 +12,7 @@ from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 hmin_bounds = [1e-5, 1e3]  # in ckpc
-redshift_bounds = [-1.5, 12]  # dimensionless
+redshift_bounds = [-1.5, 16]  # dimensionless
 bins = 128
 
 

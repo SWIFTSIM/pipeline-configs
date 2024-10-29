@@ -11,7 +11,7 @@ from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 metal_mass_fraction_bounds = [1e-4, 0.5]  # dimensionless
-redshift_bounds = [-1.5, 12]  # dimensionless
+redshift_bounds = [-1.5, 16]  # dimensionless
 bins = 128
 
 

@@ -12,7 +12,7 @@ from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 density_bounds = [0.01, 10 ** 7.0]  # in nh/cm^3
-redshift_bounds = [-1.5, 12]  # dimensionless
+redshift_bounds = [-1.5, 16]  # dimensionless
 bins = 128
 
 

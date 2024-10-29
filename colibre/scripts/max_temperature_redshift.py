@@ -10,7 +10,7 @@ from matplotlib.colors import LogNorm
 
 # Set the limits of the figure.
 max_temperature_bounds = [1e5, 1e12]  # in K
-redshift_bounds = [-1.5, 12]  # dimensionless
+redshift_bounds = [-1.5, 16]  # dimensionless
 bins = 128
 
 

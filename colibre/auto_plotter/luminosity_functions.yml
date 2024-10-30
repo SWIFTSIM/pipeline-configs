@@ -107,6 +107,7 @@ luminosity_z_function_50:
   observational_data:
     - filename: GalaxyLuminosityFunction/Driver2012_z.hdf5
     - filename: GalaxyLuminosityFunction/Loveday2012_z.hdf5
+    - filename: GalaxyLuminosityFunction/Stefanon2017_z.hdf5
 
 luminosity_Y_function_50:
   type: "luminosityfunction"

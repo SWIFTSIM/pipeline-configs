@@ -76,7 +76,12 @@ energy_fraction_centers = 0.5 * (energy_fraction_bins[1:] + energy_fraction_bins
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+z = data[0].metadata.z
+
+if z < 5:
+    ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+else:
+    ax_dict = {"$z < 7$": axes[0], "$7 < z < 10$": axes[1], "$z > 10$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.text(0.025, 1.0 - 0.025 * 3, label, transform=ax.transAxes, ha="left", va="top")
@@ -119,13 +124,22 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
 
     # Segment birth pressures into redshift bins
-    energy_fraction_by_redshift = {
-        "$z < 1$": energy_fractions[birth_redshifts < 1],
-        "$1 < z < 3$": energy_fractions[
-            np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
-        ],
-        "$z > 3$": energy_fractions[birth_redshifts > 3],
-    }
+    if z < 5:
+        energy_fraction_by_redshift = {
+            "$z < 1$": energy_fractions[birth_redshifts < 1],
+            "$1 < z < 3$": energy_fractions[
+                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            ],
+            "$z > 3$": energy_fractions[birth_redshifts > 3],
+        }
+    else:
+        energy_fraction_by_redshift = {
+            "$z < 7$": energy_fractions[birth_redshifts < 7],
+            "$7 < z < 10$": energy_fractions[
+                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            ],
+            "$z > 10$": energy_fractions[birth_redshifts > 10],
+        }
 
     # Total number of stars formed
     Num_of_stars_total = len(birth_redshifts)

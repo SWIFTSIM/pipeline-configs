@@ -44,7 +44,12 @@ birth_velocity_dispersion_centers = 0.5 * (
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+z = data[0].metadata.z
+
+if z < 5:
+    ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+else:
+    ax_dict = {"$z < 7$": axes[0], "$7 < z < 10$": axes[1], "$z > 10$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.loglog()
@@ -58,13 +63,22 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     birth_redshifts = 1 / snapshot.stars.birth_scale_factors.value - 1
 
     # Segment birth velocity dispersions into redshift bins
-    birth_velocity_dispersion_by_redshift = {
-        "$z < 1$": birth_velocity_dispersions[birth_redshifts < 1],
-        "$1 < z < 3$": birth_velocity_dispersions[
-            np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
-        ],
-        "$z > 3$": birth_velocity_dispersions[birth_redshifts > 3],
-    }
+    if z < 5:
+        birth_velocity_dispersion_by_redshift = {
+            "$z < 1$": birth_velocity_dispersions[birth_redshifts < 1],
+            "$1 < z < 3$": birth_velocity_dispersions[
+                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            ],
+            "$z > 3$": birth_velocity_dispersions[birth_redshifts > 3],
+        }
+    else:
+        birth_velocity_dispersion_by_redshift = {
+            "$z < 7$": birth_velocity_dispersions[birth_redshifts < 7],
+            "$7 < z < 10$": birth_velocity_dispersions[
+                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            ],
+            "$z > 10$": birth_velocity_dispersions[birth_redshifts > 10],
+        }
 
     # Total number of stars formed
     Num_of_stars_total = len(birth_redshifts)

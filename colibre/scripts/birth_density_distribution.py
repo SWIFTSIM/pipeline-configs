@@ -99,7 +99,12 @@ birth_density_centers = 0.5 * (birth_density_bins[1:] + birth_density_bins[:-1])
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+z = data[0].metadata.z
+
+if z < 5:
+    ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+else:
+    ax_dict = {"$z < 7$": axes[0], "$7 < z < 10$": axes[1], "$z > 10$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.loglog()
@@ -111,13 +116,22 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     birth_redshifts = 1 / snapshot.stars.birth_scale_factors.value - 1
 
     # Segment birth densities into redshift bins
-    birth_densities_by_redshift = {
-        "$z < 1$": birth_densities[birth_redshifts < 1],
-        "$1 < z < 3$": birth_densities[
-            np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
-        ],
-        "$z > 3$": birth_densities[birth_redshifts > 3],
-    }
+    if z < 5:
+        birth_density_by_redshift = {
+            "$z < 1$": birth_densities[birth_redshifts < 1],
+            "$1 < z < 3$": birth_densities[
+                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            ],
+            "$z > 3$": birth_densities[birth_redshifts > 3],
+        }
+    else:
+        birth_density_by_redshift = {
+            "$z < 7$": birth_densities[birth_redshifts < 7],
+            "$7 < z < 10$": birth_densities[
+                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            ],
+            "$z > 10$": birth_densities[birth_redshifts > 10],
+        }
 
     # Compute the critical density from DV&S201
     try:
@@ -160,7 +174,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     Num_of_stars_total = len(birth_redshifts)
 
     for redshift, ax in ax_dict.items():
-        data = birth_densities_by_redshift[redshift]
+        data = birth_density_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=birth_density_bins)
         y_points = H / log_birth_density_bin_width / Num_of_stars_total

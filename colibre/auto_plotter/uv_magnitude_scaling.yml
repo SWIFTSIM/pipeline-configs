@@ -62,11 +62,12 @@ uv_magnitude_stellar_mass_all_50:
 
 uv_magnitude_halo_mass_all_50:
   type: "scatter"
-  select_structure_type: 10
-  comment: "Centrals only"
+  # select_structure_type: 10
+  # comment: "Centrals only"
   legend_loc: "upper left"
   x:
     quantity: "masses.mass_200crit"
+    log: true
     units: Solar_Mass
     start: 1e8
     end: 1e15
@@ -80,14 +81,17 @@ uv_magnitude_halo_mass_all_50:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 40
     start:
-      value: 1e4
+      value: 1e8
       units: Solar_Mass
     end:
-      value: 1e12
+      value: 1e15
       units: Solar_Mass
+    lower:
+      value: 1.e-10
+      units: "dimensionless"
   metadata:
     title: FUV Magnitude - Halo Mass Relation
-    caption: 50 kpc aperture dust-free GALEX FUV-band magnitude vs $M_{200,crit}$ halo mass. Magnitudes have been corrected for the chosen IMF using FSPS. Centrals only.
+    caption: 50 kpc aperture dust-free GALEX FUV-band magnitude vs $M_{200,crit}$ halo mass. Magnitudes have been corrected for the chosen IMF using FSPS. Includes all haloes, including subhaloes.
     section: vIMF Diagnostic Plots

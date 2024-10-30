@@ -100,7 +100,12 @@ AGN_density_centers = 0.5 * (AGN_density_bins[1:] + AGN_density_bins[:-1])
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+z = data[0].metadata.z
+
+if z < 5:
+    ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+else:
+    ax_dict = {"$z < 7$": axes[0], "$7 < z < 10$": axes[1], "$z > 10$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.loglog()
@@ -132,21 +137,38 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     gas_AGN_redshifts = gas_AGN_redshifts[gas_AGN_heated]
 
     # Segment AGN densities into redshift bins
-    stars_AGN_densities_by_redshift = {
-        "$z < 1$": stars_AGN_densities[stars_AGN_redshifts < 1],
-        "$1 < z < 3$": stars_AGN_densities[
-            np.logical_and(stars_AGN_redshifts > 1, stars_AGN_redshifts < 3)
-        ],
-        "$z > 3$": stars_AGN_densities[stars_AGN_redshifts > 3],
-    }
+    if z < 5:
+        stars_AGN_densities_by_redshift = {
+            "$z < 1$": stars_AGN_densities[birth_redshifts < 1],
+            "$1 < z < 3$": stars_AGN_densities[
+                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            ],
+            "$z > 3$": stars_AGN_densities[birth_redshifts > 3],
+        }
 
-    gas_AGN_densities_by_redshift = {
-        "$z < 1$": gas_AGN_densities[gas_AGN_redshifts < 1],
-        "$1 < z < 3$": gas_AGN_densities[
-            np.logical_and(gas_AGN_redshifts > 1, gas_AGN_redshifts < 3)
-        ],
-        "$z > 3$": gas_AGN_densities[gas_AGN_redshifts > 3],
-    }
+        gas_AGN_densities_by_redshift = {
+            "$z < 1$": gas_AGN_densities[birth_redshifts < 1],
+            "$1 < z < 3$": gas_AGN_densities[
+                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            ],
+            "$z > 3$": gas_AGN_densities[birth_redshifts > 3],
+        }
+    else:
+        stars_AGN_densities_by_redshift = {
+            "$z < 7$": stars_AGN_densities[birth_redshifts < 7],
+            "$7 < z < 10$": stars_AGN_densities[
+                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            ],
+            "$z > 10$": stars_AGN_densities[birth_redshifts > 10],
+        }
+
+        gas_AGN_densities_by_redshift = {
+            "$z < 7$": gas_AGN_densities[birth_redshifts < 7],
+            "$7 < z < 10$": gas_AGN_densities[
+                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            ],
+            "$z > 10$": gas_AGN_densities[birth_redshifts > 10],
+        }
 
     # Compute the critical density from DV&S2012
     AGN_heating_temperature = float(

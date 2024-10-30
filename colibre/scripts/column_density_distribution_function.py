@@ -208,9 +208,7 @@ def plot_cddf(
 
     for i, snapshot_filename in enumerate(metadata):
         dirname = simulation_directories[i]
-        with open(
-            f"{dirname}/data_cddf_{species}.yml", "w"
-        ) as handle:
+        with open(f"{dirname}/data_cddf_{species}.yml", "w") as handle:
             yaml.safe_dump(metadata[snapshot_filename], handle)
 
 

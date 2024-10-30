@@ -39,12 +39,37 @@ def energy_fraction(
     f_E = fmin + (fmax - fmin) / (1.0 + (pressure.value / pivot_pressure) ** slope)
     return unyt.unyt_array(f_E, "dimensionless")
 
+def variable_slope(
+    density: unyt.unyt_array,
+    alpha_min: float,
+    alpha_max: float,
+    sigma: float,
+    pivot_density: float,
+) -> unyt.unyt_array:
+    """
+    Computes the IMF high mass slope value at a given density.
+
+    Parameters:
+    density (unyt.unyt_array): The stellar birth density.
+    alpha_min (float): The minimum slope value.
+    alpha_max (float): The maximum slope value.
+    sigma (float): The dispersion parameter.
+    pivot_density (float): The pivot density.
+
+    Returns:
+    unyt.unyt_array: The computed slope value as a dimensionless unyt array.
+    """
+
+    alpha = (alpha_min - alpha_max) / (1.0 + np.exp(sigma * np.log10( density.value / pivot_density )) ) + alpha_max
+    return unyt.unyt_array(alpha, "dimensionless")
+
 def imf_func(
         mass: float,
         imf_type: str,
         slope_low: float,
-        slope_high: float,
-        mass_weighted: bool):
+        slope_high: unyt.unyt_array,
+        mass_weighted: bool,
+) -> unyt.unyt_array:
     """
     Computes the (unnormalised) IMF value at a given star mass.
 
@@ -82,14 +107,16 @@ def imf_func(
 def N_cc_func(
         imf_type: str,
         slope_low: float,
-        slope_high: float):
+        slope_high: unyt.unyt_array,
+) -> unyt.unyt_array:
     """
-    Computes the number of core-collapse SNe for given IMF slope values using imf_func
+    Computes the number of core-collapse SNe for given IMF slope values using imf_func. Only set up for top heavy variations, 
+    assumes a low mass slope of -1.3.
 
     Parameters:
-    imf_type (str): specifies if IMF variations are bottom-heavy or top-heavy or the IMF is universal (Chabrier etc.)
-    slope_low (float): Minimum IMF slope value
-    slope_high (float): Maximum IMF slope value
+    imf_type: Specifies type of MW-like IMF or where IMF varies (LoM for bottom-heavy variations, HiM for top-heavy)
+    slope_low (float): Low mass (<0.5 Msolar) IMF slope
+    slope_high (float): High mass (>0.5 Msolar) IMF slope
 
     Returns:
     float: Number of core-collapse SNe events for a stellar population of initial mass 1 Msolar
@@ -99,11 +126,10 @@ def N_cc_func(
     cc_threshold = 8 # minimum star mass [Msolar] for core-collapse SNe
 
     N_cc = quad(imf_func,cc_threshold,imf_upper_limit,args=(imf_type,slope_low,slope_high,False))[0]
-    normalise_vimf = quad(imf_func,imf_lower_limit,imf_upper_limit,args=(imf_type,slope_low,slope_high,True))[0]
-    N_cc /= normalise_vimf
+    normalise_imf = quad(imf_func,imf_lower_limit,imf_upper_limit,args=(imf_type,slope_low,slope_high,True))[0]
+    N_cc /= normalise_imf
 
     return N_cc
-
 
 
 def get_snapshot_param_float(snapshot, param_name: str) -> float:
@@ -132,7 +158,7 @@ data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 128
 
 energy_fraction_bins = unyt.unyt_array(
-    np.linspace(0, 5.0, number_of_bins), units="dimensionless"
+    np.linspace(0, 10.0, number_of_bins), units="dimensionless"
 )
 energy_fraction_bin_width = (
     energy_fraction_bins[1].value - energy_fraction_bins[0].value
@@ -144,7 +170,12 @@ energy_fraction_centers = 0.5 * (energy_fraction_bins[1:] + energy_fraction_bins
 fig, axes = plt.subplots(3, 1, sharex=True, sharey=True)
 axes = axes.flat
 
-ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+z = data[0].metadata.z
+
+if z < 5:
+    ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
+else:
+    ax_dict = {"$z < 7$": axes[0], "$7 < z < 10$": axes[1], "$z > 10$": axes[2]}
 
 for label, ax in ax_dict.items():
     ax.text(0.025, 1.0 - 0.025 * 3, label, transform=ax.transAxes, ha="left", va="top")
@@ -157,7 +188,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     birth_redshifts = 1 / snapshot.stars.birth_scale_factors.value - 1
 
     try:
-        # Extract feedback parameters from snapshot metadata
+        # Extract SNII feedback parameters from snapshot metadata
         fmin = get_snapshot_param_float(
             snapshot, "COLIBREFeedback:SNII_energy_fraction_min"
         )
@@ -180,12 +211,6 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             sigma=sigma,
         )
 
-        # Compute Ncc per particle, need to compute slope values per particle first
-
-
-        # effective_energy_fractions = N_cc/ N_cc [Chabrier] * energy_fractions
-
-
     except KeyError as e:
         print(e)
         # Default to -1 if any parameter is missing
@@ -193,27 +218,83 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             -np.ones_like(birth_pressures.value), "dimensionless"
         )
 
+    try:
+
+        # Extract IMF parameters from snapshot metadata
+        alpha_min = get_snapshot_param_float(
+            snapshot, "COLIBREFeedback:IMF_HighMass_slope_minimum"
+        )
+        alpha_max = get_snapshot_param_float(
+            snapshot, "COLIBREFeedback:IMF_HighMass_slope_maximum"
+        )
+        sigma = get_snapshot_param_float(
+            snapshot, "COLIBREFeedback:IMF_sigmoid_inverse_width"
+        )
+        pivot_density = get_snapshot_param_float(
+            snapshot, "COLIBREFeedback:IMF_sigmoid_pivot_CGS"
+        )
+
+        # Compute slope values
+        slope_values = variable_slope(
+            density=birth_densities,
+            alpha_min=alpha_min,
+            alpha_max=alpha_max,
+            sigma=sigma,
+            pivot_density=pivot_density,
+        )
+
+        # Compute Ncc value for a Chabrier IMF
+        Ncc_Chabrier = N_cc_func(
+            imf_type = 'Chabrier',
+            slope_low = 0,
+            slope_high = 0,
+        )
+
+        # Compute Ncc value per particle
+        Ncc_values = N_cc_func(
+            imf_type = 'HiM',
+            slope_low = -1.3,
+            slope_high = slope_values,
+        )
+
+        Ncc_values /= Ncc_Chabrier
+
+    except KeyError as e:
+        print(e)
+        Ncc_values = unyt.unyt_array(
+            np.ones_like(birth_pressures.value), "dimensionless"
+        )
+
+    effective_energy_fractions = energy_fractions * Ncc_values
+
+
     # Segment birth pressures into redshift bins
-    energy_fraction_by_redshift = {
-        "$z < 5$": energy_fractions[birth_redshifts < 5],
-        "$5 < z < 7$": energy_fractions[
-            np.logical_and(birth_redshifts > 5, birth_redshifts < 7)
-        ],
-        "$7 < z < 10$": energy_fractions[
-            np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
-        ],
-        "$z > 10$": energy_fractions[birth_redshifts > 10],
-    }
+    if z < 5:
+        effective_energy_fraction_by_redshift = {
+            "$z < 1$": effective_energy_fractions[birth_redshifts < 1],
+            "$1 < z < 3$": effective_energy_fractions[
+                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            ],
+            "$z > 3$": effective_energy_fractions[birth_redshifts > 3],
+        }
+    else:
+        effective_energy_fraction_by_redshift = {
+            "$z < 7$": effective_energy_fractions[birth_redshifts < 7],
+            "$7 < z < 10$": effective_energy_fractions[
+                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            ],
+            "$z > 10$": effective_energy_fractions[birth_redshifts > 10],
+        }
 
 
     # Total number of stars formed
     Num_of_stars_total = len(birth_redshifts)
 
     # Average energy fraction (computed among all star particles)
-    average_energy_fraction = np.mean(energy_fractions)
+    average_effective_energy_fraction = np.mean(effective_energy_fractions)
 
     for redshift, ax in ax_dict.items():
-        data = energy_fraction_by_redshift[redshift]
+        data = effective_energy_fraction_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=energy_fraction_bins)
         y_points = H / energy_fraction_bin_width / Num_of_stars_total
@@ -230,7 +311,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
 
         ax.axvline(
-            average_energy_fraction,
+            average_effective_energy_fraction,
             color=f"C{color}",
             linestyle="dotted",
             zorder=-10,
@@ -238,7 +319,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         )
 
 axes[0].legend(loc="upper right", markerfirst=False)
-axes[2].set_xlabel("Effective SNII Energy Fraction $f'_{\\rm E}$")
+axes[2].set_xlabel("Effective SNII Energy Fraction $f_{\\rm E'}$")
 axes[1].set_ylabel("$N_{\\rm bin}$ / d$f_{\\rm E}$ / $N_{\\rm total}$")
 
 fig.savefig(f"{arguments.output_directory}/effective_snii_energy_fraction_distribution.png")

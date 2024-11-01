@@ -79,35 +79,35 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     # Segment SNII kick velocities into redshift bins
     if z < 5:
         stars_SNII_v_kick_by_redshift = {
-            "$z < 1$": stars_SNII_v_kick[birth_redshifts < 1],
-            "$1 < z < 3$": stars_SNII_v_kick[
-                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            "$z < 1$": stars_SNII_v_kick_last[stars_SNII_redshifts < 1],
+            "$1 < z < 3$": stars_SNII_v_kick_last[
+                np.logical_and(stars_SNII_redshifts > 1, stars_SNII_redshifts < 3)
             ],
-            "$z > 3$": stars_SNII_v_kick[birth_redshifts > 3],
+            "$z > 3$": stars_SNII_v_kick_last[stars_SNII_redshifts > 3],
         }
 
         gas_SNII_v_kick_by_redshift = {
-            "$z < 1$": gas_SNII_v_kick[birth_redshifts < 1],
-            "$1 < z < 3$": gas_SNII_v_kick[
-                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+            "$z < 1$": gas_SNII_v_kick_last[gas_SNII_redshifts < 1],
+            "$1 < z < 3$": gas_SNII_v_kick_last[
+                np.logical_and(gas_SNII_redshifts > 1, gas_SNII_redshifts < 3)
             ],
-            "$z > 3$": gas_SNII_v_kick[birth_redshifts > 3],
+            "$z > 3$": gas_SNII_v_kick_last[gas_SNII_redshifts > 3],
         }
     else:
         stars_SNII_v_kick_by_redshift = {
-            "$z < 7$": stars_SNII_v_kick[birth_redshifts < 7],
-            "$7 < z < 10$": stars_SNII_v_kick[
-                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            "$z < 7$": stars_SNII_v_kick_last[stars_SNII_redshifts < 7],
+            "$7 < z < 10$": stars_SNII_v_kick_last[
+                np.logical_and(stars_SNII_redshifts > 7, stars_SNII_redshifts < 10)
             ],
-            "$z > 10$": stars_SNII_v_kick[birth_redshifts > 10],
+            "$z > 10$": stars_SNII_v_kick_last[stars_SNII_redshifts > 10],
         }
 
         gas_SNII_v_kick_by_redshift = {
-            "$z < 7$": gas_SNII_v_kick[birth_redshifts < 7],
-            "$7 < z < 10$": gas_SNII_v_kick[
-                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+            "$z < 7$": gas_SNII_v_kick_last[gas_SNII_redshifts < 7],
+            "$7 < z < 10$": gas_SNII_v_kick_last[
+                np.logical_and(gas_SNII_redshifts > 7, gas_SNII_redshifts < 10)
             ],
-            "$z > 10$": gas_SNII_v_kick[birth_redshifts > 10],
+            "$z > 10$": gas_SNII_v_kick_last[gas_SNII_redshifts > 10],
         }
 
     # Fetch target kick velocity

@@ -139,35 +139,35 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     # Segment AGN densities into redshift bins
     if z < 5:
         stars_AGN_densities_by_redshift = {
-            "$z < 1$": stars_AGN_densities[birth_redshifts < 1],
+            "$z < 1$": stars_AGN_densities[stars_AGN_redshifts < 1],
             "$1 < z < 3$": stars_AGN_densities[
-                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+                np.logical_and(stars_AGN_redshifts > 1, stars_AGN_redshifts < 3)
             ],
-            "$z > 3$": stars_AGN_densities[birth_redshifts > 3],
+            "$z > 3$": stars_AGN_densities[stars_AGN_redshifts > 3],
         }
 
         gas_AGN_densities_by_redshift = {
-            "$z < 1$": gas_AGN_densities[birth_redshifts < 1],
+            "$z < 1$": gas_AGN_densities[gas_AGN_redshifts < 1],
             "$1 < z < 3$": gas_AGN_densities[
-                np.logical_and(birth_redshifts > 1, birth_redshifts < 3)
+                np.logical_and(gas_AGN_redshifts > 1, gas_AGN_redshifts < 3)
             ],
-            "$z > 3$": gas_AGN_densities[birth_redshifts > 3],
+            "$z > 3$": gas_AGN_densities[gas_AGN_redshifts > 3],
         }
     else:
         stars_AGN_densities_by_redshift = {
-            "$z < 7$": stars_AGN_densities[birth_redshifts < 7],
+            "$z < 7$": stars_AGN_densities[stars_AGN_redshifts < 7],
             "$7 < z < 10$": stars_AGN_densities[
-                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+                np.logical_and(stars_AGN_redshifts > 7, stars_AGN_redshifts < 10)
             ],
-            "$z > 10$": stars_AGN_densities[birth_redshifts > 10],
+            "$z > 10$": stars_AGN_densities[stars_AGN_redshifts > 10],
         }
 
         gas_AGN_densities_by_redshift = {
-            "$z < 7$": gas_AGN_densities[birth_redshifts < 7],
+            "$z < 7$": gas_AGN_densities[gas_AGN_redshifts < 7],
             "$7 < z < 10$": gas_AGN_densities[
-                np.logical_and(birth_redshifts > 7, birth_redshifts < 10)
+                np.logical_and(gas_AGN_redshifts > 7, gas_AGN_redshifts < 10)
             ],
-            "$z > 10$": gas_AGN_densities[birth_redshifts > 10],
+            "$z > 10$": gas_AGN_densities[gas_AGN_redshifts > 10],
         }
 
     # Compute the critical density from DV&S2012

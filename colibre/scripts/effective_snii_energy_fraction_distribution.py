@@ -9,6 +9,7 @@ import unyt
 from unyt import mh
 
 from scipy.integrate import quad
+from scipy.interpolate import interp1d
 
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
@@ -107,8 +108,8 @@ def imf_func(
 def N_cc_func(
         imf_type: str,
         slope_low: float,
-        slope_high: unyt.unyt_array,
-) -> unyt.unyt_array:
+        slope_high: float,
+) -> float:
     """
     Computes the number of core-collapse SNe for given IMF slope values using imf_func. Only set up for top heavy variations, 
     assumes a low mass slope of -1.3.
@@ -250,12 +251,26 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             slope_high = 0,
         )
 
-        # Compute Ncc value per particle
-        Ncc_values = N_cc_func(
-            imf_type = 'HiM',
-            slope_low = -1.3,
-            slope_high = slope_values,
+        # Compute Ncc value for a sample of slope values
+        n_sample = 200
+        slope_values_sample = unyt.unyt_array(
+            np.linspace(alpha_max,alpha_min,n_sample), "dimensionless" # alpha_max < alpha_min
         )
+
+        Ncc_values_sample = unyt.unyt_array(
+            np.empty(n_sample), "dimensionless"
+        )
+
+        for i,slope_val in enumerate(slope_values_sample):
+            Ncc_values_sample[i] = N_cc_func(
+                imf_type = 'HiM',
+                slope_low = -1.3,
+                slope_high = slope_val
+            )
+
+        # Interpolate particle Ncc values
+        intrpl_Ncc = interp1d(slope_values_sample,Ncc_values_sample)
+        Ncc_values = intrpl_Ncc(slope_values)
 
         Ncc_values /= Ncc_Chabrier
 

@@ -113,39 +113,21 @@ for label, ax in ax_dict.items():
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    stars_AGN_densities = snapshot.stars.densities_at_last_agnevent.to(
-        "g/cm**3"
-    ) / mh.to("g")
-
-    # swift-colibre master branch as of Feb 26 2021
-    stars_AGN_redshifts = 1 / snapshot.stars.last_agnfeedback_scale_factors.value - 1
-
     gas_AGN_densities = snapshot.gas.densities_at_last_agnevent.to("g/cm**3") / mh.to(
         "g"
     )
 
     gas_AGN_redshifts = 1 / snapshot.gas.last_agnfeedback_scale_factors.value - 1
 
-    # Limit only to those gas/stellar particles that were in fact heated by AGN
-    stars_AGN_heated = stars_AGN_densities > 0.0
+    # Limit only to those gas particles that were in fact heated by AGN
     gas_AGN_heated = gas_AGN_densities > 0.0
 
     # Select only those parts that were heated by AGN in the past
-    stars_AGN_densities = stars_AGN_densities[stars_AGN_heated]
-    stars_AGN_redshifts = stars_AGN_redshifts[stars_AGN_heated]
     gas_AGN_densities = gas_AGN_densities[gas_AGN_heated]
     gas_AGN_redshifts = gas_AGN_redshifts[gas_AGN_heated]
 
     # Segment AGN densities into redshift bins
     if z < 5:
-        stars_AGN_densities_by_redshift = {
-            "$z < 1$": stars_AGN_densities[stars_AGN_redshifts < 1],
-            "$1 < z < 3$": stars_AGN_densities[
-                np.logical_and(stars_AGN_redshifts > 1, stars_AGN_redshifts < 3)
-            ],
-            "$z > 3$": stars_AGN_densities[stars_AGN_redshifts > 3],
-        }
-
         gas_AGN_densities_by_redshift = {
             "$z < 1$": gas_AGN_densities[gas_AGN_redshifts < 1],
             "$1 < z < 3$": gas_AGN_densities[
@@ -154,14 +136,6 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             "$z > 3$": gas_AGN_densities[gas_AGN_redshifts > 3],
         }
     else:
-        stars_AGN_densities_by_redshift = {
-            "$z < 7$": stars_AGN_densities[stars_AGN_redshifts < 7],
-            "$7 < z < 10$": stars_AGN_densities[
-                np.logical_and(stars_AGN_redshifts > 7, stars_AGN_redshifts < 10)
-            ],
-            "$z > 10$": stars_AGN_densities[stars_AGN_redshifts > 10],
-        }
-
         gas_AGN_densities_by_redshift = {
             "$z < 7$": gas_AGN_densities[gas_AGN_redshifts < 7],
             "$7 < z < 10$": gas_AGN_densities[
@@ -182,19 +156,11 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         T_K=AGN_heating_temperature, M_gas=M_gas.value, N_ngb=N_ngb_target, X_H=X_H
     )
 
-    # Total number of objects received AGN energy
-    Num_of_heated_parts_total = len(gas_AGN_redshifts) + len(stars_AGN_redshifts)
-
     for redshift, ax in ax_dict.items():
-        data = np.concatenate(
-            [
-                stars_AGN_densities_by_redshift[redshift],
-                gas_AGN_densities_by_redshift[redshift],
-            ]
-        )
+        data = gas_AGN_densities_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=AGN_density_bins)
-        y_points = H / log_AGN_density_bin_width / Num_of_heated_parts_total
+        y_points = H / log_AGN_density_bin_width / len(gas_AGN_redshifts)
 
         ax.plot(AGN_density_centers, y_points, label=name, color=f"C{color}")
         ax.axvline(

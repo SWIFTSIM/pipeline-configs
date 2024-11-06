@@ -157,6 +157,54 @@ stellar_mass_function_50:
     - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
     - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 
+stellar_mass_function_centrals_50:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 30
+  select_structure_type: 1
+  comment: "Centrals only"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e0
+  metadata:
+    title: Stellar Mass Function (50 kpc aperture, centrals only)
+    caption: 50 kpc aperture GSMF, showing central galaxies only, with a fixed bin-width of 0.2 dex.
+    section: Stellar Mass Function
+  observational_data:
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+
+stellar_mass_function_satellites_50:
+  type: "massfunction"
+  legend_loc: "lower left"
+  number_of_bins: 30
+  select_structure_type: 0
+  comment: "Satellites only"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    units: 1/Mpc**3
+    start: 1e-6
+    end: 1e0
+  metadata:
+    title: Stellar Mass Function (50 kpc aperture, satellites only)
+    caption: 50 kpc aperture GSMF, showing satellite galaxies only, with a fixed bin-width of 0.2 dex.
+    section: Stellar Mass Function
+  observational_data:
+    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+
 stellar_mass_function_50_calibration:
   type: "massfunction"
   legend_loc: "lower left"

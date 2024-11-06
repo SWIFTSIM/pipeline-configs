@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import unyt
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 from velociraptor import load
@@ -27,9 +28,9 @@ solar_fe_abundance = 2.82e-5
 
 # Creating plot
 fig, ax = plt.subplots()
-ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\odot]$")
+ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\\odot]$")
 ax.set_ylabel(
-    "Stellar [Fe/H]$_{\mathrm{passive}}$ - Stellar [Fe/H]$_{\mathrm{active}}$"
+    r"Stellar [Fe/H]$_{\mathrm{passive}}$ - Stellar [Fe/H]$_{\mathrm{active}}$"
 )
 ax.set_xscale("log")
 
@@ -41,7 +42,7 @@ for filename, name in zip(catalogue_filenames, arguments.name_list):
 
     # Load quantities, ignoring objects below mass bin
     star_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
-    mask = star_mass > mass_bounds[0] * star_mass.units
+    mask = star_mass > mass_bounds[0] * unyt.Msun
     star_mass = star_mass[mask]
     lin_Fe_over_H_times_star_mass = catalogue.get_quantity(
         f"lin_element_ratios_times_masses.lin_Fe_over_H_times_star_mass_{aperture_size}_kpc"
@@ -49,7 +50,7 @@ for filename, name in zip(catalogue_filenames, arguments.name_list):
     sfr = catalogue.get_quantity(f"apertures.sfr_gas_{aperture_size}_kpc").to(
         "Msun/yr"
     )[mask]
-    is_central = (catalogue.get_quantity("structure_type.structuretype") == 10)[mask]
+    is_central = (catalogue.get_quantity("structure_type.structuretype") == 1)[mask]
 
     # Convert to units used in observations
     Fe_over_H = lin_Fe_over_H_times_star_mass / star_mass

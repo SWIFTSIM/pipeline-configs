@@ -114,21 +114,6 @@ for label, ax in ax_dict.items():
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    stars_SNII_densities = snapshot.stars.densities_at_last_supernova_event.to(
-        "g/cm**3"
-    ) / mh.to("g")
-
-    # swift-colibre master branch as of Feb 26 2021
-    try:
-        stars_SNII_redshifts = (
-            1 / snapshot.stars.last_sniithermal_feedback_scale_factors.value - 1
-        )
-    # swift-colibre master prior to Feb 26 2021
-    except AttributeError:
-        stars_SNII_redshifts = (
-            1 / snapshot.stars.last_sniifeedback_scale_factors.value - 1
-        )
-
     gas_SNII_densities = snapshot.gas.densities_at_last_supernova_event.to(
         "g/cm**3"
     ) / mh.to("g")
@@ -137,16 +122,19 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         gas_SNII_redshifts = (
             1 / snapshot.gas.last_sniithermal_feedback_scale_factors.value - 1
         )
+        gas_SNIa_redshifts = (
+            1 / snapshot.gas.last_snia_thermal_feedback_scale_factors - 1
+        )
     except AttributeError:
         gas_SNII_redshifts = 1 / snapshot.gas.last_sniifeedback_scale_factors.value - 1
+        gas_SNIa_redshifts = 1 / snapshot.gas.last_sniafeedback_scale_factors.value - 1
 
     # Limit only to those gas/stellar particles that were in fact heated by SNII
-    stars_SNII_heated = stars_SNII_densities > 0.0
-    gas_SNII_heated = gas_SNII_densities > 0.0
+    gas_SNII_heated = (gas_SNII_redshifts >= 0.0) & (
+        gas_SNII_redshifts < gas_SNIa_redshifts
+    )
 
     # Select only those parts that were heated by SNII in the past
-    stars_SNII_densities = stars_SNII_densities[stars_SNII_heated]
-    stars_SNII_redshifts = stars_SNII_redshifts[stars_SNII_heated]
     gas_SNII_densities = gas_SNII_densities[gas_SNII_heated]
     gas_SNII_redshifts = gas_SNII_redshifts[gas_SNII_heated]
 
@@ -221,19 +209,11 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         # Default value
         n_crit_min, n_crit_max = -1.0, -1.0
 
-    # Total number of objects received SNII thermal energy
-    Num_of_heated_parts_total = len(gas_SNII_redshifts) + len(stars_SNII_redshifts)
-
     for redshift, ax in ax_dict.items():
-        data = np.concatenate(
-            [
-                stars_SNII_densities_by_redshift[redshift],
-                gas_SNII_densities_by_redshift[redshift],
-            ]
-        )
+        data = gas_SNII_densities_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=SNII_density_bins)
-        y_points = H / log_SNII_density_bin_width / Num_of_heated_parts_total
+        y_points = H / log_SNII_density_bin_width / len(gas_SNII_redshifts)
 
         ax.plot(SNII_density_centers, y_points, label=name, color=f"C{color}")
         ax.axvline(

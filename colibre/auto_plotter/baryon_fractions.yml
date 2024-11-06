@@ -1,6 +1,6 @@
 baryon_fraction_500:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -35,7 +35,7 @@ baryon_fraction_500:
 
 gas_fraction_500_no_bias:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -74,7 +74,7 @@ gas_fraction_500_no_bias:
 
 gas_fraction_500_with_bias:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -109,7 +109,7 @@ gas_fraction_500_with_bias:
 
 star_fraction_500:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -146,7 +146,7 @@ star_fraction_500:
 
 gas_mass_500:
   type: "scatter"
-  select_structure_type: 10
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:

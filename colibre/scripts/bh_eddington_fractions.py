@@ -70,9 +70,9 @@ def make_single_image(
 
     fig, ax = plt.subplots()
 
-    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\odot$]")
+    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\\odot$]")
     ax.set_ylabel(
-        "Black Hole Eddington Fraction $\dot{m}=\dot{M}_{\\rm BH}/\dot{M}_{\\rm Edd}$"
+        r"Black Hole Eddington Fraction $\dot{m}=\dot{M}_{\rm BH}/\dot{M}_{\rm Edd}$"
     )
     ax.set_xscale("log")
     ax.set_yscale("log")
@@ -106,7 +106,7 @@ def make_single_image(
         color="black",
         linestyle=":",
         linewidth=0.75,
-        label="$\dot{m}=0.01$",
+        label=r"$\dot{m}=0.01$",
     )
 
     ax.legend()

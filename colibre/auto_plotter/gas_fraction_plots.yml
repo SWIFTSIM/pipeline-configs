@@ -293,6 +293,43 @@ hi_frac_func_stellar_mass:
     - filename: GalaxyHIFractions/Lisenfeld2016_Data.hdf5
     - filename: GalaxyHIFractions/Gratier2010_Data.hdf5
     - filename: GalaxyHIFractions/FIREbox.hdf5
+    - filename: GalaxyHIFractions/Scholte2024_MassComplete.hdf5
+
+hi_frac_func_stellar_mass_active_only_50:
+  type: "scatter"
+  legend_loc: "lower left"
+  selection_mask: "derived_quantities.is_active_50_kpc"
+  comment: "Active only"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e12
+  y:
+    quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
+    units: "Solar_Mass / Solar_Mass"
+    start: 1e-4
+    end: 100
+  median:
+    plot: true
+    adaptive: true
+    log: true
+    number_of_bins: 35
+    start:
+      value: 1e5
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+    lower:
+      value: 1e-10
+      units: "Solar_Mass / Solar_Mass"
+  metadata:
+    title: Stellar Mass-HI Fraction (active galaxies)
+    section: Cold Gas Data Comparison
+    caption: Galaxy HI mass over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 50 kpc apertures. Active galaxies only.
+  observational_data:
+    - filename: GalaxyHIFractions/Scholte2024_SF.hdf5
 
 cold_gas_frac_func_ssfr:
   type: "scatter"

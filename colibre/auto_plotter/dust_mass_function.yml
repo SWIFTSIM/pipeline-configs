@@ -19,6 +19,7 @@ dust_mass_function:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
     - filename: GalaxyDustMassFunction/Beeston2018_z000p000.hdf5
+    - filename: GalaxyDustMassFunction/Traina2024.hdf5
 
 adaptive_dust_mass_function:
   type: "adaptivemassfunction"
@@ -41,6 +42,7 @@ adaptive_dust_mass_function:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
     - filename: GalaxyDustMassFunction/Beeston2018_z000p000.hdf5
+    - filename: GalaxyDustMassFunction/Traina2024.hdf5
 
 dust_mass_function_molecular:
   type: "massfunction"
@@ -63,6 +65,7 @@ dust_mass_function_molecular:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
     - filename: GalaxyDustMassFunction/Beeston2018_z000p000.hdf5
+    - filename: GalaxyDustMassFunction/Traina2024.hdf5
 
 dust_mass_function_neutral:
   type: "massfunction"
@@ -85,6 +88,7 @@ dust_mass_function_neutral:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
     - filename: GalaxyDustMassFunction/Beeston2018_z000p000.hdf5
+    - filename: GalaxyDustMassFunction/Traina2024.hdf5
 
 dust_mass_function_cold_dense:
   type: "massfunction"
@@ -107,4 +111,5 @@ dust_mass_function_cold_dense:
     - filename: GalaxyDustMassFunction/Pozzi2020_z000p100.hdf5
     - filename: GalaxyDustMassFunction/Pozzi2020_z001p800.hdf5
     - filename: GalaxyDustMassFunction/Beeston2018_z000p000.hdf5
+    - filename: GalaxyDustMassFunction/Traina2024.hdf5
 

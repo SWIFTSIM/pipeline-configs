@@ -1,0 +1,61 @@
+stellar_mass_m_weighted_ages_50:
+  type: "scatter"
+  legend_loc: "lower right"
+  y:
+    quantity: "stellar_age.tage_star_50kpc"
+    units: yr
+    start: 1e6
+    end: 3e9
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    adaptive: true
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - Mass Weighted Mean Stellar Age Relation (50 kpc aperture)"
+    section: vIMF Diagnostic Plots
+    caption: Mass-weighted median age of stars within the 50 kpc 3D aperture of each galaxy.
+  observational_data:
+    - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5
+
+stellar_mass_uv_weighted_ages_50:
+  type: "scatter"
+  legend_loc: "lower right"
+  y:
+    quantity: "stellar_age.tage_star_50kpc_uvweighted"
+    units: yr
+    start: 1e6
+    end: 3e9
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: solar_mass
+    start: 1e6
+    end: 1e12
+  median:
+    plot: true
+    log: true
+    number_of_bins: 25
+    adaptive: true
+    start:
+      value: 1e6
+      units: solar_mass
+    end:
+      value: 1e12
+      units: solar_mass
+  metadata:
+    title: "Stellar mass - UV Weighted Mean Stellar Age Relation (50 kpc aperture)"
+    section: vIMF Diagnostic Plots
+    caption: UV Luminosity-weighted median age of stars within the 50 kpc 3D aperture of each galaxy. Luminosity values are in the GALEX-FUV band and account for a variable IMF.
+  observational_data:
+    - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5

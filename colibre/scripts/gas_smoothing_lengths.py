@@ -31,8 +31,8 @@ def get_data(filename):
         float(
             data.metadata.gravity_scheme.get(
                 "Comoving baryon softening length (Plummer equivalent)  [internal units]",
-                0.0,
-            )
+                [0.0],
+            )[0]
         ),
         units=data.metadata.units.length,
     ).to("kpc")
@@ -42,8 +42,8 @@ def get_data(filename):
         float(
             data.metadata.gravity_scheme.get(
                 "Maximal physical baryon softening length (Plummer equivalent) [internal units]",
-                0.0,
-            )
+                [0.0],
+            )[0]
         ),
         units=data.metadata.units.length,
     ).to("kpc")

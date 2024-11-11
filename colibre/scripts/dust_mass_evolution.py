@@ -90,7 +90,7 @@ ax.set_xticklabels(redshift_labels)
 ax.tick_params(axis="x", which="minor", bottom=False)
 
 ax.set_xlim(1.02, 0.07)
-ax.set_ylim(1e4, 1.3e9)
+ax.set_ylim(1e3, 1.3e6)
 
 observation_legend = ax.legend(markerfirst=True, loc="lower left")
 

@@ -36,6 +36,7 @@ stellar_mass_v_dust_mass:
     - filename: GalaxyStellarMassDustMass/DaCunha2015_z004p000.hdf5
     - filename: GalaxyStellarMassDustMass/DaCunha2015_z005p000.hdf5
     - filename: GalaxyStellarMassDustMass/DaCunha2015_z006p000.hdf5
+    - filename: GalaxyStellarMassDustMass/Sommovigo2022.hdf5
 
 star_formation_rate_v_dust_mass:
   type: "scatter"

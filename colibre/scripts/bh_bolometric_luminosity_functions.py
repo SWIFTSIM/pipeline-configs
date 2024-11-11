@@ -49,7 +49,7 @@ def make_single_image(
         "AGN Bolometric Luminosity $L_{\\rm bol}$ $[{\\rm erg}{\\rm \\, s}^{-1}]$"
     )
     ax.set_ylabel(
-        "AGN Bol. Lum. Func. $\Phi_{\\rm bol}$ [${\\rm Mpc}^{-3}{\\rm dex}^{-1}$]"
+        "AGN Bol. Lum. Func. $\\Phi_{\\rm bol}$ [${\\rm Mpc}^{-3}{\\rm dex}^{-1}$]"
     )
     ax.set_xscale("log")
     ax.set_yscale("log")

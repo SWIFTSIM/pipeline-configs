@@ -42,6 +42,9 @@ twelve_plus_log_OH_solar = 8.69
 # Solar Fe abundance (from Wiersma et al 2009a)
 solar_fe_abundance = 2.82e-5
 
+# Solar Mg abundance (from Asplund et al 2009)
+solar_mg_abundance = 3.98e-5
+
 # Additional scatter in stellar mass (in dex)
 stellar_mass_scatter_amplitude = 0.3
 
@@ -438,12 +441,10 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
         )
 
         # Metal mass fractions of the gas
-
         try:
             linOH_abundance_times_mgas = catalogue.get_quantity(
-                f"lin_element_ratios_times_masses.lin_O_over_H_total_times_gas_mass_100_kpc"
+                f"lin_element_ratios_times_masses.lin_O_over_H_total_times_gas_mass_{aperture_size}_kpc"
             )
-
             logOH_abundance_times_mhi = catalogue.get_quantity(
                 f"log_element_ratios_times_masses.log_O_over_H_atomic_times_gas_mass_lowfloor_{aperture_size}_kpc"
             )
@@ -453,6 +454,25 @@ def register_dust(self, catalogue, aperture_sizes, Z_sun, twelve_plus_log_OH_sol
             logOH_abundance_times_cd = catalogue.get_quantity(
                 f"log_element_ratios_times_masses.log_O_over_H_times_gas_mass_lowfloor_{aperture_size}_kpc"
             )
+
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                linOH_abundance_times_mgas.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                linOH_abundance_times_mgas = linOH_abundance_times_mgas * colddense_mass
+            if logOH_abundance_times_mhi.units.dimensions != unyt.Msun.units.dimensions:
+                logOH_abundance_times_mhi = (
+                    np.log10(logOH_abundance_times_mhi) * atomic_mass
+                )
+            if logOH_abundance_times_mh2.units.dimensions != unyt.Msun.units.dimensions:
+                logOH_abundance_times_mh2 = (
+                    np.log10(logOH_abundance_times_mh2) * molecular_mass
+                )
+            if logOH_abundance_times_cd.units.dimensions != unyt.Msun.units.dimensions:
+                logOH_abundance_times_cd = (
+                    np.log10(logOH_abundance_times_cd) * colddense_mass
+                )
         except AttributeError:
             linOH_abundance_times_mgas = unyt.unyt_array(
                 np.zeros_like(metal_frac), units="Msun"
@@ -877,6 +897,14 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
             gas_cold_dense_mass = catalogue.get_quantity(
                 f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
             )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_N_over_O_times_gas_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_N_over_O_times_gas_mass = (
+                    log_N_over_O_times_gas_mass * gas_cold_dense_mass
+                )
 
             # Compute gas-mass weighted O over H
             log_N_over_O = unyt.unyt_array(
@@ -910,11 +938,18 @@ def register_nitrogen_to_oxygen(self, catalogue, aperture_sizes):
             log_N_over_O_times_gas_mass = catalogue.get_quantity(
                 f"log_element_ratios_times_masses.log_N_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc"
             )
-
             # Fetch gas mass in apertures
             gas_cold_dense_mass = catalogue.get_quantity(
                 f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
             )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_N_over_O_times_gas_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_N_over_O_times_gas_mass = (
+                    np.log10(log_N_over_O_times_gas_mass) * gas_cold_dense_mass
+                )
 
             # Compute gas-mass weighted N over O
             log_N_over_O = unyt.unyt_array(
@@ -953,11 +988,18 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
             log_C_over_O_times_gas_mass = catalogue.get_quantity(
                 f"lin_element_ratios_times_masses.lin_C_over_O{short_phase}_times_gas_mass_{aperture_size}_kpc"
             )
-
             # Fetch gas mass in apertures
             gas_cold_dense_mass = catalogue.get_quantity(
                 f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
             )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_C_over_O_times_gas_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_C_over_O_times_gas_mass = (
+                    log_C_over_O_times_gas_mass * gas_cold_dense_mass
+                )
 
             # Compute gas-mass weighted O over H
             log_C_over_O = unyt.unyt_array(
@@ -990,11 +1032,18 @@ def register_carbon_to_oxygen(self, catalogue, aperture_sizes):
             log_C_over_O_times_gas_mass = catalogue.get_quantity(
                 f"log_element_ratios_times_masses.log_C_over_O_times_gas_mass_{floor}floor_{aperture_size}_kpc"
             )
-
             # Fetch gas mass in apertures
             gas_cold_dense_mass = catalogue.get_quantity(
                 f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
             )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_C_over_O_times_gas_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_C_over_O_times_gas_mass = (
+                    np.log10(log_C_over_O_times_gas_mass) * gas_cold_dense_mass
+                )
 
             # Compute gas-mass weighted O over H
             log_C_over_O = unyt.unyt_array(
@@ -1037,6 +1086,14 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
             gas_cold_dense_mass = catalogue.get_quantity(
                 f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
             )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_O_over_H_times_gas_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_O_over_H_times_gas_mass = (
+                    log_O_over_H_times_gas_mass * gas_cold_dense_mass
+                )
 
             # Compute gas-mass weighted O over H
             log_O_over_H = unyt.unyt_array(
@@ -1069,11 +1126,18 @@ def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
             log_O_over_H_times_gas_mass = catalogue.get_quantity(
                 f"log_element_ratios_times_masses.log_O_over_H_times_gas_mass_{floor}floor_{aperture_size}_kpc"
             )
-
             # Fetch gas mass in apertures
             gas_cold_dense_mass = catalogue.get_quantity(
                 f"cold_dense_gas_properties.cold_dense_gas_mass_{aperture_size}_kpc"
             )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_O_over_H_times_gas_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_O_over_H_times_gas_mass = (
+                    np.log10(log_O_over_H_times_gas_mass) * gas_cold_dense_mass
+                )
 
             # Compute gas-mass weighted O over H
             log_O_over_H = unyt.unyt_array(
@@ -1112,6 +1176,16 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
         )
         # Fetch stellar mass in apertures
         star_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
+        # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+        if lin_Fe_over_H_times_star_mass.units.dimensions != unyt.Msun.units.dimensions:
+            lin_Fe_over_H_times_star_mass = lin_Fe_over_H_times_star_mass * star_mass
+        if (
+            lin_FeSNIa_over_H_times_star_mass.units.dimensions
+            != unyt.Msun.units.dimensions
+        ):
+            lin_FeSNIa_over_H_times_star_mass = (
+                lin_FeSNIa_over_H_times_star_mass * star_mass
+            )
 
         # Compute stellar-mass weighted Fe over H
         Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
@@ -1155,6 +1229,14 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
             star_mass = catalogue.get_quantity(
                 f"apertures.mass_star_{aperture_size}_kpc"
             )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_Fe_over_H_times_star_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_Fe_over_H_times_star_mass = (
+                    np.log10(log_Fe_over_H_times_star_mass) * star_mass
+                )
 
             # Compute stellar-mass weighted Fe over H
             Fe_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
@@ -1187,6 +1269,15 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                     log_Fe_over_H_times_star_mass = catalogue.get_quantity(
                         f"log_element_ratios_times_masses.log_SNIaFe_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc"
                     )
+                    # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+                    if (
+                        log_Fe_over_H_times_star_mass.units.dimensions
+                        != unyt.Msun.units.dimensions
+                    ):
+                        log_Fe_over_H_times_star_mass = (
+                            np.log10(log_Fe_over_H_times_star_mass) * star_mass
+                        )
+
                     Fe_over_H[mask] = pow(
                         10.0, log_Fe_over_H_times_star_mass[mask] / star_mass[mask]
                     )
@@ -1210,6 +1301,105 @@ def register_iron_to_hydrogen(self, catalogue, aperture_sizes, fe_solar_abundanc
                             np.zeros_like(star_mass) - 4.0, "dimensionless"
                         ),
                     )
+    return
+
+
+def register_magnesium_to_hydrogen(self, catalogue, aperture_sizes, mg_solar_abundance):
+    # Loop over apertures
+    for aperture_size in aperture_sizes:
+
+        # Fetch stellar mass in apertures
+        star_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
+
+        # Try to load linear Mg over H times stellar mass computed in apertures. The
+        # mass ratio between Mg and H has already been accounted for.
+        # This property is not present in some SOAP catalogues, in which case we set zeros.
+        try:
+            lin_Mg_over_H_times_star_mass = catalogue.get_quantity(
+                f"lin_element_ratios_times_masses.lin_Mg_over_H_times_star_mass_{aperture_size}_kpc"
+            )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                lin_Mg_over_H_times_star_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                lin_Mg_over_H_times_star_mass = (
+                    lin_Mg_over_H_times_star_mass * star_mass
+                )
+        except AttributeError:
+            Mg_abundance = unyt.unyt_array(
+                np.zeros(star_mass.shape[0]), "dimensionless"
+            )
+            setattr(self, f"star_mg_abundance_avglin_{aperture_size}_kpc", Mg_abundance)
+            for floor in ["low", "high"]:
+                setattr(
+                    self,
+                    f"star_mg_abundance_avglog_{floor}_{aperture_size}_kpc",
+                    Mg_abundance,
+                )
+            return
+
+        # Compute stellar-mass weighted Mg over H
+        Mg_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+        # Avoid division by zero
+        mask = star_mass > 0.0 * star_mass.units
+        Mg_over_H[mask] = lin_Mg_over_H_times_star_mass[mask] / star_mass[mask]
+        # Convert to units used in observations
+        Mg_abundance = unyt.unyt_array(Mg_over_H / mg_solar_abundance, "dimensionless")
+        Mg_abundance.name = f"Stellar (Mg/H) ({aperture_size} kpc)"
+
+        # Register the field
+        setattr(self, f"star_mg_abundance_avglin_{aperture_size}_kpc", Mg_abundance)
+
+        # register average-of-log Mg-abundances (high and low particle floors)
+        for floor, floor_label in zip(
+            ["low", "high"], ["Min = $10^{{-4}}$", "Min = $10^{{-3}}$"]
+        ):
+
+            # Fetch Mg over H times stellar mass computed in apertures. The
+            # mass ratio between Mg and H has already been accounted for.
+            log_Mg_over_H_times_star_mass = catalogue.get_quantity(
+                f"log_element_ratios_times_masses.log_Mg_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc"
+            )
+            # Fetch stellar mass in apertures
+            star_mass = catalogue.get_quantity(
+                f"apertures.mass_star_{aperture_size}_kpc"
+            )
+            # Needed because of https://github.com/SWIFTSIM/SOAP/pull/120
+            if (
+                log_Mg_over_H_times_star_mass.units.dimensions
+                != unyt.Msun.units.dimensions
+            ):
+                log_Mg_over_H_times_star_mass = (
+                    np.log10(log_Mg_over_H_times_star_mass) * star_mass
+                )
+
+            # Compute stellar-mass weighted Mg over H
+            Mg_over_H = unyt.unyt_array(np.zeros_like(star_mass), "dimensionless")
+            # Avoid division by zero
+            mask = star_mass > 0.0 * star_mass.units
+            Mg_over_H[mask] = pow(
+                10.0, log_Mg_over_H_times_star_mass[mask] / star_mass[mask]
+            )
+            # Convert to units used in observations
+            Mg_abundance = unyt.unyt_array(
+                Mg_over_H / mg_solar_abundance, "dimensionless"
+            )
+            Mg_abundance.name = (
+                f"Stellar $10^{{\\rm [Mg/H]}}$ ({floor_label}, {aperture_size} kpc)"
+            )
+
+            log_Mg_over_H_times_star_mass = catalogue.get_quantity(
+                f"log_element_ratios_times_masses.log_Mg_over_H_times_star_mass_{floor}floor_{aperture_size}_kpc"
+            )
+
+            # Register the field
+            setattr(
+                self,
+                f"star_mg_abundance_avglog_{floor}_{aperture_size}_kpc",
+                Mg_abundance,
+            )
+
     return
 
 
@@ -1783,6 +1973,9 @@ register_cold_dense_gas_metallicity(
 )
 register_iron_to_hydrogen(
     self, catalogue, aperture_sizes_30_50_100_kpc, solar_fe_abundance
+)
+register_magnesium_to_hydrogen(
+    self, catalogue, aperture_sizes_30_50_100_kpc, solar_mg_abundance
 )
 register_hi_masses(self, catalogue, aperture_sizes_30_50_100_kpc)
 register_h2_masses(self, catalogue, aperture_sizes_30_50_100_kpc)

@@ -55,7 +55,7 @@ def make_single_image(
 
     fig, ax = plt.subplots()
 
-    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\odot$]")
+    ax.set_xlabel("Black Hole Subgrid Masses $M_{\\rm sub}$ [M$_\\odot$]")
     ax.set_ylabel(
         "Black Hole Luminosities $L_{\\rm bol}$ $[{\\rm erg}{\\rm \\, s}^{-1}]$"
     )

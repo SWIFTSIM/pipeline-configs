@@ -74,7 +74,7 @@ stellar_mass_centers = 0.5 * (stellar_mass_bins[1:] + stellar_mass_bins[:-1])
 
 # Creating plot
 fig, ax = plt.subplots()
-ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\odot]$")
+ax.set_xlabel(f"ExclusiveSphere {aperture_size}kpc StellarMass $\\rm [M_\\odot]$")
 ax.set_ylabel("SNII Energy Fraction $f_{\\rm E}$ at Median Birth Pressure")
 ax.set_xscale("log")
 
@@ -89,7 +89,7 @@ for color, (snp_filename, cat_filename, name) in enumerate(
     mask = star_mass > mass_bounds[0] * star_mass.units
     star_mass = star_mass[mask]
     birth_pressures = catalogue.get_quantity(
-        f"fofsubhaloproperties.medianstellarbirthpressure"
+        f"boundsubhalo.medianstellarbirthpressure"
     ).to("K/cm**3")[mask]
 
     try:

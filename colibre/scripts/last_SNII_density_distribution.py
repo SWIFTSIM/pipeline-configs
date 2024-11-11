@@ -141,11 +141,11 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     # Segment SNII densities into redshift bins
     if z < 5:
         stars_SNII_densities_by_redshift = {
-            "$z < 1$": stars_SNII_densities[stars_SNII_redshifts < 1],
-            "$1 < z < 3$": stars_SNII_densities[
-                np.logical_and(stars_SNII_redshifts > 1, stars_SNII_redshifts < 3)
+            "$z < 1$": gas_SNII_densities[gas_SNII_redshifts < 1],
+            "$1 < z < 3$": gas_SNII_densities[
+                np.logical_and(gas_SNII_redshifts > 1, gas_SNII_redshifts < 3)
             ],
-            "$z > 3$": stars_SNII_densities[stars_SNII_redshifts > 3],
+            "$z > 3$": gas_SNII_densities[gas_SNII_redshifts > 3],
         }
 
         gas_SNII_densities_by_redshift = {

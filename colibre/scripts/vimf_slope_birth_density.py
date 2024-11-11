@@ -123,7 +123,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 ax.set_xlim(*density_bounds)
 ax.set_xscale("log")
 ax.legend(loc="upper left", markerfirst=False)
-ax.set_ylabel("IMF high mass slope")
-ax.set_xlabel("Stellar Birth density $\u03c1_B/m_H$ [cm$^{-3}$]")
+ax.set_ylabel("IMF High Mass Slope")
+ax.set_xlabel("Stellar Birth Density $\u03c1_B/m_H$ [cm$^{-3}$]")
 
 fig.savefig(f"{arguments.output_directory}/vimf_top_heavy_slope.png")

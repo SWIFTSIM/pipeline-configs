@@ -1864,6 +1864,7 @@ def register_gas_fraction(self, catalogue):
 
     M_500 = catalogue.get_quantity("spherical_overdensities.mass_500_rhocrit")
     M_500_gas = catalogue.get_quantity("spherical_overdensities.mass_gas_500_rhocrit")
+    M_500_hot_gas = catalogue.get_SOAP_quantity("so.500_crit.hotgasmass")
     M_500_star = catalogue.get_quantity("spherical_overdensities.mass_star_500_rhocrit")
     M_500_baryon = M_500_gas + M_500_star
 
@@ -1881,6 +1882,13 @@ def register_gas_fraction(self, catalogue):
     name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
     f_gas_500.name = name
 
+    f_hot_gas_500 = unyt.unyt_array(np.zeros(M_500.shape), units=unyt.dimensionless)
+    f_hot_gas_500[M_500 > 0.0] = (M_500_hot_gas[M_500 > 0.0] / M_500[M_500 > 0.0]) / (
+        Omega_b / Omega_m
+    )
+    name = "$f_{\\rm hot gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    f_hot_gas_500.name = name
+
     f_star_500 = unyt.unyt_array(np.zeros(M_500.shape), units=unyt.dimensionless)
     f_star_500[M_500 > 0.0] = (M_500_star[M_500 > 0.0] / M_500[M_500 > 0.0]) / (
         Omega_b / Omega_m
@@ -1890,6 +1898,7 @@ def register_gas_fraction(self, catalogue):
 
     setattr(self, "baryon_fraction_true_R500", f_b_500)
     setattr(self, "gas_fraction_true_R500", f_gas_500)
+    setattr(self, "hot_gas_fraction_true_R500", f_hot_gas_500)
     setattr(self, "star_fraction_true_R500", f_star_500)
 
     return

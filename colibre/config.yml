@@ -616,7 +616,7 @@ scripts:
     section: vIMF Diagnostic Plots
     output_file: effective_snii_energy_fraction_distribution.png
   - filename: scripts/vimf_slope_birth_density.py
-    caption: The relation between the IMF high mass ($> 0.5 M_{\u2609}$) slope and and stellar birth density. The dashed vertical lines indicate the pivot birth density used in the simulation.
+    caption: The relation between the IMF high mass ($> 0.5 M_{sun}$) slope and and stellar birth density. The dashed vertical lines indicate the pivot birth density used in the simulation.
     title: IMF slope vs. Stellar Birth Density
     section: vIMF Diagnostic Plots
     output_file: vimf_top_heavy_slope.png

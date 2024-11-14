@@ -241,7 +241,7 @@ def register_corrected_star_magnitudes(self, catalogue, aperture_sizes, add_dust
     bands = ["r", "u", "z", "K", "FUV"]
 
     if add_dust == True:
-        dust = "w_dust"
+        dust = "_w_dust"
     else:
         dust = ""
         
@@ -2044,6 +2044,7 @@ register_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)
 
 register_corrected_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc)
 
-# register_corrected_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc, add_dust = False)
+register_corrected_star_magnitudes(self, catalogue, aperture_sizes_30_50_100_kpc, add_dust = True)
+
 
 register_chabrier_masses(self, catalogue, aperture_sizes_30_50_100_kpc)

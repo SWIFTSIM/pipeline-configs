@@ -1886,7 +1886,7 @@ def register_gas_fraction(self, catalogue):
     f_hot_gas_500[M_500 > 0.0] = (M_500_hot_gas[M_500 > 0.0] / M_500[M_500 > 0.0]) / (
         Omega_b / Omega_m
     )
-    name = "$f_{\\rm hot gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+    name = "$f_{\\rm hot \\, gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
     f_hot_gas_500.name = name
 
     f_star_500 = unyt.unyt_array(np.zeros(M_500.shape), units=unyt.dimensionless)

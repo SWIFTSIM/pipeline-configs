@@ -17,8 +17,8 @@ gas_HI_mass_function:
     section: Gas Mass Function
   observational_data:
     - filename: GalaxyHIMassFunction/Zwaan2005.hdf5
-    - filename: GalaxyHIMassFunction/Jones2018.hdf5
     - filename: GalaxyHIMassFunction/Xi2022.hdf5
+    - filename: GalaxyHIMassFunction/Guo2023.hdf5
     - filename: GalaxyHIMassFunction/Ponomareva2023.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_north.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_south.hdf5
@@ -42,8 +42,8 @@ adaptive_gas_HI_mass_function:
     section: Gas Mass Function
   observational_data:
     - filename: GalaxyHIMassFunction/Zwaan2005.hdf5
-    - filename: GalaxyHIMassFunction/Jones2018.hdf5
     - filename: GalaxyHIMassFunction/Xi2022.hdf5
+    - filename: GalaxyHIMassFunction/Guo2023.hdf5
     - filename: GalaxyHIMassFunction/Ponomareva2023.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_north.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_south.hdf5

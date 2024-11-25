@@ -102,7 +102,7 @@ axes = axes.flat
 
 z = data[0].metadata.z
 
-if z < 5:
+if z < 4.9:
     ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
 else:
     ax_dict = {"$z < 7$": axes[0], "$7 < z < 10$": axes[1], "$z > 10$": axes[2]}
@@ -127,7 +127,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     gas_AGN_redshifts = gas_AGN_redshifts[gas_AGN_heated]
 
     # Segment AGN densities into redshift bins
-    if z < 5:
+    if z < 4.9:
         gas_AGN_densities_by_redshift = {
             "$z < 1$": gas_AGN_densities[gas_AGN_redshifts < 1],
             "$1 < z < 3$": gas_AGN_densities[

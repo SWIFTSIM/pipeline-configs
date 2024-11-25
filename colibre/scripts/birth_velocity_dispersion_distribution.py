@@ -46,7 +46,7 @@ axes = axes.flat
 
 z = data[0].metadata.z
 
-if z < 5:
+if z < 4.9:
     ax_dict = {"$z < 1$": axes[0], "$1 < z < 3$": axes[1], "$z > 3$": axes[2]}
 else:
     ax_dict = {"$z < 7$": axes[0], "$7 < z < 10$": axes[1], "$z > 10$": axes[2]}
@@ -63,7 +63,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     birth_redshifts = 1 / snapshot.stars.birth_scale_factors.value - 1
 
     # Segment birth velocity dispersions into redshift bins
-    if z < 5:
+    if z < 4.9:
         birth_velocity_dispersion_by_redshift = {
             "$z < 1$": birth_velocity_dispersions[birth_redshifts < 1],
             "$1 < z < 3$": birth_velocity_dispersions[

@@ -610,14 +610,20 @@ scripts:
       - satellite_fraction.png
       - satellite_fraction_passive.png
     section: Satellite Fraction
-  - filename: scripts/effective_snii_energy_fraction_distribution.py
-    caption: Distribution of effective SNII energy fractions, split by redshift. Effective SNII feedback accounts for the increased number of SNII feedback events due to a variable top heavy IMF. The y-axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median SNII energy fraction in three different redshift intervals. The dotted vertical line shows the average SNII energy fraction computed over all star particles in the simulation.
-    title: Effective SNII Energy Fraction Distribution
-    section: vIMF Diagnostic Plots
-    output_file: effective_snii_energy_fraction_distribution.png
   - filename: scripts/vimf_slope_birth_density.py
     caption: The relation between the IMF high mass ($> 0.5 M_{sun}$) slope and and stellar birth density. The dashed vertical lines indicate the pivot birth density used in the simulation.
     title: IMF slope vs. Stellar Birth Density
     section: vIMF Diagnostic Plots
     output_file: vimf_top_heavy_slope.png
+  - filename: scripts/effective_snii_energy_fraction_distribution.py
+    caption: Distribution of effective SNII energy fractions, split by redshift. Effective SNII feedback accounts for the increased number of SNII feedback events due to a variable top heavy IMF. The y-axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median SNII energy fraction in three different redshift intervals. The dotted vertical line shows the average SNII energy fraction computed over all star particles in the simulation.
+    title: Effective SNII Energy Fraction Distribution
+    section: vIMF Diagnostic Plots
+    output_file: effective_snii_energy_fraction_distribution.png
+  - filename: scripts/birth_density_distribution.py
+    caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for SN min and max heating temperatures with $f_t=10$.
+    title: Stellar Birth Densities
+    section: vIMF Diagnostic Plots
+    output_file: birth_density_distribution_in_vimf.png
+
 

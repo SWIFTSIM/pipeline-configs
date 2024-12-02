@@ -23,6 +23,7 @@ corrected_luminosity_FUV_function_50:
     - filename: GalaxyLuminosityFunction/Harikane2022A_FUV.hdf5
     - filename: GalaxyLuminosityFunction/Harikane2023A_FUV.hdf5
     - filename: GalaxyLuminosityFunction/Robertson2024A_FUV.hdf5
+    - filename: GalaxyLuminosityFunction/Kokorev2024_FUV.hdf5
 
 corrected_luminosity_u_function_50:
   type: "luminosityfunction"
@@ -137,6 +138,7 @@ corrected_luminosity_w_dust_FUV_function_50:
     - filename: GalaxyLuminosityFunction/Harikane2022A_FUV.hdf5
     - filename: GalaxyLuminosityFunction/Harikane2023A_FUV.hdf5
     - filename: GalaxyLuminosityFunction/Robertson2024A_FUV.hdf5
+    - filename: GalaxyLuminosityFunction/Kokorev2024_FUV.hdf5
 
 corrected_luminosity_w_dust_r_function_50:
   type: "luminosityfunction"

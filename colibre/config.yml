@@ -624,6 +624,6 @@ scripts:
     caption: Distributions of stellar birth densities, split by redshift. The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities, while the dotted lines indicade the critical density from C. Dalla Vecchia & J. Schaye (2012) for SN min and max heating temperatures with $f_t=10$.
     title: Stellar Birth Densities
     section: vIMF Diagnostic Plots
-    output_file: birth_density_distribution_in_vimf.png
+    output_file: birth_density_distribution.png
 
 

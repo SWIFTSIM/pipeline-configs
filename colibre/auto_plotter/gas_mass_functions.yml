@@ -22,6 +22,7 @@ gas_HI_mass_function:
     - filename: GalaxyHIMassFunction/Ponomareva2023.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_north.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_south.hdf5
+    - filename: GalaxyHIMassFunction/Chowdhury2024.hdf5
 
 adaptive_gas_HI_mass_function:
   type: "adaptivemassfunction"
@@ -47,6 +48,7 @@ adaptive_gas_HI_mass_function:
     - filename: GalaxyHIMassFunction/Ponomareva2023.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_north.hdf5
     - filename: GalaxyHIMassFunction/Ma2024_south.hdf5
+    - filename: GalaxyHIMassFunction/Chowdhury2024.hdf5
 
 gas_H2_mass_function:
   type: "massfunction"

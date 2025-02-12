@@ -625,5 +625,10 @@ scripts:
     title: Stellar Birth Densities
     section: vIMF Diagnostic Plots
     output_file: birth_density_distribution.png
+  - filename: scripts/cumulative_uv_luminosity.py
+    caption: Cumulative intrinsic stellar luminosities in the GALEX-FUV band as a function of AB magnitude.
+    title: Cumulative FUV Luminosity (50 kpc aperture)
+    section: vIMF Diagnostic Plots
+    output_file: uv_corrected_luminosity_cumulative_sum.png
 
 

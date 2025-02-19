@@ -59,6 +59,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
     )
 
     # Limit only to those gas particles that were in fact kicked by SNII
+    # Limit only to those gas particles that were in fact kicked by SNII
     gas_SNII_kicked = gas_SNII_v_kick_last > 0.0
 
     # Select only those parts that were kicked by SNII in the past
@@ -92,8 +93,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
     for redshift, ax in ax_dict.items():
         data = gas_SNII_v_kick_by_redshift[redshift]
+        data = gas_SNII_v_kick_by_redshift[redshift]
 
         H, _ = np.histogram(data, bins=SNII_v_kick_bins)
+        y_points = H / log_SNII_v_kick_bin_width / len(gas_SNII_redshifts)
         y_points = H / log_SNII_v_kick_bin_width / len(gas_SNII_redshifts)
 
         ax.plot(SNII_v_kick_centres, y_points, label=name, color=f"C{color}")

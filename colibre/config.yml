@@ -319,7 +319,7 @@ scripts:
     section: Hydrogen Phases
     title: Hydrogen Phase Fractions
     additional_arguments:
-      cooling_tables: /cosma7/data/dp004/wmfw23/colibre_dust/coolingtables/UV_dust1_CR1_G1_shield1.hdf5
+      cooling_tables: /mnt/aridata1/projects/COLIBRE/IC_TABLES/UV_dust1_CR1_G1_shield1.hdf5
       quantity_type: hydro
   - filename: scripts/density_species_depletions.py
     caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function of gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
@@ -336,7 +336,7 @@ scripts:
     additional_arguments:
       quantity_type: hydro
   - filename: scripts/last_SNII_kick_velocity_distribution.py
-    caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity. Star particles are not included.
+    caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity. Star particles are not included. Star particles are not included.
     output_file: SNII_last_kick_velocity_distribution.png
     section: Feedback kick velocities
     title: Kick velocity distribution at last SNII
@@ -541,17 +541,11 @@ scripts:
     title:
       - HI Column Density Distribution Function (full box, full range)
       - HI Column Density Distribution Function (half box, full range)
-      - HI Column Density Distribution Function (full box, reduced range)
-      - HI Column Density Distribution Function (half box, reduced range)
     caption:
-      - 'The column density distribution function of neutral hydrogen computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of neutral hydrogen computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
       - 'The column density distribution function of neutral hydrogen computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
       - 'The column density distribution function of neutral hydrogen computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
     output_file:
       - column_density_distribution_function_chunk1_full_range_HI.png
-      - column_density_distribution_function_chunk2_full_range_HI.png
-      - column_density_distribution_function_chunk1_reduced_range_HI.png
       - column_density_distribution_function_chunk2_reduced_range_HI.png
     section: Column Densities
     additional_arguments:
@@ -560,20 +554,14 @@ scripts:
       parallel: True
   - filename: scripts/column_density_distribution_function.py
     title:
-      - HeII Column Density Distribution Function (full box, full range)
-      - HeII Column Density Distribution Function (half box, full range)
       - HeII Column Density Distribution Function (full box, reduced range)
       - HeII Column Density Distribution Function (half box, reduced range)
     caption:
       - 'The column density distribution function of singly-ionized helium computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
       - 'The column density distribution function of singly-ionized helium computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of singly-ionized helium computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of singly-ionized helium computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
     output_file:
       - column_density_distribution_function_chunk1_full_range_HeII.png
-      - column_density_distribution_function_chunk2_full_range_HeII.png
       - column_density_distribution_function_chunk1_reduced_range_HeII.png
-      - column_density_distribution_function_chunk2_reduced_range_HeII.png
     section: Column Densities
     additional_arguments:
       element: helium
@@ -630,5 +618,3 @@ scripts:
     title: Cumulative FUV Luminosity (50 kpc aperture)
     section: vIMF Diagnostic Plots
     output_file: uv_corrected_luminosity_cumulative_sum.png
-
-

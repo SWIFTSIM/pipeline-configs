@@ -123,7 +123,7 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             1 / snapshot.gas.last_sniithermal_feedback_scale_factors.value - 1
         )
         gas_SNIa_redshifts = (
-            1 / snapshot.gas.last_snia_thermal_feedback_scale_factors.value - 1
+            1 / snapshot.gas.last_snia_thermal_feedback_scale_factors - 1
         )
     except AttributeError:
         gas_SNII_redshifts = 1 / snapshot.gas.last_sniifeedback_scale_factors.value - 1

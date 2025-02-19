@@ -83,7 +83,28 @@ output_path = arguments.output_directory
 
 plt.style.use(arguments.stylesheet_location)
 
+# run tests from here
+# snap=42
+# plt.style.use('/mnt/aridata1/users/ariadurr/WORK/Processing/pipeline-configs-vimf/colibre/mnras.mplstyle')
+# sims_path = '/mnt/aridata1/users/ariadurr/WORK/Simulations/Boxes/'
+
+# snapshot_filenames = [
+#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-1e1-w1p5/colibre_{snap:04d}.hdf5',
+#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-3e0-w1p5/colibre_{snap:04d}.hdf5',
+#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-1e0-w1p5/colibre_{snap:04d}.hdf5'
+#     ]
+
+# names = [
+#     'Top Heavy ($n_0$ = 10 cm$^{-3}$)',
+#     'Top Heavy ($n_0$ = 3 cm$^{-3}$)',
+#     'Top Heavy ($n_0$ = 1 cm$^{-3}$)',
+#     ]
+
+# output_path = f'/mnt/aridata1/users/ariadurr/WORK/Plots/colibre-plots/birth_density_distribution_{snap:04d}.png'
+
+
 data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
+
 number_of_bins = 256
 
 birth_density_bins = unyt.unyt_array(
@@ -204,3 +225,4 @@ axes[2].set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")
 axes[1].set_ylabel("$N_{\\rm bin}$ / d$\\log\\rho_B$ / $N_{\\rm total}$")
 
 fig.savefig(f"{arguments.output_directory}/birth_density_distribution.png")
+# fig.savefig(output_path)

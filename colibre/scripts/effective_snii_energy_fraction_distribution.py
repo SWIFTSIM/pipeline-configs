@@ -141,7 +141,7 @@ def get_snapshot_param_float(snapshot, param_name: str) -> float:
 
 
 arguments = ScriptArgumentParser(
-    description="Creates an SNII energy fraction distribution plot, split by redshift"
+    description="Creates an effective (IMF-adjusted) SNII energy fraction distribution plot, split by redshift"
 )
 
 
@@ -154,6 +154,25 @@ names = arguments.name_list
 output_path = arguments.output_directory
 
 plt.style.use(arguments.stylesheet_location)
+
+# run tests from here
+# snap=21
+# plt.style.use('/mnt/aridata1/users/ariadurr/WORK/Processing/pipeline-configs-vimf/colibre/mnras.mplstyle')
+# sims_path = '/mnt/aridata1/users/ariadurr/WORK/Simulations/Boxes/'
+
+# snapshot_filenames = [
+#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-1e1-w1p5/colibre_{snap:04d}.hdf5',
+#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-3e0-w1p5/colibre_{snap:04d}.hdf5',
+#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-1e0-w1p5/colibre_{snap:04d}.hdf5'
+#     ]
+
+# names = [
+#     'Top Heavy ($n_0$ = 10 cm$^{-3}$)',
+#     'Top Heavy ($n_0$ = 3 cm$^{-3}$)',
+#     'Top Heavy ($n_0$ = 1 cm$^{-3}$)',
+#     ]
+
+# output_path = f'/mnt/aridata1/users/ariadurr/WORK/Plots/colibre-plots/effective_fE_distribution_{snap:04d}.png'
 
 data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 128
@@ -338,3 +357,4 @@ axes[2].set_xlabel("Effective SNII Energy Fraction $f_{\\rm E'}$")
 axes[1].set_ylabel("$N_{\\rm bin}$ / d$f_{\\rm E}$ / $N_{\\rm total}$")
 
 fig.savefig(f"{arguments.output_directory}/effective_snii_energy_fraction_distribution.png")
+# fig.savefig(output_path)

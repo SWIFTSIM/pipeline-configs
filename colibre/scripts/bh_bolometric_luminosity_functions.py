@@ -30,10 +30,23 @@ def get_data(data: SWIFTDataset) -> unyt.unyt_array:
             "dimensionless",
         )
 
+    try:
+       coupling_eff = float(
+            data.metadata.parameters["COLIBREAGN:coupling_efficiency"].decode(
+                "utf-8"
+            )
+        )
+    except KeyError:
+       coupling_eff = float(
+            data.metadata.parameters["SPINJETAGN:coupling_efficiency"].decode(
+                "utf-8"
+            )
+        )
+
     accr_rates = data.black_holes.accretion_rates.astype(np.float64).to(
         unyt.kg / unyt.s
     )
-    luminosities = rad_effs * (speed_of_light ** 2) * accr_rates
+    luminosities = (1 - coupling_eff) * rad_effs * (speed_of_light ** 2) * accr_rates
     values = luminosities.to(unyt.erg / unyt.s)
 
     return values

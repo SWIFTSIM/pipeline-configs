@@ -31,16 +31,12 @@ def get_data(data: SWIFTDataset) -> unyt.unyt_array:
         )
 
     try:
-       coupling_eff = float(
-            data.metadata.parameters["COLIBREAGN:coupling_efficiency"].decode(
-                "utf-8"
-            )
+        coupling_eff = float(
+            data.metadata.parameters["COLIBREAGN:coupling_efficiency"].decode("utf-8")
         )
     except KeyError:
-       coupling_eff = float(
-            data.metadata.parameters["SPINJETAGN:coupling_efficiency"].decode(
-                "utf-8"
-            )
+        coupling_eff = float(
+            data.metadata.parameters["SPINJETAGN:coupling_efficiency"].decode("utf-8")
         )
 
     accr_rates = data.black_holes.accretion_rates.astype(np.float64).to(

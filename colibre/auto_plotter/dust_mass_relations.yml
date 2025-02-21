@@ -37,6 +37,7 @@ stellar_mass_v_dust_mass:
     - filename: GalaxyStellarMassDustMass/DaCunha2015_z005p000.hdf5
     - filename: GalaxyStellarMassDustMass/DaCunha2015_z006p000.hdf5
     - filename: GalaxyStellarMassDustMass/Sommovigo2022.hdf5
+    - filename: GalaxyStellarMassDustMass/Jolly2024.hdf5
 
 star_formation_rate_v_dust_mass:
   type: "scatter"
@@ -46,7 +47,7 @@ star_formation_rate_v_dust_mass:
     quantity: "apertures.sfr_gas_50_kpc"
     units: Solar_Mass / year
     start: 1e-3
-    end: 1e2
+    end: 3e2
     log: true
   y:
     quantity: "derived_quantities.total_dust_masses_50_kpc"
@@ -72,6 +73,7 @@ star_formation_rate_v_dust_mass:
     show_on_webpage: true
   observational_data:
     - filename: GalaxyStarFormationRateDustMass/Bianchi2018_Data_noerr.hdf5
+    - filename: GalaxyStarFormationRateDustMass/Jolly2024.hdf5
 
 neutral_mass_v_dust_mass:
   type: "scatter"

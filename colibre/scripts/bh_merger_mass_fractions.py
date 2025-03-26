@@ -22,7 +22,7 @@ def get_data(filename):
     parameters = data.metadata.parameters
     try:
         seed_mass = float(parameters["COLIBREAGN:subgrid_seed_mass_Msun"]) * unyt.Msun
-    except AttributeError:
+    except KeyError:
         seed_mass = float(parameters["SPINJETAGN:subgrid_seed_mass_Msun"]) * unyt.Msun
 
     masses = data.black_holes.subgrid_masses.to("Msun")

@@ -20,10 +20,8 @@ catalogue_filenames = [
     for directory, catalogue in zip(arguments.directory_list, arguments.catalogue_list)
 ]
 
-# catalogue_filenames = [ "/users/ariadurr/WORKING_DIR/SWIFT/COLIBRE_RUNS/vIMF/L0025N0188-Density-fE-2p00/SOAP/halo_properties_vimf_0021.hdf5"]
-
 names = arguments.name_list
-# names=["L0025N0188"]
+
 output_path = arguments.output_directory
 
 plt.style.use(arguments.stylesheet_location)
@@ -66,7 +64,10 @@ for color, (catalogue, name) in enumerate(zip(data, names)):
     )
 
     # Add 0.5L marker
-    M_UV_half = magnitude[np.where(luminosity_cumulative < 0.5)[0][-1]]
+    try:
+        M_UV_half = magnitude[np.where(luminosity_cumulative < 0.5)[0][-1]]
+    except:
+        M_UV_half = magnitude[0]
     
     ax.vlines(
         M_UV_half,

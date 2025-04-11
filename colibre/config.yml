@@ -618,3 +618,8 @@ scripts:
     title: Cumulative FUV Luminosity (50 kpc aperture)
     section: vIMF Diagnostic Plots
     output_file: uv_corrected_luminosity_cumulative_sum.png
+  - filename: scripts/birth_density_distribution_alpha_binned.py
+    caption: Distributions of stellar birth densities, split by IMF high mass slope ($m > 0. 5M_{sun}$). The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities.
+    title: Stellar Birth Densities (sorted by IMF slope)
+    section: vIMF Diagnostic Plots
+    output_file: birth_density_distribution_alpha_binned.png

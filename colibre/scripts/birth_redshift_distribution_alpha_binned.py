@@ -42,6 +42,7 @@ def get_snapshot_param_float(snapshot, param_name: str) -> float:
     except KeyError:
         raise KeyError(f"Parameter {param_name} not found in snapshot metadata.")
 
+
 arguments = ScriptArgumentParser(
     description="Creates a stellar birth density distribution plot, split high mass IMF slope values"
 )
@@ -56,17 +57,18 @@ output_path = arguments.output_directory
 
 plt.style.use(arguments.stylesheet_location)
 
+
 data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 
 number_of_bins = 256
 
-birth_density_bins = unyt.unyt_array(
-    np.logspace(-2, 7, number_of_bins), units="1/cm**3"
+birth_redshift_bins = unyt.unyt_array(
+    np.logspace(np.log10(5), np.log10(20), number_of_bins), units="dimensionless"
 )
-log_birth_density_bin_width = np.log10(birth_density_bins[1].value) - np.log10(
-    birth_density_bins[0].value
+log_birth_redshift_bin_width = np.log10(birth_redshift_bins[1].value) - np.log10(
+    birth_redshift_bins[0].value
 )
-birth_density_centers = 0.5 * (birth_density_bins[1:] + birth_density_bins[:-1])
+birth_redshift_centers = 0.5 * (birth_redshift_bins[1:] + birth_redshift_bins[:-1])
 
 
 # Begin plotting
@@ -75,12 +77,18 @@ axes = axes.flat
 
 z = data[0].metadata.z
 
-ax_dict = {"$\u03b1 < -2.25 $": axes[0], "$-2.25 < \u03b1 < -1.95 $": axes[1], "$-1.95 < \u03b1 < -1.75 $": axes[2], "$-1.75 < \u03b1$": axes[3]}
+ax_dict = {"All": axes[0],"$\u03b1 < -2.15 $": axes[1], "$-2.15 < \u03b1 < -1.75 $": axes[2], "$-1.75 < \u03b1$": axes[3]}
+
+redshift_ticks = np.array([5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 15.0, 20.0])
+redshift_labels = [f"${int(z)}$" for z in redshift_ticks]
 
 
 for label, ax in ax_dict.items():
     ax.loglog()
     ax.text(0.025, 1.0 - 0.025 * 3, label, transform=ax.transAxes, ha="left", va="top")
+
+    ax.set_xticks(redshift_ticks)
+    ax.set_xticklabels(redshift_labels)
 
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
@@ -122,33 +130,32 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
     # Segment birth densities into IMF slope bins
 
-    birth_density_by_slope = {
-        "$\u03b1 < -2.25 $": birth_densities[slope_values < 2.25],
-        "$-2.25 < \u03b1 < -1.95 $": birth_densities[
-            np.logical_and(slope_values > -2.25, slope_values < -1.95)
+    birth_redshift_by_slope = {
+        "All": birth_redshifts,
+        "$\u03b1 < -2.15 $": birth_redshifts[slope_values < -2.15],
+        "$-2.15 < \u03b1 < -1.75 $": birth_redshifts[
+            np.logical_and(slope_values > -2.15, slope_values < -1.75)
         ],
-        "$-1.95 < \u03b1 < -1.75 $": birth_densities[
-            np.logical_and(slope_values > -1.95, slope_values < -1.75)
-        ],
-        "$-1.75 < \u03b1$": birth_densities[slope_values > -1.75],
+        "$-1.75 < \u03b1$": birth_redshifts[slope_values > -1.75],
     }
 
     # Total number of stars formed
-    Num_of_stars_total = len(birth_densities)
+    Num_of_stars_total = len(birth_redshifts)
 
     for redshift, ax in ax_dict.items():
-        data = birth_density_by_slope[redshift]
+        data = birth_redshift_by_slope[redshift]
         if data.shape[0] == 0:
             continue
-        if data.shape[0] == 0:
-            continue
 
-        H, _ = np.histogram(data, bins=birth_density_bins)
-        y_points = H / log_birth_density_bin_width / Num_of_stars_total
+        if color == 0:
+            print(len(data)/Num_of_stars_total)
 
-        ax.plot(birth_density_centers, y_points, label=name, color=f"C{color}")
+        H, _ = np.histogram(data, bins=birth_redshift_bins)
+        y_points = H / log_birth_redshift_bin_width / Num_of_stars_total
 
-        # Add the median stellar birth-density line
+        ax.plot(birth_redshift_centers, y_points, label=name, color=f"C{color}")
+
+        # Add the median stellar birth-redshift line
         ax.axvline(
             np.median(data),
             color=f"C{color}",
@@ -159,7 +166,8 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
 
 axes[0].legend(loc="upper right", markerfirst=False)
-axes[3].set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")
-axes[1].set_ylabel("$N_{\\rm bin}$ / d$\\log\\rho_B$ / $N_{\\rm total}$")
+# axes[3].set_xlabel("Stellar Birth Density $\\rho_B$ [$n_H$ cm$^{-3}$]")
+axes[3].set_xlabel("Stellar Birth Redshift $z$")
+axes[1].set_ylabel("$N_{\\rm bin}$ / d$\\log\\z$ / $N_{\\rm total}$")
 
-fig.savefig(f"{arguments.output_directory}/birth_density_distribution_alpha_binned.png")
+fig.savefig(f"{arguments.output_directory}/birth_redshift_distribution_alpha_binned.png")

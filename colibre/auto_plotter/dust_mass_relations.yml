@@ -38,6 +38,12 @@ stellar_mass_v_dust_mass:
     - filename: GalaxyStellarMassDustMass/DaCunha2015_z006p000.hdf5
     - filename: GalaxyStellarMassDustMass/Sommovigo2022.hdf5
     - filename: GalaxyStellarMassDustMass/Jolly2024.hdf5
+    - filename: GalaxyStellarMassDustMass/DeLooze20_HAPLESS.hdf5
+    - filename: GalaxyStellarMassDustMass/DeLooze20_HIGH.hdf5
+    - filename: GalaxyStellarMassDustMass/DeLooze20_HRS.hdf5
+    - filename: GalaxyStellarMassDustMass/DeLooze20_HRS_HIdef.hdf5
+    - filename: GalaxyStellarMassDustMass/DeLooze20_JINGLE.hdf5
+    - filename: GalaxyStellarMassDustMass/DeLooze20_KINGFISH.hdf5
 
 star_formation_rate_v_dust_mass:
   type: "scatter"

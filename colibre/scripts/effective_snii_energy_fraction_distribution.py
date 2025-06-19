@@ -61,7 +61,7 @@ def variable_slope(
     unyt.unyt_array: The computed slope value as a dimensionless unyt array.
     """
 
-    alpha = (alpha_min - alpha_max) / (1.0 + np.exp(sigma * np.log10( density.value / pivot_density )) ) + alpha_max
+    alpha = (alpha_min - alpha_max) / (1.0 + np.exp(sigma * np.log10( density / pivot_density )) ) + alpha_max
     return unyt.unyt_array(alpha, "dimensionless")
 
 def imf_func(
@@ -138,6 +138,12 @@ def get_snapshot_param_float(snapshot, param_name: str) -> float:
         return float(snapshot.metadata.parameters[param_name].decode("utf-8"))
     except KeyError:
         raise KeyError(f"Parameter {param_name} not found in snapshot metadata.")
+    
+def get_snapshot_param_string(data, param_name: str) -> float:
+    try:
+        return str(data.metadata.parameters[param_name].decode("utf-8"))
+    except KeyError:
+        raise KeyError(f"Parameter {param_name} not found in snapshot metadata.")
 
 
 arguments = ScriptArgumentParser(
@@ -154,25 +160,6 @@ names = arguments.name_list
 output_path = arguments.output_directory
 
 plt.style.use(arguments.stylesheet_location)
-
-# run tests from here
-# snap=21
-# plt.style.use('/mnt/aridata1/users/ariadurr/WORK/Processing/pipeline-configs-vimf/colibre/mnras.mplstyle')
-# sims_path = '/mnt/aridata1/users/ariadurr/WORK/Simulations/Boxes/'
-
-# snapshot_filenames = [
-#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-1e1-w1p5/colibre_{snap:04d}.hdf5',
-#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-3e0-w1p5/colibre_{snap:04d}.hdf5',
-#     sims_path + f'vIMF/L0050N0376-Density-fE-2p00-n0-1e0-w1p5/colibre_{snap:04d}.hdf5'
-#     ]
-
-# names = [
-#     'Top Heavy ($n_0$ = 10 cm$^{-3}$)',
-#     'Top Heavy ($n_0$ = 3 cm$^{-3}$)',
-#     'Top Heavy ($n_0$ = 1 cm$^{-3}$)',
-#     ]
-
-# output_path = f'/mnt/aridata1/users/ariadurr/WORK/Plots/colibre-plots/effective_fE_distribution_{snap:04d}.png'
 
 data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 number_of_bins = 128
@@ -240,6 +227,10 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
 
     try:
 
+        variable_name = get_snapshot_param_string(
+            snapshot, "COLIBREFeedback:IMF_Scaling_Variable"
+        )
+
         # Extract IMF parameters from snapshot metadata
         alpha_min = get_snapshot_param_float(
             snapshot, "COLIBREFeedback:IMF_HighMass_slope_minimum"
@@ -254,9 +245,17 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
             snapshot, "COLIBREFeedback:IMF_sigmoid_pivot_CGS"
         )
 
+        if variable_name == 'Density':
+            imf_variable = birth_densities.value
+        elif variable_name == 'Pressure':
+            imf_variable = birth_pressures.value
+        elif variable_name == 'Redshift':
+            imf_variable = birth_redshifts
+
+
         # Compute slope values
         slope_values = variable_slope(
-            density=birth_densities,
+            density=imf_variable,
             alpha_min=alpha_min,
             alpha_max=alpha_max,
             sigma=sigma,
@@ -356,5 +355,5 @@ axes[0].legend(loc="upper right", markerfirst=False)
 axes[2].set_xlabel("Effective SNII Energy Fraction $f_{\\rm E'}$")
 axes[1].set_ylabel("$N_{\\rm bin}$ / d$f_{\\rm E}$ / $N_{\\rm total}$")
 
-fig.savefig(f"{arguments.output_directory}/effective_snii_energy_fraction_distribution.png")
-# fig.savefig(output_path)
+# fig.savefig(f"{arguments.output_directory}/effective_snii_energy_fraction_distribution.png")
+fig.savefig(output_path)

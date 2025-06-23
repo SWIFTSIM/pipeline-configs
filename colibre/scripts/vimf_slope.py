@@ -9,11 +9,6 @@ import unyt
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
-# Set x-axis limits
-density_bounds = [1e-2, 1e5]
-log_density_bounds = np.log10(density_bounds)
-
-
 def variable_slope(
     density: unyt.unyt_array,
     alpha_min: float,
@@ -45,9 +40,15 @@ def get_snapshot_param_float(snapshot, param_name: str) -> float:
     except KeyError:
         raise KeyError(f"Parameter {param_name} not found in snapshot metadata.")
 
+def get_snapshot_param_string(data, param_name: str) -> float:
+    try:
+        return str(data.metadata.parameters[param_name].decode("utf-8"))
+    except KeyError:
+        raise KeyError(f"Parameter {param_name} not found in snapshot metadata.")
+
 
 arguments = ScriptArgumentParser(
-    description="Creates a plot of vIMF high mass slope vs. birth density"
+    description="Creates a plot of vIMF high mass slope vs. IMF variable"
 )
 
 
@@ -64,19 +65,18 @@ plt.style.use(arguments.stylesheet_location)
 data = [load(snapshot_filename) for snapshot_filename in snapshot_filenames]
 
 number_of_bins = 128
-birth_densities = unyt.unyt_array(
-    np.logspace(*log_density_bounds, number_of_bins), "1/cm**3"
-)
+
+ax_variables = []
 
 # Begin plotting
 fig, ax = plt.subplots(1, 1)
+
 for color, (snapshot, name) in enumerate(zip(data, names)):
 
-    # Default value that will be plotted outside the plot's domain
-    # if the true value is not found in the snapshot's metadata
-    pivot_density = 1e-10
-
     try:
+        variable_name = get_snapshot_param_string(
+            snapshot, "COLIBREFeedback:IMF_Scaling_Variable"
+        )
         # Extract feedback parameters from snapshot metadata
         alpha_min = get_snapshot_param_float(
             snapshot, "COLIBREFeedback:IMF_HighMass_slope_minimum"
@@ -87,43 +87,94 @@ for color, (snapshot, name) in enumerate(zip(data, names)):
         sigma = get_snapshot_param_float(
             snapshot, "COLIBREFeedback:IMF_sigmoid_inverse_width"
         )
-        pivot_density = get_snapshot_param_float(
+        pivot = get_snapshot_param_float(
             snapshot, "COLIBREFeedback:IMF_sigmoid_pivot_CGS"
+        )
+
+        if variable_name == 'Density':
+            variable_bounds = [1e-2, 1e5]
+            dim = "1/cm**3"
+            xlabel = "Stellar Birth Density $\u03c1_B/m_H$ [cm$^{-3}$]"
+        
+        elif variable_name == 'Pressure':
+            variable_bounds = [1e2, 1e9]
+            dim = "K/cm**3"
+            xlabel = "Stellar Birth Pressure $P_B/k$ [K cm$^{-3}$]"
+        
+        elif variable_name == 'Redshift':
+            variable_bounds = [4, 20]
+            dim = "dimensionless"
+            xlabel = "Birth Redshift"
+
+        log_variable_bounds = np.log10(variable_bounds)
+
+        imf_variable = unyt.unyt_array(
+            np.logspace(*log_variable_bounds, number_of_bins), dim
         )
 
         # Compute energy fractions
         slope_values = variable_slope(
-            density=birth_densities,
+            density=imf_variable,
             alpha_min=alpha_min,
             alpha_max=alpha_max,
-            pivot_density=pivot_density,
+            pivot_density=pivot,
             sigma=sigma,
         )
+
+        if variable_name not in ax_variables:
+            if len(ax_variables) == 0:
+                axis = ax
+            else:
+                ax2 = ax.twiny()
+                axis = ax2
+            axis.set_xlim(*10**log_variable_bounds)
+            axis.set_xscale("log")
+            axis.set_xlabel(xlabel)
+
+            if variable_name == 'Redshift':
+                t_ticks = np.array([4.0, 6.0, 8.0, 10.0, 12.0, 20])
+                axis.set_xticks(t_ticks)
+                axis.set_xticklabels([f"${int(z)}$" for z in t_ticks])
+
+        else:
+            if len(ax_variables) > 0 and ax_variables[0] != variable_name:
+                axis = ax2
+            else:
+                axis = ax
+
+        ax_variables.append(variable_name)
+        
 
     except KeyError as e:
         print(e)
         # Default to -2.3 (Chabrier IMF) if any parameter is missing
-        slope_values = unyt.unyt_array(
-            -2.3*np.ones_like(birth_densities.value), "dimensionless"
+        imf_variable = unyt.unyt_array(
+            np.logspace(-3, 9, number_of_bins), "dimensionless"
         )
+        slope_values = unyt.unyt_array(
+            -2.3*np.ones(number_of_bins), "dimensionless"
+        )
+        pivot = 1e-10
+        axis = ax
 
     z = snapshot.metadata.z
-    ax.plot(
-        birth_densities.value,
+    axis.plot(
+        imf_variable.value,
         slope_values,
-        label=f"{name} ($z={z:.1f})$",
         color=f"C{color}",
     )
 
+    ax.plot(
+        [],
+        label=f"{name} ($z={z:.1f})$",
+        color=f"C{color}",
+        )
+
     # Add the pivot density line
-    ax.axvline(
-        pivot_density, color=f"C{color}", linestyle="dashed", zorder=-10, alpha=0.5
+    axis.axvline(
+        pivot, color=f"C{color}", linestyle="dashed", zorder=-10, alpha=0.5
     )
 
-ax.set_xlim(*density_bounds)
-ax.set_xscale("log")
 ax.legend(loc="upper left", markerfirst=False)
-ax.set_ylabel("IMF High Mass Slope")
-ax.set_xlabel("Stellar Birth Density $\u03c1_B/m_H$ [cm$^{-3}$]")
 
 fig.savefig(f"{arguments.output_directory}/vimf_top_heavy_slope.png")

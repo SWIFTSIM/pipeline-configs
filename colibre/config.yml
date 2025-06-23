@@ -313,28 +313,28 @@ scripts:
     title: HII
     additional_arguments:
       hydrogen_species: HII
-  - filename: scripts/density_species_interp.py
-    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function opf gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
-    output_file: density_vs_species_fraction.png
-    section: Hydrogen Phases
-    title: Hydrogen Phase Fractions
-    additional_arguments:
-      cooling_tables: /mnt/aridata1/projects/COLIBRE/IC_TABLES/UV_dust1_CR1_G1_shield1.hdf5
-      quantity_type: hydro
-  - filename: scripts/density_species_depletions.py
-    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function of gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
-    output_file: density_vs_species_fraction_depletions.png
-    section: Hydrogen Phases
-    title: Hydrogen Phase Fractions (Depletion Fraction)
-    additional_arguments:
-      quantity_type: hydro
-  - filename: scripts/density_species_diffuse.py
-    caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function of gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
-    output_file: density_vs_species_fraction_diffuse.png
-    section: Hydrogen Phases
-    title: Hydrogen Phase Fractions (Diffuse Fraction)
-    additional_arguments:
-      quantity_type: hydro
+  # - filename: scripts/density_species_interp.py
+  #   caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function opf gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+  #   output_file: density_vs_species_fraction.png
+  #   section: Hydrogen Phases
+  #   title: Hydrogen Phase Fractions
+    # additional_arguments:
+    #   cooling_tables: /mnt/aridata1/projects/COLIBRE/IC_TABLES/UV_dust1_CR1_G1_shield1.hdf5
+    #   quantity_type: hydro
+  # - filename: scripts/density_species_depletions.py
+  #   caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function of gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+  #   output_file: density_vs_species_fraction_depletions.png
+  #   section: Hydrogen Phases
+  #   title: Hydrogen Phase Fractions (Depletion Fraction)
+  #   additional_arguments:
+  #     quantity_type: hydro
+  # - filename: scripts/density_species_diffuse.py
+  #   caption: Co-plot of species fractions (left y-axis) and the dust-to-metal ratio (right y-axis) as a function of gas density. If available, solid green line shows explicitly modelled dust-to-metal ratio, while dashed green is interpolated from the Ploeckinger+20 tables.
+  #   output_file: density_vs_species_fraction_diffuse.png
+  #   section: Hydrogen Phases
+  #   title: Hydrogen Phase Fractions (Diffuse Fraction)
+  #   additional_arguments:
+  #     quantity_type: hydro
   - filename: scripts/last_SNII_kick_velocity_distribution.py
     caption: Distributions of SNII kick velocities experienced by the gas recorded when the gas was last kicked by SNII, split by redshift. The y axis shows the number of SNII-kicked gas particles per bin divided by the bin width and by the total of SNII-kicked gas particles. The dashed vertical lines show the median kick velocitites, while the dotted lines indicade the target kick velocity. Star particles are not included. Star particles are not included.
     output_file: SNII_last_kick_velocity_distribution.png
@@ -537,36 +537,36 @@ scripts:
     additional_arguments:
       xvar: O_H
       yvar: Fe_SNIa_fraction
-  - filename: scripts/column_density_distribution_function.py
-    title:
-      - HI Column Density Distribution Function (full box, full range)
-      - HI Column Density Distribution Function (half box, full range)
-    caption:
-      - 'The column density distribution function of neutral hydrogen computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of neutral hydrogen computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
-    output_file:
-      - column_density_distribution_function_chunk1_full_range_HI.png
-      - column_density_distribution_function_chunk2_reduced_range_HI.png
-    section: Column Densities
-    additional_arguments:
-      element: hydrogen
-      species: HI
-      parallel: True
-  - filename: scripts/column_density_distribution_function.py
-    title:
-      - HeII Column Density Distribution Function (full box, reduced range)
-      - HeII Column Density Distribution Function (half box, reduced range)
-    caption:
-      - 'The column density distribution function of singly-ionized helium computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
-      - 'The column density distribution function of singly-ionized helium computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
-    output_file:
-      - column_density_distribution_function_chunk1_full_range_HeII.png
-      - column_density_distribution_function_chunk1_reduced_range_HeII.png
-    section: Column Densities
-    additional_arguments:
-      element: helium
-      species: HeII
-      parallel: True
+  # - filename: scripts/column_density_distribution_function.py
+  #   title:
+  #     - HI Column Density Distribution Function (full box, full range)
+  #     - HI Column Density Distribution Function (half box, full range)
+  #   caption:
+  #     - 'The column density distribution function of neutral hydrogen computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
+  #     - 'The column density distribution function of neutral hydrogen computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
+  #   output_file:
+  #     - column_density_distribution_function_chunk1_full_range_HI.png
+  #     - column_density_distribution_function_chunk2_reduced_range_HI.png
+  #   section: Column Densities
+  #   additional_arguments:
+  #     element: hydrogen
+  #     species: HI
+  #     parallel: True
+  # - filename: scripts/column_density_distribution_function.py
+  #   title:
+  #     - HeII Column Density Distribution Function (full box, reduced range)
+  #     - HeII Column Density Distribution Function (half box, reduced range)
+  #   caption:
+  #     - 'The column density distribution function of singly-ionized helium computed by projecting the entire box along the z-axis, corrected for the size of the box in redshift space.'
+  #     - 'The column density distribution function of singly-ionized helium computed by splitting the box in half along the z-axis and projecting each half separately, also along the z-axis. Corrected for the size of the box in redshift space.'
+  #   output_file:
+  #     - column_density_distribution_function_chunk1_full_range_HeII.png
+  #     - column_density_distribution_function_chunk1_reduced_range_HeII.png
+  #   section: Column Densities
+  #   additional_arguments:
+  #     element: helium
+  #     species: HeII
+  #     parallel: True
   - filename: scripts/cosmic_SNIa_rate.py
     title: 'Cosmic SNIa rate'
     caption: SNIa rate history plotted directly from the SNIa.txt file produced by SWIFT.
@@ -599,8 +599,8 @@ scripts:
       - satellite_fraction_passive.png
     section: Satellite Fraction
   - filename: scripts/vimf_slope_birth_density.py
-    caption: The relation between the IMF high mass ($> 0.5 M_{sun}$) slope and and stellar birth density. The dashed vertical lines indicate the pivot birth density used in the simulation.
-    title: IMF slope vs. Stellar Birth Density
+    caption: The relation between the IMF high mass ($> 0.5 M_{sun}$) slope and and stellar birth property that it depends on. The dashed vertical lines indicate the pivot birth value used in the simulation.
+    title: IMF slope vs. Stellar Birth Property
     section: vIMF Diagnostic Plots
     output_file: vimf_top_heavy_slope.png
   - filename: scripts/effective_snii_energy_fraction_distribution.py
@@ -618,8 +618,8 @@ scripts:
     title: Cumulative FUV Luminosity (50 kpc aperture)
     section: vIMF Diagnostic Plots
     output_file: uv_corrected_luminosity_cumulative_sum.png
-  - filename: scripts/birth_density_distribution_alpha_binned.py
-    caption: Distributions of stellar birth densities, split by IMF high mass slope ($m > 0. 5M_{sun}$). The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median stellar birth-densities.
-    title: Stellar Birth Densities (sorted by IMF slope)
-    section: vIMF Diagnostic Plots
-    output_file: birth_density_distribution_alpha_binned.png
+  # - filename: scripts/birth_density_distribution_alpha_binned.py
+  #   caption: Distributions of stellar birth redshifts, split by IMF high mass slope ($m > 0. 5M_{sun}$). The y axis shows the number of stars per bin divided by the bin width and by the total number of stars. The dashed vertical lines show the median redshift.
+  #   title: Stellar Birth Redshifts (sorted by IMF slope)
+  #   section: vIMF Diagnostic Plots
+  #   output_file: birth_redshift_distribution_alpha_binned.png

@@ -599,7 +599,7 @@ scripts:
       - satellite_fraction_passive.png
     section: Satellite Fraction
   - filename: scripts/vimf_slope_birth_density.py
-    caption: The relation between the IMF high mass ($> 0.5 M_{sun}$) slope and and stellar birth property that it depends on. The dashed vertical lines indicate the pivot birth value used in the simulation.
+    caption: The relation between the IMF high mass ($> 0.5 M_{sun}$) slope and the stellar birth property that it depends on. The dashed vertical lines indicate the pivot birth used in the simulation.
     title: IMF slope vs. Stellar Birth Property
     section: vIMF Diagnostic Plots
     output_file: vimf_top_heavy_slope.png

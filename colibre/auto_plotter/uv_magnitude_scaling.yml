@@ -57,9 +57,6 @@ uv_magnitude_halo_mass_all_50:
     end:
       value: 1e15
       units: Solar_Mass
-    lower:
-      value: 1.e-10
-      units: "dimensionless"
   metadata:
     title: FUV Magnitude - Halo Mass Relation
     caption: 50 kpc aperture dust-free GALEX FUV-band magnitude vs $M_{200,crit}$ halo mass. Magnitudes have been corrected for the chosen IMF using FSPS. Central haloes only.

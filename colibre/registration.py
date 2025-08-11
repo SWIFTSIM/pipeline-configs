@@ -877,6 +877,7 @@ def register_star_Mg_and_O_to_Fe(self, catalogue, aperture_sizes):
 
     return
 
+
 def register_oxygen_to_hydrogen(self, catalogue, aperture_sizes):
     # Loop over aperture average-of-linear O-abundances
     for aperture_size in aperture_sizes:

@@ -67,12 +67,12 @@ def make_single_image(filenames, names, number_of_simulations, output_path):
     ax.set_ylabel("PDF [-]")
     ax.loglog()
 
-    for filename, name in zip(filenames, names):
-        dust_to_metal = get_data(filename)
-        h, bin_edges = np.histogram(np.log10(dust_to_metal), bins=250, density=True)
-        bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
-        bins = 10 ** bins
-        ax.plot(bins, h, label=name)
+    # for filename, name in zip(filenames, names):
+    #     dust_to_metal = get_data(filename)
+    #     h, bin_edges = np.histogram(np.log10(dust_to_metal), bins=250, density=True)
+    #     bins = 0.5 * (bin_edges[1:] + bin_edges[:-1])
+    #     bins = 10 ** bins
+    #     ax.plot(bins, h, label=name)
 
     ax.legend()
     ax.set_xlim(plot_bounds)

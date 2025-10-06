@@ -30,7 +30,7 @@ h2_frac_func_stellar_mass_xgass_selection:
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 50 kpc apertures. To include Helium we multiply $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown. In Saintonge2017+ data, all galaxies with $10^9 < M_{\rm star} / \mathrm{M_\odot} < 10^{10}$ have $M_{\rm H_2}/M_{\rm star}$ fractions that cannot be lower than $0.025$, and for galaxies with $M_{\rm star} / \mathrm{M_\odot} > 10^{10}$ the floor value is $0.015$.
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 50 kpc apertures. To include Helium we multiply $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown. In Saintonge2017+ data, all galaxies with $10^9 < M_{\rm star} / \mathrm{M_\odot} < 10^{10}$ have $M_{\rm H_2}/M_{\rm star}$ fractions that cannot be lower than $0.025$, and for galaxies with $M_{\rm star} / \mathrm{M_\odot} > 10^{10}$ the floor value is $0.015$. The median values ("Binning") are shown.
     show_on_webpage: false
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
@@ -246,7 +246,7 @@ h2_frac_func_stellar_mass:
   metadata:
     title: Stellar Mass-H$_2$ Fraction
     section: Cold Gas Data Comparison
-    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 50 kpc apertures. To include Helium we multiply $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown. In Saintonge2017+ data, all galaxies with $10^9 < M_{\rm star} / \mathrm{M_\odot} < 10^{10}$ have $M_{\rm H_2}/M_{\rm star}$ fractions that cannot be lower than $0.025$, and for galaxies with $M_{\rm star} / \mathrm{M_\odot} > 10^{10}$ the floor value is $0.015$.
+    caption: Galaxy H$_2$ mass (including Helium following the observations) over stellar mass as a function of stellar mass in 0.2 dex bins, measured in 50 kpc apertures. To include Helium we multiply $M_{\rm H_2}/M_{\rm star}$ by $(1+M_{\rm He}/M_{\rm H})$. The median values are shown. In Saintonge2017+ data, all galaxies with $10^9 < M_{\rm star} / \mathrm{M_\odot} < 10^{10}$ have $M_{\rm H_2}/M_{\rm star}$ fractions that cannot be lower than $0.025$, and for galaxies with $M_{\rm star} / \mathrm{M_\odot} > 10^{10}$ the floor value is $0.015$. The median values ("Binning") are shown.
   observational_data:
     - filename: GalaxyH2Fractions/Saintonge2017_abcissa_M_star.hdf5
     - filename: GalaxyH2Fractions/Hunt2020_Data.hdf5

@@ -74,6 +74,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_100:
     - filename: GalaxyStellarMassHaloMass/Moster2018Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98_Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/FIREbox_Rg.hdf5
+    - filename: GalaxyStellarMassHaloMass/NewHorizon.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_50:
   type: "scatter"
@@ -113,6 +114,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_50:
     - filename: GalaxyStellarMassHaloMass/Moster2018Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98_Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/FIREbox_Rg.hdf5
+    - filename: GalaxyStellarMassHaloMass/NewHorizon.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_30:
   type: "scatter"
@@ -152,6 +154,7 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_30:
     - filename: GalaxyStellarMassHaloMass/Moster2018Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98_Ratio.hdf5
     - filename: GalaxyStellarMassHaloMass/FIREbox_Rg.hdf5
+    - filename: GalaxyStellarMassHaloMass/NewHorizon.hdf5
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
   type: "scatter"

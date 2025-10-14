@@ -53,7 +53,7 @@ corrected_luminosity_u_function_50:
     end: 0.316 # (1e-0.5)
   metadata:
     title: u-band Luminosity Function (50 kpc aperture)
-    caption: 50 kpc aperture dust-corrected rest-frame luminosity function in the SDSS u-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
+    caption: 50 kpc aperture dust-free rest-frame luminosity function in the SDSS u-band, corrected for the chosen IMF using FSPS, showing all galaxies with a fixed bin-width of 0.2 dex.
     section: vIMF Luminosity Function
   observational_data:
     - filename: GalaxyLuminosityFunction/Driver2012_u.hdf5

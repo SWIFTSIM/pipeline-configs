@@ -355,5 +355,4 @@ axes[0].legend(loc="upper right", markerfirst=False)
 axes[2].set_xlabel("Effective SNII Energy Fraction $f_{\\rm E'}$")
 axes[1].set_ylabel("$N_{\\rm bin}$ / d$f_{\\rm E}$ / $N_{\\rm total}$")
 
-# fig.savefig(f"{arguments.output_directory}/effective_snii_energy_fraction_distribution.png")
-fig.savefig(output_path)
+fig.savefig(f"{arguments.output_directory}/effective_snii_energy_fraction_distribution.png")

@@ -260,7 +260,6 @@ def register_corrected_star_magnitudes(self, catalogue, aperture_sizes, add_dust
 
     return
 
-
 def register_chabrier_masses(self, catalogue, aperture_sizes):
 
     # Loop over apertures

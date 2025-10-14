@@ -1,0 +1,177 @@
+stellar_mass_galaxy_size_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalfmass_star_50_kpc"
+    units: kpc
+    start: 3e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (stars) (50 kpc aperture)
+    caption: Size based on half mass radius of stars. Uses a 50 kpc 3D aperture.
+    section: vIMF Size Comparisons
+  observational_data:
+    - filename: GalaxyStellarMassGalaxySize/Trujillo2020HalfMass.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
+    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
+
+stellar_mass_galaxy_size_gas_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalfmass_gas_50_kpc"
+    units: kpc
+    start: 3e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (gas) (50 kpc aperture)
+    caption: Size based on half mass radius of gas. Uses a 50 kpc 3D aperture.
+    section: vIMF Size Comparisons
+
+stellar_mass_galaxy_size_colddensegas_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalfmass_colddensegas_50_kpc"
+    units: kpc
+    start: 3e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (cold dense gas) (50 kpc aperture)
+    caption: Size based on half mass radius of cold dense gas. Uses a 50 kpc 3D aperture.
+    section: vIMF Size Comparisons
+
+stellar_mass_galaxy_size_dust_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalfmass_dust_50_kpc"
+    units: kpc
+    start: 3e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (dust) (50 kpc aperture)
+    caption: Size based on half mass radius of dust. Uses a 50 kpc 3D aperture.
+    section: vIMF Size Comparisons
+
+stellar_mass_galaxy_size_fuv_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalflight_fuv_50_kpc"
+    units: kpc
+    start: 3e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (FUV) (50 kpc aperture)
+    caption: Size based on half light radius from the GALEX FUV band. Uses a 50 kpc 3D aperture.
+    section: vIMF Size Comparisons
+
+stellar_mass_galaxy_size_r_50:
+  type: "scatter"
+  legend_loc: "upper left"
+  x:
+    quantity: "apertures.mass_star_50_kpc"
+    units: Solar_Mass
+    start: 1e6
+    end: 1e12
+  y:
+    quantity: "apertures.rhalflight_r_50_kpc"
+    units: kpc
+    start: 3e-1
+    end: 3e1
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 30
+    start:
+      value: 1e6
+      units: Solar_Mass
+    end:
+      value: 1e12
+      units: Solar_Mass
+  metadata:
+    title: Stellar Mass-Galaxy Size relation (r) (50 kpc aperture)
+    caption: Size based on half light radius from the SDSS r band. Uses a 50 kpc 3D aperture.
+    section: vIMF Size Comparisons

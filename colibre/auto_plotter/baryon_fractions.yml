@@ -6,7 +6,7 @@ baryon_fraction_500:
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e8
     end: 1e15
   y:
     quantity: "derived_quantities.baryon_fraction_true_R500"
@@ -18,9 +18,9 @@ baryon_fraction_500:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
-      value: 1e10
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e15
@@ -41,7 +41,7 @@ gas_fraction_500_no_bias:
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e8
     end: 1e15
   y:
     quantity: "derived_quantities.gas_fraction_true_R500"
@@ -54,9 +54,9 @@ gas_fraction_500_no_bias:
     log: true
     min_num_points_highlight: 0
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
-      value: 1e10
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e15
@@ -80,7 +80,7 @@ hot_gas_fraction_500_no_bias:
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e8
     end: 1e15
   y:
     quantity: "derived_quantities.hot_gas_fraction_true_R500"
@@ -93,9 +93,9 @@ hot_gas_fraction_500_no_bias:
     log: true
     min_num_points_highlight: 0
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
-      value: 1e10
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e15
@@ -119,7 +119,7 @@ gas_fraction_500_with_bias:
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e8
     end: 1e15
   y:
     quantity: "derived_quantities.gas_fraction_true_R500"
@@ -132,9 +132,9 @@ gas_fraction_500_with_bias:
     log: true
     min_num_points_highlight: 0
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
-      value: 1e10
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e15
@@ -154,7 +154,7 @@ star_fraction_500:
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e8
     end: 1e15
   y:
     quantity: "derived_quantities.star_fraction_true_R500"
@@ -166,9 +166,9 @@ star_fraction_500:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
-      value: 1e13
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e15
@@ -191,7 +191,7 @@ gas_mass_500:
   x:
     quantity: "spherical_overdensities.mass_500_rhocrit"
     units: Solar_Mass
-    start: 1e10
+    start: 1e8
     end: 1e15
   y:
     quantity: "spherical_overdensities.mass_gas_500_rhocrit"
@@ -202,9 +202,9 @@ gas_mass_500:
     plot: true
     log: true
     adaptive: true
-    number_of_bins: 25
+    number_of_bins: 35
     start:
-      value: 1e10
+      value: 1e8
       units: Solar_Mass
     end:
       value: 1e15

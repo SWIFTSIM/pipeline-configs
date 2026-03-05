@@ -35,9 +35,7 @@ marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
 for aperture_size in aperture_sizes:
     halo_mass = catalogue.get_quantity("masses.mass_200crit")
 
-    stellar_mass = catalogue.get_quantity(
-        f"apertures.mass_star_{aperture_size}_kpc"
-    )
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
     # Need to mask out zeros, otherwise we get RuntimeWarnings
     good_stellar_mass = stellar_mass > unyt.unyt_quantity(0.0, stellar_mass.units)
 
@@ -127,9 +125,7 @@ for aperture_size in aperture_sizes:
 # Now stellar mass - halo mass relation
 
 for aperture_size in aperture_sizes:
-    stellar_mass = catalogue.get_quantity(
-        f"apertures.mass_star_{aperture_size}_kpc"
-    )
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
     halo_mass = catalogue.get_quantity("masses.mass_200crit")
 
     smhm = stellar_mass / halo_mass
@@ -165,9 +161,7 @@ setattr(self, "gas_fraction_true_R500", f_gas_500)
 setattr(self, "star_fraction_true_R500", f_star_500)
 
 for aperture_size in aperture_sizes:
-    stellar_mass = catalogue.get_quantity(
-        f"apertures.mass_star_{aperture_size}_kpc"
-    )
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
 
     halo_mass = catalogue.get_quantity("masses.mass_200crit")
     smhm = stellar_mass / halo_mass
@@ -206,9 +200,7 @@ register_star_magnitudes(self, catalogue, aperture_sizes)
 # Add eddington bias to stellar masses, according to Behroozi (2019)
 
 for aperture_size in aperture_sizes:
-    stellar_mass = catalogue.get_quantity(
-        f"apertures.mass_star_{aperture_size}_kpc"
-    )
+    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
     bias_std = np.min(np.array([0.07 + 0.071 * catalogue.z, 0.3]))
     bias_factors = 10 ** (np.random.normal(0, bias_std, len(stellar_mass)))
 

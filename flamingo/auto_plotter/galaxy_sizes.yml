@@ -1,5 +1,5 @@
 stellar_mass_galaxy_size_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_50_kpc"
@@ -31,7 +31,7 @@ stellar_mass_galaxy_size_50:
     - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
 
 stellar_mass_projected_galaxy_size_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_50_kpc"
@@ -63,7 +63,7 @@ stellar_mass_projected_galaxy_size_50:
     - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
 
 stellar_mass_projected_galaxy_size_active_only_50:
-  type: "2dhistogram"
+  type: "scatter"
   comment: "Active only"
   comment_loc: "lower left"
   legend_loc: "upper left"
@@ -98,7 +98,7 @@ stellar_mass_projected_galaxy_size_active_only_50:
     - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 
 stellar_mass_projected_galaxy_size_passive_only_50:
-  type: "2dhistogram"
+  type: "scatter"
   comment: "Passive only"
   comment_loc: "lower left"
   legend_loc: "upper left"

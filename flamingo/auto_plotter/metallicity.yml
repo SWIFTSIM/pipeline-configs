@@ -1,5 +1,5 @@
 stellar_mass_gas_sf_metallicity_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower right"
   selection_mask: "derived_quantities.is_active_50_kpc"
   comment: "Active only"
@@ -35,7 +35,7 @@ stellar_mass_gas_sf_metallicity_50:
     - filename: GalaxyStellarMassGasMetallicity/Andrews2013_Data.hdf5
 
 stellar_mass_star_metallicity_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower right"
   y:
     quantity: "derived_quantities.star_metallicity_in_solar_50_kpc"

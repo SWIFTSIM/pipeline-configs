@@ -1,5 +1,5 @@
 stellar_mass_ages_30:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower right"
   y:
     quantity: "stellar_age.tage_star"
@@ -30,7 +30,7 @@ stellar_mass_ages_30:
     - filename: GalaxyStellarMassStellarAges/Gallazzi2005_Data.hdf5
 
 stellar_mass_ages_100:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower right"
   y:
     quantity: "stellar_age.tage_star"

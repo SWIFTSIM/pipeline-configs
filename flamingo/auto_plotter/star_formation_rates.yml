@@ -1,5 +1,5 @@
 stellar_mass_sfr_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_50_kpc"
@@ -31,7 +31,7 @@ stellar_mass_sfr_50:
     - filename: GalaxyStellarMassStarFormationRate/Davies2016_z0p1.hdf5
 
 stellar_mass_specific_sfr_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower left"
   selection_mask: "derived_quantities.is_active_50_kpc"
   comment: "Active only"
@@ -70,7 +70,7 @@ stellar_mass_specific_sfr_50:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
 
 stellar_mass_specific_sfr_with_passive_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower left"
   x:
     quantity: "apertures.mass_star_50_kpc"
@@ -102,7 +102,7 @@ stellar_mass_specific_sfr_with_passive_50:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Chang2015.hdf5
 
 halo_mass_specific_sfr_50:
-  type: "2dhistogram"
+  type: "scatter"
   selection_mask: "derived_quantities.is_active_50_kpc"
   comment: "Active only"
   comment_loc: "lower right"
@@ -137,7 +137,7 @@ halo_mass_specific_sfr_50:
     show_on_webpage: true
 
 halo_mass_specific_sfr_with_passive_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower left"
   x:
     quantity: "masses.mass_200crit"
@@ -165,7 +165,7 @@ halo_mass_specific_sfr_with_passive_50:
     section: Star Formation Rates
 
 halo_mass_sfr_50_halo_mass:
-  type: "2dhistogram"
+  type: "scatter"
   selection_mask: "derived_quantities.is_active_50_kpc"
   comment: "Active only"
   comment_loc: "lower right"
@@ -196,7 +196,7 @@ halo_mass_sfr_50_halo_mass:
     section: Star Formation Rates
 
 stellar_mass_passive_fraction_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower left"
   redshift_loc: "upper center"
   x:
@@ -232,8 +232,8 @@ stellar_mass_passive_fraction_50:
     - filename: GalaxyStellarMassPassiveFraction/Behroozi2019.hdf5
 
 stellar_mass_passive_fraction_centrals_50:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "lower left"
   redshift_loc: "upper center"

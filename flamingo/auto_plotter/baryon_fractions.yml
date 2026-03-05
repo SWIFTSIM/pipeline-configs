@@ -1,6 +1,6 @@
 baryon_fraction_500:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -31,8 +31,8 @@ baryon_fraction_500:
     section: Baryon Fractions
 
 gas_fraction_500:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -70,8 +70,8 @@ gas_fraction_500:
     - filename: HaloMassGasFractions/Lovisari2015.hdf5
 
 star_fraction_500:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -103,8 +103,8 @@ star_fraction_500:
 
 
 gas_mass_500:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -134,8 +134,8 @@ gas_mass_500:
     section: Baryon Fractions
 
 gas_fraction_500_calibration:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:

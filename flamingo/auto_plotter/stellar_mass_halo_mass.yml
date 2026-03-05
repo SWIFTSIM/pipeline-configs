@@ -1,5 +1,5 @@
 stellar_mass_halo_mass_all_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower right"
   x:
     quantity: "masses.mass_200crit"
@@ -30,8 +30,8 @@ stellar_mass_halo_mass_all_50:
     - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
 
 stellar_mass_halo_mass_centrals_50:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "lower right"
   x:
@@ -63,8 +63,8 @@ stellar_mass_halo_mass_centrals_50:
     - filename: GalaxyStellarMassHaloMass/Behroozi2013.hdf5
 
 stellar_mass_halo_mass_centrals_ratio_50:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "lower right"
   x:
@@ -96,8 +96,8 @@ stellar_mass_halo_mass_centrals_ratio_50:
     - filename: GalaxyStellarMassHaloMass/Behroozi2013Ratio.hdf5
 
 stellar_mass_halo_mass_centrals_ratio_stellar_50:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "lower left"
   x:
@@ -129,7 +129,7 @@ stellar_mass_halo_mass_centrals_ratio_stellar_50:
     - filename: GalaxyStellarMassHaloMass/Behroozi2013RatioStellar.hdf5
 
 stellar_mass_halo_mass_MBN98_all_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "lower right"
   x:
     quantity: "masses.mass_bn98"
@@ -161,8 +161,8 @@ stellar_mass_halo_mass_MBN98_all_50:
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_50:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "lower right"
   x:
@@ -195,8 +195,8 @@ stellar_mass_halo_mass_MBN98_centrals_50:
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_50:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
@@ -229,8 +229,8 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_50:
     - filename: GalaxyStellarMassHaloMass/Schaye2015_Ref_100_MBN98_RatioStellar.hdf5
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_50:
-  type: "2dhistogram"
-  select_structure_type: 10
+  type: "scatter"
+  select_structure_type: 1
   comment: "Centrals only"
   legend_loc: "upper left"
   x:

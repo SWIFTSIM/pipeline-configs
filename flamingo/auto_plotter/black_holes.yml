@@ -1,5 +1,5 @@
 stellar_mass_black_hole_mass_30:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_30_kpc"
@@ -32,7 +32,7 @@ stellar_mass_black_hole_mass_30:
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
 
 stellar_mass_black_hole_mass_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_50_kpc"
@@ -65,7 +65,7 @@ stellar_mass_black_hole_mass_50:
     - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
 
 stellar_mass_black_hole_mass_100:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_100_kpc"
@@ -99,7 +99,7 @@ stellar_mass_black_hole_mass_100:
 
 
 halo_mass_black_hole_mass:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "masses.mass_200crit"
@@ -128,7 +128,7 @@ halo_mass_black_hole_mass:
 
 
 stellar_veldisp_black_hole_mass_10:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.veldisp_star_10_kpc"
@@ -158,7 +158,7 @@ stellar_veldisp_black_hole_mass_10:
     - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
 
 stellar_veldisp_black_hole_mass_30:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.veldisp_star_30_kpc"

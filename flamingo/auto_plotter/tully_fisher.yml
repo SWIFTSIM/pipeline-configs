@@ -1,5 +1,5 @@
 tully_fisher_50:
-  type: "2dhistogram"
+  type: "scatter"
   legend_loc: "upper left"
   x:
     quantity: "apertures.mass_star_50_kpc"

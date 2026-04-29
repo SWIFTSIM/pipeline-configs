@@ -57,7 +57,9 @@ def register_specific_star_formation_rates(self, catalogue, aperture_sizes):
     if np.isclose(catalogue.z, 0):
         marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
     else:
-        marginal_ssfr = 0.2 * unyt.unyt_quantity.from_astropy(catalogue.cosmology.H(catalogue.z))
+        marginal_ssfr = 0.2 * unyt.unyt_quantity.from_astropy(
+            catalogue.cosmology.H(catalogue.z)
+        )
 
     # Loop over apertures
     for aperture_size in aperture_sizes:

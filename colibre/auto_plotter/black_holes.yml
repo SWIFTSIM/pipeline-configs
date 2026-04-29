@@ -136,7 +136,7 @@ stellar_mass_black_hole_mass_passive_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for passive central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (threshold is 0.01 / Gyr sSFR) central galaxies are included.
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
     section: Black Holes
     show_on_webpage: false
   observational_data:
@@ -172,7 +172,7 @@ stellar_mass_black_hole_mass_passive_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for passive central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (threshold is 0.01 / Gyr sSFR) central galaxies are included.
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
     section: Black Holes
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
@@ -207,7 +207,7 @@ stellar_mass_black_hole_mass_active_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for active central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only active (threshold is 0.01 / Gyr sSFR) central galaxies are included.
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only active (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
     section: Black Holes
     show_on_webpage: false
   observational_data:
@@ -243,7 +243,7 @@ stellar_mass_black_hole_mass_active_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for active central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only active (threshold is 0.01 / Gyr sSFR) central galaxies are included.
+    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only active (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
     section: Black Holes
   observational_data:
     - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5

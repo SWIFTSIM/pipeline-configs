@@ -52,7 +52,14 @@ stellar_mass_scatter_amplitude = 0.3
 def register_specific_star_formation_rates(self, catalogue, aperture_sizes):
 
     # Lowest sSFR below which the galaxy is considered passive
-    marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
+    # Use a fixed value for z = 0
+    # For z > 0 use a redshift-dependent sSFR criterion, 0.2 / t_H(z)
+    if np.isclose(catalogue.z, 0):
+        marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
+    else:
+        marginal_ssfr = 0.2 * unyt.unyt_quantity.from_astropy(
+            catalogue.cosmology.H(catalogue.z)
+        )
 
     # Loop over apertures
     for aperture_size in aperture_sizes:

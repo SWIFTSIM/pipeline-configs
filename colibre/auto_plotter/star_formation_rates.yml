@@ -24,7 +24,7 @@ stellar_mass_sfr_30:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Star Formation Rate (30 kpc aperture)
-    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line. SFRs from Koprowski+ are based on UV+IR.
+    caption: All galaxies, including those deemed to be passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)), are included in the median line. SFRs from Koprowski+ are based on UV+IR.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
@@ -57,7 +57,7 @@ stellar_mass_sfr_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Star Formation Rate (50 kpc aperture)
-    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line. SFRs from Koprowski+ are based on UV+IR.
+    caption: All galaxies, including those deemed to be passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)), are included in the median line. SFRs from Koprowski+ are based on UV+IR.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
@@ -122,7 +122,7 @@ stellar_mass_specific_sfr_all_50:
       units: solar_mass
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (50 kpc aperture)
-    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
+    caption: All galaxies, including those deemed to be passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)), are included in the median line.
     section: Star Formation Rates
   observational_data:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_AllGalaxies.hdf5
@@ -155,7 +155,7 @@ stellar_mass_specific_sfr_all_30:
       units: solar_mass
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (30 kpc aperture)
-    caption: All galaxies, including those deemed to be passive (below 0.01 / Gyr sSFR), are included in the median line.
+    caption: All galaxies, including those deemed to be passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)), are included in the median line.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
@@ -254,7 +254,7 @@ stellar_mass_specific_sfr_active_50:
       units: solar_mass
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (50 kpc aperture, active only)
-    caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
+    caption: Only active galaxies (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) are included in the median line.
     section: Star Formation Rates
   observational_data:
     - filename: GalaxyStellarMassSpecificStarFormationRate/Bauer2013_StarForming.hdf5
@@ -292,7 +292,7 @@ stellar_mass_specific_sfr_active_30:
       units: solar_mass
   metadata:
     title: Specific Star Formation Rate - Stellar Mass (30 kpc aperture, active only)
-    caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
+    caption: Only active galaxies (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) are included in the median line.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
@@ -331,7 +331,7 @@ halo_mass_specific_sfr_30:
       units: solar_mass
   metadata:
     title: Specific Star Formation Rate (30 kpc aperture) - Halo Mass
-    caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
+    caption: Only active galaxies (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) are included in the median line.
     section: Star Formation Rates
     show_on_webpage: false
 
@@ -364,7 +364,7 @@ halo_mass_specific_sfr_50:
       units: solar_mass
   metadata:
     title: Specific Star Formation Rate (50 kpc aperture) - Halo Mass
-    caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line.
+    caption: Only active galaxies (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) are included in the median line.
     section: Star Formation Rates
     show_on_webpage: false
 
@@ -397,7 +397,7 @@ halo_mass_sfr_30_halo_mass:
       units: solar_mass
   metadata:
     title: Star Formation Rate divided by Halo Mass (30 kpc aperture) - Halo Mass
-    caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line
+    caption: Only active galaxies (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) are included in the median line
     section: Star Formation Rates
     show_on_webpage: false
 
@@ -430,7 +430,7 @@ halo_mass_sfr_50_halo_mass:
       units: solar_mass
   metadata:
     title: Star Formation Rate divided by Halo Mass (50 kpc aperture) - Halo Mass
-    caption: Only active galaxies (threshold is above 0.01 / Gyr sSFR) are included in the median line
+    caption: Only active galaxies (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) are included in the median line
     section: Star Formation Rates
     show_on_webpage: false
 
@@ -464,7 +464,7 @@ stellar_mass_passive_fraction_30:
       units: solar_mass
   metadata:
     title: Passive Fraction - Stellar Mass (30 kpc aperture)
-    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr.
+    caption: The sSFR threshold to determine if a galaxy is passsive is 0.01 / Gyr for z=0, 0.2/t_H(z) for z>0.
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
@@ -503,7 +503,7 @@ stellar_mass_passive_fraction_50:
       units: solar_mass
   metadata:
     title: Passive Fraction - Stellar Mass (50 kpc aperture)
-    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr.
+    caption: The sSFR threshold to determine if a galaxy is passsive is 0.01 / Gyr for z=0, 0.2/t_H(z) for z>0.
     section: Star Formation Rates
   observational_data:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
@@ -541,7 +541,7 @@ stellar_mass_with_scatter_passive_fraction_50:
       units: solar_mass
   metadata:
     title: Passive Fraction - Stellar Mass (50 kpc aperture, with scatter)
-    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. All stellar masses contain an additional 0.3 dex log-normal scatter.
+    caption: The sSFR threshold to determine if a galaxy is passsive is 0.01 / Gyr for z=0, 0.2/t_H(z) for z>0. All stellar masses contain an additional 0.3 dex log-normal scatter.
     section: Star Formation Rates
   observational_data:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
@@ -581,7 +581,7 @@ stellar_mass_passive_fraction_centrals_30:
       units: solar_mass
   metadata:
     title: Passive Fraction - Stellar Mass (30 kpc aperture, centrals)
-    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. This figure shows only the central galaxies (structure type 10).
+    caption: The sSFR threshold to determine if a galaxy is passsive is 0.01 / Gyr for z=0, 0.2/t_H(z) for z>0. This figure shows only central galaxies
     section: Star Formation Rates
     show_on_webpage: false
   observational_data:
@@ -622,7 +622,7 @@ stellar_mass_passive_fraction_centrals_50:
       units: solar_mass
   metadata:
     title: Passive Fraction - Stellar Mass (50 kpc aperture, centrals)
-    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. This figure shows only the central galaxies (structure type 10).
+    caption: The sSFR threshold to determine if a galaxy is passsive is 0.01 / Gyr for z=0, 0.2/t_H(z) for z>0. This figure shows only central galaxies
     section: Star Formation Rates
   observational_data:
     - filename: GalaxyStellarMassPassiveFraction/Gilbank2010.hdf5
@@ -662,7 +662,7 @@ stellar_mass_passive_fraction_satellites_50:
       units: solar_mass
   metadata:
     title: Passive Fraction - Stellar Mass (50 kpc aperture, satellites)
-    caption: A galaxy is determined as being passive if it has a sSFR below 0.01 / Gyr. This figure shows only satellite galaxies.
+    caption: The sSFR threshold to determine if a galaxy is passsive is 0.01 / Gyr for z=0, 0.2/t_H(z) for z>0. This figure shows only satellite galaxies
     section: Star Formation Rates
 
 star_formation_rate_function_50:

@@ -3,8 +3,8 @@ import numpy as np
 import unyt
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
-from velociraptor import load
-from velociraptor.observations import load_observations
+from swiftsimio import load
+from swiftpipeline.observations import load_observations
 
 # Set variables for the figure
 mass_bounds = [1e9, 1e12]  # Msun
@@ -37,23 +37,17 @@ ax.set_xscale("log")
 z_sims = set()
 for filename, name in zip(catalogue_filenames, arguments.name_list):
     catalogue = load(filename)
-    z = catalogue.units.redshift
+    z = catalogue.metadata.z
     z_sims.add(z)
 
     # Load quantities, ignoring objects below mass bin
-    star_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
+    sphere = getattr(catalogue, f"exclusive_sphere_{aperture_size}kpc")
+    star_mass = sphere.stellar_mass
     mask = star_mass > mass_bounds[0] * unyt.Msun
     star_mass = star_mass[mask]
-    lin_Fe_over_H_times_star_mass = catalogue.get_quantity(
-        f"lin_element_ratios_times_masses.lin_Fe_over_H_times_star_mass_{aperture_size}_kpc"
-    )[mask]
-    sfr = catalogue.get_quantity(f"apertures.sfr_gas_{aperture_size}_kpc").to(
-        "Msun/yr"
-    )[mask]
-    is_central = (catalogue.get_quantity("structure_type.structuretype") == 1)[mask]
-
-    # Convert to units used in observations
-    Fe_over_H = lin_Fe_over_H_times_star_mass / star_mass
+    Fe_over_H = sphere.linear_mass_weighted_iron_over_hydrogen_of_stars[mask]
+    sfr = sphere.star_formation_rate.to("Msun/yr")[mask]
+    is_central = catalogue.input_halos.is_central.astype(bool)[mask]
     Fe_abundance = np.log10(Fe_over_H / solar_fe_abundance)
 
     # Calculate if galaxy is passive or star-forming using definition from Lyu+23

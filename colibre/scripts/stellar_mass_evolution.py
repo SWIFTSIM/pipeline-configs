@@ -15,7 +15,7 @@ from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
-from velociraptor.observations import load_observation
+from swiftpipeline.observations import load_observation
 
 arguments = ScriptArgumentParser(
     description="Creates a stellar mass density evolution plot, with added observational data."

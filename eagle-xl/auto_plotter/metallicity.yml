@@ -1,16 +1,16 @@
 stellar_mass_gas_sf_metallicity_30:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   comment: "Active only"
   y:
-    quantity: "derived_quantities.gas_sf_twelve_plus_log_OH_30_kpc"
+    quantity: "exclusive_sphere_30kpc.star_forming_gas_oxygen_abundance"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e7
     end: 1e12
@@ -38,16 +38,16 @@ stellar_mass_gas_sf_metallicity_30:
 stellar_mass_gas_sf_metallicity_100:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "exclusive_sphere_100kpc.is_active"
   comment: "Active only"
   y:
-    quantity: "derived_quantities.gas_sf_twelve_plus_log_OH_100_kpc"
+    quantity: "exclusive_sphere_100kpc.star_forming_gas_oxygen_abundance"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: solar_mass
     start: 1e7
     end: 1e12
@@ -75,12 +75,12 @@ stellar_mass_star_metallicity_100:
   type: "scatter"
   legend_loc: "lower right"
   y:
-    quantity: "derived_quantities.star_metallicity_in_solar_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_metallicity_in_solar"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: solar_mass
     start: 1e7
     end: 1e12
@@ -107,12 +107,12 @@ stellar_mass_star_metallicity_30:
   type: "scatter"
   legend_loc: "lower right"
   y:
-    quantity: "derived_quantities.star_metallicity_in_solar_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_metallicity_in_solar"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e7
     end: 1e12

@@ -3,7 +3,7 @@ stellar_mass_function_30:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -34,7 +34,7 @@ adaptive_stellar_mass_function_30:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -65,10 +65,10 @@ adaptive_stellar_mass_function_active_only_30:
   legend_loc: "lower left"
   comment: "Active only"
   comment_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -98,10 +98,10 @@ adaptive_stellar_mass_function_passive_only_30:
   legend_loc: "lower left"
   comment: "Passive only"
   comment_loc: "lower right"
-  selection_mask: "derived_quantities.is_passive_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_passive"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -132,7 +132,7 @@ stellar_mass_function_50:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -161,10 +161,10 @@ stellar_mass_function_centrals_50:
   type: "massfunction"
   legend_loc: "lower left"
   number_of_bins: 30
-  select_structure_type: 1
+  select_centrals: true
   comment: "Centrals only"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -185,10 +185,10 @@ stellar_mass_function_satellites_50:
   type: "massfunction"
   legend_loc: "lower left"
   number_of_bins: 30
-  select_structure_type: 0
+  select_satellites: true
   comment: "Satellites only"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -210,7 +210,7 @@ stellar_mass_function_50_calibration:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -232,7 +232,7 @@ adaptive_stellar_mass_function_50:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -262,7 +262,7 @@ adaptive_stellar_mass_function_50_calibration:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -285,7 +285,7 @@ adaptive_stellar_mass_function_50_box_size_correction:
   number_of_bins: 30
   box_size_correction: box_size_correction_25_to_50.yml
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -316,7 +316,7 @@ adaptive_stellar_mass_function_50_box_size_correction_calibration:
   number_of_bins: 30
   box_size_correction: box_size_correction_25_to_50.yml
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -340,9 +340,9 @@ adaptive_stellar_mass_function_passive_only_50:
   legend_loc: "lower left"
   comment: "Passive only"
   comment_loc: "lower right"
-  selection_mask: "derived_quantities.is_passive_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_passive"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -373,9 +373,9 @@ adaptive_stellar_mass_function_active_only_50:
   legend_loc: "lower left"
   comment: "Active only"
   comment_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -404,7 +404,7 @@ stellar_mass_function_with_scatter_50:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.mass_star_with_scatter_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -435,7 +435,7 @@ stellar_mass_function_with_scatter_50_calibration:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.mass_star_with_scatter_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -457,7 +457,7 @@ adaptive_stellar_mass_function_with_scatter_50:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.mass_star_with_scatter_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -488,7 +488,7 @@ adaptive_stellar_mass_function_with_scatter_50_calibration:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.mass_star_with_scatter_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
     units: Solar_Mass
     start: 1e6
     end: 1e12

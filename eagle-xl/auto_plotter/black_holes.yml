@@ -2,12 +2,12 @@ stellar_mass_black_hole_mass_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 6e3
     end: 1e11
@@ -37,12 +37,12 @@ stellar_mass_black_hole_mass_100:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 6e3
     end: 1e11
@@ -72,12 +72,12 @@ halo_mass_black_hole_mass:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e9
     end: 1e14
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 6e3
     end: 1e11
@@ -104,12 +104,12 @@ stellar_veldisp_black_hole_mass_10:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.veldisp_star_10_kpc"
+    quantity: "exclusive_sphere_10kpc.stellar_velocity_dispersion"
     units: km/s
     start: 50
     end: 1e3
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 6e3
     end: 1e11
@@ -136,12 +136,12 @@ stellar_veldisp_black_hole_mass_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.veldisp_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_velocity_dispersion"
     units: km/s
     start: 50
     end: 1e3
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 6e3
     end: 1e11

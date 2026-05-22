@@ -1,15 +1,15 @@
 baryon_fraction_500:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "spherical_overdensities.mass_500_rhocrit"
+    quantity: "spherical_overdensity_500_crit.total_mass"
     units: Solar_Mass
     start: 1e11
     end: 1e15
   y:
-    quantity: "derived_quantities.baryon_fraction_true_R500"
+    quantity: "spherical_overdensity_500_crit.baryon_fraction"
     units:  "dimensionless"
     log: false
     start: 0.
@@ -32,16 +32,16 @@ baryon_fraction_500:
 
 gas_fraction_500:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "spherical_overdensities.mass_500_rhocrit"
+    quantity: "spherical_overdensity_500_crit.total_mass"
     units: Solar_Mass
     start: 1e11
     end: 1e15
   y:
-    quantity: "derived_quantities.gas_fraction_true_R500"
+    quantity: "spherical_overdensity_500_crit.gas_fraction"
     units:  "dimensionless"
     log: false
     start: 0.
@@ -70,16 +70,16 @@ gas_fraction_500:
 
 star_fraction_500:
   type: "2dhistogram"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "spherical_overdensities.mass_500_rhocrit"
+    quantity: "spherical_overdensity_500_crit.total_mass"
     units: Solar_Mass
     start: 1e11
     end: 1e15
   y:
-    quantity: "derived_quantities.star_fraction_true_R500"
+    quantity: "spherical_overdensity_500_crit.stellar_fraction"
     units:  "dimensionless"
     log: false
     start: 0.
@@ -102,16 +102,16 @@ star_fraction_500:
       
 gas_mass_500:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "spherical_overdensities.mass_500_rhocrit"
+    quantity: "spherical_overdensity_500_crit.total_mass"
     units: Solar_Mass
     start: 1e11
     end: 1e15
   y:
-    quantity: "spherical_overdensities.mass_gas_500_rhocrit"
+    quantity: "spherical_overdensity_500_crit.gas_mass"
     units: Solar_Mass
     start: 3e9
     end: 1e14

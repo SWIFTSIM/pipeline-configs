@@ -1,15 +1,15 @@
 oxygen_abundance_v_neutral_dust_to_gas:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_log_mean_lowfloor"
     units: "dimensionless"
     start: 6.8
     end: 9.7
     log: false
   y:
-    quantity: "derived_quantities.neutral_dust_to_gas_ratio_30_kpc"
+    quantity: "exclusive_sphere_30kpc.neutral_dust_to_gas_ratio"
     units: "dimensionless"
     start: 1e-7
     end: 0.05
@@ -41,15 +41,15 @@ oxygen_abundance_v_neutral_dust_to_gas:
 oxygen_abundance_v_neutral_dust_to_gas_mstar_gtr_1e9:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e9_msun_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.stellar_mass_above_1e9_msun_and_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_log_mean_lowfloor"
     units: "dimensionless"
     start: 6.8
     end: 9.7
     log: false
   y:
-    quantity: "derived_quantities.neutral_dust_to_gas_ratio_30_kpc"
+    quantity: "exclusive_sphere_30kpc.neutral_dust_to_gas_ratio"
     units: "dimensionless"
     start: 1e-7
     end: 0.05
@@ -81,15 +81,15 @@ oxygen_abundance_v_neutral_dust_to_gas_mstar_gtr_1e9:
 oxygen_abundance_fromz_v_neutral_dust_to_gas:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_fromz_avglin_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_from_metallicity"
     units: "dimensionless"
     start: 6.8
     end: 9.7
     log: false
   y:
-    quantity: "derived_quantities.neutral_dust_to_gas_ratio_30_kpc"
+    quantity: "exclusive_sphere_30kpc.neutral_dust_to_gas_ratio"
     units: "dimensionless"
     start: 1e-7
     end: 0.05
@@ -121,15 +121,15 @@ oxygen_abundance_fromz_v_neutral_dust_to_gas:
 oxygen_abundance_v_neutral_dust_to_metal:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_log_mean_lowfloor"
     units: "dimensionless"
     start: 6.8
     end: 9.7
     log: false
   y:
-    quantity: "derived_quantities.cold_dense_dust_to_metal_ratio_30_kpc"
+    quantity: "exclusive_sphere_30kpc.cold_dense_dust_to_metal_ratio"
     units: "dimensionless"
     start: 1e-3
     end: 5
@@ -163,15 +163,15 @@ oxygen_abundance_v_neutral_dust_to_metal:
 oxygen_abundance_v_neutral_dust_to_metal_mstar_gtr_1e9:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e9_msun_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.stellar_mass_above_1e9_msun_and_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_log_mean_lowfloor"
     units: "dimensionless"
     start: 6.8
     end: 9.7
     log: false
   y:
-    quantity: "derived_quantities.cold_dense_dust_to_metal_ratio_30_kpc"
+    quantity: "exclusive_sphere_30kpc.cold_dense_dust_to_metal_ratio"
     units: "dimensionless"
     start: 1e-3
     end: 5
@@ -205,15 +205,15 @@ oxygen_abundance_v_neutral_dust_to_metal_mstar_gtr_1e9:
 oxygen_abundance_fromz_v_neutral_dust_to_metal:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_fromz_avglin_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_from_metallicity"
     units: "dimensionless"
     start: 6.8
     end: 9.7
     log: false
   y:
-    quantity: "derived_quantities.cold_dense_dust_to_metal_ratio_30_kpc"
+    quantity: "exclusive_sphere_30kpc.cold_dense_dust_to_metal_ratio"
     units: "dimensionless"
     start: 1e-3
     end: 5

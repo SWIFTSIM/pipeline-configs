@@ -2,12 +2,12 @@ h2_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.h2_to_stellar_mass_100_kpc"
+    quantity: "exclusive_sphere_100kpc.molecular_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -37,12 +37,12 @@ hi_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_100_kpc"
+    quantity: "exclusive_sphere_100kpc.atomic_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -72,12 +72,12 @@ cold_gas_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    quantity: "exclusive_sphere_100kpc.specific_star_formation_rate"
     units: "1 / Gigayear"
     start: 1e-4
     end: 6e1
   y:
-    quantity: "derived_quantities.neutral_to_stellar_mass_100_kpc"
+    quantity: "exclusive_sphere_100kpc.neutral_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -103,12 +103,12 @@ h2_to_neutral_gas_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    quantity: "exclusive_sphere_100kpc.molecular_hydrogen_to_neutral_fraction"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-6
     end: 1
@@ -137,12 +137,12 @@ h2_to_neutral_gas_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_100_kpc"
+    quantity: "exclusive_sphere_100kpc.specific_star_formation_rate"
     units: "1 / Gigayear"
     start: 1e-4
     end: 6e1
   y:
-    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_100_kpc"
+    quantity: "exclusive_sphere_100kpc.molecular_hydrogen_to_neutral_fraction"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 1

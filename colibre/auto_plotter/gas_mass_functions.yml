@@ -3,7 +3,7 @@ gas_HI_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e11
@@ -29,7 +29,7 @@ adaptive_gas_HI_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e11
@@ -55,7 +55,7 @@ gas_H2_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e11
@@ -75,7 +75,7 @@ adaptive_gas_H2_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e11

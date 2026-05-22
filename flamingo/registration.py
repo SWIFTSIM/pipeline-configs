@@ -1,210 +1,140 @@
 """
-Registration of extra quantities for velociraptor catalogues (i.e. quantities
-derived from the catalogue's internal properties).
-This file calculates:
-    + sSFR (30, 100 kpc) (specific_sfr_gas_{x}_kpc)
-        This is the specific star formation rate of gas within those apertures.
-        Only calculated for galaxies with a stellar mass greater than zero.
-    + is_passive and is_active (30, 100 kpc) (is_passive_{x}_kpc)
-        Boolean that determines whether or not a galaxy is passive. Marginal
-        specific star formation rate is 1e-11 year^-1.
-    + sfr_halo_mass (30, 100 kpc) (sfr_halo_mass_{x}_kpc)
-        Star formation rate divided by halo mass with the star formation rate
-        computed within apertures.
-    + 12 + log(O/H) ({gas_sf_twelve_plus_log_OH_{x}_kpc, 30, 100 kpc)
-        12 + log(O/H) based on metallicities. These should be removed at some point
-        once velociraptor has a more sensible way of dealing with metallicity
-        units.
-    + metallicity_in_solar (star_metallicity_in_solar_{x}_kpc, 30, 100 kpc)
-        Metallicity in solar units (relative to metal_mass_fraction).
-    + stellar_mass_to_halo_mass_{x}_kpc for 30 and 100 kpc
-        Stellar Mass / Halo Mass (mass_200crit) for 30 and 100 kpc apertures.
-    + HI and H_2 masses (gas_HI_mass_Msun and gas_H2_mass_Msun).
-    + baryon and gas fractions in R_(200,cr) normalized by the
-        cosmic baryon fraction (baryon_fraction_true_R200, gas_fraction_true_R200).
-    + Stellar masses with an Eddington bias added, to account for the upscattering
-        from bin to bin in the stellar mass function that happens when having
-        realistic observational errors
+Registration of extra quantities for SOAP catalogues.
 """
 
 aperture_sizes = [30, 50, 100]
-
-# Specific star formation rate in apertures, as well as passive fraction
-marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
-
-for aperture_size in aperture_sizes:
-    halo_mass = catalogue.get_quantity("masses.mass_200crit")
-
-    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
-    # Need to mask out zeros, otherwise we get RuntimeWarnings
-    good_stellar_mass = stellar_mass > unyt.unyt_quantity(0.0, stellar_mass.units)
-
-    star_formation_rate = catalogue.get_quantity(
-        f"apertures.sfr_gas_{aperture_size}_kpc"
-    )
-
-    ssfr = np.ones(len(star_formation_rate)) * marginal_ssfr
-    ssfr[good_stellar_mass] = (
-        star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
-    )
-
-    # Name (label) of the derived field
-    ssfr.name = f"Specific SFR ({aperture_size} kpc)"
-
-    # Mask for the passive objects
-    is_passive = unyt.unyt_array(
-        (ssfr < 1.01 * marginal_ssfr).astype(float), units="dimensionless"
-    )
-    is_passive.name = "Passive Fraction"
-
-    # Mask for the active objects
-    is_active = unyt.unyt_array(
-        (ssfr > 1.01 * marginal_ssfr).astype(float), units="dimensionless"
-    )
-    is_active.name = "Active Fraction"
-
-    # Get the specific star formation rate (per halo mass instead of stellar mass)
-    sfr_M200 = star_formation_rate / halo_mass
-    sfr_M200.name = "Star formation rate divided by halo mass"
-
-    # Register derived fields with specific star formation rates
-    setattr(self, f"specific_sfr_gas_{aperture_size}_kpc", ssfr)
-    setattr(self, f"is_passive_{aperture_size}_kpc", is_passive)
-    setattr(self, f"is_active_{aperture_size}_kpc", is_active)
-    setattr(self, f"sfr_halo_mass_{aperture_size}_kpc", sfr_M200)
-
-# Now metallicities relative to different units
 
 solar_metal_mass_fraction = 0.0126
 twelve_plus_log_OH_solar = 8.69
 minimal_twelve_plus_log_OH = 7.5
 
-for aperture_size in aperture_sizes:
+# Band column index in stellar_luminosity (9 GAMA bands: u g r i z Y J H K)
+BAND_COLUMNS = {"u": 0, "g": 1, "r": 2, "i": 3, "z": 4, "Z": 4, "Y": 5, "J": 6, "H": 7, "K": 8}
 
+marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
+
+halo_mass = soap.spherical_overdensity_200_crit.total_mass
+halo_mass_bn98 = soap.spherical_overdensity_bn98.total_mass
+
+for aperture_size in aperture_sizes:
+    sphere = getattr(soap, f"exclusive_sphere_{aperture_size}kpc")
+    stellar_mass = sphere.stellar_mass
+    star_formation_rate = sphere.star_formation_rate
+
+    good_stellar_mass = stellar_mass > unyt.unyt_quantity(0.0, stellar_mass.units)
+
+    ssfr = unyt.unyt_array(
+        np.ones(len(star_formation_rate)) * marginal_ssfr.to(1 / unyt.year).value,
+        units=1 / unyt.year,
+    )
+    ssfr[good_stellar_mass] = (
+        star_formation_rate[good_stellar_mass] / stellar_mass[good_stellar_mass]
+    ).to(1 / unyt.year)
+    ssfr.name = f"Specific SFR ({aperture_size} kpc)"
+
+    is_passive = unyt.unyt_array(
+        (ssfr < 1.01 * marginal_ssfr).astype(float), units="dimensionless"
+    )
+    is_passive.name = "Passive Fraction"
+
+    is_active = unyt.unyt_array(
+        (ssfr > 1.01 * marginal_ssfr).astype(float), units="dimensionless"
+    )
+    is_active.name = "Active Fraction"
+
+    sfr_M200 = star_formation_rate / halo_mass
+    sfr_M200.name = "Star formation rate divided by halo mass"
+
+    sphere.specific_star_formation_rate = ssfr
+    sphere.is_passive = is_passive
+    sphere.is_active = is_active
+    sphere.star_formation_rate_per_halo_mass = sfr_M200
+
+    # Stellar metallicity in solar units
     try:
-        metal_mass_fraction_star = (
-            catalogue.get_quantity(f"apertures.zmet_star_{aperture_size}_kpc")
-            / solar_metal_mass_fraction
-        )
-        metal_mass_fraction_star.name = f"Star Metallicity $Z_*$ rel. to $Z_\\odot={solar_metal_mass_fraction}$ ({aperture_size} kpc)"
-        setattr(
-            self,
-            f"star_metallicity_in_solar_{aperture_size}_kpc",
-            metal_mass_fraction_star,
-        )
+        star_metallicity = sphere.stellar_mass_fraction_in_metals / solar_metal_mass_fraction
+        star_metallicity.name = f"Star Metallicity $Z_*$ rel. to $Z_\\odot={solar_metal_mass_fraction}$ ({aperture_size} kpc)"
+        sphere.stellar_metallicity_in_solar = star_metallicity
     except AttributeError:
         pass
 
+    # Star-forming gas oxygen abundance from metallicity
     try:
-        metal_mass_fraction_gas = (
-            catalogue.get_quantity(f"apertures.zmet_gas_sf_{aperture_size}_kpc")
-            / solar_metal_mass_fraction
-        )
-
-        # Handle scenario where metallicity is zero, as we are bounded
-        # by approx 1e-2 metal mass fraction anyway:
-        metal_mass_fraction_gas[metal_mass_fraction_gas < 1e-5] = 1e-5
-
-        log_metal_mass_fraction_gas = np.log10(metal_mass_fraction_gas.value)
+        metal_frac_sf = sphere.star_forming_gas_mass_fraction_in_metals / solar_metal_mass_fraction
+        metal_frac_sf[metal_frac_sf < 1e-5] = 1e-5
         twelve_plus_log_OH = unyt.unyt_array(
-            twelve_plus_log_OH_solar + log_metal_mass_fraction_gas,
+            twelve_plus_log_OH_solar + np.log10(metal_frac_sf.value),
             units="dimensionless",
         )
         twelve_plus_log_OH.name = f"Gas (SF) $12+\\log_{{10}}$O/H from $Z$ (Solar={twelve_plus_log_OH_solar}) ({aperture_size} kpc)"
-
-        twelve_plus_log_OH[
-            twelve_plus_log_OH < minimal_twelve_plus_log_OH
-        ] = minimal_twelve_plus_log_OH
-
-        setattr(
-            self, f"gas_sf_twelve_plus_log_OH_{aperture_size}_kpc", twelve_plus_log_OH
-        )
+        twelve_plus_log_OH[twelve_plus_log_OH < minimal_twelve_plus_log_OH] = minimal_twelve_plus_log_OH
+        sphere.star_forming_gas_oxygen_abundance = twelve_plus_log_OH
     except AttributeError:
         pass
 
-# Now stellar mass - halo mass relation
+    # Stellar mass to halo mass ratios
+    smhm_200 = stellar_mass / halo_mass
+    smhm_200.name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
+    sphere.stellar_mass_to_halo_mass_200crit = smhm_200
 
-for aperture_size in aperture_sizes:
-    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
-    halo_mass = catalogue.get_quantity("masses.mass_200crit")
+    smhm_bn98 = stellar_mass / halo_mass_bn98
+    smhm_bn98.name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
+    sphere.stellar_mass_to_halo_mass_bn98 = smhm_bn98
 
-    smhm = stellar_mass / halo_mass
-    name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
-    smhm.name = name
+    # Stellar magnitudes from luminosity
+    try:
+        lum = sphere.stellar_luminosity
+        for band, col in BAND_COLUMNS.items():
+            L_AB = lum[:, col]
+            m_AB = np.copy(L_AB.value)
+            mask = m_AB > 0.0
+            m_AB[mask] = -2.5 * np.log10(m_AB[mask])
+            mag = unyt.unyt_array(m_AB, units="dimensionless")
+            mag.name = f"{band}-band AB magnitudes ({aperture_size} kpc)"
+            setattr(sphere, f"stellar_magnitude_{band}_band", mag)
+    except AttributeError:
+        pass
 
-    setattr(self, f"stellar_mass_to_halo_mass_{aperture_size}_kpc", smhm)
+    # Eddington-biased stellar mass (Behroozi 2019)
+    bias_std = np.min(np.array([0.07 + 0.071 * float(soap.metadata.z), 0.3]))
+    bias_factors = 10 ** (np.random.normal(0, bias_std, len(stellar_mass)))
+    stellar_mass_with_bias = unyt.unyt_array(
+        stellar_mass.value * bias_factors, units=stellar_mass.units
+    )
+    stellar_mass_with_bias.name = f"Stellar Mass $M_*$ ({aperture_size} kpc)"
+    sphere.stellar_mass_with_eddington_bias = stellar_mass_with_bias
 
-# Now baryon fractions
+# Baryon fractions at R_500
+Omega_m = soap.metadata.cosmology.Om0
+Omega_b = soap.metadata.cosmology.Ob0
 
-Omega_m = catalogue.units.cosmology.Om0
-Omega_b = catalogue.units.cosmology.Ob0
-
-M_500 = catalogue.get_quantity("spherical_overdensities.mass_500_rhocrit")
-M_500_gas = catalogue.get_quantity("spherical_overdensities.mass_gas_500_rhocrit")
-M_500_star = catalogue.get_quantity("spherical_overdensities.mass_star_500_rhocrit")
+M_500 = soap.spherical_overdensity_500_crit.total_mass
+M_500_gas = soap.spherical_overdensity_500_crit.gas_mass
+M_500_star = soap.spherical_overdensity_500_crit.stellar_mass
 M_500_baryon = M_500_gas + M_500_star
 
-f_b_500 = (M_500_baryon / M_500) / (Omega_b / Omega_m)
-name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
-f_b_500.name = name
+cosmic_baryon_fraction = Omega_b / Omega_m
+so500 = soap.spherical_overdensity_500_crit
 
-f_gas_500 = (M_500_gas / M_500) / (Omega_b / Omega_m)
-name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
-f_gas_500.name = name
+f_b = M_500_baryon / M_500 / cosmic_baryon_fraction
+f_b.name = "$f_{\\rm b, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+so500.baryon_fraction = f_b
 
-f_star_500 = (M_500_star / M_500) / (Omega_b / Omega_m)
-name = "$f_{\\rm star, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
-f_star_500.name = name
+f_gas = M_500_gas / M_500 / cosmic_baryon_fraction
+f_gas.name = "$f_{\\rm gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+so500.gas_fraction = f_gas
 
-setattr(self, "baryon_fraction_true_R500", f_b_500)
-setattr(self, "gas_fraction_true_R500", f_gas_500)
-setattr(self, "star_fraction_true_R500", f_star_500)
+f_star = M_500_star / M_500 / cosmic_baryon_fraction
+f_star.name = "$f_{\\rm star, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+so500.stellar_fraction = f_star
 
-for aperture_size in aperture_sizes:
-    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
-
-    halo_mass = catalogue.get_quantity("masses.mass_200crit")
-    smhm = stellar_mass / halo_mass
-    name = f"$M_* / M_{{\\rm 200crit}}$ ({aperture_size} kpc)"
-    smhm.name = name
-    setattr(self, f"stellar_mass_to_halo_mass_200crit_{aperture_size}_kpc", smhm)
-
-    halo_MBN98 = catalogue.get_quantity("masses.mass_bn98")
-    smhm = stellar_mass / halo_MBN98
-    name = f"$M_* / M_{{\\rm BN98}}$ ({aperture_size} kpc)"
-    smhm.name = name
-    setattr(self, f"stellar_mass_to_halo_mass_bn98_{aperture_size}_kpc", smhm)
-
-
-def register_star_magnitudes(self, catalogue, aperture_sizes):
-
-    bands = ["i", "g", "r", "H", "u", "J", "Y", "K", "z", "Z"]
-
-    # Loop over apertures
-    for aperture_size in aperture_sizes:
-        for band in bands:
-            L_AB = catalogue.get_quantity(
-                f"stellar_luminosities.{band}_luminosity_{aperture_size}_kpc"
-            )
-            m_AB = np.copy(L_AB)
-            mask = L_AB > 0.0
-            m_AB[mask] = -2.5 * np.log10(m_AB[mask])
-            m_AB = unyt.unyt_array(m_AB, units="dimensionless")
-            m_AB.name = f"{band}-band AB magnitudes ({aperture_size} kpc)"
-            setattr(self, f"magnitudes_{band}_band_{aperture_size}_kpc", m_AB)
-    return
-
-
-register_star_magnitudes(self, catalogue, aperture_sizes)
-
-# Add eddington bias to stellar masses, according to Behroozi (2019)
-
-for aperture_size in aperture_sizes:
-    stellar_mass = catalogue.get_quantity(f"apertures.mass_star_{aperture_size}_kpc")
-    bias_std = np.min(np.array([0.07 + 0.071 * catalogue.z, 0.3]))
-    bias_factors = 10 ** (np.random.normal(0, bias_std, len(stellar_mass)))
-
-    stellar_mass_with_bias = unyt.unyt_array(stellar_mass * bias_factors)
-    stellar_mass_with_bias.name = f"Stellar Mass $M_*$ ({aperture_size} kpc)"
-
-    setattr(self, f"stellar_mass_eddington_{aperture_size}_kpc", stellar_mass_with_bias)
+# Stellar velocity dispersion from matrix diagonal (sigma^2 values)
+for aperture_size in [10, 30]:
+    sphere = getattr(soap, f"exclusive_sphere_{aperture_size}kpc")
+    try:
+        mat = sphere.stellar_velocity_dispersion_matrix
+        sigma_3d = np.sqrt(mat[:, 0] + mat[:, 1] + mat[:, 2])
+        sigma_3d.name = f"Stellar velocity dispersion ({aperture_size} kpc)"
+        sphere.stellar_velocity_dispersion = sigma_3d
+    except AttributeError:
+        pass

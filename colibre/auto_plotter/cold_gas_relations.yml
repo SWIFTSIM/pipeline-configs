@@ -1,14 +1,14 @@
 stellar_mass_molecular_to_neutral_fraction_30:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_molecular_H_to_neutral_fraction_30_kpc"
+    quantity: "exclusive_sphere_30kpc.molecular_hydrogen_to_neutral_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 3.
@@ -36,12 +36,12 @@ stellar_mass_neutral_to_stellar_fraction_30:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_30_kpc"
+    quantity: "exclusive_sphere_30kpc.neutral_hydrogen_to_stellar_mass_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 3.
@@ -69,12 +69,12 @@ stellar_mass_neutral_to_stellar_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_neutral_H_to_stellar_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_hydrogen_to_stellar_mass_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 3.
@@ -102,12 +102,12 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_30:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_30_kpc"
+    quantity: "exclusive_sphere_30kpc.molecular_hydrogen_to_molecular_plus_stellar_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 3.
@@ -135,12 +135,12 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_molecular_H_to_molecular_plus_stellar_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_to_molecular_plus_stellar_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 3.
@@ -167,14 +167,14 @@ stellar_mass_molecular_to_stellar_plus_molecular_fraction_50:
 H2_mass_star_formation_rate_30:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_H2_mass_30_kpc"
+    quantity: "exclusive_sphere_30kpc.molecular_hydrogen_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
   y:
-    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    quantity: "exclusive_sphere_30kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 0.01
     end: 50
@@ -198,14 +198,14 @@ H2_mass_star_formation_rate_30:
 H2_mass_star_formation_rate_50:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_H2_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_mass"
     units: "Solar_Mass"
     start: 1e5
     end: 1e11
   y:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 0.01
     end: 50
@@ -230,12 +230,12 @@ stellar_mass_neutral_H_to_baryonic_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_neutral_H_to_baryonic_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_hydrogen_to_baryonic_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 1.1
@@ -264,14 +264,14 @@ stellar_mass_neutral_H_to_baryonic_fraction_50:
 stellar_mass_HI_to_neutral_H_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_to_neutral_H_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_neutral_fraction"
     units: "dimensionless"
     start: 1e-1
     end: 1.1
@@ -297,14 +297,14 @@ stellar_mass_HI_to_neutral_H_fraction_50:
 stellar_mass_H2_to_neutral_H_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_to_neutral_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 1.1
@@ -331,12 +331,12 @@ stellar_mass_sf_to_sf_plus_stellar_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_sf_to_sf_plus_stellar_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_forming_gas_to_sf_plus_stellar_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 1.1
@@ -363,14 +363,14 @@ stellar_mass_sf_to_sf_plus_stellar_fraction_50:
 stellar_mass_neutral_H_to_sf_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_neutral_H_to_sf_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_hydrogen_to_star_forming_gas_fraction"
     units: "dimensionless"
     start: 1e-1
     end: 10.
@@ -397,14 +397,14 @@ stellar_mass_neutral_H_to_sf_fraction_50:
 stellar_mass_HI_to_sf_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_to_sf_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_star_forming_gas_fraction"
     units: "dimensionless"
     start: 1e-1
     end: 10.
@@ -431,14 +431,14 @@ stellar_mass_HI_to_sf_fraction_50:
 stellar_mass_H2_to_sf_fraction_50:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_to_sf_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_to_star_forming_gas_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 10.
@@ -464,14 +464,14 @@ stellar_mass_H2_to_sf_fraction_50:
 sfr_neutral_to_stellar_mass_50_kpc_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
-    quantity: "derived_quantities.neutral_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_hydrogen_to_stellar_mass"
     units: "dimensionless"
     start: 1e-4
     end: 10
@@ -497,14 +497,14 @@ sfr_neutral_to_stellar_mass_50_kpc_50:
 sfr_hi_to_stellar_mass_50_kpc_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_stellar_mass"
     units: "dimensionless"
     start: 1e-4
     end: 10
@@ -530,14 +530,14 @@ sfr_hi_to_stellar_mass_50_kpc_50:
 sfr_h2_to_stellar_mass_50_kpc_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
-    quantity: "derived_quantities.h2_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_to_stellar_mass"
     units: "dimensionless"
     start: 1e-4
     end: 1.1
@@ -564,14 +564,14 @@ sfr_h2_to_stellar_mass_50_kpc_50:
 sfr_sf_to_stellar_fraction_kpc_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-3
     end: 10
   y:
-    quantity: "derived_quantities.gas_sf_to_stellar_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_forming_gas_to_stellar_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 10
@@ -599,12 +599,12 @@ sigma_neutral_H_to_baryonic_fraction_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "derived_quantities.mu_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_surface_mass_density"
     units: "Solar_Mass / kpc**2"
     start: 1e5
     end: 1e10
   y:
-    quantity: "derived_quantities.gas_neutral_H_to_baryonic_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_hydrogen_to_baryonic_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 1.1
@@ -632,14 +632,14 @@ sigma_neutral_H_to_baryonic_fraction_50:
 sigma_hi_to_neutral_H_fraction_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.mu_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_surface_mass_density"
     units: "Solar_Mass / kpc**2"
     start: 1e5
     end: 1e10
   y:
-    quantity: "derived_quantities.gas_HI_to_neutral_H_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_neutral_fraction"
     units: "dimensionless"
     start: 1e-1
     end: 1.1
@@ -666,14 +666,14 @@ sigma_hi_to_neutral_H_fraction_50:
 sigma_h2_to_neutral_H_fraction_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.mu_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_surface_mass_density"
     units: "Solar_Mass / kpc**2"
     start: 1e5
     end: 1e10
   y:
-    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_to_neutral_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 1.1
@@ -701,12 +701,12 @@ sigma_sf_to_sf_plus_stellar_fraction_50:
   type: "scatter"
   legend_loc: "upper left"  
   x:
-    quantity: "derived_quantities.mu_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_surface_mass_density"
     units: "Solar_Mass / kpc**2"
     start: 1e5
     end: 1e10
   y:
-    quantity: "derived_quantities.gas_sf_to_sf_plus_stellar_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_forming_gas_to_sf_plus_stellar_fraction"
     units: "dimensionless"
     start: 1e-4
     end: 1.1
@@ -734,12 +734,12 @@ stellar_mass_HI_mass_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -763,14 +763,14 @@ stellar_mass_HI_mass_50:
 stellar_mass_HI_mass_active_only_50:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -797,12 +797,12 @@ stellar_mass_H2_mass_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -826,14 +826,14 @@ stellar_mass_H2_mass_50:
 stellar_mass_H2_mass_active_only_50:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -858,12 +858,12 @@ halo_mass_HI_mass_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e7
     end: 1e15
   y:
-    quantity: "derived_quantities.gas_HI_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -888,12 +888,12 @@ halo_mass_H2_mass_50:
   type: "scatter"
   legend_loc: "upper right"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e7
     end: 1e15
   y:
-    quantity: "derived_quantities.gas_H2_plus_He_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11

@@ -3,7 +3,7 @@ calibration_stellar_mass_function:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 1e12
@@ -22,12 +22,12 @@ calibration_stellar_mass_galaxy_size:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 1e12
   y:
-    quantity: "projected_apertures.projected_1_rhalfmass_star_100_kpc"
+    quantity: "projected_aperture_100kpc_projx.half_mass_radius_stars"
     units: kpc
     start: 0.5
     end: 50

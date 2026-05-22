@@ -1,15 +1,15 @@
 stellar_mass_halo_mass_M200_centrals_ratio_100:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e15
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass_to_halo_mass_200crit"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -35,16 +35,16 @@ stellar_mass_halo_mass_M200_centrals_ratio_100:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_100:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_bn98"
+    quantity: "spherical_overdensity_bn98.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e15
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_bn98_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass_to_halo_mass_bn98"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -71,16 +71,16 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_100:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_50:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_bn98"
+    quantity: "spherical_overdensity_bn98.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e15
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_bn98_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_to_halo_mass_bn98"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -107,16 +107,16 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_50:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_30:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_bn98"
+    quantity: "spherical_overdensity_bn98.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e15
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_bn98_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass_to_halo_mass_bn98"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -143,16 +143,16 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_30:
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass_to_halo_mass_200crit"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -178,16 +178,16 @@ stellar_mass_halo_mass_M200_centrals_ratio_stellar_100:
       
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_bn98_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass_to_halo_mass_bn98"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -213,16 +213,16 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_100:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_50:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_bn98_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_to_halo_mass_bn98"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -248,16 +248,16 @@ stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_50:
 
 stellar_mass_halo_mass_MBN98_centrals_ratio_stellar_30:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_bn98_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass_to_halo_mass_bn98"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -285,12 +285,12 @@ stellar_mass_halo_mass_M200_all_100:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e15
   y:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
@@ -318,12 +318,12 @@ stellar_mass_halo_mass_MBN98_all_100:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_bn98"
+    quantity: "spherical_overdensity_bn98.total_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e15
   y:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
@@ -348,16 +348,16 @@ stellar_mass_halo_mass_MBN98_all_100:
 
 stellar_mass_halo_mass_M200_centrals_100:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e13
   y:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
@@ -384,16 +384,16 @@ stellar_mass_halo_mass_M200_centrals_100:
 
 stellar_mass_halo_mass_MBN98_centrals_100:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_bn98"
+    quantity: "spherical_overdensity_bn98.total_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e13
   y:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
@@ -419,16 +419,16 @@ stellar_mass_halo_mass_MBN98_centrals_100:
 
 stellar_mass_halo_mass_M200_centrals_ratio_30:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e13
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass_to_halo_mass_200crit"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -455,16 +455,16 @@ stellar_mass_halo_mass_M200_centrals_ratio_30:
 
 stellar_mass_halo_mass_M200_centrals_ratio_stellar_30:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
   y:
-    quantity: "derived_quantities.stellar_mass_to_halo_mass_200crit_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass_to_halo_mass_200crit"
     units: "dimensionless"
     start: 1e-4
     end: 1e-1
@@ -493,12 +493,12 @@ stellar_mass_halo_mass_M200_all_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e13
   y:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12
@@ -525,16 +525,16 @@ stellar_mass_halo_mass_M200_all_30:
 
 stellar_mass_halo_mass_M200_centrals_30:
   type: "scatter"
-  select_structure_type: 10
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e13
   y:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 9e3
     end: 1e12

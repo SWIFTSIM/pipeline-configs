@@ -2,12 +2,12 @@ stellar_mass_sfr_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e13
   y:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -33,16 +33,16 @@ stellar_mass_sfr_50:
 stellar_mass_specific_sfr_50:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only"
   comment_loc: "lower right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e8
     end: 1e13
   y:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 0.5e-2
     end: 3e0
@@ -73,12 +73,12 @@ stellar_mass_specific_sfr_with_passive_50:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e8
     end: 1e13
   y:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-4
     end: 3e0
@@ -103,17 +103,17 @@ stellar_mass_specific_sfr_with_passive_50:
 
 halo_mass_specific_sfr_50:
   type: "scatter"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only"
   comment_loc: "lower right"
   legend_loc: "lower left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e10
     end: 7e15
   y:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 0.5e-2
     end: 3e0
@@ -140,12 +140,12 @@ halo_mass_specific_sfr_with_passive_50:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e10
     end: 1e15
   y:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 0.5e-2
     end: 3e0
@@ -166,17 +166,17 @@ halo_mass_specific_sfr_with_passive_50:
 
 halo_mass_sfr_50_halo_mass:
   type: "scatter"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only"
   comment_loc: "lower right"
   legend_loc: "lower left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e10
     end: 7e15
   y:
-    quantity: "derived_quantities.sfr_halo_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate_per_halo_mass"
     units: 1 / gigayear
     start: 0.5e-5
     end: 1e-2
@@ -200,12 +200,12 @@ stellar_mass_passive_fraction_50:
   legend_loc: "lower left"
   redshift_loc: "upper center"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e9
     end: 1e13
   y:
-    quantity: "derived_quantities.is_passive_50_kpc"
+    quantity: "exclusive_sphere_50kpc.is_passive"
     units: "dimensionless"
     log: false
     start: 0
@@ -233,17 +233,17 @@ stellar_mass_passive_fraction_50:
 
 stellar_mass_passive_fraction_centrals_50:
   type: "scatter"
-  select_structure_type: 1
+  select_centrals: true
   comment: "Centrals only"
   legend_loc: "lower left"
   redshift_loc: "upper center"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e7
     end: 1e13
   y:
-    quantity: "derived_quantities.is_passive_50_kpc"
+    quantity: "exclusive_sphere_50kpc.is_passive"
     units: "dimensionless"
     log: false
     start: 0
@@ -274,7 +274,7 @@ star_formation_rate_function_50:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -295,7 +295,7 @@ adaptive_star_formation_rate_function_50:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3

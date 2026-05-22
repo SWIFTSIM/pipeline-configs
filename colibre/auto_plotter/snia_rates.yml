@@ -2,12 +2,12 @@ stellar_mass_snia_rates_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "snia_rates.snia_rates_50_kpc"
+    quantity: "exclusive_sphere_50kpc.total_snia_rate"
     units: "1/year"
     start: 3e-8
     end: 1e-1
@@ -38,14 +38,14 @@ stellar_mass_snia_rates_active_only_50:
   comment: "Active only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "snia_rates.snia_rates_50_kpc"
+    quantity: "exclusive_sphere_50kpc.total_snia_rate"
     units: "1/year"
     start: 3e-8
     end: 1e-1
@@ -74,14 +74,14 @@ stellar_mass_snia_rates_passive_only_50:
   comment: "Passive only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_passive_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_passive"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "snia_rates.snia_rates_50_kpc"
+    quantity: "exclusive_sphere_50kpc.total_snia_rate"
     units: "1/year"
     start: 3e-8
     end: 1e-1
@@ -109,12 +109,12 @@ stellar_mass_snia_rates_per_stellar_mass_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 3e-15
     end: 3e-12
@@ -145,14 +145,14 @@ stellar_mass_snia_rates_per_stellar_mass_active_only_50:
   comment: "Active only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 3e-15
     end: 3e-12
@@ -181,14 +181,14 @@ stellar_mass_snia_rates_per_stellar_mass_passive_only_50:
   comment: "Passive only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_passive_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_passive"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 3e-15
     end: 3e-12
@@ -217,15 +217,15 @@ gas_metallicity_snia_rates_per_stellar_mass_active_only_50:
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e10_msun_and_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_fromz_avglin_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_from_metallicity"
     units: dimensionless 
     log: false
     start: 8.4 
     end: 9.4 
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-14
     end: 3e-12
@@ -252,15 +252,15 @@ gas_metallicity_snia_rates_per_stellar_mass_active_only_50_Mstar5e10:
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_5e10_msun_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_5e10_msun_and_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_fromz_avglin_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_from_metallicity"
     units: dimensionless 
     log: false
     start: 8.4 
     end: 9.4 
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-14
     end: 3e-12
@@ -287,14 +287,14 @@ star_formation_rates_snia_rates_per_stellar_mass_50:
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e10_msun"
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass/year"
     start: 1e-3
     end: 1e2
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-14
     end: 3e-12
@@ -322,14 +322,14 @@ star_formation_rates_snia_rates_per_stellar_mass_50_Mstar5e10:
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_5e10_msun_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_5e10_msun"
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass/year"
     start: 1e-3
     end: 1e2
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-14
     end: 3e-12
@@ -356,12 +356,12 @@ star_formation_rates_snia_rates_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass/year"
     start: 1e-3
     end: 1e2
   y:
-    quantity: "snia_rates.snia_rates_50_kpc"
+    quantity: "exclusive_sphere_50kpc.total_snia_rate"
     units: "1/year"
     start: 1e-6
     end: 1e-1
@@ -388,14 +388,14 @@ specific_star_formation_rates_snia_rates_per_stellar_mass_50:
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e10_msun"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: "1/gigayear"
     start: 1e-3
     end: 1e1
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-14
     end: 3e-12
@@ -423,14 +423,14 @@ specific_star_formation_rates_snia_rates_per_stellar_mass_50_Mstar5e10:
   comment_loc: "lower left"
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_5e10_msun_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_5e10_msun"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: "1/gigayear"
     start: 1e-3
     end: 1e1
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-14
     end: 3e-12
@@ -457,12 +457,12 @@ stellar_mass_snia_rates_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "snia_rates.snia_rates_30_kpc"
+    quantity: "exclusive_sphere_30kpc.total_snia_rate"
     units: "1/year"
     start: 1e-8
     end: 1e-1
@@ -489,12 +489,12 @@ stellar_mass_snia_rates_per_stellar_mass_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_30_kpc"
+    quantity: "exclusive_sphere_30kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-15
     end: 1e-11
@@ -523,12 +523,12 @@ stellar_mass_snia_rates_100:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "snia_rates.snia_rates_100_kpc"
+    quantity: "exclusive_sphere_100kpc.total_snia_rate"
     units: "1/year"
     start: 1e-8
     end: 1e-1
@@ -555,12 +555,12 @@ stellar_mass_snia_rates_per_stellar_mass_100:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_100_kpc"
+    quantity: "exclusive_sphere_100kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "derived_quantities.snia_rate_per_stellar_mass_100_kpc"
+    quantity: "exclusive_sphere_100kpc.snia_rate_per_stellar_mass"
     units: "1/year/Solar_Mass"
     start: 1e-15
     end: 1e-11

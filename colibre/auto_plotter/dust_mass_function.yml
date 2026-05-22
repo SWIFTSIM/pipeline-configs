@@ -3,7 +3,7 @@ dust_mass_function:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    quantity: "exclusive_sphere_50kpc.dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e10
@@ -27,7 +27,7 @@ adaptive_dust_mass_function:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    quantity: "exclusive_sphere_50kpc.dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e10
@@ -51,7 +51,7 @@ dust_mass_function_molecular:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.total_molecular_dust_masses_30_kpc"
+    quantity: "exclusive_sphere_30kpc.molecular_dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e10
@@ -75,7 +75,7 @@ dust_mass_function_neutral:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.total_neutral_dust_masses_30_kpc"
+    quantity: "exclusive_sphere_30kpc.dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e10
@@ -99,7 +99,7 @@ dust_mass_function_cold_dense:
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "derived_quantities.total_cold_dense_dust_masses_30_kpc"
+    quantity: "exclusive_sphere_30kpc.cold_dense_dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e10

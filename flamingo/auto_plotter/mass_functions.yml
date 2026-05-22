@@ -3,7 +3,7 @@ stellar_mass_function_50:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e9
     end: 2e12
@@ -29,7 +29,7 @@ adaptive_stellar_mass_function_50:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e9
     end: 2e12
@@ -54,7 +54,7 @@ stellar_mass_function_extended_50:
   legend_loc: "lower left"
   number_of_bins: 40
   x:
-    quantity: "derived_quantities.stellar_mass_eddington_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_with_eddington_bias"
     units: Solar_Mass
     start: 1e8
     end: 2e13
@@ -80,7 +80,7 @@ stellar_mass_function_calibration_extended_50:
   legend_loc: "lower left"
   number_of_bins: 40
   x:
-    quantity: "derived_quantities.stellar_mass_eddington_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass_with_eddington_bias"
     units: Solar_Mass
     start: 1e8
     end: 2e13

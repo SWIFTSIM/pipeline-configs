@@ -1,16 +1,16 @@
 stellar_mass_gas_sf_metallicity_fromz_lom_30:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   comment: "Active only, LoM, Diffuse, from Z"
   y:
-    quantity: "derived_quantities.gas_o_abundance_fromz_avglin_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_from_metallicity"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -40,16 +40,16 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
 stellar_mass_gas_sf_metallicity_fromz_lom_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only, LoM, Diffuse, from Z"
   y:
-    quantity: "derived_quantities.gas_o_abundance_fromz_avglin_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_from_metallicity"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -79,16 +79,16 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
 stellar_mass_gas_sf_metallicity_lom_30:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   comment: "Active only, LoM, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglin_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_linear_mean"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -118,16 +118,16 @@ stellar_mass_gas_sf_metallicity_lom_30:
 stellar_mass_gas_sf_metallicity_lom_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only, LoM, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglin_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_linear_mean"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -157,16 +157,16 @@ stellar_mass_gas_sf_metallicity_lom_50:
 stellar_mass_gas_sf_metallicity_total_lom_30:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   comment: "Active only, LoM, Total (Diffuse + Dust), from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_total_avglin_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_total_linear_mean"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -196,16 +196,16 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
 stellar_mass_gas_sf_metallicity_total_lom_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only, LoM, Total (Diffuse + Dust), from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_total_avglin_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_total_linear_mean"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -235,16 +235,16 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
 stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   comment: "Active only, MoL w. [O/H]=-4 floor, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_log_mean_lowfloor"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -274,16 +274,16 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
 stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only, MoL w. [O/H]=-4 floor, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_log_mean_lowfloor"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -313,16 +313,16 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
 stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   comment: "Active only, MoL w. [O/H]=-3 floor, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglog_high_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_log_mean_highfloor"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -352,16 +352,16 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
 stellar_mass_gas_sf_metallicity_mol_hifloor_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only, MoL w. [O/H]=-3 floor, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglog_high_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_log_mean_highfloor"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -391,16 +391,16 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
 stellar_mass_gas_sf_metallicity_lom_allgals_30:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.has_cold_dense_gas_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.has_cold_dense_gas"
   comment: "All galaxies, LoM, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglin_30_kpc"
+    quantity: "exclusive_sphere_30kpc.gas_oxygen_abundance_linear_mean"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -430,16 +430,16 @@ stellar_mass_gas_sf_metallicity_lom_allgals_30:
 stellar_mass_gas_sf_metallicity_lom_allgals_50:
   type: "scatter"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.has_cold_dense_gas_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.has_cold_dense_gas"
   comment: "All galaxies, LoM, Diffuse, from O"
   y:
-    quantity: "derived_quantities.gas_o_abundance_avglin_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_linear_mean"
     log: false
     units: "dimensionless"
     start: 7
     end: 10
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -471,12 +471,12 @@ stellar_mass_star_metallicity_50:
   type: "scatter"
   legend_loc: "upper left"
   y:
-    quantity: "derived_quantities.star_metallicity_in_solar_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_metallicity_in_solar"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -506,12 +506,12 @@ stellar_mass_star_metallicity_30:
   type: "scatter"
   legend_loc: "lower right"
   y:
-    quantity: "derived_quantities.star_metallicity_in_solar_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_metallicity_in_solar"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -542,12 +542,12 @@ stellar_mass_star_fe_over_h_mol_lofloor_50:
   legend_loc: "upper left"
   comment: "MoL w. [F/H]=-4 floor"
   y:
-    quantity: "derived_quantities.star_fe_abundance_avglog_low_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_iron_abundance_log_mean_lowfloor"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -577,12 +577,12 @@ stellar_mass_star_fe_snia_over_h_mol_lofloor_50:
   legend_loc: "upper left"
   comment: "MoL w. [F/H]=-4 floor"
   y:
-    quantity: "derived_quantities.star_fe_snia_abundance_avglog_low_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_iron_from_snia_abundance_log_mean_lowfloor"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -612,12 +612,12 @@ stellar_mass_star_fe_over_h_mol_hifloor_50:
   legend_loc: "upper left"
   comment: "MoL w. [F/H]=-3 floor"
   y:
-    quantity: "derived_quantities.star_fe_abundance_avglog_high_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_iron_abundance_log_mean_highfloor"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -647,12 +647,12 @@ stellar_mass_star_fe_over_h_lom_50:
   legend_loc: "upper left"
   comment: "LoM"
   y:
-    quantity: "derived_quantities.star_fe_abundance_avglin_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_iron_abundance_linear_mean"
     units: "dimensionless"
     start: 1e-2
     end: 1e1
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e6
     end: 1e12
@@ -682,13 +682,13 @@ stellar_mass_star_mg_over_fe_50:
   type: "scatter"
   legend_loc: "lower left"
   y:
-    quantity: "derived_quantities.star_magnesium_over_iron_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_magnesium_over_iron"
     units: "dimensionless"
     start: -0.2
     end: 0.7
     log: false
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e8
     end: 1e12
@@ -714,13 +714,13 @@ stellar_mass_star_o_over_fe_50:
   type: "scatter"
   legend_loc: "lower left"
   y:
-    quantity: "derived_quantities.star_oxygen_over_iron_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_oxygen_over_iron"
     units: "dimensionless"
     start: -0.2
     end: 0.7
     log: false
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e8
     end: 1e12

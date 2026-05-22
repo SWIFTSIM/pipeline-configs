@@ -1,15 +1,15 @@
 h2_frac_func_stellar_mass_xgass_selection:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xcoldgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e9
     end: 1e12
   y:
-    quantity: "derived_quantities.h2_plus_he_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -38,15 +38,15 @@ h2_frac_func_stellar_mass_xgass_selection:
 h2_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.xcoldgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xcoldgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-4
     end: 1e4
   y:
-    quantity: "derived_quantities.h2_plus_he_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -74,15 +74,15 @@ h2_frac_func_ssfr:
 h2_frac_func_stellar_surface_density_xgass_selection:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.mu_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_surface_mass_density"
     units: "Solar_Mass / (kpc**2)"
     start: 1e7
     end: 1e11
   y:
-    quantity: "derived_quantities.h2_plus_he_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -110,15 +110,15 @@ h2_frac_func_stellar_surface_density_xgass_selection:
 hi_frac_func_stellar_mass_xgass_selection:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e9
     end: 1e12
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -147,15 +147,15 @@ hi_frac_func_stellar_mass_xgass_selection:
 hi_frac_func_ssfr:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.xgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-4
     end: 1e4
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -183,15 +183,15 @@ hi_frac_func_ssfr:
 hi_frac_func_stellar_surface_density:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.xgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.mu_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_surface_mass_density"
     units: "Solar_Mass / (kpc**2)"
     start: 1e7
     end: 1e11
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -220,12 +220,12 @@ h2_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.h2_plus_he_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_plus_helium_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -259,12 +259,12 @@ hi_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -298,15 +298,15 @@ hi_frac_func_stellar_mass:
 hi_frac_func_stellar_mass_active_only_50:
   type: "scatter"
   legend_loc: "lower left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   comment: "Active only"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.hi_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -334,15 +334,15 @@ hi_frac_func_stellar_mass_active_only_50:
 cold_gas_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.xgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-4
     end: 6e1
   y:
-    quantity: "derived_quantities.neutral_to_stellar_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_hydrogen_to_stellar_mass"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 100
@@ -371,12 +371,12 @@ h2_to_neutral_gas_frac_func_stellar_mass:
   type: "scatter"
   legend_loc: "lower left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_to_neutral_fraction"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-6
     end: 1
@@ -407,15 +407,15 @@ h2_to_neutral_gas_frac_func_stellar_mass:
 h2_to_neutral_gas_frac_func_ssfr:
   type: "scatter"
   legend_loc: "upper right"
-  selection_mask: "derived_quantities.xgass_galaxy_selection"
+  selection_mask: "bound_subhalo.xgass_galaxy_selection"
   comment: "$10^9 M_{\\odot} < M_{\\ast} < 10^{11.5} M_{\\odot}$"
   x:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 1e-4
     end: 6e1
   y:
-    quantity: "derived_quantities.gas_H2_to_neutral_H_fraction_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_hydrogen_to_neutral_fraction"
     units: "Solar_Mass / Solar_Mass"
     start: 1e-4
     end: 1

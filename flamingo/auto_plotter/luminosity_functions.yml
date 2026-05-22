@@ -3,7 +3,7 @@ luminosity_u_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_u_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_u_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -26,7 +26,7 @@ luminosity_g_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_g_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_g_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -48,7 +48,7 @@ luminosity_r_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_r_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_r_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -71,7 +71,7 @@ luminosity_i_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_i_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_i_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -94,7 +94,7 @@ luminosity_z_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_z_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_z_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -116,7 +116,7 @@ luminosity_Y_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_Y_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_Y_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -137,7 +137,7 @@ luminosity_J_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_J_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_J_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -159,7 +159,7 @@ luminosity_H_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_H_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_H_band"
     log: false
     units: "dimensionless"
     start: -25
@@ -180,7 +180,7 @@ luminosity_K_function_30:
   legend_loc: "lower left"
   number_of_bins: 25
   x:
-    quantity: "derived_quantities.magnitudes_K_band_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_magnitude_K_band"
     log: false
     units: "dimensionless"
     start: -25

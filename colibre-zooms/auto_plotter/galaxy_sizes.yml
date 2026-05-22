@@ -2,12 +2,12 @@ stellar_mass_galaxy_size_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "apertures.rhalfmass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.half_mass_radius_stars"
     units: kpc
     start: 3e-1
     end: 3e1
@@ -35,12 +35,12 @@ stellar_mass_galaxy_size_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "apertures.rhalfmass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.half_mass_radius_stars"
     units: kpc
     start: 1e-1
     end: 3e1
@@ -69,12 +69,12 @@ stellar_mass_projected_galaxy_size_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_apertures.projected_1_rhalfmass_star_50_kpc"
+    quantity: "projected_aperture_50kpc_projx.half_mass_radius_stars"
     units: kpc
     start: 1e-1
     end: 3e1
@@ -102,12 +102,12 @@ stellar_mass_projected_galaxy_size_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
+    quantity: "projected_aperture_30kpc_projx.half_mass_radius_stars"
     units: kpc
     start: 1e-1
     end: 3e1
@@ -137,14 +137,14 @@ stellar_mass_projected_galaxy_size_active_only_50:
   comment: "Active only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_apertures.projected_1_rhalfmass_star_50_kpc"
+    quantity: "projected_aperture_50kpc_projx.half_mass_radius_stars"
     units: kpc
     start: 1e-1
     end: 3e1
@@ -173,14 +173,14 @@ stellar_mass_projected_galaxy_size_active_only_30:
   comment: "Active only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
+    quantity: "projected_aperture_30kpc_projx.half_mass_radius_stars"
     units: kpc
     start: 1e-1
     end: 3e1
@@ -210,14 +210,14 @@ stellar_mass_projected_galaxy_size_passive_only_50:
   comment: "Passive only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_passive_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_passive"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_apertures.projected_1_rhalfmass_star_50_kpc"
+    quantity: "projected_aperture_50kpc_projx.half_mass_radius_stars"
     units: kpc
     start: 1e-1
     end: 3e1
@@ -246,14 +246,14 @@ stellar_mass_projected_galaxy_size_passive_only_30:
   comment: "Passive only"
   comment_loc: "lower left"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_passive_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_passive"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_apertures.projected_1_rhalfmass_star_30_kpc"
+    quantity: "projected_aperture_30kpc_projx.half_mass_radius_stars"
     units: kpc
     start: 1e-1
     end: 3e1

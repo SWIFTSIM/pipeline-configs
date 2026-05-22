@@ -1,15 +1,15 @@
 oxygen_abundance_v_neutral_dust_to_gas:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_o_abundance_avglog_low_50_kpc"
+    quantity: "exclusive_sphere_50kpc.gas_oxygen_abundance_log_mean_lowfloor"
     units: "dimensionless"
     start: 6.8
     end: 9.7
     log: false
   y:
-    quantity: "derived_quantities.neutral_dust_to_gas_ratio_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_dust_to_gas_ratio"
     units: "dimensionless"
     start: 1e-7
     end: 0.05

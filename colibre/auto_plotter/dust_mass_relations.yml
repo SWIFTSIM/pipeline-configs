@@ -2,13 +2,13 @@ stellar_mass_v_dust_mass:
   type: "scatter"
   legend_loc: "lower right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 3e12
     log: true
   y:
-    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    quantity: "exclusive_sphere_50kpc.dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e9
@@ -48,15 +48,15 @@ stellar_mass_v_dust_mass:
 star_formation_rate_v_dust_mass:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "exclusive_sphere_100kpc.is_active"
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: Solar_Mass / year
     start: 1e-3
     end: 3e2
     log: true
   y:
-    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    quantity: "exclusive_sphere_50kpc.dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e9
@@ -84,15 +84,15 @@ star_formation_rate_v_dust_mass:
 neutral_mass_v_dust_mass:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "exclusive_sphere_100kpc.is_active"
   x:
-    quantity: "derived_quantities.gas_neutral_H_mass_50_kpc"
+    quantity: "exclusive_sphere_50kpc.neutral_hydrogen_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e11
     log: true
   y:
-    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    quantity: "exclusive_sphere_50kpc.dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e9
@@ -119,15 +119,15 @@ neutral_mass_v_dust_mass:
 molecular_mass_v_dust_mass:
   type: "scatter"
   legend_loc: "lower right"
-  selection_mask: "derived_quantities.is_active_100_kpc"
+  selection_mask: "exclusive_sphere_100kpc.is_active"
   x:
-    quantity: "gas_hydrogen_species_masses.H2_mass_100_kpc"
+    quantity: "exclusive_sphere_100kpc.molecular_hydrogen_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e11
     log: true
   y:
-    quantity: "derived_quantities.total_dust_masses_50_kpc"
+    quantity: "exclusive_sphere_50kpc.dust_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e9

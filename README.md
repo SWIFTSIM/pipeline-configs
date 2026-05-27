@@ -17,3 +17,7 @@ cd ..
 
 That should be everything you need to get going, as well as
 the documentation available in the ``pipeline`` repository.
+
+Prior to June 2026 there were config files for ``eagle-xl``
+and ``colibre-zooms``, but these have bee removed as they 
+were unmaintained.

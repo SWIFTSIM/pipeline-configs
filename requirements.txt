@@ -1,3 +1,2 @@
-swiftpipeline>=0.3.4
-velociraptor>=0.15.8
+swiftpipeline>=0.4.0
 scipy

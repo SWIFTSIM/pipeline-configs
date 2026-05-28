@@ -9,7 +9,18 @@ twelve_plus_log_OH_solar = 8.69
 minimal_twelve_plus_log_OH = 7.5
 
 # Band column index in stellar_luminosity (9 GAMA bands: u g r i z Y J H K)
-BAND_COLUMNS = {"u": 0, "g": 1, "r": 2, "i": 3, "z": 4, "Z": 4, "Y": 5, "J": 6, "H": 7, "K": 8}
+BAND_COLUMNS = {
+    "u": 0,
+    "g": 1,
+    "r": 2,
+    "i": 3,
+    "z": 4,
+    "Z": 4,
+    "Y": 5,
+    "J": 6,
+    "H": 7,
+    "K": 8,
+}
 
 marginal_ssfr = unyt.unyt_quantity(1e-11, units=1 / unyt.year)
 
@@ -52,7 +63,9 @@ for aperture_size in aperture_sizes:
 
     # Stellar metallicity in solar units
     try:
-        star_metallicity = sphere.stellar_mass_fraction_in_metals / solar_metal_mass_fraction
+        star_metallicity = (
+            sphere.stellar_mass_fraction_in_metals / solar_metal_mass_fraction
+        )
         star_metallicity.name = f"Star Metallicity $Z_*$ rel. to $Z_\\odot={solar_metal_mass_fraction}$ ({aperture_size} kpc)"
         sphere.stellar_metallicity_in_solar = star_metallicity
     except AttributeError:
@@ -60,14 +73,18 @@ for aperture_size in aperture_sizes:
 
     # Star-forming gas oxygen abundance from metallicity
     try:
-        metal_frac_sf = sphere.star_forming_gas_mass_fraction_in_metals / solar_metal_mass_fraction
+        metal_frac_sf = (
+            sphere.star_forming_gas_mass_fraction_in_metals / solar_metal_mass_fraction
+        )
         metal_frac_sf[metal_frac_sf < 1e-5] = 1e-5
         twelve_plus_log_OH = unyt.unyt_array(
             twelve_plus_log_OH_solar + np.log10(metal_frac_sf.value),
             units="dimensionless",
         )
         twelve_plus_log_OH.name = f"Gas (SF) $12+\\log_{{10}}$O/H from $Z$ (Solar={twelve_plus_log_OH_solar}) ({aperture_size} kpc)"
-        twelve_plus_log_OH[twelve_plus_log_OH < minimal_twelve_plus_log_OH] = minimal_twelve_plus_log_OH
+        twelve_plus_log_OH[
+            twelve_plus_log_OH < minimal_twelve_plus_log_OH
+        ] = minimal_twelve_plus_log_OH
         sphere.star_forming_gas_oxygen_abundance = twelve_plus_log_OH
     except AttributeError:
         pass

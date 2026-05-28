@@ -11,7 +11,18 @@ solar_mg_abundance = 3.98e-5
 stellar_mass_scatter_amplitude = 0.3
 
 # Band column index in stellar_luminosity (9 GAMA bands: u g r i z Y J H K)
-BAND_COLUMNS = {"u": 0, "g": 1, "r": 2, "i": 3, "z": 4, "Z": 4, "Y": 5, "J": 6, "H": 7, "K": 8}
+BAND_COLUMNS = {
+    "u": 0,
+    "g": 1,
+    "r": 2,
+    "i": 3,
+    "z": 4,
+    "Z": 4,
+    "Y": 5,
+    "J": 6,
+    "H": 7,
+    "K": 8,
+}
 
 
 def register_sfr_derived(aperture_sizes):
@@ -54,9 +65,7 @@ def register_sfr_derived(aperture_sizes):
         sfr_per_halo_mass = unyt.unyt_array(
             np.zeros(len(sfr)), units=sfr.units / halo_mass.units
         )
-        sfr_per_halo_mass[halo_mask] = (
-            sfr[halo_mask] / halo_mass[halo_mask]
-        )
+        sfr_per_halo_mass[halo_mask] = sfr[halo_mask] / halo_mass[halo_mask]
         sfr_per_halo_mass.name = "Star formation rate divided by halo mass"
 
         sphere.specific_star_formation_rate = ssfr
@@ -70,9 +79,7 @@ def register_stellar_metallicities(aperture_sizes, Z_sun):
         sphere = getattr(soap, f"exclusive_sphere_{aperture_size}kpc")
         try:
             metallicity = sphere.stellar_mass_fraction_in_metals / Z_sun
-            metallicity.name = (
-                f"Star Metallicity $Z_*$ rel. to $Z_\\odot={Z_sun}$ ({aperture_size} kpc)"
-            )
+            metallicity.name = f"Star Metallicity $Z_*$ rel. to $Z_\\odot={Z_sun}$ ({aperture_size} kpc)"
             sphere.stellar_metallicity_in_solar = metallicity
         except AttributeError:
             pass
@@ -106,7 +113,9 @@ def register_oxygen_to_hydrogen(aperture_sizes):
         O_H = np.zeros(len(cold_dense_mass))
         O_H[mask] = np.log10(lin_O_H[mask].to_physical_value("dimensionless"))
         O_abundance = unyt.unyt_array(12.0 + O_H, "dimensionless")
-        O_abundance.name = f"SF Diffuse Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
+        O_abundance.name = (
+            f"SF Diffuse Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
+        )
         sphere.gas_oxygen_abundance_linear_mean = O_abundance
 
         lin_O_H_total = sphere.linear_mass_weighted_oxygen_over_hydrogen_of_gas
@@ -116,14 +125,18 @@ def register_oxygen_to_hydrogen(aperture_sizes):
         O_abundance.name = f"SF Total (Diffuse + Dust) Gas $12+\\log_{{10}}({{\\rm O/H}})$ ({aperture_size} kpc)"
         sphere.gas_oxygen_abundance_total_linear_mean = O_abundance
 
-        log_O_H_low = sphere.logarithmic_mass_weighted_diffuse_oxygen_over_hydrogen_of_gas_low_limit
+        log_O_H_low = (
+            sphere.logarithmic_mass_weighted_diffuse_oxygen_over_hydrogen_of_gas_low_limit
+        )
         O_H = np.zeros(len(cold_dense_mass))
         O_H[mask] = np.log10(log_O_H_low[mask].to_physical_value("dimensionless"))
         O_abundance = unyt.unyt_array(12.0 + O_H, "dimensionless")
         O_abundance.name = f"SF Gas Diffuse $12+\\log_{{10}}({{\\rm O/H}})$ (Min = $10^{{-4}}$, {aperture_size} kpc)"
         sphere.gas_oxygen_abundance_log_mean_lowfloor = O_abundance
 
-        log_O_H_high = sphere.logarithmic_mass_weighted_diffuse_oxygen_over_hydrogen_of_gas_high_limit
+        log_O_H_high = (
+            sphere.logarithmic_mass_weighted_diffuse_oxygen_over_hydrogen_of_gas_high_limit
+        )
         O_H = np.zeros(len(cold_dense_mass))
         O_H[mask] = np.log10(log_O_H_high[mask].to_physical_value("dimensionless"))
         O_abundance = unyt.unyt_array(12.0 + O_H, "dimensionless")
@@ -131,7 +144,9 @@ def register_oxygen_to_hydrogen(aperture_sizes):
         sphere.gas_oxygen_abundance_log_mean_highfloor = O_abundance
 
 
-def register_cold_dense_gas_metallicity(aperture_sizes, Z_sun, log_twelve_plus_logOH_solar):
+def register_cold_dense_gas_metallicity(
+    aperture_sizes, Z_sun, log_twelve_plus_logOH_solar
+):
     for aperture_size in aperture_sizes:
         sphere = getattr(soap, f"exclusive_sphere_{aperture_size}kpc")
         cold_dense_mass = sphere.gas_mass_in_cold_dense_gas
@@ -166,25 +181,37 @@ def register_iron_to_hydrogen(aperture_sizes, fe_solar_abundance):
         Fe_abundance.name = f"Stellar $10^{{\\rm [Fe/H]}}$ ({aperture_size} kpc)"
         sphere.stellar_iron_abundance_linear_mean = Fe_abundance
 
-        log_Fe_H_low = sphere.logarithmic_mass_weighted_iron_over_hydrogen_of_stars_low_limit
+        log_Fe_H_low = (
+            sphere.logarithmic_mass_weighted_iron_over_hydrogen_of_stars_low_limit
+        )
         Fe_H = np.zeros(len(stellar_mass))
         Fe_H[mask] = log_Fe_H_low[mask].to_physical_value("dimensionless")
         Fe_abundance = unyt.unyt_array(Fe_H / fe_solar_abundance, "dimensionless")
-        Fe_abundance.name = f"Stellar $10^{{\\rm [Fe/H]}}$ (Min = $10^{{-4}}$, {aperture_size} kpc)"
+        Fe_abundance.name = (
+            f"Stellar $10^{{\\rm [Fe/H]}}$ (Min = $10^{{-4}}$, {aperture_size} kpc)"
+        )
         sphere.stellar_iron_abundance_log_mean_lowfloor = Fe_abundance
 
-        log_Fe_H_high = sphere.logarithmic_mass_weighted_iron_over_hydrogen_of_stars_high_limit
+        log_Fe_H_high = (
+            sphere.logarithmic_mass_weighted_iron_over_hydrogen_of_stars_high_limit
+        )
         Fe_H = np.zeros(len(stellar_mass))
         Fe_H[mask] = log_Fe_H_high[mask].to_physical_value("dimensionless")
         Fe_abundance = unyt.unyt_array(Fe_H / fe_solar_abundance, "dimensionless")
-        Fe_abundance.name = f"Stellar $10^{{\\rm [Fe/H]}}$ (Min = $10^{{-3}}$, {aperture_size} kpc)"
+        Fe_abundance.name = (
+            f"Stellar $10^{{\\rm [Fe/H]}}$ (Min = $10^{{-3}}$, {aperture_size} kpc)"
+        )
         sphere.stellar_iron_abundance_log_mean_highfloor = Fe_abundance
 
-        lin_Fe_snia_H = sphere.linear_mass_weighted_iron_from_snia_over_hydrogen_of_stars
+        lin_Fe_snia_H = (
+            sphere.linear_mass_weighted_iron_from_snia_over_hydrogen_of_stars
+        )
         Fe_H = np.zeros(len(stellar_mass))
         Fe_H[mask] = lin_Fe_snia_H[mask].to_physical_value("dimensionless")
         Fe_abundance = unyt.unyt_array(Fe_H / fe_solar_abundance, "dimensionless")
-        Fe_abundance.name = f"Stellar $10^{{\\rm [Fe_{{SNIa}}/H]}}$, {aperture_size} kpc)"
+        Fe_abundance.name = (
+            f"Stellar $10^{{\\rm [Fe_{{SNIa}}/H]}}$, {aperture_size} kpc)"
+        )
         sphere.stellar_iron_from_snia_abundance_linear_mean = Fe_abundance
 
 
@@ -202,18 +229,26 @@ def register_magnesium_to_hydrogen(aperture_sizes, mg_solar_abundance):
             Mg_abundance.name = f"Stellar $10^{{\\rm [Mg/H]}}$ ({aperture_size} kpc)"
             sphere.stellar_magnesium_abundance_linear_mean = Mg_abundance
 
-            log_Mg_H_low = sphere.logarithmic_mass_weighted_magnesium_over_hydrogen_of_stars_low_limit
+            log_Mg_H_low = (
+                sphere.logarithmic_mass_weighted_magnesium_over_hydrogen_of_stars_low_limit
+            )
             Mg_H = np.zeros(len(stellar_mass))
             Mg_H[mask] = log_Mg_H_low[mask].to_physical_value("dimensionless")
             Mg_abundance = unyt.unyt_array(Mg_H / mg_solar_abundance, "dimensionless")
-            Mg_abundance.name = f"Stellar $10^{{\\rm [Mg/H]}}$ (Min = $10^{{-4}}$, {aperture_size} kpc)"
+            Mg_abundance.name = (
+                f"Stellar $10^{{\\rm [Mg/H]}}$ (Min = $10^{{-4}}$, {aperture_size} kpc)"
+            )
             sphere.stellar_magnesium_abundance_log_mean_lowfloor = Mg_abundance
 
-            log_Mg_H_high = sphere.logarithmic_mass_weighted_magnesium_over_hydrogen_of_stars_high_limit
+            log_Mg_H_high = (
+                sphere.logarithmic_mass_weighted_magnesium_over_hydrogen_of_stars_high_limit
+            )
             Mg_H = np.zeros(len(stellar_mass))
             Mg_H[mask] = log_Mg_H_high[mask].to_physical_value("dimensionless")
             Mg_abundance = unyt.unyt_array(Mg_H / mg_solar_abundance, "dimensionless")
-            Mg_abundance.name = f"Stellar $10^{{\\rm [Mg/H]}}$ (Min = $10^{{-3}}$, {aperture_size} kpc)"
+            Mg_abundance.name = (
+                f"Stellar $10^{{\\rm [Mg/H]}}$ (Min = $10^{{-3}}$, {aperture_size} kpc)"
+            )
             sphere.stellar_magnesium_abundance_log_mean_highfloor = Mg_abundance
         except AttributeError:
             pass
@@ -287,7 +322,9 @@ def register_dust(aperture_sizes):
         except AttributeError:
             cold_dust = unyt.unyt_array(np.zeros(len(cold_dense_mass)), units="Msun")
 
-        cold_dust_stored = unyt.unyt_array(cold_dust.value.copy(), units=cold_dust.units)
+        cold_dust_stored = unyt.unyt_array(
+            cold_dust.value.copy(), units=cold_dust.units
+        )
         cold_dust_stored.name = f"Cold Dense Dust Mass ({aperture_size} kpc)"
         sphere.cold_dense_dust_mass = cold_dust_stored
 
@@ -306,7 +343,9 @@ def register_dust(aperture_sizes):
             large_grain = sphere.dust_large_grain_mass
             ratio = unyt.unyt_array(np.zeros(len(gas_mass)), "dimensionless")
             large_mask = large_grain > unyt.unyt_quantity(0.0, large_grain.units)
-            ratio[large_mask] = (small_grain[large_mask] / large_grain[large_mask]).value
+            ratio[large_mask] = (
+                small_grain[large_mask] / large_grain[large_mask]
+            ).value
             ratio.name = f"Dust Small-to-Large Grain Ratio ({aperture_size} kpc)"
             sphere.dust_small_to_large_mass_ratio = ratio
 
@@ -314,19 +353,28 @@ def register_dust(aperture_sizes):
             large_mol = sphere.dust_large_grain_mass_in_molecular_gas
             mol_ratio = unyt.unyt_array(np.zeros(len(gas_mass)), "dimensionless")
             large_mol_mask = large_mol > unyt.unyt_quantity(0.0, large_mol.units)
-            mol_ratio[large_mol_mask] = (small_mol[large_mol_mask] / large_mol[large_mol_mask]).value
-            mol_ratio.name = f"Molecular Dust Small-to-Large Grain Ratio ({aperture_size} kpc)"
+            mol_ratio[large_mol_mask] = (
+                small_mol[large_mol_mask] / large_mol[large_mol_mask]
+            ).value
+            mol_ratio.name = (
+                f"Molecular Dust Small-to-Large Grain Ratio ({aperture_size} kpc)"
+            )
             sphere.molecular_dust_small_to_large_mass_ratio = mol_ratio
         except AttributeError:
             pass
 
         O_H_solar = 10 ** (twelve_plus_log_OH_solar - 12)
-        lin_O_H = sphere.linear_mass_weighted_oxygen_over_hydrogen_of_gas.to_physical_value("dimensionless")
+        lin_O_H = sphere.linear_mass_weighted_oxygen_over_hydrogen_of_gas.to_physical_value(
+            "dimensionless"
+        )
         metal_frac_cd = solar_metal_mass_fraction * lin_O_H / O_H_solar
         dtm_cold = unyt.unyt_array(np.zeros(len(cold_dense_mass)), "dimensionless")
-        metal_mask = (cold_dense_mass > unyt.unyt_quantity(0.0, cold_dense_mass.units)) & (metal_frac_cd > 0.0)
+        metal_mask = (
+            cold_dense_mass > unyt.unyt_quantity(0.0, cold_dense_mass.units)
+        ) & (metal_frac_cd > 0.0)
         dtm_cold[metal_mask] = (
-            cold_dust[metal_mask] / (metal_frac_cd[metal_mask] * cold_dense_mass[metal_mask].to("Msun"))
+            cold_dust[metal_mask]
+            / (metal_frac_cd[metal_mask] * cold_dense_mass[metal_mask].to("Msun"))
         ).value
         dtm_cold.name = f"$\\mathcal{{DTM}}$ cold dense gas ({aperture_size} kpc)"
         sphere.cold_dense_dust_to_metal_ratio = dtm_cold
@@ -341,7 +389,9 @@ def register_neutral_gas_fractions(aperture_sizes):
         stellar_mass = sphere.stellar_mass
         sf_mass = sphere.star_forming_gas_mass
 
-        neutral_H_stored = unyt.unyt_array(neutral_H.value.copy(), units=neutral_H.units)
+        neutral_H_stored = unyt.unyt_array(
+            neutral_H.value.copy(), units=neutral_H.units
+        )
         neutral_H_stored.name = f"$M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
         sphere.neutral_hydrogen_mass = neutral_H_stored
 
@@ -353,10 +403,14 @@ def register_neutral_gas_fractions(aperture_sizes):
         H2_to_mol_plus_star.name = (
             f"$M_{{\\rm H_2}} / (M_* + M_{{\\rm H_2}})$ ({aperture_size} kpc)"
         )
-        sphere.molecular_hydrogen_to_molecular_plus_stellar_fraction = H2_to_mol_plus_star
+        sphere.molecular_hydrogen_to_molecular_plus_stellar_fraction = (
+            H2_to_mol_plus_star
+        )
 
         H2_to_neutral = H2 / neutral_H
-        H2_to_neutral.name = f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+        H2_to_neutral.name = (
+            f"$M_{{\\rm H_2}} / M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+        )
         sphere.molecular_hydrogen_to_neutral_fraction = H2_to_neutral
 
         neutral_to_baryonic = neutral_H / (neutral_H + stellar_mass)
@@ -366,14 +420,18 @@ def register_neutral_gas_fractions(aperture_sizes):
         sphere.neutral_hydrogen_to_baryonic_fraction = neutral_to_baryonic
 
         HI_to_neutral = HI / neutral_H
-        HI_to_neutral.name = f"$M_{{\\rm HI}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+        HI_to_neutral.name = (
+            f"$M_{{\\rm HI}}/M_{{\\rm HI + H_2}}$ ({aperture_size} kpc)"
+        )
         sphere.atomic_hydrogen_to_neutral_fraction = HI_to_neutral
 
         sf_mask = sf_mass > unyt.unyt_quantity(0.0, sf_mass.units)
 
         neutral_to_sf = unyt.unyt_array(np.zeros(len(neutral_H)), "dimensionless")
         neutral_to_sf[sf_mask] = (neutral_H[sf_mask] / sf_mass[sf_mask]).value
-        neutral_to_sf.name = f"$M_{{\\rm HI + H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
+        neutral_to_sf.name = (
+            f"$M_{{\\rm HI + H_2}}/M_{{\\rm SF}}$ ({aperture_size} kpc)"
+        )
         sphere.neutral_hydrogen_to_star_forming_gas_fraction = neutral_to_sf
 
         HI_to_sf = unyt.unyt_array(np.zeros(len(HI)), "dimensionless")
@@ -401,15 +459,17 @@ def register_neutral_gas_fractions(aperture_sizes):
 
         m_star_mask = stellar_mass > unyt.unyt_quantity(0.0, stellar_mass.units)
         sf_to_star = unyt.unyt_array(np.zeros(len(neutral_H)), "dimensionless")
-        sf_to_star[m_star_mask] = (sf_mass[m_star_mask] / stellar_mass[m_star_mask]).value
+        sf_to_star[m_star_mask] = (
+            sf_mass[m_star_mask] / stellar_mass[m_star_mask]
+        ).value
         sf_to_star.name = f"$M_{{\\rm SF}}/M_*$ ({aperture_size} kpc)"
         sphere.star_forming_gas_to_stellar_fraction = sf_to_star
 
 
 def register_species_fractions(aperture_sizes):
     M_star_50 = soap.exclusive_sphere_50kpc.stellar_mass
-    xgass_select = (M_star_50 > unyt.unyt_quantity(10**9, "Solar_Mass")) & (
-        M_star_50 < unyt.unyt_quantity(10**11.5, "Solar_Mass")
+    xgass_select = (M_star_50 > unyt.unyt_quantity(10 ** 9, "Solar_Mass")) & (
+        M_star_50 < unyt.unyt_quantity(10 ** 11.5, "Solar_Mass")
     )
     soap.bound_subhalo.xgass_galaxy_selection = xgass_select
     soap.bound_subhalo.xcoldgass_galaxy_selection = xgass_select.copy()
@@ -422,7 +482,7 @@ def register_species_fractions(aperture_sizes):
         M_star_proj = proj.stellar_mass
         r_half_proj = proj.half_mass_radius_stars
 
-        gal_area = 2 * np.pi * r_half_proj**2
+        gal_area = 2 * np.pi * r_half_proj ** 2
         mu_star = M_star_proj / gal_area
         mu_star.name = f"$M_{{*, {aperture_size} {{\\rm kpc}}}} / \\pi R_{{*, {aperture_size} {{\\rm kpc}}}}^2$"
         sphere.stellar_surface_mass_density = mu_star
@@ -433,9 +493,7 @@ def register_species_fractions(aperture_sizes):
         H = sphere.hydrogen_mass
 
         H2_with_He = unyt.unyt_array(np.zeros(H2.shape), units=H2.units)
-        H2_with_He[H > 0.0] = H2[H > 0.0] * (
-            1.0 + He[H > 0.0] / H[H > 0.0]
-        )
+        H2_with_He[H > 0.0] = H2[H > 0.0] * (1.0 + He[H > 0.0] / H[H > 0.0])
         H2_with_He.name = f"$M_{{\\rm H_2}}$ (incl. He, {aperture_size} kpc)"
         sphere.molecular_hydrogen_plus_helium_mass = H2_with_He
 
@@ -448,14 +506,16 @@ def register_species_fractions(aperture_sizes):
         sphere.molecular_hydrogen_to_stellar_mass = h2_to_star
 
         h2_plus_he_to_star = H2_with_He / M_star
-        h2_plus_he_to_star.name = f"$M_{{\\rm H_2}} / M_*$ (incl. He, {aperture_size} kpc)"
+        h2_plus_he_to_star.name = (
+            f"$M_{{\\rm H_2}} / M_*$ (incl. He, {aperture_size} kpc)"
+        )
         sphere.molecular_hydrogen_plus_helium_to_stellar_mass = h2_plus_he_to_star
 
         neutral_to_star = hi_to_star + h2_to_star
         neutral_to_star.name = f"$M_{{\\rm HI + H_2}} / M_*$ ({aperture_size} kpc)"
         sphere.neutral_hydrogen_to_stellar_mass = neutral_to_star
 
-        jingle_select = M_star > unyt.unyt_quantity(10**8, "Solar_Mass")
+        jingle_select = M_star > unyt.unyt_quantity(10 ** 8, "Solar_Mass")
         sphere.jingle_galaxy_selection = jingle_select
 
 
@@ -463,7 +523,9 @@ def register_stellar_birth_density():
     stellar_mass = soap.exclusive_sphere_100kpc.stellar_mass
     try:
         median_density = soap.bound_subhalo.median_stellar_birth_density
-        density = unyt.unyt_array(median_density.value.copy(), units=median_density.units)
+        density = unyt.unyt_array(
+            median_density.value.copy(), units=median_density.units
+        )
         no_stellar_mass = stellar_mass <= unyt.unyt_quantity(0.0, stellar_mass.units)
         density[no_stellar_mass] = unyt.unyt_quantity(0.0, density.units)
         density.name = "Stellar Birth Density (median)"
@@ -498,7 +560,9 @@ def register_gas_fraction():
     try:
         M_500_hot_gas = so500.hot_gas_mass
         f_hot_gas = M_500_hot_gas / M_500 / cosmic_baryon_fraction
-        f_hot_gas.name = "$f_{\\rm hot\\,gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+        f_hot_gas.name = (
+            "$f_{\\rm hot\\,gas, 500, true} / (\\Omega_{\\rm b} / \\Omega_{\\rm m})$"
+        )
         so500.hot_gas_fraction = f_hot_gas
     except AttributeError:
         pass
@@ -554,11 +618,7 @@ def register_snia_rates_per_stellar_mass(aperture_sizes):
 
 
 def register_stellar_mass_selection_masks(aperture_sizes):
-    thresholds = [
-        (1e9, "1e9"),
-        (1e10, "1e10"),
-        (5e10, "5e10"),
-    ]
+    thresholds = [(1e9, "1e9"), (1e10, "1e10"), (5e10, "5e10")]
     for aperture_size in aperture_sizes:
         sphere = getattr(soap, f"exclusive_sphere_{aperture_size}kpc")
         stellar_mass = sphere.stellar_mass
@@ -572,9 +632,15 @@ def register_stellar_mass_selection_masks(aperture_sizes):
             setattr(sphere, f"stellar_mass_above_{label}_msun", above_arr)
 
             above_active = np.logical_and(above, is_active)
-            above_active_arr = unyt.unyt_array(above_active.astype(float), "dimensionless")
-            above_active_arr.name = f"$M_* > {label}$ $M_\\odot$ and active ({aperture_size} kpc)"
-            setattr(sphere, f"stellar_mass_above_{label}_msun_and_active", above_active_arr)
+            above_active_arr = unyt.unyt_array(
+                above_active.astype(float), "dimensionless"
+            )
+            above_active_arr.name = (
+                f"$M_* > {label}$ $M_\\odot$ and active ({aperture_size} kpc)"
+            )
+            setattr(
+                sphere, f"stellar_mass_above_{label}_msun_and_active", above_active_arr
+            )
 
 
 def register_stellar_mass_scatter(scatter_amplitude):

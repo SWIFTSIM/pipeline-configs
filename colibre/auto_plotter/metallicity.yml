@@ -38,8 +38,6 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -48,6 +46,7 @@ stellar_mass_gas_sf_metallicity_fromz_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_fromz_lom_50:
   type: "scatter"
@@ -89,8 +88,6 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -99,6 +96,7 @@ stellar_mass_gas_sf_metallicity_fromz_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_30:
   type: "scatter"
@@ -140,8 +138,6 @@ stellar_mass_gas_sf_metallicity_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -150,6 +146,7 @@ stellar_mass_gas_sf_metallicity_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_50:
   type: "scatter"
@@ -191,8 +188,6 @@ stellar_mass_gas_sf_metallicity_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -201,6 +196,7 @@ stellar_mass_gas_sf_metallicity_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_30:
   type: "scatter"
@@ -242,8 +238,6 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -252,6 +246,7 @@ stellar_mass_gas_sf_metallicity_total_lom_30:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_total_lom_50:
   type: "scatter"
@@ -293,8 +288,6 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -303,6 +296,7 @@ stellar_mass_gas_sf_metallicity_total_lom_50:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
   type: "scatter"
@@ -344,8 +338,6 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -354,6 +346,7 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
   type: "scatter"
@@ -395,8 +388,6 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -405,6 +396,7 @@ stellar_mass_gas_sf_metallicity_mol_lowfloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_30:
   type: "scatter"
@@ -446,8 +438,6 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -456,6 +446,7 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_30:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_mol_hifloor_50:
   type: "scatter"
@@ -497,8 +488,6 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Curti2020.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Lewis2023.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -507,6 +496,7 @@ stellar_mass_gas_sf_metallicity_mol_hifloor_50:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_30:
   type: "scatter"
@@ -546,8 +536,6 @@ stellar_mass_gas_sf_metallicity_lom_allgals_30:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -556,6 +544,7 @@ stellar_mass_gas_sf_metallicity_lom_allgals_30:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_gas_sf_metallicity_lom_allgals_50:
   type: "scatter"
@@ -595,8 +584,6 @@ stellar_mass_gas_sf_metallicity_lom_allgals_50:
     - filename: GalaxyStellarMassGasMetallicity/Fraser-McKelvie_2021.hdf5
     - filename: GalaxyStellarMassGasMetallicity/FIREbox.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Strom2022_OH.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z2.3.hdf5
-    - filename: GalaxyStellarMassGasMetallicity/Sanders2021_z3.3.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_Ne3O2.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3HB.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Pharo2023_O3O2.hdf5
@@ -605,6 +592,7 @@ stellar_mass_gas_sf_metallicity_lom_allgals_50:
     - filename: GalaxyStellarMassGasMetallicity/Revalski2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Scholte2024.hdf5
     - filename: GalaxyStellarMassGasMetallicity/Sarkar2024.hdf5
+    - filename: GalaxyStellarMassGasMetallicity/Jain2025.hdf5
 
 stellar_mass_star_metallicity_50:
   type: "scatter"

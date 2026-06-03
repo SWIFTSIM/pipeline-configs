@@ -2,12 +2,12 @@ stellar_mass_black_hole_mass_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -40,12 +40,12 @@ stellar_mass_black_hole_mass_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -77,12 +77,12 @@ stellar_mass_black_hole_mass_binned_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -108,18 +108,18 @@ stellar_mass_black_hole_mass_binned_50:
 
 stellar_mass_black_hole_mass_passive_30:
   type: "scatter"
-  select_structure_type: 1
+  select_centrals: true
   comment: "Passive centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_passive_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_passive"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -144,18 +144,18 @@ stellar_mass_black_hole_mass_passive_30:
 
 stellar_mass_black_hole_mass_passive_50:
   type: "scatter"
-  select_structure_type: 1
+  select_centrals: true
   comment: "Passive centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_passive_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_passive"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -179,18 +179,18 @@ stellar_mass_black_hole_mass_passive_50:
 
 stellar_mass_black_hole_mass_active_30:
   type: "scatter"
-  select_structure_type: 1
+  select_centrals: true
   comment: "Active centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -215,18 +215,18 @@ stellar_mass_black_hole_mass_active_30:
 
 stellar_mass_black_hole_mass_active_50:
   type: "scatter"
-  select_structure_type: 1
+  select_centrals: true
   comment: "Active centrals only"
   comment_loc: "lower right"
   legend_loc: "upper left"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -252,12 +252,12 @@ halo_mass_black_hole_mass:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e15
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -282,12 +282,12 @@ stellar_veldisp_black_hole_mass_10:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "derived_quantities.los_veldisp_star_10_kpc"
+    quantity: "exclusive_sphere_10kpc.stellar_los_velocity_dispersion"
     units: km/s
     start: 1e1
     end: 1e3
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -315,12 +315,12 @@ stellar_veldisp_black_hole_mass_30:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "derived_quantities.los_veldisp_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_los_velocity_dispersion"
     units: km/s
     start: 10
     end: 1e3
   y:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -348,12 +348,12 @@ stellar_mass_stellar_veldisp_10:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_10_kpc"
+    quantity: "exclusive_sphere_10kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 1e12
   y:
-    quantity: "derived_quantities.los_veldisp_star_10_kpc"
+    quantity: "exclusive_sphere_10kpc.stellar_los_velocity_dispersion"
     units: km/s
     start: 10
     end: 1e3
@@ -377,17 +377,17 @@ stellar_mass_stellar_veldisp_10:
 ssfr_rate_black_hole_mass_30:
   type: "scatter"
   legend_loc: "upper right"
-  select_structure_type: 1
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_30_kpc"
+  select_centrals: true
+  selection_mask: "exclusive_sphere_30kpc.stellar_mass_above_1e10_msun"
   comment: "Centrals only, $M_* > 10^{10}$ solar masses"
   redshift_loc: "lower left"
   x:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11
   y:
-    quantity: "derived_quantities.specific_sfr_gas_30_kpc"
+    quantity: "exclusive_sphere_30kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 0.5e-4
     end: 3e0
@@ -414,17 +414,17 @@ ssfr_rate_black_hole_mass_30:
 ssfr_rate_black_hole_mass_50:
   type: "scatter"
   legend_loc: "upper right"
-  select_structure_type: 1
-  selection_mask: "derived_quantities.stellar_mass_is_bigger_than_1e10_msun_50_kpc"
+  select_centrals: true
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e10_msun"
   comment: "Centrals only, $M_* > 10^{10}$ solar masses"
   redshift_loc: "lower left"
   x:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e5
     end: 1e11
   y:
-    quantity: "derived_quantities.specific_sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
     units: 1 / gigayear
     start: 0.5e-4
     end: 3e0
@@ -453,7 +453,7 @@ black_hole_mass_function:
   legend_loc: "lower left"
   number_of_bins: 20
   x:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 3e10
@@ -481,7 +481,7 @@ black_hole_mass_function_adaptive:
   legend_loc: "lower left"
   number_of_bins: 20
   x:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 3e10

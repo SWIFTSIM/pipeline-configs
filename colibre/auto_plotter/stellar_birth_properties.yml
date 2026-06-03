@@ -2,12 +2,12 @@ stellar_birth_pressure_stellar_mass_min_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_pressures.min"
+    quantity: "bound_subhalo.minimum_stellar_birth_pressure"
     units: "K/cm**3"
     start: 5e-2
     end: 5e8
@@ -31,12 +31,12 @@ stellar_birth_pressure_stellar_mass_median_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_pressures.median"
+    quantity: "bound_subhalo.median_stellar_birth_pressure"
     units: "K/cm**3"
     start: 5e-2
     end: 5e8
@@ -60,12 +60,12 @@ stellar_birth_pressure_stellar_mass_max_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_pressures.max"
+    quantity: "bound_subhalo.maximum_stellar_birth_pressure"
     units: "K/cm**3"
     start: 5e-3
     end: 5e8
@@ -90,12 +90,12 @@ stellar_birth_density_stellar_mass_min_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_densities.min"
+    quantity: "bound_subhalo.minimum_stellar_birth_density"
     units: "mh/cm**3"
     start: 5e-3
     end: 5e7
@@ -120,12 +120,12 @@ stellar_birth_density_stellar_mass_median_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_densities.median"
+    quantity: "bound_subhalo.median_stellar_birth_density"
     units: "mh/cm**3"
     start: 5e-3
     end: 5e7
@@ -149,12 +149,12 @@ stellar_birth_density_stellar_mass_max_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_densities.max"
+    quantity: "bound_subhalo.maximum_stellar_birth_density"
     units: "mh/cm**3"
     start: 5e-3
     end: 5e7
@@ -178,12 +178,12 @@ stellar_birth_temperature_stellar_mass_min_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_temperatures.min"
+    quantity: "bound_subhalo.minimum_stellar_birth_temperature"
     units: "K"
     start: 0.75e1
     end: 0.75e5
@@ -207,12 +207,12 @@ stellar_birth_temperature_stellar_mass_median_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_temperatures.median"
+    quantity: "bound_subhalo.median_stellar_birth_temperature"
     units: "K"
     start: 0.75e1
     end: 0.75e5
@@ -236,12 +236,12 @@ stellar_birth_temperature_stellar_mass_max_all_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e4
     end: 1e12
   y:
-    quantity: "stellar_birth_temperatures.max"
+    quantity: "bound_subhalo.maximum_stellar_birth_temperature"
     units: "K"
     start: 0.75e1
     end: 0.75e5

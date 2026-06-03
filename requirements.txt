@@ -1,3 +1,2 @@
-swiftpipeline>=0.3.4
-velociraptor>=0.15.8
+git+https://github.com/SWIFTSIM/swiftsimio.git@master
 scipy

@@ -1,10 +1,10 @@
 halo_mass_function:
   type: "massfunction"
-  select_structure_type: 1
+  select_centrals: true
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e14
@@ -22,11 +22,11 @@ halo_mass_function:
 
 halo_mass_function_adaptive:
   type: "adaptivemassfunction"
-  select_structure_type: 1  
+  select_centrals: true  
   legend_loc: "lower left"
   number_of_bins: 30
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e14

@@ -11,7 +11,7 @@ from swiftsimio import load
 
 from load_sfh_data import read_obs_data
 
-from velociraptor.observations import load_observations
+from swiftpipeline.observations import load_observations
 
 from astropy.cosmology import z_at_value
 from astropy.units import Gyr

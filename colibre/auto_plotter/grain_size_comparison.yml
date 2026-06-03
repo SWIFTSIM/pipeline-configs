@@ -2,13 +2,13 @@ stellar_mass_v_size_ratio:
   type: "scatter"
   legend_loc: "lower right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 3e12
     log: true
   y:
-    quantity: "derived_quantities.dust_small_to_large_ratio_50_kpc"
+    quantity: "exclusive_sphere_50kpc.dust_small_to_large_mass_ratio"
     units: dimensionless
     start: 0.1
     end: 10
@@ -40,13 +40,13 @@ stellar_mass_v_molecular_size_ratio:
   type: "scatter"
   legend_loc: "lower right"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e7
     end: 3e12
     log: true
   y:
-    quantity: "derived_quantities.molecular_dust_small_to_large_ratio_50_kpc"
+    quantity: "exclusive_sphere_50kpc.molecular_dust_small_to_large_mass_ratio"
     units: dimensionless
     start: 0.1
     end: 10

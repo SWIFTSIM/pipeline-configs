@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from swiftsimio import load
-from velociraptor.autoplotter.objects import VelociraptorLine
-from velociraptor.tools.lines import binned_median_line
-from velociraptor.autoplotter.plot import scatter_x_against_y
+from swiftpipeline.autoplotter.lines import AutoPlotterLine
+from swiftpipeline.tools.lines import binned_median_line
+from swiftpipeline.autoplotter.plot import scatter_x_against_y
 
 import unyt
 

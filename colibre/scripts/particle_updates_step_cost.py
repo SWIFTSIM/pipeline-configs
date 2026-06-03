@@ -52,8 +52,10 @@ def make_hist(filename, update_bounds, wallclock_bounds, bins):
         np.logspace(*np.log10(wallclock_bounds), bins), units=wallclock_bounds.units
     )
 
+    number_of_updates, wallclock_time = get_data(filename)
     H, update_edges, wallclock_edges = np.histogram2d(
-        *get_data(filename),
+        number_of_updates.value,
+        wallclock_time.value,
         bins=[number_of_updates_bins.value, wallclock_time_bins.value],
     )
 

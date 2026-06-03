@@ -8,7 +8,7 @@ import unyt
 import glob
 from swiftsimio import load
 from swiftpipeline.argumentparser import ScriptArgumentParser
-from velociraptor.observations import load_observations
+from swiftpipeline.observations import load_observations
 from unyt import unyt_array
 from scipy import stats
 import h5py

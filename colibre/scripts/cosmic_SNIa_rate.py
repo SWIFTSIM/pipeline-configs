@@ -9,7 +9,7 @@ import glob
 
 from swiftsimio import load
 
-from velociraptor.observations import load_observations
+from swiftpipeline.observations import load_observations
 
 from astropy.cosmology import z_at_value
 from astropy.units import Gyr

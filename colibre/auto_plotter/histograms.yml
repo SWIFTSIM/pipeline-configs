@@ -4,7 +4,7 @@ stellar_mass_cumulative_histogram_30:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -22,10 +22,10 @@ stellar_mass_cumulative_histogram_active_only_30:
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -43,10 +43,10 @@ stellar_mass_cumulative_histogram_passive_only_30:
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_passive_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_passive"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -64,7 +64,7 @@ stellar_mass_cumulative_histogram_50:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -81,10 +81,10 @@ stellar_mass_cumulative_histogram_active_only_50:
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -101,10 +101,10 @@ stellar_mass_cumulative_histogram_passive_only_50:
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_passive_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_passive"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -121,7 +121,7 @@ halo_mass_m200crit_cumulative_histogram:
   legend_loc: "upper right"
   number_of_bins: 100
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e13
@@ -138,7 +138,7 @@ star_formation_rate_cumulative_histogram_30:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.sfr_gas_30_kpc"
+    quantity: "exclusive_sphere_30kpc.star_formation_rate"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -156,7 +156,7 @@ star_formation_rate_cumulative_histogram_50:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -173,7 +173,7 @@ black_hole_mass_cumulative_histogram:
   legend_loc: "upper right"
   number_of_bins: 160
   x:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -189,7 +189,7 @@ stellar_mass_histogram_30:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -206,10 +206,10 @@ stellar_mass_histogram_active_only_30:
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_active_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_active"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -226,10 +226,10 @@ stellar_mass_histogram_passive_only_30:
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_passive_30_kpc"
+  selection_mask: "exclusive_sphere_30kpc.is_passive"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_30_kpc"
+    quantity: "exclusive_sphere_30kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -246,7 +246,7 @@ stellar_mass_histogram_50:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -263,10 +263,10 @@ stellar_mass_histogram_active_only_50:
   legend_loc: "upper right"
   comment: "Active only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_active_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_active"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -283,10 +283,10 @@ stellar_mass_histogram_passive_only_50:
   legend_loc: "upper right"
   comment: "Passive only"
   comment_loc: "upper center"
-  selection_mask: "derived_quantities.is_passive_50_kpc"
+  selection_mask: "exclusive_sphere_50kpc.is_passive"
   number_of_bins: 120
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -303,7 +303,7 @@ halo_mass_m200crit_histogram:
   legend_loc: "upper right"
   number_of_bins: 100
   x:
-    quantity: "masses.mass_200crit"
+    quantity: "spherical_overdensity_200_crit.total_mass"
     units: Solar_Mass
     start: 1e8
     end: 1e13
@@ -320,7 +320,7 @@ star_formation_rate_histogram_30:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.sfr_gas_30_kpc"
+    quantity: "exclusive_sphere_30kpc.star_formation_rate"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -337,7 +337,7 @@ star_formation_rate_histogram_50:
   legend_loc: "upper right"
   number_of_bins: 120
   x:
-    quantity: "apertures.sfr_gas_50_kpc"
+    quantity: "exclusive_sphere_50kpc.star_formation_rate"
     units: "Solar_Mass / year"
     start: 1e-3
     end: 1e3
@@ -354,7 +354,7 @@ black_hole_mass_histogram:
   legend_loc: "upper right"
   number_of_bins: 160
   x:
-    quantity: "black_hole_masses.max"
+    quantity: "bound_subhalo.most_massive_black_hole_mass"
     units: Solar_Mass
     start: 1e3
     end: 1e11

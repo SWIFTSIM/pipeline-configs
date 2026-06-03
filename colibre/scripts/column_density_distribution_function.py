@@ -2,7 +2,7 @@ import swiftsimio as sw
 import numpy as np
 import matplotlib.pyplot as plt
 from swiftsimio.visualisation.projection import project_gas
-from velociraptor.observations import load_observation
+from swiftpipeline.observations import load_observation
 
 import unyt
 

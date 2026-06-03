@@ -5,9 +5,9 @@ from swiftsimio import load, SWIFTDataset
 import unyt
 from unyt import mh, cm, Gyr, speed_of_light
 import glob
-from velociraptor.observations import load_observations
-from velociraptor.autoplotter.objects import VelociraptorLine
-from velociraptor.tools.mass_functions import create_adaptive_mass_function
+from swiftpipeline.observations import load_observations
+from swiftpipeline.autoplotter.lines import AutoPlotterLine
+from swiftpipeline.tools.mass_functions import create_adaptive_mass_function
 
 # Set the limits of the figure.
 x_bounds = [1e39, 1e50]  # erg/s

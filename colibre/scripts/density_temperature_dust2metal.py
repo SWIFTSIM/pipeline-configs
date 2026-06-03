@@ -36,9 +36,8 @@ def get_data(filename, prefix_rho, prefix_T):
 
     dfracs = np.zeros(data.gas.masses.shape)
 
-    for d in dir(data.gas.dust_mass_fractions):
-        if hasattr(getattr(data.gas.dust_mass_fractions, d), "units"):
-            dfracs += getattr(data.gas.dust_mass_fractions, d)
+    for d in data.gas.dust_mass_fractions.named_columns:
+        dfracs += getattr(data.gas.dust_mass_fractions, d)
 
     # dfracs[dfracs < min_DTMs] = min_DTMs
 

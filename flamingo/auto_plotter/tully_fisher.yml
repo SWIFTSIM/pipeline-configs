@@ -2,12 +2,12 @@ tully_fisher_50:
   type: "scatter"
   legend_loc: "upper left"
   x:
-    quantity: "apertures.mass_star_50_kpc"
+    quantity: "exclusive_sphere_50kpc.stellar_mass"
     units: solar_mass
     start: 1e9
     end: 1e13
   y:
-    quantity: "velocities.vmax"
+    quantity: "bound_subhalo.maximum_circular_velocity"
     units: km/s
     start: 20
     end: 1400

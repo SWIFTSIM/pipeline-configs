@@ -3,8 +3,8 @@ import numpy as np
 import unyt
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
-from velociraptor import load
-from velociraptor.observations import load_observations
+from swiftsimio import load
+from swiftpipeline.observations import load_observations
 
 # Set variables for the figure
 mass_bounds = [1e8, 1e12]  # Msun
@@ -43,20 +43,20 @@ for passive_only in [True, False]:
     # Loop over simulations
     for filename, name in zip(catalogue_filenames, arguments.name_list):
         catalogue = load(filename)
-        z = catalogue.units.redshift
+        z = catalogue.metadata.z
 
         # Load quantities, ignoring objects below lower mass limit
-        stellar_mass = catalogue.get_quantity(
-            f"apertures.mass_star_{aperture_size}_kpc"
-        )
-        mask = stellar_mass.to("Msun").value > mass_bounds[0]
+        stellar_mass = getattr(
+            catalogue, f"exclusive_sphere_{aperture_size}kpc"
+        ).stellar_mass.to_physical_value("Msun")
+        mask = stellar_mass > mass_bounds[0]
         stellar_mass = stellar_mass[mask]
-        is_central = (catalogue.get_quantity("inputhalos.iscentral") == 1)[mask]
+        is_central = catalogue.input_halos.is_central.astype(bool)[mask]
 
         # Determine which galaxies are passive
-        sfr = catalogue.get_quantity(f"apertures.sfr_gas_{aperture_size}_kpc").to(
-            "Msun/yr"
-        )[mask]
+        sfr = getattr(
+            catalogue, f"exclusive_sphere_{aperture_size}kpc"
+        ).star_formation_rate.to_physical_value("Msun/yr")[mask]
         ssfr = sfr / stellar_mass
         is_passive = ssfr < marginal_ssfr
 

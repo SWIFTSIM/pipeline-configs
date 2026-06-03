@@ -15,7 +15,7 @@ from swiftsimio import load, load_statistics
 
 from swiftpipeline.argumentparser import ScriptArgumentParser
 
-from velociraptor.observations import load_observations
+from swiftpipeline.observations import load_observations
 
 arguments = ScriptArgumentParser(
     description="Creates a BH accretion rate density evolution plot, with added observational data."

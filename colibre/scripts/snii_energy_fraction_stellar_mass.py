@@ -85,10 +85,14 @@ for color, (snp_filename, cat_filename, name) in enumerate(
     snapshot = load_snapshot(snp_filename)
     z = snapshot.metadata.z
 
-    star_mass = getattr(catalogue, f"exclusive_sphere_{aperture_size}kpc").stellar_mass
-    mask = star_mass > mass_bounds[0] * star_mass.units
+    star_mass = getattr(
+        catalogue, f"exclusive_sphere_{aperture_size}kpc"
+    ).stellar_mass.to_physical_value("Msun")
+    mask = star_mass > mass_bounds[0]
     star_mass = star_mass[mask]
-    birth_pressures = catalogue.bound_subhalo.median_stellar_birth_pressure.to("K/cm**3")[mask]
+    birth_pressures = catalogue.bound_subhalo.median_stellar_birth_pressure.to(
+        "K/cm**3"
+    )[mask]
 
     try:
         # Extract feedback parameters from snapshot metadata

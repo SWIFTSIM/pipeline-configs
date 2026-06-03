@@ -46,15 +46,17 @@ for passive_only in [True, False]:
         z = catalogue.metadata.z
 
         # Load quantities, ignoring objects below lower mass limit
-        stellar_mass = getattr(catalogue, f"exclusive_sphere_{aperture_size}kpc").stellar_mass.to_physical_value('Msun')
+        stellar_mass = getattr(
+            catalogue, f"exclusive_sphere_{aperture_size}kpc"
+        ).stellar_mass.to_physical_value("Msun")
         mask = stellar_mass > mass_bounds[0]
         stellar_mass = stellar_mass[mask]
         is_central = catalogue.input_halos.is_central.astype(bool)[mask]
 
         # Determine which galaxies are passive
-        sfr = getattr(catalogue, f"exclusive_sphere_{aperture_size}kpc").star_formation_rate.to_physical_value(
-            "Msun/yr"
-        )[mask]
+        sfr = getattr(
+            catalogue, f"exclusive_sphere_{aperture_size}kpc"
+        ).star_formation_rate.to_physical_value("Msun/yr")[mask]
         ssfr = sfr / stellar_mass
         is_passive = ssfr < marginal_ssfr
 

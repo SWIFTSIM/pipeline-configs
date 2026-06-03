@@ -1,2 +1,2 @@
-swiftpipeline>=0.4.0
+git+https://github.com/SWIFTSIM/swiftsimio.git@master
 scipy

@@ -916,6 +916,7 @@ halo_mass_H2_mass_50:
 
 host_halo_mass_bn98_HI_mass_50:
   type: "scatter"
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e8_msun"
   legend_loc: "upper right"
   x:
     quantity: "spherical_overdensity_bn98.host_halo_mass"
@@ -953,6 +954,7 @@ host_halo_mass_bn98_HI_mass_50:
 host_halo_mass_bn98_HI_mass_centrals_50:
   type: "scatter"
   select_centrals: true
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e8_msun"
   comment: "Centrals only"
   legend_loc: "upper right"
   x:
@@ -988,6 +990,7 @@ host_halo_mass_bn98_HI_mass_centrals_50:
 host_halo_mass_bn98_HI_mass_satellites_50:
   type: "scatter"
   select_satellites: true
+  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e8_msun"
   comment: "Satellites only"
   legend_loc: "upper right"
   x:

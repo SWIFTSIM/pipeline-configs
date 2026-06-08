@@ -913,3 +913,108 @@ halo_mass_H2_mass_50:
     caption: All galaxies are included in the median line. H$_2$ mass was corrected for Helium. H$_2$ mass was computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
+
+host_halo_mass_bn98_HI_mass_50:
+  type: "scatter"
+  legend_loc: "upper right"
+  x:
+    quantity: "spherical_overdensity_bn98.host_halo_mass"
+    units: Solar_Mass
+    start: 1e10
+    end: 1e15
+  y:
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 40
+    start:
+      value: 1e10
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture)
+    caption: All galaxies are included in the median line. HI mass was computed in 50 kpc apertures. Host halo BN98 mass is used for both centrals and satellites.
+    section: Cold Gas Masses
+    show_on_webpage: True
+  observational_data:
+    - filename: HaloMassHIMass/Dev2026.hdf5
+    - filename: HaloMassHIMass/Guo2020.hdf5
+    - filename: HaloMassHIMass/Dev2023.hdf5
+    - filename: HaloMassHIMass/Hutchens2023.hdf5
+    - filename: HaloMassHIMass/Dev2024Fit.hdf5
+
+host_halo_mass_bn98_HI_mass_centrals_50:
+  type: "scatter"
+  select_centrals: true
+  comment: "Centrals only"
+  legend_loc: "upper right"
+  x:
+    quantity: "spherical_overdensity_bn98.host_halo_mass"
+    units: Solar_Mass
+    start: 1e10
+    end: 1e15
+  y:
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 40
+    start:
+      value: 1e10
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, centrals only)
+    caption: Only central galaxies are included in the median line. HI mass was computed in 50 kpc apertures.
+    section: Cold Gas Masses
+    show_on_webpage: True
+  observational_data:
+    - filename: HaloMassHIMass/Dev2026Centrals.hdf5
+    - filename: HaloMassHIMass/Saraf2024.hdf5
+
+host_halo_mass_bn98_HI_mass_satellites_50:
+  type: "scatter"
+  select_satellites: true
+  comment: "Satellites only"
+  legend_loc: "upper right"
+  x:
+    quantity: "spherical_overdensity_bn98.host_halo_mass"
+    units: Solar_Mass
+    start: 1e10
+    end: 1e15
+  y:
+    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    units: Solar_Mass
+    start: 1e5
+    end: 1e11
+  median:
+    plot: true
+    log: true
+    adaptive: true
+    number_of_bins: 40
+    start:
+      value: 1e10
+      units: Solar_Mass
+    end:
+      value: 1e15
+      units: Solar_Mass
+  metadata:
+    title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, satellites only)
+    caption: Only satellite galaxies are included in the median line. HI mass was computed in 50 kpc apertures. Host halo BN98 mass is used.
+    section: Cold Gas Masses
+    show_on_webpage: True
+  observational_data:
+    - filename: HaloMassHIMass/Dev2026Satellites.hdf5

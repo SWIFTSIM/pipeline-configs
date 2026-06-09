@@ -657,22 +657,8 @@ def register_stellar_mass_scatter(scatter_amplitude):
     )
     sphere.stellar_mass_with_scatter = scattered
 
-
-def register_host_halo_mass_bn98():
-    bn98_mass = soap.spherical_overdensity_bn98.total_mass.to_physical_value('Msun')
-    host_halo_index = soap.soap.host_halo_index.value
-
-    host_mass = unyt.unyt_array(bn98_mass, units='Msun')
-
-    is_satellite = soap.input_halos.is_central.value == 0
-    host_mass[is_satellite] = bn98_mass[host_halo_index[is_satellite]]
-
-    host_mass.name = "$M_{\\rm BN98}$ host halo"
-    soap.spherical_overdensity_bn98.host_halo_mass = host_mass
-
-
 def register_halo_hi_mass():
-    thresholds = [(1e7, "1e7"), (1e8, "1e8"), (1e9, "1e9"), (1e10, "1e10"), (5e10, "5e10")]
+    thresholds = [(1e7, "1e7"), (1e8, "1e8"), (1e9, "1e9")]
 
     sphere = soap.exclusive_sphere_50kpc
     hi_mass = sphere.atomic_hydrogen_mass.to_physical_value("Msun")
@@ -723,5 +709,4 @@ register_stellar_magnitudes(aperture_sizes, BAND_COLUMNS)
 register_snia_rates_per_stellar_mass(aperture_sizes)
 register_stellar_mass_selection_masks(aperture_sizes)
 register_stellar_mass_scatter(stellar_mass_scatter_amplitude)
-register_host_halo_mass_bn98()
 register_halo_hi_mass()

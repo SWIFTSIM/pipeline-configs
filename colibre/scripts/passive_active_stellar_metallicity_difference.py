@@ -42,7 +42,7 @@ for filename, name in zip(catalogue_filenames, arguments.name_list):
 
     # Load quantities, ignoring objects below mass bin
     sphere = getattr(catalogue, f"exclusive_sphere_{aperture_size}kpc")
-    star_mass = sphere.stellar_mass.to_physical_value('Msun')
+    star_mass = sphere.stellar_mass.to_physical_value("Msun")
     mask = star_mass > mass_bounds[0]
     star_mass = star_mass[mask]
     Fe_over_H = sphere.linear_mass_weighted_iron_over_hydrogen_of_stars[mask]

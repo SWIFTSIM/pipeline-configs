@@ -916,7 +916,7 @@ halo_mass_H2_mass_50:
 
 host_halo_mass_bn98_HI_mass_median_1e7_50:
   type: "scatter"
-  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e7_msun"
+  select_centrals: true
   legend_loc: "upper right"
   x:
     quantity: "spherical_overdensity_bn98.host_halo_mass"
@@ -924,7 +924,7 @@ host_halo_mass_bn98_HI_mass_median_1e7_50:
     start: 1e10
     end: 1e15
   y:
-    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    quantity: "exclusive_sphere_50kpc.total_halo_atomic_hydrogen_mass_above_1e7_msun"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -941,7 +941,7 @@ host_halo_mass_bn98_HI_mass_median_1e7_50:
       units: Solar_Mass
   metadata:
     title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, median, $M_* > 10^7$ M$_\odot$)
-    caption: Median line includes all galaxies with $M_* > 10^7$ M$_\odot$. HI mass was computed in 50 kpc apertures.
+    caption: Median over central galaxies. Total halo HI mass sums the central and all satellites with $M_* > 10^7$ M$_\odot$, computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:
@@ -953,7 +953,7 @@ host_halo_mass_bn98_HI_mass_median_1e7_50:
 
 host_halo_mass_bn98_HI_mass_median_1e8_50:
   type: "scatter"
-  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e8_msun"
+  select_centrals: true
   legend_loc: "upper right"
   x:
     quantity: "spherical_overdensity_bn98.host_halo_mass"
@@ -961,7 +961,7 @@ host_halo_mass_bn98_HI_mass_median_1e8_50:
     start: 1e10
     end: 1e15
   y:
-    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    quantity: "exclusive_sphere_50kpc.total_halo_atomic_hydrogen_mass_above_1e8_msun"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -978,7 +978,7 @@ host_halo_mass_bn98_HI_mass_median_1e8_50:
       units: Solar_Mass
   metadata:
     title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, median, $M_* > 10^8$ M$_\odot$)
-    caption: Median line includes all galaxies with $M_* > 10^8$ M$_\odot$. HI mass was computed in 50 kpc apertures.
+    caption: Median over central galaxies. Total halo HI mass sums the central and all satellites with $M_* > 10^8$ M$_\odot$, computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:
@@ -990,7 +990,7 @@ host_halo_mass_bn98_HI_mass_median_1e8_50:
 
 host_halo_mass_bn98_HI_mass_median_1e9_50:
   type: "scatter"
-  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e9_msun"
+  select_centrals: true
   legend_loc: "upper right"
   x:
     quantity: "spherical_overdensity_bn98.host_halo_mass"
@@ -998,7 +998,7 @@ host_halo_mass_bn98_HI_mass_median_1e9_50:
     start: 1e10
     end: 1e15
   y:
-    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    quantity: "exclusive_sphere_50kpc.total_halo_atomic_hydrogen_mass_above_1e9_msun"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -1015,7 +1015,7 @@ host_halo_mass_bn98_HI_mass_median_1e9_50:
       units: Solar_Mass
   metadata:
     title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, median, $M_* > 10^9$ M$_\odot$)
-    caption: Median line includes all galaxies with $M_* > 10^9$ M$_\odot$. HI mass was computed in 50 kpc apertures.
+    caption: Median over central galaxies. Total halo HI mass sums the central and all satellites with $M_* > 10^9$ M$_\odot$, computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:
@@ -1027,7 +1027,7 @@ host_halo_mass_bn98_HI_mass_median_1e9_50:
 
 host_halo_mass_bn98_HI_mass_mean_1e7_50:
   type: "scatter"
-  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e7_msun"
+  select_centrals: true
   legend_loc: "upper right"
   x:
     quantity: "spherical_overdensity_bn98.host_halo_mass"
@@ -1035,7 +1035,7 @@ host_halo_mass_bn98_HI_mass_mean_1e7_50:
     start: 1e10
     end: 1e15
   y:
-    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    quantity: "exclusive_sphere_50kpc.total_halo_atomic_hydrogen_mass_above_1e7_msun"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -1053,7 +1053,7 @@ host_halo_mass_bn98_HI_mass_mean_1e7_50:
       units: Solar_Mass
   metadata:
     title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, mean, $M_* > 10^7$ M$_\odot$)
-    caption: Mean line includes all galaxies with $M_* > 10^7$ M$_\odot$. HI mass was computed in 50 kpc apertures.
+    caption: Mean over central galaxies. Total halo HI mass sums the central and all satellites with $M_* > 10^7$ M$_\odot$, computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:
@@ -1065,7 +1065,7 @@ host_halo_mass_bn98_HI_mass_mean_1e7_50:
 
 host_halo_mass_bn98_HI_mass_mean_1e8_50:
   type: "scatter"
-  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e8_msun"
+  select_centrals: true
   legend_loc: "upper right"
   x:
     quantity: "spherical_overdensity_bn98.host_halo_mass"
@@ -1073,7 +1073,7 @@ host_halo_mass_bn98_HI_mass_mean_1e8_50:
     start: 1e10
     end: 1e15
   y:
-    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    quantity: "exclusive_sphere_50kpc.total_halo_atomic_hydrogen_mass_above_1e8_msun"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -1091,7 +1091,7 @@ host_halo_mass_bn98_HI_mass_mean_1e8_50:
       units: Solar_Mass
   metadata:
     title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, mean, $M_* > 10^8$ M$_\odot$)
-    caption: Mean line includes all galaxies with $M_* > 10^8$ M$_\odot$. HI mass was computed in 50 kpc apertures.
+    caption: Mean over central galaxies. Total halo HI mass sums the central and all satellites with $M_* > 10^8$ M$_\odot$, computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:
@@ -1103,7 +1103,7 @@ host_halo_mass_bn98_HI_mass_mean_1e8_50:
 
 host_halo_mass_bn98_HI_mass_mean_1e9_50:
   type: "scatter"
-  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e9_msun"
+  select_centrals: true
   legend_loc: "upper right"
   x:
     quantity: "spherical_overdensity_bn98.host_halo_mass"
@@ -1111,7 +1111,7 @@ host_halo_mass_bn98_HI_mass_mean_1e9_50:
     start: 1e10
     end: 1e15
   y:
-    quantity: "exclusive_sphere_50kpc.atomic_hydrogen_mass"
+    quantity: "exclusive_sphere_50kpc.total_halo_atomic_hydrogen_mass_above_1e9_msun"
     units: Solar_Mass
     start: 1e5
     end: 1e11
@@ -1129,7 +1129,7 @@ host_halo_mass_bn98_HI_mass_mean_1e9_50:
       units: Solar_Mass
   metadata:
     title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, mean, $M_* > 10^9$ M$_\odot$)
-    caption: Mean line includes all galaxies with $M_* > 10^9$ M$_\odot$. HI mass was computed in 50 kpc apertures.
+    caption: Mean over central galaxies. Total halo HI mass sums the central and all satellites with $M_* > 10^9$ M$_\odot$, computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:

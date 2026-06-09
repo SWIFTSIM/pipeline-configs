@@ -670,6 +670,39 @@ def register_host_halo_mass_bn98():
     host_mass.name = "$M_{\\rm BN98}$ host halo"
     soap.spherical_overdensity_bn98.host_halo_mass = host_mass
 
+
+def register_halo_hi_mass():
+    thresholds = [(1e7, "1e7"), (1e8, "1e8"), (1e9, "1e9"), (1e10, "1e10"), (5e10, "5e10")]
+
+    sphere = soap.exclusive_sphere_50kpc
+    hi_mass = sphere.atomic_hydrogen_mass.to_physical_value("Msun")
+    stellar_mass = sphere.stellar_mass.to_physical_value("Msun")
+
+    is_central = soap.input_halos.is_central.value == 1
+    is_satellite = ~is_central
+    host_halo_index = soap.soap.host_halo_index.value
+    n = len(hi_mass)
+
+    for threshold, label in thresholds:
+        sat_mask = is_satellite & (stellar_mass > threshold)
+
+        sat_hi_per_halo = np.bincount(
+            host_halo_index[sat_mask],
+            weights=hi_mass[sat_mask],
+            minlength=n,
+        )
+
+        sat_hi = unyt.unyt_array(sat_hi_per_halo, units="Msun")
+        sat_hi.name = f"Satellite HI mass (50 kpc, $M_* > {label}$ $M_\\odot$)"
+        setattr(sphere, f"satellite_atomic_hydrogen_mass_above_{label}_msun", sat_hi)
+
+        total_hi_vals = hi_mass + sat_hi_per_halo
+        total_hi_vals[is_satellite] = 0.0
+        total_hi = unyt.unyt_array(total_hi_vals, units="Msun")
+        total_hi.name = f"Total halo HI mass (50 kpc, $M_* > {label}$ $M_\\odot$)"
+        setattr(sphere, f"total_halo_atomic_hydrogen_mass_above_{label}_msun", total_hi)
+
+
 register_sfr_derived(aperture_sizes)
 register_stellar_metallicities(aperture_sizes, solar_metal_mass_fraction)
 register_stellar_to_halo_mass_ratios(aperture_sizes)
@@ -691,3 +724,4 @@ register_snia_rates_per_stellar_mass(aperture_sizes)
 register_stellar_mass_selection_masks(aperture_sizes)
 register_stellar_mass_scatter(stellar_mass_scatter_amplitude)
 register_host_halo_mass_bn98()
+register_halo_hi_mass()

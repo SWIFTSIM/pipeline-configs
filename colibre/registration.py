@@ -657,6 +657,7 @@ def register_stellar_mass_scatter(scatter_amplitude):
     )
     sphere.stellar_mass_with_scatter = scattered
 
+
 def register_halo_hi_mass():
     thresholds = [(1e7, "1e7")]
 
@@ -673,9 +674,7 @@ def register_halo_hi_mass():
         sat_mask = is_satellite & (stellar_mass > threshold)
 
         sat_hi_per_halo = np.bincount(
-            host_halo_index[sat_mask],
-            weights=hi_mass[sat_mask],
-            minlength=n,
+            host_halo_index[sat_mask], weights=hi_mass[sat_mask], minlength=n
         )
 
         sat_hi = unyt.unyt_array(sat_hi_per_halo, units="Msun")

@@ -618,7 +618,7 @@ def register_snia_rates_per_stellar_mass(aperture_sizes):
 
 
 def register_stellar_mass_selection_masks(aperture_sizes):
-    thresholds = [(1e7, "1e7"), (1e8, "1e8"), (1e9, "1e9"), (1e10, "1e10"), (5e10, "5e10")]
+    thresholds = [(1e9, "1e9"), (1e10, "1e10"), (5e10, "5e10")]
     for aperture_size in aperture_sizes:
         sphere = getattr(soap, f"exclusive_sphere_{aperture_size}kpc")
         stellar_mass = sphere.stellar_mass
@@ -658,7 +658,7 @@ def register_stellar_mass_scatter(scatter_amplitude):
     sphere.stellar_mass_with_scatter = scattered
 
 def register_halo_hi_mass():
-    thresholds = [(1e7, "1e7"), (1e8, "1e8"), (1e9, "1e9")]
+    thresholds = [(1e7, "1e7")]
 
     sphere = soap.exclusive_sphere_50kpc
     hi_mass = sphere.atomic_hydrogen_mass.to_physical_value("Msun")

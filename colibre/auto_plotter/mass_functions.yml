@@ -1,138 +1,9 @@
-stellar_mass_function_30:
-  type: "massfunction"
-  legend_loc: "lower left"
-  number_of_bins: 30
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    units: 1/Mpc**3
-    start: 1e-6
-    end: 1e0
-  metadata:
-    title: Stellar Mass Function (30 kpc aperture)
-    caption: 30 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex.
-    section: Stellar Mass Function
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
-adaptive_stellar_mass_function_30:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
-  number_of_bins: 30
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    units: 1/Mpc**3
-    start: 1e-6
-    end: 1e0
-  metadata:
-    title: Stellar Mass Function (30 kpc aperture, adaptive)
-    caption: 30 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
-    section: Stellar Mass Function
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
-adaptive_stellar_mass_function_active_only_30:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
-  comment: "Active only"
-  comment_loc: "lower right"
-  selection_mask: "exclusive_sphere_30kpc.is_active"
-  number_of_bins: 30
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    units: 1/Mpc**3
-    start: 1e-6
-    end: 1e0
-  metadata:
-    title: Stellar Mass Function (30 kpc aperture)
-    caption: Only for active galaxies, using an adaptive bin width.
-    section: Stellar Mass Function
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
-adaptive_stellar_mass_function_passive_only_30:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
-  comment: "Passive only"
-  comment_loc: "lower right"
-  selection_mask: "exclusive_sphere_30kpc.is_passive"
-  number_of_bins: 30
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    units: 1/Mpc**3
-    start: 1e-6
-    end: 1e0
-  metadata:
-    title: Stellar Mass Function (30 kpc aperture)
-    caption: Only for passive galaxies, using an adaptive bin width.
-    section: Stellar Mass Function
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_passive.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_30kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
 stellar_mass_function_50:
-  type: "massfunction"
-  legend_loc: "lower left"
+  type: massfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -142,29 +13,29 @@ stellar_mass_function_50:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture)
-    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex.
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of
+      0.2 dex.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
+  - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+  - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+  - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+  - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+  - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
+  - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 stellar_mass_function_centrals_50:
-  type: "massfunction"
-  legend_loc: "lower left"
+  type: massfunction
+  legend_loc: lower left
   number_of_bins: 30
   select_centrals: true
-  comment: "Centrals only"
+  comment: Centrals only
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -174,21 +45,21 @@ stellar_mass_function_centrals_50:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, centrals only)
-    caption: 50 kpc aperture GSMF, showing central galaxies only, with a fixed bin-width of 0.2 dex.
+    caption: 50 kpc aperture GSMF, showing central galaxies only, with a fixed bin-width
+      of 0.2 dex.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
 stellar_mass_function_satellites_50:
-  type: "massfunction"
-  legend_loc: "lower left"
+  type: massfunction
+  legend_loc: lower left
   number_of_bins: 30
   select_satellites: true
-  comment: "Satellites only"
+  comment: Satellites only
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -198,19 +69,19 @@ stellar_mass_function_satellites_50:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, satellites only)
-    caption: 50 kpc aperture GSMF, showing satellite galaxies only, with a fixed bin-width of 0.2 dex.
+    caption: 50 kpc aperture GSMF, showing satellite galaxies only, with a fixed bin-width
+      of 0.2 dex.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
 stellar_mass_function_50_calibration:
-  type: "massfunction"
-  legend_loc: "lower left"
+  type: massfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -220,19 +91,19 @@ stellar_mass_function_50_calibration:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture)
-    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of
+      0.2 dex. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
 adaptive_stellar_mass_function_50:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
+  type: adaptivemassfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -245,24 +116,23 @@ adaptive_stellar_mass_function_50:
     caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
+  - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+  - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+  - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+  - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+  - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
+  - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 adaptive_stellar_mass_function_50_calibration:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
+  type: adaptivemassfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -272,20 +142,20 @@ adaptive_stellar_mass_function_50_calibration:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive)
-    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
+      Only Leja et al. (2020) and Driver et al. (2021) data are shown.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5 
-
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
 adaptive_stellar_mass_function_50_box_size_correction:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
+  type: adaptivemassfunction
+  legend_loc: lower left
   number_of_bins: 30
   box_size_correction: box_size_correction_25_to_50.yml
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -295,28 +165,29 @@ adaptive_stellar_mass_function_50_box_size_correction:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive, 25->50 Mpc box size correction)
-    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. The data have been corrected to a box size of 50 Mpc, assuming the original simulation used a 25 Mpc box.
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
+      The data have been corrected to a box size of 50 Mpc, assuming the original
+      simulation used a 25 Mpc box.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
+  - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+  - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+  - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+  - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+  - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
+  - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 adaptive_stellar_mass_function_50_box_size_correction_calibration:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
+  type: adaptivemassfunction
+  legend_loc: lower left
   number_of_bins: 30
   box_size_correction: box_size_correction_25_to_50.yml
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -326,23 +197,24 @@ adaptive_stellar_mass_function_50_box_size_correction_calibration:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive, 25->50 Mpc box size correction)
-    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width. The data have been corrected to a box size of 50 Mpc, assuming the original simulation used a 25 Mpc box. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width.
+      The data have been corrected to a box size of 50 Mpc, assuming the original
+      simulation used a 25 Mpc box. Only Leja et al. (2020) and Driver et al. (2021)
+      data are shown.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-
-
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
 adaptive_stellar_mass_function_passive_only_50:
-  type: "massfunction"
+  type: massfunction
   number_of_bins: 30
-  legend_loc: "lower left"
-  comment: "Passive only"
-  comment_loc: "lower right"
-  selection_mask: "exclusive_sphere_30kpc.is_passive"
+  legend_loc: lower left
+  comment: Passive only
+  comment_loc: lower right
+  selection_mask: exclusive_sphere_30kpc.is_passive
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -355,27 +227,26 @@ adaptive_stellar_mass_function_passive_only_50:
     caption: Only for passive galaxies, using an adaptive bin width.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_passive.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
+  - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+  - filename: GalaxyStellarMassFunction/Behroozi2019_passive.hdf5
+  - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+  - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+  - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+  - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
+  - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 adaptive_stellar_mass_function_active_only_50:
-  type: "adaptivemassfunction"
+  type: adaptivemassfunction
   number_of_bins: 30
-  legend_loc: "lower left"
-  comment: "Active only"
-  comment_loc: "lower right"
-  selection_mask: "exclusive_sphere_30kpc.is_active"
+  legend_loc: lower left
+  comment: Active only
+  comment_loc: lower right
+  selection_mask: exclusive_sphere_30kpc.is_active
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -388,23 +259,22 @@ adaptive_stellar_mass_function_active_only_50:
     caption: Only for active galaxies, using an adaptive bin width.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
+  - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+  - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+  - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+  - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+  - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
+  - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 stellar_mass_function_with_scatter_50:
-  type: "massfunction"
-  legend_loc: "lower left"
+  type: massfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
+    quantity: exclusive_sphere_50kpc.stellar_mass_with_scatter
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -414,28 +284,28 @@ stellar_mass_function_with_scatter_50:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, with scatter)
-    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex, with an additional 0.3 dex log-normal scatter in the stellar mass.
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of
+      0.2 dex, with an additional 0.3 dex log-normal scatter in the stellar mass.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
+  - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+  - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+  - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+  - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+  - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+  - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
+  - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 stellar_mass_function_with_scatter_50_calibration:
-  type: "massfunction"
-  legend_loc: "lower left"
+  type: massfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
+    quantity: exclusive_sphere_50kpc.stellar_mass_with_scatter
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -445,19 +315,20 @@ stellar_mass_function_with_scatter_50_calibration:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, with scatter)
-    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of 0.2 dex, with an additional 0.3 dex log-normal scatter in the stellar mass. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
+    caption: 50 kpc aperture GSMF, showing all galaxies with a fixed bin-width of
+      0.2 dex, with an additional 0.3 dex log-normal scatter in the stellar mass.
+      Only Leja et al. (2020) and Driver et al. (2021) data are shown.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
 adaptive_stellar_mass_function_with_scatter_50:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
+  type: adaptivemassfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
+    quantity: exclusive_sphere_50kpc.stellar_mass_with_scatter
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -467,28 +338,28 @@ adaptive_stellar_mass_function_with_scatter_50:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive, with scatter)
-    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width, with an additional 0.3 dex log-normal scatter in the stellar mass.
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width,
+      with an additional 0.3 dex log-normal scatter in the stellar mass.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
-    - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
-    - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
-    - filename: GalaxyStellarMassFunction/Wright2017.hdf5
-    - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/FIREbox.hdf5
-    - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
-    - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
-    - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
-
+  - filename: GalaxyStellarMassFunction/LiWhite2009.hdf5
+  - filename: GalaxyStellarMassFunction/Behroozi2019_all.hdf5
+  - filename: GalaxyStellarMassFunction/DSouza2015.hdf5
+  - filename: GalaxyStellarMassFunction/Wright2017.hdf5
+  - filename: GalaxyStellarMassFunction/Ilbert2013.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/FIREbox.hdf5
+  - filename: GalaxyStellarMassFunction/Schaye2015_100_50kpc.hdf5
+  - filename: GalaxyStellarMassFunction/Thorne2021.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Weibel2024.hdf5
 adaptive_stellar_mass_function_with_scatter_50_calibration:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
+  type: adaptivemassfunction
+  legend_loc: lower left
   number_of_bins: 30
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass_with_scatter"
+    quantity: exclusive_sphere_50kpc.stellar_mass_with_scatter
     units: Solar_Mass
     start: 1e6
     end: 1e12
@@ -498,9 +369,11 @@ adaptive_stellar_mass_function_with_scatter_50_calibration:
     end: 1e0
   metadata:
     title: Stellar Mass Function (50 kpc aperture, adaptive, with scatter)
-    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width, with an additional 0.3 dex log-normal scatter in the stellar mass. Only Leja et al. (2020) and Driver et al. (2021) data are shown.
+    caption: 50 kpc aperture GSMF, showing all galaxies with an adaptive bin-width,
+      with an additional 0.3 dex log-normal scatter in the stellar mass. Only Leja
+      et al. (2020) and Driver et al. (2021) data are shown.
     section: Stellar Mass Function
   observational_data:
-    - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
-    - filename: GalaxyStellarMassFunction/Driver2022.hdf5
-    - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5
+  - filename: GalaxyStellarMassFunction/Leja_2020.hdf5
+  - filename: GalaxyStellarMassFunction/Driver2022.hdf5
+  - filename: GalaxyStellarMassFunction/Navarro-Carrera2023.hdf5

@@ -1,51 +1,13 @@
-stellar_mass_black_hole_mass_30:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
-    units: Solar_Mass
-    start: 1e3
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass)
-    caption: SMBHM relation for the 30 kpc stellar mass aperture. 
-    section: Black Holes
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Graham2023_ESS0.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Graham2023_E.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Schramm2013.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Ding2020.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Tanaka2024.hdf5
-
 stellar_mass_black_hole_mass_50:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -62,27 +24,27 @@ stellar_mass_black_hole_mass_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass)
-    caption: SMBHM relation. Note that the stellar velocity dispersion is measured in observations in a fixed 1 kpc aperture
+    caption: SMBHM relation. Note that the stellar velocity dispersion is measured
+      in observations in a fixed 1 kpc aperture
     section: Black Holes
   observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Graham2023_ESS0.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Graham2023_E.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Schramm2013.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Ding2020.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Tanaka2024.hdf5
-
+  - filename: GalaxyStellarMassBlackHoleMass/Graham2023_ESS0.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/Graham2023_E.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/Graham2023_S.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/Schramm2013.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/Ding2020.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/Tanaka2024.hdf5
 stellar_mass_black_hole_mass_binned_50:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -99,63 +61,30 @@ stellar_mass_black_hole_mass_binned_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass)
-    caption: SMBHM relation. The binned observational data are obtained by combining BH mass measurements for galaxies of different morphologies (Graham 2023) and passive vs. active galaxies (Terrazas et al. 2017) with dependencies on stellar mass of morphological types (Moffett et al. 2016, from the GAMA survey) and quenched fractions (Gilbank et al. 2010, SDSS).
+    caption: SMBHM relation. The binned observational data are obtained by combining
+      BH mass measurements for galaxies of different morphologies (Graham 2023) and
+      passive vs. active galaxies (Terrazas et al. 2017) with dependencies on stellar
+      mass of morphological types (Moffett et al. 2016, from the GAMA survey) and
+      quenched fractions (Gilbank et al. 2010, SDSS).
     section: Black Holes
   observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_binned.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/Graham2023_binned.hdf5
-    - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
-
-stellar_mass_black_hole_mass_passive_30:
-  type: "scatter"
-  select_centrals: true
-  comment: "Passive centrals only"
-  comment_loc: "lower right"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_30kpc.is_passive"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
-    units: Solar_Mass
-    start: 1e3
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for passive central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
-    section: Black Holes
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
-
+  - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_binned.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/Graham2023_binned.hdf5
+  - filename: GalaxyStellarMassBlackHoleMass/McConnell2013_Fit.hdf5
 stellar_mass_black_hole_mass_passive_50:
-  type: "scatter"
+  type: scatter
   select_centrals: true
-  comment: "Passive centrals only"
-  comment_loc: "lower right"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_50kpc.is_passive"
+  comment: Passive centrals only
+  comment_loc: lower right
+  legend_loc: upper left
+  selection_mask: exclusive_sphere_50kpc.is_passive
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -171,62 +100,28 @@ stellar_mass_black_hole_mass_passive_50:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for passive central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for passive
+      central galaxies.
+    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture.
+      Only passive (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies
+      are included.
     section: Black Holes
   observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
-
-stellar_mass_black_hole_mass_active_30:
-  type: "scatter"
-  select_centrals: true
-  comment: "Active centrals only"
-  comment_loc: "lower right"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_30kpc.is_active"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
-    units: Solar_Mass
-    start: 1e3
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-Black Hole Mass relation (30 kpc Stellar Mass) for active central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 30 kpc stellar mass aperture. Only active (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
-    section: Black Holes
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5
-
+  - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_NSF.hdf5
 stellar_mass_black_hole_mass_active_50:
-  type: "scatter"
+  type: scatter
   select_centrals: true
-  comment: "Active centrals only"
-  comment_loc: "lower right"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_50kpc.is_active"
+  comment: Active centrals only
+  comment_loc: lower right
+  legend_loc: upper left
+  selection_mask: exclusive_sphere_50kpc.is_active
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -242,22 +137,24 @@ stellar_mass_black_hole_mass_active_50:
       value: 1e12
       units: Solar_Mass
   metadata:
-    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for active central galaxies.
-    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture. Only active (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies are included.
+    title: Stellar Mass-Black Hole Mass relation (50 kpc Stellar Mass) for active
+      central galaxies.
+    caption: Stellar Mass-Black Hole Mass relation using a 50 kpc stellar mass aperture.
+      Only active (z=0 sSFR threshold is 0.01 / Gyr, z>0 is 0.2/t_H(z)) central galaxies
+      are included.
     section: Black Holes
   observational_data:
-    - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5
-
+  - filename: GalaxyStellarMassBlackHoleMass/Terrazas2017_SF.hdf5
 halo_mass_black_hole_mass:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "spherical_overdensity_200_crit.total_mass"
+    quantity: spherical_overdensity_200_crit.total_mass
     units: Solar_Mass
     start: 1e8
     end: 1e15
   y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -274,20 +171,19 @@ halo_mass_black_hole_mass:
       units: Solar_Mass
   metadata:
     title: Halo Mass-Black Hole Mass relation
-    caption: Presented for comparison between schemes as halo mass varies significantly less between models and runs.
+    caption: Presented for comparison between schemes as halo mass varies significantly
+      less between models and runs.
     section: Black Holes
-
-
 stellar_veldisp_black_hole_mass_10:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "exclusive_sphere_10kpc.stellar_los_velocity_dispersion"
+    quantity: exclusive_sphere_10kpc.stellar_los_velocity_dispersion
     units: km/s
     start: 1e1
     end: 1e3
   y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 1e11
@@ -304,56 +200,24 @@ stellar_veldisp_black_hole_mass_10:
       units: km/s
   metadata:
     title: LOS Stellar Velocity Dispersion-Black Hole Mass relation (10 kpc)
-    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor. The stellar velocity dispersion from Sahu et al. (2016) was measured using a fixed 1 kpc aperture, while that from Saglia et al. (2016) was measured using the half-light radius aperture.
+    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion
+      using a $1/\sqrt{3}$ correction factor. The stellar velocity dispersion from
+      Sahu et al. (2016) was measured using a fixed 1 kpc aperture, while that from
+      Saglia et al. (2016) was measured using the half-light radius aperture.
     section: Black Holes
   observational_data:
-    - filename: StellarVelocityDispersionBlackHoleMass/Saglia2016.hdf5
-    - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
-
-
-stellar_veldisp_black_hole_mass_30:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_los_velocity_dispersion"
-    units: km/s
-    start: 10
-    end: 1e3
-  y:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
-    units: Solar_Mass
-    start: 1e3
-    end: 1e11
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 10
-    start:
-      value: 10
-      units: km/s
-    end:
-      value: 1e3
-      units: km/s
-  metadata:
-    title: LOS Stellar Velocity Dispersion-Black Hole Mass relation (30 kpc)
-    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor. The stellar velocity dispersion from Sahu et al. (2016) was measured using a fixed 1 kpc aperture, while that from Saglia et al. (2016) was measured using the half-light radius aperture.
-    section: Black Holes
-    show_on_webpage: false
-  observational_data:
-    - filename: StellarVelocityDispersionBlackHoleMass/Saglia2016.hdf5
-    - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
-
+  - filename: StellarVelocityDispersionBlackHoleMass/Saglia2016.hdf5
+  - filename: StellarVelocityDispersionBlackHoleMass/Sahu2019.hdf5
 stellar_mass_stellar_veldisp_10:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "exclusive_sphere_10kpc.stellar_mass"
+    quantity: exclusive_sphere_10kpc.stellar_mass
     units: Solar_Mass
     start: 1e7
     end: 1e12
   y:
-    quantity: "exclusive_sphere_10kpc.stellar_los_velocity_dispersion"
+    quantity: exclusive_sphere_10kpc.stellar_los_velocity_dispersion
     units: km/s
     start: 10
     end: 1e3
@@ -370,63 +234,26 @@ stellar_mass_stellar_veldisp_10:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-LOS Stellar Velocity Dispersion relation (10 kpc)
-    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion using a $1/\sqrt{3}$ correction factor.
+    caption: The 3D stellar velocity dispersion is converted into a LOS velocity dispersion
+      using a $1/\sqrt{3}$ correction factor.
     section: Black Holes
     show_on_webpage: true
-
-ssfr_rate_black_hole_mass_30:
-  type: "scatter"
-  legend_loc: "upper right"
-  select_centrals: true
-  selection_mask: "exclusive_sphere_30kpc.stellar_mass_above_1e10_msun"
-  comment: "Centrals only, $M_* > 10^{10}$ solar masses"
-  redshift_loc: "lower left"
-  x:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
-    units: Solar_Mass
-    start: 1e5
-    end: 1e11
-  y:
-    quantity: "exclusive_sphere_30kpc.specific_star_formation_rate"
-    units: 1 / gigayear
-    start: 0.5e-4
-    end: 3e0
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 25
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e11
-      units: Solar_Mass
-  metadata:
-    title: Black Hole Mass - sSFR relation (30 kpc sSFR)
-    caption: Black Hole Mass - sSFR mass relation for galaxies with stellar mass $>10^{10}$ solar masses.
-    section: Black Holes
-    show_on_webpage: false
-  observational_data:
-    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_without_upper_limits.hdf5
-    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_only_upper_limits.hdf5
-
 ssfr_rate_black_hole_mass_50:
-  type: "scatter"
-  legend_loc: "upper right"
+  type: scatter
+  legend_loc: upper right
   select_centrals: true
-  selection_mask: "exclusive_sphere_50kpc.stellar_mass_above_1e10_msun"
-  comment: "Centrals only, $M_* > 10^{10}$ solar masses"
-  redshift_loc: "lower left"
+  selection_mask: exclusive_sphere_50kpc.stellar_mass_above_1e10_msun
+  comment: Centrals only, $M_* > 10^{10}$ solar masses
+  redshift_loc: lower left
   x:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e5
     end: 1e11
   y:
-    quantity: "exclusive_sphere_50kpc.specific_star_formation_rate"
+    quantity: exclusive_sphere_50kpc.specific_star_formation_rate
     units: 1 / gigayear
-    start: 0.5e-4
+    start: 5.0e-05
     end: 3e0
   median:
     plot: true
@@ -441,19 +268,19 @@ ssfr_rate_black_hole_mass_50:
       units: Solar_Mass
   metadata:
     title: Black Hole Mass - sSFR relation (50 kpc sSFR)
-    caption: Black Hole Mass - sSFR mass relation for galaxies with stellar mass $>10^{10}$ solar masses.
+    caption: Black Hole Mass - sSFR mass relation for galaxies with stellar mass $>10^{10}$
+      solar masses.
     section: Black Holes
     show_on_webpage: true
   observational_data:
-    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_without_upper_limits.hdf5
-    - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_only_upper_limits.hdf5
-
+  - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_without_upper_limits.hdf5
+  - filename: BlackHoleMassSpecificStarFormationRate/Terrazas2017_only_upper_limits.hdf5
 black_hole_mass_function:
-  type: "massfunction"
-  legend_loc: "lower left"
+  type: massfunction
+  legend_loc: lower left
   number_of_bins: 20
   x:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 3e10
@@ -467,21 +294,20 @@ black_hole_mass_function:
     section: Black Holes
     show_on_webpage: true
   observational_data:
-    - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
-    - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
-    - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_Mstar_observed.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_Mstar_unbiased.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_sigma_observed.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_sigma_unbiased.hdf5
-    - filename: BlackHoleMassFunction/Gallo2019_Data.hdf5
-
+  - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
+  - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
+  - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_Mstar_observed.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_Mstar_unbiased.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_sigma_observed.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_sigma_unbiased.hdf5
+  - filename: BlackHoleMassFunction/Gallo2019_Data.hdf5
 black_hole_mass_function_adaptive:
-  type: "adaptivemassfunction"
-  legend_loc: "lower left"
+  type: adaptivemassfunction
+  legend_loc: lower left
   number_of_bins: 20
   x:
-    quantity: "bound_subhalo.most_massive_black_hole_mass"
+    quantity: bound_subhalo.most_massive_black_hole_mass
     units: Solar_Mass
     start: 1e3
     end: 3e10
@@ -491,15 +317,16 @@ black_hole_mass_function_adaptive:
     end: 1e0
   metadata:
     title: Black Hole Mass Function (adaptive)
-    caption: The mass function of black holes (active and non-active), using adaptive binning.
+    caption: The mass function of black holes (active and non-active), using adaptive
+      binning.
     section: Black Holes
     show_on_webpage: true
   observational_data:
-    - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
-    - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
-    - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_Mstar_observed.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_Mstar_unbiased.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_sigma_observed.hdf5
-    - filename: BlackHoleMassFunction/Shankar2016_sigma_unbiased.hdf5
-    - filename: BlackHoleMassFunction/Gallo2019_Data.hdf5
+  - filename: BlackHoleMassFunction/Marconi2004_Data.hdf5
+  - filename: BlackHoleMassFunction/Shankar2004_Data.hdf5
+  - filename: BlackHoleMassFunction/MerloniHeinz2008_Data.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_Mstar_observed.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_Mstar_unbiased.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_sigma_observed.hdf5
+  - filename: BlackHoleMassFunction/Shankar2016_sigma_unbiased.hdf5
+  - filename: BlackHoleMassFunction/Gallo2019_Data.hdf5

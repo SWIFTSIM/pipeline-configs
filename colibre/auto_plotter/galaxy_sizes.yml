@@ -1,13 +1,13 @@
 stellar_mass_galaxy_size_50:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "exclusive_sphere_50kpc.half_mass_radius_stars"
+    quantity: exclusive_sphere_50kpc.half_mass_radius_stars
     units: kpc
     start: 3e-1
     end: 3e1
@@ -27,54 +27,19 @@ stellar_mass_galaxy_size_50:
     caption: Uses a 50 kpc 3D aperture.
     section: Sizes
   observational_data:
-    - filename: GalaxyStellarMassGalaxySize/Trujillo2020HalfMass.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
-
-stellar_mass_galaxy_size_30:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "exclusive_sphere_30kpc.half_mass_radius_stars"
-    units: kpc
-    start: 1e-1
-    end: 3e1
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-Galaxy Size relation (30 kpc aperture)
-    caption: Uses a 30 kpc 3D aperture.
-    section: Sizes
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassGalaxySize/Trujillo2020HalfMass.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
-
+  - filename: GalaxyStellarMassGalaxySize/Trujillo2020HalfMass.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p1.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Crain2015_REF25_z0p0.hdf5
 stellar_mass_projected_galaxy_size_50:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_aperture_50kpc_projx.half_mass_radius_stars"
+    quantity: projected_aperture_50kpc_projx.half_mass_radius_stars
     units: kpc
     start: 1e-1
     end: 3e1
@@ -91,23 +56,23 @@ stellar_mass_projected_galaxy_size_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (50 kpc aperture)
-    caption: Uses stellar sizes calculated from a projected distribution within a 50 kpc aperture.
+    caption: Uses stellar sizes calculated from a projected distribution within a
+      50 kpc aperture.
     section: Sizes
   observational_data:
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
-
+  - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
+  - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
 stellar_mass_projected_galaxy_size_calibration_50:
-  type: "scatter"
-  legend_loc: "upper left"
+  type: scatter
+  legend_loc: upper left
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e5
     end: 1e12
   y:
-    quantity: "projected_aperture_50kpc_projx.half_mass_radius_stars"
+    quantity: projected_aperture_50kpc_projx.half_mass_radius_stars
     units: kpc
     start: 1e-1
     end: 3e1
@@ -124,60 +89,26 @@ stellar_mass_projected_galaxy_size_calibration_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (50 kpc aperture, calibration)
-    caption: Uses stellar sizes calculated from a projected distribution within a 50 kpc aperture. The comparison data is used for calibration.
+    caption: Uses stellar sizes calculated from a projected distribution within a
+      50 kpc aperture. The comparison data is used for calibration.
     section: Sizes
   observational_data:
-    - filename: GalaxyStellarMassGalaxySize/Hardwick2022_halfmass.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Vernon.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Carlsten2021.hdf5
-
-stellar_mass_projected_galaxy_size_30:
-  type: "scatter"
-  legend_loc: "upper left"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "projected_aperture_30kpc_projx.half_mass_radius_stars"
-    units: kpc
-    start: 1e-1
-    end: 3e1
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
-    caption: Uses stellar sizes calculated from a projected distribution within a 50 kpc aperture.
-    section: Sizes
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015rBand.hdf5
-    - filename: GalaxyStellarMassGalaxySize/xGASS.hdf5
-
+  - filename: GalaxyStellarMassGalaxySize/Hardwick2022_halfmass.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Vernon.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Carlsten2021.hdf5
 stellar_mass_projected_galaxy_size_active_only_50:
-  type: "scatter"
-  comment: "Active only"
-  comment_loc: "lower left"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_50kpc.is_active"
+  type: scatter
+  comment: Active only
+  comment_loc: lower left
+  legend_loc: upper left
+  selection_mask: exclusive_sphere_50kpc.is_active
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_aperture_50kpc_projx.half_mass_radius_stars"
+    quantity: projected_aperture_50kpc_projx.half_mass_radius_stars
     units: kpc
     start: 1e-1
     end: 3e1
@@ -194,63 +125,28 @@ stellar_mass_projected_galaxy_size_active_only_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (50 kpc aperture)
-    caption: Only shows active galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
+    caption: "Only shows active galaxies defined based on their sSFRs. Both Lange\
+      \ et al. (2015) and van der Wel et al. (2014) use the semi-major half-light\
+      \ radius of the best-fitting S\xE9rsic model as the definition of galaxy size,\
+      \ while Mosleh et al. (2020) use the circularized half-light radius."
     section: Sizes
   observational_data:
-    - filename: GalaxyStellarMassGalaxySize/VanDerWel_blue.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_blue.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
-
-stellar_mass_projected_galaxy_size_active_only_30:
-  type: "scatter"
-  comment: "Active only"
-  comment_loc: "lower left"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_30kpc.is_active"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "projected_aperture_30kpc_projx.half_mass_radius_stars"
-    units: kpc
-    start: 1e-1
-    end: 3e1
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
-    caption: Only shows active galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
-    section: Sizes
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassGalaxySize/VanDerWel_blue.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_blue.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
-
+  - filename: GalaxyStellarMassGalaxySize/VanDerWel_blue.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_blue.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Mosleh2020_SF.hdf5
 stellar_mass_projected_galaxy_size_passive_only_50:
-  type: "scatter"
-  comment: "Passive only"
-  comment_loc: "lower left"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_50kpc.is_passive"
+  type: scatter
+  comment: Passive only
+  comment_loc: lower left
+  legend_loc: upper left
+  selection_mask: exclusive_sphere_50kpc.is_passive
   x:
-    quantity: "exclusive_sphere_50kpc.stellar_mass"
+    quantity: exclusive_sphere_50kpc.stellar_mass
     units: Solar_Mass
     start: 1e6
     end: 1e12
   y:
-    quantity: "projected_aperture_50kpc_projx.half_mass_radius_stars"
+    quantity: projected_aperture_50kpc_projx.half_mass_radius_stars
     units: kpc
     start: 1e-1
     end: 3e1
@@ -267,47 +163,12 @@ stellar_mass_projected_galaxy_size_passive_only_50:
       units: Solar_Mass
   metadata:
     title: Stellar Mass-(Projected) Galaxy Size relation (50 kpc aperture)
-    caption: Only shows passive galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
+    caption: "Only shows passive galaxies defined based on their sSFRs. Both Lange\
+      \ et al. (2015) and van der Wel et al. (2014) use the semi-major half-light\
+      \ radius of the best-fitting S\xE9rsic model as the definition of galaxy size,\
+      \ while Mosleh et al. (2020) use the circularized half-light radius."
     section: Sizes
   observational_data:
-    - filename: GalaxyStellarMassGalaxySize/VanDerWel_red.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_red.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
-
-stellar_mass_projected_galaxy_size_passive_only_30:
-  type: "scatter"
-  comment: "Passive only"
-  comment_loc: "lower left"
-  legend_loc: "upper left"
-  selection_mask: "exclusive_sphere_30kpc.is_passive"
-  x:
-    quantity: "exclusive_sphere_30kpc.stellar_mass"
-    units: Solar_Mass
-    start: 1e6
-    end: 1e12
-  y:
-    quantity: "projected_aperture_30kpc_projx.half_mass_radius_stars"
-    units: kpc
-    start: 1e-1
-    end: 3e1
-  median:
-    plot: true
-    log: true
-    adaptive: true
-    number_of_bins: 30
-    start:
-      value: 1e6
-      units: Solar_Mass
-    end:
-      value: 1e12
-      units: Solar_Mass
-  metadata:
-    title: Stellar Mass-(Projected) Galaxy Size relation (30 kpc aperture)
-    caption: Only shows passive galaxies defined based on their sSFRs. Both Lange et al. (2015) and van der Wel et al. (2014) use the semi-major half-light radius of the best-fitting Sérsic model as the definition of galaxy size, while Mosleh et al. (2020) use the circularized half-light radius.
-    section: Sizes
-    show_on_webpage: false
-  observational_data:
-    - filename: GalaxyStellarMassGalaxySize/VanDerWel_red.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_red.hdf5
-    - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5
-
+  - filename: GalaxyStellarMassGalaxySize/VanDerWel_red.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Lange2015HBand_red.hdf5
+  - filename: GalaxyStellarMassGalaxySize/Mosleh2020_Q.hdf5

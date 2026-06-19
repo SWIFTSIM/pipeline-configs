@@ -928,7 +928,7 @@ bn98_total_HI_mass_1e7_50:
     units: Solar_Mass
     start: 1e5
     end: 1e11
-  median:
+  mean:
     plot: true
     log: true
     adaptive: true
@@ -941,7 +941,7 @@ bn98_total_HI_mass_1e7_50:
       units: Solar_Mass
   metadata:
     title: Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, median, $M_* > 10^7$ M$_\odot$)
-    caption: Median line. Total halo HI mass sums the central and all satellites with $M_* > 10^7$ M$_\odot$, computed in 50 kpc apertures.
+    caption: Mean line. Total halo HI mass sums the central and all satellites with $M_* > 10^7$ M$_\odot$, computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:
@@ -966,7 +966,7 @@ bn98_central_HI_mass_50:
     units: Solar_Mass
     start: 1e5
     end: 1e11
-  median:
+  mean:
     plot: true
     log: true
     adaptive: true
@@ -979,7 +979,7 @@ bn98_central_HI_mass_50:
       units: Solar_Mass
   metadata:
     title: Host Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, centrals)
-    caption: Median line. HI mass was computed in 50 kpc apertures.
+    caption: Mean line. HI mass was computed in 50 kpc apertures.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:
@@ -1001,7 +1001,7 @@ bn98_satellite_HI_mass_50:
     units: Solar_Mass
     start: 1e5
     end: 1e11
-  median:
+  mean:
     plot: true
     log: true
     adaptive: true
@@ -1014,7 +1014,7 @@ bn98_satellite_HI_mass_50:
       units: Solar_Mass
   metadata:
     title: Halo Mass ($M_{\rm BN98}$)-HI Gas Mass Relation (50 kpc aperture, satellites only)
-    caption: Median line. Sum of HI mass (50kpc aperture) of satellite galaxies with $M_* > 10^7$ M$_\odot$.
+    caption: Mean line. Sum of HI mass (50kpc aperture) of satellite galaxies with $M_* > 10^7$ M$_\odot$ inside each halo.
     section: Cold Gas Masses
     show_on_webpage: True
   observational_data:

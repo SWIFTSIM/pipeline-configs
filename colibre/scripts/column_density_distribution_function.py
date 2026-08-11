@@ -118,13 +118,14 @@ def plot_cddf(
                 .flatten()
             )
 
-            # compute the histogram (density=True makes it a PDF)
-            cddf, _ = np.histogram(species_map, bins=bin_edges, density=True)
+            # count the pixels in each column density bin, and
+            # normalise by the total number of pixels. density=True would
+            # instead normalise by the pixels inside the bin range only
+            cddf, _ = np.histogram(species_map, bins=bin_edges)
+            cddf = cddf / species_map.size
 
-            # convert from d/dN to d/dlogN
-            cddf *= (bin_edges[1:] - bin_edges[:-1]) / (
-                np.log10(bin_edges[1:]) - np.log10(bin_edges[:-1])
-            )
+            # convert to d/dlogN
+            cddf /= np.log10(bin_edges[1:]) - np.log10(bin_edges[:-1])
 
             # figure out the box size in redshift space
             # note that this depends on the number of chunks, since more
